@@ -1,8 +1,10 @@
 package de.andrestefanov.android.nearbuy.ui.requester
 
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import de.andrestefanov.android.nearbuy.R
 
 class CreatedRequestsAdapter : RecyclerView.Adapter<CreatedRequestsAdapter.RequestItemViewHolder>() {
 
@@ -11,7 +13,8 @@ class CreatedRequestsAdapter : RecyclerView.Adapter<CreatedRequestsAdapter.Reque
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RequestItemViewHolder {
-        TODO("Not yet implemented")
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.request_list_item_view, parent, false)
+        return RequestItemViewHolder(view)
     }
 
     override fun getItemCount(): Int {

@@ -20,11 +20,11 @@
     <fragment
         android:id="@+id/requesterOverviewFragment"
         android:name="de.andrestefanov.android.nearbuy.ui.requester.CreatedRequestsFragment"
-        android:label="@string/provide_help"
+        android:label="@string/request_help"
         tools:layout="@layout/requester_overview_fragment" />
     <fragment
         android:id="@+id/helperOverviewFragment"
         android:name="de.andrestefanov.android.nearbuy.ui.helper.RequestSelectionFragment"
-        android:label="@string/request_help"
+        android:label="@string/provide_help"
         tools:layout="@layout/helper_overview_fragment" />
 </navigation>
