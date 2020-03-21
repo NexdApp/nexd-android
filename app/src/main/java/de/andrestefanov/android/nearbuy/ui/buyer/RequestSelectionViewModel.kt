@@ -1,4 +1,4 @@
-package de.andrestefanov.android.nearbuy.ui.helper
+package de.andrestefanov.android.nearbuy.ui.buyer
 
 import androidx.lifecycle.ViewModel
 

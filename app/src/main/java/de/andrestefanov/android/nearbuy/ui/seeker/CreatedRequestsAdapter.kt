@@ -1,4 +1,4 @@
-package de.andrestefanov.android.nearbuy.ui.requester
+package de.andrestefanov.android.nearbuy.ui.seeker
 
 import android.view.LayoutInflater
 import android.view.View
