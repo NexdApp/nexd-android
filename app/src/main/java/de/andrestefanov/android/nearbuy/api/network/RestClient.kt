@@ -1,14 +1,10 @@
 package de.andrestefanov.android.nearbuy.api.network
 
-import de.andrestefanov.android.nearbuy.api.data.HelpRequest
-import de.andrestefanov.android.nearbuy.api.data.HelpRequestItem
-import de.andrestefanov.android.nearbuy.api.data.LoginRequestBody
-import de.andrestefanov.android.nearbuy.api.data.RegistrationBody
+import de.andrestefanov.android.nearbuy.api.data.*
 import io.reactivex.Completable
+import io.reactivex.Single
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.http.Body
-import retrofit2.http.GET
 import java.util.*
 
 class RestClient {
@@ -36,6 +32,10 @@ class RestClient {
         password: String
     ): Completable {
         return service.register(RegistrationBody(email, firstName, lastName, password))
+    }
+
+    fun getArticles() : Single<List<Article>> {
+        return service.getArticles()
     }
 
 
