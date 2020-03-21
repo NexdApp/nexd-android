@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/roleFragment">
+
+    <fragment
+        android:id="@+id/roleFragment"
+        android:name="de.andrestefanov.android.nearbuy.ui.role.RoleFragment"
+        android:label="@string/role"
+        tools:layout="@layout/role_fragment">
+        <action
+            android:id="@+id/action_roleFragment_to_requesterOverviewFragment"
+            app:destination="@id/requesterOverviewFragment" />
+        <action
+            android:id="@+id/action_roleFragment_to_helperOverviewFragment"
+            app:destination="@id/helperOverviewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/requesterOverviewFragment"
+        android:name="de.andrestefanov.android.nearbuy.ui.requester.CreatedRequestsFragment"
+        android:label="@string/provide_help"
+        tools:layout="@layout/requester_overview_fragment" />
+    <fragment
+        android:id="@+id/helperOverviewFragment"
+        android:name="de.andrestefanov.android.nearbuy.ui.helper.RequestSelectionFragment"
+        android:label="@string/request_help"
+        tools:layout="@layout/helper_overview_fragment" />
+</navigation>
