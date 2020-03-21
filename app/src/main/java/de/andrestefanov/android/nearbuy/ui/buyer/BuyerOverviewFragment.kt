@@ -62,6 +62,10 @@ class BuyerOverviewFragment : Fragment() {
                         "${viewModel.getAcceptedRequestItems()} / ${RestClient.MAX_ACCEPTING_REQUESTS})"
             })
         }
+
+        acceptedRequestsSummary.setOnClickListener {
+            findNavController().navigate(R.id.shoppingListFragment)
+        }
     }
 
     private fun updateAcceptedRequests(acceptedRequests: List<HelpRequest>) {

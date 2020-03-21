@@ -19,9 +19,9 @@ class RestClient {
             Calendar.getInstance().time,
             "Marienplatz 1",
             listOf(
-                HelpRequestItem("Milch"),
-                HelpRequestItem("Eier"),
-                HelpRequestItem("Klopapier")
+                HelpRequestItem("Milch", 2),
+                HelpRequestItem("Eier", 1),
+                HelpRequestItem("Klopapier", 5)
             )
         ),
         HelpRequest(
@@ -30,8 +30,8 @@ class RestClient {
             Calendar.getInstance().time,
             "Marienplatz 1",
             listOf(
-                HelpRequestItem("Milch"),
-                HelpRequestItem("Eier")
+                HelpRequestItem("Milch", 1),
+                HelpRequestItem("Eier", 3)
             )
         )
     )
@@ -52,9 +52,9 @@ class RestClient {
             Calendar.getInstance().time,
             "Marienplatz 1",
             listOf(
-                HelpRequestItem("Milch"),
-                HelpRequestItem("Eier"),
-                HelpRequestItem("Klopapier")
+                HelpRequestItem("Milch", 3),
+                HelpRequestItem("Eier", 2),
+                HelpRequestItem("Klopapier", 1)
             )
         ),
         HelpRequest(
@@ -63,8 +63,8 @@ class RestClient {
             Calendar.getInstance().time,
             "Marienplatz 1",
             listOf(
-                HelpRequestItem("Seife"),
-                HelpRequestItem("Butter")
+                HelpRequestItem("Seife", 4),
+                HelpRequestItem("Butter", 2)
             )
         )
     )

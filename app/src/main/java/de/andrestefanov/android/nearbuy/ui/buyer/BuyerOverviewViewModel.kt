@@ -13,7 +13,9 @@ class BuyerOverviewViewModel : ViewModel() {
     fun getAcceptedRequestItems(): Int {
         var totalItems = 0
         getAcceptedRequests().value?.forEach {
-            totalItems += it.items.size
+            for (item in it.items) {
+                totalItems += item.amount
+            }
         }
         return totalItems
     }
