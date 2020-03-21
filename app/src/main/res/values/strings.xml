@@ -3,4 +3,7 @@
     <string name="request_help">Um Hilfe bitten</string>
     <string name="provide_help">Hilfe anbieten</string>
     <string name="role">Rolle</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

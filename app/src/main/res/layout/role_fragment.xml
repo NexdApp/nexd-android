@@ -8,20 +8,20 @@
     tools:context=".ui.role.RoleFragment">
 
     <Button
-        android:id="@+id/role_button_helper"
+        android:id="@+id/role_button_buyer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/role_button_requester"
+        app:layout_constraintBottom_toTopOf="@id/role_button_seeker"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:text="Ich will Helfen"/>
 
     <Button
-        android:id="@+id/role_button_requester"
+        android:id="@+id/role_button_seeker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/role_button_helper"
+        app:layout_constraintTop_toBottomOf="@id/role_button_buyer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import de.andrestefanov.android.nearbuy.R
-import kotlinx.android.synthetic.main.requester_overview_fragment.*
+import kotlinx.android.synthetic.main.seeker_overview_fragment.*
 
 class CreatedRequestsFragment : Fragment() {
 
@@ -21,7 +21,7 @@ class CreatedRequestsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.requester_overview_fragment, container, false)
+        return inflater.inflate(R.layout.seeker_overview_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

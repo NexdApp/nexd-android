@@ -12,19 +12,28 @@
         tools:layout="@layout/role_fragment">
         <action
             android:id="@+id/action_roleFragment_to_requesterOverviewFragment"
-            app:destination="@id/requesterOverviewFragment" />
+            app:destination="@id/seekerOverviewFragment" />
         <action
             android:id="@+id/action_roleFragment_to_helperOverviewFragment"
-            app:destination="@id/helperOverviewFragment" />
+            app:destination="@id/buyerOverviewFragment" />
     </fragment>
     <fragment
-        android:id="@+id/requesterOverviewFragment"
+        android:id="@+id/seekerOverviewFragment"
         android:name="de.andrestefanov.android.nearbuy.ui.seeker.CreatedRequestsFragment"
         android:label="@string/request_help"
-        tools:layout="@layout/requester_overview_fragment" />
+        tools:layout="@layout/seeker_overview_fragment" />
     <fragment
-        android:id="@+id/helperOverviewFragment"
+        android:id="@+id/buyerOverviewFragment"
         android:name="de.andrestefanov.android.nearbuy.ui.buyer.RequestSelectionFragment"
         android:label="@string/provide_help"
-        tools:layout="@layout/buyer_overview_fragment" />
+        tools:layout="@layout/buyer_overview_fragment" >
+        <action
+            android:id="@+id/action_buyerOverviewFragment_to_buyerRequestDetail"
+            app:destination="@id/buyerRequestDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/buyerRequestDetail"
+        android:name="de.andrestefanov.android.nearbuy.BuyerRequestDetail"
+        android:label="buyer_request_detail_fragment"
+        tools:layout="@layout/buyer_request_detail_fragment" />
 </navigation>
