@@ -1,6 +1,8 @@
 package de.andrestefanov.android.nearbuy.model.network
 
 import de.andrestefanov.android.nearbuy.model.data.HelpRequest
+import de.andrestefanov.android.nearbuy.model.data.HelpRequestItem
+import java.text.SimpleDateFormat
 import java.util.*
 
 class RestClient {
@@ -9,20 +11,22 @@ class RestClient {
         HelpRequest(
             UUID.randomUUID().toString(),
             "Müller",
+            Calendar.getInstance().time,
             "Marienplatz 1",
             listOf(
-                "Milch",
-                "Eier",
-                "Klopapier"
+                HelpRequestItem("Milch"),
+                HelpRequestItem("Eier"),
+                HelpRequestItem("Klopapier")
             )
         ),
         HelpRequest(
             UUID.randomUUID().toString(),
             "Bauer",
+            Calendar.getInstance().time,
             "Marienplatz 1",
             listOf(
-                "Milch",
-                "Eier"
+                HelpRequestItem("Milch"),
+                HelpRequestItem("Eier")
             )
         )
     )
@@ -31,11 +35,22 @@ class RestClient {
         HelpRequest(
             UUID.randomUUID().toString(),
             "Müller",
+            Calendar.getInstance().time,
             "Marienplatz 1",
             listOf(
-                "Milch",
-                "Eier",
-                "Klopapier"
+                HelpRequestItem("Milch"),
+                HelpRequestItem("Eier"),
+                HelpRequestItem("Klopapier")
+            )
+        ),
+        HelpRequest(
+            UUID.randomUUID().toString(),
+            "Müller",
+            Calendar.getInstance().time,
+            "Marienplatz 1",
+            listOf(
+                HelpRequestItem("Seife"),
+                HelpRequestItem("Butter")
             )
         )
     )

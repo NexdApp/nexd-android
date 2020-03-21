@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/seekerOverviewFragment"
-        android:name="de.andrestefanov.android.nearbuy.ui.seeker.CreatedRequestsFragment"
+        android:name="de.andrestefanov.android.nearbuy.ui.seeker.SeekerOverviewFragment"
         android:label="@string/request_help"
         tools:layout="@layout/seeker_overview_fragment" />
     <fragment
