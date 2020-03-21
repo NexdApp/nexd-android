@@ -1,4 +1,4 @@
-package de.andrestefanov.android.nearbuy.ui.seeker
+package de.andrestefanov.android.nearbuy.ui.seeker.overview
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.andrestefanov.android.nearbuy.R
 import de.andrestefanov.android.nearbuy.api.data.HelpRequest
@@ -55,6 +56,10 @@ class SeekerOverviewFragment : Fragment() {
                 adapter.addSection(itemsSection)
             }
         })
+
+        button_create_new_help_request.setOnClickListener {
+            findNavController().navigate(R.id.action_seekerOverviewFragment_to_createHelpRequestFragment)
+        }
     }
 
 }

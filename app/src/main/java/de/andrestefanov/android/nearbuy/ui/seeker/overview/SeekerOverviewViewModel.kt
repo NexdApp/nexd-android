@@ -1,4 +1,4 @@
-package de.andrestefanov.android.nearbuy.ui.seeker
+package de.andrestefanov.android.nearbuy.ui.seeker.overview
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
