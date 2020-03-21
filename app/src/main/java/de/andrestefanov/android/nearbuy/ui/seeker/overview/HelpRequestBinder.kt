@@ -1,11 +1,11 @@
-package de.andrestefanov.android.nearbuy.ui.seeker
+package de.andrestefanov.android.nearbuy.ui.seeker.overview
 
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import de.andrestefanov.android.nearbuy.R
 import de.andrestefanov.android.nearbuy.api.data.HelpRequest
-import de.andrestefanov.android.nearbuy.ui.seeker.HelpRequestBinder.HelpRequestViewHolder
+import de.andrestefanov.android.nearbuy.ui.seeker.overview.HelpRequestBinder.HelpRequestViewHolder
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
 import java.text.DateFormat

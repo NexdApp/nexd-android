@@ -1,4 +1,4 @@
-package de.andrestefanov.android.nearbuy.ui.seeker
+package de.andrestefanov.android.nearbuy.ui.seeker.overview
 
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +20,9 @@ class HelpRequestItemBinder : ItemBinder<HelpRequestItem, HelpRequestItemBinder.
     }
 
     override fun createViewHolder(parent: ViewGroup): HelpRequestItemViewHolder {
-        return HelpRequestItemViewHolder(inflate(parent, R.layout.request_list_item_view))
+        return HelpRequestItemViewHolder(
+            inflate(parent, R.layout.request_list_item_view)
+        )
     }
 
     override fun bindViewHolder(

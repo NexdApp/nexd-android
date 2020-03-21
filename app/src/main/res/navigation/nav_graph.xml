@@ -19,9 +19,13 @@
     </fragment>
     <fragment
         android:id="@+id/seekerOverviewFragment"
-        android:name="de.andrestefanov.android.nearbuy.ui.seeker.SeekerOverviewFragment"
+        android:name="de.andrestefanov.android.nearbuy.ui.seeker.overview.SeekerOverviewFragment"
         android:label="@string/request_help"
-        tools:layout="@layout/seeker_overview_fragment" />
+        tools:layout="@layout/seeker_overview_fragment" >
+        <action
+            android:id="@+id/action_seekerOverviewFragment_to_createHelpRequestFragment"
+            app:destination="@id/createHelpRequestFragment" />
+    </fragment>
     <fragment
         android:id="@+id/buyerOverviewFragment"
         android:name="de.andrestefanov.android.nearbuy.ui.buyer.RequestSelectionFragment"
@@ -36,4 +40,9 @@
         android:name="de.andrestefanov.android.nearbuy.BuyerRequestDetail"
         android:label="buyer_request_detail_fragment"
         tools:layout="@layout/buyer_request_detail_fragment" />
+    <fragment
+        android:id="@+id/createHelpRequestFragment"
+        android:name="de.andrestefanov.android.nearbuy.ui.seeker.create.CreateHelpRequestFragment"
+        android:label="Ich brauche"
+        tools:layout="@layout/create_help_request_fragment" />
 </navigation>
