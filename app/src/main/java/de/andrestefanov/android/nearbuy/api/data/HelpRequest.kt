@@ -1,4 +1,4 @@
-package de.andrestefanov.android.nearbuy.model.data
+package de.andrestefanov.android.nearbuy.api.data
 
 import java.util.*
 
