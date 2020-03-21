@@ -24,16 +24,21 @@
         tools:layout="@layout/seeker_overview_fragment" />
     <fragment
         android:id="@+id/buyerOverviewFragment"
-        android:name="de.andrestefanov.android.nearbuy.ui.buyer.RequestSelectionFragment"
+        android:name="de.andrestefanov.android.nearbuy.ui.buyer.BuyerOverviewFragment"
         android:label="@string/provide_help"
         tools:layout="@layout/buyer_overview_fragment" >
         <action
-            android:id="@+id/action_buyerOverviewFragment_to_buyerRequestDetail"
-            app:destination="@id/buyerRequestDetail" />
+            android:id="@+id/requestDetailAction"
+            app:destination="@id/buyerRequestDetailFragment"
+            app:launchSingleTop="false" />
     </fragment>
     <fragment
-        android:id="@+id/buyerRequestDetail"
-        android:name="de.andrestefanov.android.nearbuy.BuyerRequestDetail"
-        android:label="buyer_request_detail_fragment"
-        tools:layout="@layout/buyer_request_detail_fragment" />
+        android:id="@+id/buyerRequestDetailFragment"
+        android:name="de.andrestefanov.android.nearbuy.ui.buyer.BuyerRequestDetailFragment"
+        android:label="@string/request_details"
+        tools:layout="@layout/buyer_request_detail_fragment" >
+        <argument
+            android:name="request_id"
+            app:argType="string" />
+    </fragment>
 </navigation>

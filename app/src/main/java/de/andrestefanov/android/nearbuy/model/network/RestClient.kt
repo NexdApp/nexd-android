@@ -9,7 +9,7 @@ class RestClient {
 
     fun getNearbyOpenRequests() = listOf(
         HelpRequest(
-            UUID.randomUUID().toString(),
+            "0fb3a030-3b24-4f09-a856-853312baabc2",
             "Müller",
             Calendar.getInstance().time,
             "Marienplatz 1",
@@ -20,7 +20,7 @@ class RestClient {
             )
         ),
         HelpRequest(
-            UUID.randomUUID().toString(),
+            "e164bdd9-c5b8-44b0-b022-607a5d698854",
             "Bauer",
             Calendar.getInstance().time,
             "Marienplatz 1",
@@ -30,6 +30,15 @@ class RestClient {
             )
         )
     )
+
+    fun getRequest(id: String): HelpRequest? {
+        for (it in getNearbyOpenRequests().listIterator()) {
+            if (it.id == id) {
+                return it
+            }
+        }
+        return null
+    }
 
     fun getMyRequests() = listOf(
         HelpRequest(
