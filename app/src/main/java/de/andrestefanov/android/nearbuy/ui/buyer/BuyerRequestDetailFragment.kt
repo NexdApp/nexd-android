@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import de.andrestefanov.android.nearbuy.R
 import de.andrestefanov.android.nearbuy.model.data.HelpRequestItem
 import de.andrestefanov.android.nearbuy.model.network.RestClient
@@ -22,7 +23,7 @@ import mva2.adapter.util.Mode
 class BuyerRequestDetailFragment : Fragment() {
 
     private lateinit var viewModel: BuyerRequestDetailViewModel
-    private var itemAdapter = BuyerDetailItemBinder()
+    private var rest = RestClient()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,9 +69,29 @@ class BuyerRequestDetailFragment : Fragment() {
             list.setSelectionMode(Mode.SINGLE)
         })
 
-        accept.setOnClickListener {
-            Toast.makeText(context, "Anfrage angenommen", Toast.LENGTH_SHORT).show()
+        viewModel.request.value?.let {
+            if (rest.containsAcceptedRequest(it.id)) {
+                setAccepted(true)
+            } else {
+                setAccepted(false)
+            }
         }
+
+        accept.setOnClickListener {
+            viewModel.request.value?.let {
+                if (RestClient().acceptRequest(it)) {
+                    setAccepted(true)
+                } else {
+                    Snackbar.make(view!!, "Annahme fehlgeschlagen", Snackbar.LENGTH_SHORT).show()
+                }
+            }
+
+        }
+    }
+
+    private fun setAccepted(accepted: Boolean) {
+        accept.text = getString(if (accepted) R.string.request_accepted else R.string.request_accept)
+        accept.isEnabled = !accepted
     }
 
 }

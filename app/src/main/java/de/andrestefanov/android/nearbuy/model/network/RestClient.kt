@@ -7,6 +7,11 @@ import java.util.*
 
 class RestClient {
 
+    companion object {
+        const val MAX_ACCEPTING_REQUESTS = 20
+        private var acceptedRequests = mutableListOf<HelpRequest>()
+    }
+
     fun getNearbyOpenRequests() = listOf(
         HelpRequest(
             "0fb3a030-3b24-4f09-a856-853312baabc2",
@@ -63,5 +68,27 @@ class RestClient {
             )
         )
     )
+
+    fun getAcceptedRequests(): List<HelpRequest> {
+        return acceptedRequests
+    }
+
+    fun containsAcceptedRequest(id: String): Boolean {
+        getAcceptedRequests().forEach {
+            if (it.id == id) {
+                return true
+            }
+        }
+        return false
+    }
+
+    fun acceptRequest(request: HelpRequest): Boolean {
+        if (containsAcceptedRequest(request.id)) {
+            return false
+        }
+
+        acceptedRequests.add(request)
+        return true
+    }
 
 }
