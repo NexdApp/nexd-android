@@ -4,13 +4,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import de.andrestefanov.android.nearbuy.R
-import de.andrestefanov.android.nearbuy.model.data.HelpRequest
+import de.andrestefanov.android.nearbuy.api.data.HelpRequest
 import de.andrestefanov.android.nearbuy.ui.seeker.HelpRequestBinder.HelpRequestViewHolder
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
 import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.*
 
 class HelpRequestBinder : ItemBinder<HelpRequest, HelpRequestViewHolder>() {
 

@@ -9,8 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.andrestefanov.android.nearbuy.R
-import de.andrestefanov.android.nearbuy.model.data.HelpRequest
-import de.andrestefanov.android.nearbuy.model.data.HelpRequestItem
+import de.andrestefanov.android.nearbuy.api.data.HelpRequest
+import de.andrestefanov.android.nearbuy.api.data.HelpRequestItem
 import kotlinx.android.synthetic.main.seeker_overview_fragment.*
 import mva2.adapter.ItemSection
 import mva2.adapter.ListSection

@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
 import de.andrestefanov.android.nearbuy.R
-import de.andrestefanov.android.nearbuy.model.data.HelpRequestItem
+import de.andrestefanov.android.nearbuy.api.data.HelpRequestItem
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
 
