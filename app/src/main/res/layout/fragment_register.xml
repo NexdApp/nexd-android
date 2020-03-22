@@ -1,65 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background_gradient"
+    android:orientation="vertical"
     tools:context=".ui.auth.LoginFragment"
-    android:padding="64dp">
+    android:padding="30dp">
 
-    <EditText
-        android:id="@+id/edittext_first_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:hint="Vorname" />
-
-    <EditText
-        android:id="@+id/edittext_surname"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/edittext_first_name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:hint="Nachname" />
-
-    <EditText
-        android:id="@+id/edittext_email"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/edittext_surname"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:hint="Email" />
-
-    <EditText
-        android:id="@+id/edittext_password"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/edittext_email"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:hint="Password" />
-
-    <EditText
-        android:id="@+id/edittext_password_confirm"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/edittext_password"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:hint="Password bestätigen" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_register"
+    <TextView
+        android:text="Erstelle deinen \nAccount:"
+        android:textSize="20sp"
+        android:textStyle="bold"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edittext_password_confirm"
-        android:layout_marginTop="16dp"
-        android:text="Registrieren" />
+        android:layout_height="wrap_content" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <EditText
+            android:id="@+id/edittext_first_name"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:lines="1"
+            android:nextFocusDown="@id/edittext_surname"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:backgroundTint="@color/text"
+            android:textColorHint="@color/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Vorname" />
+
+        <EditText
+            android:id="@+id/edittext_surname"
+            android:imeOptions="actionNext"
+            android:lines="1"
+            android:nextFocusDown="@id/edittext_email"
+            android:inputType="text"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:backgroundTint="@color/text"
+            android:textColorHint="@color/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nachname" />
+
+        <EditText
+            android:id="@+id/edittext_email"
+            android:imeOptions="actionNext"
+            android:lines="1"
+            android:nextFocusDown="@id/edittext_password"
+            android:inputType="textEmailAddress"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:backgroundTint="@color/text"
+            android:textColorHint="@color/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email" />
+
+        <EditText
+            android:id="@+id/edittext_password"
+            android:lines="1"
+            android:imeOptions="actionNext"
+            android:nextFocusDown="@id/edittext_password_confirm"
+            android:inputType="textPassword"
+            android:layout_marginTop="30dp"
+            android:textSize="20sp"
+            android:backgroundTint="@color/text"
+            android:textColorHint="@color/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Passwort" />
+
+        <EditText
+            android:id="@+id/edittext_password_confirm"
+            android:lines="1"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:backgroundTint="@color/text"
+            android:textColorHint="@color/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Passwort bestätigen" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+    <Button
+        android:id="@+id/button_register"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_button_white"
+        android:layout_marginHorizontal="2dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="16dp"
+        android:text="Weiter" />
+
+    <Space
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+    <Button
+        android:text="Datenschutzhinweise"
+        android:textAllCaps="false"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

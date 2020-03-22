@@ -71,7 +71,7 @@ class BuyerOverviewFragment : Fragment() {
         }
 
         acceptedRequestsSummary.setOnClickListener {
-            findNavController().navigate(R.id.shoppingListFragment)
+            findNavController().navigate(R.id.action_buyerOverviewFragment_to_shoppingListFragment)
         }
     }
 

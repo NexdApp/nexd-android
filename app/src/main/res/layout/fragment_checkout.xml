@@ -11,12 +11,13 @@
 
     <TextView
         android:text="An der Kasse"
-        android:textColor="@android:color/black"
-        android:textSize="22sp"
+        android:layout_marginBottom="10dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
@@ -26,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
 
     <Space
         android:layout_weight="1"
