@@ -9,10 +9,10 @@ import retrofit2.http.POST
 
 interface NearBuyService {
 
-    @GET("auth/login")
+    @POST("auth/login")
     fun login(@Body body: LoginRequestBody): Single<LoginResponse>
 
-    @GET("auth/register")
+    @POST("auth/register")
     fun register(@Body body: RegistrationBody) : Completable
 
     @GET("articles")

@@ -14,7 +14,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener { _, destination, _ ->
-            title = destination.label
+            runOnUiThread {
+                title = destination.label
+            }
         }
     }
 }
