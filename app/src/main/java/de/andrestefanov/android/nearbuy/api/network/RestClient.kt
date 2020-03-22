@@ -2,7 +2,6 @@ package de.andrestefanov.android.nearbuy.api.network
 
 import de.andrestefanov.android.nearbuy.api.data.*
 import io.reactivex.Completable
-import io.reactivex.Scheduler
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
@@ -27,7 +26,7 @@ class RestClient {
         service = retrofit.create(NearBuyService::class.java)
     }
 
-    fun login(login: String, password: String): Completable {
+    fun login(login: String, password: String): Single<LoginResponse> {
         return service.login(LoginRequestBody(login, password))
             .subscribeOn(Schedulers.io())
     }
@@ -42,9 +41,17 @@ class RestClient {
             .subscribeOn(Schedulers.io())
     }
 
-    fun getArticles() : Single<List<Article>> {
+    fun getArticles(): Single<List<Article>> {
         return service.getArticles()
             .subscribeOn(Schedulers.io())
+    }
+
+    fun sendHelpRequest(
+        request: NewHelpRequest
+    ): Completable {
+        return service.sendHelpRequest(
+            request
+        ).subscribeOn(Schedulers.io())
     }
 
 
