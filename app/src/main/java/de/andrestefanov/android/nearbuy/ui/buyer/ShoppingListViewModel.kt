@@ -11,6 +11,7 @@ class ShoppingListViewModel: ViewModel() {
     private var rest = RestClient()
 
     class ShoppingListEntry(var name: String, var amount: Int) {
+        var collected = false
     }
 
     fun getItems(): MutableLiveData<List<ShoppingListEntry>> {
