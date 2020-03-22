@@ -13,6 +13,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_margin="10dp"
+        android:textSize="17sp"
+        android:textAllCaps="false"
         android:background="@drawable/round_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

@@ -42,9 +42,6 @@ class LoginFragment : Fragment() {
     }
 
     private fun login() {
-        findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRoleFragment())
-        return
-
         with(RestClient.INSTANCE) {
             login(
                 edittext_email.text.toString(),
