@@ -34,10 +34,10 @@ class SeekerOverviewFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(SeekerOverviewViewModel::class.java)
 
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView_articles.layoutManager = LinearLayoutManager(context)
 
         adapter = MultiViewAdapter()
-        recyclerView.adapter = adapter
+        recyclerView_articles.adapter = adapter
 
         adapter.registerItemBinders(
             HelpRequestBinder(),

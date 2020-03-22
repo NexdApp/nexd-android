@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -31,20 +33,27 @@ class CreateHelpRequestFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(CreateHelpRequestViewModel::class.java)
 
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView_articles.layoutManager = LinearLayoutManager(context)
 
-        val adapter = MultiViewAdapter()
-        recyclerView.adapter = adapter
+        adapter = MultiViewAdapter()
+        recyclerView_articles.adapter = adapter
 
         adapter.registerItemBinders(HelpRequestArticleBinder())
 
-        viewModel.getArticles().observe(viewLifecycleOwner, Observer { articles ->
+        viewModel.getArticles().observe(viewLifecycleOwner, Observer { request ->
             adapter.removeAllSections()
 
             val articlesSection = ListSection<Article>()
-            articlesSection.addAll(articles)
+            articlesSection.addAll(request.articles)
 
             adapter.addSection(articlesSection)
+
+            button_accept.setOnClickListener {
+                request.additionalRequest = editText_additionalRequest.text.toString()
+                viewModel.sendRequest(request)
+            }
+
+            editText_additionalRequest.setText(request.additionalRequest, TextView.BufferType.EDITABLE)
         })
     }
 
