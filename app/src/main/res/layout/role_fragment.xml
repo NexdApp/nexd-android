@@ -2,29 +2,61 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/background_gradient"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.role.RoleFragment">
 
-    <Button
-        android:id="@+id/role_button_buyer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+    <TextView
         app:layout_constraintBottom_toTopOf="@id/role_button_seeker"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:text="Ich will Helfen"/>
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:layout_marginBottom="20dp"
+        android:textColor="@android:color/black"
+        android:text="Ich brauche etwas!"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-    <Button
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/role_button_seeker"
+        android:backgroundTint="@android:color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/role_button_buyer"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:fabCustomSize="140dp"
+        app:maxImageSize="60dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_shopping_cart_black_24dp"
+        app:layout_constraintBottom_toTopOf="@+id/role_button_buyer"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="Ich brauche Hilfe"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        app:layout_constraintTop_toBottomOf="@id/role_button_buyer"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+        android:textColor="@android:color/black"
+        android:text="Ich kann helfen!"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/role_button_buyer"
+        android:backgroundTint="@android:color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabCustomSize="140dp"
+        app:maxImageSize="60dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_walk"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/role_button_seeker" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
