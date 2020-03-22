@@ -2,6 +2,7 @@ package de.andrestefanov.android.nearbuy.ui.buyer
 
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.TextView
 import de.andrestefanov.android.nearbuy.R
 import kotlinx.android.synthetic.main.shopping_list_row.view.*
@@ -13,10 +14,15 @@ class ShoppingListEntryBinder: ItemBinder<ShoppingListViewModel.ShoppingListEntr
     class ViewHolder(itemView: View) : ItemViewHolder<ShoppingListViewModel.ShoppingListEntry>(itemView) {
         private val name: TextView = itemView.name
         private val amount: TextView = itemView.amount
+        private val collect: CheckBox = itemView.checked
 
         fun bind(entry: ShoppingListViewModel.ShoppingListEntry) {
             name.text = entry.name
             amount.text = "${entry.amount}x"
+            collect.isChecked = entry.collected
+            collect.setOnCheckedChangeListener { _, isChecked ->
+                entry.collected = isChecked
+            }
         }
     }
 

@@ -8,6 +8,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.role.RoleFragment">
 
+    <Button
+        android:text="Logout"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="10dp"
+        android:background="@drawable/round_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <TextView
         app:layout_constraintBottom_toTopOf="@id/role_button_seeker"
         android:textAlignment="center"
