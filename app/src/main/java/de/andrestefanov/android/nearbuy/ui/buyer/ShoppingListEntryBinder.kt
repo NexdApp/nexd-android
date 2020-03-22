@@ -21,6 +21,16 @@ class ShoppingListEntryBinder: ItemBinder<ShoppingList.Entry, ShoppingListEntryB
             name.text = entry.name
             amount.text = "${entry.amount}x"
             collect.isChecked = entry.requestItems[0].collected
+
+            itemView.setOnClickListener {
+                collect.isChecked = !collect.isChecked
+            }
+            name.setOnClickListener {
+                collect.isChecked = !collect.isChecked
+            }
+            amount.setOnClickListener {
+                collect.isChecked = !collect.isChecked
+            }
             collect.setOnCheckedChangeListener { _, isChecked ->
                 entry.setCollected(isChecked)
             }

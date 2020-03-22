@@ -71,6 +71,9 @@ class RegisterDetailedFragment : Fragment() {
         if (!successful)
             return
 
+        findNavController().navigate(RegisterDetailedFragmentDirections.actionRegisterDetailedFragmentToRoleFragment())
+        return
+
         with(RestClient.INSTANCE) {
             register(
                 firstName = args.firstname,
