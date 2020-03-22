@@ -12,10 +12,18 @@
         tools:layout="@layout/role_fragment">
         <action
             android:id="@+id/action_roleFragment_to_requesterOverviewFragment"
-            app:destination="@id/seekerOverviewFragment" />
+            app:destination="@id/seekerOverviewFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_roleFragment_to_helperOverviewFragment"
-            app:destination="@id/buyerOverviewFragment" />
+            app:destination="@id/buyerOverviewFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/seekerOverviewFragment"
@@ -34,10 +42,18 @@
         <action
             android:id="@+id/requestDetailAction"
             app:destination="@id/buyerRequestDetailFragment"
-            app:launchSingleTop="false" />
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:launchSingleTop="false"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
         <action
             android:id="@+id/action_buyerOverviewFragment_to_shoppingListFragment"
-            app:destination="@id/shoppingListFragment" />
+            app:destination="@id/shoppingListFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
     </fragment>
     <fragment
         android:id="@+id/buyerRequestDetailFragment"
@@ -60,12 +76,17 @@
         tools:layout="@layout/fragment_shopping_list" >
         <action
             android:id="@+id/action_shoppingListFragment_to_checkoutFragment"
-            app:destination="@id/checkoutFragment" />
+            app:destination="@id/checkoutFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/authFragment"
         android:name="de.andrestefanov.android.nearbuy.ui.auth.AuthFragment"
-        android:label="AuthFragment" >
+        android:label="AuthFragment"
+        tools:layout="@layout/auth_fragment">
         <action
             android:id="@+id/action_authFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -75,7 +96,9 @@
         <action
             android:id="@+id/action_authFragment_to_roleFragment"
             app:destination="@id/roleFragment"
-            app:popUpTo="@id/authFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
@@ -86,18 +109,20 @@
         <action
             android:id="@+id/action_loginFragment_to_roleFragment"
             app:destination="@id/roleFragment"
-            app:popUpTo="@id/authFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
         android:name="de.andrestefanov.android.nearbuy.ui.auth.RegisterFragment"
-        android:label="RegisterFragment" >
+        android:label="RegisterFragment"
+        tools:layout="@layout/fragment_register">
         <action
-            android:id="@+id/action_registerFragment_to_roleFragment"
-            app:destination="@id/roleFragment"
-            app:popUpTo="@id/authFragment"
-            app:popUpToInclusive="true" />
+            android:id="@+id/action_registerFragment_to_registerDetailedFragment"
+            app:destination="@id/registerDetailedFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/checkoutFragment"
@@ -106,7 +131,11 @@
         tools:layout="@layout/fragment_checkout" >
         <action
             android:id="@+id/action_checkoutFragment_to_deliveryFragment"
-            app:destination="@id/deliveryFragment" />
+            app:destination="@id/deliveryFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/deliveryFragment"
@@ -116,7 +145,34 @@
         <action
             android:id="@+id/action_deliveryFragment_to_roleFragment"
             app:destination="@id/roleFragment"
-            app:popUpTo="@id/deliveryFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerDetailedFragment"
+        android:name="de.andrestefanov.android.nearbuy.ui.auth.RegisterDetailedFragment"
+        android:label="fragment_register_detailed"
+        tools:layout="@layout/fragment_register_detailed" >
+        <action
+            android:id="@+id/action_registerDetailedFragment_to_roleFragment"
+            app:destination="@id/roleFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="firstname"
+            app:argType="string" />
+        <argument
+            android:name="lastname"
+            app:argType="string" />
+        <argument
+            android:name="email"
+            app:argType="string" />
+        <argument
+            android:name="password"
+            app:argType="string" />
     </fragment>
 </navigation>

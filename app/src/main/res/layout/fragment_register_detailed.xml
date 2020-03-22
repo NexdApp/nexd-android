@@ -9,7 +9,7 @@
     tools:context=".ui.auth.LoginFragment">
 
     <TextView
-        android:text="Erstelle deinen \nAccount:"
+        android:text="Gleich sind wir fertig...\n"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="30dp"
         android:textSize="20sp"
@@ -25,78 +25,33 @@
         android:layout_height="wrap_content" >
 
         <EditText
-            android:id="@+id/edittext_first_name"
+            android:id="@+id/edittext_phonenumber"
             android:paddingHorizontal="10dp"
             android:imeOptions="actionNext"
-            android:inputType="text"
+            android:inputType="phone"
             android:lines="1"
-            android:nextFocusDown="@id/edittext_surname"
+            android:nextFocusDown="@id/edittext_location"
             android:layout_marginTop="10dp"
             android:textSize="20sp"
             android:backgroundTint="@color/text"
             android:textColorHint="@color/text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Vorname" />
+            android:hint="Tel. Nr." />
 
         <EditText
-            android:id="@+id/edittext_surname"
+            android:id="@+id/edittext_location"
             android:paddingHorizontal="10dp"
-            android:imeOptions="actionNext"
-            android:lines="1"
-            android:nextFocusDown="@id/edittext_email"
-            android:inputType="text"
-            android:layout_marginTop="10dp"
-            android:textSize="20sp"
-            android:backgroundTint="@color/text"
-            android:textColorHint="@color/text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nachname" />
-
-        <EditText
-            android:id="@+id/edittext_email"
-            android:paddingHorizontal="10dp"
-            android:imeOptions="actionNext"
-            android:lines="1"
-            android:nextFocusDown="@id/edittext_password"
-            android:inputType="textEmailAddress"
-            android:layout_marginTop="10dp"
-            android:textSize="20sp"
-            android:backgroundTint="@color/text"
-            android:textColorHint="@color/text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email" />
-
-        <EditText
-            android:id="@+id/edittext_password"
-            android:paddingHorizontal="10dp"
-            android:lines="1"
-            android:imeOptions="actionNext"
-            android:nextFocusDown="@id/edittext_password_confirm"
-            android:inputType="textPassword"
-            android:layout_marginTop="30dp"
-            android:textSize="20sp"
-            android:backgroundTint="@color/text"
-            android:textColorHint="@color/text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Passwort" />
-
-        <EditText
-            android:id="@+id/edittext_password_confirm"
-            android:paddingHorizontal="10dp"
-            android:lines="1"
             android:imeOptions="actionDone"
-            android:inputType="textPassword"
+            android:lines="1"
+            android:inputType="text"
             android:layout_marginTop="10dp"
             android:textSize="20sp"
             android:backgroundTint="@color/text"
             android:textColorHint="@color/text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Passwort bestätigen" />
+            android:hint="PLZ, Ort" />
 
     </LinearLayout>
 
@@ -104,6 +59,14 @@
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp" />
+
+    <CheckBox
+        android:id="@+id/checkbox_data_protection"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:text="Datenschutzhinweise gelesen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/button_register"
@@ -115,7 +78,7 @@
         android:layout_marginHorizontal="30dp"
         android:layout_marginBottom="2dp"
         android:layout_marginTop="16dp"
-        android:text="Weiter" />
+        android:text="Bestätigen" />
 
     <Space
         android:layout_width="match_parent"

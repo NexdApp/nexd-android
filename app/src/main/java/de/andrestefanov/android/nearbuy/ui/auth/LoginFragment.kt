@@ -53,7 +53,7 @@ class LoginFragment : Fragment() {
                         Preferences.setUserId(it, loginResponse.id)
                     }
 
-                    findNavController().navigate(R.id.action_loginFragment_to_roleFragment)
+                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRoleFragment())
                 },
                 {
                     activity?.runOnUiThread {

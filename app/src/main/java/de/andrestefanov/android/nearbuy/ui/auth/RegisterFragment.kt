@@ -1,14 +1,11 @@
 package de.andrestefanov.android.nearbuy.ui.auth
 
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -16,8 +13,8 @@ import com.google.android.material.snackbar.Snackbar
 import de.andrestefanov.android.nearbuy.Preferences
 import de.andrestefanov.android.nearbuy.R
 import de.andrestefanov.android.nearbuy.api.network.RestClient
-import kotlinx.android.synthetic.main.buyer_request_detail_fragment.*
 import kotlinx.android.synthetic.main.fragment_register.*
+import java.util.*
 
 class RegisterFragment : Fragment() {
 
@@ -41,47 +38,54 @@ class RegisterFragment : Fragment() {
         button_register.setOnClickListener {
             register()
         }
+
+        button_data_protection.setOnClickListener {
+            Toast.makeText(context, "In Entwicklung", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun register() {
-        if (edittext_password.text.toString() != edittext_password_confirm.text.toString()) {
-            Snackbar.make(edittext_password, "Passwörter stimmen nicht überein", Snackbar.LENGTH_SHORT).show()
-        } else {
-            with(RestClient.INSTANCE) {
-                register(
-                    firstName = edittext_first_name.text.toString(),
-                    lastName = edittext_surname.text.toString(),
-                    email = edittext_email.text.toString(),
-                    password = edittext_password.text.toString()
+        val firstname = edittext_first_name.text.toString().trim()
+        val lastname = edittext_surname.text.toString().trim()
+        val email = edittext_email.text.toString().trim().toLowerCase(Locale.getDefault())
+        val password = edittext_password.text.toString().trim()
+        val passwordConfirm = edittext_password_confirm.text.toString().trim()
+
+        var successful = true
+        if (password != passwordConfirm) {
+            successful = false
+            edittext_password_confirm.error = "Passwörter stimmen nicht überein"
+        }
+
+        if (firstname.isEmpty()) {
+            successful = false
+            edittext_first_name.error = "Bitte ausfüllen"
+        }
+
+        if (lastname.isEmpty()) {
+            successful = false
+            edittext_surname.error = "Bitte ausfüllen"
+        }
+
+        if (email.isEmpty()) {
+            successful = false
+            edittext_email.error = "ungültig"
+        }
+
+        if (password.isEmpty() || password.length < 6) {
+            successful = false
+            edittext_password.error = "mind. 6 Zeichen enthalten"
+        }
+
+        if (successful) {
+            val action =
+                RegisterFragmentDirections.actionRegisterFragmentToRegisterDetailedFragment(
+                    firstname,
+                    lastname,
+                    email,
+                    password
                 )
-                    .andThen(
-                        login(
-                            edittext_email.text.toString(),
-                            edittext_password.text.toString()
-                        )
-                    )
-                    .subscribe(
-                        { loginResponse ->
-                            context?.let {
-                                Preferences.setToken(it, loginResponse.accessToken)
-                                Preferences.setUserId(it, loginResponse.id)
-                            }
-
-                            findNavController().navigate(R.id.action_registerFragment_to_roleFragment)
-                        },
-                        {
-                            Log.e(RegisterFragment::class.simpleName, "register failed", it)
-                            activity?.runOnUiThread {
-                                Snackbar.make(
-                                    edittext_email,
-                                    "Registrierung fehlgeschlagen",
-                                    Snackbar.LENGTH_SHORT
-                                ).show()
-                            }
-
-                        }
-                    )
-            }
+            findNavController().navigate(action)
         }
     }
 

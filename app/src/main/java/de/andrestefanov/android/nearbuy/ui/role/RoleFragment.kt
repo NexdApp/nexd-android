@@ -28,11 +28,11 @@ class RoleFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(RoleViewModel::class.java)
 
         role_button_buyer.setOnClickListener {
-            findNavController().navigate(R.id.action_roleFragment_to_helperOverviewFragment)
+            findNavController().navigate(RoleFragmentDirections.actionRoleFragmentToHelperOverviewFragment())
         }
 
         role_button_seeker.setOnClickListener {
-            findNavController().navigate(R.id.action_roleFragment_to_requesterOverviewFragment)
+            findNavController().navigate(RoleFragmentDirections.actionRoleFragmentToRequesterOverviewFragment())
         }
     }
 

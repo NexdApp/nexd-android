@@ -25,18 +25,16 @@ class AuthFragment : Fragment() {
 
         context?.let {
             Preferences.getToken(it)?.let {
-                findNavController().navigate(R.id.action_authFragment_to_roleFragment)
+                findNavController().navigate(AuthFragmentDirections.actionAuthFragmentToRoleFragment())
             }
         }
-        findNavController().navigate(R.id.action_authFragment_to_roleFragment)
-        return
 
         button_login.setOnClickListener {
-            findNavController().navigate(R.id.action_authFragment_to_loginFragment)
+            findNavController().navigate(AuthFragmentDirections.actionAuthFragmentToLoginFragment())
         }
 
         button_register.setOnClickListener {
-            findNavController().navigate(R.id.action_authFragment_to_registerFragment)
+            findNavController().navigate(AuthFragmentDirections.actionAuthFragmentToRegisterFragment())
         }
     }
 

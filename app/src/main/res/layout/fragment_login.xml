@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_gradient"
@@ -10,13 +11,16 @@
 
     <ImageView
         android:id="@+id/imageView"
+        android:layout_marginTop="92dp"
+        android:layout_gravity="center_horizontal"
         android:layout_width="157dp"
         android:layout_height="148dp"
-        android:layout_marginTop="92dp"
-        android:src="@drawable/icon"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:src="@drawable/icon"/>
+
+    <Space
+        android:layout_weight="2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
 
 
     <EditText
@@ -24,47 +28,52 @@
         android:imeOptions="actionGo"
         android:inputType="textEmailAddress"
         android:lines="1"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:layout_marginHorizontal="30dp"
         android:paddingHorizontal="10dp"
         android:textSize="20sp"
         android:hint="E-Mail"
         android:backgroundTint="@color/text"
-        android:textColorHint="@color/text"
-        app:layout_constraintStart_toStartOf="@id/button_login"
-        app:layout_constraintEnd_toEndOf="@id/button_login"
-        app:layout_constraintBottom_toTopOf="@id/edittext_password" />
+        android:textColorHint="@color/text" />
+
+    <Space
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/edittext_password"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
         android:lines="1"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
+        android:layout_marginHorizontal="30dp"
         android:paddingHorizontal="10dp"
         android:textSize="20sp"
         android:hint="Passwort"
         android:backgroundTint="@color/text"
-        android:textColorHint="@color/text"
-        app:layout_constraintBottom_toTopOf="@id/button_login"
-        app:layout_constraintStart_toStartOf="@id/button_login"
-        app:layout_constraintEnd_toEndOf="@+id/button_login" />
+        android:textColorHint="@color/text" />
+
+    <Space
+        android:layout_weight="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/button_login"
         android:textAllCaps="false"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
         android:layout_marginHorizontal="30dp"
         android:background="@drawable/round_button_white"
         android:text="Bestätigen"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textSize="20sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Space
+        android:layout_weight="2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+</LinearLayout>

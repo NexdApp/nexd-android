@@ -38,7 +38,7 @@ class CheckoutFragment : Fragment() {
         })
 
         startDelivery.setOnClickListener {
-            findNavController().navigate(R.id.action_checkoutFragment_to_deliveryFragment)
+            findNavController().navigate(CheckoutFragmentDirections.actionCheckoutFragmentToDeliveryFragment())
         }
     }
 }
