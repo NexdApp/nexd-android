@@ -1,6 +1,7 @@
 package de.andrestefanov.android.nearbuy.ui.seeker.create
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.andrestefanov.android.nearbuy.R
 import de.andrestefanov.android.nearbuy.api.data.Article
+import io.reactivex.plugins.RxJavaPlugins
 import kotlinx.android.synthetic.main.create_help_request_fragment.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter

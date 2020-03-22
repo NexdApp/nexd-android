@@ -6,7 +6,7 @@ import de.andrestefanov.android.nearbuy.api.network.RestClient
 
 class SeekerOverviewViewModel : ViewModel() {
 
-    private val rest = RestClient()
+    private val rest = RestClient.INSTANCE
 
     fun getHelpRequests() = MutableLiveData(rest.getMyRequests())
 

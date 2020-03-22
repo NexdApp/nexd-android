@@ -8,7 +8,7 @@ import de.andrestefanov.android.nearbuy.api.network.RestClient
 
 class CreateHelpRequestViewModel : ViewModel() {
 
-    private val rest = RestClient()
+    private val rest = RestClient.INSTANCE
 
     fun getArticles(): LiveData<NewHelpRequest> {
         val data = rest.getArticles()

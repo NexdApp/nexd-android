@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import de.andrestefanov.android.nearbuy.api.network.RestClient
 
 class BuyerOverviewViewModel : ViewModel() {
-    private val rest = RestClient()
+    private val rest = RestClient.INSTANCE
 
     fun getNearbyOpenRequests() = MutableLiveData(rest.getNearbyOpenRequests())
 

@@ -34,7 +34,7 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         button_login.setOnClickListener {
-            with(RestClient()) {
+            with(RestClient.INSTANCE) {
                 login(
                     edittext_email.text.toString(),
                     edittext_password.text.toString()
