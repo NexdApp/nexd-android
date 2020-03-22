@@ -6,11 +6,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="@dimen/fragmentPadding"
-    android:background="@color/background"
+    android:background="@drawable/background_gradient"
     tools:context=".ui.buyer.ShoppingListFragment">
 
     <TextView
         android:text="Einkaufsliste"
+        android:textColor="@android:color/black"
         android:textSize="22sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -40,9 +41,12 @@
         android:id="@+id/checkoutt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:fabCustomSize="70dp"
+        app:maxImageSize="30dp"
+        android:clickable="true"
+        android:focusable="true"
         android:layout_margin="10dp"
         android:layout_gravity="center_horizontal"
-        android:clickable="true"
         android:src="@drawable/ic_shopping_cart_white_100dp" />
 
 

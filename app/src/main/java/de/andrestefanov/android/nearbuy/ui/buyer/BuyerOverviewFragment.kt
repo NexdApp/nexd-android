@@ -1,6 +1,8 @@
 package de.andrestefanov.android.nearbuy.ui.buyer
 
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,8 +59,13 @@ class BuyerOverviewFragment : Fragment() {
             })
             getAcceptedRequests().observe(viewLifecycleOwner, Observer { acceptedRequests ->
                 updateAcceptedRequests(acceptedRequests)
-                acceptedRequestsSummary.text = "EINKAUFEN (Insg. " +
-                        "${viewModel.getAcceptedRequestItems()} / ${RestClient.MAX_ACCEPTING_REQUESTS})"
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    acceptedRequestsSummary.text = Html.fromHtml("<b>Einkaufen</b> (Insg. " +
+                            "${viewModel.getAcceptedRequestItems()} / ${RestClient.MAX_ACCEPTING_REQUESTS})", Html.FROM_HTML_MODE_LEGACY)
+                } else {
+                    acceptedRequestsSummary.text = Html.fromHtml("<b>Einkaufen</b> (Insg. " +
+                            "${viewModel.getAcceptedRequestItems()} / ${RestClient.MAX_ACCEPTING_REQUESTS})")
+                }
             })
         }
 
