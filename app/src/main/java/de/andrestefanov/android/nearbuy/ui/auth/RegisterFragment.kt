@@ -36,7 +36,7 @@ class RegisterFragment : Fragment() {
             if (edittext_password.text.toString() != edittext_password_confirm.text.toString()) {
                 Toast.makeText(context, "Passwörter stimmen nicht überein", Toast.LENGTH_SHORT).show()
             } else {
-                with(RestClient()) {
+                with(RestClient.INSTANCE) {
                     register(
                         firstName = edittext_first_name.text.toString(),
                         lastName = edittext_surname.text.toString(),

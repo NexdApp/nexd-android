@@ -23,7 +23,7 @@ import mva2.adapter.util.Mode
 class BuyerRequestDetailFragment : Fragment() {
 
     private lateinit var viewModel: BuyerRequestDetailViewModel
-    private var rest = RestClient()
+    private var rest = RestClient.INSTANCE
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -79,7 +79,7 @@ class BuyerRequestDetailFragment : Fragment() {
 
         accept.setOnClickListener {
             viewModel.request.value?.let {
-                if (RestClient().acceptRequest(it)) {
+                if (RestClient.INSTANCE.acceptRequest(it)) {
                     setAccepted(true)
                 } else {
                     Snackbar.make(view!!, "Annahme fehlgeschlagen", Snackbar.LENGTH_SHORT).show()

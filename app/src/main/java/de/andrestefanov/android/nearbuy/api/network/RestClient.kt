@@ -1,9 +1,13 @@
 package de.andrestefanov.android.nearbuy.api.network
 
+import android.content.Context
+import android.util.Log
+import de.andrestefanov.android.nearbuy.Preferences
 import de.andrestefanov.android.nearbuy.api.data.*
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -11,11 +15,13 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 
-class RestClient {
+class RestClient(val context: Context) {
 
     companion object {
         const val MAX_ACCEPTING_REQUESTS = 20
         private var acceptedRequests: MutableList<HelpRequest> = mutableListOf()
+
+        lateinit var INSTANCE : RestClient
     }
 
     private val service: NearBuyService
@@ -25,8 +31,23 @@ class RestClient {
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
 
+        val tokenInterceptor = Interceptor {
+            val request = it.request()
+
+            Preferences.getToken(context)?.let { token ->
+                val newRequest = request.newBuilder()
+                    .addHeader("Authorization", "Bearer $token")
+                    .build()
+
+                return@Interceptor it.proceed(newRequest)
+            }
+
+            return@Interceptor it.proceed(request)
+        }
+
         val client = OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
+            .addInterceptor(tokenInterceptor)
             .build()
 
         val retrofit = Retrofit.Builder()

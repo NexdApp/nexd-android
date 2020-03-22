@@ -6,7 +6,7 @@ import de.andrestefanov.android.nearbuy.api.network.RestClient
 
 class ShoppingListViewModel: ViewModel() {
 
-    private var rest = RestClient()
+    private var rest = RestClient.INSTANCE
 
     class ShoppingListEntry(var name: String, var amount: Int) {
         var collected = false
