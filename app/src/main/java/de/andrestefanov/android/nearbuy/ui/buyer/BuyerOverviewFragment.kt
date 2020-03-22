@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import de.andrestefanov.android.nearbuy.R
 import de.andrestefanov.android.nearbuy.api.data.HelpRequest
 import de.andrestefanov.android.nearbuy.api.network.RestClient

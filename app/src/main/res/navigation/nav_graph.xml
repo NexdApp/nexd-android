@@ -35,6 +35,9 @@
             android:id="@+id/requestDetailAction"
             app:destination="@id/buyerRequestDetailFragment"
             app:launchSingleTop="false" />
+        <action
+            android:id="@+id/action_buyerOverviewFragment_to_shoppingListFragment"
+            app:destination="@id/shoppingListFragment" />
     </fragment>
     <fragment
         android:id="@+id/buyerRequestDetailFragment"
@@ -44,9 +47,6 @@
         <argument
             android:name="request_id"
             app:argType="string" />
-        <action
-            android:id="@+id/openShoppingList"
-            app:destination="@id/shoppingListFragment" />
     </fragment>
     <fragment
         android:id="@+id/createHelpRequestFragment"
@@ -57,7 +57,11 @@
         android:id="@+id/shoppingListFragment"
         android:name="de.andrestefanov.android.nearbuy.ui.buyer.ShoppingListFragment"
         android:label="Einkaufsliste"
-        tools:layout="@layout/fragment_shopping_list" />
+        tools:layout="@layout/fragment_shopping_list" >
+        <action
+            android:id="@+id/action_shoppingListFragment_to_checkoutFragment"
+            app:destination="@id/checkoutFragment" />
+    </fragment>
     <fragment
         android:id="@+id/authFragment"
         android:name="de.andrestefanov.android.nearbuy.ui.auth.AuthFragment"
@@ -89,4 +93,9 @@
             android:id="@+id/action_registerFragment_to_roleFragment"
             app:destination="@id/roleFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="de.andrestefanov.android.nearbuy.ui.buyer.CheckoutFragment"
+        android:label="Checkout"
+        tools:layout="@layout/fragment_checkout" />
 </navigation>
