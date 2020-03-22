@@ -28,6 +28,9 @@ android {
         targetCompatibility = 1.8
     }
 
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
 }
 
 dependencies {
@@ -60,6 +63,7 @@ dependencies {
     implementation 'dev.ahamed.mva2:ext-diffutil-rx:2.0.0'  // RxDiffUtil
 
     testImplementation 'junit:junit:4.13'
+
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
