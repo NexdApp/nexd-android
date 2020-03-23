@@ -9,8 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import de.andrestefanov.android.nearbuy.Preferences
 import de.andrestefanov.android.nearbuy.R
-import de.andrestefanov.android.nearbuy.api.network.RestClient
-import io.reactivex.functions.Consumer
+import de.andrestefanov.android.nearbuy.api
+import de.andrestefanov.android.nearbuy.api.AuthenticationApi
+import de.andrestefanov.android.nearbuy.api.model.LoginPayload
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.auth_fragment.*
 import kotlinx.android.synthetic.main.auth_fragment.button_login
 import kotlinx.android.synthetic.main.fragment_login.*
@@ -34,23 +36,27 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         button_login.setOnClickListener {
-            with(RestClient.INSTANCE) {
-                login(
-                    edittext_email.text.toString(),
-                    edittext_password.text.toString()
-                ).subscribe(
-                    { loginResponse ->
-                        context?.let {
-                            Preferences.setToken(it, loginResponse.accessToken)
-                            Preferences.setUserId(it, loginResponse.id)
-                        }
-
-                        findNavController().navigate(R.id.action_loginFragment_to_roleFragment)
-                    },
-                    {
-                        Log.e(LoginFragment::class.simpleName, "Login failed", it)
-                    }
+            with(api) {
+                authControllerLogin(
+                    LoginPayload()
+                        .email(edittext_email.text.toString())
+                        .password(edittext_password.text.toString())
                 )
+                    .subscribeOn(Schedulers.io())
+                    .subscribe(
+                        { loginResponse ->
+                            context?.let {
+                                Preferences.setToken(it, loginResponse.accessToken)
+                                Preferences.setUserId(it, loginResponse.id)
+                                api.setBearerToken(loginResponse.accessToken)
+                            }
+
+                            findNavController().navigate(R.id.action_loginFragment_to_roleFragment)
+                        },
+                        {
+                            Log.e(LoginFragment::class.simpleName, "Login failed", it)
+                        }
+                    )
             }
         }
     }

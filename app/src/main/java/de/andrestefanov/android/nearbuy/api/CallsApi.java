@@ -20,6 +20,17 @@ public interface CallsApi {
   /**
    * 
    * 
+   * @param id audio id (required)
+   * @return Completable
+   */
+  @GET("api/call/download/{id}")
+  Completable callControllerDownload(
+    @retrofit2.http.Path("id") Integer id
+  );
+
+  /**
+   * 
+   * 
    * @return Completable
    */
   @GET("api/call")
@@ -31,9 +42,31 @@ public interface CallsApi {
    * 
    * @return Completable
    */
-  @GET("api/call/listen")
-  Completable callControllerListen();
+  @GET("api/call/upload")
+  Completable callControllerInitUpload();
     
+
+  /**
+   * 
+   * 
+   * @param id audio id (required)
+   * @return Completable
+   */
+  @PUT("api/call/translated/{id}")
+  Completable callControllerTranslated(
+    @retrofit2.http.Path("id") Integer id
+  );
+
+  /**
+   * 
+   * 
+   * @param id audio id (required)
+   * @return Completable
+   */
+  @POST("api/call/upload/{id}")
+  Completable callControllerUpload(
+    @retrofit2.http.Path("id") Integer id
+  );
 
   /**
    * 

@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import de.andrestefanov.android.nearbuy.Preferences
 
 import de.andrestefanov.android.nearbuy.R
+import de.andrestefanov.android.nearbuy.api
 import kotlinx.android.synthetic.main.auth_fragment.*
 
 /**
@@ -29,8 +30,9 @@ class AuthFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        context?.let {
-            Preferences.getToken(it)?.let {
+        context?.let { context ->
+            Preferences.getToken(context)?.let { token ->
+                api.setBearerToken(token)
                 findNavController().navigate(R.id.action_authFragment_to_roleFragment)
             }
         }

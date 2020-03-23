@@ -6,7 +6,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**requests** | [**List&lt;BigDecimal&gt;**](BigDecimal.md) | List of request IDs | 
+**requests** | **Integer** | List of request IDs | 
 **status** | [**StatusEnum**](#StatusEnum) |  |  [optional]
 
 

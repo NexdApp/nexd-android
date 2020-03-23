@@ -23,18 +23,15 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * ShoppingListFormDto
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-22T15:06:40.738994+01:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-23T00:04:05.467759+01:00[Europe/Berlin]")
 public class ShoppingListFormDto {
   public static final String SERIALIZED_NAME_REQUESTS = "requests";
   @SerializedName(SERIALIZED_NAME_REQUESTS)
-  private List<BigDecimal> requests = new ArrayList<BigDecimal>();
+  private Integer requests;
 
   /**
    * Gets or Sets status
@@ -90,14 +87,9 @@ public class ShoppingListFormDto {
   private StatusEnum status = StatusEnum.ACTIVE;
 
 
-  public ShoppingListFormDto requests(List<BigDecimal> requests) {
+  public ShoppingListFormDto requests(Integer requests) {
     
     this.requests = requests;
-    return this;
-  }
-
-  public ShoppingListFormDto addRequestsItem(BigDecimal requestsItem) {
-    this.requests.add(requestsItem);
     return this;
   }
 
@@ -107,12 +99,12 @@ public class ShoppingListFormDto {
   **/
   @ApiModelProperty(required = true, value = "List of request IDs")
 
-  public List<BigDecimal> getRequests() {
+  public Integer getRequests() {
     return requests;
   }
 
 
-  public void setRequests(List<BigDecimal> requests) {
+  public void setRequests(Integer requests) {
     this.requests = requests;
   }
 

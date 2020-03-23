@@ -5,13 +5,14 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
 import de.andrestefanov.android.nearbuy.R
-import de.andrestefanov.android.nearbuy.api.data.HelpRequestItem
+import de.andrestefanov.android.nearbuy.api.model.Article
+import de.andrestefanov.android.nearbuy.api.model.RequestArticle
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
 
-class HelpRequestItemBinder : ItemBinder<HelpRequestItem, HelpRequestItemBinder.HelpRequestItemViewHolder>() {
+class HelpRequestItemBinder(private val articles: List<Article>) : ItemBinder<RequestArticle, HelpRequestItemBinder.HelpRequestItemViewHolder>() {
 
-    class HelpRequestItemViewHolder(itemView: View) : ItemViewHolder<HelpRequestItem>(itemView) {
+    class HelpRequestItemViewHolder(itemView: View) : ItemViewHolder<RequestArticle>(itemView) {
         var title: TextView = itemView.findViewById(R.id.request_list_item_title)
 
         init {
@@ -27,12 +28,12 @@ class HelpRequestItemBinder : ItemBinder<HelpRequestItem, HelpRequestItemBinder.
 
     override fun bindViewHolder(
         holder: HelpRequestItemViewHolder,
-        item: HelpRequestItem
+        item: RequestArticle
     ) {
-        holder.title.text = item.name
+        holder.title.text = articles.first { item.articleId == it.id.toBigDecimal() }.name
     }
 
     override fun canBindData(item: Any): Boolean {
-        return item is HelpRequestItem
+        return item is RequestArticle
     }
 }

@@ -1,35 +1,38 @@
 package de.andrestefanov.android.nearbuy.ui.buyer
 
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.ViewModel
-import de.andrestefanov.android.nearbuy.api.network.RestClient
+import de.andrestefanov.android.nearbuy.api
+import io.reactivex.BackpressureStrategy
+import io.reactivex.schedulers.Schedulers
 
-class ShoppingListViewModel: ViewModel() {
-
-    private var rest = RestClient.INSTANCE
+class ShoppingListViewModel : ViewModel() {
 
     class ShoppingListEntry(var name: String, var amount: Int) {
         var collected = false
     }
 
-    fun getItems(): MutableLiveData<List<ShoppingListEntry>> {
-        val items: MutableList<ShoppingListEntry> = mutableListOf()
+    fun getItems(): LiveData<List<ShoppingListEntry>> {
 
-        for (request in rest.getAcceptedRequests()) {
-            loop@ for (item in request.items) {
-                for (shoppinglistEntry in items) {
-                    if (shoppinglistEntry.name == item.name) {
-                        shoppinglistEntry.amount += item.amount
-                        continue@loop
+        val observable = api.articlesControllerFindAll()
+            .flatMap { articles ->
+                api.requestControllerGetAll("false", "66666")
+                    .map { requests ->
+                        requests
+                            .flatMap { it.articles }
+                            .map { article ->
+                                ShoppingListEntry(
+                                    articles.first { article.articleId == it.id.toBigDecimal() }.name,
+                                    article.articleCount.toInt()
+                                )
+                            }
                     }
-                }
-                items.add(ShoppingListEntry(item.name, item.amount))
             }
-        }
+            .subscribeOn(Schedulers.io())
 
-        return MutableLiveData(items)
+        return LiveDataReactiveStreams.fromPublisher(observable.toFlowable(BackpressureStrategy.BUFFER))
     }
-
 
 
 }

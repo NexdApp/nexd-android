@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * RequestFormDto
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-22T15:06:40.738994+01:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-23T00:04:05.467759+01:00[Europe/Berlin]")
 public class RequestFormDto {
   public static final String SERIALIZED_NAME_STREET = "street";
   @SerializedName(SERIALIZED_NAME_STREET)
@@ -51,6 +51,59 @@ public class RequestFormDto {
   public static final String SERIALIZED_NAME_ARTICLES = "articles";
   @SerializedName(SERIALIZED_NAME_ARTICLES)
   private List<CreateRequestArticleDto> articles = new ArrayList<CreateRequestArticleDto>();
+
+  /**
+   * Gets or Sets status
+   */
+  @JsonAdapter(StatusEnum.Adapter.class)
+  public enum StatusEnum {
+    PENDING("pending"),
+    
+    ONGOING("ongoing"),
+    
+    COMPLETED("completed");
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<StatusEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public StatusEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return StatusEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_STATUS = "status";
+  @SerializedName(SERIALIZED_NAME_STATUS)
+  private StatusEnum status = StatusEnum.PENDING;
 
   public static final String SERIALIZED_NAME_ADDITIONAL_REQUEST = "additionalRequest";
   @SerializedName(SERIALIZED_NAME_ADDITIONAL_REQUEST)
@@ -184,6 +237,29 @@ public class RequestFormDto {
   }
 
 
+  public RequestFormDto status(StatusEnum status) {
+    
+    this.status = status;
+    return this;
+  }
+
+   /**
+   * Get status
+   * @return status
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public StatusEnum getStatus() {
+    return status;
+  }
+
+
+  public void setStatus(StatusEnum status) {
+    this.status = status;
+  }
+
+
   public RequestFormDto additionalRequest(String additionalRequest) {
     
     this.additionalRequest = additionalRequest;
@@ -264,6 +340,7 @@ public class RequestFormDto {
         Objects.equals(this.zipCode, requestFormDto.zipCode) &&
         Objects.equals(this.city, requestFormDto.city) &&
         Objects.equals(this.articles, requestFormDto.articles) &&
+        Objects.equals(this.status, requestFormDto.status) &&
         Objects.equals(this.additionalRequest, requestFormDto.additionalRequest) &&
         Objects.equals(this.deliveryComment, requestFormDto.deliveryComment) &&
         Objects.equals(this.phoneNumber, requestFormDto.phoneNumber);
@@ -271,7 +348,7 @@ public class RequestFormDto {
 
   @Override
   public int hashCode() {
-    return Objects.hash(street, number, zipCode, city, articles, additionalRequest, deliveryComment, phoneNumber);
+    return Objects.hash(street, number, zipCode, city, articles, status, additionalRequest, deliveryComment, phoneNumber);
   }
 
 
@@ -284,6 +361,7 @@ public class RequestFormDto {
     sb.append("    zipCode: ").append(toIndentedString(zipCode)).append("\n");
     sb.append("    city: ").append(toIndentedString(city)).append("\n");
     sb.append("    articles: ").append(toIndentedString(articles)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    additionalRequest: ").append(toIndentedString(additionalRequest)).append("\n");
     sb.append("    deliveryComment: ").append(toIndentedString(deliveryComment)).append("\n");
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");

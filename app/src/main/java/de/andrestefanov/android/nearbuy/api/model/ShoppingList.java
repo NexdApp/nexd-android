@@ -24,7 +24,6 @@ import de.andrestefanov.android.nearbuy.api.model.ShoppingListRequest;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -32,15 +31,15 @@ import java.util.List;
 /**
  * ShoppingList
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-22T15:06:40.738994+01:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-23T00:04:05.467759+01:00[Europe/Berlin]")
 public class ShoppingList {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
-  private BigDecimal id;
+  private Integer id;
 
   public static final String SERIALIZED_NAME_OWNER = "owner";
   @SerializedName(SERIALIZED_NAME_OWNER)
-  private BigDecimal owner;
+  private Integer owner;
 
   public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
@@ -50,16 +49,65 @@ public class ShoppingList {
   @SerializedName(SERIALIZED_NAME_UPDATED_AT)
   private Date updatedAt;
 
+  /**
+   * Gets or Sets status
+   */
+  @JsonAdapter(StatusEnum.Adapter.class)
+  public enum StatusEnum {
+    ACTIVE("active"),
+    
+    CANCELED("canceled"),
+    
+    COMPLETED("completed");
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<StatusEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public StatusEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return StatusEnum.fromValue(value);
+      }
+    }
+  }
+
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
-  private String status;
+  private StatusEnum status = StatusEnum.ACTIVE;
 
   public static final String SERIALIZED_NAME_REQUESTS = "requests";
   @SerializedName(SERIALIZED_NAME_REQUESTS)
   private List<ShoppingListRequest> requests = new ArrayList<ShoppingListRequest>();
 
 
-  public ShoppingList id(BigDecimal id) {
+  public ShoppingList id(Integer id) {
     
     this.id = id;
     return this;
@@ -71,17 +119,17 @@ public class ShoppingList {
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public BigDecimal getId() {
+  public Integer getId() {
     return id;
   }
 
 
-  public void setId(BigDecimal id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
 
-  public ShoppingList owner(BigDecimal owner) {
+  public ShoppingList owner(Integer owner) {
     
     this.owner = owner;
     return this;
@@ -93,12 +141,12 @@ public class ShoppingList {
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public BigDecimal getOwner() {
+  public Integer getOwner() {
     return owner;
   }
 
 
-  public void setOwner(BigDecimal owner) {
+  public void setOwner(Integer owner) {
     this.owner = owner;
   }
 
@@ -147,7 +195,7 @@ public class ShoppingList {
   }
 
 
-  public ShoppingList status(String status) {
+  public ShoppingList status(StatusEnum status) {
     
     this.status = status;
     return this;
@@ -159,12 +207,12 @@ public class ShoppingList {
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public String getStatus() {
+  public StatusEnum getStatus() {
     return status;
   }
 
 
-  public void setStatus(String status) {
+  public void setStatus(StatusEnum status) {
     this.status = status;
   }
 

@@ -10,8 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.andrestefanov.android.nearbuy.R
-import de.andrestefanov.android.nearbuy.api.data.HelpRequest
-import de.andrestefanov.android.nearbuy.api.data.HelpRequestItem
+import de.andrestefanov.android.nearbuy.api.model.RequestArticle
+import de.andrestefanov.android.nearbuy.api.model.RequestEntity
 import kotlinx.android.synthetic.main.seeker_overview_fragment.*
 import mva2.adapter.ItemSection
 import mva2.adapter.ListSection
@@ -39,22 +39,24 @@ class SeekerOverviewFragment : Fragment() {
         adapter = MultiViewAdapter()
         recyclerView_articles.adapter = adapter
 
-        adapter.registerItemBinders(
-            HelpRequestBinder(),
-            HelpRequestItemBinder()
-        )
+        viewModel.getArticles().observe(viewLifecycleOwner, Observer {
+            adapter.registerItemBinders(
+                HelpRequestBinder(),
+                HelpRequestItemBinder(it)
+            )
 
-        viewModel.getHelpRequests().observe(viewLifecycleOwner, Observer { requests ->
-            adapter.removeAllSections()
+            viewModel.getHelpRequests().observe(viewLifecycleOwner, Observer { requests ->
+                adapter.removeAllSections()
 
-            requests.forEach { request ->
-                val headerSection = ItemSection<HelpRequest>(request)
-                adapter.addSection(headerSection)
+                requests.forEach { request ->
+                    val headerSection = ItemSection<RequestEntity>(request)
+                    adapter.addSection(headerSection)
 
-                val itemsSection = ListSection<HelpRequestItem>()
-                itemsSection.addAll(request.items)
-                adapter.addSection(itemsSection)
-            }
+                    val itemsSection = ListSection<RequestArticle>()
+                    itemsSection.addAll(request.articles)
+                    adapter.addSection(itemsSection)
+                }
+            })
         })
 
         button_create_new_help_request.setOnClickListener {

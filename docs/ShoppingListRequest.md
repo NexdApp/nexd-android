@@ -6,7 +6,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**requestId** | [**BigDecimal**](BigDecimal.md) |  | 
+**requestId** | **Integer** |  | 
 
 
 

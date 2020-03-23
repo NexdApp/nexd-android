@@ -10,14 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import de.andrestefanov.android.nearbuy.Preferences
 import de.andrestefanov.android.nearbuy.R
-import de.andrestefanov.android.nearbuy.api.network.RestClient
+import de.andrestefanov.android.nearbuy.api
+import de.andrestefanov.android.nearbuy.api.model.RegisterPayload
+import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_register.*
 
-/**
- * A simple [Fragment] subclass.
- * Use the [RegisterFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class RegisterFragment : Fragment() {
 
     override fun onCreateView(
@@ -34,26 +31,24 @@ class RegisterFragment : Fragment() {
         button_register.setOnClickListener {
 
             if (edittext_password.text.toString() != edittext_password_confirm.text.toString()) {
-                Toast.makeText(context, "Passwörter stimmen nicht überein", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Passwörter stimmen nicht überein", Toast.LENGTH_SHORT)
+                    .show()
             } else {
-                with(RestClient.INSTANCE) {
-                    register(
-                        firstName = edittext_first_name.text.toString(),
-                        lastName = edittext_surname.text.toString(),
-                        email = edittext_email.text.toString(),
-                        password = edittext_password.text.toString()
-                    )
-                        .andThen(
-                            login(
-                                edittext_email.text.toString(),
-                                edittext_password.text.toString()
-                            )
-                        )
+                with(api) {
+                    authControllerRegister(
+                        RegisterPayload()
+                            .email(edittext_email.text.toString())
+                            .firstName(edittext_first_name.text.toString())
+                            .lastName(edittext_surname.text.toString())
+                            .password(edittext_password.text.toString())
+                            .role(RegisterPayload.RoleEnum.HELPER))
+                        .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
-                            { loginResponse ->
+                            { response ->
                                 context?.let {
-                                    Preferences.setToken(it, loginResponse.accessToken)
-                                    Preferences.setUserId(it, loginResponse.id)
+                                    Preferences.setToken(it, response.accessToken)
+                                    Preferences.setUserId(it, response.id)
+                                    api.setBearerToken(response.accessToken)
                                 }
 
                                 findNavController().navigate(R.id.action_registerFragment_to_roleFragment)

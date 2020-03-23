@@ -23,19 +23,18 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 
 /**
  * ShoppingListRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-22T15:06:40.738994+01:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-23T00:04:05.467759+01:00[Europe/Berlin]")
 public class ShoppingListRequest {
   public static final String SERIALIZED_NAME_REQUEST_ID = "requestId";
   @SerializedName(SERIALIZED_NAME_REQUEST_ID)
-  private BigDecimal requestId;
+  private Integer requestId;
 
 
-  public ShoppingListRequest requestId(BigDecimal requestId) {
+  public ShoppingListRequest requestId(Integer requestId) {
     
     this.requestId = requestId;
     return this;
@@ -47,12 +46,12 @@ public class ShoppingListRequest {
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public BigDecimal getRequestId() {
+  public Integer getRequestId() {
     return requestId;
   }
 
 
-  public void setRequestId(BigDecimal requestId) {
+  public void setRequestId(Integer requestId) {
     this.requestId = requestId;
   }
 

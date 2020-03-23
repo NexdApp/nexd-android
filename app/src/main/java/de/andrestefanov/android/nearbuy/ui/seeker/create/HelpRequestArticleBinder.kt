@@ -5,31 +5,33 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import de.andrestefanov.android.nearbuy.R
-import de.andrestefanov.android.nearbuy.api.data.Article
+import de.andrestefanov.android.nearbuy.api.model.Article
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
 
-class HelpRequestArticleBinder : ItemBinder<Article, HelpRequestArticleBinder.ViewHolder>() {
+class HelpRequestArticleBinder : ItemBinder<HelpRequestArticleBinder.ArticleInput, HelpRequestArticleBinder.ViewHolder>() {
 
-    class ViewHolder(itemView: View) : ItemViewHolder<Article>(itemView) {
+    data class ArticleInput(val article: Article, var amount: Int = 0)
+
+    class ViewHolder(itemView: View) : ItemViewHolder<ArticleInput>(itemView) {
         var name: TextView = itemView.findViewById(R.id.textview_article_name)
         var amount: TextView = itemView.findViewById(R.id.textview_amount)
         var increase: AppCompatButton = itemView.findViewById(R.id.button_increase)
         var decrease: AppCompatButton = itemView.findViewById(R.id.button_decrease)
     }
 
-    override fun bindViewHolder(holder: ViewHolder, item: Article) {
-        holder.amount.text = item.articleCount.toString()
-        holder.name.text = item.name
+    override fun bindViewHolder(holder: ViewHolder, item: ArticleInput) {
+        holder.amount.text = item.amount.toString()
+        holder.name.text = item.article.name
 
         holder.increase.setOnClickListener {
-            item.articleCount += 1
-            holder.amount.text = item.articleCount.toString()
+            item.amount += 1
+            holder.amount.text = item.amount.toString()
         }
 
         holder.decrease.setOnClickListener {
-            item.articleCount = if (item.articleCount == 0L) 0L else item.articleCount - 1
-            holder.amount.text = item.articleCount.toString()
+            item.amount = if (item.amount == 0) 0 else item.amount - 1
+            holder.amount.text = item.amount.toString()
         }
     }
 
@@ -40,7 +42,7 @@ class HelpRequestArticleBinder : ItemBinder<Article, HelpRequestArticleBinder.Vi
     }
 
     override fun canBindData(item: Any?): Boolean {
-        return item is Article
+        return item is ArticleInput
     }
 
 

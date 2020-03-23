@@ -3,32 +3,41 @@ package de.andrestefanov.android.nearbuy.ui.seeker.create
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.ViewModel
-import de.andrestefanov.android.nearbuy.ApiClient
-import de.andrestefanov.android.nearbuy.api.data.NewHelpRequest
-import de.andrestefanov.android.nearbuy.api.network.RestClient
+import de.andrestefanov.android.nearbuy.api
+import de.andrestefanov.android.nearbuy.api.model.Article
+import de.andrestefanov.android.nearbuy.api.model.CreateRequestArticleDto
+import de.andrestefanov.android.nearbuy.api.model.RequestFormDto
+import io.reactivex.BackpressureStrategy
 
 class CreateHelpRequestViewModel : ViewModel() {
 
-    private val rest = RestClient.INSTANCE
-
-    fun getArticles(): LiveData<NewHelpRequest> {
-        val data = rest.getArticles()
-            .map { list ->
-                NewHelpRequest(
-                    list,
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    ""
-                )
-            }
-        return LiveDataReactiveStreams.fromPublisher(data.toFlowable())
+    fun getArticles() : LiveData<List<Article>> {
+        return LiveDataReactiveStreams.fromPublisher(
+            api.articlesControllerFindAll().toFlowable(BackpressureStrategy.BUFFER)
+        )
     }
 
-    fun sendRequest(request: NewHelpRequest) {
-        rest.sendHelpRequest(request).subscribe()
+    fun getRequestWithArticles(): LiveData<RequestFormDto> {
+        val data = api.articlesControllerFindAll()
+            .map { list ->
+                RequestFormDto()
+                    .articles(list.map {
+                        CreateRequestArticleDto()
+                            .articleId(it.id)
+                            .articleCount(0)
+                    })
+                    .city("")
+                    .additionalRequest("")
+                    .deliveryComment("")
+                    .zipCode("") // TODO insert zip
+                    .phoneNumber("")
+                    .street("")
+            }
+        return LiveDataReactiveStreams.fromPublisher(data.toFlowable(BackpressureStrategy.BUFFER))
+    }
+
+    fun sendRequest(request: RequestFormDto) {
+        api.requestControllerInsertRequestWithArticles(request).subscribe()
     }
 
 }
