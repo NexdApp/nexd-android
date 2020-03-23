@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import de.andrestefanov.android.nearbuy.R
 import de.andrestefanov.android.nearbuy.api.model.RequestEntity
 import kotlinx.android.synthetic.main.buyer_overview_fragment.*
@@ -79,7 +80,7 @@ class BuyerOverviewFragment : Fragment() {
         }
 
         acceptedRequestsSummary.setOnClickListener {
-            findNavController().navigate(R.id.shoppingListFragment)
+            findNavController().navigate(BuyerOverviewFragmentDirections.actionBuyerOverviewFragmentToShoppingListFragment())
         }
     }
 
