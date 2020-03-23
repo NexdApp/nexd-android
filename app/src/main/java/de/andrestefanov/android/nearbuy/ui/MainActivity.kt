@@ -1,7 +1,6 @@
 package de.andrestefanov.android.nearbuy.ui
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,7 +9,10 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
-import de.andrestefanov.android.nearbuy.*
+import de.andrestefanov.android.nearbuy.Api
+import de.andrestefanov.android.nearbuy.Preferences
+import de.andrestefanov.android.nearbuy.R
+import de.andrestefanov.android.nearbuy.api
 import io.reactivex.plugins.RxJavaPlugins
 
 class MainActivity : AppCompatActivity() {
@@ -19,9 +21,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener { _, destination, _ ->
+        findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener { controller, destination, _ ->
             runOnUiThread {
                 title = destination.label
+
+                // skip authentication if it
+                if (destination.id == R.id.authFragment) {
+                    Preferences.getToken(this)?.let {
+                        controller.navigate(R.id.roleFragment)
+                    }
+                }
             }
         }
 
@@ -30,6 +39,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         api = Api()
+        api.setBearerToken(Preferences.getToken(this))
         hideKeyboardOnTouch()
     }
 

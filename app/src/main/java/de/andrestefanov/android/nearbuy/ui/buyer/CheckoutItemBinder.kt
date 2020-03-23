@@ -3,24 +3,24 @@ package de.andrestefanov.android.nearbuy.ui.buyer
 import android.view.View
 import android.view.ViewGroup
 import de.andrestefanov.android.nearbuy.R
-import de.andrestefanov.android.nearbuy.api.data.HelpRequestItem
+import de.andrestefanov.android.nearbuy.api.model.RequestArticle
 import kotlinx.android.synthetic.main.shopping_list_row.view.*
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
 
-class CheckoutItemBinder: ItemBinder<HelpRequestItem, CheckoutItemBinder.ViewHolder>() {
+class CheckoutItemBinder: ItemBinder<RequestArticle, CheckoutItemBinder.ViewHolder>() {
 
-    class ViewHolder(itemView: View): ItemViewHolder<HelpRequestItem>(itemView) {
+    class ViewHolder(itemView: View): ItemViewHolder<RequestArticle>(itemView) {
 
-        fun bind(item: HelpRequestItem) {
-            itemView.name.text = item.name
-            itemView.amount.text = "${item.amount}x"
-            itemView.checked.isChecked = item.collected
+        fun bind(item: RequestArticle) {
+            itemView.name.text = item.articleId.toString()
+            itemView.amount.text = "${item.articleCount}x"
+            itemView.checked.isChecked = item.articleDone
             itemView.checked.isEnabled = false
         }
     }
 
-    override fun bindViewHolder(holder: ViewHolder, item: HelpRequestItem) {
+    override fun bindViewHolder(holder: ViewHolder, item: RequestArticle) {
         holder.bind(item)
     }
 
@@ -29,6 +29,6 @@ class CheckoutItemBinder: ItemBinder<HelpRequestItem, CheckoutItemBinder.ViewHol
     }
 
     override fun canBindData(item: Any): Boolean {
-        return item is HelpRequestItem
+        return item is RequestArticle
     }
 }

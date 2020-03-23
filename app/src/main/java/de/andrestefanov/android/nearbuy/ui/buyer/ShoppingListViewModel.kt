@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import de.andrestefanov.android.nearbuy.api
 import io.reactivex.BackpressureStrategy
 import io.reactivex.schedulers.Schedulers
+import java.math.BigDecimal
 
 class ShoppingListViewModel : ViewModel() {
 
@@ -17,10 +18,10 @@ class ShoppingListViewModel : ViewModel() {
 
         val observable = api.articlesControllerFindAll()
             .flatMap { articles ->
-                api.requestControllerGetAll("false", "66666")
+                api.requestControllerGetAll(null, null)
                     .map { requests ->
                         requests
-                            .flatMap { it.articles }
+                            .flatMap { it.articles.filter { article -> article.articleCount > BigDecimal.ZERO } }
                             .map { article ->
                                 ShoppingListEntry(
                                     articles.first { article.articleId == it.id.toBigDecimal() }.name,

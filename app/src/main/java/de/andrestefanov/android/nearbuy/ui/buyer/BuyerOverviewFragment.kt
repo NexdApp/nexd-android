@@ -84,6 +84,12 @@ class BuyerOverviewFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        viewModel.reloadData()
+    }
+
     private fun updateAcceptedRequests(acceptedRequests: List<RequestEntity>) {
         acceptedRequestsAdapter.removeAllSections()
 

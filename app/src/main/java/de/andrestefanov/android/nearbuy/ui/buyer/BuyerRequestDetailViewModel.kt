@@ -7,6 +7,7 @@ import de.andrestefanov.android.nearbuy.api
 import de.andrestefanov.android.nearbuy.api.model.Article
 import de.andrestefanov.android.nearbuy.api.model.RequestEntity
 import de.andrestefanov.android.nearbuy.api.model.ShoppingList
+import de.andrestefanov.android.nearbuy.api.model.ShoppingListFormDto
 import io.reactivex.BackpressureStrategy
 import java.math.BigDecimal
 
@@ -27,14 +28,26 @@ class BuyerRequestDetailViewModel : ViewModel() {
 
     fun acceptRequest(requestId: BigDecimal) {
         api.shoppingListControllerGetUserLists()
-            .map { it.maxBy(ShoppingList::getCreatedAt) }
+            .flatMap { lists ->
+                if (lists.isNotEmpty() && lists.any { it.status == ShoppingList.StatusEnum.ACTIVE }) {
+                    return@flatMap io.reactivex.Observable.just(
+                        lists.filter { list -> list.status == ShoppingList.StatusEnum.ACTIVE }
+                            .maxBy(ShoppingList::getCreatedAt))
+                } else {
+                    return@flatMap api.shoppingListControllerInsertNewShoppingList(
+                        ShoppingListFormDto()
+                            .requests(0)
+                            .status(ShoppingListFormDto.StatusEnum.ACTIVE)
+                    )
+                }
+            }
             .flatMap {
                 api.shoppingListControllerAddRequestToList(
                     it.id.toBigDecimal(),
                     requestId
                 )
             }
-            .subscribe()
+            .blockingSubscribe()
     }
 
 }

@@ -5,22 +5,21 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
 import de.andrestefanov.android.nearbuy.R
-import de.andrestefanov.android.nearbuy.api.data.ShoppingList
 import kotlinx.android.synthetic.main.shopping_list_row.view.*
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
 
-class ShoppingListEntryBinder: ItemBinder<ShoppingList.Entry, ShoppingListEntryBinder.ViewHolder>() {
+class ShoppingListEntryBinder: ItemBinder<ShoppingListViewModel.ShoppingListEntry, ShoppingListEntryBinder.ViewHolder>() {
 
-    class ViewHolder(itemView: View) : ItemViewHolder<ShoppingList.Entry>(itemView) {
+    class ViewHolder(itemView: View) : ItemViewHolder<ShoppingListViewModel.ShoppingListEntry>(itemView) {
         private val name: TextView = itemView.name
         private val amount: TextView = itemView.amount
         private val collect: CheckBox = itemView.checked
 
-        fun bind(entry: ShoppingList.Entry) {
+        fun bind(entry: ShoppingListViewModel.ShoppingListEntry) {
             name.text = entry.name
             amount.text = "${entry.amount}x"
-            collect.isChecked = entry.requestItems[0].collected
+            collect.isChecked = entry.collected
 
             itemView.setOnClickListener {
                 collect.isChecked = !collect.isChecked
@@ -32,12 +31,12 @@ class ShoppingListEntryBinder: ItemBinder<ShoppingList.Entry, ShoppingListEntryB
                 collect.isChecked = !collect.isChecked
             }
             collect.setOnCheckedChangeListener { _, isChecked ->
-                entry.setCollected(isChecked)
+                entry.collected = isChecked
             }
         }
     }
 
-    override fun bindViewHolder(holder: ViewHolder, item: ShoppingList.Entry) {
+    override fun bindViewHolder(holder: ViewHolder, item: ShoppingListViewModel.ShoppingListEntry) {
         holder.bind(item)
     }
 
@@ -46,7 +45,7 @@ class ShoppingListEntryBinder: ItemBinder<ShoppingList.Entry, ShoppingListEntryB
     }
 
     override fun canBindData(item: Any): Boolean {
-        return item is ShoppingList.Entry
+        return item is ShoppingListViewModel.ShoppingListEntry
     }
 
 

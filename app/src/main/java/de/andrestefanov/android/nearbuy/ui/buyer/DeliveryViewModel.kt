@@ -1,13 +1,20 @@
 package de.andrestefanov.android.nearbuy.ui.buyer
 
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.ViewModel
-import de.andrestefanov.android.nearbuy.api.network.RestClient
+import de.andrestefanov.android.nearbuy.api
+import de.andrestefanov.android.nearbuy.api.model.RequestEntity
+import io.reactivex.BackpressureStrategy
 
 class DeliveryViewModel: ViewModel() {
 
-    private val rest = RestClient.INSTANCE
+    fun getAcceptedRequests() : LiveData<List<RequestEntity>> {
+        val source = api.requestControllerGetAll(null, null)
+            .map { all -> all.filter { it.status == RequestEntity.StatusEnum.ONGOING } }
+            .toFlowable(BackpressureStrategy.BUFFER)
 
-    fun getAcceptedRequests() = MutableLiveData(rest.getAcceptedRequests())
+        return LiveDataReactiveStreams.fromPublisher(source)
+    }
 
 }

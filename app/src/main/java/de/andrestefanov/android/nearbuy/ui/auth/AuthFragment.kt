@@ -1,15 +1,12 @@
 package de.andrestefanov.android.nearbuy.ui.auth
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import de.andrestefanov.android.nearbuy.Preferences
-
 import de.andrestefanov.android.nearbuy.R
-import de.andrestefanov.android.nearbuy.api
 import kotlinx.android.synthetic.main.auth_fragment.*
 
 class AuthFragment : Fragment() {
@@ -21,15 +18,8 @@ class AuthFragment : Fragment() {
         return inflater.inflate(R.layout.auth_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        context?.let { context ->
-            Preferences.getToken(context)?.let { token ->
-                api.setBearerToken(token)
-                findNavController().navigate(AuthFragmentDirections.actionAuthFragmentToRoleFragment())
-            }
-        }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         button_login.setOnClickListener {
             findNavController().navigate(AuthFragmentDirections.actionAuthFragmentToLoginFragment())

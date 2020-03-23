@@ -13,7 +13,8 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import de.andrestefanov.android.nearbuy.Preferences
 import de.andrestefanov.android.nearbuy.R
-import de.andrestefanov.android.nearbuy.api.network.RestClient
+import de.andrestefanov.android.nearbuy.api
+import de.andrestefanov.android.nearbuy.api.model.RegisterPayload
 import kotlinx.android.synthetic.main.fragment_register_detailed.*
 
 class RegisterDetailedFragment : Fragment() {
@@ -71,24 +72,18 @@ class RegisterDetailedFragment : Fragment() {
         if (!successful)
             return
 
-        with(RestClient.INSTANCE) {
-            register(
-                firstName = args.firstname,
-                lastName = args.lastname,
-                email = args.email,
-                password = args.password
-            )
-                .andThen(
-                    login(
-                        args.email,
-                        args.password
-                    )
-                )
+        with(api) {
+            authControllerRegister(
+                RegisterPayload()
+                    .firstName(args.firstname)
+                    .lastName(args.lastname)
+                    .email(args.email)
+                    .password(args.password))
                 .subscribe(
-                    { loginResponse ->
+                    { response ->
                         context?.let {
-                            Preferences.setToken(it, loginResponse.accessToken)
-                            Preferences.setUserId(it, loginResponse.id)
+                            Preferences.setToken(it, response.accessToken)
+                            Preferences.setUserId(it, response.id)
                         }
 
                         findNavController().navigate(RegisterDetailedFragmentDirections.actionRegisterDetailedFragmentToRoleFragment())
