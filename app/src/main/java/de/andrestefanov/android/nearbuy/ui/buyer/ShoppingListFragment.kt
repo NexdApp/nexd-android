@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.andrestefanov.android.nearbuy.R
-import de.andrestefanov.android.nearbuy.api.data.ShoppingList
 import kotlinx.android.synthetic.main.fragment_shopping_list.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
@@ -40,11 +39,11 @@ class ShoppingListFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(ShoppingListViewModel::class.java)
 
-        viewModel.updateShopppingList()
-
-        val list = ListSection<ShoppingList.Entry>()
-        list.addAll(ShoppingList.list)
-        adapter.addSection(list)
+        viewModel.getItems().observe(viewLifecycleOwner, Observer {
+            val listSection = ListSection<ShoppingListViewModel.ShoppingListEntry>()
+            listSection.addAll(it)
+            adapter.addSection(listSection)
+        })
 
         checkout.setOnClickListener {
             findNavController().navigate(ShoppingListFragmentDirections.actionShoppingListFragmentToCheckoutFragment())

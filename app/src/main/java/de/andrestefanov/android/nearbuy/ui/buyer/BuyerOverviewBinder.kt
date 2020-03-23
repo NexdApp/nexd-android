@@ -1,19 +1,18 @@
 package de.andrestefanov.android.nearbuy.ui.buyer
 
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import de.andrestefanov.android.nearbuy.R
-import de.andrestefanov.android.nearbuy.api.data.HelpRequest
+import de.andrestefanov.android.nearbuy.api.model.RequestEntity
 import de.andrestefanov.android.nearbuy.ui.buyer.BuyerOverviewBinder.HelpRequestViewHolder
 import kotlinx.android.synthetic.main.buyer_request_row.view.*
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
 
-class BuyerOverviewBinder: ItemBinder<HelpRequest, HelpRequestViewHolder>() {
+class BuyerOverviewBinder: ItemBinder<RequestEntity, HelpRequestViewHolder>() {
 
-    class HelpRequestViewHolder(itemView: View): ItemViewHolder<HelpRequest>(itemView) {
+    class HelpRequestViewHolder(itemView: View): ItemViewHolder<RequestEntity>(itemView) {
         private val title: TextView = itemView.title
 
         init {
@@ -22,14 +21,14 @@ class BuyerOverviewBinder: ItemBinder<HelpRequest, HelpRequestViewHolder>() {
             }
         }
 
-        fun bind(request: HelpRequest) {
-            title.text = request.name
+        fun bind(request: RequestEntity) {
+            title.text = """${request.requester?.firstName.toString()} ${request.requester?.lastName}"""
         }
 
 
     }
 
-    override fun bindViewHolder(holder: HelpRequestViewHolder, item: HelpRequest) {
+    override fun bindViewHolder(holder: HelpRequestViewHolder, item: RequestEntity) {
         holder.bind(item)
     }
 
@@ -38,7 +37,7 @@ class BuyerOverviewBinder: ItemBinder<HelpRequest, HelpRequestViewHolder>() {
     }
 
     override fun canBindData(item: Any): Boolean {
-        return item is HelpRequest
+        return item is RequestEntity
     }
 
 }

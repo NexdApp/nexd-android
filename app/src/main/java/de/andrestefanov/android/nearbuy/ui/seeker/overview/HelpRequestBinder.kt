@@ -4,15 +4,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import de.andrestefanov.android.nearbuy.R
-import de.andrestefanov.android.nearbuy.api.data.HelpRequest
+import de.andrestefanov.android.nearbuy.api.model.RequestEntity
 import de.andrestefanov.android.nearbuy.ui.seeker.overview.HelpRequestBinder.HelpRequestViewHolder
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
 import java.text.DateFormat
 
-class HelpRequestBinder : ItemBinder<HelpRequest, HelpRequestViewHolder>() {
+class HelpRequestBinder : ItemBinder<RequestEntity, HelpRequestViewHolder>() {
 
-    class HelpRequestViewHolder(itemView: View) : ItemViewHolder<HelpRequest?>(itemView) {
+    class HelpRequestViewHolder(itemView: View) : ItemViewHolder<RequestEntity?>(itemView) {
         var title: TextView = itemView.findViewById(R.id.tv_header)
     }
 
@@ -22,12 +22,12 @@ class HelpRequestBinder : ItemBinder<HelpRequest, HelpRequestViewHolder>() {
 
     override fun bindViewHolder(
         holder: HelpRequestViewHolder,
-        item: HelpRequest
+        item: RequestEntity
     ) {
-        holder.title.text = DateFormat.getDateInstance(DateFormat.FULL).format(item.createdDate)
+        holder.title.text = DateFormat.getDateInstance(DateFormat.FULL).format(item.createdAt)
     }
 
     override fun canBindData(item: Any): Boolean {
-        return item is HelpRequest
+        return item is RequestEntity
     }
 }
