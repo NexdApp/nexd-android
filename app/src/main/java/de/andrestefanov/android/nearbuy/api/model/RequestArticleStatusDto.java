@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * RequestArticleStatusDto
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-23T23:32:44.981584+01:00[Europe/Berlin]")
+
 public class RequestArticleStatusDto {
   public static final String SERIALIZED_NAME_ARTICLE_DONE = "articleDone";
   @SerializedName(SERIALIZED_NAME_ARTICLE_DONE)
