@@ -83,6 +83,8 @@ public class RequestEntity {
    */
   @JsonAdapter(StatusEnum.Adapter.class)
   public enum StatusEnum {
+    NEW("new"),
+
     PENDING("pending"),
     
     ONGOING("ongoing"),
