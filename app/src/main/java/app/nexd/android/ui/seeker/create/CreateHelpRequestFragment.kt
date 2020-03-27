@@ -54,11 +54,13 @@ class CreateHelpRequestFragment : Fragment() {
             button_accept.setOnClickListener {
 
                 val request = RequestFormDto()
-                    .articles(articlesInput.map {
-                        CreateRequestArticleDto()
-                            .articleCount(it.amount)
-                            .articleId(it.article.id)
-                    })
+                    .articles(articlesInput
+                        .filter { it.amount > 0 }
+                        .map {
+                            CreateRequestArticleDto()
+                                .articleCount(it.amount)
+                                .articleId(it.article.id)
+                        })
                     .additionalRequest(editText_additionalRequest.text.toString())
 
                 viewModel.sendRequest(request)
@@ -66,7 +68,7 @@ class CreateHelpRequestFragment : Fragment() {
         })
 
         viewModel.state().observe(viewLifecycleOwner, Observer {
-            when(it) {
+            when (it) {
                 // TODO: handle all states
                 CreateHelpRequestViewModel.State.FINISHED -> findNavController().popBackStack()
                 else -> Log.d(CreateHelpRequestFragment::class.simpleName, "unhandled state $it")
