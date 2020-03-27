@@ -1,2 +1,3 @@
 # Default ignored files
 /workspace.xml
+!/caches/build_file_checksums.ser
