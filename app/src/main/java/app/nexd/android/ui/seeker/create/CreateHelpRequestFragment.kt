@@ -1,12 +1,14 @@
 package app.nexd.android.ui.seeker.create
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.api.model.Article
@@ -60,6 +62,14 @@ class CreateHelpRequestFragment : Fragment() {
                     .additionalRequest(editText_additionalRequest.text.toString())
 
                 viewModel.sendRequest(request)
+            }
+        })
+
+        viewModel.state().observe(viewLifecycleOwner, Observer {
+            when(it) {
+                // TODO: handle all states
+                CreateHelpRequestViewModel.State.FINISHED -> findNavController().popBackStack()
+                else -> Log.d(CreateHelpRequestFragment::class.simpleName, "unhandled state $it")
             }
         })
     }

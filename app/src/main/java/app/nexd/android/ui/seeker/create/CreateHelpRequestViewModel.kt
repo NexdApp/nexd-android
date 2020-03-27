@@ -1,5 +1,6 @@
 package app.nexd.android.ui.seeker.create
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.ViewModel
@@ -8,8 +9,21 @@ import app.nexd.android.api.model.Article
 import app.nexd.android.api.model.CreateRequestArticleDto
 import app.nexd.android.api.model.RequestFormDto
 import io.reactivex.BackpressureStrategy
+import io.reactivex.functions.Consumer
+import io.reactivex.processors.BehaviorProcessor
+import io.reactivex.subjects.BehaviorSubject
+import io.reactivex.subjects.Subject
+import org.reactivestreams.Processor
 
 class CreateHelpRequestViewModel : ViewModel() {
+
+    enum class State {
+        LOADING,
+        IDLE,
+        FINISHED
+    }
+
+    private val state = BehaviorProcessor.createDefault(State.LOADING)
 
     fun getArticles() : LiveData<List<Article>> {
         return LiveDataReactiveStreams.fromPublisher(
@@ -36,8 +50,12 @@ class CreateHelpRequestViewModel : ViewModel() {
         return LiveDataReactiveStreams.fromPublisher(data.toFlowable(BackpressureStrategy.BUFFER))
     }
 
+    @SuppressLint("CheckResult")
     fun sendRequest(request: RequestFormDto) {
-        api.requestControllerInsertRequestWithArticles(request).subscribe()
+        api.requestControllerInsertRequestWithArticles(request)
+            .subscribe { state.onNext(State.FINISHED) }
     }
+
+    fun state() = LiveDataReactiveStreams.fromPublisher(state)
 
 }
