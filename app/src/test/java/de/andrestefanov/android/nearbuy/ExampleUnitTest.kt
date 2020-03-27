@@ -1,4 +1,4 @@
-package de.andrestefanov.android.nearbuy
+package app.nexd.android
 
 import org.junit.Test
 

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/roleFragment"
-        android:name="de.andrestefanov.android.nearbuy.ui.role.RoleFragment"
+        android:name="app.nexd.android.ui.role.RoleFragment"
         android:label="@string/role"
         tools:layout="@layout/role_fragment">
         <action
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/seekerOverviewFragment"
-        android:name="de.andrestefanov.android.nearbuy.ui.seeker.overview.SeekerOverviewFragment"
+        android:name="app.nexd.android.ui.seeker.overview.SeekerOverviewFragment"
         android:label="@string/request_help"
         tools:layout="@layout/seeker_overview_fragment" >
         <action
@@ -36,7 +36,7 @@
     </fragment>
     <fragment
         android:id="@+id/buyerOverviewFragment"
-        android:name="de.andrestefanov.android.nearbuy.ui.buyer.BuyerOverviewFragment"
+        android:name="app.nexd.android.ui.buyer.BuyerOverviewFragment"
         android:label="@string/provide_help"
         tools:layout="@layout/buyer_overview_fragment" >
         <action
@@ -57,7 +57,7 @@
     </fragment>
     <fragment
         android:id="@+id/buyerRequestDetailFragment"
-        android:name="de.andrestefanov.android.nearbuy.ui.buyer.BuyerRequestDetailFragment"
+        android:name="app.nexd.android.ui.buyer.BuyerRequestDetailFragment"
         android:label="@string/request_details"
         tools:layout="@layout/buyer_request_detail_fragment" >
         <argument
@@ -66,12 +66,12 @@
     </fragment>
     <fragment
         android:id="@+id/createHelpRequestFragment"
-        android:name="de.andrestefanov.android.nearbuy.ui.seeker.create.CreateHelpRequestFragment"
+        android:name="app.nexd.android.ui.seeker.create.CreateHelpRequestFragment"
         android:label="Ich brauche"
         tools:layout="@layout/create_help_request_fragment" />
     <fragment
         android:id="@+id/shoppingListFragment"
-        android:name="de.andrestefanov.android.nearbuy.ui.buyer.ShoppingListFragment"
+        android:name="app.nexd.android.ui.buyer.ShoppingListFragment"
         android:label="Einkaufsliste"
         tools:layout="@layout/fragment_shopping_list" >
         <action
@@ -84,7 +84,7 @@
     </fragment>
     <fragment
         android:id="@+id/authFragment"
-        android:name="de.andrestefanov.android.nearbuy.ui.auth.AuthFragment"
+        android:name="app.nexd.android.ui.auth.AuthFragment"
         android:label="AuthFragment"
         tools:layout="@layout/auth_fragment">
         <action
@@ -103,7 +103,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="de.andrestefanov.android.nearbuy.ui.auth.LoginFragment"
+        android:name="app.nexd.android.ui.auth.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -116,7 +116,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="de.andrestefanov.android.nearbuy.ui.auth.RegisterFragment"
+        android:name="app.nexd.android.ui.auth.RegisterFragment"
         android:label="RegisterFragment"
         tools:layout="@layout/fragment_register">
         <action
@@ -126,7 +126,7 @@
     </fragment>
     <fragment
         android:id="@+id/checkoutFragment"
-        android:name="de.andrestefanov.android.nearbuy.ui.buyer.CheckoutFragment"
+        android:name="app.nexd.android.ui.buyer.CheckoutFragment"
         android:label="Checkout"
         tools:layout="@layout/fragment_checkout" >
         <action
@@ -139,7 +139,7 @@
     </fragment>
     <fragment
         android:id="@+id/deliveryFragment"
-        android:name="de.andrestefanov.android.nearbuy.ui.buyer.DeliveryFragment"
+        android:name="app.nexd.android.ui.buyer.DeliveryFragment"
         android:label="fragment_delivery"
         tools:layout="@layout/fragment_delivery" >
         <action
@@ -152,7 +152,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerDetailedFragment"
-        android:name="de.andrestefanov.android.nearbuy.ui.auth.RegisterDetailedFragment"
+        android:name="app.nexd.android.ui.auth.RegisterDetailedFragment"
         android:label="fragment_register_detailed"
         tools:layout="@layout/fragment_register_detailed" >
         <action

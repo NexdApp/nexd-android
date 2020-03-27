@@ -1,2 +1,3 @@
 rootProject.name='Nexd'
 include ':app'
+include ':api'
