@@ -29,6 +29,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" scope="PROVIDED" name="Gradle: jsr250-api-1.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: converter-scalars-2.3.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: converter-gson-2.3.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: adapter-rxjava2-2.3.0" level="project" />

@@ -26,11 +26,11 @@ if(hasProperty('target') && target == 'android') {
     apply plugin: 'com.github.dcendents.android-maven'
 
     android {
-        compileSdkVersion 25
-        buildToolsVersion '25.0.2'
+        compileSdkVersion 29
+        buildToolsVersion '25.0.3'
         defaultConfig {
             minSdkVersion 14
-            targetSdkVersion 25
+            targetSdkVersion 29
         }
         compileOptions {
             sourceCompatibility JavaVersion.VERSION_1_7
@@ -104,17 +104,19 @@ ext {
 }
 
 dependencies {
-    compile "com.squareup.retrofit2:retrofit:$retrofit_version"
-    compile "com.squareup.retrofit2:converter-scalars:$retrofit_version"
-    compile "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
-    compile "io.reactivex.rxjava2:rxjava:$rx_java_version"
-    compile "io.swagger:swagger-annotations:$swagger_annotations_version"
-    compile "com.google.code.findbugs:jsr305:3.0.2"
-    compile ("org.apache.oltu.oauth2:org.apache.oltu.oauth2.client:$oltu_version"){
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-scalars:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    implementation "io.reactivex.rxjava2:rxjava:$rx_java_version"
+    implementation "io.swagger:swagger-annotations:$swagger_annotations_version"
+    implementation "com.google.code.findbugs:jsr305:3.0.2"
+    implementation ("org.apache.oltu.oauth2:org.apache.oltu.oauth2.client:$oltu_version"){
         exclude group:'org.apache.oltu.oauth2' , module: 'org.apache.oltu.oauth2.common'
     }
-    compile "io.gsonfire:gson-fire:$json_fire_version"
+    implementation "io.gsonfire:gson-fire:$json_fire_version"
 
-    testCompile "junit:junit:$junit_version"
+    compileOnly 'javax.annotation:jsr250-api:1.0'
+
+    testImplementation "junit:junit:$junit_version"
 }
