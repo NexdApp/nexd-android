@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.ViewModel
 import app.nexd.android.api
+import app.nexd.android.api.model.RequestEntity
 import io.reactivex.BackpressureStrategy
 import io.reactivex.schedulers.Schedulers
 import java.math.BigDecimal
@@ -19,6 +20,7 @@ class ShoppingListViewModel : ViewModel() {
         val observable = api.articlesControllerFindAll()
             .flatMap { articles ->
                 api.requestControllerGetAll(null, null)
+                    .map { requests -> requests.filter { it.status == RequestEntity.StatusEnum.ONGOING } }
                     .map { requests ->
                         requests
                             .flatMap { it.articles.filter { article -> article.articleCount > BigDecimal.ZERO } }
