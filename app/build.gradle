@@ -1,3 +1,8 @@
+plugins {
+    id 'com.android.application'
+    id 'com.github.triplet.play' version '2.7.3'
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -11,7 +16,7 @@ android {
         applicationId "app.nexd.android"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 1
+        versionCode 2
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -44,6 +49,10 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
+}
+
+play {
+    serviceAccountCredentials = project.rootProject.file('publisher-key.json')
 }
 
 dependencies {
