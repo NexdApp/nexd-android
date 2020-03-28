@@ -34,7 +34,13 @@ class Api(private val apiClient: ApiClient = ApiClient("bearer")) :
     private val userApi : UserApi
 
     init {
-        apiClient.okBuilder.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+        apiClient.okBuilder
+            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+
+        if (!BuildConfig.API_BASE_URL.isBlank()) {
+            apiClient.adapterBuilder = apiClient.adapterBuilder
+                .baseUrl(BuildConfig.API_BASE_URL)
+        }
 
         articlesApi = apiClient.createService(ArticlesApi::class.java)
         authenticationApi = apiClient.createService(AuthenticationApi::class.java)
