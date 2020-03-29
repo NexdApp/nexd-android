@@ -23,7 +23,7 @@ jobs:
       id: write_file
       uses: timheuer/base64-to-file@v1.0.3
       with:
-        fileName: 'keystore.jsk'
+        fileName: 'keystore.jks'
         encodedString: ${{ secrets.KEYSTORE_BASE64 }}
     - name: Build with Gradle
       env:
