@@ -8,6 +8,10 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
+def buildVersionCode = project.hasProperty('versionCode') ? versionCode.toInteger() : 1
+println "VersionCode is set to $buildVersionCode"
+
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -16,7 +20,7 @@ android {
         applicationId "app.nexd.android"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 2
+        versionCode buildVersionCode
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
