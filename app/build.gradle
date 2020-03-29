@@ -11,8 +11,24 @@ apply plugin: "androidx.navigation.safeargs.kotlin"
 def buildVersionCode = project.hasProperty('versionCode') ? versionCode.toInteger() : 1
 println "VersionCode is set to $buildVersionCode"
 
+String apiBaseUrl = project.findProperty('apiBaseUrl')
+
+String signingKeystore = project.findProperty('keystore')
+String signingKeystorePassword = project.findProperty('keystorePassword')
+String signingKeyAlias = project.findProperty('keyAlias')
+String signingKeyPassword = project.findProperty('keyPassword')
 
 android {
+
+    signingConfigs {
+        release {
+            storeFile signingKeystore != null ? file(project.rootProject.file(signingKeystore)) : null
+            storePassword signingKeystorePassword
+            keyAlias = signingKeyAlias
+            keyPassword signingKeyPassword
+        }
+    }
+
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
@@ -25,13 +41,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        Properties properties = new Properties()
-
-        if (project.rootProject.file('local.properties').exists()) {
-            properties.load(project.rootProject.file('local.properties').newDataInputStream())
-        }
-
-        def apiBaseUrl = properties.getProperty('api.baseurl')
         buildConfigField("String", "API_BASE_URL", apiBaseUrl == null ? "\"\"" : "\"${apiBaseUrl}\"")
     }
 
@@ -43,6 +52,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
