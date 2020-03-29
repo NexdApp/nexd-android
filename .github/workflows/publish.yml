@@ -20,7 +20,7 @@ jobs:
           PUBLISHER_KEY: ${{ secrets.PUBLISHER_KEY }}
         run: echo "${PUBLISHER_KEY}" > publisher-key.json
       - name: Load keystore
-        id: write_file
+        id: keystore
         uses: timheuer/base64-to-file@v1.0.3
         with:
           fileName: 'keystore.jks'
@@ -30,4 +30,4 @@ jobs:
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEYSTORE_KEY_ALIAS: ${{ secrets.KEYSTORE_KEY_ALIAS }}
           KEYSTORE_KEY_PASSWORD: ${{ secrets.KEYSTORE_KEY_PASSWORD }}
-        run: ./gradlew publishReleaseBundle -PversionCode="${GITHUB_RUN_NUMBER}" -Pkeystore=keystore.jks -PkeystorePassword="${KEYSTORE_PASSWORD}" -PkeyAlias="${KEYSTORE_KEY_ALIAS}" -PkeyPassword="${KEYSTORE_KEY_PASSWORD}"
+        run: ./gradlew publishReleaseBundle -PversionCode="${GITHUB_RUN_NUMBER}" -Pkeystore=${{ steps.keystore.outputs.filePath }} -PkeystorePassword="${KEYSTORE_PASSWORD}" -PkeyAlias="${KEYSTORE_KEY_ALIAS}" -PkeyPassword="${KEYSTORE_KEY_PASSWORD}"
