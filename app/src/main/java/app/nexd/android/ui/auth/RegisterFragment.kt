@@ -1,5 +1,7 @@
 package app.nexd.android.ui.auth
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +17,7 @@ import app.nexd.android.api.model.RegisterPayload
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_register.*
 import java.util.*
+
 
 class RegisterFragment : Fragment() {
 
@@ -60,7 +63,12 @@ class RegisterFragment : Fragment() {
                             api.setBearerToken(response.accessToken)
                         }
                         button_data_protection.setOnClickListener {
-                            Toast.makeText(context, "In Entwicklung", Toast.LENGTH_SHORT).show()
+                            startActivity(
+                                Intent(
+                                    Intent.ACTION_VIEW,
+                                    Uri.parse("https://www.nexd.app/privacypage")
+                                )
+                            )
                         }
                     }
             }
