@@ -32,9 +32,9 @@ jobs:
           KEYSTORE_KEY_PASSWORD: ${{ secrets.KEYSTORE_KEY_PASSWORD }}
         run: ./gradlew publishReleaseApk -PversionCode="${GITHUB_RUN_NUMBER}" -Pkeystore=${{ steps.keystore.outputs.filePath }} -PkeystorePassword="${KEYSTORE_PASSWORD}" -PkeyAlias="${KEYSTORE_KEY_ALIAS}" -PkeyPassword="${KEYSTORE_KEY_PASSWORD}"
       - name: Upload to App Center
-        uses: devussy/AppCenter-Distribute-Github-Action@v1.0.5
+        uses: wzieba/AppCenter-Github-Action@v1.0.0
         with:
-          app: NexdApp/Nexd
+          appName: NexdApp/Nexd
           token: ${{ secrets.APP_CENTER_TOKEN }}
           group: Testers
           file: app/build/outputs/apk/debug/app-debug.apk
