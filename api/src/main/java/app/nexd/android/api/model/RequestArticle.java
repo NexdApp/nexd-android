@@ -1,6 +1,6 @@
 /*
- * Simple API
- * Simple API Description
+ * Nexd API
+ * Swagger API description
  *
  * The version of the OpenAPI document: 1.0
  * 
@@ -32,7 +32,7 @@ import java.math.BigDecimal;
 public class RequestArticle {
   public static final String SERIALIZED_NAME_ARTICLE_ID = "articleId";
   @SerializedName(SERIALIZED_NAME_ARTICLE_ID)
-  private BigDecimal articleId;
+  private Integer articleId;
 
   public static final String SERIALIZED_NAME_ARTICLE_COUNT = "articleCount";
   @SerializedName(SERIALIZED_NAME_ARTICLE_COUNT)
@@ -43,7 +43,7 @@ public class RequestArticle {
   private Boolean articleDone;
 
 
-  public RequestArticle articleId(BigDecimal articleId) {
+  public RequestArticle articleId(Integer articleId) {
     
     this.articleId = articleId;
     return this;
@@ -55,12 +55,12 @@ public class RequestArticle {
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public BigDecimal getArticleId() {
+  public Integer getArticleId() {
     return articleId;
   }
 
 
-  public void setArticleId(BigDecimal articleId) {
+  public void setArticleId(Integer articleId) {
     this.articleId = articleId;
   }
 

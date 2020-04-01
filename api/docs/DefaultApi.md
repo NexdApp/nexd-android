@@ -1,6 +1,6 @@
 # DefaultApi
 
-All URIs are relative to *http://nexd-api-alb-1107636132.eu-central-1.elb.amazonaws.com*
+All URIs are relative to *http://localhost:3001*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -27,7 +27,7 @@ import app.nexd.android.api.DefaultApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://nexd-api-alb-1107636132.eu-central-1.elb.amazonaws.com");
+        defaultClient.setBasePath("http://localhost:3001");
 
         DefaultApi apiInstance = new DefaultApi(defaultClient);
         try {

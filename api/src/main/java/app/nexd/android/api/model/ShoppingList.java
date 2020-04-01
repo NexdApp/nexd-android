@@ -1,6 +1,6 @@
 /*
- * Simple API
- * Simple API Description
+ * Nexd API
+ * Swagger API description
  *
  * The version of the OpenAPI document: 1.0
  * 
