@@ -85,7 +85,7 @@ public class ApiClient {
     json = new JSON();
     okBuilder = new OkHttpClient.Builder();
 
-    String baseUrl = "http://localhost:3001";
+    String baseUrl = "http://nexd-api-alb-1905109360.eu-central-1.elb.amazonaws.com";
     if (!baseUrl.endsWith("/"))
       baseUrl = baseUrl + "/";
 

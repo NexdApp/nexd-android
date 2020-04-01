@@ -39,7 +39,7 @@ String apiBaseUrl = project.findProperty('apiBaseUrl') == null ? remoteApiUrl : 
 
 openApiGenerate {
     generatorName = "java"
-    inputSpec = apiBaseUrl
+    inputSpec = apiBaseUrl + "/docs-json"
     outputDir = "api"
     apiPackage = "app.nexd.android.api"
     invokerPackage = "app.nexd.android"

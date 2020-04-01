@@ -32,7 +32,7 @@ import java.math.BigDecimal;
 public class RequestArticle {
   public static final String SERIALIZED_NAME_ARTICLE_ID = "articleId";
   @SerializedName(SERIALIZED_NAME_ARTICLE_ID)
-  private Integer articleId;
+  private BigDecimal articleId;
 
   public static final String SERIALIZED_NAME_ARTICLE_COUNT = "articleCount";
   @SerializedName(SERIALIZED_NAME_ARTICLE_COUNT)
@@ -43,7 +43,7 @@ public class RequestArticle {
   private Boolean articleDone;
 
 
-  public RequestArticle articleId(Integer articleId) {
+  public RequestArticle articleId(BigDecimal articleId) {
     
     this.articleId = articleId;
     return this;
@@ -55,12 +55,12 @@ public class RequestArticle {
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public Integer getArticleId() {
+  public BigDecimal getArticleId() {
     return articleId;
   }
 
 
-  public void setArticleId(Integer articleId) {
+  public void setArticleId(BigDecimal articleId) {
     this.articleId = articleId;
   }
 
