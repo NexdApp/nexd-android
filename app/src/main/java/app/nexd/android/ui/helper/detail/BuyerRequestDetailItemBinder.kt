@@ -27,7 +27,7 @@ class BuyerRequestDetailItemBinder: ItemBinder<BuyerRequestDetailItemBinder.Requ
         }
 
         fun bind(item: RequestArticleViewData) {
-            title.text = """${item.requestArticle.articleCount} x ${item.name}"""
+            title.text = "%1 x %2".format(item.requestArticle.articleCount, item.name)
         }
     }
 

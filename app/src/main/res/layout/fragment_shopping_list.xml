@@ -10,7 +10,7 @@
     tools:context=".ui.helper.shoppingList.ShoppingListFragment">
 
     <TextView
-        android:text="@string/shoppingList"
+        android:text="@string/shopping_list_screen_title"
         android:textStyle="bold"
         android:textSize="20sp"
         android:layout_marginBottom="10dp"

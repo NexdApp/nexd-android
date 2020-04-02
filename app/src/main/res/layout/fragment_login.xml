@@ -32,7 +32,7 @@
         android:layout_marginHorizontal="30dp"
         android:paddingHorizontal="10dp"
         android:textSize="20sp"
-        android:hint="@string/email"
+        android:hint="@string/login_placeholder_username"
         android:backgroundTint="@color/text"
         android:textColorHint="@color/text" />
 
@@ -51,7 +51,7 @@
         android:layout_marginHorizontal="30dp"
         android:paddingHorizontal="10dp"
         android:textSize="20sp"
-        android:hint="@string/password"
+        android:hint="@string/login_placeholder_password"
         android:backgroundTint="@color/text"
         android:textColorHint="@color/text" />
 
@@ -67,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:background="@drawable/round_button_white"
-        android:text="@string/confirm"
+        android:text="@string/login_button_title_login"
         android:textSize="20sp" />
 
     <Space

@@ -22,7 +22,7 @@ class BuyerOverviewBinder: ItemBinder<RequestEntity, HelpRequestViewHolder>() {
         }
 
         fun bind(request: RequestEntity) {
-            title.text = """${request.requester?.firstName.toString()} ${request.requester?.lastName}"""
+            title.text = "%1 %2".format(request.requester?.firstName.toString(), request.requester?.lastName)
         }
 
 

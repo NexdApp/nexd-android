@@ -18,7 +18,7 @@ class ShoppingListEntryBinder: ItemBinder<ShoppingListViewModel.ShoppingListEntr
 
         fun bind(entry: ShoppingListViewModel.ShoppingListEntry) {
             name.text = entry.name
-            amount.text = "${entry.amount}x"
+            amount.text = "%1x".format(entry.amount)
             collect.isChecked = entry.collected
 
             itemView.setOnClickListener {

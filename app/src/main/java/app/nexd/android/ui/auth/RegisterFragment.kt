@@ -64,27 +64,27 @@ class RegisterFragment : Fragment() {
         var successful = true
         if (password != passwordConfirm) {
             successful = false
-            editText_password_confirm.error = getString(R.string.passwords_not_the_same)
+            editText_password_confirm.error = getString(R.string.error_message_registration_password_match)
         }
 
         if (firstName.isEmpty()) {
             successful = false
-            editText_first_name.error = getString(R.string.fillUp)
+            editText_first_name.error = getString(R.string.error_message_registration_field_missing)
         }
 
         if (lastName.isEmpty()) {
             successful = false
-            editText_surname.error = getString(R.string.fillUp)
+            editText_surname.error = getString(R.string.error_message_registration_field_missing)
         }
 
         if (email.isEmpty()) {
             successful = false
-            editText_email.error = getString(R.string.fillUp)
+            editText_email.error = getString(R.string.error_message_registration_field_missing)
         }
 
         if (password.isEmpty() || password.length < 6) {
             successful = false
-            editText_password.error = getString(R.string.password_too_short)
+            editText_password.error = getString(R.string.error_message_registration_password_too_short)
         }
 
         if (successful) {
@@ -100,7 +100,7 @@ class RegisterFragment : Fragment() {
                 } else if (request.error != null) {
                     if (request.error is HttpException) {
                         Snackbar.make(editText_email, when (request.error.code()) {
-                            400 -> "ungültige E-Mail Adresse"
+                            400 -> getString(R.string.error_message_registration_invalid_email)
                             else -> request.error.message()
                         }, Snackbar.LENGTH_SHORT).show()
                     }

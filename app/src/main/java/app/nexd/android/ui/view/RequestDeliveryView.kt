@@ -12,8 +12,11 @@ class RequestDeliveryView(context: Context, var request: RequestEntity): LinearL
         inflate(context, R.layout.view_request_delivery, this)
 
         name.text = request.requester?.lastName
-        address.text = context.getString(R.string.delivery_address).format(request.street, request.number)
-        phonenumber.text = context.getString(R.string.delivery_phoneNumber).format(request.phoneNumber)
+        address.text = "%1 %2 %3".format(context.getString(R.string.delivery_request_address),
+            request.street,
+            request.number)
+        phonenumber.text = "%1 %2".format(context.getString(R.string.delivery_request_phoneNumber),
+            request.phoneNumber)
     }
 
 }

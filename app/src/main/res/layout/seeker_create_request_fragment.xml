@@ -8,10 +8,10 @@
     android:orientation="vertical"
     android:padding="@dimen/fragmentPadding"
     android:background="@drawable/background_gradient"
-    tools:context=".ui.seeker.create.CreateHelpRequestFragment">
+    tools:context=".ui.seeker.create.SeekerCreateRequestFragment">
 
     <TextView
-        android:text="@string/i_need"
+        android:text="@string/seeker_request_create_heading"
         android:textStyle="bold"
         android:textSize="20sp"
         android:layout_marginBottom="10dp"
@@ -46,7 +46,7 @@
         android:inputType="text"
         android:paddingHorizontal="10dp"
         android:textSize="20sp"
-        android:hint="@string/additional_information"
+        android:hint="@string/seeker_request_create_placeholder_information"
         android:backgroundTint="@color/text"
         android:textColorHint="@color/text" />
 

@@ -51,7 +51,7 @@ class SeekerDetailFragment : Fragment() {
                         articlesAdapter.addSection(articlesList)
 
                         button_delete.setOnClickListener {
-                            viewModel.deleteRequest(request.id)
+                            viewModel.cancelRequest(request.id)
                         }
                     })
             })

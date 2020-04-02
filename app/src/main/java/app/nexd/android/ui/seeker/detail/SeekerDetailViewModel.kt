@@ -23,8 +23,8 @@ class SeekerDetailViewModel: ViewModel() {
                 .toFlowable(BackpressureStrategy.LATEST))
     }
 
-    fun deleteRequest(requestId: Int) {
-
+    fun cancelRequest(requestId: Int) {
+        api.
         // api.request
     }
 

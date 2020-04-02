@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="30dp"
-        android:text="@string/done_soon"
+        android:text="@string/user_input_details_screen_title"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/text"
-            android:hint="@string/phone_number"
+            android:hint="@string/user_input_details_placeholder_phoneNumber"
             android:layout_marginBottom="20dp"
             android:imeOptions="actionNext"
             android:inputType="phone"
@@ -51,7 +51,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_weight="4"
                 android:backgroundTint="@color/text"
-                android:hint="@string/street"
+                android:hint="@string/user_input_details_placeholder_street"
                 android:imeOptions="actionNext"
                 android:nextFocusRight="@id/editText_houseNumber"
                 android:inputType="textCapWords"
@@ -67,7 +67,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/text"
-                android:hint="@string/houseNumber"
+                android:hint="@string/user_input_details_placeholder_houseNumber"
                 android:imeOptions="actionNext"
                 android:nextFocusDown="@id/editText_zipCode"
                 android:inputType="text"
@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:backgroundTint="@color/text"
-                android:hint="@string/postalCode"
+                android:hint="@string/user_input_details_placeholder_zipCode"
                 android:imeOptions="actionNext"
                 android:nextFocusRight="@id/editText_city"
                 android:inputType="textPostalAddress"
@@ -106,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:backgroundTint="@color/text"
-                android:hint="@string/city"
+                android:hint="@string/user_input_details_placeholder_city"
                 android:imeOptions="actionDone"
                 android:inputType="textCapWords"
                 android:lines="1"
@@ -127,7 +127,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dp"
-        android:text="@string/confirm_dataProtection" />
+        tools:text="Datenschutzerklärung??"/>
 
     <Button
         android:id="@+id/button_register"
@@ -137,7 +137,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="2dp"
         android:background="@drawable/round_button_white"
-        android:text="@string/confirm"
+        android:text="@string/user_input_details_confirm"
         android:textAllCaps="false"
         android:textSize="20sp" />
 
@@ -153,7 +153,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="10dp"
         android:minHeight="0dp"
-        android:text="@string/data_protection"
+        tools:text="Datenschutzhinweise??"
         android:textAllCaps="false" />
 
 </LinearLayout>

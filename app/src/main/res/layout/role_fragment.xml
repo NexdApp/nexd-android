@@ -10,7 +10,7 @@
 
     <Button
         android:id="@+id/button_logout"
-        android:text="@string/logout"
+        android:text="@string/role_selection_button_logout"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_margin="10dp"
@@ -26,7 +26,7 @@
         android:textSize="20sp"
         android:layout_marginBottom="20dp"
         android:textColor="@android:color/black"
-        android:text="@string/seeker_text"
+        android:text="@string/role_selection_seeker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -52,7 +52,7 @@
         android:textSize="20sp"
         android:layout_marginTop="20dp"
         android:textColor="@android:color/black"
-        android:text="@string/helper_text"
+        android:text="@string/role_selection_helper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

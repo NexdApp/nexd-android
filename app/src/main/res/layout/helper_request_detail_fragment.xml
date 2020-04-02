@@ -11,7 +11,6 @@
 
     <TextView
         android:id="@+id/name"
-        android:text="@string/last_name_example"
         android:textSize="25sp"
         android:textStyle="bold"
         android:textColor="@android:color/black"
@@ -37,7 +36,7 @@
                 android:layout_marginBottom="10dp"
                 android:textSize="18sp"
                 android:textColor="@android:color/black"
-                android:text="@string/to_shop" />
+                android:text="@string/helper_request_detail_screen_title" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/buyer_request_items"
@@ -53,7 +52,7 @@
 
     <Button
         android:id="@+id/accept"
-        android:text="@string/request_accept"
+        android:text="@string/helper_request_detail_button_accept"
         android:textSize="20sp"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"

@@ -3,7 +3,6 @@ package app.nexd.android.ui.helper.overview
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,10 +11,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import app.nexd.android.Preferences
 import app.nexd.android.R
 import app.nexd.android.api.model.RequestEntity
-import kotlinx.android.synthetic.main.buyer_overview_fragment.*
+import kotlinx.android.synthetic.main.helper_request_overview_fragment.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
 
@@ -29,7 +27,7 @@ class BuyerOverviewFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.buyer_overview_fragment, container, false)
+        return inflater.inflate(R.layout.helper_request_overview_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -62,13 +60,21 @@ class BuyerOverviewFragment : Fragment() {
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     acceptedRequestsSummary.text = Html.fromHtml(
-                        getString(R.string.accepted_requests_summary).format(
-                            myAcceptedRequests.map { requestEntity -> requestEntity.articles.size }.sum()),
+                        "<b>" +
+                                getString(R.string.helper_request_overview_button_summary_title)
+                                + "</b> (" +
+                            getString(R.string.helper_request_overview_button_summary_details)
+                                + " " +
+                            myAcceptedRequests.map { requestEntity -> requestEntity.articles.size }.sum()
+                                + "/ 20)",
                         Html.FROM_HTML_MODE_LEGACY
                     )
                 } else {
                     acceptedRequestsSummary.text = Html.fromHtml(
-                        getString(R.string.accepted_requests_summary).format(requests.size))
+                        "<b>%1</b> (%2 %3 / 20)".format(getString(R.string.helper_request_overview_button_summary_title),
+                            getString(R.string.helper_request_overview_button_summary_details),
+                            myAcceptedRequests.map { requestEntity -> requestEntity.articles.size }.sum())
+                    )
                 }
             })
 

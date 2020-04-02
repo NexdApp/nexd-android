@@ -49,11 +49,11 @@ class LoginFragment : Fragment() {
 
         var correct = true
         if (email.isBlank()) {
-            editText_email.error = getString(R.string.fillUp)
+            editText_email.error = getString(R.string.error_message_login_field_missing)
             correct = false
         }
         if (password.isBlank()) {
-            editText_password.error = getString(R.string.fillUp)
+            editText_password.error = getString(R.string.error_message_login_field_missing)
             correct = false
         }
 
@@ -66,7 +66,7 @@ class LoginFragment : Fragment() {
                     } else if (viewState.errorResponse != null) {
                         if (viewState.errorResponse is HttpException) {
                             Snackbar.make(editText_email, when (viewState.errorResponse.code()) {
-                                401 -> context!!.getString(R.string.login_credentials_wrong)
+                                401 -> context!!.getString(R.string.error_message_login_failed)
                                 else -> viewState.errorResponse.message()
                             }, Snackbar.LENGTH_SHORT).show()
                         }

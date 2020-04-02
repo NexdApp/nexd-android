@@ -10,7 +10,7 @@
     tools:context=".ui.helper.overview.BuyerOverviewFragment">
 
     <TextView
-        android:text="@string/accepted"
+        android:text="@string/helper_request_overview_heading_accepted_section"
         android:textStyle="bold"
         android:textSize="20sp"
         android:layout_width="match_parent"
@@ -50,7 +50,7 @@
         android:layout_height="15dp" />
     
     <TextView
-        android:text="@string/search"
+        android:text="@string/helper_request_overview_heading_available_section"
         android:textStyle="bold"
         android:textSize="20sp"
         android:layout_width="match_parent"

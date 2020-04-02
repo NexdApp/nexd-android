@@ -63,32 +63,32 @@ class RegisterDetailedFragment : Fragment() {
 
         if (phoneNumber.isEmpty()) {
             successful = false
-            editText_phoneNumber.error = getString(R.string.fillUp)
+            editText_phoneNumber.error = getString(R.string.error_message_user_detail_field_missing)
         }
 
         if (street.isEmpty()) {
             successful = false
-            editText_streetName.error = getString(R.string.fillUp)
+            editText_streetName.error = getString(R.string.error_message_user_detail_field_missing)
         }
 
         if (houseNumber.isEmpty()) {
             successful = false
-            editText_houseNumber.error = getString(R.string.fillUp)
+            editText_houseNumber.error = getString(R.string.error_message_user_detail_field_missing)
         }
 
         if (zipCode.isEmpty()) {
             successful = false
-            editText_zipCode.error = getString(R.string.fillUp)
+            editText_zipCode.error = getString(R.string.error_message_user_detail_field_missing)
         }
 
         if (city.isEmpty()) {
             successful = false
-            editText_city.error = getString(R.string.fillUp)
+            editText_city.error = getString(R.string.error_message_user_detail_field_missing)
         }
 
         if (!dataProtection) {
             successful = false
-            checkbox_data_protection.error = getString(R.string.fillUp)
+            checkbox_data_protection.error = getString(R.string.error_message_user_detail_field_missing)
         }
 
         if (!successful)

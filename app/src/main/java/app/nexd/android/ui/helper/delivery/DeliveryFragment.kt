@@ -37,9 +37,9 @@ class DeliveryFragment : Fragment() {
         })
 
         closeRequest.setOnClickListener {
-            SelectDialog(activity!!, getString(R.string.confirm),
-                getString(R.string.confirm_delivery_description))
-                .setConfirmButton(getString(R.string.confirm)) {
+            SelectDialog(activity!!, getString(R.string.delivery_dialog_deliver_title),
+                getString(R.string.delivery_dialog_deliver_description))
+                .setConfirmButton(getString(R.string.delivery_dialog_delivery_button_confirm)) {
                     findNavController().navigate(DeliveryFragmentDirections.actionDeliveryFragmentToRoleFragment())
                 }.show()
         }

@@ -9,7 +9,7 @@
     tools:context=".ui.auth.LoginFragment">
 
     <TextView
-        android:text="@string/login_add_account"
+        android:text="@string/registration_screen_title"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="30dp"
         android:textSize="20sp"
@@ -37,7 +37,7 @@
             android:textColorHint="@color/text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/first_name" />
+            android:hint="@string/registration_placeholder_firstName" />
 
         <EditText
             android:id="@+id/editText_surname"
@@ -52,7 +52,7 @@
             android:textColorHint="@color/text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/last_name" />
+            android:hint="@string/registration_placeholder_lastName" />
 
         <EditText
             android:id="@+id/editText_email"
@@ -67,7 +67,7 @@
             android:textColorHint="@color/text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/email" />
+            android:hint="@string/registration_placeholder_email" />
 
         <EditText
             android:id="@+id/editText_password"
@@ -82,7 +82,7 @@
             android:textColorHint="@color/text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/password" />
+            android:hint="@string/registration_placeholder_password" />
 
         <EditText
             android:id="@+id/editText_password_confirm"
@@ -96,7 +96,7 @@
             android:textColorHint="@color/text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/password_confirm" />
+            android:hint="@string/registration_placeholder_confirm_password" />
 
     </LinearLayout>
 
@@ -115,7 +115,7 @@
         android:layout_marginHorizontal="30dp"
         android:layout_marginBottom="2dp"
         android:layout_marginTop="16dp"
-        android:text="@string/confirm" />
+        android:text="@string/registration_button_title_send" />
 
     <Space
         android:layout_width="match_parent"
@@ -123,7 +123,7 @@
 
     <Button
         android:id="@+id/button_dataProtection"
-        android:text="@string/data_protection"
+        android:text="@string/registration_button_privacy_policy"
         android:layout_margin="10dp"
         android:minHeight="0dp"
         android:textAllCaps="false"
