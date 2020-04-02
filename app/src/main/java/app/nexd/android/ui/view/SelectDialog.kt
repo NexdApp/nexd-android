@@ -6,11 +6,12 @@ import android.text.method.LinkMovementMethod
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.content.ContextCompat
 import app.nexd.android.R
 
 
 class SelectDialog @JvmOverloads
-constructor(context: Activity, caption: String = "Eingeben", details: CharSequence? = null,
+constructor(context: Activity, caption: String = context.getString(R.string.input), details: CharSequence? = null,
             layout: ViewGroup? = null): AlertDialog.Builder(context) {
 
     var details: String? = null
@@ -57,7 +58,7 @@ constructor(context: Activity, caption: String = "Eingeben", details: CharSequen
         return super.setTitle(title) as SelectDialog
     }
 
-    fun setConfirmButton(label: String = "OK", listener: (() -> Unit)? = null): SelectDialog {
+    fun setConfirmButton(label: String = context.getString(R.string.ok), listener: (() -> Unit)? = null): SelectDialog {
         mConfirm.text = label
         mConfirm.setOnClickListener {
             mConfirm.isEnabled = false
@@ -68,7 +69,7 @@ constructor(context: Activity, caption: String = "Eingeben", details: CharSequen
     }
 
     @JvmOverloads
-    fun setNegativeButton(label: String = "Abbrechen", listener: (() -> Unit)? = null): SelectDialog {
+    fun setNegativeButton(label: String = context.getString(R.string.abort), listener: (() -> Unit)? = null): SelectDialog {
         mCancel.visibility = View.VISIBLE
         mCancel.text = label
         mCancel.setOnClickListener {
@@ -81,7 +82,7 @@ constructor(context: Activity, caption: String = "Eingeben", details: CharSequen
 
     override fun show(): AlertDialog {
         alertDialog = super.show()
-        alertDialog?.window?.setBackgroundDrawable(context.resources.getDrawable(R.drawable.dialog_background))
+        alertDialog?.window?.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.dialog_background))
         return alertDialog!!
     }
 }

@@ -1,4 +1,4 @@
-package app.nexd.android.ui.helper.shoppinglist
+package app.nexd.android.ui.helper.shoppingList
 
 import android.os.Parcel
 import android.os.Parcelable
@@ -9,7 +9,6 @@ import app.nexd.android.api
 import app.nexd.android.api.model.RequestEntity
 import app.nexd.android.api.model.ShoppingList
 import io.reactivex.BackpressureStrategy
-import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import java.math.BigDecimal
 

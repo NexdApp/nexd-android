@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -24,7 +23,7 @@
 
 
     <EditText
-        android:id="@+id/edittext_email"
+        android:id="@+id/editText_email"
         android:imeOptions="actionGo"
         android:inputType="textEmailAddress"
         android:lines="1"
@@ -33,7 +32,7 @@
         android:layout_marginHorizontal="30dp"
         android:paddingHorizontal="10dp"
         android:textSize="20sp"
-        android:hint="E-Mail"
+        android:hint="@string/email"
         android:backgroundTint="@color/text"
         android:textColorHint="@color/text" />
 
@@ -43,7 +42,7 @@
         android:layout_height="wrap_content" />
 
     <EditText
-        android:id="@+id/edittext_password"
+        android:id="@+id/editText_password"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
         android:lines="1"
@@ -52,7 +51,7 @@
         android:layout_marginHorizontal="30dp"
         android:paddingHorizontal="10dp"
         android:textSize="20sp"
-        android:hint="Passwort"
+        android:hint="@string/password"
         android:backgroundTint="@color/text"
         android:textColorHint="@color/text" />
 
@@ -68,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:background="@drawable/round_button_white"
-        android:text="Bestätigen"
+        android:text="@string/confirm"
         android:textSize="20sp" />
 
     <Space

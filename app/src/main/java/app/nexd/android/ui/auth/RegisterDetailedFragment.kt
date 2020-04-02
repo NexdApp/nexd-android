@@ -9,12 +9,9 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import app.nexd.android.R
 import app.nexd.android.ui.MainActivity
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_register_detailed.*
 
 class RegisterDetailedFragment : Fragment() {
@@ -32,7 +29,7 @@ class RegisterDetailedFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        edittext_city.setOnEditorActionListener { _, actionId, _ ->
+        editText_city.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 register()
             }
@@ -43,7 +40,7 @@ class RegisterDetailedFragment : Fragment() {
             register()
         }
 
-        button_data_protection.setOnClickListener {
+        button_dataProtection.setOnClickListener {
             startActivity(
                 Intent(
                     Intent.ACTION_VIEW,
@@ -55,43 +52,43 @@ class RegisterDetailedFragment : Fragment() {
 
     private fun register() {
         (activity as MainActivity).hideKeyboard()
-        val phonenumber = edittext_phonenumber.text.toString().trim()
-        val street = edittext_streetname.text.trim().toString()
-        val housenumber = edittext_number.text.trim().toString()
-        val zipcode = edittext_zipcode.text.toString().trim()
-        val city = edittext_city.text.trim().toString()
-        val dataprotection = checkbox_data_protection.isChecked
+        val phoneNumber = editText_phoneNumber.text.toString().trim()
+        val street = editText_streetName.text.trim().toString()
+        val houseNumber = editText_houseNumber.text.trim().toString()
+        val zipCode = editText_zipCode.text.toString().trim()
+        val city = editText_city.text.trim().toString()
+        val dataProtection = checkbox_data_protection.isChecked
 
         var successful = true
 
-        if (phonenumber.isEmpty()) {
+        if (phoneNumber.isEmpty()) {
             successful = false
-            edittext_phonenumber.error = "Bitte ausfüllen"
+            editText_phoneNumber.error = getString(R.string.fillUp)
         }
 
         if (street.isEmpty()) {
             successful = false
-            edittext_streetname.error = "Bitte ausfüllen"
+            editText_streetName.error = getString(R.string.fillUp)
         }
 
-        if (housenumber.isEmpty()) {
+        if (houseNumber.isEmpty()) {
             successful = false
-            edittext_number.error = "Bitte ausfüllen"
+            editText_houseNumber.error = getString(R.string.fillUp)
         }
 
-        if (zipcode.isEmpty()) {
+        if (zipCode.isEmpty()) {
             successful = false
-            edittext_zipcode.error = "Bitte ausfüllen"
+            editText_zipCode.error = getString(R.string.fillUp)
         }
 
         if (city.isEmpty()) {
             successful = false
-            edittext_city.error = "Bitte ausfüllen"
+            editText_city.error = getString(R.string.fillUp)
         }
 
-        if (!dataprotection) {
+        if (!dataProtection) {
             successful = false
-            checkbox_data_protection.error = "Bestätigen"
+            checkbox_data_protection.error = getString(R.string.fillUp)
         }
 
         if (!successful)

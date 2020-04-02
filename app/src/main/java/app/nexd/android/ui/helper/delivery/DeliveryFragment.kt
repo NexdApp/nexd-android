@@ -37,9 +37,9 @@ class DeliveryFragment : Fragment() {
         })
 
         closeRequest.setOnClickListener {
-            SelectDialog(activity!!, "Bestätigen!",
-                "Bestätigen Sie die Abgabe aller angenommen Aufträge")
-                .setConfirmButton("Bestätigen") {
+            SelectDialog(activity!!, getString(R.string.confirm),
+                getString(R.string.confirm_delivery_description))
+                .setConfirmButton(getString(R.string.confirm)) {
                     findNavController().navigate(DeliveryFragmentDirections.actionDeliveryFragmentToRoleFragment())
                 }.show()
         }

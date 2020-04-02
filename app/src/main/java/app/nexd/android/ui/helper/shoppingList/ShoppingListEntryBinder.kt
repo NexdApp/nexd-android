@@ -1,4 +1,4 @@
-package app.nexd.android.ui.helper.shoppinglist
+package app.nexd.android.ui.helper.shoppingList
 
 import android.view.View
 import android.view.ViewGroup

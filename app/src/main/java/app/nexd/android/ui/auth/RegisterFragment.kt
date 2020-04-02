@@ -14,9 +14,7 @@ import androidx.navigation.fragment.findNavController
 import app.nexd.android.R
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_register.*
-import kotlinx.android.synthetic.main.fragment_register.button_data_protection
 import kotlinx.android.synthetic.main.fragment_register.button_register
-import kotlinx.android.synthetic.main.fragment_register_detailed.*
 import java.util.*
 
 
@@ -35,7 +33,7 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        edittext_password_confirm.setOnEditorActionListener { _, i, _ ->
+        editText_password_confirm.setOnEditorActionListener { _, i, _ ->
             if (i == EditorInfo.IME_ACTION_DONE)
                 register()
             false
@@ -45,7 +43,7 @@ class RegisterFragment : Fragment() {
             register()
         }
 
-        button_data_protection.setOnClickListener {
+        button_dataProtection.setOnClickListener {
             startActivity(
                 Intent(
                     Intent.ACTION_VIEW,
@@ -56,50 +54,50 @@ class RegisterFragment : Fragment() {
     }
 
     private fun register() {
-        val firstname = edittext_first_name.text.toString().trim()
-        val lastname = edittext_surname.text.toString().trim()
-        val email = edittext_email.text.toString().trim().toLowerCase(Locale.getDefault())
-        val password = edittext_password.text.toString().trim()
-        val passwordConfirm = edittext_password_confirm.text.toString().trim()
+        val firstName = editText_first_name.text.toString().trim()
+        val lastName = editText_surname.text.toString().trim()
+        val email = editText_email.text.toString().trim().toLowerCase(Locale.getDefault())
+        val password = editText_password.text.toString().trim()
+        val passwordConfirm = editText_password_confirm.text.toString().trim()
 
         var successful = true
         if (password != passwordConfirm) {
             successful = false
-            edittext_password_confirm.error = "Passwörter stimmen nicht überein"
+            editText_password_confirm.error = getString(R.string.passwords_not_the_same)
         }
 
-        if (firstname.isEmpty()) {
+        if (firstName.isEmpty()) {
             successful = false
-            edittext_first_name.error = "Bitte ausfüllen"
+            editText_first_name.error = getString(R.string.fillUp)
         }
 
-        if (lastname.isEmpty()) {
+        if (lastName.isEmpty()) {
             successful = false
-            edittext_surname.error = "Bitte ausfüllen"
+            editText_surname.error = getString(R.string.fillUp)
         }
 
         if (email.isEmpty()) {
             successful = false
-            edittext_email.error = "ungültig"
+            editText_email.error = getString(R.string.fillUp)
         }
 
         if (password.isEmpty() || password.length < 6) {
             successful = false
-            edittext_password.error = "mind. 6 Zeichen enthalten"
+            editText_password.error = getString(R.string.password_too_short)
         }
 
         if (successful) {
 
             viewModel.register(
-                firstname,
-                lastname,
+                firstName,
+                lastName,
                 email,
                 password
             ).observe(viewLifecycleOwner, Observer { request ->
                 if (request.successful) {
                     findNavController().navigate(RegisterFragmentDirections.toRoleFragment())
                 } else if (!request.error.isNullOrBlank()) {
-                    Snackbar.make(edittext_phonenumber, request.error, Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(editText_email, request.error, Snackbar.LENGTH_SHORT).show()
                 }
             })
         }

@@ -62,15 +62,13 @@ class BuyerOverviewFragment : Fragment() {
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     acceptedRequestsSummary.text = Html.fromHtml(
-                        "<b>Einkaufen</b> (Insg. " +
-                                "${myAcceptedRequests.map { requestEntity -> requestEntity.articles.size }.sum()} / 20)",
+                        getString(R.string.accepted_requests_summary).format(
+                            myAcceptedRequests.map { requestEntity -> requestEntity.articles.size }.sum()),
                         Html.FROM_HTML_MODE_LEGACY
                     )
                 } else {
                     acceptedRequestsSummary.text = Html.fromHtml(
-                        "<b>Einkaufen</b> (Insg. " +
-                                "${requests.size} / 20)"
-                    )
+                        getString(R.string.accepted_requests_summary).format(requests.size))
                 }
             })
 

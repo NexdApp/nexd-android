@@ -73,12 +73,12 @@
     <fragment
         android:id="@+id/createHelpRequestFragment"
         android:name="app.nexd.android.ui.seeker.create.CreateHelpRequestFragment"
-        android:label="Ich brauche"
+        android:label="@string/i_need"
         tools:layout="@layout/create_help_request_fragment" />
     <fragment
         android:id="@+id/shoppingListFragment"
-        android:name="app.nexd.android.ui.helper.shoppinglist.ShoppingListFragment"
-        android:label="Einkaufsliste"
+        android:name="app.nexd.android.ui.helper.shoppingList.ShoppingListFragment"
+        android:label="@string/shoppingList"
         tools:layout="@layout/fragment_shopping_list" >
         <action
             android:id="@+id/action_shoppingListFragment_to_checkoutFragment"
@@ -145,7 +145,7 @@
             app:popExitAnim="@anim/slide_out_right" />
         <argument
             android:name="shoppingList"
-            app:argType="app.nexd.android.ui.helper.shoppinglist.ShoppingListViewModel$ShoppingListEntry[]" />
+            app:argType="app.nexd.android.ui.helper.shoppingList.ShoppingListViewModel$ShoppingListEntry[]" />
     </fragment>
     <fragment
         android:id="@+id/deliveryFragment"
@@ -166,10 +166,10 @@
         android:label="fragment_register_detailed"
         tools:layout="@layout/fragment_register_detailed" >
         <argument
-            android:name="firstname"
+            android:name="firstName"
             app:argType="string" />
         <argument
-            android:name="lastname"
+            android:name="lastName"
             app:argType="string" />
         <argument
             android:name="email"

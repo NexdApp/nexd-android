@@ -15,7 +15,7 @@
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <TextView
-        android:id="@+id/textview_amount"
+        android:id="@+id/textView_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="0"
@@ -29,12 +29,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="+"
-        app:layout_constraintStart_toEndOf="@id/textview_amount"
+        app:layout_constraintStart_toEndOf="@id/textView_amount"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <TextView
-        android:id="@+id/textview_article_name"
+        android:id="@+id/textView_article_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/button_increase"

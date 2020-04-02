@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:layout_marginTop="30dp"
-        android:text="Gleich sind wir fertig...\n"
+        android:text="@string/done_soon"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -24,17 +24,17 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/edittext_phonenumber"
+            android:id="@+id/editText_phoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:backgroundTint="@color/text"
-            android:hint="Tel. Nr."
+            android:hint="@string/phone_number"
             android:layout_marginBottom="20dp"
             android:imeOptions="actionNext"
             android:inputType="phone"
             android:lines="1"
-            android:nextFocusDown="@id/edittext_zipcode"
+            android:nextFocusDown="@id/editText_zipCode"
             android:paddingHorizontal="10dp"
             android:textColorHint="@color/text"
             android:textSize="20sp" />
@@ -45,15 +45,15 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/edittext_streetname"
+                android:id="@+id/editText_streetName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_weight="4"
                 android:backgroundTint="@color/text"
-                android:hint="Straße"
+                android:hint="@string/street"
                 android:imeOptions="actionNext"
-                android:nextFocusRight="@id/edittext_number"
+                android:nextFocusRight="@id/editText_houseNumber"
                 android:inputType="textCapWords"
                 android:lines="1"
                 android:paddingHorizontal="10dp"
@@ -61,16 +61,16 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/edittext_number"
+                android:id="@+id/editText_houseNumber"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/text"
-                android:hint="Nr."
+                android:hint="@string/houseNumber"
                 android:imeOptions="actionNext"
-                android:nextFocusDown="@id/edittext_zipcode"
-                android:inputType="textPostalAddress"
+                android:nextFocusDown="@id/editText_zipCode"
+                android:inputType="text"
                 android:lines="1"
                 android:paddingHorizontal="10dp"
                 android:textColorHint="@color/text"
@@ -84,15 +84,15 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/edittext_zipcode"
+                android:id="@+id/editText_zipCode"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:backgroundTint="@color/text"
-                android:hint="PLZ"
+                android:hint="@string/postalCode"
                 android:imeOptions="actionNext"
-                android:nextFocusRight="@id/edittext_city"
+                android:nextFocusRight="@id/editText_city"
                 android:inputType="textPostalAddress"
                 android:lines="1"
                 android:paddingHorizontal="10dp"
@@ -100,13 +100,13 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/edittext_city"
+                android:id="@+id/editText_city"
                 android:layout_weight="3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:backgroundTint="@color/text"
-                android:hint="Ort"
+                android:hint="@string/city"
                 android:imeOptions="actionDone"
                 android:inputType="textCapWords"
                 android:lines="1"
@@ -127,7 +127,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dp"
-        android:text="Datenschutzhinweise gelesen" />
+        android:text="@string/confirm_dataProtection" />
 
     <Button
         android:id="@+id/button_register"
@@ -137,7 +137,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="2dp"
         android:background="@drawable/round_button_white"
-        android:text="Bestätigen"
+        android:text="@string/confirm"
         android:textAllCaps="false"
         android:textSize="20sp" />
 
@@ -146,14 +146,14 @@
         android:layout_height="100dp" />
 
     <Button
-        android:id="@+id/button_data_protection"
+        android:id="@+id/button_dataProtection"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="10dp"
         android:minHeight="0dp"
-        android:text="Datenschutzhinweise"
+        android:text="@string/data_protection"
         android:textAllCaps="false" />
 
 </LinearLayout>

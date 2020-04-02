@@ -44,17 +44,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * hides keyboard if no Edittext was touched
+     * hides keyboard if no editText was touched
      */
-    fun hideKeyboardOnTouch() {
+    private fun hideKeyboardOnTouch() {
         hideKeyboardOnTouch(findViewById(android.R.id.content))
     }
 
     /**
-     * hides keyboard on given view if no edittext was klicked
+     * hides keyboard on given view if no editText was clicked
      * @param view listener on this view
      */
-    fun hideKeyboardOnTouch(view: View) {
+    private fun hideKeyboardOnTouch(view: View) {
         // Set up touch listener for non-text box views to hide keyboard.
         if (view !is EditText) {
             view.setOnTouchListener { _, _ ->

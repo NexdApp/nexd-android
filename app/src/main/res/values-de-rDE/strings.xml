@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name" translatable="false">Nexd</string>
     <string name="request_help">Um Hilfe bitten</string>
     <string name="provide_help">Hilfe anbieten</string>
     <string name="role">Rolle</string>
@@ -7,10 +6,10 @@
 
     <string name="request_accepted">Anfrage bereits angenommen</string>
     <string name="request_accept">Mach ich!</string>
-    <string name="login_add_account">Erstelle deinen  Account:</string>
+    <string name="login_add_account">Erstelle deinen \nAccount:</string>
     <string name="first_name">Vorname</string>
     <string name="last_name">Nachname</string>
-    <string name="email">Email</string>
+    <string name="email">E-Mail</string>
     <string name="password">Passwort</string>
     <string name="password_confirm">Passwort bestätigen</string>
     <string name="confirm">Bestätigen</string>
@@ -27,7 +26,7 @@
     <string name="abort">Abbrechen</string>
     <string name="checkout">An der Kasse</string>
     <string name="delivery">Abgabe!</string>
-    <string name="done_soon">Gleich sind wir fertig...\n</string>
+    <string name="done_soon">Gleich sind wir fertig…\n</string>
     <string name="phone_number">Tel. Nr.</string>
     <string name="street">Straße</string>
     <string name="houseNumber">Nr.</string>
@@ -41,7 +40,7 @@
     <string name="passwords_not_the_same">Passwörter stimmen nicht überein</string>
     <string name="password_too_short">mind. 6 Zeichen enthalten</string>
     <string name="delivery_phoneNumber">Tel: %1$s</string>
-    <string name="delivery_address">Adresse:  %1$s %2$s</string>
+    <string name="delivery_address">Adresse:\n %1$s %2$s</string>
     <string name="logout">Logout</string>
     <string name="seeker_text">Ich brauche etwas!</string>
     <string name="helper_text">Ich kann helfen!</string>

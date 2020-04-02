@@ -14,8 +14,8 @@ class HelpRequestArticleBinder : ItemBinder<HelpRequestArticleBinder.ArticleInpu
     data class ArticleInput(val article: Article, var amount: Int = 0)
 
     class ViewHolder(itemView: View) : ItemViewHolder<ArticleInput>(itemView) {
-        var name: TextView = itemView.findViewById(R.id.textview_article_name)
-        var amount: TextView = itemView.findViewById(R.id.textview_amount)
+        var name: TextView = itemView.findViewById(R.id.textView_article_name)
+        var amount: TextView = itemView.findViewById(R.id.textView_amount)
         var increase: AppCompatButton = itemView.findViewById(R.id.button_increase)
         var decrease: AppCompatButton = itemView.findViewById(R.id.button_decrease)
     }
