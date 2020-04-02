@@ -1,4 +1,4 @@
-package app.nexd.android.ui.buyer
+package app.nexd.android.ui.helper.checkout
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams

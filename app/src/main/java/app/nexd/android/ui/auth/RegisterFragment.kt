@@ -7,19 +7,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import app.nexd.android.Preferences
 import app.nexd.android.R
-import app.nexd.android.api
-import app.nexd.android.api.model.RegisterPayload
-import io.reactivex.android.schedulers.AndroidSchedulers
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_register.*
+import kotlinx.android.synthetic.main.fragment_register.button_data_protection
+import kotlinx.android.synthetic.main.fragment_register.button_register
+import kotlinx.android.synthetic.main.fragment_register_detailed.*
 import java.util.*
 
 
 class RegisterFragment : Fragment() {
+
+    private val viewModel: RegisterViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,36 +45,13 @@ class RegisterFragment : Fragment() {
             register()
         }
 
-        if (edittext_password.text.toString() != edittext_password_confirm.text.toString()) {
-            Toast.makeText(context, "Passwörter stimmen nicht überein", Toast.LENGTH_SHORT)
-                .show()
-        } else {
-            with(api) {
-                authControllerRegister(
-                    RegisterPayload()
-                        .email(edittext_email.text.toString())
-                        .firstName(edittext_first_name.text.toString())
-                        .lastName(edittext_surname.text.toString())
-                        .password(edittext_password.text.toString())
-                        .role(RegisterPayload.RoleEnum.HELPER)
+        button_data_protection.setOnClickListener {
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://www.nexd.app/privacypage")
                 )
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe { response ->
-                        context?.let {
-                            Preferences.setToken(it, response.accessToken)
-                            Preferences.setUserId(it, response.id)
-                            api.setBearerToken(response.accessToken)
-                        }
-                        button_data_protection.setOnClickListener {
-                            startActivity(
-                                Intent(
-                                    Intent.ACTION_VIEW,
-                                    Uri.parse("https://www.nexd.app/privacypage")
-                                )
-                            )
-                        }
-                    }
-            }
+            )
         }
     }
 
@@ -109,14 +89,19 @@ class RegisterFragment : Fragment() {
         }
 
         if (successful) {
-            val action =
-                RegisterFragmentDirections.actionRegisterFragmentToRegisterDetailedFragment(
-                    firstname,
-                    lastname,
-                    email,
-                    password
-                )
-            findNavController().navigate(action)
+
+            viewModel.register(
+                firstname,
+                lastname,
+                email,
+                password
+            ).observe(viewLifecycleOwner, Observer { request ->
+                if (request.successful) {
+                    findNavController().navigate(RegisterFragmentDirections.toRoleFragment())
+                } else if (!request.error.isNullOrBlank()) {
+                    Snackbar.make(edittext_phonenumber, request.error, Snackbar.LENGTH_SHORT).show()
+                }
+            })
         }
     }
 

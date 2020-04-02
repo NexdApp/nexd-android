@@ -1,4 +1,4 @@
-package app.nexd.android.ui.buyer
+package app.nexd.android.ui.helper.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,8 +11,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
-import app.nexd.android.api
-import app.nexd.android.api.model.RequestArticle
 import app.nexd.android.api.model.RequestEntity
 import kotlinx.android.synthetic.main.buyer_request_detail_fragment.*
 import mva2.adapter.ListSection
@@ -70,8 +68,6 @@ class BuyerRequestDetailFragment : Fragment() {
                 val list = ListSection<BuyerRequestDetailItemBinder.RequestArticleViewData>()
                 list.addAll(data)
                 adapter.addSection(list)
-
-                list.setSelectionMode(Mode.SINGLE)
 
                 setAccepted(request.status == RequestEntity.StatusEnum.ONGOING)
 

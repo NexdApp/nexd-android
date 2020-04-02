@@ -1,11 +1,11 @@
-package app.nexd.android.ui.buyer
+package app.nexd.android.ui.helper.overview
 
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import app.nexd.android.R
 import app.nexd.android.api.model.RequestEntity
-import app.nexd.android.ui.buyer.BuyerOverviewBinder.HelpRequestViewHolder
+import app.nexd.android.ui.helper.overview.BuyerOverviewBinder.HelpRequestViewHolder
 import kotlinx.android.synthetic.main.buyer_request_row.view.*
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder

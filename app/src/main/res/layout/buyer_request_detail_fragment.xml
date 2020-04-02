@@ -7,7 +7,7 @@
     android:padding="@dimen/fragmentPadding"
     android:orientation="vertical"
     android:background="@drawable/background_gradient"
-    tools:context=".ui.buyer.BuyerRequestDetailFragment">
+    tools:context=".ui.helper.detail.BuyerRequestDetailFragment">
 
     <TextView
         android:id="@+id/name"

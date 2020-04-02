@@ -28,7 +28,7 @@
             android:id="@+id/edittext_first_name"
             android:paddingHorizontal="10dp"
             android:imeOptions="actionNext"
-            android:inputType="text"
+            android:inputType="textCapWords"
             android:lines="1"
             android:nextFocusDown="@id/edittext_surname"
             android:layout_marginTop="10dp"
@@ -45,7 +45,7 @@
             android:imeOptions="actionNext"
             android:lines="1"
             android:nextFocusDown="@id/edittext_email"
-            android:inputType="text"
+            android:inputType="textCapWords"
             android:layout_marginTop="10dp"
             android:textSize="20sp"
             android:backgroundTint="@color/text"
@@ -115,7 +115,7 @@
         android:layout_marginHorizontal="30dp"
         android:layout_marginBottom="2dp"
         android:layout_marginTop="16dp"
-        android:text="Weiter" />
+        android:text="Bestätigen" />
 
     <Space
         android:layout_width="match_parent"

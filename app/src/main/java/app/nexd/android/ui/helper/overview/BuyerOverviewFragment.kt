@@ -1,8 +1,9 @@
-package app.nexd.android.ui.buyer
+package app.nexd.android.ui.helper.overview
 
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import app.nexd.android.Preferences
 import app.nexd.android.R
 import app.nexd.android.api.model.RequestEntity
 import kotlinx.android.synthetic.main.buyer_overview_fragment.*
@@ -51,22 +53,17 @@ class BuyerOverviewFragment : Fragment() {
         )
 
         viewModel.run {
-            getAllRequests().observe(viewLifecycleOwner, Observer { requests ->
-                val newRequests = requests.filter {
-                    it.status == RequestEntity.StatusEnum.PENDING
-                }
-                val acceptedRequests = requests.filter {
+            getMyAcceptedRequests().observe(viewLifecycleOwner, Observer { requests ->
+
+                val myAcceptedRequests = requests.filter {
                     it.status == RequestEntity.StatusEnum.ONGOING
                 }
-
-                updateNearbyOpenRequests(newRequests)
-
-                updateAcceptedRequests(acceptedRequests)
+                updateAcceptedRequests(myAcceptedRequests)
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     acceptedRequestsSummary.text = Html.fromHtml(
                         "<b>Einkaufen</b> (Insg. " +
-                                "${acceptedRequests.map { requestEntity -> requestEntity.articles.size }.sum()} / 20)",
+                                "${myAcceptedRequests.map { requestEntity -> requestEntity.articles.size }.sum()} / 20)",
                         Html.FROM_HTML_MODE_LEGACY
                     )
                 } else {
@@ -75,6 +72,10 @@ class BuyerOverviewFragment : Fragment() {
                                 "${requests.size} / 20)"
                     )
                 }
+            })
+
+            getOtherOpenRequests().observe(viewLifecycleOwner, Observer { requests ->
+                updateNearbyOpenRequests(requests)
             })
         }
 
@@ -98,7 +99,10 @@ class BuyerOverviewFragment : Fragment() {
         acceptedRequestsList.setOnSelectionChangedListener { request: RequestEntity,
                                                              b: Boolean, _: MutableList<RequestEntity> ->
             if (b) {
-                val action = BuyerOverviewFragmentDirections.requestDetailAction(request.id.toString())
+                val action =
+                    BuyerOverviewFragmentDirections.requestDetailAction(
+                        request.id.toString()
+                    )
                 findNavController().navigate(action)
             }
         }
@@ -114,7 +118,10 @@ class BuyerOverviewFragment : Fragment() {
         nearRequestList.setOnSelectionChangedListener { helpRequest: RequestEntity,
                                                         b: Boolean, _: MutableList<RequestEntity> ->
             if (b) {
-                val action = BuyerOverviewFragmentDirections.requestDetailAction(helpRequest.id.toString())
+                val action =
+                    BuyerOverviewFragmentDirections.requestDetailAction(
+                        helpRequest.id.toString()
+                    )
                 findNavController().navigate(action)
             }
         }

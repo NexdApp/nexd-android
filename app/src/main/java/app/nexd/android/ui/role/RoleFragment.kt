@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import app.nexd.android.R
-import app.nexd.android.ui.view.SelectDialog
 import kotlinx.android.synthetic.main.role_fragment.*
 
 class RoleFragment : Fragment() {
@@ -26,12 +25,17 @@ class RoleFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(RoleViewModel::class.java)
 
-        role_button_buyer.setOnClickListener {
+        role_button_helper.setOnClickListener {
             findNavController().navigate(RoleFragmentDirections.actionRoleFragmentToHelperOverviewFragment())
         }
 
         role_button_seeker.setOnClickListener {
             findNavController().navigate(RoleFragmentDirections.actionRoleFragmentToRequesterOverviewFragment())
+        }
+
+        button_logout.setOnClickListener {
+            viewModel.logout()
+            findNavController().navigate(R.id.actionLogin)
         }
     }
 

@@ -7,7 +7,7 @@
     android:background="@drawable/background_gradient"
     android:padding="@dimen/fragmentPadding"
     android:orientation="vertical"
-    tools:context=".ui.buyer.DeliveryFragment">
+    tools:context=".ui.helper.delivery.DeliveryFragment">
 
     <TextView
         android:text="Abgabe!"

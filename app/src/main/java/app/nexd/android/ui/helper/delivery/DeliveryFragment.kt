@@ -1,4 +1,4 @@
-package app.nexd.android.ui.buyer
+package app.nexd.android.ui.helper.delivery
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:padding="@dimen/fragmentPadding"
     android:orientation="vertical"
-    tools:context=".ui.buyer.CheckoutFragment">
+    tools:context=".ui.helper.checkout.CheckoutFragment">
 
     <TextView
         android:text="An der Kasse"

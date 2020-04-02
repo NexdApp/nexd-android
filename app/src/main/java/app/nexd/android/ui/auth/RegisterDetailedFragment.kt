@@ -3,24 +3,24 @@ package app.nexd.android.ui.auth
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import app.nexd.android.Preferences
 import app.nexd.android.R
-import app.nexd.android.api
-import app.nexd.android.api.model.RegisterPayload
+import app.nexd.android.ui.MainActivity
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_register_detailed.*
 
 class RegisterDetailedFragment : Fragment() {
 
     private val args: RegisterDetailedFragmentArgs by navArgs()
+    private val viewModel: RegisterViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +32,7 @@ class RegisterDetailedFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        edittext_location.setOnEditorActionListener { _, actionId, _ ->
+        edittext_city.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 register()
             }
@@ -44,16 +44,22 @@ class RegisterDetailedFragment : Fragment() {
         }
 
         button_data_protection.setOnClickListener {
-            Intent(
-                Intent.ACTION_VIEW,
-                Uri.parse("https://www.nexd.app/privacypage")
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://www.nexd.app/privacypage")
+                )
             )
         }
     }
 
     private fun register() {
+        (activity as MainActivity).hideKeyboard()
         val phonenumber = edittext_phonenumber.text.toString().trim()
-        val location = edittext_location.text.toString().trim()
+        val street = edittext_streetname.text.trim().toString()
+        val housenumber = edittext_number.text.trim().toString()
+        val zipcode = edittext_zipcode.text.toString().trim()
+        val city = edittext_city.text.trim().toString()
         val dataprotection = checkbox_data_protection.isChecked
 
         var successful = true
@@ -63,9 +69,24 @@ class RegisterDetailedFragment : Fragment() {
             edittext_phonenumber.error = "Bitte ausfüllen"
         }
 
-        if (location.isEmpty()) {
+        if (street.isEmpty()) {
             successful = false
-            edittext_location.error = "Bitte ausfüllen"
+            edittext_streetname.error = "Bitte ausfüllen"
+        }
+
+        if (housenumber.isEmpty()) {
+            successful = false
+            edittext_number.error = "Bitte ausfüllen"
+        }
+
+        if (zipcode.isEmpty()) {
+            successful = false
+            edittext_zipcode.error = "Bitte ausfüllen"
+        }
+
+        if (city.isEmpty()) {
+            successful = false
+            edittext_city.error = "Bitte ausfüllen"
         }
 
         if (!dataprotection) {
@@ -75,36 +96,5 @@ class RegisterDetailedFragment : Fragment() {
 
         if (!successful)
             return
-
-        with(api) {
-            authControllerRegister(
-                RegisterPayload()
-                    .firstName(args.firstname)
-                    .lastName(args.lastname)
-                    .email(args.email)
-                    .password(args.password))
-                .subscribe(
-                    { response ->
-                        context?.let {
-                            Preferences.setToken(it, response.accessToken)
-                            Preferences.setUserId(it, response.id)
-                        }
-
-                        findNavController().navigate(RegisterDetailedFragmentDirections.actionRegisterDetailedFragmentToRoleFragment())
-
-                    },
-                    {
-                        Log.e(RegisterFragment::class.simpleName, "register failed", it)
-                        activity?.runOnUiThread {
-                            Snackbar.make(
-                                edittext_phonenumber,
-                                "Registrierung fehlgeschlagen",
-                                Snackbar.LENGTH_SHORT
-                            ).show()
-                        }
-
-                    }
-                )
-        }
     }
 }
