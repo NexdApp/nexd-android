@@ -38,7 +38,18 @@
         tools:layout="@layout/seeker_overview_fragment" >
         <action
             android:id="@+id/action_seekerOverviewFragment_to_createHelpRequestFragment"
-            app:destination="@id/createHelpRequestFragment" />
+            app:destination="@id/createHelpRequestFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/toSeekerDetailFragment"
+            app:destination="@id/seekerDetailFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit"  />
     </fragment>
     <fragment
         android:id="@+id/buyerOverviewFragment"
@@ -50,7 +61,6 @@
             app:destination="@id/buyerRequestDetailFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
-            app:launchSingleTop="false"
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
         <action
@@ -177,5 +187,14 @@
         <argument
             android:name="password"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/seekerDetailFragment"
+        android:name="app.nexd.android.ui.seeker.detail.SeekerDetailFragment"
+        android:label="SeekerDetailFragment"
+        tools:layout="@layout/seeker_detail_fragment" >
+        <argument
+            android:name="requestId"
+            app:argType="integer" />
     </fragment>
 </navigation>

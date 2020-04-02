@@ -46,4 +46,5 @@
     <string name="helper_text">Ich kann helfen!</string>
     <string name="input">Eingeben</string>
     <string name="ok">OK</string>
+    <string name="your_request">Deine Anfrage:</string>
 </resources>

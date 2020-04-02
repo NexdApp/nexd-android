@@ -13,7 +13,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 
 class RegisterViewModel(application: Application) : AndroidViewModel(application) {
 
-    class RegisterViewState(val successful: Boolean, val error: String? = null)
+    class RegisterViewState(val successful: Boolean, val error: Throwable? = null)
 
     fun register(
         firstName: String,
@@ -35,7 +35,7 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
                     Preferences.setUserId(getApplication(), registerResponse.id)
                     registerState.value = RegisterViewState(true)
                 }, { t ->
-                    registerState.value = RegisterViewState(false, t.message)
+                    registerState.value = RegisterViewState(false, t)
                 })
         }
         return registerState

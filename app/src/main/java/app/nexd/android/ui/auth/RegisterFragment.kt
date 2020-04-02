@@ -15,6 +15,7 @@ import app.nexd.android.R
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_register.*
 import kotlinx.android.synthetic.main.fragment_register.button_register
+import retrofit2.HttpException
 import java.util.*
 
 
@@ -96,8 +97,13 @@ class RegisterFragment : Fragment() {
             ).observe(viewLifecycleOwner, Observer { request ->
                 if (request.successful) {
                     findNavController().navigate(RegisterFragmentDirections.toRoleFragment())
-                } else if (!request.error.isNullOrBlank()) {
-                    Snackbar.make(editText_email, request.error, Snackbar.LENGTH_SHORT).show()
+                } else if (request.error != null) {
+                    if (request.error is HttpException) {
+                        Snackbar.make(editText_email, when (request.error.code()) {
+                            400 -> "ungültige E-Mail Adresse"
+                            else -> request.error.message()
+                        }, Snackbar.LENGTH_SHORT).show()
+                    }
                 }
             })
         }

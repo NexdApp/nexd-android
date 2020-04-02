@@ -27,7 +27,7 @@
     <string name="abort">Abbrechen</string>
     <string name="checkout">An der Kasse</string>
     <string name="delivery">Abgabe!</string>
-    <string name="done_soon">Gleich sind wir fertig...\n</string>
+    <string name="done_soon">Gleich sind wir fertig…\n</string>
     <string name="phone_number">Tel. Nr.</string>
     <string name="street">Straße</string>
     <string name="houseNumber">Nr.</string>
@@ -47,4 +47,5 @@
     <string name="helper_text">Ich kann helfen!</string>
     <string name="input">Eingeben</string>
     <string name="ok">OK</string>
+    <string name="your_request">Deine Anfrage:</string>
 </resources>

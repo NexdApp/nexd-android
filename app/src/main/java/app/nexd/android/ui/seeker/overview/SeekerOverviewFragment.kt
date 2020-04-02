@@ -49,11 +49,22 @@ class SeekerOverviewFragment : Fragment() {
                 val requestsSection = ListSection<RequestEntity>()
                 requestsSection.addAll(requests)
                 adapter.addSection(requestsSection)
+
+                requestsSection.setOnSelectionChangedListener { request, isSelected, _ ->
+                    if (isSelected)
+                        findNavController().navigate(
+                            SeekerOverviewFragmentDirections
+                                .toSeekerDetailFragment(request.id)
+                        )
+                }
             })
         })
 
         button_create_new_help_request.setOnClickListener {
-            findNavController().navigate(R.id.action_seekerOverviewFragment_to_createHelpRequestFragment)
+            findNavController().navigate(
+                SeekerOverviewFragmentDirections
+                    .actionSeekerOverviewFragmentToCreateHelpRequestFragment()
+            )
         }
     }
 

@@ -56,7 +56,7 @@ class BuyerRequestDetailFragment : Fragment() {
             viewModel.requestDetails(requestId).observe(viewLifecycleOwner, Observer { request ->
                 adapter.removeAllSections()
 
-                name.text = "${request.requester?.firstName} ${request.requester?.lastName}"
+                name.text = "%s %s".format(request.requester?.firstName, request.requester?.lastName)
 
                 val data = request.articles.map { requestArticle ->
                     BuyerRequestDetailItemBinder.RequestArticleViewData(

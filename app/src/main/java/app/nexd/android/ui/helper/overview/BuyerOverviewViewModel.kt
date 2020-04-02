@@ -21,12 +21,21 @@ class BuyerOverviewViewModel(application: Application) : AndroidViewModel(applic
     fun getMyAcceptedRequests(): LiveData<List<RequestEntity>> {
         val observable = reload.flatMap {
             api.shoppingListControllerGetUserLists()
-                .map { lists -> lists.maxBy { it.status == ShoppingList.StatusEnum.ACTIVE } }
+                .map { lists ->
+                    if (lists.any { it.status == ShoppingList.StatusEnum.ACTIVE })
+                        lists.maxBy { it.status == ShoppingList.StatusEnum.ACTIVE }
+                    else
+                        ShoppingList()
+                }
                 .flatMapSingle { list ->
                     Observable.fromIterable(list.requests).flatMap { request ->
                         api.requestControllerGetSingleRequest(request.requestId.toBigDecimal())
                     }.toList()
                 }
+                .doOnError {
+                    Log.e("Error", it.message.toString())
+                }
+                .onErrorReturnItem(emptyList())
         }
         return LiveDataReactiveStreams.fromPublisher(observable.toFlowable(BackpressureStrategy.BUFFER))
     }
@@ -42,7 +51,7 @@ class BuyerOverviewViewModel(application: Application) : AndroidViewModel(applic
                         && request.status == RequestEntity.StatusEnum.PENDING
                 }
             }.doOnError { t ->
-                Log.d("Error", t.message.toString())
+                Log.e("Error", t.message.toString())
             }
                 .onErrorReturnItem(emptyList())
         }

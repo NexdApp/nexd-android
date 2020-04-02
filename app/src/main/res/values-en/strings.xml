@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="ok">OK</string>
-    <string name="accepted_requests_summary"><![CDATA[<b>Shopping</b> (Total %1$d / 20]]></string>
+    <string name="accepted_requests_summary"><![CDATA[<b>Shopping</b> (Total: %1$d / 20)]]></string>
     <string name="abort">Abort</string>
     <string name="delivery">Delivery!</string>
     <string name="delivery_address">Address:  %1$s %2$s</string>
@@ -26,7 +26,7 @@
     <string name="seeker_text">I need something!</string>
     <string name="helper_text">I can help!</string>
     <string name="logout">Log out</string>
-    <string name="request_accept">I will!</string>
+    <string name="request_accept">Will do!</string>
     <string name="password_too_short">at least 6 characters</string>
     <string name="last_name_example">Smith</string>
     <string name="last_name">Last name</string>
@@ -46,4 +46,5 @@
     <string name="first_name">First name</string>
     <string name="to_shop">To shop</string>
     <string name="additional_information">Additional information</string>
+    <string name="your_request">Your request:</string>
 </resources>

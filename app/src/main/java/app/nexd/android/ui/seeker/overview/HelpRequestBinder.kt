@@ -26,6 +26,10 @@ class HelpRequestBinder(private val articles: List<Article>) : ItemBinder<Reques
             itemView.recyclerView_articles.adapter = articlesAdapter
             itemView.recyclerView_articles.layoutManager = LinearLayoutManager(itemView.context)
 
+            itemView.setOnClickListener {
+                toggleItemSelection()
+            }
+
             articlesAdapter.registerItemBinders(
                 HelpRequestItemBinder(articles)
             )
@@ -33,7 +37,11 @@ class HelpRequestBinder(private val articles: List<Article>) : ItemBinder<Reques
 
         fun bind(item: RequestEntity) {
             title.text = DateFormat.getDateInstance(DateFormat.FULL).format(item.createdAt)
+            articlesAdapter.removeAllSections()
             val articlesList = ListSection<RequestArticle>()
+            articlesList.setOnSelectionChangedListener { _, _, _ ->
+                toggleItemSelection()
+            }
             articlesList.addAll(item.articles)
             articlesAdapter.addSection(articlesList)
         }
