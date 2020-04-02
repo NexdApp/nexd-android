@@ -24,7 +24,7 @@ class SeekerDetailViewModel: ViewModel() {
     }
 
     fun cancelRequest(requestId: Int) {
-        api.
+        // api.
         // api.request
     }
 
