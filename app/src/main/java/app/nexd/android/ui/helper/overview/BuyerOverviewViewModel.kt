@@ -42,17 +42,16 @@ class BuyerOverviewViewModel(application: Application) : AndroidViewModel(applic
 
     fun getOtherOpenRequests(): LiveData<List<RequestEntity>> {
         val observable = reload.flatMap {
-            api.requestControllerGetAll(
-                null,
-                null
-            ).map { requests ->
-                requests.filter { request ->
-                    request.requesterId != Preferences.getUserId(getApplication())
-                        && request.status == RequestEntity.StatusEnum.PENDING
+            api.requestControllerGetAll(null, null)
+                .map { requests ->
+                    requests.filter { request ->
+                        request.requesterId != Preferences.getUserId(getApplication())
+                                && request.status == RequestEntity.StatusEnum.PENDING
+                    }
                 }
-            }.doOnError { t ->
-                Log.e("Error", t.message.toString())
-            }
+                .doOnError { t ->
+                    Log.e("Error", t.message.toString())
+                }
                 .onErrorReturnItem(emptyList())
         }
         return LiveDataReactiveStreams.fromPublisher(observable.toFlowable(BackpressureStrategy.BUFFER))

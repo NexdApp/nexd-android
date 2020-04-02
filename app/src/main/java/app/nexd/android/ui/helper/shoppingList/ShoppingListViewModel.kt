@@ -2,6 +2,7 @@ package app.nexd.android.ui.helper.shoppingList
 
 import android.os.Parcel
 import android.os.Parcelable
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.ViewModel
@@ -44,12 +45,16 @@ class ShoppingListViewModel : ViewModel() {
     }
 
     fun getShoppingList(): LiveData<List<ShoppingList>> {
-        return LiveDataReactiveStreams.fromPublisher(api.shoppingListControllerGetUserLists()
-            .toFlowable(BackpressureStrategy.BUFFER))
+        return LiveDataReactiveStreams.fromPublisher(
+            api.shoppingListControllerGetUserLists()
+                .doOnError {
+                    Log.e("Error", it.message.toString())
+                }
+                .onErrorReturnItem(emptyList())
+                .toFlowable(BackpressureStrategy.BUFFER))
     }
 
     fun getItems(): LiveData<List<ShoppingListEntry>> {
-
         val observable = api.articlesControllerFindAll()
             .flatMap { articles ->
                 api.requestControllerGetAll(null, null)
@@ -58,20 +63,30 @@ class ShoppingListViewModel : ViewModel() {
                     .flatMapIterable { requests ->
                         val shoppingList = mutableMapOf<BigDecimal, ShoppingListEntry>()
                         requests.forEach { request ->
-                            request.articles.filter { it.articleCount > BigDecimal.ZERO }.forEach { article ->
-                                if (shoppingList.containsKey(article.articleId)) {
-                                    shoppingList[article.articleId]!!.amount += article.articleCount.toInt()
-                                } else {
-                                    shoppingList[article.articleId] = ShoppingListEntry(
-                                        articles.first { article.articleId == it.id.toBigDecimal() }.name,
-                                        article.articleCount.toInt()
-                                    )
+                            request.articles.filter { it.articleCount > BigDecimal.ZERO }
+                                .forEach { article ->
+                                    if (shoppingList.containsKey(article.articleId)) {
+                                        shoppingList[article.articleId]!!.amount += article.articleCount.toInt()
+                                    } else {
+                                        shoppingList[article.articleId] = ShoppingListEntry(
+                                            articles.first { article.articleId == it.id.toBigDecimal() }.name,
+                                            article.articleCount.toInt()
+                                        )
+                                    }
                                 }
-                            }
                         }
                         shoppingList.values
-                    }.toList().toObservable()
+                    }
+                    .doOnError {
+                        Log.e("Error", it.message.toString())
+                    }
+                    .toList()
+                    .toObservable()
             }
+            .doOnError {
+                Log.e("Error", it.message.toString())
+            }
+            .onErrorReturnItem(emptyList())
             .subscribeOn(Schedulers.io())
 
         return LiveDataReactiveStreams.fromPublisher(observable.toFlowable(BackpressureStrategy.BUFFER))

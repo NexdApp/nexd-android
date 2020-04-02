@@ -6,7 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="@dimen/fragmentPadding"
     android:orientation="vertical"
-    android:background="@drawable/background_gradient"
     tools:context=".ui.helper.detail.BuyerRequestDetailFragment">
 
     <TextView

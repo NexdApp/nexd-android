@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import app.nexd.android.R
-import kotlinx.android.synthetic.main.role_fragment.*
+import kotlinx.android.synthetic.main.fragment_role.*
 
 class RoleFragment : Fragment() {
 
@@ -18,7 +18,7 @@ class RoleFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.role_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_role, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

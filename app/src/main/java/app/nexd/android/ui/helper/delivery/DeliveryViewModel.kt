@@ -1,5 +1,6 @@
 package app.nexd.android.ui.helper.delivery
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.ViewModel
@@ -12,6 +13,10 @@ class DeliveryViewModel: ViewModel() {
     fun getAcceptedRequests() : LiveData<List<RequestEntity>> {
         val source = api.requestControllerGetAll(null, null)
             .map { all -> all.filter { it.status == RequestEntity.StatusEnum.ONGOING } }
+            .doOnError {
+                Log.e("Error", it.message.toString())
+            }
+            .onErrorReturnItem(emptyList())
             .toFlowable(BackpressureStrategy.BUFFER)
 
         return LiveDataReactiveStreams.fromPublisher(source)

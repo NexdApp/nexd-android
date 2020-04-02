@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.api.model.RequestArticle
 import app.nexd.android.ui.seeker.overview.HelpRequestItemBinder
-import kotlinx.android.synthetic.main.seeker_detail_fragment.*
+import kotlinx.android.synthetic.main.fragment_seeker_detail.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
 
@@ -28,7 +28,7 @@ class SeekerDetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.seeker_detail_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_seeker_detail, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

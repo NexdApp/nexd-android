@@ -23,8 +23,6 @@ class MainActivity : AppCompatActivity() {
 
         findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener { controller, destination, _ ->
             runOnUiThread {
-                title = destination.label
-
                 // skip authentication if it
                 if (destination.id == R.id.authFragment) {
                     Preferences.getToken(this)?.let {

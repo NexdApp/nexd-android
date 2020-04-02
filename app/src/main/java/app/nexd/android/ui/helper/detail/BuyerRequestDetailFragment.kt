@@ -12,7 +12,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.api.model.RequestEntity
-import kotlinx.android.synthetic.main.helper_request_detail_fragment.*
+import kotlinx.android.synthetic.main.fragment_helper_request_detail.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
 import java.math.BigDecimal
@@ -37,7 +37,7 @@ class BuyerRequestDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.helper_request_detail_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_helper_request_detail, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

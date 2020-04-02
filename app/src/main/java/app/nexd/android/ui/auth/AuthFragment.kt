@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import app.nexd.android.R
-import kotlinx.android.synthetic.main.auth_fragment.*
+import kotlinx.android.synthetic.main.fragment_auth.*
 
 class AuthFragment : Fragment() {
 
@@ -15,7 +15,7 @@ class AuthFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.auth_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_auth, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

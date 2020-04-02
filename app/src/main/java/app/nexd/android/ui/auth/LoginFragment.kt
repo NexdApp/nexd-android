@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import app.nexd.android.R
 import app.nexd.android.ui.MainActivity
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.auth_fragment.button_login
+import kotlinx.android.synthetic.main.fragment_auth.button_login
 import kotlinx.android.synthetic.main.fragment_login.*
 import retrofit2.HttpException
 

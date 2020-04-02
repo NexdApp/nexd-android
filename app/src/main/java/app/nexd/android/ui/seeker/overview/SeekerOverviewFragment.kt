@@ -10,9 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
-import app.nexd.android.api.model.RequestArticle
 import app.nexd.android.api.model.RequestEntity
-import kotlinx.android.synthetic.main.seeker_overview_fragment.*
+import kotlinx.android.synthetic.main.fragment_seeker_overview.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
 
@@ -26,7 +25,7 @@ class SeekerOverviewFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.seeker_overview_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_seeker_overview, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

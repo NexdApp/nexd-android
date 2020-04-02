@@ -15,7 +15,7 @@
         android:id="@+id/roleFragment"
         android:name="app.nexd.android.ui.role.RoleFragment"
         android:label="@string/role_selection_screen_title"
-        tools:layout="@layout/role_fragment">
+        tools:layout="@layout/fragment_role">
         <action
             android:id="@+id/action_roleFragment_to_requesterOverviewFragment"
             app:destination="@id/seekerOverviewFragment"
@@ -34,7 +34,7 @@
     <fragment
         android:id="@+id/seekerOverviewFragment"
         android:name="app.nexd.android.ui.seeker.overview.SeekerOverviewFragment"
-        tools:layout="@layout/seeker_overview_fragment" >
+        tools:layout="@layout/fragment_seeker_overview" >
         <action
             android:id="@+id/action_seekerOverviewFragment_to_createHelpRequestFragment"
             app:destination="@id/seekerCreateRequestFragment"
@@ -53,7 +53,7 @@
     <fragment
         android:id="@+id/buyerOverviewFragment"
         android:name="app.nexd.android.ui.helper.overview.BuyerOverviewFragment"
-        tools:layout="@layout/helper_request_overview_fragment" >
+        tools:layout="@layout/fragment_helper_request_overview" >
         <action
             android:id="@+id/requestDetailAction"
             app:destination="@id/helperRequestDetailFragment"
@@ -73,7 +73,7 @@
         android:id="@+id/helperRequestDetailFragment"
         android:name="app.nexd.android.ui.helper.detail.BuyerRequestDetailFragment"
         android:label="@string/helper_request_detail_screen_title"
-        tools:layout="@layout/helper_request_detail_fragment" >
+        tools:layout="@layout/fragment_helper_request_detail" >
         <argument
             android:name="request_id"
             app:argType="string" />
@@ -82,7 +82,7 @@
         android:id="@+id/seekerCreateRequestFragment"
         android:name="app.nexd.android.ui.seeker.create.SeekerCreateRequestFragment"
         android:label="@string/seeker_request_create_heading"
-        tools:layout="@layout/seeker_create_request_fragment" />
+        tools:layout="@layout/fragment_seeker_create_request" />
     <fragment
         android:id="@+id/shoppingListFragment"
         android:name="app.nexd.android.ui.helper.shoppingList.ShoppingListFragment"
@@ -100,7 +100,7 @@
         android:id="@+id/authFragment"
         android:name="app.nexd.android.ui.auth.AuthFragment"
         android:label="AuthFragment"
-        tools:layout="@layout/auth_fragment">
+        tools:layout="@layout/fragment_auth">
         <action
             android:id="@+id/action_authFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -190,7 +190,7 @@
         android:id="@+id/seekerDetailFragment"
         android:name="app.nexd.android.ui.seeker.detail.SeekerDetailFragment"
         android:label="SeekerDetailFragment"
-        tools:layout="@layout/seeker_detail_fragment" >
+        tools:layout="@layout/fragment_seeker_detail" >
         <argument
             android:name="requestId"
             app:argType="integer" />
