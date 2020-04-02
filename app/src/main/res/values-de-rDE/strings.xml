@@ -36,7 +36,7 @@
     <string name="shoppingList">Einkaufsliste</string>
     <string name="fillUp">Ausfüllen</string>
     <string name="login_credentials_wrong">E-Mail oder Passwort falsch</string>
-    <string name="i_need">Ich brauche</string>
+    <string name="i_need">Ich benötige</string>
     <string name="passwords_not_the_same">Passwörter stimmen nicht überein</string>
     <string name="password_too_short">mind. 6 Zeichen enthalten</string>
     <string name="delivery_phoneNumber">Tel: %1$s</string>

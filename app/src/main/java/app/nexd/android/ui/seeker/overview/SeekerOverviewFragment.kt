@@ -13,7 +13,6 @@ import app.nexd.android.R
 import app.nexd.android.api.model.RequestArticle
 import app.nexd.android.api.model.RequestEntity
 import kotlinx.android.synthetic.main.seeker_overview_fragment.*
-import mva2.adapter.ItemSection
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
 
@@ -39,23 +38,17 @@ class SeekerOverviewFragment : Fragment() {
         adapter = MultiViewAdapter()
         recyclerView_articles.adapter = adapter
 
-        viewModel.getArticles().observe(viewLifecycleOwner, Observer {
+        viewModel.getArticles().observe(viewLifecycleOwner, Observer { articles ->
             adapter.registerItemBinders(
-                HelpRequestBinder(),
-                HelpRequestItemBinder(it)
+                HelpRequestBinder(articles)
             )
 
             viewModel.getHelpRequests().observe(viewLifecycleOwner, Observer { requests ->
                 adapter.removeAllSections()
 
-                requests.forEach { request ->
-                    val headerSection = ItemSection<RequestEntity>(request)
-                    adapter.addSection(headerSection)
-
-                    val itemsSection = ListSection<RequestArticle>()
-                    itemsSection.addAll(request.articles)
-                    adapter.addSection(itemsSection)
-                }
+                val requestsSection = ListSection<RequestEntity>()
+                requestsSection.addAll(requests)
+                adapter.addSection(requestsSection)
             })
         })
 
