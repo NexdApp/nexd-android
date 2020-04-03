@@ -62,40 +62,31 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
         var success = true
 
         if (firstName.value.isNullOrEmpty()) {
-            // TODO include correct string resource
-            firstNameError.value = R.string.app_name
+            firstNameError.value = R.string.error_message_user_detail_field_missing
             success = false
         }
 
         if (lastName.value.isNullOrEmpty()) {
-            // TODO include correct string resource
-            lastNameError.value = R.string.app_name
+            lastNameError.value = R.string.error_message_user_detail_field_missing
             success = false
         }
 
         if (email.value.isNullOrEmpty()) {
-            // TODO include correct string resource
-            emailError.value = R.string.app_name
+            emailError.value = R.string.error_message_user_detail_field_missing
             success = false
         }
 
         if (password.value.isNullOrEmpty()) {
-            // TODO include correct string resource
-            passwordError.value = R.string.app_name
+            passwordError.value = R.string.error_message_user_detail_field_missing
             success = false
         }
 
         if (passwordConfirmation.value.isNullOrEmpty()) {
-            // TODO include correct string resource
-            passwordConfirmationError.value = R.string.app_name
+            passwordConfirmationError.value = R.string.error_message_user_detail_field_missing
             success = false
-        }
-
-        if (password != passwordConfirmation) {
-            // TODO include correct string resource
-            passwordError.value = R.string.app_name
-            // TODO include correct string resource
-            passwordConfirmationError.value = R.string.app_name
+        } else if (password != passwordConfirmation) {
+            passwordError.value = R.string.error_message_registration_password_match
+            passwordConfirmationError.value = R.string.error_message_registration_password_match
             success = false
         }
 
