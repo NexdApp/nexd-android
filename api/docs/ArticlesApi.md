@@ -1,6 +1,6 @@
 # ArticlesApi
 
-All URIs are relative to *http://nexd-api-alb-1107636132.eu-central-1.elb.amazonaws.com*
+All URIs are relative to *http://localhost:3001*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -28,7 +28,7 @@ import app.nexd.android.api.ArticlesApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://nexd-api-alb-1107636132.eu-central-1.elb.amazonaws.com");
+        defaultClient.setBasePath("http://localhost:3001");
 
         ArticlesApi apiInstance = new ArticlesApi(defaultClient);
         try {
@@ -88,7 +88,7 @@ import app.nexd.android.api.ArticlesApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://nexd-api-alb-1107636132.eu-central-1.elb.amazonaws.com");
+        defaultClient.setBasePath("http://localhost:3001");
 
         ArticlesApi apiInstance = new ArticlesApi(defaultClient);
         CreateArticleDto createArticleDto = new CreateArticleDto(); // CreateArticleDto | 
