@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/fragmentPadding"
-    tools:context=".ui.role.RoleFragment">
+    tools:context=".ui.auth.AuthFragment">
 
     <ImageView
         android:id="@+id/imageView"
