@@ -7,6 +7,7 @@ import app.nexd.android.Api
 import app.nexd.android.Preferences
 import app.nexd.android.R
 import app.nexd.android.api.model.RegisterPayload
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 
@@ -62,40 +63,31 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
         var success = true
 
         if (firstName.value.isNullOrEmpty()) {
-            // TODO include correct string resource
-            firstNameError.value = R.string.app_name
+            firstNameError.value = R.string.error_message_user_detail_field_missing
             success = false
         }
 
         if (lastName.value.isNullOrEmpty()) {
-            // TODO include correct string resource
-            lastNameError.value = R.string.app_name
+            lastNameError.value = R.string.error_message_user_detail_field_missing
             success = false
         }
 
         if (email.value.isNullOrEmpty()) {
-            // TODO include correct string resource
-            emailError.value = R.string.app_name
+            emailError.value = R.string.error_message_user_detail_field_missing
             success = false
         }
 
         if (password.value.isNullOrEmpty()) {
-            // TODO include correct string resource
-            passwordError.value = R.string.app_name
+            passwordError.value = R.string.error_message_user_detail_field_missing
             success = false
         }
 
         if (passwordConfirmation.value.isNullOrEmpty()) {
-            // TODO include correct string resource
-            passwordConfirmationError.value = R.string.app_name
+            passwordConfirmationError.value = R.string.error_message_user_detail_field_missing
             success = false
-        }
-
-        if (password != passwordConfirmation) {
-            // TODO include correct string resource
-            passwordError.value = R.string.app_name
-            // TODO include correct string resource
-            passwordConfirmationError.value = R.string.app_name
+        } else if (password.value != passwordConfirmation.value) {
+            passwordError.value = R.string.error_message_registration_password_match
+            passwordConfirmationError.value = R.string.error_message_registration_password_match
             success = false
         }
 
@@ -107,27 +99,29 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
                     .email(email.value)
                     .password(password.value)
                     .role(RegisterPayload.RoleEnum.NONE)
-            ).subscribeBy(
-                onNext = { responseTokenDto ->
-
-                    with (getApplication<Application>().applicationContext) {
-                        Preferences.setToken(this, responseTokenDto.accessToken)
-                        Preferences.setUserId(this, responseTokenDto.id)
-                    }
-
-                    val registrationData = RegistrationData(
-                        firstName = firstName.value!!,
-                        lastName = lastName.value!!,
-                        email = email.value!!,
-                        password = password.value!!
-                    )
-
-                    progress.value = Progress.Finished(registrationData)
-                },
-                onError = { _ ->
-                    progress.value = Progress.Error
-                }
             )
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeBy(
+                    onNext = { responseTokenDto ->
+
+                        with(getApplication<Application>().applicationContext) {
+                            Preferences.setToken(this, responseTokenDto.accessToken)
+                            Preferences.setUserId(this, responseTokenDto.id)
+                        }
+
+                        val registrationData = RegistrationData(
+                            firstName = firstName.value!!,
+                            lastName = lastName.value!!,
+                            email = email.value!!,
+                            password = password.value!!
+                        )
+
+                        progress.value = Progress.Finished(registrationData)
+                    },
+                    onError = { _ ->
+                        progress.value = Progress.Error
+                    }
+                )
 
             compositeDisposable.add(disposable)
         }
