@@ -1,5 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="login_screen_title">"Login"</string>
+    <string name="login_placeholer_username">"Benutzername"</string>
+    <string name="login_placeholer_password">"Passwort"</string>
+    <string name="login_button_title_login">"Einloggen"</string>
+    <string name="login_button_title_register">"Registrieren"</string>
+    <string name="registration_screen_title">"Registrierung"</string>
+    <string name="registration_placeholer_email">"E-Mail"</string>
+    <string name="registration_placeholer_firstname">"Vorname"</string>
+    <string name="registration_placeholer_lastname">"Nachname"</string>
+    <string name="registration_placeholer_phone">"Telefon"</string>
+    <string name="registration_placeholer_zip">"Postleitzahl"</string>
+    <string name="registration_placeholer_password">"Passwort"</string>
+    <string name="registration_placeholer_confirm_password">"Passwort bestätigen"</string>
+    <string name="registration_button_title_continue">"Weiter"</string>
+    <string name="registration_button_title_send">"Bestätigen"</string>
+    <string name="role_selection_screen_title">"Rolle"</string>
+    <string name="role_selection_seeker">"Ich brauche etwas!"</string>
+    <string name="role_selection_helper">"Ich kann helfen!"</string>
+    <string name="helper_request_overview_screen_title">"Übersicht"</string>
+    <string name="helper_request_overview_heading_accepted_section">"Angenommen:"</string>
+    <string name="helper_request_overview_heading_available_section">"Suchen:"</string>
+    <string name="helper_request_overview_unknown_requester">"- UNBEKANNT -"</string>
+    <string name="helper_request_overview_button_title_start">"Start"</string>
+    <string name="helper_request_overview_error_title">"Fehler!"</string>
+    <string name="helper_request_overview_error_message">"Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuchen Sie er erneut."</string>
+    <string name="shopping_list_screen_title">"Einkaufsliste"</string>
+    <string name="shopping_list_button_title_checkout">"Zur Kasse"</string>
+    <string name="shopping_list_overview_error_title">"Fehler!"</string>
+    <string name="shopping_list_overview_error_loading_failed_message">"Beim Laden der Einkaufsliste ist ein Fehler aufgetreten! Bitte versuchen Sie es erneut."</string>
+    <string name="checkout_screen_title">"An der Kasse"</string>
+    <string name="checkout_button_title_complete">"Fertig"</string>
+    <string name="seeker_item_selection_screen_title">"Artikel"</string>
+    <string name="seeker_submit_button_title">"Senden"</string>
+    <string name="seeker_success_title">"Fertig!"</string>
+    <string name="seeker_success_message">"Die Anfrage wurde erfolgreich aufgegeben."</string>
+    <string name="seeker_error_title">"Fehler!"</string>
+    <string name="seeker_error_message">"Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuchen Sie er erneut."</string>
+    <string name="error_title">"Fehler"</string>
+    <string name="error_message_login_failed">"Login fehlgeschlagen. Bitte versuchen Sie es erneut."</string>
+    <string name="error_message_registration_validation_failed">"Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut."</string>
+    <string name="error_message_registration_failed">"Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut."</string>
+    <string name="error_button_ok">"OK"</string>
+
+    <!-- Title of the user profile screen -->
+    <string name="user_profile_screen_title">"Benutzerprofil"</string>
+
+    <!-- Logout button title -->
+    <string name="user_profile_button_title_logout">"Abmelden"</string>
 
     <!-- Localizable.strings
   Nexd
@@ -8,12 +56,8 @@
   Copyright © 2020 Tobias Schröpf. All rights reserved. -->
     <string name="dialog_button_abort">"Abbrechen"</string>
     <string name="dialog_button_confirm">"Bestätigen"</string>
-    <string name="login_screen_title">"Login"</string>
     <string name="login_placeholder_username">"Benutzername"</string>
     <string name="login_placeholder_password">"Passwort"</string>
-    <string name="login_button_title_login">"Einloggen"</string>
-    <string name="login_button_title_register">"Registrieren"</string>
-    <string name="registration_screen_title">"Registrierung"</string>
     <string name="registration_placeholder_email">"E-Mail"</string>
     <string name="registration_placeholder_firstName">"Vorname"</string>
     <string name="registration_placeholder_lastName">"Nachname"</string>
@@ -21,34 +65,16 @@
     <string name="registration_placeholder_zip">"Postleitzahl"</string>
     <string name="registration_placeholder_password">"Passwort"</string>
     <string name="registration_placeholder_confirm_password">"Passwort bestätigen"</string>
-    <string name="registration_button_title_continue">"Weiter"</string>
-    <string name="registration_button_title_send">"Bestätigen"</string>
     <string name="registration_button_privacy_policy">"Datenschutzhinweise"</string>
-    <string name="role_selection_screen_title">"Rolle"</string>
-    <string name="role_selection_seeker">"Ich brauche etwas!"</string>
-    <string name="role_selection_helper">"Ich kann helfen!"</string>
     <string name="role_selection_button_logout">"Ausloggen"</string>
-    <string name="helper_request_overview_screen_title">"Übersicht"</string>
-    <string name="helper_request_overview_heading_accepted_section">"Angenommen:"</string>
-    <string name="helper_request_overview_heading_available_section">"Suchen:"</string>
-    <string name="helper_request_overview_unknown_requester">"- UNBEKANNT -"</string>
     <string name="helper_request_overview_button_summary_title">"Einkaufen"</string>
-    <string name="helper_request_overview_button_summary_details">"Insg. </string>
-    <string name="helper_request_overview_button_title_start">"Start"</string>
-    <string name="helper_request_overview_error_title">"Fehler!"</string>
-    <string name="helper_request_overview_error_message">"Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuchen Sie er erneut."</string>
+    <string name="helper_request_overview_button_summary_details">"Insg. "</string>
     <string name="helper_request_detail_screen_title">"Zu Einkaufen"</string>
     <string name="helper_request_detail_button_accepted">"Anfrage bereits angenommen"</string>
     <string name="helper_request_detail_button_accept">"Mach ich!"</string>
-    <string name="shopping_list_screen_title">"Einkaufsliste"</string>
-    <string name="shopping_list_button_title_checkout">"Zur Kasse"</string>
-    <string name="shopping_list_overview_error_title">"Fehler!"</string>
-    <string name="shopping_list_overview_error_loading_failed_message">"Beim Laden der Einkaufsliste ist ein Fehler aufgetreten! Bitte versuchen Sie es erneut."</string>
-    <string name="checkout_screen_title">"An der Kasse"</string>
-    <string name="checkout_button_title_complete">"Fertig"</string>
     <string name="delivery_screen_title">"Abgabe!"</string>
     <string name="delivery_dialog_deliver_title">"Abgeben"</string>
-    <string name="delivery_dialog_deliver_description">"Bestätigen Sie die Abgabe aller angenommen Aufträge</string>
+    <string name="delivery_dialog_deliver_description">"Bestätigen Sie die Abgabe aller angenommen Aufträge"</string>
     <string name="delivery_dialog_delivery_button_confirm">"Bestätigen"</string>
     <string name="delivery_request_address">"Adresse: "</string>
     <string name="delivery_request_phoneNumber">"Tel.: "</string>
@@ -56,12 +82,6 @@
     <string name="seeker_detail_placeholder_information">"Zusätzliche Informationen"</string>
     <string name="seeker_request_create_heading">"Ich benötige:"</string>
     <string name="seeker_request_create_placeholder_information">"Zusätzliche Informationen"</string>
-    <string name="seeker_item_selection_screen_title">"Artikel"</string>
-    <string name="seeker_submit_button_title">"Senden"</string>
-    <string name="seeker_success_title">"Fertig!"</string>
-    <string name="seeker_success_message">"Die Anfrage wurde erfolgreich aufgegeben."</string>
-    <string name="seeker_error_title">"Fehler!"</string>
-    <string name="seeker_error_message">"Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuchen Sie er erneut."</string>
     <string name="user_input_details_screen_title">"Geben Sie weitere Details ein"</string>
     <string name="user_input_details_placeholder_phoneNumber">"Tel. Nr."</string>
     <string name="user_input_details_placeholder_street">"Straße"</string>
@@ -69,15 +89,10 @@
     <string name="user_input_details_placeholder_zipCode">"PLZ"</string>
     <string name="user_input_details_placeholder_city">"Ort"</string>
     <string name="user_input_details_confirm">"Bestätigen"</string>
-    <string name="error_title">"Fehler"</string>
     <string name="error_message_login_field_missing">"Bitte ausfüllen"</string>
-    <string name="error_message_login_failed">"Login fehlgeschlagen. Bitte versuchen Sie es erneut."</string>
-    <string name="error_message_registration_validation_failed">"Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut."</string>
     <string name="error_message_registration_password_match">"Passwörter stimmen nicht überein"</string>
     <string name="error_message_registration_field_missing">"Bitte ausfüllen"</string>
     <string name="error_message_registration_password_too_short">"mind. 6 Zeichen"</string>
     <string name="error_message_registration_invalid_email">"Ungültige E-Mail Adresse"</string>
-    <string name="error_message_registration_failed">"Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut."</string>
     <string name="error_message_user_detail_field_missing">"Bitte ausfüllen"</string>
-    <string name="error_button_ok">"OK"</string>
 </resources>
