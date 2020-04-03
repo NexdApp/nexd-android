@@ -1,4 +1,4 @@
-package app.nexd.android.ui.buyer
+package app.nexd.android.ui.helper.shoppingList
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -39,14 +39,14 @@ class ShoppingListFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(ShoppingListViewModel::class.java)
 
-        viewModel.getItems().observe(viewLifecycleOwner, Observer {
+        viewModel.getItems().observe(viewLifecycleOwner, Observer { shoppingList ->
             val listSection = ListSection<ShoppingListViewModel.ShoppingListEntry>()
-            listSection.addAll(it)
+            listSection.addAll(shoppingList)
             adapter.addSection(listSection)
-        })
 
-        checkout.setOnClickListener {
-            findNavController().navigate(ShoppingListFragmentDirections.actionShoppingListFragmentToCheckoutFragment())
-        }
+            checkout.setOnClickListener {
+                findNavController().navigate(ShoppingListFragmentDirections.actionShoppingListFragmentToCheckoutFragment(shoppingList.toTypedArray()))
+            }
+        })
     }
 }

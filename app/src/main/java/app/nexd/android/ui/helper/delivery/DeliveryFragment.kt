@@ -1,4 +1,4 @@
-package app.nexd.android.ui.buyer
+package app.nexd.android.ui.helper.delivery
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -37,9 +37,9 @@ class DeliveryFragment : Fragment() {
         })
 
         closeRequest.setOnClickListener {
-            SelectDialog(activity!!, "Bestätigen!",
-                "Bestätigen Sie die Abgabe aller angenommen Aufträge")
-                .setConfirmButton("Bestätigen") {
+            SelectDialog(activity!!, getString(R.string.delivery_dialog_deliver_title),
+                getString(R.string.delivery_dialog_deliver_description))
+                .setConfirmButton(getString(R.string.delivery_dialog_delivery_button_confirm)) {
                     findNavController().navigate(DeliveryFragmentDirections.actionDeliveryFragmentToRoleFragment())
                 }.show()
         }

@@ -1,4 +1,4 @@
-package app.nexd.android.ui.buyer
+package app.nexd.android.ui.helper.shoppingList
 
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +18,7 @@ class ShoppingListEntryBinder: ItemBinder<ShoppingListViewModel.ShoppingListEntr
 
         fun bind(entry: ShoppingListViewModel.ShoppingListEntry) {
             name.text = entry.name
-            amount.text = "${entry.amount}x"
+            amount.text = "%1x".format(entry.amount)
             collect.isChecked = entry.collected
 
             itemView.setOnClickListener {
@@ -41,7 +41,9 @@ class ShoppingListEntryBinder: ItemBinder<ShoppingListViewModel.ShoppingListEntr
     }
 
     override fun createViewHolder(parent: ViewGroup): ViewHolder {
-        return ViewHolder(inflate(parent, R.layout.shopping_list_row))
+        return ViewHolder(
+            inflate(parent, R.layout.shopping_list_row)
+        )
     }
 
     override fun canBindData(item: Any): Boolean {

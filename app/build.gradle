@@ -51,9 +51,18 @@ android {
 
     buildTypes {
         release {
+            manifestPlaceholders = [APP_NAME: "Nexd"]
+
+            debuggable false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
+        }
+        debug {
+            manifestPlaceholders = [APP_NAME: "Nexd Debug"]
+
+            debuggable true
+            applicationIdSuffix = ".debug"
         }
     }
     compileOptions {

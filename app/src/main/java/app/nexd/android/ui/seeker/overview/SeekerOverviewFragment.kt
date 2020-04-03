@@ -10,10 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
-import app.nexd.android.api.model.RequestArticle
 import app.nexd.android.api.model.RequestEntity
-import kotlinx.android.synthetic.main.seeker_overview_fragment.*
-import mva2.adapter.ItemSection
+import kotlinx.android.synthetic.main.fragment_seeker_overview.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
 
@@ -27,7 +25,7 @@ class SeekerOverviewFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.seeker_overview_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_seeker_overview, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -39,28 +37,33 @@ class SeekerOverviewFragment : Fragment() {
         adapter = MultiViewAdapter()
         recyclerView_articles.adapter = adapter
 
-        viewModel.getArticles().observe(viewLifecycleOwner, Observer {
+        viewModel.getArticles().observe(viewLifecycleOwner, Observer { articles ->
             adapter.registerItemBinders(
-                HelpRequestBinder(),
-                HelpRequestItemBinder(it)
+                HelpRequestBinder(articles)
             )
 
             viewModel.getHelpRequests().observe(viewLifecycleOwner, Observer { requests ->
                 adapter.removeAllSections()
 
-                requests.forEach { request ->
-                    val headerSection = ItemSection<RequestEntity>(request)
-                    adapter.addSection(headerSection)
+                val requestsSection = ListSection<RequestEntity>()
+                requestsSection.addAll(requests)
+                adapter.addSection(requestsSection)
 
-                    val itemsSection = ListSection<RequestArticle>()
-                    itemsSection.addAll(request.articles)
-                    adapter.addSection(itemsSection)
+                requestsSection.setOnSelectionChangedListener { request, isSelected, _ ->
+                    if (isSelected)
+                        findNavController().navigate(
+                            SeekerOverviewFragmentDirections
+                                .toSeekerDetailFragment(request.id)
+                        )
                 }
             })
         })
 
         button_create_new_help_request.setOnClickListener {
-            findNavController().navigate(R.id.action_seekerOverviewFragment_to_createHelpRequestFragment)
+            findNavController().navigate(
+                SeekerOverviewFragmentDirections
+                    .actionSeekerOverviewFragmentToCreateHelpRequestFragment()
+            )
         }
     }
 

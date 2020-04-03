@@ -1,153 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.auth.LoginFragment">
 
-    <data>
-        <variable
-            name="viewModel"
-            type="app.nexd.android.ui.auth.register.RegisterViewModel" />
-    </data>
+    <TextView
+        android:text="@string/registration_screen_title"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="30dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/background_gradient"
+    <LinearLayout
         android:orientation="vertical"
-        tools:context=".ui.auth.LoginFragment">
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginVertical="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="30dp"
-            android:text="Erstelle deinen \nAccount:"
+        <EditText
+            android:id="@+id/editText_first_name"
+            android:paddingHorizontal="10dp"
+            android:imeOptions="actionNext"
+            android:inputType="textCapWords"
+            android:lines="1"
+            android:nextFocusDown="@id/editText_surname"
+            android:layout_marginTop="10dp"
             android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <LinearLayout
+            android:backgroundTint="@color/text"
+            android:textColorHint="@color/text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="40dp"
-            android:layout_marginVertical="10dp"
-            android:orientation="vertical">
+            android:hint="@string/registration_placeholder_firstName" />
 
-            <EditText
-                android:id="@+id/edittext_first_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="@color/text"
-                android:hint="Vorname"
-                android:imeOptions="actionNext"
-                android:inputType="text"
-                android:lines="1"
-                android:text="@={viewModel.firstName}"
-                android:error="@{viewModel.firstNameError}"
-                android:nextFocusDown="@id/edittext_lastname"
-                android:paddingHorizontal="10dp"
-                android:textColorHint="@color/text"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/edittext_lastname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="@color/text"
-                android:text="@={viewModel.lastName}"
-                android:error="@{viewModel.lastNameError}"
-                android:hint="Nachname"
-                android:imeOptions="actionNext"
-                android:inputType="text"
-                android:lines="1"
-                android:nextFocusDown="@id/edittext_email"
-                android:paddingHorizontal="10dp"
-                android:textColorHint="@color/text"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/edittext_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="@color/text"
-                android:text="@={viewModel.email}"
-                android:error="@{viewModel.emailError}"
-                android:hint="Email"
-                android:imeOptions="actionNext"
-                android:inputType="textEmailAddress"
-                android:lines="1"
-                android:nextFocusDown="@id/edittext_password"
-                android:paddingHorizontal="10dp"
-                android:textColorHint="@color/text"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/edittext_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:backgroundTint="@color/text"
-                android:text="@={viewModel.password}"
-                android:error="@{viewModel.passwordError}"
-                android:hint="Passwort"
-                android:imeOptions="actionNext"
-                android:inputType="textPassword"
-                android:lines="1"
-                android:nextFocusDown="@id/edittext_password_confirm"
-                android:paddingHorizontal="10dp"
-                android:textColorHint="@color/text"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/edittext_password_confirm"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="@color/text"
-                android:text="@={viewModel.passwordConfirmation}"
-                android:error="@{viewModel.passwordConfirmationError}"
-                android:hint="Passwort bestätigen"
-                android:imeOptions="actionDone"
-                android:inputType="textPassword"
-                android:lines="1"
-                android:paddingHorizontal="10dp"
-                android:textColorHint="@color/text"
-                android:textSize="20sp" />
-
-        </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <Button
-            android:id="@+id/button_register"
+        <EditText
+            android:id="@+id/editText_surname"
+            android:paddingHorizontal="10dp"
+            android:imeOptions="actionNext"
+            android:lines="1"
+            android:nextFocusDown="@id/editText_email"
+            android:inputType="textCapWords"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:backgroundTint="@color/text"
+            android:textColorHint="@color/text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="2dp"
-            android:background="@drawable/round_button_white"
-            android:text="Weiter"
-            android:textAllCaps="false"
-            android:textSize="20sp" />
+            android:hint="@string/registration_placeholder_lastName" />
 
-        <Space
+        <EditText
+            android:id="@+id/editText_email"
+            android:paddingHorizontal="10dp"
+            android:imeOptions="actionNext"
+            android:lines="1"
+            android:nextFocusDown="@id/editText_password"
+            android:inputType="textEmailAddress"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:backgroundTint="@color/text"
+            android:textColorHint="@color/text"
             android:layout_width="match_parent"
-            android:layout_height="100dp" />
-
-        <Button
-            android:id="@+id/button_data_protection"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="10dp"
-            android:minHeight="0dp"
-            android:text="Datenschutzhinweise"
-            android:textAllCaps="false" />
+            android:hint="@string/registration_placeholder_email" />
+
+        <EditText
+            android:id="@+id/editText_password"
+            android:paddingHorizontal="10dp"
+            android:lines="1"
+            android:imeOptions="actionNext"
+            android:nextFocusDown="@id/editText_password_confirm"
+            android:inputType="textPassword"
+            android:layout_marginTop="30dp"
+            android:textSize="20sp"
+            android:backgroundTint="@color/text"
+            android:textColorHint="@color/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/registration_placeholder_password" />
+
+        <EditText
+            android:id="@+id/editText_password_confirm"
+            android:paddingHorizontal="10dp"
+            android:lines="1"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:backgroundTint="@color/text"
+            android:textColorHint="@color/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/registration_placeholder_confirm_password" />
 
     </LinearLayout>
-</layout>
+
+    <Space
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+    <Button
+        android:id="@+id/button_register"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_button_white"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/registration_button_title_send" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
+
+    <Button
+        android:id="@+id/button_dataProtection"
+        android:text="@string/registration_button_privacy_policy"
+        android:layout_margin="10dp"
+        android:minHeight="0dp"
+        android:textAllCaps="false"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_gradient"
     android:padding="@dimen/fragmentPadding"
     tools:context=".ui.role.RoleFragment">
 
@@ -26,7 +25,7 @@
         android:layout_marginBottom="40dp"
         android:background="@drawable/round_button_outer_white"
         android:paddingHorizontal="30dp"
-        android:text="Einloggen"
+        android:text="@string/login_button_title_login"
         android:clickable="true"
         android:focusable="true"
         android:textSize="20sp"
@@ -43,7 +42,7 @@
         android:layout_marginBottom="100dp"
         android:layout_marginHorizontal="30dp"
         android:background="@drawable/round_button_white"
-        android:text="Registrieren"
+        android:text="@string/login_button_title_register"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

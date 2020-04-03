@@ -2,15 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/background_gradient"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/fragmentPadding"
     android:orientation="vertical"
-    tools:context=".ui.buyer.CheckoutFragment">
+    tools:context=".ui.helper.checkout.CheckoutFragment">
 
     <TextView
-        android:text="An der Kasse"
+        android:text="@string/checkout_screen_title"
         android:layout_marginBottom="10dp"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -18,8 +17,9 @@
         android:layout_height="wrap_content" />
 
     <ScrollView
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="0dp" >
 
         <LinearLayout
             android:id="@+id/container"
@@ -28,11 +28,6 @@
             android:layout_height="wrap_content" />
 
     </ScrollView>
-
-    <Space
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/startDelivery"

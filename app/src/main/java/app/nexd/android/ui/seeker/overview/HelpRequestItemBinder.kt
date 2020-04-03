@@ -16,6 +16,10 @@ class HelpRequestItemBinder(private val articles: List<Article>) : ItemBinder<Re
         var title: TextView = itemView.findViewById(R.id.request_list_item_title)
 
         init {
+            itemView.setOnClickListener {
+                toggleItemSelection()
+            }
+
             itemView.findViewById<CheckBox>(R.id.request_list_item_checkbox).visibility = View.GONE
         }
     }

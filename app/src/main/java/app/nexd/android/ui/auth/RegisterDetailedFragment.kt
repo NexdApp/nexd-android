@@ -3,25 +3,25 @@ package app.nexd.android.ui.auth
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import app.nexd.android.Preferences
 import app.nexd.android.R
 import app.nexd.android.api
 import app.nexd.android.api.model.RegisterPayload
 import app.nexd.android.ui.auth.register.RegisterFragment
 import com.google.android.material.snackbar.Snackbar
+import app.nexd.android.ui.MainActivity
 import kotlinx.android.synthetic.main.fragment_register_detailed.*
 
 class RegisterDetailedFragment : Fragment() {
 
     private val args: RegisterDetailedFragmentArgs by navArgs()
+    private val viewModel: RegisterViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +33,7 @@ class RegisterDetailedFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        edittext_location.setOnEditorActionListener { _, actionId, _ ->
+        editText_city.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 register()
             }
@@ -44,7 +44,7 @@ class RegisterDetailedFragment : Fragment() {
             register()
         }
 
-        button_data_protection.setOnClickListener {
+        button_dataProtection.setOnClickListener {
             startActivity(
                 Intent(
                     Intent.ACTION_VIEW,
@@ -55,25 +55,44 @@ class RegisterDetailedFragment : Fragment() {
     }
 
     private fun register() {
-        val phonenumber = edittext_phonenumber.text.toString().trim()
-        val location = edittext_location.text.toString().trim()
-        val dataprotection = checkbox_data_protection.isChecked
+        (activity as MainActivity).hideKeyboard()
+        val phoneNumber = editText_phoneNumber.text.toString().trim()
+        val street = editText_streetName.text.trim().toString()
+        val houseNumber = editText_houseNumber.text.trim().toString()
+        val zipCode = editText_zipCode.text.toString().trim()
+        val city = editText_city.text.trim().toString()
+        val dataProtection = checkbox_data_protection.isChecked
 
         var successful = true
 
-        if (phonenumber.isEmpty()) {
+        if (phoneNumber.isEmpty()) {
             successful = false
-            edittext_phonenumber.error = "Bitte ausfüllen"
+            editText_phoneNumber.error = getString(R.string.error_message_user_detail_field_missing)
         }
 
-        if (location.isEmpty()) {
+        if (street.isEmpty()) {
             successful = false
-            edittext_location.error = "Bitte ausfüllen"
+            editText_streetName.error = getString(R.string.error_message_user_detail_field_missing)
         }
 
-        if (!dataprotection) {
+        if (houseNumber.isEmpty()) {
             successful = false
-            checkbox_data_protection.error = "Bestätigen"
+            editText_houseNumber.error = getString(R.string.error_message_user_detail_field_missing)
+        }
+
+        if (zipCode.isEmpty()) {
+            successful = false
+            editText_zipCode.error = getString(R.string.error_message_user_detail_field_missing)
+        }
+
+        if (city.isEmpty()) {
+            successful = false
+            editText_city.error = getString(R.string.error_message_user_detail_field_missing)
+        }
+
+        if (!dataProtection) {
+            successful = false
+            checkbox_data_protection.error = getString(R.string.error_message_user_detail_field_missing)
         }
 
         if (!successful)

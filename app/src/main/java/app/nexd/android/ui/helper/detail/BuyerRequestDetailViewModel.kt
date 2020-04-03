@@ -1,5 +1,6 @@
-package app.nexd.android.ui.buyer
+package app.nexd.android.ui.helper.detail
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.ViewModel
@@ -22,6 +23,10 @@ class BuyerRequestDetailViewModel : ViewModel() {
     fun requestDetails(requestId: BigDecimal): LiveData<RequestEntity> {
         return LiveDataReactiveStreams.fromPublisher(
             api.requestControllerGetSingleRequest(requestId)
+                .doOnError {
+                    Log.e("Error", it.message.toString())
+                }
+                .onErrorReturnItem(RequestEntity())
                 .toFlowable(BackpressureStrategy.BUFFER)
         )
     }
@@ -46,6 +51,9 @@ class BuyerRequestDetailViewModel : ViewModel() {
                     it.id.toBigDecimal(),
                     requestId
                 )
+            }
+            .doOnError {
+                Log.e("Error", it.message.toString())
             }
             .blockingSubscribe()
     }

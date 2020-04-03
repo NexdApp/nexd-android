@@ -2,14 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/background_gradient"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.role.RoleFragment">
 
     <Button
-        android:text="Logout"
+        android:id="@+id/button_logout"
+        android:text="@string/role_selection_button_logout"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_margin="10dp"
@@ -25,7 +25,7 @@
         android:textSize="20sp"
         android:layout_marginBottom="20dp"
         android:textColor="@android:color/black"
-        android:text="Ich brauche etwas!"
+        android:text="@string/role_selection_seeker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -39,24 +39,24 @@
         android:clickable="true"
         android:focusable="true"
         android:src="@drawable/ic_shopping_cart_black_24dp"
-        app:layout_constraintBottom_toTopOf="@+id/role_button_buyer"
+        app:layout_constraintBottom_toTopOf="@+id/role_button_helper"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
-        app:layout_constraintTop_toBottomOf="@id/role_button_buyer"
+        app:layout_constraintTop_toBottomOf="@id/role_button_helper"
         android:textAlignment="center"
         android:textSize="20sp"
         android:layout_marginTop="20dp"
         android:textColor="@android:color/black"
-        android:text="Ich kann helfen!"
+        android:text="@string/role_selection_helper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/role_button_buyer"
+        android:id="@+id/role_button_helper"
         android:backgroundTint="@android:color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

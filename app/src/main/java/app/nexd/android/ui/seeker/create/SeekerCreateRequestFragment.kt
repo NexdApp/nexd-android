@@ -11,14 +11,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
-import app.nexd.android.api.model.Article
 import app.nexd.android.api.model.CreateRequestArticleDto
 import app.nexd.android.api.model.RequestFormDto
-import kotlinx.android.synthetic.main.create_help_request_fragment.*
+import kotlinx.android.synthetic.main.fragment_seeker_create_request.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
 
-class CreateHelpRequestFragment : Fragment() {
+class SeekerCreateRequestFragment : Fragment() {
 
     private lateinit var viewModel: CreateHelpRequestViewModel
 
@@ -28,7 +27,7 @@ class CreateHelpRequestFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.create_help_request_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_seeker_create_request, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -71,7 +70,7 @@ class CreateHelpRequestFragment : Fragment() {
             when (it) {
                 // TODO: handle all states
                 CreateHelpRequestViewModel.State.FINISHED -> findNavController().popBackStack()
-                else -> Log.d(CreateHelpRequestFragment::class.simpleName, "unhandled state $it")
+                else -> Log.d(SeekerCreateRequestFragment::class.simpleName, "unhandled state $it")
             }
         })
     }

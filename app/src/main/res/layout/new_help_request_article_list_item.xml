@@ -1,46 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="horizontal"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.appcompat.widget.AppCompatButton
+    <ImageButton
         android:id="@+id/button_decrease"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="-"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
-    <TextView
-        android:id="@+id/textview_amount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="0"
-        app:layout_constraintStart_toEndOf="@id/button_decrease"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_increase"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+"
-        app:layout_constraintStart_toEndOf="@id/textview_amount"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
-    <TextView
-        android:id="@+id/textview_article_name"
+        android:layout_weight="1"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/button_increase"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="30dp"
+        android:padding="5dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_minus"
+        android:background="@drawable/round_button_white" />
+
+    <TextView
+        android:id="@+id/textView_amount"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        tools:text="0" />
+
+
+    <ImageButton
+        android:id="@+id/button_increase"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:scaleType="fitCenter"
+        android:background="@drawable/round_button_white"
+        android:padding="5dp"
+        android:src="@drawable/ic_add" />
+
+    <TextView
+        android:id="@+id/textView_article_name"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        android:paddingHorizontal="10dp"
+        android:gravity="center_vertical|start"
+        android:layout_weight="4"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
         tools:text="Milch"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

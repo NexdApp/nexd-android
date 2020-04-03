@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.api.model.RequestArticle
 import app.nexd.android.api.model.RequestEntity
-import app.nexd.android.ui.buyer.CheckoutItemBinder
+import app.nexd.android.ui.helper.checkout.CheckoutItemBinder
 import kotlinx.android.synthetic.main.view_checkout_request.view.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter

@@ -23,8 +23,6 @@ class MainActivity : AppCompatActivity() {
 
         findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener { controller, destination, _ ->
             runOnUiThread {
-                title = destination.label
-
                 // skip authentication if it
                 if (destination.id == R.id.authFragment) {
                     Preferences.getToken(this)?.let {
@@ -44,17 +42,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * hides keyboard if no Edittext was touched
+     * finish activity if start fragment showing
      */
-    fun hideKeyboardOnTouch() {
+    override fun onBackPressed() {
+        if (findNavController(R.id.nav_host_fragment).currentDestination?.id == R.id.roleFragment)
+            finish()
+        else
+            super.onBackPressed()
+    }
+
+    /**
+     * hides keyboard if no editText was touched
+     */
+    private fun hideKeyboardOnTouch() {
         hideKeyboardOnTouch(findViewById(android.R.id.content))
     }
 
     /**
-     * hides keyboard on given view if no edittext was klicked
+     * hides keyboard on given view if no editText was clicked
      * @param view listener on this view
      */
-    fun hideKeyboardOnTouch(view: View) {
+    private fun hideKeyboardOnTouch(view: View) {
         // Set up touch listener for non-text box views to hide keyboard.
         if (view !is EditText) {
             view.setOnTouchListener { _, _ ->
