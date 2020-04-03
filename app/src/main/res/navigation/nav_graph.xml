@@ -168,24 +168,6 @@
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
-        android:id="@+id/registerDetailedFragment"
-        android:name="app.nexd.android.ui.auth.RegisterDetailedFragment"
-        android:label="fragment_register_detailed"
-        tools:layout="@layout/fragment_register_detailed" >
-        <argument
-            android:name="firstName"
-            app:argType="string" />
-        <argument
-            android:name="lastName"
-            app:argType="string" />
-        <argument
-            android:name="email"
-            app:argType="string" />
-        <argument
-            android:name="password"
-            app:argType="string" />
-    </fragment>
-    <fragment
         android:id="@+id/seekerDetailFragment"
         android:name="app.nexd.android.ui.seeker.detail.SeekerDetailFragment"
         android:label="SeekerDetailFragment"

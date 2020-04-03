@@ -21,7 +21,6 @@
         <Button
             android:id="@+id/dismiss"
             android:layout_marginVertical="2dp"
-            android:text="@string/dialog_button_abort"
             android:textAllCaps="false"
             android:textSize="16sp"
             android:textColor="@android:color/black"
@@ -35,7 +34,6 @@
         <Button
             android:id="@+id/confirm"
             android:layout_margin="2dp"
-            android:text="@string/dialog_button_confirm"
             android:padding="10dp"
             android:textColor="@android:color/white"
             android:textSize="18sp"

@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import app.nexd.android.databinding.FragmentRegisterBinding
+import app.nexd.android.ui.auth.register.RegisterFragmentDirections.Companion.toRoleFragment
 import app.nexd.android.ui.auth.register.RegisterViewModel.Progress.*
 import kotlinx.android.synthetic.main.fragment_register.*
 
@@ -40,7 +41,7 @@ class RegisterFragment : Fragment() {
 
         binding.viewModel = viewModel
 
-        edittext_password_confirm.setOnEditorActionListener { _, i, _ ->
+        editText_password_confirm.setOnEditorActionListener { _, i, _ ->
             if (i == EditorInfo.IME_ACTION_DONE) {
                 viewModel.register()
             }
@@ -53,14 +54,14 @@ class RegisterFragment : Fragment() {
 
         viewModel.progress.observe(viewLifecycleOwner, Observer { progress ->
             when(progress) {
-                is Idle -> { /* TODO */ }
-                is Loading -> { /* TODO */ }
-                is Error -> { /* TODO */ }
-                is Finished -> proceed(progress.registrationData)
+                is Idle -> { /* nothing to do here */ }
+                is Loading -> { /* TODO (AS): display a loading animation */ }
+                is Error -> { /* TODO (AS): display error toast. */ }
+                is Finished -> proceed()
             }
         })
 
-        button_data_protection.setOnClickListener {
+        button_dataProtection.setOnClickListener {
             showPrivacyPolicy()
         }
     }
@@ -74,15 +75,8 @@ class RegisterFragment : Fragment() {
         )
     }
 
-    private fun proceed(data: RegisterViewModel.RegistrationData) {
-        findNavController().navigate(
-            RegisterFragmentDirections.actionRegisterFragmentToRegisterDetailedFragment(
-                data.firstName,
-                data.lastName,
-                data.email,
-                data.password
-            )
-        )
+    private fun proceed() {
+        findNavController().navigate(toRoleFragment())
     }
 
 }
