@@ -116,9 +116,8 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="app.nexd.android.ui.auth.RegisterFragment"
-        android:label="RegisterFragment"
-        tools:layout="@layout/fragment_register">
+        android:name="app.nexd.android.ui.auth.register.RegisterFragment"
+        android:label="RegisterFragment">
         <action
             android:id="@+id/action_registerFragment_to_registerDetailedFragment"
             app:destination="@id/registerDetailedFragment"

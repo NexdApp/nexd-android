@@ -15,6 +15,7 @@ import app.nexd.android.Preferences
 import app.nexd.android.R
 import app.nexd.android.api
 import app.nexd.android.api.model.RegisterPayload
+import app.nexd.android.ui.auth.register.RegisterFragment
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_register_detailed.*
 
@@ -44,9 +45,11 @@ class RegisterDetailedFragment : Fragment() {
         }
 
         button_data_protection.setOnClickListener {
-            Intent(
-                Intent.ACTION_VIEW,
-                Uri.parse("https://www.nexd.app/privacypage")
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://www.nexd.app/privacypage")
+                )
             )
         }
     }
@@ -82,7 +85,8 @@ class RegisterDetailedFragment : Fragment() {
                     .firstName(args.firstname)
                     .lastName(args.lastname)
                     .email(args.email)
-                    .password(args.password))
+                    .password(args.password)
+            )
                 .subscribe(
                     { response ->
                         context?.let {
