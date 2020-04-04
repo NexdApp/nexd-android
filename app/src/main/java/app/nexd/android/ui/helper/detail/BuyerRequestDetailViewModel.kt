@@ -6,6 +6,8 @@ import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.ViewModel
 import app.nexd.android.api
 import app.nexd.android.api.model.Article
+import app.nexd.android.api.model.HelpList
+import app.nexd.android.api.model.HelpListCreateDto
 import app.nexd.android.api.model.HelpRequest
 import io.reactivex.BackpressureStrategy
 import java.math.BigDecimal
@@ -14,7 +16,9 @@ class BuyerRequestDetailViewModel : ViewModel() {
 
     fun getArticles(): LiveData<List<Article>> {
         return LiveDataReactiveStreams.fromPublisher(
-            api.articlesControllerFindAll().toFlowable(BackpressureStrategy.BUFFER)
+            api.articlesControllerFindAll()
+                .map { it.toList() }
+                .toFlowable(BackpressureStrategy.BUFFER)
         )
     }
 
@@ -29,25 +33,23 @@ class BuyerRequestDetailViewModel : ViewModel() {
         )
     }
 
-    fun acceptRequest(requestId: BigDecimal) {
+    fun acceptRequest(requestId: Long) {
         api.helpListsControllerGetUserLists(userId = null)
             .flatMap { lists ->
-                if (lists.isNotEmpty() && lists.any { it.status == ShoppingList.StatusEnum.ACTIVE }) {
+                if (lists.isNotEmpty() && lists.any { it.status == HelpList.StatusEnum.ACTIVE }) {
                     return@flatMap io.reactivex.Observable.just(
-                        lists.filter { list -> list.status == ShoppingList.StatusEnum.ACTIVE }
-                            .maxBy(ShoppingList::getCreatedAt))
+                        lists.filter { list -> list.status == HelpList.StatusEnum.ACTIVE }
+                            .maxBy(HelpList::getCreatedAt))
                 } else {
-                    return@flatMap api.shoppingListControllerInsertNewShoppingList(
-                        ShoppingListFormDto()
-                            .requests(0)
-                            .status(ShoppingListFormDto.StatusEnum.ACTIVE)
+                    return@flatMap api.helpListsControllerInsertNewHelpList(
+                        HelpListCreateDto()
                     )
                 }
             }
             .flatMap {
-                api.shoppingListControllerAddRequestToList(
+                api.helpListsControllerAddHelpRequestToList(
                     it.id.toBigDecimal(),
-                    requestId
+                    requestId.toBigDecimal()
                 )
             }
             .doOnError {

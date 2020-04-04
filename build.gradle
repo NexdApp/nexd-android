@@ -37,6 +37,10 @@ task clean(type: Delete) {
 String remoteApiUrl = "https://nexd-backend-staging.herokuapp.com/api/v1"
 String apiBaseUrl = project.findProperty('apiBaseUrl') == null ? remoteApiUrl : project.findProperty('apiBaseUrl')
 
+openApiValidate {
+    inputSpec = "$apiBaseUrl/docs-json".toString()
+}
+
 openApiGenerate {
     generatorName = "java"
     inputSpec = apiBaseUrl + "/docs-json"
