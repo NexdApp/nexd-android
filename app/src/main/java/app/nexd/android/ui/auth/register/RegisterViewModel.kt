@@ -104,7 +104,6 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
                 .subscribeBy(
                     onNext = { responseTokenDto ->
 
-                        api.setBearerToken(responseTokenDto.accessToken)
                         with(getApplication<Application>().applicationContext) {
                             Preferences.setToken(this, responseTokenDto.accessToken)
                             Preferences.setUserId(this, responseTokenDto.id)
