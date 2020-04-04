@@ -52,7 +52,7 @@
     </fragment>
     <fragment
         android:id="@+id/buyerOverviewFragment"
-        android:name="app.nexd.android.ui.helper.overview.BuyerOverviewFragment"
+        android:name="app.nexd.android.ui.helper.overview.HelperOverviewFragment"
         tools:layout="@layout/fragment_helper_request_overview" >
         <action
             android:id="@+id/requestDetailAction"
@@ -62,7 +62,7 @@
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
         <action
-            android:id="@+id/action_buyerOverviewFragment_to_shoppingListFragment"
+            android:id="@+id/toShoppingListFragment"
             app:destination="@id/shoppingListFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
@@ -121,7 +121,7 @@
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragment_to_roleFragment"
+            android:id="@+id/toRoleFragment"
             app:destination="@id/roleFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
@@ -131,7 +131,8 @@
     <fragment
         android:id="@+id/registerFragment"
         android:name="app.nexd.android.ui.auth.register.RegisterFragment"
-        android:label="RegisterFragment">
+        android:label="RegisterFragment"
+        tools:layout="@layout/fragment_register" >
         <action
             android:id="@+id/toRoleFragment"
             app:destination="@id/roleFragment"
@@ -157,7 +158,7 @@
         android:label="fragment_delivery"
         tools:layout="@layout/fragment_delivery" >
         <action
-            android:id="@+id/action_deliveryFragment_to_roleFragment"
+            android:id="@+id/toRoleFragment"
             app:destination="@id/roleFragment"
             app:enterAnim="@anim/fragment_close_enter"
             app:exitAnim="@anim/fragment_close_exit"

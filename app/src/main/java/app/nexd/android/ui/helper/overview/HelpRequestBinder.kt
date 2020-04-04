@@ -5,15 +5,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import app.nexd.android.R
 import app.nexd.android.api.model.HelpRequest
-import app.nexd.android.ui.helper.overview.BuyerOverviewBinder.HelpRequestViewHolder
+import app.nexd.android.ui.helper.overview.HelpRequestBinder.HelpRequestViewHolder
 import kotlinx.android.synthetic.main.buyer_request_row.view.*
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
 
-class BuyerOverviewBinder: ItemBinder<HelpRequest, HelpRequestViewHolder>() {
+class HelpRequestBinder: ItemBinder<HelpRequest, HelpRequestViewHolder>() {
 
     class HelpRequestViewHolder(itemView: View): ItemViewHolder<HelpRequest>(itemView) {
-        private val title: TextView = itemView.title
+        private val title: TextView = itemView.textView_title
 
         init {
             itemView.setOnClickListener {
@@ -22,7 +22,9 @@ class BuyerOverviewBinder: ItemBinder<HelpRequest, HelpRequestViewHolder>() {
         }
 
         fun bind(request: HelpRequest) {
-            title.text = "%1 %2".format(request.requester?.firstName.toString(), request.requester?.lastName)
+            title.text = itemView.context.getString(R.string.helper_request_overview_name_layout,
+                request.requester!!.firstName,
+                request.requester!!.lastName)
         }
 
 

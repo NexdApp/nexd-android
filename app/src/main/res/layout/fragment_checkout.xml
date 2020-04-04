@@ -21,8 +21,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp" >
 
-        <LinearLayout
-            android:id="@+id/container"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recylcerView_helpRequests"
+            tools:listitem="@layout/view_checkout_request"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -30,7 +31,7 @@
     </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/startDelivery"
+        android:id="@+id/button_deliver"
         android:src="@drawable/ic_check_black_24dp"
         app:fabCustomSize="70dp"
         app:maxImageSize="30dp"

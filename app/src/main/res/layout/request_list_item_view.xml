@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toStartOf="@id/request_list_item_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        />
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/request_list_item_title"

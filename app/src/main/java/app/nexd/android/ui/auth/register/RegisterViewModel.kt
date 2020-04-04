@@ -114,7 +114,7 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
 
                         progress.value = Progress.Finished(registrationData)
                     },
-                    onError = { _ ->
+                    onError = {
                         progress.value = Progress.Error
                     }
                 )

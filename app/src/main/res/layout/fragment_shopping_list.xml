@@ -25,6 +25,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/shoppingList"
+            tools:listitem="@layout/shopping_list_row"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

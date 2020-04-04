@@ -26,6 +26,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_articles"
+            tools:listitem="@layout/request_list_item_view"
             android:layout_marginHorizontal="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

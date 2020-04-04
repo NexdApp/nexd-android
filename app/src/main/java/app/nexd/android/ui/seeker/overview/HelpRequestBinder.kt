@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
-import app.nexd.android.api.model.Article
 import app.nexd.android.api.model.HelpRequest
 import app.nexd.android.api.model.HelpRequestArticle
 import app.nexd.android.ui.seeker.overview.HelpRequestBinder.HelpRequestViewHolder
@@ -31,7 +30,7 @@ class HelpRequestBinder() : ItemBinder<HelpRequest, HelpRequestViewHolder>() {
             }
 
             articlesAdapter.registerItemBinders(
-                HelpRequestItemBinder()
+                HelpRequestArticleBinder()
             )
         }
 

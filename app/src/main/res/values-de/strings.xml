@@ -80,4 +80,6 @@
     <string name="error_message_registration_failed">"Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut."</string>
     <string name="error_message_user_detail_field_missing">"Bitte ausfüllen"</string>
     <string name="error_button_ok">"OK"</string>
+    <string name="helper_request_overview_button_previous_requests">Vorherige Käufe</string>
+    <string name="seeker_overview_screen_title">Ihre Anfragen:</string>
 </resources>

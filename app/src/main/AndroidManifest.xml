@@ -7,6 +7,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/nexd_logo"
+        android:roundIcon="@mipmap/nexd_logo_round"
         android:label="${APP_NAME}"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"

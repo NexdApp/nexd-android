@@ -45,7 +45,7 @@ class RegisterFragment : Fragment() {
             if (i == EditorInfo.IME_ACTION_DONE) {
                 viewModel.register()
             }
-            return@setOnEditorActionListener false
+            false
         }
 
         button_register.setOnClickListener {

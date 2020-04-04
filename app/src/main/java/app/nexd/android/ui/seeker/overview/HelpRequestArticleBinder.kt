@@ -9,28 +9,26 @@ import app.nexd.android.api.model.HelpRequestArticle
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
 
-class HelpRequestItemBinder() : ItemBinder<HelpRequestArticle, HelpRequestItemBinder.HelpRequestItemViewHolder>() {
+class HelpRequestArticleBinder : ItemBinder<HelpRequestArticle, HelpRequestArticleBinder.ViewModel>() {
 
-    class HelpRequestItemViewHolder(itemView: View) : ItemViewHolder<HelpRequestArticle>(itemView) {
+    class ViewModel(itemView: View) : ItemViewHolder<HelpRequestArticle>(itemView) {
         var title: TextView = itemView.findViewById(R.id.request_list_item_title)
 
         init {
             itemView.setOnClickListener {
                 toggleItemSelection()
             }
-
-            itemView.findViewById<CheckBox>(R.id.request_list_item_checkbox).visibility = View.GONE
         }
     }
 
-    override fun createViewHolder(parent: ViewGroup): HelpRequestItemViewHolder {
-        return HelpRequestItemViewHolder(
+    override fun createViewHolder(parent: ViewGroup): ViewModel {
+        return ViewModel(
             inflate(parent, R.layout.request_list_item_view)
         )
     }
 
     override fun bindViewHolder(
-        holder: HelpRequestItemViewHolder,
+        holder: ViewModel,
         item: HelpRequestArticle
     ) {
         holder.title.text = item.article.name

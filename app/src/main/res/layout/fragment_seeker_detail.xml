@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/fragmentPadding" >
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:background="@drawable/background_gradient"
+    android:padding="@dimen/fragmentPadding">
 
     <TextView
         android:id="@+id/textView_title"
@@ -12,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="@string/seeker_detail_screen_title"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,25 +45,31 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_articles"
+            tools:listitem="@layout/request_list_item_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp" />
 
     </androidx.cardview.widget.CardView>
 
-    <EditText
-        android:id="@+id/editText_additionalRequest"
+    <TextView
+        app:layout_constraintBottom_toTopOf="@id/textView_additionalRequest"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
+        android:hint="@string/seeker_detail_placeholder_information"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/textView_additionalRequest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/text"
-        android:enabled="false"
-        android:importantForAutofill="no"
-        android:hint="@string/seeker_detail_placeholder_information"
-        android:inputType="text"
         android:paddingHorizontal="10dp"
-        android:textColorHint="@color/text"
-        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        tools:text="So schnell wie nur möglich!!"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 

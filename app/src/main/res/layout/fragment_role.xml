@@ -1,73 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:background="@drawable/background_gradient"
     tools:context=".ui.role.RoleFragment">
 
     <Button
         android:id="@+id/button_logout"
-        android:text="@string/role_selection_button_logout"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_margin="10dp"
-        android:textSize="17sp"
-        android:textAllCaps="false"
-        android:background="@drawable/round_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        app:layout_constraintBottom_toTopOf="@id/role_button_seeker"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:layout_marginBottom="20dp"
-        android:textColor="@android:color/black"
-        android:text="@string/role_selection_seeker"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/role_button_seeker"
-        android:backgroundTint="@android:color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:fabCustomSize="140dp"
-        app:maxImageSize="60dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:src="@drawable/ic_shopping_cart_black_24dp"
-        app:layout_constraintBottom_toTopOf="@+id/role_button_helper"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/rounded_button_white"
+        android:text="@string/role_selection_button_logout"
+        android:textAllCaps="false"
+        android:textSize="17sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <TextView
-        app:layout_constraintTop_toBottomOf="@id/role_button_helper"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:layout_marginTop="20dp"
-        android:textColor="@android:color/black"
-        android:text="@string/role_selection_helper"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/role_button_helper"
-        android:backgroundTint="@android:color/white"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:fabCustomSize="140dp"
-        app:maxImageSize="60dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:src="@drawable/ic_walk"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/role_button_seeker" />
+        android:layout_marginHorizontal="10dp"
+        android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/textView_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="21dp"
+            android:layout_marginBottom="18dp"
+            android:gravity="top"
+            android:text="Welcome"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:textSize="35sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:text="What would you like to do today?"
+            android:textColor="@android:color/white"
+            android:textSize="30sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="40dp"
+            android:background="@color/colorPrimaryDark" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/role_button_seeker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button_white_translucent"
+        android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+        android:drawableTint="@android:color/white"
+        android:padding="20dp"
+        android:text="@string/role_selection_seeker"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/role_button_helper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_button_white_translucent"
+        android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+        android:drawableTint="@android:color/white"
+        android:padding="20dp"
+        android:text="@string/role_selection_helper"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+
+</LinearLayout>
