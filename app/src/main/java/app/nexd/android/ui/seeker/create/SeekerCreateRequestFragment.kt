@@ -60,7 +60,7 @@ class SeekerCreateRequestFragment : Fragment() {
                                 .articleCount(it.amount)
                                 .articleId(it.article.id)
                         })
-                    .additionalRequest(editText_additionalRequest.text.toString())
+                    .additionalRequest(textView_additionalRequest.text.toString())
 
                 viewModel.sendRequest(request)
             }

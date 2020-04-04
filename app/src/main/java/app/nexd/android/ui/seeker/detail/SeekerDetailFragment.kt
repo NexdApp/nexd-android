@@ -50,6 +50,8 @@ class SeekerDetailFragment : Fragment() {
                         articlesList.addAll(request.articles)
                         articlesAdapter.addSection(articlesList)
 
+                        textView_additionalRequest.text = request.additionalRequest
+
                         button_delete.setOnClickListener {
                             viewModel.cancelRequest(request.id)
                         }

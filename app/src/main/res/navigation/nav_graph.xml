@@ -52,7 +52,7 @@
     </fragment>
     <fragment
         android:id="@+id/buyerOverviewFragment"
-        android:name="app.nexd.android.ui.helper.overview.BuyerOverviewFragment"
+        android:name="app.nexd.android.ui.helper.overview.HelperOverviewFragment"
         tools:layout="@layout/fragment_helper_request_overview" >
         <action
             android:id="@+id/requestDetailAction"
@@ -117,11 +117,11 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="app.nexd.android.ui.auth.LoginFragment"
+        android:name="app.nexd.android.ui.auth.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragment_to_roleFragment"
+            android:id="@+id/toRoleFragment"
             app:destination="@id/roleFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
@@ -130,9 +130,9 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="app.nexd.android.ui.auth.RegisterFragment"
+        android:name="app.nexd.android.ui.auth.register.RegisterFragment"
         android:label="RegisterFragment"
-        tools:layout="@layout/fragment_register">
+        tools:layout="@layout/fragment_register" >
         <action
             android:id="@+id/toRoleFragment"
             app:destination="@id/roleFragment"
@@ -167,24 +167,6 @@
             app:exitAnim="@anim/fragment_close_exit"
             app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
-    </fragment>
-    <fragment
-        android:id="@+id/registerDetailedFragment"
-        android:name="app.nexd.android.ui.auth.RegisterDetailedFragment"
-        android:label="fragment_register_detailed"
-        tools:layout="@layout/fragment_register_detailed" >
-        <argument
-            android:name="firstName"
-            app:argType="string" />
-        <argument
-            android:name="lastName"
-            app:argType="string" />
-        <argument
-            android:name="email"
-            app:argType="string" />
-        <argument
-            android:name="password"
-            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/seekerDetailFragment"

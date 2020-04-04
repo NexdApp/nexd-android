@@ -6,8 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".ui.seeker.overview.SeekerOverviewFragment">
 
+    <TextView
+        android:id="@+id/textView_title"
+        android:layout_margin="@dimen/fragmentPadding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="@string/seeker_overview_screen_title"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_articles"
+        tools:listitem="@layout/request_header_view"
+        android:layout_below="@id/textView_title"
         android:layout_marginHorizontal="@dimen/fragmentPadding"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

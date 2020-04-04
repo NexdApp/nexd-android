@@ -15,22 +15,26 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
+
       - name: Load publisher key
         env:
           PUBLISHER_KEY: ${{ secrets.PUBLISHER_KEY }}
         run: echo "${PUBLISHER_KEY}" > publisher-key.json
+
       - name: Load keystore
         id: keystore
         uses: timheuer/base64-to-file@v1.0.3
         with:
           fileName: 'keystore.jks'
           encodedString: ${{ secrets.KEYSTORE_BASE64 }}
+
       - name: Build with Gradle
         env:
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEYSTORE_KEY_ALIAS: ${{ secrets.KEYSTORE_KEY_ALIAS }}
           KEYSTORE_KEY_PASSWORD: ${{ secrets.KEYSTORE_KEY_PASSWORD }}
         run: ./gradlew publishReleaseApk -PversionCode="${GITHUB_RUN_NUMBER}" -Pkeystore=${{ steps.keystore.outputs.filePath }} -PkeystorePassword="${KEYSTORE_PASSWORD}" -PkeyAlias="${KEYSTORE_KEY_ALIAS}" -PkeyPassword="${KEYSTORE_KEY_PASSWORD}"
+
       - name: Upload to App Center
         uses: wzieba/AppCenter-Github-Action@v1.0.0
         with:

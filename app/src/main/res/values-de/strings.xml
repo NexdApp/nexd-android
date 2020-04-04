@@ -63,7 +63,7 @@
     <string name="seeker_error_title">"Fehler!"</string>
     <string name="seeker_error_message">"Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuchen Sie er erneut."</string>
     <string name="user_input_details_screen_title">"Geben Sie weitere Details ein"</string>
-    <string name="user_input_details_placeholder_phoneNumber">"Tel."</string>
+    <string name="user_input_details_placeholder_phoneNumber">"Tel. Nr."</string>
     <string name="user_input_details_placeholder_street">"Straße"</string>
     <string name="user_input_details_placeholder_houseNumber">"Nr."</string>
     <string name="user_input_details_placeholder_zipCode">"PLZ"</string>
@@ -80,4 +80,6 @@
     <string name="error_message_registration_failed">"Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut."</string>
     <string name="error_message_user_detail_field_missing">"Bitte ausfüllen"</string>
     <string name="error_button_ok">"OK"</string>
+    <string name="helper_request_overview_button_previous_requests">Vorherige Käufe</string>
+    <string name="seeker_overview_screen_title">Ihre Anfragen:</string>
 </resources>

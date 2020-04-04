@@ -13,13 +13,15 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.api.model.RequestEntity
+import app.nexd.android.ui.helper.overview.HelperOverviewFragmentDirections.Companion.actionBuyerOverviewFragmentToShoppingListFragment
+import app.nexd.android.ui.helper.overview.HelperOverviewFragmentDirections.Companion.requestDetailAction
 import kotlinx.android.synthetic.main.fragment_helper_request_overview.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
 
-class BuyerOverviewFragment : Fragment() {
+class HelperOverviewFragment : Fragment() {
 
-    private lateinit var viewModel: BuyerOverviewViewModel
+    private lateinit var viewModel: HelperOverviewViewModel
     private lateinit var nearRequestsAdapter: MultiViewAdapter
     private lateinit var acceptedRequestsAdapter: MultiViewAdapter
 
@@ -32,22 +34,22 @@ class BuyerOverviewFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(BuyerOverviewViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(HelperOverviewViewModel::class.java)
 
         acceptedRequestsAdapter = MultiViewAdapter()
-        acceptedRequests.layoutManager = LinearLayoutManager(context)
-        acceptedRequests.adapter = acceptedRequestsAdapter
+        recyclerView_acceptedRequests.layoutManager = LinearLayoutManager(context)
+        recyclerView_acceptedRequests.adapter = acceptedRequestsAdapter
 
         nearRequestsAdapter = MultiViewAdapter();
-        nearRequests.layoutManager = LinearLayoutManager(context)
-        nearRequests.adapter = nearRequestsAdapter
+        recyclerView_nearRequests.layoutManager = LinearLayoutManager(context)
+        recyclerView_nearRequests.adapter = nearRequestsAdapter
 
 
         acceptedRequestsAdapter.registerItemBinders(
-            BuyerOverviewBinder()
+            HelperOverviewBinder()
         )
         nearRequestsAdapter.registerItemBinders(
-            BuyerOverviewBinder()
+            HelperOverviewBinder()
         )
 
         viewModel.run {
@@ -59,7 +61,7 @@ class BuyerOverviewFragment : Fragment() {
                 updateAcceptedRequests(myAcceptedRequests)
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    acceptedRequestsSummary.text = Html.fromHtml(
+                    button_shopping.text = Html.fromHtml(
                         "<b>" +
                                 getString(R.string.helper_request_overview_button_summary_title)
                                 + "</b> (" +
@@ -70,7 +72,7 @@ class BuyerOverviewFragment : Fragment() {
                         Html.FROM_HTML_MODE_LEGACY
                     )
                 } else {
-                    acceptedRequestsSummary.text = Html.fromHtml(
+                    button_shopping.text = Html.fromHtml(
                         "<b>%1</b> (%2 %3 / 20)".format(getString(R.string.helper_request_overview_button_summary_title),
                             getString(R.string.helper_request_overview_button_summary_details),
                             myAcceptedRequests.map { requestEntity -> requestEntity.articles.size }.sum())
@@ -83,8 +85,8 @@ class BuyerOverviewFragment : Fragment() {
             })
         }
 
-        acceptedRequestsSummary.setOnClickListener {
-            findNavController().navigate(BuyerOverviewFragmentDirections.actionBuyerOverviewFragmentToShoppingListFragment())
+        button_shopping.setOnClickListener {
+            findNavController().navigate(actionBuyerOverviewFragmentToShoppingListFragment())
         }
     }
 
@@ -104,7 +106,7 @@ class BuyerOverviewFragment : Fragment() {
                                                              b: Boolean, _: MutableList<RequestEntity> ->
             if (b) {
                 val action =
-                    BuyerOverviewFragmentDirections.requestDetailAction(
+                    requestDetailAction(
                         request.id.toString()
                     )
                 findNavController().navigate(action)
@@ -123,7 +125,7 @@ class BuyerOverviewFragment : Fragment() {
                                                         b: Boolean, _: MutableList<RequestEntity> ->
             if (b) {
                 val action =
-                    BuyerOverviewFragmentDirections.requestDetailAction(
+                    requestDetailAction(
                         helpRequest.id.toString()
                     )
                 findNavController().navigate(action)
