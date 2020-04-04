@@ -17,7 +17,7 @@
 
         <TextView
             tools:text="Müller"
-            android:id="@+id/title"
+            android:id="@+id/textView_title"
             android:textSize="20sp"
             android:textAlignment="center"
             android:textColor="@android:color/black"
@@ -25,7 +25,8 @@
             android:layout_height="wrap_content" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/items"
+            android:id="@+id/recyclerView_articles"
+            tools:listitem="@layout/shopping_list_row"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

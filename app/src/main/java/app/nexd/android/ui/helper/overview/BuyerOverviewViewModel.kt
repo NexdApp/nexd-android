@@ -19,20 +19,21 @@ class BuyerOverviewViewModel(application: Application) : AndroidViewModel(applic
     private val reload = BehaviorSubject.create<Unit>()
 
     fun getMyAcceptedRequests(): LiveData<List<HelpRequest>> {
-        val observable = api.helpListsControllerGetUserLists(userId = null)
-            .map { helpLists ->
-                return@map helpLists.filter { it.status == HelpList.StatusEnum.ACTIVE }
-                    .maxBy { it.createdAt }
-                    ?.helpRequests
-                    .orEmpty()
-            }
-
+        val observable = reload.flatMap {
+            api.helpListsControllerGetUserLists(null)
+                .map { helpLists ->
+                    helpLists.filter { it.status == HelpList.StatusEnum.ACTIVE }
+                        .maxBy { it.createdAt }?.helpRequests
+                        .orEmpty()
+                }
+        }
         return LiveDataReactiveStreams.fromPublisher(observable.toFlowable(BackpressureStrategy.BUFFER))
     }
 
     fun getOtherOpenRequests(): LiveData<List<HelpRequest>> {
         val observable = reload.flatMap {
-            api.userControllerFindMe().flatMap { me ->
+            api.userControllerFindMe()
+                .flatMap { me ->
                 api.helpRequestsControllerGetAll(
                     null,
                     null,

@@ -157,7 +157,7 @@
         android:label="fragment_delivery"
         tools:layout="@layout/fragment_delivery" >
         <action
-            android:id="@+id/action_deliveryFragment_to_roleFragment"
+            android:id="@+id/toRoleFragment"
             app:destination="@id/roleFragment"
             app:enterAnim="@anim/fragment_close_enter"
             app:exitAnim="@anim/fragment_close_exit"

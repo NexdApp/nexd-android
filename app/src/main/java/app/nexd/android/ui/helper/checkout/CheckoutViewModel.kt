@@ -13,8 +13,7 @@ class CheckoutViewModel: ViewModel() {
     fun getShoppingList(): LiveData<HelpList> {
         return LiveDataReactiveStreams.fromPublisher(
             api.helpListsControllerGetUserLists(null)
-                .map { lists -> lists.filter { it.status == HelpList.StatusEnum.ACTIVE } }
-                .map { it.first() }
+                .map { lists -> lists.first { it.status == HelpList.StatusEnum.ACTIVE } }
                 .doOnError {
                     Log.e("Error", it.message.toString())
                 }

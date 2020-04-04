@@ -44,19 +44,16 @@ class BuyerOverviewFragment : Fragment() {
 
 
         acceptedRequestsAdapter.registerItemBinders(
-            BuyerOverviewBinder()
+            HelpRequestBinder()
         )
         nearRequestsAdapter.registerItemBinders(
-            BuyerOverviewBinder()
+            HelpRequestBinder()
         )
 
         viewModel.run {
             getMyAcceptedRequests().observe(viewLifecycleOwner, Observer { requests ->
 
-                val myAcceptedRequests = requests.filter {
-                    it.status == HelpRequest.StatusEnum.ONGOING
-                }
-                updateAcceptedRequests(myAcceptedRequests)
+                updateAcceptedRequests(requests)
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     acceptedRequestsSummary.text = Html.fromHtml(
@@ -65,7 +62,7 @@ class BuyerOverviewFragment : Fragment() {
                                 + "</b> (" +
                             getString(R.string.helper_request_overview_button_summary_details)
                                 + " " +
-                            myAcceptedRequests.sumBy { it.articles?.size ?: 0 }
+                                requests.sumBy { it.articles?.size ?: 0 }
                                 + "/ 20)",
                         Html.FROM_HTML_MODE_LEGACY
                     )
@@ -73,7 +70,7 @@ class BuyerOverviewFragment : Fragment() {
                     acceptedRequestsSummary.text = Html.fromHtml(
                         "<b>%1</b> (%2 %3 / 20)".format(getString(R.string.helper_request_overview_button_summary_title),
                             getString(R.string.helper_request_overview_button_summary_details),
-                            myAcceptedRequests.map { it.articles?.size ?: 0 }.sum())
+                            requests.map { it.articles?.size ?: 0 }.sum())
                     )
                 }
             })

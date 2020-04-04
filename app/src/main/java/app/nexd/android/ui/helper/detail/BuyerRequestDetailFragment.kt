@@ -12,6 +12,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.api.model.HelpRequest
+import app.nexd.android.api.model.HelpRequestArticle
 import kotlinx.android.synthetic.main.fragment_helper_request_detail.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
@@ -51,32 +52,23 @@ class BuyerRequestDetailFragment : Fragment() {
             BuyerRequestDetailItemBinder()
         )
 
-        viewModel.getArticles().observe(viewLifecycleOwner, Observer { articles ->
-            viewModel.requestDetails(requestId).observe(viewLifecycleOwner, Observer { request ->
-                adapter.removeAllSections()
+        viewModel.requestDetails(requestId).observe(viewLifecycleOwner, Observer { request ->
+            adapter.removeAllSections()
 
-                name.text = "%s %s".format(request.requester?.firstName, request.requester?.lastName)
+            name.text = "%s %s".format(request.requester!!.firstName, request.requester!!.lastName)
 
-                val data = request.articles?.map { requestArticle ->
-                    BuyerRequestDetailItemBinder.RequestArticleViewData(
-                        articles.first { it.id == requestArticle.articleId }.name,
-                        requestArticle
-                    )
-                }.orEmpty()
+            val list = ListSection<HelpRequestArticle>()
+            list.addAll(request.articles!!)
+            adapter.addSection(list)
 
-                val list = ListSection<BuyerRequestDetailItemBinder.RequestArticleViewData>()
-                list.addAll(data)
-                adapter.addSection(list)
+            setAccepted(request.status != HelpRequest.StatusEnum.PENDING)
 
-                setAccepted(request.status == HelpRequest.StatusEnum.ONGOING)
-
-                accept.setOnClickListener {
-                    request.id?.let {
-                        viewModel.acceptRequest(it)
-                        findNavController().popBackStack()
-                    }
+            accept.setOnClickListener {
+                request.id!!.let {
+                    viewModel.acceptRequest(it)
+                    findNavController().popBackStack()
                 }
-            })
+            }
         })
     }
 

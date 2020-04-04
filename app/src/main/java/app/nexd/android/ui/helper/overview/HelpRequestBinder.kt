@@ -5,15 +5,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import app.nexd.android.R
 import app.nexd.android.api.model.HelpRequest
-import app.nexd.android.ui.helper.overview.BuyerOverviewBinder.HelpRequestViewHolder
+import app.nexd.android.ui.helper.overview.HelpRequestBinder.HelpRequestViewHolder
 import kotlinx.android.synthetic.main.buyer_request_row.view.*
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
 
-class BuyerOverviewBinder: ItemBinder<HelpRequest, HelpRequestViewHolder>() {
+class HelpRequestBinder: ItemBinder<HelpRequest, HelpRequestViewHolder>() {
 
     class HelpRequestViewHolder(itemView: View): ItemViewHolder<HelpRequest>(itemView) {
-        private val title: TextView = itemView.title
+        private val title: TextView = itemView.textView_title
 
         init {
             itemView.setOnClickListener {

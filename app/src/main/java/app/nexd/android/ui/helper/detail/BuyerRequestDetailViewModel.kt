@@ -14,14 +14,6 @@ import java.math.BigDecimal
 
 class BuyerRequestDetailViewModel : ViewModel() {
 
-    fun getArticles(): LiveData<List<Article>> {
-        return LiveDataReactiveStreams.fromPublisher(
-            api.articlesControllerFindAll()
-                .map { it.toList() }
-                .toFlowable(BackpressureStrategy.BUFFER)
-        )
-    }
-
     fun requestDetails(requestId: BigDecimal): LiveData<HelpRequest> {
         return LiveDataReactiveStreams.fromPublisher(
             api.helpRequestsControllerGetSingleRequest(requestId)

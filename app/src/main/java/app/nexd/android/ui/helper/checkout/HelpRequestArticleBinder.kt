@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.shopping_list_row.view.*
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
 
-class CheckoutItemBinder: ItemBinder<HelpRequestArticle, CheckoutItemBinder.ViewHolder>() {
+class HelpRequestArticleBinder: ItemBinder<HelpRequestArticle, HelpRequestArticleBinder.ViewHolder>() {
 
     class ViewHolder(itemView: View): ItemViewHolder<HelpRequestArticle>(itemView) {
 
