@@ -9,6 +9,8 @@ import app.nexd.android.Preferences
 import app.nexd.android.api
 import app.nexd.android.api.model.HelpList
 import app.nexd.android.api.model.HelpRequest
+import app.nexd.android.api.model.HelpRequest.StatusEnum.ONGOING
+import app.nexd.android.api.model.HelpRequest.StatusEnum.PENDING
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Observable
 import io.reactivex.functions.BiFunction
@@ -38,8 +40,8 @@ class BuyerOverviewViewModel(application: Application) : AndroidViewModel(applic
                     null,
                     null,
                     listOf(
-                        HelpRequest.StatusEnum.PENDING.value,
-                        HelpRequest.StatusEnum.ONGOING.value // TODO remove this line
+                        PENDING.value,
+                        ONGOING.value // TODO remove this line
                     )
                 )
                     .map { requests ->
