@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import app.nexd.android.R
 import app.nexd.android.api.model.HelpRequestArticle
-import app.nexd.android.ui.helper.detail.BuyerRequestDetailItemBinder.ViewHolder
+import app.nexd.android.ui.helper.detail.HelpRequestArticleBinder.ViewHolder
 import kotlinx.android.synthetic.main.buyer_request_item_row.view.*
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
 
-class BuyerRequestDetailItemBinder: ItemBinder<HelpRequestArticle, ViewHolder>() {
+class HelpRequestArticleBinder : ItemBinder<HelpRequestArticle, ViewHolder>() {
 
     class ViewHolder(itemView: View) : ItemViewHolder<HelpRequestArticle>(itemView) {
         private val title: TextView = itemView.textView_title
@@ -22,7 +22,11 @@ class BuyerRequestDetailItemBinder: ItemBinder<HelpRequestArticle, ViewHolder>()
         }
 
         fun bind(item: HelpRequestArticle) {
-            title.text = "%1 x %2".format(item.articleCount, item.article.name)
+            title.text = itemView.context.getString(
+                R.string.helper_request_detail_article_layout,
+                item.articleCount,
+                item.article.name
+            )
         }
     }
 

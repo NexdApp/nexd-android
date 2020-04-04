@@ -1,3 +1,5 @@
 <resources>
     <string translatable="false" name="helper_request_overview_name_layout">"%1$s %2$s"</string>
+    <string translatable="false" name="helper_request_detail_article_layout">"%1$dx %2$s"</string>
+    <string translatable="false" name="helper_request_detail_name_layout">"%1$s %2$s"</string>
 </resources>

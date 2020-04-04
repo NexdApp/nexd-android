@@ -41,6 +41,7 @@
     <string name="helper_request_detail_screen_title">"To collect"</string>
     <string name="helper_request_detail_button_accepted">"Request already accepted"</string>
     <string name="helper_request_detail_button_accept">"Will do!"</string>
+    <string name="helper_request_finished_screen_title">Finished Requests</string>
     <string name="shopping_list_screen_title">"Shopping list"</string>
     <string name="shopping_list_button_title_checkout">"Checkout"</string>
     <string name="shopping_list_overview_error_title">"Error!"</string>

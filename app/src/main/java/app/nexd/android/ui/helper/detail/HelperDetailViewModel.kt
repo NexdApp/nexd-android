@@ -5,14 +5,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.ViewModel
 import app.nexd.android.api
-import app.nexd.android.api.model.Article
 import app.nexd.android.api.model.HelpList
 import app.nexd.android.api.model.HelpListCreateDto
 import app.nexd.android.api.model.HelpRequest
 import io.reactivex.BackpressureStrategy
+import io.reactivex.schedulers.Schedulers.io
 import java.math.BigDecimal
 
-class BuyerRequestDetailViewModel : ViewModel() {
+class HelperDetailViewModel : ViewModel() {
 
     fun requestDetails(requestId: BigDecimal): LiveData<HelpRequest> {
         return LiveDataReactiveStreams.fromPublisher(
@@ -26,24 +26,27 @@ class BuyerRequestDetailViewModel : ViewModel() {
     }
 
     fun acceptRequest(requestId: Long) {
-        api.helpListsControllerGetUserLists(userId = null)
-            .flatMap { lists ->
-                if (lists.isNotEmpty() && lists.any { it.status == HelpList.StatusEnum.ACTIVE }) {
-                    return@flatMap io.reactivex.Observable.just(
-                        lists.filter { list -> list.status == HelpList.StatusEnum.ACTIVE }
-                            .maxBy(HelpList::getCreatedAt))
-                } else {
-                    return@flatMap api.helpListsControllerInsertNewHelpList(
+        api.helpListsControllerGetUserLists(null)
+            .map { lists ->
+                if (lists.any { it.status == HelpList.StatusEnum.ACTIVE })
+                    lists.first { it.status == HelpList.StatusEnum.ACTIVE }
+                else
+                    HelpList()
+            }
+            .flatMap { shoppingList ->
+                if (shoppingList.id == null) { // no help list found
+                    api.helpListsControllerInsertNewHelpList(
                         HelpListCreateDto()
+                            .addHelpRequestsIdsItem(requestId)
+                    )
+                } else {
+                    api.helpListsControllerAddHelpRequestToList(
+                        shoppingList.id.toBigDecimal(),
+                        requestId.toBigDecimal()
                     )
                 }
             }
-            .flatMap {
-                api.helpListsControllerAddHelpRequestToList(
-                    it.id.toBigDecimal(),
-                    requestId.toBigDecimal()
-                )
-            }
+            .subscribeOn(io())
             .doOnError {
                 Log.e("Error", it.message.toString())
             }

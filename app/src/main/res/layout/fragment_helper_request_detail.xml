@@ -6,7 +6,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="@dimen/fragmentPadding"
     android:orientation="vertical"
-    tools:context=".ui.helper.detail.BuyerRequestDetailFragment">
+    tools:background="@drawable/background_gradient"
+    tools:context=".ui.helper.detail.HelperDetailFragment">
 
     <TextView
         android:id="@+id/name"
@@ -54,7 +55,8 @@
         android:id="@+id/accept"
         android:text="@string/helper_request_detail_button_accept"
         android:textSize="20sp"
-        style="@style/Widget.AppCompat.Button.Colored"
+        android:textAllCaps="false"
+        android:background="@drawable/rounded_button_white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
