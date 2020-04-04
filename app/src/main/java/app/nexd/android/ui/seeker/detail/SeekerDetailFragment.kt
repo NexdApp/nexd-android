@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
@@ -41,14 +43,24 @@ class SeekerDetailFragment : Fragment() {
             HelpRequestArticleBinder()
         )
 
+        viewModel.progress.observe(viewLifecycleOwner, Observer {
+            when(it) {
+                is SeekerDetailViewModel.Progress.Idle -> { }
+                is SeekerDetailViewModel.Progress.Error -> { /* TODO */ }
+                is SeekerDetailViewModel.Progress.Removed -> { findNavController().popBackStack() }
+            }
+        })
+
         viewModel.getRequest(args.requestId)
             .observe(viewLifecycleOwner, Observer { request ->
                 val articlesList = ListSection<HelpRequestArticle>()
                 articlesList.addAll(request.articles!!)
                 articlesAdapter.addSection(articlesList)
 
+                textView_additionalRequest.text = request.additionalRequest
+
                 button_delete.setOnClickListener {
-                    viewModel.cancelRequest(request.id!!)
+                    viewModel.cancelRequest(request)
                 }
             })
     }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:background="@drawable/background_gradient"
-    android:padding="@dimen/fragmentPadding">
+    android:padding="@dimen/fragmentPadding"
+    tools:background="@drawable/background_gradient">
 
     <TextView
         android:id="@+id/textView_title"
@@ -21,22 +21,22 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_delete"
-        android:src="@drawable/ic_delete_black_24dp"
-        android:tint="@android:color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
         android:clickable="true"
         android:focusable="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:src="@drawable/ic_delete_black_24dp"
+        android:tint="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView_title" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:layout_marginTop="28dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="2dp"
+        android:layout_marginTop="28dp"
         app:cardCornerRadius="@dimen/cardRadius"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -45,32 +45,32 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_articles"
-            tools:listitem="@layout/request_list_item_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp" />
+            android:layout_margin="10dp"
+            tools:listitem="@layout/request_list_item_view" />
 
     </androidx.cardview.widget.CardView>
 
     <TextView
-        app:layout_constraintBottom_toTopOf="@id/textView_additionalRequest"
-        android:textSize="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/seeker_detail_placeholder_information"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
-        android:hint="@string/seeker_detail_placeholder_information"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/textView_additionalRequest" />
+
     <TextView
         android:id="@+id/textView_additionalRequest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/text"
-        android:paddingHorizontal="10dp"
         android:textColor="@android:color/white"
-        tools:text="So schnell wie nur möglich!!"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="So schnell wie nur möglich!!" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,7 +31,7 @@ class HelpRequestArticleBinder : ItemBinder<HelpRequestArticle, HelpRequestArtic
         holder: ViewModel,
         item: HelpRequestArticle
     ) {
-        holder.title.text = item.article.name
+        holder.title.text = """${item.articleCount} x ${item.article.name}"""
     }
 
     override fun canBindData(item: Any): Boolean {
