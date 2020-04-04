@@ -57,12 +57,12 @@ class BuyerRequestDetailFragment : Fragment() {
 
                 name.text = "%s %s".format(request.requester?.firstName, request.requester?.lastName)
 
-                val data = request.articles.map { requestArticle ->
+                val data = request.articles?.map { requestArticle ->
                     BuyerRequestDetailItemBinder.RequestArticleViewData(
-                        articles.first { it.id.toBigDecimal() == requestArticle.articleId }.name,
+                        articles.first { it.id == requestArticle.articleId }.name,
                         requestArticle
                     )
-                }
+                }.orEmpty()
 
                 val list = ListSection<BuyerRequestDetailItemBinder.RequestArticleViewData>()
                 list.addAll(data)
@@ -71,8 +71,10 @@ class BuyerRequestDetailFragment : Fragment() {
                 setAccepted(request.status == HelpRequest.StatusEnum.ONGOING)
 
                 accept.setOnClickListener {
-                    viewModel.acceptRequest(request.id.toBigDecimal())
-                    findNavController().popBackStack()
+                    request.id?.let {
+                        viewModel.acceptRequest(it)
+                        findNavController().popBackStack()
+                    }
                 }
             })
         })
