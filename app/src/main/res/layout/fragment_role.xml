@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_margin="10dp" >
+        android:layout_marginHorizontal="10dp" >
 
     <TextView
         android:layout_width="match_parent"
@@ -47,7 +47,8 @@
 
     <View
         android:background="@color/colorPrimaryDark"
-        android:layout_marginVertical="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="40dp"
         android:layout_width="match_parent"
         android:layout_height="1dp" />
 
@@ -64,7 +65,7 @@
         android:textColor="@color/colorPrimaryDark"
         android:text="@string/role_selection_seeker"
         android:textSize="30sp"
-        android:layout_marginTop="40dp"
+        android:drawableTint="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -79,7 +80,8 @@
         android:textColor="@color/colorPrimaryDark"
         android:text="@string/role_selection_helper"
         android:textSize="30sp"
-        android:layout_marginTop="40dp"
+        android:drawableTint="@android:color/white"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

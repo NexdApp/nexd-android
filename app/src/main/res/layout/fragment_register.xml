@@ -120,6 +120,7 @@
             android:text="@string/registration_button_title_send"
             android:textSize="25sp"
             android:layout_marginTop="40dp"
+            android:drawableTint="@android:color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
