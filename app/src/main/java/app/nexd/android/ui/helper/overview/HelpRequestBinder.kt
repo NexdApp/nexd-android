@@ -22,7 +22,9 @@ class HelpRequestBinder: ItemBinder<HelpRequest, HelpRequestViewHolder>() {
         }
 
         fun bind(request: HelpRequest) {
-            title.text = "%1 %2".format(request.requester?.firstName.toString(), request.requester?.lastName)
+            title.text = itemView.context.getString(R.string.helper_request_overview_name_layout,
+                request.requester!!.firstName,
+                request.requester!!.lastName)
         }
 
 

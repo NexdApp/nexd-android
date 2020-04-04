@@ -37,7 +37,7 @@ class HelperOverviewViewModel(application: Application) : AndroidViewModel(appli
                 api.helpRequestsControllerGetAll(
                     null,
                     null,
-                    null,
+                    "true",
                     listOf(
                         HelpRequest.StatusEnum.PENDING.value,
                         HelpRequest.StatusEnum.ONGOING.value // TODO remove this line
