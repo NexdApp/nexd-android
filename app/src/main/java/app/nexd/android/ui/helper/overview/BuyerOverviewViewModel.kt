@@ -33,8 +33,14 @@ class BuyerOverviewViewModel(application: Application) : AndroidViewModel(applic
     fun getOtherOpenRequests(): LiveData<List<HelpRequest>> {
         val observable = reload.flatMap {
             api.userControllerFindMe().flatMap { me ->
-                api.helpRequestsControllerGetAll(null, null, includeRequester = null, status = mutableListOf(HelpRequest.StatusEnum.PENDING.value))
-                    .map { it.filter { it.requesterId != me.id } }
+                api.helpRequestsControllerGetAll(
+                    null,
+                    null,
+                    includeRequester = null,
+                    status = mutableListOf(HelpRequest.StatusEnum.PENDING.value))
+                    .map { requests ->
+                        requests.filter { it.requesterId != me.id }
+                    }
             }
         }
         return LiveDataReactiveStreams.fromPublisher(observable.toFlowable(BackpressureStrategy.BUFFER))

@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
-import app.nexd.android.api.model.RequestArticle
+import app.nexd.android.api.model.HelpRequestArticle
 import app.nexd.android.ui.seeker.overview.HelpRequestItemBinder
 import kotlinx.android.synthetic.main.fragment_seeker_detail.*
 import mva2.adapter.ListSection
@@ -37,25 +37,20 @@ class SeekerDetailFragment : Fragment() {
         recyclerView_articles.adapter = articlesAdapter
         recyclerView_articles.layoutManager = LinearLayoutManager(context)
 
+        articlesAdapter.registerItemBinders(
+            HelpRequestItemBinder()
+        )
 
-        with(viewModel) {
-            getArticles().observe(viewLifecycleOwner, Observer { articles ->
-                articlesAdapter.registerItemBinders(
-                    HelpRequestItemBinder(articles)
-                )
+        viewModel.getRequest(args.requestId)
+            .observe(viewLifecycleOwner, Observer { request ->
+                val articlesList = ListSection<HelpRequestArticle>()
+                articlesList.addAll(request.articles!!)
+                articlesAdapter.addSection(articlesList)
 
-                getRequest(args.requestId)
-                    .observe(viewLifecycleOwner, Observer { request ->
-                        val articlesList = ListSection<RequestArticle>()
-                        articlesList.addAll(request.articles)
-                        articlesAdapter.addSection(articlesList)
-
-                        button_delete.setOnClickListener {
-                            viewModel.cancelRequest(request.id)
-                        }
-                    })
+                button_delete.setOnClickListener {
+                    viewModel.cancelRequest(request.id!!)
+                }
             })
-        }
     }
 
 }

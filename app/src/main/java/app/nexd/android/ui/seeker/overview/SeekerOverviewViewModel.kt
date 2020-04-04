@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.ViewModel
 import app.nexd.android.api
-import app.nexd.android.api.model.Article
 import app.nexd.android.api.model.HelpRequest
 import io.reactivex.BackpressureStrategy
 
@@ -19,12 +18,6 @@ class SeekerOverviewViewModel : ViewModel() {
                 listOf("pending", "ongoing")
             )
                 .toFlowable(BackpressureStrategy.BUFFER)
-        )
-    }
-
-    fun getArticles(): LiveData<List<Article>> {
-        return LiveDataReactiveStreams.fromPublisher(
-            api.articlesControllerFindAll().toFlowable(BackpressureStrategy.BUFFER)
         )
     }
 

@@ -4,26 +4,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.ViewModel
 import app.nexd.android.api
-import app.nexd.android.api.model.Article
-import app.nexd.android.api.model.RequestEntity
+import app.nexd.android.api.model.HelpRequest
 import io.reactivex.BackpressureStrategy
 
 class SeekerDetailViewModel: ViewModel() {
 
-    fun getArticles() : LiveData<List<Article>> {
+    fun getRequest(id: Long): LiveData<HelpRequest> {
         return LiveDataReactiveStreams.fromPublisher(
-            api.articlesControllerFindAll().toFlowable(BackpressureStrategy.BUFFER)
-        )
-    }
-
-    fun getRequest(id: Int): LiveData<RequestEntity> {
-        return LiveDataReactiveStreams.fromPublisher(
-            api.requestControllerGetSingleRequest(id.toBigDecimal())
-                .onErrorReturnItem(RequestEntity()) // TODO return state
+            api.helpRequestsControllerGetSingleRequest(id.toBigDecimal())
+                .onErrorReturnItem(HelpRequest()) // TODO return state
                 .toFlowable(BackpressureStrategy.LATEST))
     }
 
-    fun cancelRequest(requestId: Int) {
+    fun cancelRequest(requestId: Long) {
         // api.
         // api.request
     }

@@ -102,7 +102,7 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(
                     onNext = { responseTokenDto ->
-
+                        api.setBearerToken(responseTokenDto.accessToken)
                         with(getApplication<Application>().applicationContext) {
                             Preferences.setToken(this, responseTokenDto.accessToken)
                             // TODO: save user id?
