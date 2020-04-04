@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
-import app.nexd.android.api.model.RequestEntity
+import app.nexd.android.api.model.HelpRequest
 import kotlinx.android.synthetic.main.fragment_seeker_overview.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
@@ -37,26 +37,24 @@ class SeekerOverviewFragment : Fragment() {
         adapter = MultiViewAdapter()
         recyclerView_articles.adapter = adapter
 
-        viewModel.getArticles().observe(viewLifecycleOwner, Observer { articles ->
-            adapter.registerItemBinders(
-                HelpRequestBinder(articles)
-            )
+        adapter.registerItemBinders(
+            HelpRequestBinder()
+        )
 
-            viewModel.getHelpRequests().observe(viewLifecycleOwner, Observer { requests ->
-                adapter.removeAllSections()
+        viewModel.getHelpRequests().observe(viewLifecycleOwner, Observer { requests ->
+            adapter.removeAllSections()
 
-                val requestsSection = ListSection<RequestEntity>()
-                requestsSection.addAll(requests)
-                adapter.addSection(requestsSection)
+            val requestsSection = ListSection<HelpRequest>()
+            requestsSection.addAll(requests)
+            adapter.addSection(requestsSection)
 
-                requestsSection.setOnSelectionChangedListener { request, isSelected, _ ->
-                    if (isSelected)
-                        findNavController().navigate(
-                            SeekerOverviewFragmentDirections
-                                .toSeekerDetailFragment(request.id)
-                        )
-                }
-            })
+            requestsSection.setOnSelectionChangedListener { request, isSelected, _ ->
+                if (isSelected)
+                    findNavController().navigate(
+                        SeekerOverviewFragmentDirections
+                            .toSeekerDetailFragment(request.id!!)
+                    )
+            }
         })
 
         button_create_new_help_request.setOnClickListener {

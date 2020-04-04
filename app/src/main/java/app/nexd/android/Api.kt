@@ -135,8 +135,8 @@ class Api(private val apiClient: ApiClient = ApiClient("bearer")) :
         userId: String?,
         zipCode: MutableList<String>?,
         includeRequester: String?,
-        status: MutableList<String>?
-    ): Observable<MutableList<HelpRequest>> {
+        status: List<String>?
+    ): Observable<List<HelpRequest>> {
         return helpRequestsApi.helpRequestsControllerGetAll(userId, zipCode, includeRequester, status).subscribeOn(Schedulers.io())
     }
 

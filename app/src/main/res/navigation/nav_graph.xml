@@ -171,6 +171,6 @@
         tools:layout="@layout/fragment_seeker_detail" >
         <argument
             android:name="requestId"
-            app:argType="integer" />
+            app:argType="long" />
     </fragment>
 </navigation>
