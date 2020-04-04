@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
-import app.nexd.android.api.model.RequestEntity
+import app.nexd.android.api.model.HelpRequest
 import kotlinx.android.synthetic.main.fragment_helper_request_detail.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
@@ -68,7 +68,7 @@ class BuyerRequestDetailFragment : Fragment() {
                 list.addAll(data)
                 adapter.addSection(list)
 
-                setAccepted(request.status == RequestEntity.StatusEnum.ONGOING)
+                setAccepted(request.status == HelpRequest.StatusEnum.ONGOING)
 
                 accept.setOnClickListener {
                     viewModel.acceptRequest(request.id.toBigDecimal())

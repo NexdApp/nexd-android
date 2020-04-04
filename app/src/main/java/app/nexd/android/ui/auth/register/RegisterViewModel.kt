@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import app.nexd.android.Api
 import app.nexd.android.Preferences
 import app.nexd.android.R
-import app.nexd.android.api.model.RegisterPayload
+import app.nexd.android.api.model.RegisterDto
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
@@ -93,12 +93,11 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
 
         if (success) {
             val disposable = api.authControllerRegister(
-                RegisterPayload()
+                RegisterDto()
                     .firstName(firstName.value)
                     .lastName(lastName.value)
                     .email(email.value)
                     .password(password.value)
-                    .role(RegisterPayload.RoleEnum.NONE)
             )
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(
@@ -106,7 +105,7 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
 
                         with(getApplication<Application>().applicationContext) {
                             Preferences.setToken(this, responseTokenDto.accessToken)
-                            Preferences.setUserId(this, responseTokenDto.id)
+                            // TODO: save user id?
                         }
 
                         val registrationData = RegistrationData(

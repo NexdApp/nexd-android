@@ -25,10 +25,10 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * RegisterPayload
+ * RegisterDto
  */
 
-public class RegisterPayload {
+public class RegisterDto {
   public static final String SERIALIZED_NAME_EMAIL = "email";
   @SerializedName(SERIALIZED_NAME_EMAIL)
   private String email;
@@ -41,65 +41,12 @@ public class RegisterPayload {
   @SerializedName(SERIALIZED_NAME_LAST_NAME)
   private String lastName;
 
-  /**
-   * Gets or Sets role
-   */
-  @JsonAdapter(RoleEnum.Adapter.class)
-  public enum RoleEnum {
-    HELPER("helper"),
-    
-    SEEKER("seeker"),
-    
-    NONE("none");
-
-    private String value;
-
-    RoleEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static RoleEnum fromValue(String value) {
-      for (RoleEnum b : RoleEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<RoleEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final RoleEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public RoleEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return RoleEnum.fromValue(value);
-      }
-    }
-  }
-
-  public static final String SERIALIZED_NAME_ROLE = "role";
-  @SerializedName(SERIALIZED_NAME_ROLE)
-  private RoleEnum role = RoleEnum.NONE;
-
   public static final String SERIALIZED_NAME_PASSWORD = "password";
   @SerializedName(SERIALIZED_NAME_PASSWORD)
   private String password;
 
 
-  public RegisterPayload email(String email) {
+  public RegisterDto email(String email) {
     
     this.email = email;
     return this;
@@ -121,7 +68,7 @@ public class RegisterPayload {
   }
 
 
-  public RegisterPayload firstName(String firstName) {
+  public RegisterDto firstName(String firstName) {
     
     this.firstName = firstName;
     return this;
@@ -143,7 +90,7 @@ public class RegisterPayload {
   }
 
 
-  public RegisterPayload lastName(String lastName) {
+  public RegisterDto lastName(String lastName) {
     
     this.lastName = lastName;
     return this;
@@ -165,30 +112,7 @@ public class RegisterPayload {
   }
 
 
-  public RegisterPayload role(RoleEnum role) {
-    
-    this.role = role;
-    return this;
-  }
-
-   /**
-   * Get role
-   * @return role
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public RoleEnum getRole() {
-    return role;
-  }
-
-
-  public void setRole(RoleEnum role) {
-    this.role = role;
-  }
-
-
-  public RegisterPayload password(String password) {
+  public RegisterDto password(String password) {
     
     this.password = password;
     return this;
@@ -218,28 +142,26 @@ public class RegisterPayload {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    RegisterPayload registerPayload = (RegisterPayload) o;
-    return Objects.equals(this.email, registerPayload.email) &&
-        Objects.equals(this.firstName, registerPayload.firstName) &&
-        Objects.equals(this.lastName, registerPayload.lastName) &&
-        Objects.equals(this.role, registerPayload.role) &&
-        Objects.equals(this.password, registerPayload.password);
+    RegisterDto registerDto = (RegisterDto) o;
+    return Objects.equals(this.email, registerDto.email) &&
+        Objects.equals(this.firstName, registerDto.firstName) &&
+        Objects.equals(this.lastName, registerDto.lastName) &&
+        Objects.equals(this.password, registerDto.password);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(email, firstName, lastName, role, password);
+    return Objects.hash(email, firstName, lastName, password);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class RegisterPayload {\n");
+    sb.append("class RegisterDto {\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
-    sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("}");
     return sb.toString();

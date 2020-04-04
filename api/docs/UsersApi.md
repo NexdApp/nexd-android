@@ -1,22 +1,22 @@
-# RequestApi
+# UsersApi
 
-All URIs are relative to *http://localhost:3001*
+All URIs are relative to *https://nexd-backend-staging.herokuapp.com:443/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**requestControllerGetAll**](RequestApi.md#requestControllerGetAll) | **GET** api/request | 
-[**requestControllerGetSingleRequest**](RequestApi.md#requestControllerGetSingleRequest) | **GET** api/request/{requestId} | 
-[**requestControllerInsertRequestWithArticles**](RequestApi.md#requestControllerInsertRequestWithArticles) | **POST** api/request | 
-[**requestControllerMarkArticleAsDone**](RequestApi.md#requestControllerMarkArticleAsDone) | **PUT** api/request/{requestId}/{articleId} | 
-[**requestControllerUpdateRequest**](RequestApi.md#requestControllerUpdateRequest) | **PUT** api/request/{requestId} | 
+[**userControllerFindMe**](UsersApi.md#userControllerFindMe) | **GET** users/me | Get user profile of the requesting user
+[**userControllerFindOne**](UsersApi.md#userControllerFindOne) | **GET** users/{userId} | Get user profile of a specific user
+[**userControllerGetAll**](UsersApi.md#userControllerGetAll) | **GET** users | Get all users
+[**userControllerUpdate**](UsersApi.md#userControllerUpdate) | **PUT** users/{userId} | Update profile of a specific user
+[**userControllerUpdateMyself**](UsersApi.md#userControllerUpdateMyself) | **PUT** users/me | Update profile of the requesting user
 
 
 
-## requestControllerGetAll
+## userControllerFindMe
 
-> List&lt;RequestEntity&gt; requestControllerGetAll(onlyMine, zipCode)
+> User userControllerFindMe()
 
-
+Get user profile of the requesting user
 
 ### Example
 
@@ -27,25 +27,23 @@ import app.nexd.android.ApiException;
 import app.nexd.android.Configuration;
 import app.nexd.android.auth.*;
 import app.nexd.android.models.*;
-import app.nexd.android.api.RequestApi;
+import app.nexd.android.api.UsersApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost:3001");
+        defaultClient.setBasePath("https://nexd-backend-staging.herokuapp.com:443/api/v1");
         
         // Configure HTTP bearer authorization: bearer
         HttpBearerAuth bearer = (HttpBearerAuth) defaultClient.getAuthentication("bearer");
         bearer.setBearerToken("BEARER TOKEN");
 
-        RequestApi apiInstance = new RequestApi(defaultClient);
-        String onlyMine = "onlyMine_example"; // String | if \"true\", only the requesting user requests will be replied.
-        String zipCode = "zipCode_example"; // String | if set, only requests within the same zip code will be replied
+        UsersApi apiInstance = new UsersApi(defaultClient);
         try {
-            List<RequestEntity> result = apiInstance.requestControllerGetAll(onlyMine, zipCode);
+            User result = apiInstance.userControllerFindMe();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling RequestApi#requestControllerGetAll");
+            System.err.println("Exception when calling UsersApi#userControllerFindMe");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -57,15 +55,11 @@ public class Example {
 
 ### Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **onlyMine** | **String**| if \&quot;true\&quot;, only the requesting user requests will be replied. | [optional]
- **zipCode** | **String**| if set, only requests within the same zip code will be replied | [optional]
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**List&lt;RequestEntity&gt;**](RequestEntity.md)
+[**User**](User.md)
 
 ### Authorization
 
@@ -80,14 +74,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful |  -  |
-| **401** | Unauthorized |  -  |
+| **400** | Bad Request |  -  |
+| **404** | User not found |  -  |
 
 
-## requestControllerGetSingleRequest
+## userControllerFindOne
 
-> RequestEntity requestControllerGetSingleRequest(requestId)
+> User userControllerFindOne(userId)
 
-
+Get user profile of a specific user
 
 ### Example
 
@@ -98,24 +93,24 @@ import app.nexd.android.ApiException;
 import app.nexd.android.Configuration;
 import app.nexd.android.auth.*;
 import app.nexd.android.models.*;
-import app.nexd.android.api.RequestApi;
+import app.nexd.android.api.UsersApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost:3001");
+        defaultClient.setBasePath("https://nexd-backend-staging.herokuapp.com:443/api/v1");
         
         // Configure HTTP bearer authorization: bearer
         HttpBearerAuth bearer = (HttpBearerAuth) defaultClient.getAuthentication("bearer");
         bearer.setBearerToken("BEARER TOKEN");
 
-        RequestApi apiInstance = new RequestApi(defaultClient);
-        BigDecimal requestId = new BigDecimal(); // BigDecimal | 
+        UsersApi apiInstance = new UsersApi(defaultClient);
+        String userId = "userId_example"; // String | user id
         try {
-            RequestEntity result = apiInstance.requestControllerGetSingleRequest(requestId);
+            User result = apiInstance.userControllerFindOne(userId);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling RequestApi#requestControllerGetSingleRequest");
+            System.err.println("Exception when calling UsersApi#userControllerFindOne");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -130,11 +125,11 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **requestId** | **BigDecimal**|  |
+ **userId** | **String**| user id |
 
 ### Return type
 
-[**RequestEntity**](RequestEntity.md)
+[**User**](User.md)
 
 ### Authorization
 
@@ -149,16 +144,15 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **404** | Request not found |  -  |
+| **400** | Bad Request |  -  |
+| **404** | User not found |  -  |
 
 
-## requestControllerInsertRequestWithArticles
+## userControllerGetAll
 
-> RequestEntity requestControllerInsertRequestWithArticles(requestFormDto)
+> List&lt;User&gt; userControllerGetAll()
 
-
+Get all users
 
 ### Example
 
@@ -169,24 +163,23 @@ import app.nexd.android.ApiException;
 import app.nexd.android.Configuration;
 import app.nexd.android.auth.*;
 import app.nexd.android.models.*;
-import app.nexd.android.api.RequestApi;
+import app.nexd.android.api.UsersApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost:3001");
+        defaultClient.setBasePath("https://nexd-backend-staging.herokuapp.com:443/api/v1");
         
         // Configure HTTP bearer authorization: bearer
         HttpBearerAuth bearer = (HttpBearerAuth) defaultClient.getAuthentication("bearer");
         bearer.setBearerToken("BEARER TOKEN");
 
-        RequestApi apiInstance = new RequestApi(defaultClient);
-        RequestFormDto requestFormDto = new RequestFormDto(); // RequestFormDto | 
+        UsersApi apiInstance = new UsersApi(defaultClient);
         try {
-            RequestEntity result = apiInstance.requestControllerInsertRequestWithArticles(requestFormDto);
+            List<User> result = apiInstance.userControllerGetAll();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling RequestApi#requestControllerInsertRequestWithArticles");
+            System.err.println("Exception when calling UsersApi#userControllerGetAll");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -198,14 +191,11 @@ public class Example {
 
 ### Parameters
 
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **requestFormDto** | [**RequestFormDto**](RequestFormDto.md)|  |
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**RequestEntity**](RequestEntity.md)
+[**List&lt;User&gt;**](User.md)
 
 ### Authorization
 
@@ -213,21 +203,20 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | Add a complete request including articles. |  -  |
-| **401** | Unauthorized |  -  |
+| **200** | Successful |  -  |
 
 
-## requestControllerMarkArticleAsDone
+## userControllerUpdate
 
-> RequestEntity requestControllerMarkArticleAsDone(requestId, articleId, requestArticleStatusDto)
+> User userControllerUpdate(userId, updateUserDto)
 
-
+Update profile of a specific user
 
 ### Example
 
@@ -238,26 +227,25 @@ import app.nexd.android.ApiException;
 import app.nexd.android.Configuration;
 import app.nexd.android.auth.*;
 import app.nexd.android.models.*;
-import app.nexd.android.api.RequestApi;
+import app.nexd.android.api.UsersApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost:3001");
+        defaultClient.setBasePath("https://nexd-backend-staging.herokuapp.com:443/api/v1");
         
         // Configure HTTP bearer authorization: bearer
         HttpBearerAuth bearer = (HttpBearerAuth) defaultClient.getAuthentication("bearer");
         bearer.setBearerToken("BEARER TOKEN");
 
-        RequestApi apiInstance = new RequestApi(defaultClient);
-        BigDecimal requestId = new BigDecimal(); // BigDecimal | 
-        BigDecimal articleId = new BigDecimal(); // BigDecimal | 
-        RequestArticleStatusDto requestArticleStatusDto = new RequestArticleStatusDto(); // RequestArticleStatusDto | 
+        UsersApi apiInstance = new UsersApi(defaultClient);
+        String userId = "userId_example"; // String | user id
+        UpdateUserDto updateUserDto = new UpdateUserDto(); // UpdateUserDto | 
         try {
-            RequestEntity result = apiInstance.requestControllerMarkArticleAsDone(requestId, articleId, requestArticleStatusDto);
+            User result = apiInstance.userControllerUpdate(userId, updateUserDto);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling RequestApi#requestControllerMarkArticleAsDone");
+            System.err.println("Exception when calling UsersApi#userControllerUpdate");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -272,13 +260,12 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **requestId** | **BigDecimal**|  |
- **articleId** | **BigDecimal**|  |
- **requestArticleStatusDto** | [**RequestArticleStatusDto**](RequestArticleStatusDto.md)|  |
+ **userId** | **String**| user id |
+ **updateUserDto** | [**UpdateUserDto**](UpdateUserDto.md)|  |
 
 ### Return type
 
-[**RequestEntity**](RequestEntity.md)
+[**User**](User.md)
 
 ### Authorization
 
@@ -293,16 +280,16 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **404** | Request not found |  -  |
+| **400** | Bad Request |  -  |
+| **403** | Forbidden |  -  |
+| **404** | User not found |  -  |
 
 
-## requestControllerUpdateRequest
+## userControllerUpdateMyself
 
-> RequestEntity requestControllerUpdateRequest(requestId, requestFormDto)
+> User userControllerUpdateMyself(updateUserDto)
 
-
+Update profile of the requesting user
 
 ### Example
 
@@ -313,25 +300,24 @@ import app.nexd.android.ApiException;
 import app.nexd.android.Configuration;
 import app.nexd.android.auth.*;
 import app.nexd.android.models.*;
-import app.nexd.android.api.RequestApi;
+import app.nexd.android.api.UsersApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost:3001");
+        defaultClient.setBasePath("https://nexd-backend-staging.herokuapp.com:443/api/v1");
         
         // Configure HTTP bearer authorization: bearer
         HttpBearerAuth bearer = (HttpBearerAuth) defaultClient.getAuthentication("bearer");
         bearer.setBearerToken("BEARER TOKEN");
 
-        RequestApi apiInstance = new RequestApi(defaultClient);
-        BigDecimal requestId = new BigDecimal(); // BigDecimal | 
-        RequestFormDto requestFormDto = new RequestFormDto(); // RequestFormDto | 
+        UsersApi apiInstance = new UsersApi(defaultClient);
+        UpdateUserDto updateUserDto = new UpdateUserDto(); // UpdateUserDto | 
         try {
-            RequestEntity result = apiInstance.requestControllerUpdateRequest(requestId, requestFormDto);
+            User result = apiInstance.userControllerUpdateMyself(updateUserDto);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling RequestApi#requestControllerUpdateRequest");
+            System.err.println("Exception when calling UsersApi#userControllerUpdateMyself");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -346,12 +332,11 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **requestId** | **BigDecimal**|  |
- **requestFormDto** | [**RequestFormDto**](RequestFormDto.md)|  |
+ **updateUserDto** | [**UpdateUserDto**](UpdateUserDto.md)|  |
 
 ### Return type
 
-[**RequestEntity**](RequestEntity.md)
+[**User**](User.md)
 
 ### Authorization
 
@@ -366,7 +351,6 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Successful |  -  |
-| **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
-| **404** | Request not found |  -  |
+| **400** | Bad Request |  -  |
+| **403** | Forbidden |  -  |
 

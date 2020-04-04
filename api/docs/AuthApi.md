@@ -1,90 +1,20 @@
-# UserApi
+# AuthApi
 
-All URIs are relative to *http://localhost:3001*
+All URIs are relative to *https://nexd-backend-staging.herokuapp.com:443/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**userControllerFindOne**](UserApi.md#userControllerFindOne) | **GET** api/user/{id} | 
-[**userControllerGetAll**](UserApi.md#userControllerGetAll) | **GET** api/user | 
-[**userControllerUpdate**](UserApi.md#userControllerUpdate) | **PUT** api/user/{id} | 
+[**authControllerLogin**](AuthApi.md#authControllerLogin) | **POST** auth/login | Login by email and password 
+[**authControllerRefreshToken**](AuthApi.md#authControllerRefreshToken) | **POST** auth/refresh | Not yet implemented, token refresh
+[**authControllerRegister**](AuthApi.md#authControllerRegister) | **POST** auth/register | Register with email and password 
 
 
 
-## userControllerFindOne
+## authControllerLogin
 
-> User userControllerFindOne(id)
+> TokenDto authControllerLogin()
 
-
-
-### Example
-
-```java
-// Import classes:
-import app.nexd.android.ApiClient;
-import app.nexd.android.ApiException;
-import app.nexd.android.Configuration;
-import app.nexd.android.auth.*;
-import app.nexd.android.models.*;
-import app.nexd.android.api.UserApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost:3001");
-        
-        // Configure HTTP bearer authorization: bearer
-        HttpBearerAuth bearer = (HttpBearerAuth) defaultClient.getAuthentication("bearer");
-        bearer.setBearerToken("BEARER TOKEN");
-
-        UserApi apiInstance = new UserApi(defaultClient);
-        Integer id = 56; // Integer | user id
-        try {
-            User result = apiInstance.userControllerFindOne(id);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling UserApi#userControllerFindOne");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **Integer**| user id |
-
-### Return type
-
-[**User**](User.md)
-
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Successful |  -  |
-| **400** | Bad Request |  -  |
-| **404** | User not found |  -  |
-
-
-## userControllerGetAll
-
-> List&lt;User&gt; userControllerGetAll()
-
-
+Login by email and password 
 
 ### Example
 
@@ -93,25 +23,20 @@ Name | Type | Description  | Notes
 import app.nexd.android.ApiClient;
 import app.nexd.android.ApiException;
 import app.nexd.android.Configuration;
-import app.nexd.android.auth.*;
 import app.nexd.android.models.*;
-import app.nexd.android.api.UserApi;
+import app.nexd.android.api.AuthApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost:3001");
-        
-        // Configure HTTP bearer authorization: bearer
-        HttpBearerAuth bearer = (HttpBearerAuth) defaultClient.getAuthentication("bearer");
-        bearer.setBearerToken("BEARER TOKEN");
+        defaultClient.setBasePath("https://nexd-backend-staging.herokuapp.com:443/api/v1");
 
-        UserApi apiInstance = new UserApi(defaultClient);
+        AuthApi apiInstance = new AuthApi(defaultClient);
         try {
-            List<User> result = apiInstance.userControllerGetAll();
+            TokenDto result = apiInstance.authControllerLogin();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling UserApi#userControllerGetAll");
+            System.err.println("Exception when calling AuthApi#authControllerLogin");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -127,11 +52,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List&lt;User&gt;**](User.md)
+[**TokenDto**](TokenDto.md)
 
 ### Authorization
 
-[bearer](../README.md#bearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -141,14 +66,15 @@ This endpoint does not need any parameter.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful |  -  |
+| **200** | Successful Login |  -  |
+| **201** |  |  -  |
 
 
-## userControllerUpdate
+## authControllerRefreshToken
 
-> User userControllerUpdate(id, updateUserDto)
+> TokenDto authControllerRefreshToken(registerDto)
 
-
+Not yet implemented, token refresh
 
 ### Example
 
@@ -157,27 +83,21 @@ This endpoint does not need any parameter.
 import app.nexd.android.ApiClient;
 import app.nexd.android.ApiException;
 import app.nexd.android.Configuration;
-import app.nexd.android.auth.*;
 import app.nexd.android.models.*;
-import app.nexd.android.api.UserApi;
+import app.nexd.android.api.AuthApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost:3001");
-        
-        // Configure HTTP bearer authorization: bearer
-        HttpBearerAuth bearer = (HttpBearerAuth) defaultClient.getAuthentication("bearer");
-        bearer.setBearerToken("BEARER TOKEN");
+        defaultClient.setBasePath("https://nexd-backend-staging.herokuapp.com:443/api/v1");
 
-        UserApi apiInstance = new UserApi(defaultClient);
-        Integer id = 56; // Integer | user id
-        UpdateUserDto updateUserDto = new UpdateUserDto(); // UpdateUserDto | 
+        AuthApi apiInstance = new AuthApi(defaultClient);
+        RegisterDto registerDto = new RegisterDto(); // RegisterDto | 
         try {
-            User result = apiInstance.userControllerUpdate(id, updateUserDto);
+            TokenDto result = apiInstance.authControllerRefreshToken(registerDto);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling UserApi#userControllerUpdate");
+            System.err.println("Exception when calling AuthApi#authControllerRefreshToken");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -192,16 +112,15 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| user id |
- **updateUserDto** | [**UpdateUserDto**](UpdateUserDto.md)|  |
+ **registerDto** | [**RegisterDto**](RegisterDto.md)|  |
 
 ### Return type
 
-[**User**](User.md)
+[**TokenDto**](TokenDto.md)
 
 ### Authorization
 
-[bearer](../README.md#bearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -211,8 +130,71 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful |  -  |
+| **201** | Successful token refresh |  -  |
 | **400** | Bad Request |  -  |
-| **403** | Forbidden |  -  |
-| **404** | User not found |  -  |
+
+
+## authControllerRegister
+
+> TokenDto authControllerRegister(registerDto)
+
+Register with email and password 
+
+### Example
+
+```java
+// Import classes:
+import app.nexd.android.ApiClient;
+import app.nexd.android.ApiException;
+import app.nexd.android.Configuration;
+import app.nexd.android.models.*;
+import app.nexd.android.api.AuthApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://nexd-backend-staging.herokuapp.com:443/api/v1");
+
+        AuthApi apiInstance = new AuthApi(defaultClient);
+        RegisterDto registerDto = new RegisterDto(); // RegisterDto | 
+        try {
+            TokenDto result = apiInstance.authControllerRegister(registerDto);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AuthApi#authControllerRegister");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **registerDto** | [**RegisterDto**](RegisterDto.md)|  |
+
+### Return type
+
+[**TokenDto**](TokenDto.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Successful Registration |  -  |
+| **400** | Bad Request |  -  |
+| **406** | Already exists |  -  |
 

@@ -4,7 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import app.nexd.android.R
-import app.nexd.android.api.model.RequestArticle
+import app.nexd.android.api.model.HelpRequestArticle
 import app.nexd.android.ui.helper.detail.BuyerRequestDetailItemBinder.RequestItemViewHolder
 import kotlinx.android.synthetic.main.buyer_request_item_row.view.*
 import mva2.adapter.ItemBinder
@@ -14,7 +14,7 @@ class BuyerRequestDetailItemBinder: ItemBinder<BuyerRequestDetailItemBinder.Requ
 
     data class RequestArticleViewData(
         val name: String,
-        val requestArticle: RequestArticle
+        val requestArticle: HelpRequestArticle
     )
 
     class RequestItemViewHolder(itemView: View) : ItemViewHolder<RequestArticleViewData>(itemView) {

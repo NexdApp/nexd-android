@@ -45,6 +45,10 @@ public class User {
   @SerializedName(SERIALIZED_NAME_CITY)
   private String city;
 
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private String id;
+
   public static final String SERIALIZED_NAME_FIRST_NAME = "firstName";
   @SerializedName(SERIALIZED_NAME_FIRST_NAME)
   private String firstName;
@@ -57,13 +61,66 @@ public class User {
   @SerializedName(SERIALIZED_NAME_EMAIL)
   private String email;
 
+  /**
+   * Gets or Sets role
+   */
+  @JsonAdapter(RoleEnum.Adapter.class)
+  public enum RoleEnum {
+    HELPER("helper"),
+    
+    SEEKER("seeker"),
+    
+    NONE("none");
+
+    private String value;
+
+    RoleEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static RoleEnum fromValue(String value) {
+      for (RoleEnum b : RoleEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<RoleEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final RoleEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public RoleEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return RoleEnum.fromValue(value);
+      }
+    }
+  }
+
   public static final String SERIALIZED_NAME_ROLE = "role";
   @SerializedName(SERIALIZED_NAME_ROLE)
-  private String role;
+  private RoleEnum role = RoleEnum.NONE;
 
   public static final String SERIALIZED_NAME_TELEPHONE = "telephone";
   @SerializedName(SERIALIZED_NAME_TELEPHONE)
   private String telephone;
+
+  public static final String SERIALIZED_NAME_PASSWORD = "password";
+  @SerializedName(SERIALIZED_NAME_PASSWORD)
+  private String password;
 
 
   public User street(String street) {
@@ -158,6 +215,28 @@ public class User {
   }
 
 
+  public User id(String id) {
+    
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * Get id
+   * @return id
+  **/
+  @ApiModelProperty(required = true, value = "")
+
+  public String getId() {
+    return id;
+  }
+
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+
   public User firstName(String firstName) {
     
     this.firstName = firstName;
@@ -224,7 +303,7 @@ public class User {
   }
 
 
-  public User role(String role) {
+  public User role(RoleEnum role) {
     
     this.role = role;
     return this;
@@ -234,14 +313,15 @@ public class User {
    * Get role
    * @return role
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
-  public String getRole() {
+  public RoleEnum getRole() {
     return role;
   }
 
 
-  public void setRole(String role) {
+  public void setRole(RoleEnum role) {
     this.role = role;
   }
 
@@ -269,6 +349,28 @@ public class User {
   }
 
 
+  public User password(String password) {
+    
+    this.password = password;
+    return this;
+  }
+
+   /**
+   * Get password
+   * @return password
+  **/
+  @ApiModelProperty(required = true, value = "")
+
+  public String getPassword() {
+    return password;
+  }
+
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -282,16 +384,18 @@ public class User {
         Objects.equals(this.number, user.number) &&
         Objects.equals(this.zipCode, user.zipCode) &&
         Objects.equals(this.city, user.city) &&
+        Objects.equals(this.id, user.id) &&
         Objects.equals(this.firstName, user.firstName) &&
         Objects.equals(this.lastName, user.lastName) &&
         Objects.equals(this.email, user.email) &&
         Objects.equals(this.role, user.role) &&
-        Objects.equals(this.telephone, user.telephone);
+        Objects.equals(this.telephone, user.telephone) &&
+        Objects.equals(this.password, user.password);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(street, number, zipCode, city, firstName, lastName, email, role, telephone);
+    return Objects.hash(street, number, zipCode, city, id, firstName, lastName, email, role, telephone, password);
   }
 
 
@@ -303,11 +407,13 @@ public class User {
     sb.append("    number: ").append(toIndentedString(number)).append("\n");
     sb.append("    zipCode: ").append(toIndentedString(zipCode)).append("\n");
     sb.append("    city: ").append(toIndentedString(city)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    telephone: ").append(toIndentedString(telephone)).append("\n");
+    sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("}");
     return sb.toString();
   }

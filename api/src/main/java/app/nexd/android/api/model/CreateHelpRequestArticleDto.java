@@ -23,89 +23,62 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 
 /**
- * RequestArticle
+ * CreateHelpRequestArticleDto
  */
 
-public class RequestArticle {
+public class CreateHelpRequestArticleDto {
   public static final String SERIALIZED_NAME_ARTICLE_ID = "articleId";
   @SerializedName(SERIALIZED_NAME_ARTICLE_ID)
-  private BigDecimal articleId;
+  private Long articleId = null;
 
   public static final String SERIALIZED_NAME_ARTICLE_COUNT = "articleCount";
   @SerializedName(SERIALIZED_NAME_ARTICLE_COUNT)
-  private BigDecimal articleCount;
-
-  public static final String SERIALIZED_NAME_ARTICLE_DONE = "articleDone";
-  @SerializedName(SERIALIZED_NAME_ARTICLE_DONE)
-  private Boolean articleDone;
+  private Long articleCount = null;
 
 
-  public RequestArticle articleId(BigDecimal articleId) {
+  public CreateHelpRequestArticleDto articleId(Long articleId) {
     
     this.articleId = articleId;
     return this;
   }
 
    /**
-   * Get articleId
+   * Article ID received from the article list
    * @return articleId
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Article ID received from the article list")
 
-  public BigDecimal getArticleId() {
+  public Long getArticleId() {
     return articleId;
   }
 
 
-  public void setArticleId(BigDecimal articleId) {
+  public void setArticleId(Long articleId) {
     this.articleId = articleId;
   }
 
 
-  public RequestArticle articleCount(BigDecimal articleCount) {
+  public CreateHelpRequestArticleDto articleCount(Long articleCount) {
     
     this.articleCount = articleCount;
     return this;
   }
 
    /**
-   * Get articleCount
+   * Number of items
    * @return articleCount
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = true, value = "Number of items")
 
-  public BigDecimal getArticleCount() {
+  public Long getArticleCount() {
     return articleCount;
   }
 
 
-  public void setArticleCount(BigDecimal articleCount) {
+  public void setArticleCount(Long articleCount) {
     this.articleCount = articleCount;
-  }
-
-
-  public RequestArticle articleDone(Boolean articleDone) {
-    
-    this.articleDone = articleDone;
-    return this;
-  }
-
-   /**
-   * Get articleDone
-   * @return articleDone
-  **/
-  @ApiModelProperty(required = true, value = "")
-
-  public Boolean getArticleDone() {
-    return articleDone;
-  }
-
-
-  public void setArticleDone(Boolean articleDone) {
-    this.articleDone = articleDone;
   }
 
 
@@ -117,25 +90,23 @@ public class RequestArticle {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    RequestArticle requestArticle = (RequestArticle) o;
-    return Objects.equals(this.articleId, requestArticle.articleId) &&
-        Objects.equals(this.articleCount, requestArticle.articleCount) &&
-        Objects.equals(this.articleDone, requestArticle.articleDone);
+    CreateHelpRequestArticleDto createHelpRequestArticleDto = (CreateHelpRequestArticleDto) o;
+    return Objects.equals(this.articleId, createHelpRequestArticleDto.articleId) &&
+        Objects.equals(this.articleCount, createHelpRequestArticleDto.articleCount);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(articleId, articleCount, articleDone);
+    return Objects.hash(articleId, articleCount);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class RequestArticle {\n");
+    sb.append("class CreateHelpRequestArticleDto {\n");
     sb.append("    articleId: ").append(toIndentedString(articleId)).append("\n");
     sb.append("    articleCount: ").append(toIndentedString(articleCount)).append("\n");
-    sb.append("    articleDone: ").append(toIndentedString(articleDone)).append("\n");
     sb.append("}");
     return sb.toString();
   }

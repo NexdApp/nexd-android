@@ -5,14 +5,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.ViewModel
 import app.nexd.android.api
-import app.nexd.android.api.model.RequestEntity
+import app.nexd.android.api.model.HelpList
 import io.reactivex.BackpressureStrategy
 
 class CheckoutViewModel: ViewModel() {
 
-    fun getAcceptedRequests() : LiveData<List<RequestEntity>> {
-        val source = api.requestControllerGetAll(null, null)
-            .map { all -> all.filter { it.status == RequestEntity.StatusEnum.ONGOING } }
+    fun getAcceptedRequests() : LiveData<List<HelpList>> {
+        val source = api.helpListsControllerGetUserLists(userId = null)
+            .map { all -> all.filter { it.status == HelpList.StatusEnum.ACTIVE } }
             .doOnError {
                 Log.e("Error", it.message.toString())
             }

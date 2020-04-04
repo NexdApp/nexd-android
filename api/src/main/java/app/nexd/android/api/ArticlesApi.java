@@ -20,16 +20,16 @@ import java.util.Map;
 
 public interface ArticlesApi {
   /**
-   * 
+   * List articles
    * 
    * @return Observable&lt;List&lt;Article&gt;&gt;
    */
-  @GET("api/articles")
+  @GET("articles")
   Observable<List<Article>> articlesControllerFindAll();
     
 
   /**
-   * 
+   * Create an article
    * 
    * @param createArticleDto  (required)
    * @return Observable&lt;Article&gt;
@@ -37,7 +37,7 @@ public interface ArticlesApi {
   @Headers({
     "Content-Type:application/json"
   })
-  @POST("api/articles")
+  @POST("articles")
   Observable<Article> articlesControllerInsertOne(
     @retrofit2.http.Body CreateArticleDto createArticleDto
   );

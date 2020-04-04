@@ -15,7 +15,7 @@ package app.nexd.android.api.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import app.nexd.android.api.model.CreateRequestArticleDto;
+import app.nexd.android.api.model.CreateHelpRequestArticleDto;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -28,10 +28,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * RequestFormDto
+ * HelpRequestCreateDto
  */
 
-public class RequestFormDto {
+public class HelpRequestCreateDto {
   public static final String SERIALIZED_NAME_STREET = "street";
   @SerializedName(SERIALIZED_NAME_STREET)
   private String street;
@@ -50,7 +50,7 @@ public class RequestFormDto {
 
   public static final String SERIALIZED_NAME_ARTICLES = "articles";
   @SerializedName(SERIALIZED_NAME_ARTICLES)
-  private List<CreateRequestArticleDto> articles = new ArrayList<CreateRequestArticleDto>();
+  private List<CreateHelpRequestArticleDto> articles = null;
 
   /**
    * Gets or Sets status
@@ -61,7 +61,9 @@ public class RequestFormDto {
     
     ONGOING("ongoing"),
     
-    COMPLETED("completed");
+    COMPLETED("completed"),
+    
+    DEACTIVATED("deactivated");
 
     private String value;
 
@@ -118,7 +120,7 @@ public class RequestFormDto {
   private String phoneNumber;
 
 
-  public RequestFormDto street(String street) {
+  public HelpRequestCreateDto street(String street) {
     
     this.street = street;
     return this;
@@ -141,7 +143,7 @@ public class RequestFormDto {
   }
 
 
-  public RequestFormDto number(String number) {
+  public HelpRequestCreateDto number(String number) {
     
     this.number = number;
     return this;
@@ -164,7 +166,7 @@ public class RequestFormDto {
   }
 
 
-  public RequestFormDto zipCode(String zipCode) {
+  public HelpRequestCreateDto zipCode(String zipCode) {
     
     this.zipCode = zipCode;
     return this;
@@ -187,7 +189,7 @@ public class RequestFormDto {
   }
 
 
-  public RequestFormDto city(String city) {
+  public HelpRequestCreateDto city(String city) {
     
     this.city = city;
     return this;
@@ -210,34 +212,38 @@ public class RequestFormDto {
   }
 
 
-  public RequestFormDto articles(List<CreateRequestArticleDto> articles) {
+  public HelpRequestCreateDto articles(List<CreateHelpRequestArticleDto> articles) {
     
     this.articles = articles;
     return this;
   }
 
-  public RequestFormDto addArticlesItem(CreateRequestArticleDto articlesItem) {
+  public HelpRequestCreateDto addArticlesItem(CreateHelpRequestArticleDto articlesItem) {
+    if (this.articles == null) {
+      this.articles = new ArrayList<CreateHelpRequestArticleDto>();
+    }
     this.articles.add(articlesItem);
     return this;
   }
 
    /**
-   * List of articles
+   * Get articles
    * @return articles
   **/
-  @ApiModelProperty(required = true, value = "List of articles")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
-  public List<CreateRequestArticleDto> getArticles() {
+  public List<CreateHelpRequestArticleDto> getArticles() {
     return articles;
   }
 
 
-  public void setArticles(List<CreateRequestArticleDto> articles) {
+  public void setArticles(List<CreateHelpRequestArticleDto> articles) {
     this.articles = articles;
   }
 
 
-  public RequestFormDto status(StatusEnum status) {
+  public HelpRequestCreateDto status(StatusEnum status) {
     
     this.status = status;
     return this;
@@ -260,7 +266,7 @@ public class RequestFormDto {
   }
 
 
-  public RequestFormDto additionalRequest(String additionalRequest) {
+  public HelpRequestCreateDto additionalRequest(String additionalRequest) {
     
     this.additionalRequest = additionalRequest;
     return this;
@@ -270,7 +276,8 @@ public class RequestFormDto {
    * Get additionalRequest
    * @return additionalRequest
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getAdditionalRequest() {
     return additionalRequest;
@@ -282,7 +289,7 @@ public class RequestFormDto {
   }
 
 
-  public RequestFormDto deliveryComment(String deliveryComment) {
+  public HelpRequestCreateDto deliveryComment(String deliveryComment) {
     
     this.deliveryComment = deliveryComment;
     return this;
@@ -292,7 +299,8 @@ public class RequestFormDto {
    * Get deliveryComment
    * @return deliveryComment
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getDeliveryComment() {
     return deliveryComment;
@@ -304,7 +312,7 @@ public class RequestFormDto {
   }
 
 
-  public RequestFormDto phoneNumber(String phoneNumber) {
+  public HelpRequestCreateDto phoneNumber(String phoneNumber) {
     
     this.phoneNumber = phoneNumber;
     return this;
@@ -314,7 +322,8 @@ public class RequestFormDto {
    * Get phoneNumber
    * @return phoneNumber
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getPhoneNumber() {
     return phoneNumber;
@@ -334,16 +343,16 @@ public class RequestFormDto {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    RequestFormDto requestFormDto = (RequestFormDto) o;
-    return Objects.equals(this.street, requestFormDto.street) &&
-        Objects.equals(this.number, requestFormDto.number) &&
-        Objects.equals(this.zipCode, requestFormDto.zipCode) &&
-        Objects.equals(this.city, requestFormDto.city) &&
-        Objects.equals(this.articles, requestFormDto.articles) &&
-        Objects.equals(this.status, requestFormDto.status) &&
-        Objects.equals(this.additionalRequest, requestFormDto.additionalRequest) &&
-        Objects.equals(this.deliveryComment, requestFormDto.deliveryComment) &&
-        Objects.equals(this.phoneNumber, requestFormDto.phoneNumber);
+    HelpRequestCreateDto helpRequestCreateDto = (HelpRequestCreateDto) o;
+    return Objects.equals(this.street, helpRequestCreateDto.street) &&
+        Objects.equals(this.number, helpRequestCreateDto.number) &&
+        Objects.equals(this.zipCode, helpRequestCreateDto.zipCode) &&
+        Objects.equals(this.city, helpRequestCreateDto.city) &&
+        Objects.equals(this.articles, helpRequestCreateDto.articles) &&
+        Objects.equals(this.status, helpRequestCreateDto.status) &&
+        Objects.equals(this.additionalRequest, helpRequestCreateDto.additionalRequest) &&
+        Objects.equals(this.deliveryComment, helpRequestCreateDto.deliveryComment) &&
+        Objects.equals(this.phoneNumber, helpRequestCreateDto.phoneNumber);
   }
 
   @Override
@@ -355,7 +364,7 @@ public class RequestFormDto {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class RequestFormDto {\n");
+    sb.append("class HelpRequestCreateDto {\n");
     sb.append("    street: ").append(toIndentedString(street)).append("\n");
     sb.append("    number: ").append(toIndentedString(number)).append("\n");
     sb.append("    zipCode: ").append(toIndentedString(zipCode)).append("\n");

@@ -3,24 +3,24 @@ package app.nexd.android.ui.helper.checkout
 import android.view.View
 import android.view.ViewGroup
 import app.nexd.android.R
-import app.nexd.android.api.model.RequestArticle
+import app.nexd.android.api.model.HelpRequestArticle
 import kotlinx.android.synthetic.main.shopping_list_row.view.*
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
 
-class CheckoutItemBinder: ItemBinder<RequestArticle, CheckoutItemBinder.ViewHolder>() {
+class CheckoutItemBinder: ItemBinder<HelpRequestArticle, CheckoutItemBinder.ViewHolder>() {
 
-    class ViewHolder(itemView: View): ItemViewHolder<RequestArticle>(itemView) {
+    class ViewHolder(itemView: View): ItemViewHolder<HelpRequestArticle>(itemView) {
 
-        fun bind(item: RequestArticle) {
+        fun bind(item: HelpRequestArticle) {
             itemView.name.text = item.articleId.toString()
-            itemView.amount.text = "${item.articleCount}x"
+            itemView.amount.text = item.articleCount.toString()
             itemView.checked.isChecked = item.articleDone
             itemView.checked.isEnabled = false
         }
     }
 
-    override fun bindViewHolder(holder: ViewHolder, item: RequestArticle) {
+    override fun bindViewHolder(holder: ViewHolder, item: HelpRequestArticle) {
         holder.bind(item)
     }
 
@@ -31,6 +31,6 @@ class CheckoutItemBinder: ItemBinder<RequestArticle, CheckoutItemBinder.ViewHold
     }
 
     override fun canBindData(item: Any): Boolean {
-        return item is RequestArticle
+        return item is HelpRequestArticle
     }
 }

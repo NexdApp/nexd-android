@@ -23,15 +23,17 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * ShoppingListFormDto
+ * HelpListCreateDto
  */
 
-public class ShoppingListFormDto {
-  public static final String SERIALIZED_NAME_REQUESTS = "requests";
-  @SerializedName(SERIALIZED_NAME_REQUESTS)
-  private Integer requests;
+public class HelpListCreateDto {
+  public static final String SERIALIZED_NAME_HELP_REQUESTS_IDS = "helpRequestsIds";
+  @SerializedName(SERIALIZED_NAME_HELP_REQUESTS_IDS)
+  private List<Long> helpRequestsIds = null;
 
   /**
    * Gets or Sets status
@@ -87,29 +89,38 @@ public class ShoppingListFormDto {
   private StatusEnum status = StatusEnum.ACTIVE;
 
 
-  public ShoppingListFormDto requests(Integer requests) {
+  public HelpListCreateDto helpRequestsIds(List<Long> helpRequestsIds) {
     
-    this.requests = requests;
+    this.helpRequestsIds = helpRequestsIds;
+    return this;
+  }
+
+  public HelpListCreateDto addHelpRequestsIdsItem(Long helpRequestsIdsItem) {
+    if (this.helpRequestsIds == null) {
+      this.helpRequestsIds = new ArrayList<Long>();
+    }
+    this.helpRequestsIds.add(helpRequestsIdsItem);
     return this;
   }
 
    /**
-   * List of request IDs
-   * @return requests
+   * List of help request IDs
+   * @return helpRequestsIds
   **/
-  @ApiModelProperty(required = true, value = "List of request IDs")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "List of help request IDs")
 
-  public Integer getRequests() {
-    return requests;
+  public List<Long> getHelpRequestsIds() {
+    return helpRequestsIds;
   }
 
 
-  public void setRequests(Integer requests) {
-    this.requests = requests;
+  public void setHelpRequestsIds(List<Long> helpRequestsIds) {
+    this.helpRequestsIds = helpRequestsIds;
   }
 
 
-  public ShoppingListFormDto status(StatusEnum status) {
+  public HelpListCreateDto status(StatusEnum status) {
     
     this.status = status;
     return this;
@@ -140,22 +151,22 @@ public class ShoppingListFormDto {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ShoppingListFormDto shoppingListFormDto = (ShoppingListFormDto) o;
-    return Objects.equals(this.requests, shoppingListFormDto.requests) &&
-        Objects.equals(this.status, shoppingListFormDto.status);
+    HelpListCreateDto helpListCreateDto = (HelpListCreateDto) o;
+    return Objects.equals(this.helpRequestsIds, helpListCreateDto.helpRequestsIds) &&
+        Objects.equals(this.status, helpListCreateDto.status);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(requests, status);
+    return Objects.hash(helpRequestsIds, status);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ShoppingListFormDto {\n");
-    sb.append("    requests: ").append(toIndentedString(requests)).append("\n");
+    sb.append("class HelpListCreateDto {\n");
+    sb.append("    helpRequestsIds: ").append(toIndentedString(helpRequestsIds)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -25,34 +25,34 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * RequestArticleStatusDto
+ * TokenDto
  */
 
-public class RequestArticleStatusDto {
-  public static final String SERIALIZED_NAME_ARTICLE_DONE = "articleDone";
-  @SerializedName(SERIALIZED_NAME_ARTICLE_DONE)
-  private Boolean articleDone;
+public class TokenDto {
+  public static final String SERIALIZED_NAME_ACCESS_TOKEN = "access_token";
+  @SerializedName(SERIALIZED_NAME_ACCESS_TOKEN)
+  private String accessToken;
 
 
-  public RequestArticleStatusDto articleDone(Boolean articleDone) {
+  public TokenDto accessToken(String accessToken) {
     
-    this.articleDone = articleDone;
+    this.accessToken = accessToken;
     return this;
   }
 
    /**
-   * Get articleDone
-   * @return articleDone
+   * Get accessToken
+   * @return accessToken
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public Boolean getArticleDone() {
-    return articleDone;
+  public String getAccessToken() {
+    return accessToken;
   }
 
 
-  public void setArticleDone(Boolean articleDone) {
-    this.articleDone = articleDone;
+  public void setAccessToken(String accessToken) {
+    this.accessToken = accessToken;
   }
 
 
@@ -64,21 +64,21 @@ public class RequestArticleStatusDto {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    RequestArticleStatusDto requestArticleStatusDto = (RequestArticleStatusDto) o;
-    return Objects.equals(this.articleDone, requestArticleStatusDto.articleDone);
+    TokenDto tokenDto = (TokenDto) o;
+    return Objects.equals(this.accessToken, tokenDto.accessToken);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(articleDone);
+    return Objects.hash(accessToken);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class RequestArticleStatusDto {\n");
-    sb.append("    articleDone: ").append(toIndentedString(articleDone)).append("\n");
+    sb.append("class TokenDto {\n");
+    sb.append("    accessToken: ").append(toIndentedString(accessToken)).append("\n");
     sb.append("}");
     return sb.toString();
   }

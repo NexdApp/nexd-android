@@ -25,42 +25,20 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * CreateRequestArticleDto
+ * CreateOrUpdateHelpRequestArticleDto
  */
 
-public class CreateRequestArticleDto {
-  public static final String SERIALIZED_NAME_ARTICLE_ID = "articleId";
-  @SerializedName(SERIALIZED_NAME_ARTICLE_ID)
-  private Integer articleId;
-
+public class CreateOrUpdateHelpRequestArticleDto {
   public static final String SERIALIZED_NAME_ARTICLE_COUNT = "articleCount";
   @SerializedName(SERIALIZED_NAME_ARTICLE_COUNT)
-  private Integer articleCount;
+  private Long articleCount = null;
+
+  public static final String SERIALIZED_NAME_ARTICLE_DONE = "articleDone";
+  @SerializedName(SERIALIZED_NAME_ARTICLE_DONE)
+  private Boolean articleDone;
 
 
-  public CreateRequestArticleDto articleId(Integer articleId) {
-    
-    this.articleId = articleId;
-    return this;
-  }
-
-   /**
-   * Article ID received from the article list
-   * @return articleId
-  **/
-  @ApiModelProperty(required = true, value = "Article ID received from the article list")
-
-  public Integer getArticleId() {
-    return articleId;
-  }
-
-
-  public void setArticleId(Integer articleId) {
-    this.articleId = articleId;
-  }
-
-
-  public CreateRequestArticleDto articleCount(Integer articleCount) {
+  public CreateOrUpdateHelpRequestArticleDto articleCount(Long articleCount) {
     
     this.articleCount = articleCount;
     return this;
@@ -72,13 +50,36 @@ public class CreateRequestArticleDto {
   **/
   @ApiModelProperty(required = true, value = "Number of items")
 
-  public Integer getArticleCount() {
+  public Long getArticleCount() {
     return articleCount;
   }
 
 
-  public void setArticleCount(Integer articleCount) {
+  public void setArticleCount(Long articleCount) {
     this.articleCount = articleCount;
+  }
+
+
+  public CreateOrUpdateHelpRequestArticleDto articleDone(Boolean articleDone) {
+    
+    this.articleDone = articleDone;
+    return this;
+  }
+
+   /**
+   * Get articleDone
+   * @return articleDone
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Boolean getArticleDone() {
+    return articleDone;
+  }
+
+
+  public void setArticleDone(Boolean articleDone) {
+    this.articleDone = articleDone;
   }
 
 
@@ -90,23 +91,23 @@ public class CreateRequestArticleDto {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateRequestArticleDto createRequestArticleDto = (CreateRequestArticleDto) o;
-    return Objects.equals(this.articleId, createRequestArticleDto.articleId) &&
-        Objects.equals(this.articleCount, createRequestArticleDto.articleCount);
+    CreateOrUpdateHelpRequestArticleDto createOrUpdateHelpRequestArticleDto = (CreateOrUpdateHelpRequestArticleDto) o;
+    return Objects.equals(this.articleCount, createOrUpdateHelpRequestArticleDto.articleCount) &&
+        Objects.equals(this.articleDone, createOrUpdateHelpRequestArticleDto.articleDone);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(articleId, articleCount);
+    return Objects.hash(articleCount, articleDone);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateRequestArticleDto {\n");
-    sb.append("    articleId: ").append(toIndentedString(articleId)).append("\n");
+    sb.append("class CreateOrUpdateHelpRequestArticleDto {\n");
     sb.append("    articleCount: ").append(toIndentedString(articleCount)).append("\n");
+    sb.append("    articleDone: ").append(toIndentedString(articleDone)).append("\n");
     sb.append("}");
     return sb.toString();
   }

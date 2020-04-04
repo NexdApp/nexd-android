@@ -34,7 +34,7 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-String remoteApiUrl = "http://nexd-api-alb-1905109360.eu-central-1.elb.amazonaws.com/api"
+String remoteApiUrl = "https://nexd-backend-staging.herokuapp.com/api/v1"
 String apiBaseUrl = project.findProperty('apiBaseUrl') == null ? remoteApiUrl : project.findProperty('apiBaseUrl')
 
 openApiGenerate {

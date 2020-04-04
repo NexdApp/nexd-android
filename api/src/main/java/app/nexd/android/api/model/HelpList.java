@@ -15,7 +15,8 @@ package app.nexd.android.api.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import app.nexd.android.api.model.ShoppingListRequest;
+import app.nexd.android.api.model.HelpRequest;
+import app.nexd.android.api.model.User;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -24,22 +25,27 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
- * ShoppingList
+ * HelpList
  */
 
-public class ShoppingList {
+public class HelpList {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
-  private Integer id;
+  private Long id = null;
+
+  public static final String SERIALIZED_NAME_OWNER_ID = "ownerId";
+  @SerializedName(SERIALIZED_NAME_OWNER_ID)
+  private String ownerId;
 
   public static final String SERIALIZED_NAME_OWNER = "owner";
   @SerializedName(SERIALIZED_NAME_OWNER)
-  private Integer owner;
+  private User owner;
 
   public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
@@ -102,12 +108,16 @@ public class ShoppingList {
   @SerializedName(SERIALIZED_NAME_STATUS)
   private StatusEnum status = StatusEnum.ACTIVE;
 
-  public static final String SERIALIZED_NAME_REQUESTS = "requests";
-  @SerializedName(SERIALIZED_NAME_REQUESTS)
-  private List<ShoppingListRequest> requests = new ArrayList<ShoppingListRequest>();
+  public static final String SERIALIZED_NAME_HELP_REQUESTS = "helpRequests";
+  @SerializedName(SERIALIZED_NAME_HELP_REQUESTS)
+  private List<HelpRequest> helpRequests = new ArrayList<HelpRequest>();
+
+  public static final String SERIALIZED_NAME_HELP_REQUESTS_IDS = "helpRequestsIds";
+  @SerializedName(SERIALIZED_NAME_HELP_REQUESTS_IDS)
+  private List<BigDecimal> helpRequestsIds = new ArrayList<BigDecimal>();
 
 
-  public ShoppingList id(Integer id) {
+  public HelpList id(Long id) {
     
     this.id = id;
     return this;
@@ -119,17 +129,39 @@ public class ShoppingList {
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public Integer getId() {
+  public Long getId() {
     return id;
   }
 
 
-  public void setId(Integer id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
 
-  public ShoppingList owner(Integer owner) {
+  public HelpList ownerId(String ownerId) {
+    
+    this.ownerId = ownerId;
+    return this;
+  }
+
+   /**
+   * Get ownerId
+   * @return ownerId
+  **/
+  @ApiModelProperty(required = true, value = "")
+
+  public String getOwnerId() {
+    return ownerId;
+  }
+
+
+  public void setOwnerId(String ownerId) {
+    this.ownerId = ownerId;
+  }
+
+
+  public HelpList owner(User owner) {
     
     this.owner = owner;
     return this;
@@ -141,17 +173,17 @@ public class ShoppingList {
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public Integer getOwner() {
+  public User getOwner() {
     return owner;
   }
 
 
-  public void setOwner(Integer owner) {
+  public void setOwner(User owner) {
     this.owner = owner;
   }
 
 
-  public ShoppingList createdAt(Date createdAt) {
+  public HelpList createdAt(Date createdAt) {
     
     this.createdAt = createdAt;
     return this;
@@ -173,7 +205,7 @@ public class ShoppingList {
   }
 
 
-  public ShoppingList updatedAt(Date updatedAt) {
+  public HelpList updatedAt(Date updatedAt) {
     
     this.updatedAt = updatedAt;
     return this;
@@ -195,7 +227,7 @@ public class ShoppingList {
   }
 
 
-  public ShoppingList status(StatusEnum status) {
+  public HelpList status(StatusEnum status) {
     
     this.status = status;
     return this;
@@ -205,7 +237,8 @@ public class ShoppingList {
    * Get status
    * @return status
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public StatusEnum getStatus() {
     return status;
@@ -217,30 +250,57 @@ public class ShoppingList {
   }
 
 
-  public ShoppingList requests(List<ShoppingListRequest> requests) {
+  public HelpList helpRequests(List<HelpRequest> helpRequests) {
     
-    this.requests = requests;
+    this.helpRequests = helpRequests;
     return this;
   }
 
-  public ShoppingList addRequestsItem(ShoppingListRequest requestsItem) {
-    this.requests.add(requestsItem);
+  public HelpList addHelpRequestsItem(HelpRequest helpRequestsItem) {
+    this.helpRequests.add(helpRequestsItem);
     return this;
   }
 
    /**
-   * Get requests
-   * @return requests
+   * Get helpRequests
+   * @return helpRequests
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public List<ShoppingListRequest> getRequests() {
-    return requests;
+  public List<HelpRequest> getHelpRequests() {
+    return helpRequests;
   }
 
 
-  public void setRequests(List<ShoppingListRequest> requests) {
-    this.requests = requests;
+  public void setHelpRequests(List<HelpRequest> helpRequests) {
+    this.helpRequests = helpRequests;
+  }
+
+
+  public HelpList helpRequestsIds(List<BigDecimal> helpRequestsIds) {
+    
+    this.helpRequestsIds = helpRequestsIds;
+    return this;
+  }
+
+  public HelpList addHelpRequestsIdsItem(BigDecimal helpRequestsIdsItem) {
+    this.helpRequestsIds.add(helpRequestsIdsItem);
+    return this;
+  }
+
+   /**
+   * Get helpRequestsIds
+   * @return helpRequestsIds
+  **/
+  @ApiModelProperty(required = true, value = "")
+
+  public List<BigDecimal> getHelpRequestsIds() {
+    return helpRequestsIds;
+  }
+
+
+  public void setHelpRequestsIds(List<BigDecimal> helpRequestsIds) {
+    this.helpRequestsIds = helpRequestsIds;
   }
 
 
@@ -252,31 +312,35 @@ public class ShoppingList {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ShoppingList shoppingList = (ShoppingList) o;
-    return Objects.equals(this.id, shoppingList.id) &&
-        Objects.equals(this.owner, shoppingList.owner) &&
-        Objects.equals(this.createdAt, shoppingList.createdAt) &&
-        Objects.equals(this.updatedAt, shoppingList.updatedAt) &&
-        Objects.equals(this.status, shoppingList.status) &&
-        Objects.equals(this.requests, shoppingList.requests);
+    HelpList helpList = (HelpList) o;
+    return Objects.equals(this.id, helpList.id) &&
+        Objects.equals(this.ownerId, helpList.ownerId) &&
+        Objects.equals(this.owner, helpList.owner) &&
+        Objects.equals(this.createdAt, helpList.createdAt) &&
+        Objects.equals(this.updatedAt, helpList.updatedAt) &&
+        Objects.equals(this.status, helpList.status) &&
+        Objects.equals(this.helpRequests, helpList.helpRequests) &&
+        Objects.equals(this.helpRequestsIds, helpList.helpRequestsIds);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, owner, createdAt, updatedAt, status, requests);
+    return Objects.hash(id, ownerId, owner, createdAt, updatedAt, status, helpRequests, helpRequestsIds);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ShoppingList {\n");
+    sb.append("class HelpList {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
     sb.append("    owner: ").append(toIndentedString(owner)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    requests: ").append(toIndentedString(requests)).append("\n");
+    sb.append("    helpRequests: ").append(toIndentedString(helpRequests)).append("\n");
+    sb.append("    helpRequestsIds: ").append(toIndentedString(helpRequestsIds)).append("\n");
     sb.append("}");
     return sb.toString();
   }
