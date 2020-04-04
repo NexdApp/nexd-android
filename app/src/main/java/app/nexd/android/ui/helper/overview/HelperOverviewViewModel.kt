@@ -14,7 +14,7 @@ import io.reactivex.Observable
 import io.reactivex.functions.BiFunction
 import io.reactivex.subjects.BehaviorSubject
 
-class BuyerOverviewViewModel(application: Application) : AndroidViewModel(application) {
+class HelperOverviewViewModel(application: Application) : AndroidViewModel(application) {
 
     private val reload = BehaviorSubject.create<Unit>()
 

@@ -12,15 +12,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@android:color/white"
         android:padding="@dimen/fragmentPadding">
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="157dp"
+            android:layout_width="match_parent"
             android:layout_height="148dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="92dp"
-            android:src="@drawable/icon" />
+            android:src="@drawable/nexd_logo_rgb" />
 
         <Space
             android:layout_width="match_parent"
@@ -32,8 +33,6 @@
             android:id="@+id/editText_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
-            android:backgroundTint="@color/text"
             android:error="@{viewModel.usernameError}"
             android:text="@={viewModel.username}"
             android:hint="@string/login_placeholder_username"
@@ -41,7 +40,6 @@
             android:inputType="textEmailAddress"
             android:lines="1"
             android:paddingHorizontal="10dp"
-            android:textColorHint="@color/text"
             android:textSize="20sp" />
 
         <Space
@@ -53,8 +51,6 @@
             android:id="@+id/editText_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
-            android:backgroundTint="@color/text"
             android:error="@{viewModel.passwordError}"
             android:text="@={viewModel.password}"
             android:hint="@string/login_placeholder_password"
@@ -62,7 +58,6 @@
             android:inputType="textPassword"
             android:lines="1"
             android:paddingHorizontal="10dp"
-            android:textColorHint="@color/text"
             android:textSize="20sp" />
 
         <Space
@@ -72,14 +67,20 @@
 
         <Button
             android:id="@+id/button_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
-            android:background="@drawable/round_button_white"
-            android:onClick="@{() -> viewModel.login()}"
-            android:text="@string/login_button_title_login"
+            android:padding="20dp"
             android:textAllCaps="false"
-            android:textSize="20sp" />
+            android:textStyle="bold"
+            android:onClick="@{() -> viewModel.login()}"
+            android:textAlignment="textStart"
+            android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+            android:background="@drawable/rounded_button_primary"
+            android:textColor="@android:color/white"
+            android:text="@string/login_button_title_login"
+            android:textSize="25sp"
+            android:drawableTint="@android:color/white"
+            android:layout_marginTop="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <Space
             android:layout_width="match_parent"

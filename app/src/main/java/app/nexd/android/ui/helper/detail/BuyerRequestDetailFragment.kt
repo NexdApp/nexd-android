@@ -45,8 +45,8 @@ class BuyerRequestDetailFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         val adapter = MultiViewAdapter()
-        buyer_request_items.adapter = adapter
-        buyer_request_items.layoutManager = LinearLayoutManager(context)
+        recyclerView_articles.adapter = adapter
+        recyclerView_articles.layoutManager = LinearLayoutManager(context)
 
         adapter.registerItemBinders(
             BuyerRequestDetailItemBinder()

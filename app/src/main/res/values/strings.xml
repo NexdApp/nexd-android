@@ -34,6 +34,7 @@
     <string name="helper_request_overview_unknown_requester">"- unknown -"</string>
     <string name="helper_request_overview_button_summary_title">"Shopping"</string>
     <string name="helper_request_overview_button_summary_details">"Total </string>
+    <string name="helper_request_overview_button_previous_requests">Previous purchases</string>
     <string name="helper_request_overview_button_title_start">"Start"</string>
     <string name="helper_request_overview_error_title">"Error!"</string>
     <string name="helper_request_overview_error_message">"Your request could not be sent! Please try again."</string>
@@ -52,6 +53,7 @@
     <string name="delivery_dialog_delivery_button_confirm">"Confirm"</string>
     <string name="delivery_request_address">"Address: "</string>
     <string name="delivery_request_phoneNumber">"Tel.: "</string>
+    <string name="seeker_overview_screen_title">"Your requests:"</string>
     <string name="seeker_detail_screen_title">"Your request"</string>
     <string name="seeker_detail_placeholder_information">"Additional information"</string>
     <string name="seeker_request_create_heading">"I need:"</string>
