@@ -10,16 +10,16 @@ import io.reactivex.BackpressureStrategy
 
 class CheckoutViewModel: ViewModel() {
 
-    fun getAcceptedRequests() : LiveData<List<HelpList>> {
-        val source = api.helpListsControllerGetUserLists(userId = null)
-            .map { all -> all.filter { it.status == HelpList.StatusEnum.ACTIVE } }
-            .doOnError {
-                Log.e("Error", it.message.toString())
-            }
-            .onErrorReturnItem(emptyList())
-            .toFlowable(BackpressureStrategy.BUFFER)
-
-        return LiveDataReactiveStreams.fromPublisher(source)
+    fun getShoppingList(): LiveData<HelpList> {
+        return LiveDataReactiveStreams.fromPublisher(
+            api.helpListsControllerGetUserLists(null)
+                .map { lists -> lists.filter { it.status == HelpList.StatusEnum.ACTIVE } }
+                .map { it.first() }
+                .doOnError {
+                    Log.e("Error", it.message.toString())
+                }
+                .onErrorReturnItem(HelpList())
+                .toFlowable(BackpressureStrategy.BUFFER))
     }
 
 }

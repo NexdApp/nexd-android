@@ -29,8 +29,8 @@ class DeliveryFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(DeliveryViewModel::class.java)
 
-        viewModel.getAcceptedRequests().observe(viewLifecycleOwner, Observer { requests ->
-            for (request in requests) {
+        viewModel.getShoppingList().observe(viewLifecycleOwner, Observer { shoppingList ->
+            for (request in shoppingList.helpRequests) {
                 val deliveryView = RequestDeliveryView(context!!, request)
                 container.addView(deliveryView)
             }

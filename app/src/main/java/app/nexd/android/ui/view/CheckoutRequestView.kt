@@ -4,14 +4,14 @@ import android.content.Context
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
-import app.nexd.android.api.model.RequestArticle
-import app.nexd.android.api.model.RequestEntity
+import app.nexd.android.api.model.HelpRequest
+import app.nexd.android.api.model.HelpRequestArticle
 import app.nexd.android.ui.helper.checkout.CheckoutItemBinder
 import kotlinx.android.synthetic.main.view_checkout_request.view.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
 
-class CheckoutRequestView constructor(context: Context, var request: RequestEntity)
+class CheckoutRequestView constructor(context: Context, var request: HelpRequest)
     : LinearLayout(context) {
 
     private var adapter = MultiViewAdapter()
@@ -27,8 +27,8 @@ class CheckoutRequestView constructor(context: Context, var request: RequestEnti
             CheckoutItemBinder()
         )
 
-        val list = ListSection<RequestArticle>()
-        list.addAll(request.articles)
+        val list = ListSection<HelpRequestArticle>()
+        list.addAll(request.articles!!)
         adapter.addSection(list)
 
     }

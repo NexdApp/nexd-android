@@ -16,7 +16,6 @@ import kotlinx.android.synthetic.main.fragment_checkout.*
 class CheckoutFragment : Fragment() {
 
     private lateinit var viewModel: CheckoutViewModel
-    private val args: CheckoutFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,10 +29,10 @@ class CheckoutFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(CheckoutViewModel::class.java)
 
-        viewModel.getAcceptedRequests().observe(viewLifecycleOwner, Observer { requests ->
+        viewModel.getShoppingList().observe(viewLifecycleOwner, Observer { shoppingList ->
             container.removeAllViews()
 
-            for (request in requests) {
+            for (request in shoppingList.helpRequests) {
                 val requestView = CheckoutRequestView(context!!, request)
                 container.addView(requestView)
             }

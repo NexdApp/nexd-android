@@ -3,10 +3,10 @@ package app.nexd.android.ui.view
 import android.content.Context
 import android.widget.LinearLayout
 import app.nexd.android.R
-import app.nexd.android.api.model.RequestEntity
+import app.nexd.android.api.model.HelpRequest
 import kotlinx.android.synthetic.main.view_request_delivery.view.*
 
-class RequestDeliveryView(context: Context, var request: RequestEntity): LinearLayout(context) {
+class RequestDeliveryView(context: Context, var request: HelpRequest): LinearLayout(context) {
 
     init {
         inflate(context, R.layout.view_request_delivery, this)

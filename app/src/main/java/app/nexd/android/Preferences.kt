@@ -26,7 +26,7 @@ class Preferences {
                 .edit().remove(TOKEN_KEY).apply()
         }
 
-        fun setUserId(context: Context, userId: Int) {
+        /*fun setUserId(context: Context, userId: Int) {
             getPrefs(context)
                 .edit().putInt(USER_ID_KEY, userId).apply()
         }
@@ -39,7 +39,7 @@ class Preferences {
         fun removeUserId(context: Context) {
             getPrefs(context)
                 .edit().remove(USER_ID_KEY).apply()
-        }
+        }*/
 
     }
 

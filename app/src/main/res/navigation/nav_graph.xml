@@ -89,7 +89,7 @@
         android:label="@string/shopping_list_screen_title"
         tools:layout="@layout/fragment_shopping_list" >
         <action
-            android:id="@+id/action_shoppingListFragment_to_checkoutFragment"
+            android:id="@+id/toCheckoutFragment"
             app:destination="@id/checkoutFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
@@ -150,9 +150,6 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
-        <argument
-            android:name="shoppingList"
-            app:argType="app.nexd.android.ui.helper.shoppingList.ShoppingListViewModel$ShoppingListEntry[]" />
     </fragment>
     <fragment
         android:id="@+id/deliveryFragment"

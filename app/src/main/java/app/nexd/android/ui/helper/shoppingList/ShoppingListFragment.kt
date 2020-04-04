@@ -45,7 +45,7 @@ class ShoppingListFragment : Fragment() {
             adapter.addSection(listSection)
 
             checkout.setOnClickListener {
-                findNavController().navigate(ShoppingListFragmentDirections.actionShoppingListFragmentToCheckoutFragment(shoppingList.toTypedArray()))
+                findNavController().navigate(ShoppingListFragmentDirections.toCheckoutFragment())
             }
         })
     }

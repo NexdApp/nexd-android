@@ -19,7 +19,7 @@ class RoleViewModel(application: Application) : AndroidViewModel(application) {
 
     fun logout() {
         Preferences.removeToken(getApplication())
-        Preferences.removeUserId(getApplication())
+        // Preferences.removeUserId(getApplication())
     }
 
 }
