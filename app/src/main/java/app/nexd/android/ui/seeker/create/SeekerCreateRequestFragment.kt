@@ -11,8 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
-import app.nexd.android.api.model.CreateRequestArticleDto
-import app.nexd.android.api.model.RequestFormDto
+import app.nexd.android.api.model.CreateHelpRequestArticleDto
+import app.nexd.android.api.model.HelpRequestCreateDto
 import kotlinx.android.synthetic.main.fragment_seeker_create_request.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
@@ -52,11 +52,11 @@ class SeekerCreateRequestFragment : Fragment() {
 
             button_accept.setOnClickListener {
 
-                val request = RequestFormDto()
+                val request = HelpRequestCreateDto()
                     .articles(articlesInput
                         .filter { it.amount > 0 }
                         .map {
-                            CreateRequestArticleDto()
+                            CreateHelpRequestArticleDto()
                                 .articleCount(it.amount)
                                 .articleId(it.article.id)
                         })

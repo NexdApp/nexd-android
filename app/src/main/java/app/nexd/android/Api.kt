@@ -62,7 +62,7 @@ class Api(private val apiClient: ApiClient = ApiClient("bearer")) :
         return articlesApi.articlesControllerInsertOne(createArticleDto).subscribeOn(Schedulers.io())
     }
 
-    override fun articlesControllerFindAll(): Observable<MutableList<Article>> {
+    override fun articlesControllerFindAll(): Observable<List<Article>> {
         return articlesApi.articlesControllerFindAll().subscribeOn(Schedulers.io())
     }
 

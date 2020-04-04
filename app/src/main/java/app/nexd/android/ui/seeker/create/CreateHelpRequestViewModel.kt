@@ -6,8 +6,7 @@ import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.ViewModel
 import app.nexd.android.api
 import app.nexd.android.api.model.Article
-import app.nexd.android.api.model.CreateRequestArticleDto
-import app.nexd.android.api.model.RequestFormDto
+import app.nexd.android.api.model.HelpRequestCreateDto
 import io.reactivex.BackpressureStrategy
 import io.reactivex.functions.Consumer
 import io.reactivex.processors.BehaviorProcessor
@@ -31,6 +30,7 @@ class CreateHelpRequestViewModel : ViewModel() {
         )
     }
 
+    /*
     fun getRequestWithArticles(): LiveData<RequestFormDto> {
         val data = api.articlesControllerFindAll()
             .map { list ->
@@ -48,12 +48,13 @@ class CreateHelpRequestViewModel : ViewModel() {
                     .street("")
             }
         return LiveDataReactiveStreams.fromPublisher(data.toFlowable(BackpressureStrategy.BUFFER))
-    }
+    }*/
 
-    @SuppressLint("CheckResult")
-    fun sendRequest(request: RequestFormDto) {
-        api.requestControllerInsertRequestWithArticles(request)
-            .subscribe { state.onNext(State.FINISHED) }
+    fun sendRequest(request: HelpRequestCreateDto) {
+        with(api) {
+            helpRequestsControllerInsertRequestWithArticles(request)
+                .subscribe { state.onNext(State.FINISHED) }
+        }
     }
 
     fun state() = LiveDataReactiveStreams.fromPublisher(state)

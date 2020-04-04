@@ -13,7 +13,7 @@ import mva2.adapter.ItemViewHolder
 
 class HelpRequestArticleBinder : ItemBinder<HelpRequestArticleBinder.ArticleInput, HelpRequestArticleBinder.ViewHolder>() {
 
-    data class ArticleInput(val article: Article, var amount: Int = 0)
+    data class ArticleInput(val article: Article, var amount: Long = 0)
 
     class ViewHolder(itemView: View) : ItemViewHolder<ArticleInput>(itemView) {
         var name: TextView = itemView.textView_article_name
@@ -32,7 +32,7 @@ class HelpRequestArticleBinder : ItemBinder<HelpRequestArticleBinder.ArticleInpu
         }
 
         holder.decrease.setOnClickListener {
-            item.amount = if (item.amount == 0) 0 else item.amount - 1
+            item.amount = if (item.amount == 0.toLong()) 0 else item.amount - 1
             holder.amount.text = item.amount.toString()
         }
     }
