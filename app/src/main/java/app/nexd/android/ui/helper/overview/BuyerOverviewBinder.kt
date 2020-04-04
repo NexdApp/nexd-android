@@ -4,15 +4,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import app.nexd.android.R
-import app.nexd.android.api.model.RequestEntity
+import app.nexd.android.api.model.HelpRequest
 import app.nexd.android.ui.helper.overview.BuyerOverviewBinder.HelpRequestViewHolder
 import kotlinx.android.synthetic.main.buyer_request_row.view.*
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
 
-class BuyerOverviewBinder: ItemBinder<RequestEntity, HelpRequestViewHolder>() {
+class BuyerOverviewBinder: ItemBinder<HelpRequest, HelpRequestViewHolder>() {
 
-    class HelpRequestViewHolder(itemView: View): ItemViewHolder<RequestEntity>(itemView) {
+    class HelpRequestViewHolder(itemView: View): ItemViewHolder<HelpRequest>(itemView) {
         private val title: TextView = itemView.title
 
         init {
@@ -21,14 +21,14 @@ class BuyerOverviewBinder: ItemBinder<RequestEntity, HelpRequestViewHolder>() {
             }
         }
 
-        fun bind(request: RequestEntity) {
+        fun bind(request: HelpRequest) {
             title.text = "%1 %2".format(request.requester?.firstName.toString(), request.requester?.lastName)
         }
 
 
     }
 
-    override fun bindViewHolder(holder: HelpRequestViewHolder, item: RequestEntity) {
+    override fun bindViewHolder(holder: HelpRequestViewHolder, item: HelpRequest) {
         holder.bind(item)
     }
 
@@ -37,7 +37,7 @@ class BuyerOverviewBinder: ItemBinder<RequestEntity, HelpRequestViewHolder>() {
     }
 
     override fun canBindData(item: Any): Boolean {
-        return item is RequestEntity
+        return item is HelpRequest
     }
 
 }
