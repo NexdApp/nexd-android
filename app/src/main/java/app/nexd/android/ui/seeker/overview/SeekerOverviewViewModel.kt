@@ -15,7 +15,10 @@ class SeekerOverviewViewModel : ViewModel() {
                 "me",
                 null,
                 null,
-                listOf("pending", "ongoing")
+                listOf(
+                    HelpRequest.StatusEnum.PENDING.value,
+                    HelpRequest.StatusEnum.ONGOING.value
+                )
             )
                 .toFlowable(BackpressureStrategy.BUFFER)
         )

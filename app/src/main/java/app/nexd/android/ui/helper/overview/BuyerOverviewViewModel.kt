@@ -36,8 +36,12 @@ class BuyerOverviewViewModel(application: Application) : AndroidViewModel(applic
                 api.helpRequestsControllerGetAll(
                     null,
                     null,
-                    includeRequester = null,
-                    status = mutableListOf(HelpRequest.StatusEnum.PENDING.value))
+                    null,
+                    listOf(
+                        HelpRequest.StatusEnum.PENDING.value,
+                        HelpRequest.StatusEnum.ONGOING.value // TODO remove this line
+                    )
+                )
                     .map { requests ->
                         requests.filter { it.requesterId != me.id }
                     }
