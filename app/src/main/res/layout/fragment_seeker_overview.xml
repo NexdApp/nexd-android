@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:background="@drawable/background_gradient"
     android:layout_width="match_parent"
@@ -33,6 +34,8 @@
         android:layout_margin="@dimen/fragmentPadding"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
+        android:backgroundTint="@color/colorPrimary"
+        app:borderWidth="0dp"
         android:src="@drawable/baseline_add_shopping_cart_24"
         android:tint="@android:color/white"
         android:clickable="true"

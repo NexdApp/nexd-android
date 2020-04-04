@@ -16,15 +16,18 @@
         android:src="@drawable/ic_minus"
         android:background="@drawable/round_button_white" />
 
-    <TextView
+    <EditText
         android:id="@+id/textView_amount"
+        android:labelFor="@id/textView_article_name"
+        android:inputType="number"
+        android:background="@null"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         android:layout_weight="1"
         android:gravity="center"
         android:layout_gravity="center"
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:text="0" />
 
 

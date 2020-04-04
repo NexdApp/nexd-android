@@ -38,7 +38,7 @@ class HelperOverviewFragment : Fragment() {
         recyclerView_acceptedRequests.layoutManager = LinearLayoutManager(context)
         recyclerView_acceptedRequests.adapter = acceptedRequestsAdapter
 
-        nearRequestsAdapter = MultiViewAdapter();
+        nearRequestsAdapter = MultiViewAdapter()
         recyclerView_nearRequests.layoutManager = LinearLayoutManager(context)
         recyclerView_nearRequests.adapter = nearRequestsAdapter
 
@@ -51,9 +51,9 @@ class HelperOverviewFragment : Fragment() {
         )
 
         viewModel.run {
-            getMyAcceptedRequests().observe(viewLifecycleOwner, Observer { requests ->
+            getMyAcceptedRequests().observe(viewLifecycleOwner, Observer { myAcceptedRequests ->
 
-                updateAcceptedRequests(requests)
+                updateAcceptedRequests(myAcceptedRequests)
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     button_shopping.text = Html.fromHtml(
@@ -62,7 +62,7 @@ class HelperOverviewFragment : Fragment() {
                                 + "</b> (" +
                             getString(R.string.helper_request_overview_button_summary_details)
                                 + " " +
-                                requests.sumBy { it.articles?.size ?: 0 }
+                                myAcceptedRequests.sumBy { it.articles?.size ?: 0 }
                                 + "/ 20)",
                         Html.FROM_HTML_MODE_LEGACY
                     )
@@ -70,9 +70,11 @@ class HelperOverviewFragment : Fragment() {
                     button_shopping.text = Html.fromHtml(
                         "<b>%1</b> (%2 %3 / 20)".format(getString(R.string.helper_request_overview_button_summary_title),
                             getString(R.string.helper_request_overview_button_summary_details),
-                            requests.map { it.articles?.size ?: 0 }.sum())
+                            myAcceptedRequests.map { it.articles?.size ?: 0 }.sum())
                     )
                 }
+
+                button_shopping.isEnabled = myAcceptedRequests.isNotEmpty()
             })
 
             getOtherOpenRequests().observe(viewLifecycleOwner, Observer { requests ->
@@ -87,7 +89,6 @@ class HelperOverviewFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-
         viewModel.reloadData()
     }
 

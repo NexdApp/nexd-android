@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:background="@drawable/background_gradient"
     android:padding="@dimen/fragmentPadding">
 
     <TextView
@@ -12,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="@string/seeker_detail_screen_title"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +55,8 @@
     <TextView
         app:layout_constraintBottom_toTopOf="@id/textView_additionalRequest"
         android:textSize="20sp"
-        android:textColor="@color/text"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
         android:hint="@string/seeker_detail_placeholder_information"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -64,7 +67,8 @@
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/text"
         android:paddingHorizontal="10dp"
-        android:textColor="@color/text"
+        android:textColor="@android:color/white"
+        tools:text="So schnell wie nur möglich!!"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent" />
 

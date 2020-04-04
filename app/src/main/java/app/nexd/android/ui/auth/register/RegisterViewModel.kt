@@ -105,7 +105,6 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
                         api.setBearerToken(responseTokenDto.accessToken)
                         with(getApplication<Application>().applicationContext) {
                             Preferences.setToken(this, responseTokenDto.accessToken)
-                            // TODO: save user id?
                         }
 
                         val registrationData = RegistrationData(
@@ -117,7 +116,7 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
 
                         progress.value = Progress.Finished(registrationData)
                     },
-                    onError = { _ ->
+                    onError = {
                         progress.value = Progress.Error
                     }
                 )

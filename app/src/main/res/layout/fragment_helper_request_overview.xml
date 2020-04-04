@@ -37,6 +37,7 @@
         android:id="@+id/button_shopping"
         style="@style/Widget.AppCompat.ActionButton"
         tools:text="Shopping (Total 0 / 20)"
+        android:enabled="false"
         android:textSize="20sp"
         android:textColor="@android:color/white"
         android:layout_marginHorizontal="2dp"
