@@ -1,91 +1,58 @@
 package app.nexd.android.ui.helper.shoppingList
 
-import android.os.Parcel
-import android.os.Parcelable
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.ViewModel
 import app.nexd.android.api
-import app.nexd.android.api.model.RequestEntity
-import app.nexd.android.api.model.ShoppingList
+import app.nexd.android.api.model.HelpList
 import io.reactivex.BackpressureStrategy
 import io.reactivex.schedulers.Schedulers
-import java.math.BigDecimal
 
 class ShoppingListViewModel : ViewModel() {
 
-    class ShoppingListEntry(var name: String, var amount: Int) : Parcelable {
+    class ShoppingListEntry(var name: String, var amount: Long) {
         var collected = false
-
-        override fun writeToParcel(parcel: Parcel, flags: Int) {
-            parcel.writeString(name)
-            parcel.writeInt(amount)
-            parcel.writeBoolean(collected)
-        }
-
-        override fun describeContents(): Int {
-            return 0
-        }
-
-        companion object CREATOR : Parcelable.Creator<ShoppingListEntry> {
-            override fun createFromParcel(parcel: Parcel): ShoppingListEntry {
-                val shoppingList = ShoppingListEntry(
-                    parcel.readString()!!,
-                    parcel.readInt()
-                )
-                shoppingList.collected = parcel.readBoolean()
-                return shoppingList
-            }
-
-            override fun newArray(size: Int): Array<ShoppingListEntry?> {
-                return arrayOfNulls(size)
-            }
-        }
     }
 
-    fun getShoppingList(): LiveData<List<ShoppingList>> {
+    fun getShoppingList(): LiveData<HelpList> {
         return LiveDataReactiveStreams.fromPublisher(
-            api.shoppingListControllerGetUserLists()
+            api.helpListsControllerGetUserLists(null)
+                .map { lists -> lists.filter { it.status == HelpList.StatusEnum.ACTIVE } }
+                .map { it.first() }
                 .doOnError {
                     Log.e("Error", it.message.toString())
                 }
-                .onErrorReturnItem(emptyList())
+                .onErrorReturnItem(HelpList())
                 .toFlowable(BackpressureStrategy.BUFFER))
     }
 
-    fun getItems(): LiveData<List<ShoppingListEntry>> {
-        val observable = api.articlesControllerFindAll()
-            .flatMap { articles ->
-                api.requestControllerGetAll(null, null)
-                    .map { requests -> requests.filter { it.status == RequestEntity.StatusEnum.ONGOING } }
-
-                    .flatMapIterable { requests ->
-                        val shoppingList = mutableMapOf<BigDecimal, ShoppingListEntry>()
-                        requests.forEach { request ->
-                            request.articles.filter { it.articleCount > BigDecimal.ZERO }
-                                .forEach { article ->
-                                    if (shoppingList.containsKey(article.articleId)) {
-                                        shoppingList[article.articleId]!!.amount += article.articleCount.toInt()
-                                    } else {
-                                        shoppingList[article.articleId] = ShoppingListEntry(
-                                            articles.first { article.articleId == it.id.toBigDecimal() }.name,
-                                            article.articleCount.toInt()
-                                        )
-                                    }
-                                }
+    fun getShoppingListArticles(): LiveData<List<ShoppingListEntry>> {
+        val observable = api.helpListsControllerGetUserLists(null)
+            .map { lists -> lists.first { it.status == HelpList.StatusEnum.ACTIVE } }
+            .flatMapIterable { shoppingList ->
+                val shoppingListArticles = mutableMapOf<Long, ShoppingListEntry>()
+                shoppingList.helpRequests.forEach { request ->
+                    // request.articles.filter { it.articleCount > BigDecimal.ZERO }
+                    request.articles!!.forEach { requestArticle ->
+                        if (shoppingListArticles.containsKey(requestArticle.article.id)) {
+                            shoppingListArticles[requestArticle.article.id]!!.amount +=
+                                requestArticle.articleCount
+                        } else {
+                            shoppingListArticles[requestArticle.article.id] = ShoppingListEntry(
+                                requestArticle.article.name,
+                                requestArticle.articleCount
+                            )
                         }
-                        shoppingList.values
                     }
-                    .doOnError {
-                        Log.e("Error", it.message.toString())
-                    }
-                    .toList()
-                    .toObservable()
+                }
+                shoppingListArticles.values
             }
             .doOnError {
                 Log.e("Error", it.message.toString())
             }
+            .toList()
+            .toObservable()
             .onErrorReturnItem(emptyList())
             .subscribeOn(Schedulers.io())
 

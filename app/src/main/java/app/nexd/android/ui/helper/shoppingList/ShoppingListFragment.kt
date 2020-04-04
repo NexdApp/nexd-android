@@ -39,7 +39,7 @@ class ShoppingListFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(ShoppingListViewModel::class.java)
 
-        viewModel.getItems().observe(viewLifecycleOwner, Observer { shoppingList ->
+        viewModel.getShoppingListArticles().observe(viewLifecycleOwner, Observer { shoppingList ->
             val listSection = ListSection<ShoppingListViewModel.ShoppingListEntry>()
             listSection.addAll(shoppingList)
             adapter.addSection(listSection)

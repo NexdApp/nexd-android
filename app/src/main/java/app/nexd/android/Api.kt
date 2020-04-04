@@ -86,7 +86,7 @@ class Api(private val apiClient: ApiClient = ApiClient("bearer")) :
         return helpListsApi.helpListsControllerModifyArticleInHelpRequest(helpListId, helpRequestId, articleId, articleDone).subscribeOn(Schedulers.io())
     }
 
-    override fun helpListsControllerGetUserLists(userId: String?): Observable<MutableList<HelpList>> {
+    override fun helpListsControllerGetUserLists(userId: String?): Observable<List<HelpList>> {
         return helpListsApi.helpListsControllerGetUserLists(userId).subscribeOn(Schedulers.io())
     }
 
