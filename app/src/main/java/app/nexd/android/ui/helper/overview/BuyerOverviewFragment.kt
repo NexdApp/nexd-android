@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
-import app.nexd.android.api.model.RequestEntity
+import app.nexd.android.api.model.HelpRequest
 import kotlinx.android.synthetic.main.fragment_helper_request_overview.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
@@ -54,7 +54,7 @@ class BuyerOverviewFragment : Fragment() {
             getMyAcceptedRequests().observe(viewLifecycleOwner, Observer { requests ->
 
                 val myAcceptedRequests = requests.filter {
-                    it.status == RequestEntity.StatusEnum.ONGOING
+                    it.status == HelpRequest.StatusEnum.ONGOING
                 }
                 updateAcceptedRequests(myAcceptedRequests)
 
@@ -65,7 +65,7 @@ class BuyerOverviewFragment : Fragment() {
                                 + "</b> (" +
                             getString(R.string.helper_request_overview_button_summary_details)
                                 + " " +
-                            myAcceptedRequests.map { requestEntity -> requestEntity.articles.size }.sum()
+                            myAcceptedRequests.sumBy { it.articles?.size ?: 0 }
                                 + "/ 20)",
                         Html.FROM_HTML_MODE_LEGACY
                     )
@@ -73,7 +73,7 @@ class BuyerOverviewFragment : Fragment() {
                     acceptedRequestsSummary.text = Html.fromHtml(
                         "<b>%1</b> (%2 %3 / 20)".format(getString(R.string.helper_request_overview_button_summary_title),
                             getString(R.string.helper_request_overview_button_summary_details),
-                            myAcceptedRequests.map { requestEntity -> requestEntity.articles.size }.sum())
+                            myAcceptedRequests.map { it.articles?.size ?: 0 }.sum())
                     )
                 }
             })
@@ -94,14 +94,14 @@ class BuyerOverviewFragment : Fragment() {
         viewModel.reloadData()
     }
 
-    private fun updateAcceptedRequests(acceptedRequests: List<RequestEntity>) {
+    private fun updateAcceptedRequests(acceptedRequests: List<HelpRequest>) {
         acceptedRequestsAdapter.removeAllSections()
 
-        val acceptedRequestsList = ListSection<RequestEntity>()
+        val acceptedRequestsList = ListSection<HelpRequest>()
 
         acceptedRequestsList.addAll(acceptedRequests)
-        acceptedRequestsList.setOnSelectionChangedListener { request: RequestEntity,
-                                                             b: Boolean, _: MutableList<RequestEntity> ->
+        acceptedRequestsList.setOnSelectionChangedListener { request: HelpRequest,
+                                                             b: Boolean, _: MutableList<HelpRequest> ->
             if (b) {
                 val action =
                     BuyerOverviewFragmentDirections.requestDetailAction(
@@ -113,14 +113,14 @@ class BuyerOverviewFragment : Fragment() {
         acceptedRequestsAdapter.addSection(acceptedRequestsList)
     }
 
-    private fun updateNearbyOpenRequests(nearRequests: List<RequestEntity>) {
+    private fun updateNearbyOpenRequests(nearRequests: List<HelpRequest>) {
         nearRequestsAdapter.removeAllSections()
 
-        val nearRequestList = ListSection<RequestEntity>()
+        val nearRequestList = ListSection<HelpRequest>()
         nearRequestList.addAll(nearRequests)
 
-        nearRequestList.setOnSelectionChangedListener { helpRequest: RequestEntity,
-                                                        b: Boolean, _: MutableList<RequestEntity> ->
+        nearRequestList.setOnSelectionChangedListener { helpRequest: HelpRequest,
+                                                        b: Boolean, _: MutableList<HelpRequest> ->
             if (b) {
                 val action =
                     BuyerOverviewFragmentDirections.requestDetailAction(
