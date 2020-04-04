@@ -25,7 +25,7 @@
             app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_roleFragment_to_helperOverviewFragment"
-            app:destination="@id/buyerOverviewFragment"
+            app:destination="@id/helperOverviewFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -51,7 +51,7 @@
             app:popExitAnim="@anim/fragment_close_exit"  />
     </fragment>
     <fragment
-        android:id="@+id/buyerOverviewFragment"
+        android:id="@+id/helperOverviewFragment"
         android:name="app.nexd.android.ui.helper.overview.HelperOverviewFragment"
         tools:layout="@layout/fragment_helper_request_overview" >
         <action
@@ -68,10 +68,13 @@
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/toFinishedFragment"
+            app:destination="@id/helpRequestFinishedFragment" />
     </fragment>
     <fragment
         android:id="@+id/helperRequestDetailFragment"
-        android:name="app.nexd.android.ui.helper.detail.BuyerRequestDetailFragment"
+        android:name="app.nexd.android.ui.helper.detail.HelperDetailFragment"
         android:label="@string/helper_request_detail_screen_title"
         tools:layout="@layout/fragment_helper_request_detail" >
         <argument
@@ -173,5 +176,14 @@
         <argument
             android:name="requestId"
             app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/helpRequestFinishedFragment"
+        android:name="app.nexd.android.ui.helper.finished.HelpRequestFinishedFragment"
+        android:label="HelpRequestFinishedFragment"
+        tools:layout="@layout/fragment_helper_request_finished" >
+        <action
+            android:id="@+id/toDetailFragment"
+            app:destination="@id/helperRequestDetailFragment" />
     </fragment>
 </navigation>

@@ -19,19 +19,19 @@ import mva2.adapter.MultiViewAdapter
 import java.math.BigDecimal
 
 
-class BuyerRequestDetailFragment : Fragment() {
+class HelperDetailFragment : Fragment() {
 
-    private lateinit var viewModel: BuyerRequestDetailViewModel
+    private lateinit var viewModel: HelperDetailViewModel
 
     lateinit var requestId: BigDecimal
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val args: BuyerRequestDetailFragmentArgs by navArgs()
+        val args: HelperDetailFragmentArgs by navArgs()
         requestId = args.requestId.toBigDecimal()
 
-        viewModel = ViewModelProvider(this).get(BuyerRequestDetailViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(HelperDetailViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -49,13 +49,17 @@ class BuyerRequestDetailFragment : Fragment() {
         recyclerView_articles.layoutManager = LinearLayoutManager(context)
 
         adapter.registerItemBinders(
-            BuyerRequestDetailItemBinder()
+            HelpRequestArticleBinder()
         )
 
         viewModel.requestDetails(requestId).observe(viewLifecycleOwner, Observer { request ->
             adapter.removeAllSections()
 
-            name.text = "%s %s".format(request.requester!!.firstName, request.requester!!.lastName)
+            name.text = context!!.getString(
+                R.string.helper_request_detail_name_layout,
+                request.requester!!.firstName
+                , request.requester!!.lastName
+            )
 
             val list = ListSection<HelpRequestArticle>()
             list.addAll(request.articles!!)
@@ -64,10 +68,8 @@ class BuyerRequestDetailFragment : Fragment() {
             setAccepted(request.status != HelpRequest.StatusEnum.PENDING)
 
             accept.setOnClickListener {
-                request.id!!.let {
-                    viewModel.acceptRequest(it)
-                    findNavController().popBackStack()
-                }
+                viewModel.acceptRequest(request.id!!)
+                findNavController().popBackStack()
             }
         })
     }

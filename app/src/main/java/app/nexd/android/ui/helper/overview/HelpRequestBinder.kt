@@ -26,8 +26,6 @@ class HelpRequestBinder: ItemBinder<HelpRequest, HelpRequestViewHolder>() {
                 request.requester!!.firstName,
                 request.requester!!.lastName)
         }
-
-
     }
 
     override fun bindViewHolder(holder: HelpRequestViewHolder, item: HelpRequest) {
