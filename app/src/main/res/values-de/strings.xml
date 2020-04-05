@@ -91,4 +91,5 @@
     <string name="helper_request_overview_button_previous_requests">"Vorherige Anfragen"</string>
     <string name="seeker_overview_screen_title">"Ihre Anfragen:"</string>
     <string name="helper_request_finished_screen_title">"Vorherige Anfragen:"</string>
+    <string name="helper_request_transcript_button_done">Füge Bestellung zur aktuellen Shoppingliste hinzu</string>
 </resources>

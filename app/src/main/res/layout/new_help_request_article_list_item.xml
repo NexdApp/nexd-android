@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <ImageButton
@@ -14,7 +13,7 @@
         android:padding="5dp"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_minus"
-        android:background="@drawable/round_button_white" />
+        style="@style/Widget.AppCompat.Button.Borderless" />
 
     <EditText
         android:id="@+id/textView_amount"
@@ -37,7 +36,7 @@
         android:layout_width="0dp"
         android:layout_height="30dp"
         android:scaleType="fitCenter"
-        android:background="@drawable/round_button_white"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:padding="5dp"
         android:src="@drawable/ic_add" />
 

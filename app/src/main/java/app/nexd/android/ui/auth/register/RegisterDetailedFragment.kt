@@ -75,6 +75,12 @@ class RegisterDetailedFragment : Fragment() {
             success = false
         }
 
+        if (!checkbox_data_protection.isChecked) {
+            checkbox_data_protection.error =
+                resources.getString(R.string.error_message_registration_field_missing)
+            success = false
+        }
+
         if (success) {
             viewModel.register(
                 args.firstName,

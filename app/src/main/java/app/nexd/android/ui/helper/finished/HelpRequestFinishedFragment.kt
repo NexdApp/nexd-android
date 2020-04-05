@@ -49,11 +49,13 @@ class HelpRequestFinishedFragment: Fragment() {
             requestList.setOnSelectionChangedListener { request: HelpRequest,
                                                                  b: Boolean, _: MutableList<HelpRequest> ->
                 if (b) {
-                    val action =
-                        HelpRequestFinishedFragmentDirections.toDetailFragment(
-                            request.id.toString()
-                        )
-                    findNavController().navigate(action)
+                    request.id?.let { id ->
+                        val action =
+                            HelpRequestFinishedFragmentDirections.toDetailFragment(
+                                id
+                            )
+                        findNavController().navigate(action)
+                    }
                 }
             }
         })

@@ -1,22 +1,25 @@
 package app.nexd.android.ui.helper.overview
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
-import app.nexd.android.Preferences
 import app.nexd.android.api
 import app.nexd.android.api.model.HelpList
 import app.nexd.android.api.model.HelpRequest
 import app.nexd.android.api.model.HelpRequest.StatusEnum.ONGOING
 import app.nexd.android.api.model.HelpRequest.StatusEnum.PENDING
+import app.nexd.android.api.model.User
 import io.reactivex.BackpressureStrategy
-import io.reactivex.Observable
-import io.reactivex.functions.BiFunction
 import io.reactivex.subjects.BehaviorSubject
 
 class HelperOverviewViewModel(application: Application) : AndroidViewModel(application) {
+
+    class AvailableRequestWrapper(val requester: User, val type: RequestType, val id: Long)
+    enum class RequestType {
+        SHOPPING,
+        TRANSCRIPT
+    }
 
     private val reload = BehaviorSubject.create<Unit>()
 
@@ -33,23 +36,46 @@ class HelperOverviewViewModel(application: Application) : AndroidViewModel(appli
         return LiveDataReactiveStreams.fromPublisher(observable.toFlowable(BackpressureStrategy.BUFFER))
     }
 
-    fun getOtherOpenRequests(): LiveData<List<HelpRequest>> {
+    fun getOtherOpenRequests(): LiveData<List<AvailableRequestWrapper>> {
         val observable = reload.flatMap {
             api.userControllerFindMe()
                 .flatMap { me ->
-                api.helpRequestsControllerGetAll(
-                    null,
-                    null,
-                    "true",
-                    listOf(
-                        PENDING.value,
-                        ONGOING.value // TODO remove this line
+                    api.helpRequestsControllerGetAll(
+                        null,
+                        null,
+                        "true",
+                        listOf(
+                            PENDING.value,
+                            ONGOING.value // TODO remove this line
+                        )
                     )
-                )
-                    .map { requests ->
-                        requests.filter { it.requesterId != me.id }
-                    }
-            }
+                        .map { requests ->
+                            requests.filter { it.requesterId != me.id }
+                        }
+
+                        .flatMapIterable { requests ->
+                            val requestWrapperList = mutableListOf<AvailableRequestWrapper>()
+                            requests.forEach { request ->
+                                requestWrapperList.add(
+                                    AvailableRequestWrapper(
+                                        request.requester ?: User(),
+                                        RequestType.SHOPPING,
+                                        request.id ?: 0
+                                    )
+                                )
+                            }
+                            requestWrapperList.add(
+                                AvailableRequestWrapper(
+                                    User(),
+                                    RequestType.TRANSCRIPT,
+                                    0
+                                )
+                            )
+                            return@flatMapIterable requestWrapperList
+                        }
+                        .toList()
+                        .toObservable()
+                }
         }
         return LiveDataReactiveStreams.fromPublisher(observable.toFlowable(BackpressureStrategy.BUFFER))
     }

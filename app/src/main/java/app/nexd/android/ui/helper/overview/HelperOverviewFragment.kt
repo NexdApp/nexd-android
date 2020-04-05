@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
@@ -47,7 +48,7 @@ class HelperOverviewFragment : Fragment() {
             HelpRequestBinder()
         )
         nearRequestsAdapter.registerItemBinders(
-            HelpRequestBinder()
+            AvailableRequestBinder()
         )
 
         viewModel.run {
@@ -105,29 +106,38 @@ class HelperOverviewFragment : Fragment() {
         acceptedRequestsList.setOnSelectionChangedListener { request: HelpRequest,
                                                              b: Boolean, _: MutableList<HelpRequest> ->
             if (b) {
-                val action =
-                    HelperOverviewFragmentDirections.requestDetailAction(
-                        request.id.toString()
-                    )
-                findNavController().navigate(action)
+                request.id?.let { id ->
+                    val action =
+                        HelperOverviewFragmentDirections.requestDetailAction(
+                            id
+                        )
+                    findNavController().navigate(action)
+                }
             }
         }
         acceptedRequestsAdapter.addSection(acceptedRequestsList)
     }
 
-    private fun updateNearbyOpenRequests(nearRequests: List<HelpRequest>) {
+    private fun updateNearbyOpenRequests(nearRequests: List<HelperOverviewViewModel.AvailableRequestWrapper>) {
         nearRequestsAdapter.removeAllSections()
 
-        val nearRequestList = ListSection<HelpRequest>()
+        val nearRequestList = ListSection<HelperOverviewViewModel.AvailableRequestWrapper>()
         nearRequestList.addAll(nearRequests)
 
-        nearRequestList.setOnSelectionChangedListener { helpRequest: HelpRequest,
-                                                        b: Boolean, _: MutableList<HelpRequest> ->
+        nearRequestList.setOnSelectionChangedListener { helpRequest: HelperOverviewViewModel.AvailableRequestWrapper,
+                                                        b: Boolean, _: MutableList<HelperOverviewViewModel.AvailableRequestWrapper> ->
             if (b) {
-                val action =
+                val action = if (helpRequest.type == HelperOverviewViewModel.RequestType.SHOPPING) {
                     HelperOverviewFragmentDirections.requestDetailAction(
-                        helpRequest.id.toString()
+                        helpRequest.id
                     )
+                } else {
+                    HelperOverviewFragmentDirections.toCallTranslateFragment(
+                        helpRequest.id
+                    )
+
+
+                }
                 findNavController().navigate(action)
             }
         }

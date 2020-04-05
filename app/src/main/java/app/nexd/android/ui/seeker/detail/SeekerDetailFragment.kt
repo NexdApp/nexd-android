@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -47,7 +46,9 @@ class SeekerDetailFragment : Fragment() {
             when(it) {
                 is SeekerDetailViewModel.Progress.Idle -> { }
                 is SeekerDetailViewModel.Progress.Error -> { /* TODO */ }
-                is SeekerDetailViewModel.Progress.Removed -> { findNavController().popBackStack() }
+                is SeekerDetailViewModel.Progress.Canceled -> {
+                    // show information
+                }
             }
         })
 
@@ -59,7 +60,7 @@ class SeekerDetailFragment : Fragment() {
 
                 textView_additionalRequest.text = request.additionalRequest
 
-                button_delete.setOnClickListener {
+                button_cancel.setOnClickListener {
                     viewModel.cancelRequest(request)
                 }
             })
