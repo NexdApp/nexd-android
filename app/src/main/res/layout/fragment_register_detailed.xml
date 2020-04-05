@@ -4,115 +4,98 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:paddingHorizontal="20dp"
+    android:background="@android:color/white"
     tools:context=".ui.auth.login.LoginFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="148dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="92dp"
+        android:src="@drawable/nexd_logo_rgb" />
+
+    <EditText
+        android:id="@+id/editText_phoneNumber"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="30dp"
-        android:text="@string/user_input_details_screen_title"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:layout_marginTop="10dp"
+        android:hint="@string/user_input_details_placeholder_phoneNumber"
+        android:layout_marginBottom="20dp"
+        android:imeOptions="actionNext"
+        android:inputType="phone"
+        android:lines="1"
+        android:nextFocusDown="@id/editText_zipCode"
+        android:paddingHorizontal="10dp"
+        android:textSize="20sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="40dp"
-        android:layout_marginVertical="10dp"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/editText_phoneNumber"
-            android:layout_width="match_parent"
+            android:id="@+id/editText_streetName"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:backgroundTint="@color/text"
-            android:hint="@string/user_input_details_placeholder_phoneNumber"
-            android:layout_marginBottom="20dp"
+            android:layout_weight="4"
+            android:hint="@string/user_input_details_placeholder_street"
             android:imeOptions="actionNext"
-            android:inputType="phone"
+            android:nextFocusRight="@id/editText_houseNumber"
+            android:inputType="textCapWords"
             android:lines="1"
-            android:nextFocusDown="@id/editText_zipCode"
             android:paddingHorizontal="10dp"
-            android:textColorHint="@color/text"
             android:textSize="20sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/editText_houseNumber"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:hint="@string/user_input_details_placeholder_houseNumber"
+            android:imeOptions="actionNext"
+            android:nextFocusDown="@id/editText_zipCode"
+            android:inputType="text"
+            android:lines="1"
+            android:paddingHorizontal="10dp"
+            android:textSize="20sp" />
 
-            <EditText
-                android:id="@+id/editText_streetName"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_weight="4"
-                android:backgroundTint="@color/text"
-                android:hint="@string/user_input_details_placeholder_street"
-                android:imeOptions="actionNext"
-                android:nextFocusRight="@id/editText_houseNumber"
-                android:inputType="textCapWords"
-                android:lines="1"
-                android:paddingHorizontal="10dp"
-                android:textColorHint="@color/text"
-                android:textSize="20sp" />
+    </LinearLayout>
 
-            <EditText
-                android:id="@+id/editText_houseNumber"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/text"
-                android:hint="@string/user_input_details_placeholder_houseNumber"
-                android:imeOptions="actionNext"
-                android:nextFocusDown="@id/editText_zipCode"
-                android:inputType="text"
-                android:lines="1"
-                android:paddingHorizontal="10dp"
-                android:textColorHint="@color/text"
-                android:textSize="20sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/editText_zipCode"
+            android:layout_weight="1"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginTop="10dp"
+            android:hint="@string/user_input_details_placeholder_zipCode"
+            android:imeOptions="actionNext"
+            android:nextFocusRight="@id/editText_city"
+            android:inputType="textPostalAddress"
+            android:lines="1"
+            android:paddingHorizontal="10dp"
+            android:textSize="20sp" />
 
-            <EditText
-                android:id="@+id/editText_zipCode"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="@color/text"
-                android:hint="@string/user_input_details_placeholder_zipCode"
-                android:imeOptions="actionNext"
-                android:nextFocusRight="@id/editText_city"
-                android:inputType="textPostalAddress"
-                android:lines="1"
-                android:paddingHorizontal="10dp"
-                android:textColorHint="@color/text"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/editText_city"
-                android:layout_weight="3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="@color/text"
-                android:hint="@string/user_input_details_placeholder_city"
-                android:imeOptions="actionDone"
-                android:inputType="textCapWords"
-                android:lines="1"
-                android:paddingHorizontal="10dp"
-                android:textColorHint="@color/text"
-                android:textSize="20sp" />
-        </LinearLayout>
+        <EditText
+            android:id="@+id/editText_city"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="@string/user_input_details_placeholder_city"
+            android:imeOptions="actionDone"
+            android:inputType="textCapWords"
+            android:lines="1"
+            android:paddingHorizontal="10dp"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <Space
@@ -125,24 +108,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp"
-        tools:text="Datenschutzerklärung??"/>
+        android:text="@string/registration_button_privacy_policy" />
 
     <Button
         android:id="@+id/button_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="30dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="2dp"
-        android:background="@drawable/round_button_white"
-        android:text="@string/user_input_details_confirm"
+        android:padding="20dp"
         android:textAllCaps="false"
-        android:textSize="20sp" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="100dp" />
+        android:textStyle="bold"
+        android:textAlignment="textStart"
+        android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+        android:background="@drawable/rounded_button_primary"
+        android:textSize="25sp"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="20dp"
+        android:drawableTint="@android:color/white"
+        android:layout_marginBottom="2dp"
+        android:text="@string/registration_button_title_send" />
 
     <Button
         android:id="@+id/button_dataProtection"

@@ -13,7 +13,7 @@ class HelpRequestArticleBinder: ItemBinder<HelpRequestArticle, HelpRequestArticl
     class ViewHolder(itemView: View): ItemViewHolder<HelpRequestArticle>(itemView) {
 
         fun bind(item: HelpRequestArticle) {
-            itemView.name.text = item.articleId.toString()
+            itemView.name.text = item.article.name
             itemView.amount.text = item.articleCount.toString()
             itemView.checked.isChecked = item.articleDone ?: false
             itemView.checked.isEnabled = false

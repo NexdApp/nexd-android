@@ -16,6 +16,7 @@ class HelperOverviewViewModel(application: Application) : AndroidViewModel(appli
 
     private val reload = BehaviorSubject.create<Unit>()
 
+    // mb differnet way to get active requests??
     fun getMyAcceptedRequests(): LiveData<List<HelpRequest>> {
         val observable = reload.flatMap {
             api.helpListsControllerGetUserLists(null)

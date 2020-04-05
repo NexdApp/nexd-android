@@ -30,6 +30,8 @@ class HelpRequestBinder: ItemBinder<HelpRequest, HelpRequestBinder.ViewModel>() 
         }
 
         fun bind(request: HelpRequest) {
+            title.text = request.requester?.lastName ?: ""
+
             adapter.removeAllSections()
             val articleList = ListSection<HelpRequestArticle>()
             articleList.addAll(request.articles!!)

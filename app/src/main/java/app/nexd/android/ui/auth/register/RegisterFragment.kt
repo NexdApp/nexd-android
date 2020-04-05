@@ -12,7 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import app.nexd.android.databinding.FragmentRegisterBinding
-import app.nexd.android.ui.auth.register.RegisterFragmentDirections.Companion.toRoleFragment
+import app.nexd.android.ui.auth.register.RegisterFragmentDirections.Companion.toRegisterDetailedFragment
 import app.nexd.android.ui.auth.register.RegisterViewModel.Progress.*
 import kotlinx.android.synthetic.main.fragment_register.*
 
@@ -53,11 +53,23 @@ class RegisterFragment : Fragment() {
         }
 
         viewModel.progress.observe(viewLifecycleOwner, Observer { progress ->
-            when(progress) {
-                is Idle -> { /* nothing to do here */ }
-                is Loading -> { /* TODO (AS): display a loading animation */ }
-                is Error -> { /* TODO (AS): display error toast. */ }
-                is Finished -> proceed()
+            when (progress) {
+                is Idle -> { /* nothing to do here */
+                }
+                is Loading -> { /* TODO (AS): display a loading animation */
+                }
+                is Error -> { /* TODO (AS): display error toast. */
+                }
+                is Finished -> {
+                    findNavController().navigate(
+                        toRegisterDetailedFragment(
+                            progress.registrationData.firstName,
+                            progress.registrationData.lastName,
+                            progress.registrationData.email,
+                            progress.registrationData.password
+                        )
+                    )
+                }
             }
         })
 
@@ -73,10 +85,6 @@ class RegisterFragment : Fragment() {
                 Uri.parse("https://www.nexd.app/privacypage")
             )
         )
-    }
-
-    private fun proceed() {
-        findNavController().navigate(toRoleFragment())
     }
 
 }

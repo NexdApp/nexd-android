@@ -61,7 +61,7 @@ class HelperDetailFragment : Fragment() {
             list.addAll(request.articles!!)
             adapter.addSection(list)
 
-            setAccepted(request.status != HelpRequest.StatusEnum.PENDING)
+            setAccepted(request.helpListId != null)
 
             accept.setOnClickListener {
                 request.id?.let {

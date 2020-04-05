@@ -1,5 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="login_screen_title">"Login"</string>
+    <string name="login_button_title_login">"Login"</string>
+    <string name="login_button_title_register">"Register"</string>
+    <string name="registration_screen_title">"Sign-up"</string>
+    <string name="registration_button_title_continue">"Continue"</string>
+    <string name="registration_button_title_send">"Send"</string>
+    <string name="role_selection_screen_title">"Role"</string>
+    <string name="role_selection_seeker">"I need something"</string>
+    <string name="role_selection_helper">"I can help"</string>
+    <string name="helper_request_overview_screen_title">"Overview"</string>
+    <string name="helper_request_overview_heading_accepted_section">"Accepted requests:"</string>
+    <string name="helper_request_overview_heading_available_section">"Available requests:"</string>
+    <string name="helper_request_overview_unknown_requester">"- unknown -"</string>
+    <string name="helper_request_overview_button_title_start">"Start"</string>
+    <string name="helper_request_overview_error_title">"Error!"</string>
+    <string name="helper_request_overview_error_message">"Your request could not be sent! Please try again."</string>
+    <string name="shopping_list_screen_title">"Shopping list"</string>
+    <string name="shopping_list_button_title_checkout">"Checkout"</string>
+    <string name="shopping_list_overview_error_title">"Error!"</string>
+    <string name="shopping_list_overview_error_loading_failed_message">"Shopping list could not be loaded. Please try again!"</string>
+    <string name="checkout_screen_title">"Checkout"</string>
+    <string name="checkout_button_title_complete">"Complete"</string>
+    <string name="seeker_item_selection_screen_title">"Chose items"</string>
+    <string name="seeker_submit_button_title">"Submit"</string>
+    <string name="seeker_success_title">"Done!"</string>
+    <string name="seeker_success_message">"Your request was sent successfully."</string>
+    <string name="seeker_error_title">"Error!"</string>
+    <string name="seeker_error_message">"Your request could not be sent! Please try again."</string>
+    <string name="error_title">"Error"</string>
+    <string name="error_message_login_failed">"Login failed. Please try again."</string>
+    <string name="error_message_registration_validation_failed">"User registration failed. Please make sure you input valid data."</string>
+    <string name="error_message_registration_failed">"User registration failed. Please try again."</string>
+    <string name="error_button_ok">"OK"</string>
+
+    <!-- Title of the user profile screen -->
+    <string name="user_profile_screen_title">"User profile"</string>
+
+    <!-- Logout button title -->
+    <string name="user_profile_button_title_logout">"Logout"</string>
 
     <!-- Localizable.strings
   Nexd
@@ -8,12 +47,8 @@
   Copyright © 2020 Tobias Schröpf. All rights reserved. -->
     <string name="dialog_button_abort">"Abort"</string>
     <string name="dialog_button_confirm">"Confirm"</string>
-    <string name="login_screen_title">"Login"</string>
     <string name="login_placeholder_username">"Username"</string>
     <string name="login_placeholder_password">"Password"</string>
-    <string name="login_button_title_login">"Login"</string>
-    <string name="login_button_title_register">"Register"</string>
-    <string name="registration_screen_title">"Sign-up"</string>
     <string name="registration_placeholder_email">"E-mail"</string>
     <string name="registration_placeholder_firstName">"First name"</string>
     <string name="registration_placeholder_lastName">"Last name"</string>
@@ -21,50 +56,23 @@
     <string name="registration_placeholder_zip">"ZIP code"</string>
     <string name="registration_placeholder_password">"Password"</string>
     <string name="registration_placeholder_confirm_password">"Confirm password"</string>
-    <string name="registration_button_title_continue">"Continue"</string>
-    <string name="registration_button_title_send">"Send"</string>
     <string name="registration_button_privacy_policy">"Privacy Policy"</string>
-    <string name="role_selection_screen_title">"Role"</string>
-    <string name="role_selection_seeker">"I need something"</string>
-    <string name="role_selection_helper">"I can help"</string>
     <string name="role_selection_button_logout">"Log out"</string>
-    <string name="helper_request_overview_screen_title">"Overview"</string>
-    <string name="helper_request_overview_heading_accepted_section">"Accepted requests:"</string>
-    <string name="helper_request_overview_heading_available_section">"Available requests:"</string>
-    <string name="helper_request_overview_unknown_requester">"- unknown -"</string>
     <string name="helper_request_overview_button_summary_title">"Shopping"</string>
-    <string name="helper_request_overview_button_summary_details">"Total </string>
-    <string name="helper_request_overview_button_previous_requests">Previous purchases</string>
-    <string name="helper_request_overview_button_title_start">"Start"</string>
-    <string name="helper_request_overview_error_title">"Error!"</string>
-    <string name="helper_request_overview_error_message">"Your request could not be sent! Please try again."</string>
+    <string name="helper_request_overview_button_summary_details">"Total "</string>
     <string name="helper_request_detail_screen_title">"To collect"</string>
     <string name="helper_request_detail_button_accepted">"Request already accepted"</string>
     <string name="helper_request_detail_button_accept">"Will do!"</string>
-    <string name="helper_request_finished_screen_title">Finished Requests</string>
-    <string name="shopping_list_screen_title">"Shopping list"</string>
-    <string name="shopping_list_button_title_checkout">"Checkout"</string>
-    <string name="shopping_list_overview_error_title">"Error!"</string>
-    <string name="shopping_list_overview_error_loading_failed_message">"Shopping list could not be loaded. Please try again!"</string>
-    <string name="checkout_screen_title">"Checkout"</string>
-    <string name="checkout_button_title_complete">"Complete"</string>
     <string name="delivery_screen_title">"Delivery!"</string>
     <string name="delivery_dialog_deliver_title">"Deliver"</string>
-    <string name="delivery_dialog_deliver_description">"Confirm the delivery of all accepted requests</string>
+    <string name="delivery_dialog_deliver_description">"Confirm the delivery of all accepted requests"</string>
     <string name="delivery_dialog_delivery_button_confirm">"Confirm"</string>
     <string name="delivery_request_address">"Address: "</string>
     <string name="delivery_request_phoneNumber">"Tel.: "</string>
-    <string name="seeker_overview_screen_title">"Your requests:"</string>
     <string name="seeker_detail_screen_title">"Your request"</string>
     <string name="seeker_detail_placeholder_information">"Additional information"</string>
     <string name="seeker_request_create_heading">"I need:"</string>
     <string name="seeker_request_create_placeholder_information">"Additional information"</string>
-    <string name="seeker_item_selection_screen_title">"Choose items"</string>
-    <string name="seeker_submit_button_title">"Submit"</string>
-    <string name="seeker_success_title">"Done!"</string>
-    <string name="seeker_success_message">"Your request was sent successfully."</string>
-    <string name="seeker_error_title">"Error!"</string>
-    <string name="seeker_error_message">"Your request could not be sent! Please try again."</string>
     <string name="user_input_details_screen_title">"Input further information"</string>
     <string name="user_input_details_placeholder_phoneNumber">"Tel."</string>
     <string name="user_input_details_placeholder_street">"Street"</string>
@@ -72,15 +80,15 @@
     <string name="user_input_details_placeholder_zipCode">"Zip code"</string>
     <string name="user_input_details_placeholder_city">"Place"</string>
     <string name="user_input_details_confirm">"Confirm"</string>
-    <string name="error_title">"Error"</string>
     <string name="error_message_login_field_missing">"Please fill in"</string>
-    <string name="error_message_login_failed">"Login failed. Please try again."</string>
-    <string name="error_message_registration_validation_failed">"User registration failed. Please make sure you input valid data."</string>
     <string name="error_message_registration_password_match">"Passwords dont match"</string>
     <string name="error_message_registration_field_missing">"Please fill in"</string>
     <string name="error_message_registration_password_too_short">"At least 6 characters"</string>
     <string name="error_message_registration_invalid_email">"Invalid E-mail address"</string>
-    <string name="error_message_registration_failed">"User registration failed. Please try again."</string>
     <string name="error_message_user_detail_field_missing">"Please fill in"</string>
-    <string name="error_button_ok">"OK"</string>
+    <string name="registration_label_privacy_policy_agreement">"By creating an account, I agree to Nexd's %1$@"</string>
+    <string name="registration_term_privacy_policy">"Privacy Policy"</string>
+    <string name="helper_request_overview_button_previous_requests">"Previous purchases"</string>
+    <string name="seeker_overview_screen_title">"Your requests:"</string>
+    <string name="helper_request_finished_screen_title">"Completed requests:"</string>
 </resources>
