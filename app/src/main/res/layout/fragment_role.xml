@@ -14,6 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_button_white"
+        android:padding="10dp"
         android:text="@string/role_selection_button_logout"
         android:textAllCaps="false"
         android:textSize="17sp"
@@ -33,7 +34,7 @@
             android:layout_marginTop="21dp"
             android:layout_marginBottom="18dp"
             android:gravity="top"
-            android:text="Welcome"
+            android:text="@string/role_screen_title"
             android:textStyle="bold"
             android:textColor="@android:color/white"
             android:textSize="35sp" />
@@ -42,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="top"
-            android:text="What would you like to do today?"
+            android:text="@string/role_screen_subtitle"
             android:textColor="@android:color/white"
             android:textSize="30sp" />
 

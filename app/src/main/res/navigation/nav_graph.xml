@@ -70,10 +70,18 @@
             app:popExitAnim="@anim/fragment_close_exit" />
         <action
             android:id="@+id/toFinishedFragment"
-            app:destination="@id/helpRequestFinishedFragment" />
+            app:destination="@id/helpRequestFinishedFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
         <action
             android:id="@+id/toCallTranslateFragment"
-            app:destination="@id/callTranslateFragment" />
+            app:destination="@id/callTranslateFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
     </fragment>
     <fragment
         android:id="@+id/helperRequestDetailFragment"
