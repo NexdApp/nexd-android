@@ -15,7 +15,7 @@ import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
 import java.text.DateFormat
 
-class HelpRequestBinder() : ItemBinder<HelpRequest, HelpRequestViewHolder>() {
+class HelpRequestBinder : ItemBinder<HelpRequest, HelpRequestViewHolder>() {
 
     class HelpRequestViewHolder(itemView: View) : ItemViewHolder<HelpRequest?>(itemView) {
         private val title: TextView = itemView.tv_header
@@ -35,7 +35,10 @@ class HelpRequestBinder() : ItemBinder<HelpRequest, HelpRequestViewHolder>() {
         }
 
         fun bind(item: HelpRequest) {
-            title.text = DateFormat.getDateInstance(DateFormat.FULL).format(item.createdAt)
+            item.createdAt?.let {
+                title.text = DateFormat.getDateInstance(DateFormat.FULL).format(it)
+            }
+
             articlesAdapter.removeAllSections()
             val articlesList = ListSection<HelpRequestArticle>()
             articlesList.setOnSelectionChangedListener { _, _, _ ->

@@ -49,11 +49,13 @@ class SeekerOverviewFragment : Fragment() {
             adapter.addSection(requestsSection)
 
             requestsSection.setOnSelectionChangedListener { request, isSelected, _ ->
-                if (isSelected)
-                    findNavController().navigate(
-                        SeekerOverviewFragmentDirections
-                            .toSeekerDetailFragment(request.id!!)
-                    )
+                if (isSelected) {
+                    request.id?.let { requestId ->
+                        findNavController().navigate(
+                            SeekerOverviewFragmentDirections.toSeekerDetailFragment(requestId)
+                        )
+                    }
+                }
             }
         })
 
