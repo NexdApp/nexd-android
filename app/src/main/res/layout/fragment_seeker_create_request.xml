@@ -27,7 +27,7 @@
         android:layout_height="wrap_content" >
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_articles"
+            android:id="@+id/recyclerView_requests"
             tools:listitem="@layout/new_help_request_article_list_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,8 +48,9 @@
         android:inputType="text"
         android:paddingHorizontal="10dp"
         android:textSize="20sp"
+        android:textColor="@android:color/white"
         android:hint="@string/seeker_request_create_placeholder_information"
-        android:backgroundTint="@android:color/white"
+        android:backgroundTint="@color/grey_500"
         android:textColorHint="@android:color/white" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

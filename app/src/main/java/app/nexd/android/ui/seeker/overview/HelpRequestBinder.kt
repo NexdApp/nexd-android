@@ -22,8 +22,8 @@ class HelpRequestBinder : ItemBinder<HelpRequest, HelpRequestViewHolder>() {
         private val articlesAdapter = MultiViewAdapter()
 
         init {
-            itemView.recyclerView_articles.adapter = articlesAdapter
-            itemView.recyclerView_articles.layoutManager = LinearLayoutManager(itemView.context)
+            itemView.recyclerView_requests.adapter = articlesAdapter
+            itemView.recyclerView_requests.layoutManager = LinearLayoutManager(itemView.context)
 
             itemView.setOnClickListener {
                 toggleItemSelection()

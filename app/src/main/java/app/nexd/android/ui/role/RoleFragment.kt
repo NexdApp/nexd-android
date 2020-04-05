@@ -30,7 +30,7 @@ class RoleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getMe().observe(viewLifecycleOwner, Observer { currentUser ->
-            val startingString = "Welcome, "
+            val startingString = context?.getString(R.string.role_screen_title)
             val fullTitle = startingString + currentUser.firstName
             val title = SpannableString(fullTitle)
             title.setSpan(
@@ -40,7 +40,7 @@ class RoleFragment : Fragment() {
                         R.color.colorPrimaryDark
                     )
                 ),
-                startingString.length,
+                startingString?.length ?: 0,
                 fullTitle.length, 0
             )
 

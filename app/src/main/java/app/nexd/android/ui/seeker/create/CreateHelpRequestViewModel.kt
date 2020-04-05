@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import app.nexd.android.api
 import app.nexd.android.api.model.Article
 import app.nexd.android.api.model.HelpRequestCreateDto
+import app.nexd.android.api.model.User
 import io.reactivex.BackpressureStrategy
 import io.reactivex.functions.Consumer
 import io.reactivex.processors.BehaviorProcessor
@@ -23,6 +24,12 @@ class CreateHelpRequestViewModel : ViewModel() {
     }
 
     private val state = BehaviorProcessor.createDefault(State.LOADING)
+
+    fun getCurrentUser(): LiveData<User> {
+        return LiveDataReactiveStreams.fromPublisher(
+            api.userControllerFindMe().toFlowable(BackpressureStrategy.LATEST)
+        )
+    }
 
     fun getArticles() : LiveData<List<Article>> {
         return LiveDataReactiveStreams.fromPublisher(
@@ -50,7 +57,7 @@ class CreateHelpRequestViewModel : ViewModel() {
         return LiveDataReactiveStreams.fromPublisher(data.toFlowable(BackpressureStrategy.BUFFER))
     }*/
 
-    fun sendRequest(request: HelpRequestCreateDto) {
+    fun sendRequest(request: HelpRequestCreateDto) { // TODO accept request only if at least one article is selected
         with(api) {
             helpRequestsControllerInsertRequestWithArticles(request)
                 .subscribe { state.onNext(State.FINISHED) }

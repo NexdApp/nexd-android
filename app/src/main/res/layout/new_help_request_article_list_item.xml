@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="40dp"
     android:orientation="horizontal"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <ImageButton
         android:id="@+id/button_decrease"
         android:layout_weight="1"
         android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:layout_height="match_parent"
         android:padding="5dp"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_minus"
-        android:background="@drawable/round_button_white" />
+        style="@style/Widget.AppCompat.ActionButton" />
 
     <EditText
         android:id="@+id/textView_amount"
@@ -27,7 +26,7 @@
         android:gravity="center"
         android:layout_gravity="center"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         tools:text="0" />
 
 
@@ -35,16 +34,16 @@
         android:id="@+id/button_increase"
         android:layout_weight="1"
         android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:layout_height="match_parent"
         android:scaleType="fitCenter"
-        android:background="@drawable/round_button_white"
+        style="@style/Widget.AppCompat.ActionButton"
         android:padding="5dp"
         android:src="@drawable/ic_add" />
 
     <TextView
         android:id="@+id/textView_article_name"
         android:textColor="@android:color/black"
-        android:textSize="18sp"
+        android:textSize="22sp"
         android:paddingHorizontal="10dp"
         android:gravity="center_vertical|start"
         android:layout_weight="4"

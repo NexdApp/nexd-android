@@ -6,7 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import app.nexd.android.api
 import app.nexd.android.api.model.HelpRequest
+import app.nexd.android.api.model.HelpRequestCreateDto
 import io.reactivex.BackpressureStrategy
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 
 class SeekerDetailViewModel: ViewModel() {
@@ -14,7 +16,7 @@ class SeekerDetailViewModel: ViewModel() {
     sealed class Progress {
         object Idle : Progress()
         object Error : Progress()
-        object Removed : Progress()
+        object Canceled : Progress()
     }
 
     val progress = MutableLiveData<Progress>(Progress.Idle)
@@ -34,7 +36,17 @@ class SeekerDetailViewModel: ViewModel() {
     }
 
     fun cancelRequest(request: HelpRequest) {
-        // TODO: cancel/remove own request
+        with(api) {
+            helpRequestsControllerUpdateRequest(
+                request.id?.toBigDecimal(),
+                HelpRequestCreateDto()
+                    .status(HelpRequestCreateDto.StatusEnum.DEACTIVATED)
+            )
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    progress.value = Progress.Canceled
+                }
+        }
     }
 
 }

@@ -11,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
-import app.nexd.android.api.model.HelpRequest
 import app.nexd.android.api.model.HelpRequestArticle
 import kotlinx.android.synthetic.main.fragment_helper_request_detail.*
 import mva2.adapter.ListSection
@@ -41,8 +40,8 @@ class HelperDetailFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         val adapter = MultiViewAdapter()
-        recyclerView_articles.adapter = adapter
-        recyclerView_articles.layoutManager = LinearLayoutManager(context)
+        recyclerView_requests.adapter = adapter
+        recyclerView_requests.layoutManager = LinearLayoutManager(context)
 
         adapter.registerItemBinders(
             HelpRequestArticleBinder()

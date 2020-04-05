@@ -42,7 +42,6 @@
                 android:imeOptions="actionGo"
                 android:inputType="textEmailAddress"
                 android:lines="1"
-                android:layout_marginTop="10dp"
                 android:paddingHorizontal="10dp"
                 android:text="@={viewModel.username}"
                 android:textSize="20sp" />
@@ -53,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:error="@{viewModel.passwordError}"
                 android:hint="@string/login_placeholder_password"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:lines="1"

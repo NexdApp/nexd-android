@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <!--<data>
 
@@ -11,28 +13,75 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp"
+        tools:background="@drawable/background_gradient">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            tools:text="Anna" />
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:padding="5dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
 
             <ImageButton
                 android:id="@+id/imagebutton_toggle"
                 style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
                 android:minWidth="0dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:padding="0dp"
+                android:src="@drawable/ic_play_arrow_black_24dp" />
 
             <SeekBar
                 android:id="@+id/seekbar_slider"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:progressBackgroundTint="@android:color/white"
+                android:thumbTint="@android:color/white" />
 
         </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginVertical="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/cardRadius">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_requests"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/new_help_request_article_list_item" />
+        </androidx.cardview.widget.CardView>
+
+        <Space
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" />
+
+        <Button
+            android:id="@+id/button_transcript"
+            android:textAllCaps="false"
+            android:textSize="30sp"
+            android:padding="10dp"
+            android:textAlignment="textStart"
+            android:text="@string/helper_request_transcript_button_done"
+            android:textColor="@android:color/white"
+            android:drawableTint="@android:color/white"
+            android:background="@drawable/rounded_button_outer_white"
+            android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 

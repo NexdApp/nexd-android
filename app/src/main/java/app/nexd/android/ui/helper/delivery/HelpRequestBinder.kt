@@ -18,12 +18,17 @@ class HelpRequestBinder : ItemBinder<HelpRequest, HelpRequestBinder.ViewHolder>(
 
         fun bind(request: HelpRequest) {
             username.text = request.requester?.lastName
-            address.text = itemView.context.getString(R.string.helper_delivery_address_layout,
+            address.text = itemView.context.getString(
+                R.string.helper_delivery_address_layout,
                 itemView.context.getString(R.string.delivery_request_address),
                 request.street,
-                request.number)
+                request.number,
+                request.zipCode,
+                request.city
+            )
 
-            phoneNumber.text = itemView.context.getString(R.string.helper_delivery_phonenumber_layout,
+            phoneNumber.text = itemView.context.getString(
+                R.string.helper_delivery_phonenumber_layout,
                 itemView.context.getString(R.string.delivery_request_phoneNumber),
                 request.phoneNumber
             )
