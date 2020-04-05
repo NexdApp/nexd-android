@@ -120,7 +120,7 @@ class CallTranslateViewModel(application: Application) : AndroidViewModel(applic
                     api.callsControllerConverted(
                         callSid,
                         ConvertedHelpRequestDto()
-                            .helpRequestId(it.id?.toInt())
+                            .helpRequestId(it.id)
                     )
                 }
                 .toFlowable(BackpressureStrategy.LATEST)
