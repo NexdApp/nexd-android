@@ -57,11 +57,7 @@ class HelperOverviewViewModel(application: Application) : AndroidViewModel(appli
                         RequestType.SHOPPING,
                         helpRequest.id ?: 0
                     )
-                }.plus(AvailableRequestWrapper(
-                    User(),
-                    RequestType.TRANSCRIPT,
-                    0
-                ))
+                }
             }
         }
 

@@ -13,7 +13,7 @@ class CallOverviewViewModel : ViewModel() {
         return LiveDataReactiveStreams.fromPublisher(
             api.callsControllerCalls(
                 null,
-                null,
+                "false",
                 null,
                 null,
                 null
