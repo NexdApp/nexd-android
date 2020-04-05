@@ -40,7 +40,7 @@ public class Example {
         bearer.setBearerToken("BEARER TOKEN");
 
         HelpRequestsApi apiInstance = new HelpRequestsApi(defaultClient);
-        Integer helpRequestId = 56; // Integer | Id of the help request
+        Long helpRequestId = 56L; // Long | Id of the help request
         Long articleId = 56L; // Long | Id of the article
         CreateOrUpdateHelpRequestArticleDto createOrUpdateHelpRequestArticleDto = new CreateOrUpdateHelpRequestArticleDto(); // CreateOrUpdateHelpRequestArticleDto | 
         try {
@@ -62,7 +62,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **helpRequestId** | **Integer**| Id of the help request |
+ **helpRequestId** | **Long**| Id of the help request |
  **articleId** | **Long**| Id of the article |
  **createOrUpdateHelpRequestArticleDto** | [**CreateOrUpdateHelpRequestArticleDto**](CreateOrUpdateHelpRequestArticleDto.md)|  |
 
@@ -332,7 +332,7 @@ public class Example {
         bearer.setBearerToken("BEARER TOKEN");
 
         HelpRequestsApi apiInstance = new HelpRequestsApi(defaultClient);
-        Integer helpRequestId = 56; // Integer | Id of the help request
+        Long helpRequestId = 56L; // Long | Id of the help request
         Long articleId = 56L; // Long | Id of the article
         try {
             HelpRequest result = apiInstance.helpRequestsControllerRemoveArticleInHelpRequest(helpRequestId, articleId);
@@ -353,7 +353,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **helpRequestId** | **Integer**| Id of the help request |
+ **helpRequestId** | **Long**| Id of the help request |
  **articleId** | **Long**| Id of the article |
 
 ### Return type

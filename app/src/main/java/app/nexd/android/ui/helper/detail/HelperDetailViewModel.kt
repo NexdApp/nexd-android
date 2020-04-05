@@ -40,8 +40,8 @@ class HelperDetailViewModel : ViewModel() {
                     )
                 } else {
                     api.helpListsControllerAddHelpRequestToList(
-                        shoppingList.id.toInt(),
-                        requestId.toInt()
+                        shoppingList.id,
+                        requestId
                     )
                 }
             }

@@ -29,7 +29,7 @@ class DeliveryViewModel : ViewModel() {
         val response = MutableLiveData<Boolean>()
         with(api) {
             helpListsControllerUpdateHelpLists(
-                shoppingListId.toInt(), // TODO remove if backend
+                shoppingListId,
                 HelpListCreateDto()
                     .status(HelpListCreateDto.StatusEnum.COMPLETED)
             )
