@@ -15,7 +15,7 @@ class HelpRequestArticleBinder: ItemBinder<HelpRequestArticle, HelpRequestArticl
         fun bind(item: HelpRequestArticle) {
             itemView.name.text = item.articleId.toString()
             itemView.amount.text = item.articleCount.toString()
-            itemView.checked.isChecked = item.articleDone
+            itemView.checked.isChecked = item.articleDone ?: false
             itemView.checked.isEnabled = false
         }
     }

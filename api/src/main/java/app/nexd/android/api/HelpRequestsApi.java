@@ -10,7 +10,6 @@ import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import okhttp3.MultipartBody;
 
-import java.math.BigDecimal;
 import app.nexd.android.api.model.CreateOrUpdateHelpRequestArticleDto;
 import app.nexd.android.api.model.HelpRequest;
 import app.nexd.android.api.model.HelpRequestCreateDto;
@@ -34,13 +33,14 @@ public interface HelpRequestsApi {
   })
   @PUT("help-requests/{helpRequestId}/article/{articleId}")
   Observable<HelpRequest> helpRequestsControllerAddArticleInHelpRequest(
-    @retrofit2.http.Path("helpRequestId") HelpRequest helpRequestId, @retrofit2.http.Path("articleId") BigDecimal articleId, @retrofit2.http.Body CreateOrUpdateHelpRequestArticleDto createOrUpdateHelpRequestArticleDto
+    @retrofit2.http.Path("helpRequestId") Integer helpRequestId, @retrofit2.http.Path("articleId") Integer articleId, @retrofit2.http.Body CreateOrUpdateHelpRequestArticleDto createOrUpdateHelpRequestArticleDto
   );
 
   /**
    * Get and filter for various help requests
    * 
    * @param userId If included, filter by userId, \&quot;me\&quot; for the requesting user, otherwise all users are replied. (optional)
+   * @param excludeUserId If true, the given userId is excluded (and not filtered for as default) (optional)
    * @param zipCode Filter by an array of zipCodes (optional, default to new ArrayList&lt;String&gt;())
    * @param includeRequester If \&quot;true\&quot;, the requester object is included in each help request (optional)
    * @param status Array of status to filter for (optional, default to new ArrayList&lt;String&gt;())
@@ -48,7 +48,7 @@ public interface HelpRequestsApi {
    */
   @GET("help-requests")
   Observable<List<HelpRequest>> helpRequestsControllerGetAll(
-    @retrofit2.http.Query("userId") String userId, @retrofit2.http.Query("zipCode") List<String> zipCode, @retrofit2.http.Query("includeRequester") String includeRequester, @retrofit2.http.Query("status") List<String> status
+    @retrofit2.http.Query("userId") String userId, @retrofit2.http.Query("excludeUserId") String excludeUserId, @retrofit2.http.Query("zipCode") List<String> zipCode, @retrofit2.http.Query("includeRequester") String includeRequester, @retrofit2.http.Query("status") List<String> status
   );
 
   /**
@@ -59,7 +59,7 @@ public interface HelpRequestsApi {
    */
   @GET("help-requests/{helpRequestId}")
   Observable<HelpRequest> helpRequestsControllerGetSingleRequest(
-    @retrofit2.http.Path("helpRequestId") BigDecimal helpRequestId
+    @retrofit2.http.Path("helpRequestId") Integer helpRequestId
   );
 
   /**
@@ -85,7 +85,7 @@ public interface HelpRequestsApi {
    */
   @DELETE("help-requests/{helpRequestId}/article/{articleId}")
   Observable<HelpRequest> helpRequestsControllerRemoveArticleInHelpRequest(
-    @retrofit2.http.Path("helpRequestId") HelpRequest helpRequestId, @retrofit2.http.Path("articleId") BigDecimal articleId
+    @retrofit2.http.Path("helpRequestId") Integer helpRequestId, @retrofit2.http.Path("articleId") Integer articleId
   );
 
   /**
@@ -100,7 +100,7 @@ public interface HelpRequestsApi {
   })
   @PUT("help-requests/{helpRequestId}")
   Observable<HelpRequest> helpRequestsControllerUpdateRequest(
-    @retrofit2.http.Path("helpRequestId") BigDecimal helpRequestId, @retrofit2.http.Body HelpRequestCreateDto helpRequestCreateDto
+    @retrofit2.http.Path("helpRequestId") Integer helpRequestId, @retrofit2.http.Body HelpRequestCreateDto helpRequestCreateDto
   );
 
 }

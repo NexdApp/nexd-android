@@ -1,19 +1,15 @@
 package app.nexd.android.ui.helper.overview
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
-import app.nexd.android.Preferences
 import app.nexd.android.api
 import app.nexd.android.api.model.HelpList
 import app.nexd.android.api.model.HelpRequest
 import app.nexd.android.api.model.HelpRequest.StatusEnum.ONGOING
 import app.nexd.android.api.model.HelpRequest.StatusEnum.PENDING
 import io.reactivex.BackpressureStrategy
-import io.reactivex.Observable
-import io.reactivex.functions.BiFunction
 import io.reactivex.subjects.BehaviorSubject
 
 class HelperOverviewViewModel(application: Application) : AndroidViewModel(application) {
@@ -38,6 +34,7 @@ class HelperOverviewViewModel(application: Application) : AndroidViewModel(appli
                 .flatMap { me ->
                 api.helpRequestsControllerGetAll(
                     null,
+                    me.id,
                     null,
                     "true",
                     listOf(
@@ -45,9 +42,6 @@ class HelperOverviewViewModel(application: Application) : AndroidViewModel(appli
                         ONGOING.value // TODO remove this line
                     )
                 )
-                    .map { requests ->
-                        requests.filter { it.requesterId != me.id }
-                    }
             }
         }
         return LiveDataReactiveStreams.fromPublisher(observable.toFlowable(BackpressureStrategy.BUFFER))

@@ -118,10 +118,6 @@ public class User {
   @SerializedName(SERIALIZED_NAME_TELEPHONE)
   private String telephone;
 
-  public static final String SERIALIZED_NAME_PASSWORD = "password";
-  @SerializedName(SERIALIZED_NAME_PASSWORD)
-  private String password;
-
 
   public User street(String street) {
     
@@ -349,28 +345,6 @@ public class User {
   }
 
 
-  public User password(String password) {
-    
-    this.password = password;
-    return this;
-  }
-
-   /**
-   * Get password
-   * @return password
-  **/
-  @ApiModelProperty(required = true, value = "")
-
-  public String getPassword() {
-    return password;
-  }
-
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
-
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -389,13 +363,12 @@ public class User {
         Objects.equals(this.lastName, user.lastName) &&
         Objects.equals(this.email, user.email) &&
         Objects.equals(this.role, user.role) &&
-        Objects.equals(this.telephone, user.telephone) &&
-        Objects.equals(this.password, user.password);
+        Objects.equals(this.telephone, user.telephone);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(street, number, zipCode, city, id, firstName, lastName, email, role, telephone, password);
+    return Objects.hash(street, number, zipCode, city, id, firstName, lastName, email, role, telephone);
   }
 
 
@@ -413,7 +386,6 @@ public class User {
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    telephone: ").append(toIndentedString(telephone)).append("\n");
-    sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("}");
     return sb.toString();
   }

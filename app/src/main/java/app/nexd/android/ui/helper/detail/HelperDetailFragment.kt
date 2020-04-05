@@ -16,20 +16,16 @@ import app.nexd.android.api.model.HelpRequestArticle
 import kotlinx.android.synthetic.main.fragment_helper_request_detail.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
-import java.math.BigDecimal
 
 
 class HelperDetailFragment : Fragment() {
 
-    private lateinit var viewModel: HelperDetailViewModel
+    private val args: HelperDetailFragmentArgs by navArgs()
 
-    lateinit var requestId: BigDecimal
+    private lateinit var viewModel: HelperDetailViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val args: HelperDetailFragmentArgs by navArgs()
-        requestId = args.requestId.toBigDecimal()
 
         viewModel = ViewModelProvider(this).get(HelperDetailViewModel::class.java)
     }
@@ -52,7 +48,7 @@ class HelperDetailFragment : Fragment() {
             HelpRequestArticleBinder()
         )
 
-        viewModel.requestDetails(requestId).observe(viewLifecycleOwner, Observer { request ->
+        viewModel.requestDetails(args.requestId.toInt()).observe(viewLifecycleOwner, Observer { request ->
             adapter.removeAllSections()
 
             name.text = context!!.getString(
@@ -68,8 +64,10 @@ class HelperDetailFragment : Fragment() {
             setAccepted(request.status != HelpRequest.StatusEnum.PENDING)
 
             accept.setOnClickListener {
-                viewModel.acceptRequest(request.id!!)
-                findNavController().popBackStack()
+                request.id?.let {
+                    viewModel.acceptRequest(it)
+                    findNavController().popBackStack()
+                }
             }
         })
     }

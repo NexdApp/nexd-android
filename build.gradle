@@ -48,6 +48,7 @@ openApiGenerate {
     apiPackage = "app.nexd.android.api"
     invokerPackage = "app.nexd.android"
     modelPackage = "app.nexd.android.api.model"
+    typeMappings = ["number" : "int"]
     library = "retrofit2"
     generateModelTests = false
     generateApiTests = false

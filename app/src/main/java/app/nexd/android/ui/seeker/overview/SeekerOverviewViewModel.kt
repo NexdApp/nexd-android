@@ -15,6 +15,7 @@ class SeekerOverviewViewModel : ViewModel() {
                 "me",
                 null,
                 null,
+                null,
                 listOf(
                     HelpRequest.StatusEnum.PENDING.value,
                     HelpRequest.StatusEnum.ONGOING.value

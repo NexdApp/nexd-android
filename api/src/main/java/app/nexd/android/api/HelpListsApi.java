@@ -10,7 +10,6 @@ import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import okhttp3.MultipartBody;
 
-import java.math.BigDecimal;
 import app.nexd.android.api.model.HelpList;
 import app.nexd.android.api.model.HelpListCreateDto;
 
@@ -29,7 +28,7 @@ public interface HelpListsApi {
    */
   @PUT("help-lists/{helpListId}/help-request/{helpRequestId}")
   Observable<HelpList> helpListsControllerAddHelpRequestToList(
-    @retrofit2.http.Path("helpListId") BigDecimal helpListId, @retrofit2.http.Path("helpRequestId") BigDecimal helpRequestId
+    @retrofit2.http.Path("helpListId") Integer helpListId, @retrofit2.http.Path("helpRequestId") Integer helpRequestId
   );
 
   /**
@@ -41,7 +40,7 @@ public interface HelpListsApi {
    */
   @DELETE("help-lists/{helpListId}/help-request/{helpRequestId}")
   Observable<HelpList> helpListsControllerDeleteHelpRequestFromHelpList(
-    @retrofit2.http.Path("helpListId") BigDecimal helpListId, @retrofit2.http.Path("helpRequestId") BigDecimal helpRequestId
+    @retrofit2.http.Path("helpListId") Integer helpListId, @retrofit2.http.Path("helpRequestId") Integer helpRequestId
   );
 
   /**
@@ -52,7 +51,7 @@ public interface HelpListsApi {
    */
   @GET("help-lists/{helpListId}")
   Observable<HelpList> helpListsControllerFindOne(
-    @retrofit2.http.Path("helpListId") BigDecimal helpListId
+    @retrofit2.http.Path("helpListId") Integer helpListId
   );
 
   /**
@@ -90,7 +89,7 @@ public interface HelpListsApi {
    */
   @PUT("help-lists/{helpListId}/article/{articleId}")
   Observable<HelpList> helpListsControllerModifyArticleInAllHelpRequests(
-    @retrofit2.http.Path("helpListId") BigDecimal helpListId, @retrofit2.http.Path("articleId") Object articleId, @retrofit2.http.Query("articleDone") Object articleDone
+    @retrofit2.http.Path("helpListId") Integer helpListId, @retrofit2.http.Path("articleId") Integer articleId, @retrofit2.http.Query("articleDone") Boolean articleDone
   );
 
   /**
@@ -104,7 +103,7 @@ public interface HelpListsApi {
    */
   @PUT("help-lists/{helpListId}/help-request/{helpRequestId}/article/{articleId}")
   Observable<HelpList> helpListsControllerModifyArticleInHelpRequest(
-    @retrofit2.http.Path("helpListId") BigDecimal helpListId, @retrofit2.http.Path("helpRequestId") BigDecimal helpRequestId, @retrofit2.http.Path("articleId") Object articleId, @retrofit2.http.Query("articleDone") String articleDone
+    @retrofit2.http.Path("helpListId") Integer helpListId, @retrofit2.http.Path("helpRequestId") Integer helpRequestId, @retrofit2.http.Path("articleId") Integer articleId, @retrofit2.http.Query("articleDone") Boolean articleDone
   );
 
   /**
@@ -119,7 +118,7 @@ public interface HelpListsApi {
   })
   @PUT("help-lists/{helpListId}")
   Observable<HelpList> helpListsControllerUpdateHelpLists(
-    @retrofit2.http.Path("helpListId") BigDecimal helpListId, @retrofit2.http.Body HelpListCreateDto helpListCreateDto
+    @retrofit2.http.Path("helpListId") Integer helpListId, @retrofit2.http.Body HelpListCreateDto helpListCreateDto
   );
 
 }

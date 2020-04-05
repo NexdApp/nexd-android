@@ -5,7 +5,6 @@ import app.nexd.android.api.model.*
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import okhttp3.logging.HttpLoggingInterceptor
-import java.math.BigDecimal
 
 lateinit var api: Api
 
@@ -50,11 +49,11 @@ class Api(private val apiClient: ApiClient = ApiClient("bearer")) :
         return authApi.authControllerRegister(registerDto).subscribeOn(Schedulers.io())
     }
 
-    override fun authControllerLogin(): Observable<TokenDto> {
-        return authApi.authControllerLogin().subscribeOn(Schedulers.io())
+    override fun authControllerLogin(loginDto: LoginDto): Observable<TokenDto> {
+        return authApi.authControllerLogin(loginDto).subscribeOn(Schedulers.io())
     }
 
-    override fun authControllerRefreshToken(registerDto: RegisterDto?): Observable<TokenDto> {
+    override fun authControllerRefreshToken(registerDto: TokenDto): Observable<TokenDto> {
         return authApi.authControllerRefreshToken(registerDto).subscribeOn(Schedulers.io())
     }
 
@@ -66,22 +65,22 @@ class Api(private val apiClient: ApiClient = ApiClient("bearer")) :
         return articlesApi.articlesControllerFindAll().subscribeOn(Schedulers.io())
     }
 
-    override fun helpListsControllerFindOne(helpListId: BigDecimal?): Observable<HelpList> {
+    override fun helpListsControllerFindOne(helpListId: Int): Observable<HelpList> {
         return helpListsApi.helpListsControllerFindOne(helpListId).subscribeOn(Schedulers.io())
     }
 
     override fun helpListsControllerUpdateHelpLists(
-        helpListId: BigDecimal?,
+        helpListId: Int,
         helpListCreateDto: HelpListCreateDto?
     ): Observable<HelpList> {
         return helpListsApi.helpListsControllerUpdateHelpLists(helpListId, helpListCreateDto).subscribeOn(Schedulers.io())
     }
 
     override fun helpListsControllerModifyArticleInHelpRequest(
-        helpListId: BigDecimal?,
-        helpRequestId: BigDecimal?,
-        articleId: Any?,
-        articleDone: String?
+        helpListId: Int,
+        helpRequestId: Int,
+        articleId: Int,
+        articleDone: Boolean
     ): Observable<HelpList> {
         return helpListsApi.helpListsControllerModifyArticleInHelpRequest(helpListId, helpRequestId, articleId, articleDone).subscribeOn(Schedulers.io())
     }
@@ -91,16 +90,16 @@ class Api(private val apiClient: ApiClient = ApiClient("bearer")) :
     }
 
     override fun helpListsControllerDeleteHelpRequestFromHelpList(
-        helpListId: BigDecimal?,
-        helpRequestId: BigDecimal?
+        helpListId: Int?,
+        helpRequestId: Int?
     ): Observable<HelpList> {
         return helpListsApi.helpListsControllerDeleteHelpRequestFromHelpList(helpListId, helpRequestId).subscribeOn(Schedulers.io())
     }
 
     override fun helpListsControllerModifyArticleInAllHelpRequests(
-        helpListId: BigDecimal?,
-        articleId: Any?,
-        articleDone: Any?
+        helpListId: Int,
+        articleId: Int,
+        articleDone: Boolean
     ): Observable<HelpList> {
         return helpListsApi.helpListsControllerModifyArticleInAllHelpRequests(helpListId, articleId, articleDone).subscribeOn(Schedulers.io())
     }
@@ -110,38 +109,39 @@ class Api(private val apiClient: ApiClient = ApiClient("bearer")) :
     }
 
     override fun helpListsControllerAddHelpRequestToList(
-        helpListId: BigDecimal?,
-        helpRequestId: BigDecimal?
+        helpListId: Int?,
+        helpRequestId: Int?
     ): Observable<HelpList> {
         return helpListsApi.helpListsControllerAddHelpRequestToList(helpListId, helpRequestId).subscribeOn(Schedulers.io())
     }
 
     override fun helpRequestsControllerAddArticleInHelpRequest(
-        helpRequestId: HelpRequest?,
-        articleId: BigDecimal?,
+        helpRequestId: Int,
+        articleId: Int,
         createOrUpdateHelpRequestArticleDto: CreateOrUpdateHelpRequestArticleDto?
     ): Observable<HelpRequest> {
         return helpRequestsApi.helpRequestsControllerAddArticleInHelpRequest(helpRequestId, articleId, createOrUpdateHelpRequestArticleDto).subscribeOn(Schedulers.io())
     }
 
     override fun helpRequestsControllerRemoveArticleInHelpRequest(
-        helpRequestId: HelpRequest?,
-        articleId: BigDecimal?
+        helpRequestId: Int,
+        articleId: Int
     ): Observable<HelpRequest> {
         return helpRequestsApi.helpRequestsControllerRemoveArticleInHelpRequest(helpRequestId, articleId).subscribeOn(Schedulers.io())
     }
 
     override fun helpRequestsControllerGetAll(
         userId: String?,
+        excludeUserId: String?,
         zipCode: MutableList<String>?,
         includeRequester: String?,
         status: List<String>?
     ): Observable<List<HelpRequest>> {
-        return helpRequestsApi.helpRequestsControllerGetAll(userId, zipCode, includeRequester, status).subscribeOn(Schedulers.io())
+        return helpRequestsApi.helpRequestsControllerGetAll(userId, excludeUserId, zipCode, includeRequester, status).subscribeOn(Schedulers.io())
     }
 
     override fun helpRequestsControllerUpdateRequest(
-        helpRequestId: BigDecimal?,
+        helpRequestId: Int?,
         helpRequestCreateDto: HelpRequestCreateDto?
     ): Observable<HelpRequest> {
         return helpRequestsApi.helpRequestsControllerUpdateRequest(helpRequestId, helpRequestCreateDto).subscribeOn(Schedulers.io())
@@ -151,7 +151,7 @@ class Api(private val apiClient: ApiClient = ApiClient("bearer")) :
         return helpRequestsApi.helpRequestsControllerInsertRequestWithArticles(helpRequestCreateDto).subscribeOn(Schedulers.io())
     }
 
-    override fun helpRequestsControllerGetSingleRequest(helpRequestId: BigDecimal?): Observable<HelpRequest> {
+    override fun helpRequestsControllerGetSingleRequest(helpRequestId: Int?): Observable<HelpRequest> {
         return helpRequestsApi.helpRequestsControllerGetSingleRequest(helpRequestId).subscribeOn(Schedulers.io())
     }
 

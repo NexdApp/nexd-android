@@ -53,7 +53,7 @@ public class HelpRequest {
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
-  private Long id = null;
+  private Integer id;
 
   public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
@@ -243,7 +243,7 @@ public class HelpRequest {
   }
 
 
-  public HelpRequest id(Long id) {
+  public HelpRequest id(Integer id) {
     
     this.id = id;
     return this;
@@ -256,12 +256,12 @@ public class HelpRequest {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public Long getId() {
+  public Integer getId() {
     return id;
   }
 
 
-  public void setId(Long id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 

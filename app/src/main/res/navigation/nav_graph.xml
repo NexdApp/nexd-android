@@ -175,7 +175,7 @@
         tools:layout="@layout/fragment_seeker_detail" >
         <argument
             android:name="requestId"
-            app:argType="long" />
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/helpRequestFinishedFragment"

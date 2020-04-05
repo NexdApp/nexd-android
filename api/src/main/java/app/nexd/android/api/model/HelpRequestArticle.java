@@ -25,7 +25,6 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 
 /**
  * HelpRequestArticle
@@ -34,15 +33,15 @@ import java.math.BigDecimal;
 public class HelpRequestArticle {
   public static final String SERIALIZED_NAME_ARTICLE_ID = "articleId";
   @SerializedName(SERIALIZED_NAME_ARTICLE_ID)
-  private Long articleId = null;
+  private Integer articleId;
 
   public static final String SERIALIZED_NAME_ARTICLE_COUNT = "articleCount";
   @SerializedName(SERIALIZED_NAME_ARTICLE_COUNT)
-  private Long articleCount = null;
+  private Integer articleCount;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
-  private BigDecimal id;
+  private Integer id;
 
   public static final String SERIALIZED_NAME_ARTICLE = "article";
   @SerializedName(SERIALIZED_NAME_ARTICLE)
@@ -57,7 +56,7 @@ public class HelpRequestArticle {
   private HelpRequest helpRequest;
 
 
-  public HelpRequestArticle articleId(Long articleId) {
+  public HelpRequestArticle articleId(Integer articleId) {
     
     this.articleId = articleId;
     return this;
@@ -67,19 +66,20 @@ public class HelpRequestArticle {
    * Get articleId
    * @return articleId
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
-  public Long getArticleId() {
+  public Integer getArticleId() {
     return articleId;
   }
 
 
-  public void setArticleId(Long articleId) {
+  public void setArticleId(Integer articleId) {
     this.articleId = articleId;
   }
 
 
-  public HelpRequestArticle articleCount(Long articleCount) {
+  public HelpRequestArticle articleCount(Integer articleCount) {
     
     this.articleCount = articleCount;
     return this;
@@ -89,19 +89,20 @@ public class HelpRequestArticle {
    * Get articleCount
    * @return articleCount
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
-  public Long getArticleCount() {
+  public Integer getArticleCount() {
     return articleCount;
   }
 
 
-  public void setArticleCount(Long articleCount) {
+  public void setArticleCount(Integer articleCount) {
     this.articleCount = articleCount;
   }
 
 
-  public HelpRequestArticle id(BigDecimal id) {
+  public HelpRequestArticle id(Integer id) {
     
     this.id = id;
     return this;
@@ -111,14 +112,15 @@ public class HelpRequestArticle {
    * Get id
    * @return id
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
-  public BigDecimal getId() {
+  public Integer getId() {
     return id;
   }
 
 
-  public void setId(BigDecimal id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
@@ -133,7 +135,8 @@ public class HelpRequestArticle {
    * Get article
    * @return article
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Article getArticle() {
     return article;
@@ -155,7 +158,8 @@ public class HelpRequestArticle {
    * Get articleDone
    * @return articleDone
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public Boolean getArticleDone() {
     return articleDone;
@@ -177,7 +181,8 @@ public class HelpRequestArticle {
    * Get helpRequest
    * @return helpRequest
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public HelpRequest getHelpRequest() {
     return helpRequest;

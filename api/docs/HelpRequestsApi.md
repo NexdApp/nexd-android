@@ -40,8 +40,8 @@ public class Example {
         bearer.setBearerToken("BEARER TOKEN");
 
         HelpRequestsApi apiInstance = new HelpRequestsApi(defaultClient);
-        HelpRequest helpRequestId = new HelpRequest(); // HelpRequest | Id of the help request
-        BigDecimal articleId = new BigDecimal(); // BigDecimal | Id of the article
+        Integer helpRequestId = 56; // Integer | Id of the help request
+        Integer articleId = 56; // Integer | Id of the article
         CreateOrUpdateHelpRequestArticleDto createOrUpdateHelpRequestArticleDto = new CreateOrUpdateHelpRequestArticleDto(); // CreateOrUpdateHelpRequestArticleDto | 
         try {
             HelpRequest result = apiInstance.helpRequestsControllerAddArticleInHelpRequest(helpRequestId, articleId, createOrUpdateHelpRequestArticleDto);
@@ -62,8 +62,8 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **helpRequestId** | [**HelpRequest**](.md)| Id of the help request | [default to null]
- **articleId** | **BigDecimal**| Id of the article |
+ **helpRequestId** | **Integer**| Id of the help request |
+ **articleId** | **Integer**| Id of the article |
  **createOrUpdateHelpRequestArticleDto** | [**CreateOrUpdateHelpRequestArticleDto**](CreateOrUpdateHelpRequestArticleDto.md)|  |
 
 ### Return type
@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 
 ## helpRequestsControllerGetAll
 
-> List&lt;HelpRequest&gt; helpRequestsControllerGetAll(userId, zipCode, includeRequester, status)
+> List&lt;HelpRequest&gt; helpRequestsControllerGetAll(userId, excludeUserId, zipCode, includeRequester, status)
 
 Get and filter for various help requests
 
@@ -116,11 +116,12 @@ public class Example {
 
         HelpRequestsApi apiInstance = new HelpRequestsApi(defaultClient);
         String userId = "userId_example"; // String | If included, filter by userId, \"me\" for the requesting user, otherwise all users are replied.
+        String excludeUserId = "excludeUserId_example"; // String | If true, the given userId is excluded (and not filtered for as default)
         List<String> zipCode = Arrays.asList(); // List<String> | Filter by an array of zipCodes
         String includeRequester = "includeRequester_example"; // String | If \"true\", the requester object is included in each help request
         List<String> status = Arrays.asList(); // List<String> | Array of status to filter for
         try {
-            List<HelpRequest> result = apiInstance.helpRequestsControllerGetAll(userId, zipCode, includeRequester, status);
+            List<HelpRequest> result = apiInstance.helpRequestsControllerGetAll(userId, excludeUserId, zipCode, includeRequester, status);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling HelpRequestsApi#helpRequestsControllerGetAll");
@@ -139,6 +140,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userId** | **String**| If included, filter by userId, \&quot;me\&quot; for the requesting user, otherwise all users are replied. | [optional]
+ **excludeUserId** | **String**| If true, the given userId is excluded (and not filtered for as default) | [optional]
  **zipCode** | [**List&lt;String&gt;**](String.md)| Filter by an array of zipCodes | [optional]
  **includeRequester** | **String**| If \&quot;true\&quot;, the requester object is included in each help request | [optional]
  **status** | [**List&lt;String&gt;**](String.md)| Array of status to filter for | [optional] [enum: pending, ongoing, completed, deactivated]
@@ -190,7 +192,7 @@ public class Example {
         bearer.setBearerToken("BEARER TOKEN");
 
         HelpRequestsApi apiInstance = new HelpRequestsApi(defaultClient);
-        BigDecimal helpRequestId = new BigDecimal(); // BigDecimal | Id of the help request
+        Integer helpRequestId = 56; // Integer | Id of the help request
         try {
             HelpRequest result = apiInstance.helpRequestsControllerGetSingleRequest(helpRequestId);
             System.out.println(result);
@@ -210,7 +212,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **helpRequestId** | **BigDecimal**| Id of the help request |
+ **helpRequestId** | **Integer**| Id of the help request |
 
 ### Return type
 
@@ -330,8 +332,8 @@ public class Example {
         bearer.setBearerToken("BEARER TOKEN");
 
         HelpRequestsApi apiInstance = new HelpRequestsApi(defaultClient);
-        HelpRequest helpRequestId = new HelpRequest(); // HelpRequest | Id of the help request
-        BigDecimal articleId = new BigDecimal(); // BigDecimal | Id of the article
+        Integer helpRequestId = 56; // Integer | Id of the help request
+        Integer articleId = 56; // Integer | Id of the article
         try {
             HelpRequest result = apiInstance.helpRequestsControllerRemoveArticleInHelpRequest(helpRequestId, articleId);
             System.out.println(result);
@@ -351,8 +353,8 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **helpRequestId** | [**HelpRequest**](.md)| Id of the help request | [default to null]
- **articleId** | **BigDecimal**| Id of the article |
+ **helpRequestId** | **Integer**| Id of the help request |
+ **articleId** | **Integer**| Id of the article |
 
 ### Return type
 
@@ -403,7 +405,7 @@ public class Example {
         bearer.setBearerToken("BEARER TOKEN");
 
         HelpRequestsApi apiInstance = new HelpRequestsApi(defaultClient);
-        BigDecimal helpRequestId = new BigDecimal(); // BigDecimal | Id of the help request
+        Integer helpRequestId = 56; // Integer | Id of the help request
         HelpRequestCreateDto helpRequestCreateDto = new HelpRequestCreateDto(); // HelpRequestCreateDto | 
         try {
             HelpRequest result = apiInstance.helpRequestsControllerUpdateRequest(helpRequestId, helpRequestCreateDto);
@@ -424,7 +426,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **helpRequestId** | **BigDecimal**| Id of the help request |
+ **helpRequestId** | **Integer**| Id of the help request |
  **helpRequestCreateDto** | [**HelpRequestCreateDto**](HelpRequestCreateDto.md)|  |
 
 ### Return type

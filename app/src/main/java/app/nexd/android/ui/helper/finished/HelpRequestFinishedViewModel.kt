@@ -18,6 +18,7 @@ class HelpRequestFinishedViewModel: ViewModel() {
                 .flatMap { me ->
                     api.helpRequestsControllerGetAll(
                         null,
+                        me.id,
                         null,
                         "true",
                         listOf(
@@ -25,9 +26,6 @@ class HelpRequestFinishedViewModel: ViewModel() {
                             HelpRequest.StatusEnum.DEACTIVATED.value // TODO remove this line
                         )
                     )
-                        .map { requests ->
-                            requests.filter { it.requesterId != me.id }
-                        }
                 }
         }
         return LiveDataReactiveStreams.fromPublisher(observable.toFlowable(BackpressureStrategy.BUFFER))

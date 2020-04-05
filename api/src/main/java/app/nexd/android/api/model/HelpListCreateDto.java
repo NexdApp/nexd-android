@@ -33,7 +33,7 @@ import java.util.List;
 public class HelpListCreateDto {
   public static final String SERIALIZED_NAME_HELP_REQUESTS_IDS = "helpRequestsIds";
   @SerializedName(SERIALIZED_NAME_HELP_REQUESTS_IDS)
-  private List<Long> helpRequestsIds = null;
+  private List<Integer> helpRequestsIds = null;
 
   /**
    * Gets or Sets status
@@ -89,15 +89,15 @@ public class HelpListCreateDto {
   private StatusEnum status = StatusEnum.ACTIVE;
 
 
-  public HelpListCreateDto helpRequestsIds(List<Long> helpRequestsIds) {
+  public HelpListCreateDto helpRequestsIds(List<Integer> helpRequestsIds) {
     
     this.helpRequestsIds = helpRequestsIds;
     return this;
   }
 
-  public HelpListCreateDto addHelpRequestsIdsItem(Long helpRequestsIdsItem) {
+  public HelpListCreateDto addHelpRequestsIdsItem(Integer helpRequestsIdsItem) {
     if (this.helpRequestsIds == null) {
-      this.helpRequestsIds = new ArrayList<Long>();
+      this.helpRequestsIds = new ArrayList<Integer>();
     }
     this.helpRequestsIds.add(helpRequestsIdsItem);
     return this;
@@ -110,12 +110,12 @@ public class HelpListCreateDto {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "List of help request IDs")
 
-  public List<Long> getHelpRequestsIds() {
+  public List<Integer> getHelpRequestsIds() {
     return helpRequestsIds;
   }
 
 
-  public void setHelpRequestsIds(List<Long> helpRequestsIds) {
+  public void setHelpRequestsIds(List<Integer> helpRequestsIds) {
     this.helpRequestsIds = helpRequestsIds;
   }
 

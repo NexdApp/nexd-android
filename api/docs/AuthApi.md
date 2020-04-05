@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## authControllerLogin
 
-> TokenDto authControllerLogin()
+> TokenDto authControllerLogin(loginDto)
 
 Login by email and password 
 
@@ -32,8 +32,9 @@ public class Example {
         defaultClient.setBasePath("https://nexd-backend-staging.herokuapp.com:443/api/v1");
 
         AuthApi apiInstance = new AuthApi(defaultClient);
+        LoginDto loginDto = new LoginDto(); // LoginDto | 
         try {
-            TokenDto result = apiInstance.authControllerLogin();
+            TokenDto result = apiInstance.authControllerLogin(loginDto);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AuthApi#authControllerLogin");
@@ -48,7 +49,10 @@ public class Example {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **loginDto** | [**LoginDto**](LoginDto.md)|  |
 
 ### Return type
 
@@ -60,7 +64,7 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 ### HTTP response details
@@ -72,7 +76,7 @@ No authorization required
 
 ## authControllerRefreshToken
 
-> TokenDto authControllerRefreshToken(registerDto)
+> TokenDto authControllerRefreshToken(tokenDto)
 
 Not yet implemented, token refresh
 
@@ -92,9 +96,9 @@ public class Example {
         defaultClient.setBasePath("https://nexd-backend-staging.herokuapp.com:443/api/v1");
 
         AuthApi apiInstance = new AuthApi(defaultClient);
-        RegisterDto registerDto = new RegisterDto(); // RegisterDto | 
+        TokenDto tokenDto = new TokenDto(); // TokenDto | 
         try {
-            TokenDto result = apiInstance.authControllerRefreshToken(registerDto);
+            TokenDto result = apiInstance.authControllerRefreshToken(tokenDto);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AuthApi#authControllerRefreshToken");
@@ -112,7 +116,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **registerDto** | [**RegisterDto**](RegisterDto.md)|  |
+ **tokenDto** | [**TokenDto**](TokenDto.md)|  |
 
 ### Return type
 

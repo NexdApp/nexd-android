@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import app.nexd.android.Api
 import app.nexd.android.Preferences
 import app.nexd.android.R
+import app.nexd.android.api.model.LoginDto
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
@@ -54,9 +55,9 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
         if (correct) {
             val disposable = api.authControllerLogin(
-                /*LoginPayload()
+                LoginDto()
                     .email(username.value)
-                    .password(password.value)*/
+                    .password(password.value)
             )
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(

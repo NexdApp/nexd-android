@@ -25,7 +25,7 @@ class HelpRequestArticleBinder : ItemBinder<HelpRequestArticle, ViewHolder>() {
             title.text = itemView.context.getString(
                 R.string.helper_request_detail_article_layout,
                 item.articleCount,
-                item.article.name
+                item.article?.name
             )
         }
     }

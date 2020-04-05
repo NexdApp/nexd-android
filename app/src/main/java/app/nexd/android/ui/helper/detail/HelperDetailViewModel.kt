@@ -10,11 +10,10 @@ import app.nexd.android.api.model.HelpListCreateDto
 import app.nexd.android.api.model.HelpRequest
 import io.reactivex.BackpressureStrategy
 import io.reactivex.schedulers.Schedulers.io
-import java.math.BigDecimal
 
 class HelperDetailViewModel : ViewModel() {
 
-    fun requestDetails(requestId: BigDecimal): LiveData<HelpRequest> {
+    fun requestDetails(requestId: Int): LiveData<HelpRequest> {
         return LiveDataReactiveStreams.fromPublisher(
             api.helpRequestsControllerGetSingleRequest(requestId)
                 .doOnError {
@@ -25,7 +24,7 @@ class HelperDetailViewModel : ViewModel() {
         )
     }
 
-    fun acceptRequest(requestId: Long) {
+    fun acceptRequest(requestId: Int) {
         api.helpListsControllerGetUserLists(null)
             .map { lists ->
                 if (lists.any { it.status == HelpList.StatusEnum.ACTIVE })
@@ -41,8 +40,8 @@ class HelperDetailViewModel : ViewModel() {
                     )
                 } else {
                     api.helpListsControllerAddHelpRequestToList(
-                        shoppingList.id.toBigDecimal(),
-                        requestId.toBigDecimal()
+                        shoppingList.id,
+                        requestId
                     )
                 }
             }

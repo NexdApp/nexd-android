@@ -42,8 +42,8 @@ public class Example {
         bearer.setBearerToken("BEARER TOKEN");
 
         HelpListsApi apiInstance = new HelpListsApi(defaultClient);
-        BigDecimal helpListId = new BigDecimal(); // BigDecimal | Id of the help list
-        BigDecimal helpRequestId = new BigDecimal(); // BigDecimal | Id of the help request
+        Integer helpListId = 56; // Integer | Id of the help list
+        Integer helpRequestId = 56; // Integer | Id of the help request
         try {
             HelpList result = apiInstance.helpListsControllerAddHelpRequestToList(helpListId, helpRequestId);
             System.out.println(result);
@@ -63,8 +63,8 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **helpListId** | **BigDecimal**| Id of the help list |
- **helpRequestId** | **BigDecimal**| Id of the help request |
+ **helpListId** | **Integer**| Id of the help list |
+ **helpRequestId** | **Integer**| Id of the help request |
 
 ### Return type
 
@@ -116,8 +116,8 @@ public class Example {
         bearer.setBearerToken("BEARER TOKEN");
 
         HelpListsApi apiInstance = new HelpListsApi(defaultClient);
-        BigDecimal helpListId = new BigDecimal(); // BigDecimal | Id of the help list
-        BigDecimal helpRequestId = new BigDecimal(); // BigDecimal | Id of the help request
+        Integer helpListId = 56; // Integer | Id of the help list
+        Integer helpRequestId = 56; // Integer | Id of the help request
         try {
             HelpList result = apiInstance.helpListsControllerDeleteHelpRequestFromHelpList(helpListId, helpRequestId);
             System.out.println(result);
@@ -137,8 +137,8 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **helpListId** | **BigDecimal**| Id of the help list |
- **helpRequestId** | **BigDecimal**| Id of the help request |
+ **helpListId** | **Integer**| Id of the help list |
+ **helpRequestId** | **Integer**| Id of the help request |
 
 ### Return type
 
@@ -190,7 +190,7 @@ public class Example {
         bearer.setBearerToken("BEARER TOKEN");
 
         HelpListsApi apiInstance = new HelpListsApi(defaultClient);
-        BigDecimal helpListId = new BigDecimal(); // BigDecimal | Id of the help list
+        Integer helpListId = 56; // Integer | Id of the help list
         try {
             HelpList result = apiInstance.helpListsControllerFindOne(helpListId);
             System.out.println(result);
@@ -210,7 +210,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **helpListId** | **BigDecimal**| Id of the help list |
+ **helpListId** | **Integer**| Id of the help list |
 
 ### Return type
 
@@ -400,9 +400,9 @@ public class Example {
         bearer.setBearerToken("BEARER TOKEN");
 
         HelpListsApi apiInstance = new HelpListsApi(defaultClient);
-        BigDecimal helpListId = new BigDecimal(); // BigDecimal | Id of the help list
-        Object articleId = null; // Object | Id of the article
-        Object articleDone = null; // Object | true to set the article as \"bought\"
+        Integer helpListId = 56; // Integer | Id of the help list
+        Integer articleId = 56; // Integer | Id of the article
+        Boolean articleDone = true; // Boolean | true to set the article as \"bought\"
         try {
             HelpList result = apiInstance.helpListsControllerModifyArticleInAllHelpRequests(helpListId, articleId, articleDone);
             System.out.println(result);
@@ -422,9 +422,9 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **helpListId** | **BigDecimal**| Id of the help list |
- **articleId** | [**Object**](.md)| Id of the article | [default to null]
- **articleDone** | [**Object**](.md)| true to set the article as \&quot;bought\&quot; | [default to null]
+ **helpListId** | **Integer**| Id of the help list |
+ **articleId** | **Integer**| Id of the article |
+ **articleDone** | **Boolean**| true to set the article as \&quot;bought\&quot; |
 
 ### Return type
 
@@ -476,10 +476,10 @@ public class Example {
         bearer.setBearerToken("BEARER TOKEN");
 
         HelpListsApi apiInstance = new HelpListsApi(defaultClient);
-        BigDecimal helpListId = new BigDecimal(); // BigDecimal | Id of the help list
-        BigDecimal helpRequestId = new BigDecimal(); // BigDecimal | Id of the help request
-        Object articleId = null; // Object | Id of the article
-        String articleDone = "articleDone_example"; // String | true to set the article as \"bought\"
+        Integer helpListId = 56; // Integer | Id of the help list
+        Integer helpRequestId = 56; // Integer | Id of the help request
+        Integer articleId = 56; // Integer | Id of the article
+        Boolean articleDone = true; // Boolean | true to set the article as \"bought\"
         try {
             HelpList result = apiInstance.helpListsControllerModifyArticleInHelpRequest(helpListId, helpRequestId, articleId, articleDone);
             System.out.println(result);
@@ -499,10 +499,10 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **helpListId** | **BigDecimal**| Id of the help list |
- **helpRequestId** | **BigDecimal**| Id of the help request |
- **articleId** | [**Object**](.md)| Id of the article | [default to null]
- **articleDone** | **String**| true to set the article as \&quot;bought\&quot; |
+ **helpListId** | **Integer**| Id of the help list |
+ **helpRequestId** | **Integer**| Id of the help request |
+ **articleId** | **Integer**| Id of the article |
+ **articleDone** | **Boolean**| true to set the article as \&quot;bought\&quot; |
 
 ### Return type
 
@@ -554,7 +554,7 @@ public class Example {
         bearer.setBearerToken("BEARER TOKEN");
 
         HelpListsApi apiInstance = new HelpListsApi(defaultClient);
-        BigDecimal helpListId = new BigDecimal(); // BigDecimal | Id of the help list
+        Integer helpListId = 56; // Integer | Id of the help list
         HelpListCreateDto helpListCreateDto = new HelpListCreateDto(); // HelpListCreateDto | 
         try {
             HelpList result = apiInstance.helpListsControllerUpdateHelpLists(helpListId, helpListCreateDto);
@@ -575,7 +575,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **helpListId** | **BigDecimal**| Id of the help list |
+ **helpListId** | **Integer**| Id of the help list |
  **helpListCreateDto** | [**HelpListCreateDto**](HelpListCreateDto.md)|  |
 
 ### Return type

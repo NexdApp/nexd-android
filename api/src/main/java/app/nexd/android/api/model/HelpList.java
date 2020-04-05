@@ -25,7 +25,6 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -37,7 +36,7 @@ import java.util.List;
 public class HelpList {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
-  private Long id = null;
+  private Integer id;
 
   public static final String SERIALIZED_NAME_OWNER_ID = "ownerId";
   @SerializedName(SERIALIZED_NAME_OWNER_ID)
@@ -114,10 +113,10 @@ public class HelpList {
 
   public static final String SERIALIZED_NAME_HELP_REQUESTS_IDS = "helpRequestsIds";
   @SerializedName(SERIALIZED_NAME_HELP_REQUESTS_IDS)
-  private List<BigDecimal> helpRequestsIds = new ArrayList<BigDecimal>();
+  private List<Integer> helpRequestsIds = new ArrayList<Integer>();
 
 
-  public HelpList id(Long id) {
+  public HelpList id(Integer id) {
     
     this.id = id;
     return this;
@@ -129,12 +128,12 @@ public class HelpList {
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public Long getId() {
+  public Integer getId() {
     return id;
   }
 
 
-  public void setId(Long id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
@@ -149,7 +148,8 @@ public class HelpList {
    * Get ownerId
    * @return ownerId
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getOwnerId() {
     return ownerId;
@@ -171,7 +171,8 @@ public class HelpList {
    * Get owner
    * @return owner
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public User getOwner() {
     return owner;
@@ -277,13 +278,13 @@ public class HelpList {
   }
 
 
-  public HelpList helpRequestsIds(List<BigDecimal> helpRequestsIds) {
+  public HelpList helpRequestsIds(List<Integer> helpRequestsIds) {
     
     this.helpRequestsIds = helpRequestsIds;
     return this;
   }
 
-  public HelpList addHelpRequestsIdsItem(BigDecimal helpRequestsIdsItem) {
+  public HelpList addHelpRequestsIdsItem(Integer helpRequestsIdsItem) {
     this.helpRequestsIds.add(helpRequestsIdsItem);
     return this;
   }
@@ -294,12 +295,12 @@ public class HelpList {
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public List<BigDecimal> getHelpRequestsIds() {
+  public List<Integer> getHelpRequestsIds() {
     return helpRequestsIds;
   }
 
 
-  public void setHelpRequestsIds(List<BigDecimal> helpRequestsIds) {
+  public void setHelpRequestsIds(List<Integer> helpRequestsIds) {
     this.helpRequestsIds = helpRequestsIds;
   }
 

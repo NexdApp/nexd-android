@@ -26,9 +26,9 @@ class SeekerDetailViewModel: ViewModel() {
         compositeDisposable.clear()
     }
 
-    fun getRequest(id: Long): LiveData<HelpRequest> {
+    fun getRequest(id: Int): LiveData<HelpRequest> {
         return LiveDataReactiveStreams.fromPublisher(
-            api.helpRequestsControllerGetSingleRequest(id.toBigDecimal())
+            api.helpRequestsControllerGetSingleRequest(id)
                 .onErrorReturnItem(HelpRequest()) // TODO return state
                 .toFlowable(BackpressureStrategy.LATEST))
     }

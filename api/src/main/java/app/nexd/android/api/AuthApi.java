@@ -10,6 +10,7 @@ import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import okhttp3.MultipartBody;
 
+import app.nexd.android.api.model.LoginDto;
 import app.nexd.android.api.model.RegisterDto;
 import app.nexd.android.api.model.TokenDto;
 
@@ -22,16 +23,21 @@ public interface AuthApi {
   /**
    * Login by email and password 
    * 
+   * @param loginDto  (required)
    * @return Observable&lt;TokenDto&gt;
    */
+  @Headers({
+    "Content-Type:application/json"
+  })
   @POST("auth/login")
-  Observable<TokenDto> authControllerLogin();
-    
+  Observable<TokenDto> authControllerLogin(
+    @retrofit2.http.Body LoginDto loginDto
+  );
 
   /**
    * Not yet implemented, token refresh
    * 
-   * @param registerDto  (required)
+   * @param tokenDto  (required)
    * @return Observable&lt;TokenDto&gt;
    */
   @Headers({
@@ -39,7 +45,7 @@ public interface AuthApi {
   })
   @POST("auth/refresh")
   Observable<TokenDto> authControllerRefreshToken(
-    @retrofit2.http.Body RegisterDto registerDto
+    @retrofit2.http.Body TokenDto tokenDto
   );
 
   /**

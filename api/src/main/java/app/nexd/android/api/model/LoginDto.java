@@ -25,60 +25,60 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * Article
+ * LoginDto
  */
 
-public class Article {
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private Integer id;
+public class LoginDto {
+  public static final String SERIALIZED_NAME_EMAIL = "email";
+  @SerializedName(SERIALIZED_NAME_EMAIL)
+  private String email;
 
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
+  public static final String SERIALIZED_NAME_PASSWORD = "password";
+  @SerializedName(SERIALIZED_NAME_PASSWORD)
+  private String password;
 
 
-  public Article id(Integer id) {
+  public LoginDto email(String email) {
     
-    this.id = id;
+    this.email = email;
     return this;
   }
 
    /**
-   * Auto-incremented id of an article.
-   * @return id
+   * Get email
+   * @return email
   **/
-  @ApiModelProperty(required = true, value = "Auto-incremented id of an article.")
+  @ApiModelProperty(example = "test@test.com", required = true, value = "")
 
-  public Integer getId() {
-    return id;
+  public String getEmail() {
+    return email;
   }
 
 
-  public void setId(Integer id) {
-    this.id = id;
+  public void setEmail(String email) {
+    this.email = email;
   }
 
 
-  public Article name(String name) {
+  public LoginDto password(String password) {
     
-    this.name = name;
+    this.password = password;
     return this;
   }
 
    /**
-   * Name of the article, should also contain the unit.
-   * @return name
+   * Get password
+   * @return password
   **/
-  @ApiModelProperty(required = true, value = "Name of the article, should also contain the unit.")
+  @ApiModelProperty(required = true, value = "")
 
-  public String getName() {
-    return name;
+  public String getPassword() {
+    return password;
   }
 
 
-  public void setName(String name) {
-    this.name = name;
+  public void setPassword(String password) {
+    this.password = password;
   }
 
 
@@ -90,23 +90,23 @@ public class Article {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Article article = (Article) o;
-    return Objects.equals(this.id, article.id) &&
-        Objects.equals(this.name, article.name);
+    LoginDto loginDto = (LoginDto) o;
+    return Objects.equals(this.email, loginDto.email) &&
+        Objects.equals(this.password, loginDto.password);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name);
+    return Objects.hash(email, password);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Article {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("class LoginDto {\n");
+    sb.append("    email: ").append(toIndentedString(email)).append("\n");
+    sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("}");
     return sb.toString();
   }
