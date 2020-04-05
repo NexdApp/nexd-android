@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import app.nexd.android.Api
 import app.nexd.android.Preferences
 import app.nexd.android.R
+import app.nexd.android.api
 import app.nexd.android.api.model.LoginDto
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -20,8 +21,6 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         class Error(val message: String) : Progress()
         object Finished : Progress()
     }
-
-    val api = Api()
 
     val username = MutableLiveData("")
 
