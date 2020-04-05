@@ -48,7 +48,7 @@ class RoleFragment : Fragment() {
         })
 
         role_button_helper.setOnClickListener {
-            findNavController().navigate(RoleFragmentDirections.actionRoleFragmentToHelperOverviewFragment())
+            findNavController().navigate(RoleFragmentDirections.toHelperTypeFragment())
         }
 
         role_button_seeker.setOnClickListener {

@@ -127,15 +127,9 @@ class HelperOverviewFragment : Fragment() {
         nearRequestList.setOnSelectionChangedListener { helpRequest: HelperOverviewViewModel.AvailableRequestWrapper,
                                                         b: Boolean, _: MutableList<HelperOverviewViewModel.AvailableRequestWrapper> ->
             if (b) {
-                val action = if (helpRequest.type == HelperOverviewViewModel.RequestType.SHOPPING) {
-                    HelperOverviewFragmentDirections.requestDetailAction(
+                val action = HelperOverviewFragmentDirections.requestDetailAction(
                         helpRequest.id
                     )
-                } else {
-                    HelperOverviewFragmentDirections.toCallTranslateFragment(
-                        helpRequest.id
-                    )
-                }
                 findNavController().navigate(action)
             }
         }

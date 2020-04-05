@@ -9,7 +9,8 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowTranslucentStatus">true</item>
 
-        <item name="fontFamily">@android:</item>
+        <item name="fontFamily">@font/proxima_nova_soft</item>
+        <item name="android:fontFamily">@font/proxima_nova_soft</item>
     </style>
 
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar" >
