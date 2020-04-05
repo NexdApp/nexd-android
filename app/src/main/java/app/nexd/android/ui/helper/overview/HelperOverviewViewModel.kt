@@ -45,12 +45,13 @@ class HelperOverviewViewModel(application: Application) : AndroidViewModel(appli
                         null,
                         "true",
                         listOf(
-                            PENDING.value,
-                            ONGOING.value // TODO remove this line
+                            PENDING.value
                         )
                     )
                         .map { requests ->
-                            requests.filter { it.requesterId != me.id }
+                            requests.filter { it.requesterId != me.id &&
+                                    it.helpListId == null // not assigned to a shopping list yet
+                            }
                         }
 
                         .flatMapIterable { requests ->

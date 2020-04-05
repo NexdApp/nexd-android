@@ -44,7 +44,7 @@
         app:layout_constraintTop_toTopOf="@id/button_cancel">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_articles"
+            android:id="@+id/recyclerView_requests"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"

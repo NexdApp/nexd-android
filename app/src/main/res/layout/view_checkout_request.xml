@@ -25,7 +25,7 @@
             android:layout_height="wrap_content" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_articles"
+            android:id="@+id/recyclerView_requests"
             tools:listitem="@layout/shopping_list_row"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
-import app.nexd.android.api
 import app.nexd.android.api.model.CreateHelpRequestArticleDto
 import app.nexd.android.api.model.HelpRequestCreateDto
 import kotlinx.android.synthetic.main.fragment_seeker_create_request.*
@@ -35,10 +34,10 @@ class SeekerCreateRequestFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(CreateHelpRequestViewModel::class.java)
 
-        recyclerView_articles.layoutManager = LinearLayoutManager(context)
+        recyclerView_requests.layoutManager = LinearLayoutManager(context)
 
         adapter = MultiViewAdapter()
-        recyclerView_articles.adapter = adapter
+        recyclerView_requests.adapter = adapter
 
         adapter.registerItemBinders(HelpRequestArticleBinder())
 

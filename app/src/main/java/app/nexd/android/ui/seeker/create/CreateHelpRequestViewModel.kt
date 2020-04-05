@@ -57,7 +57,7 @@ class CreateHelpRequestViewModel : ViewModel() {
         return LiveDataReactiveStreams.fromPublisher(data.toFlowable(BackpressureStrategy.BUFFER))
     }*/
 
-    fun sendRequest(request: HelpRequestCreateDto) {
+    fun sendRequest(request: HelpRequestCreateDto) { // TODO accept request only if at least one article is selected
         with(api) {
             helpRequestsControllerInsertRequestWithArticles(request)
                 .subscribe { state.onNext(State.FINISHED) }

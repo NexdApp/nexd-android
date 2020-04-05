@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
@@ -35,8 +34,8 @@ class SeekerDetailFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        recyclerView_articles.adapter = articlesAdapter
-        recyclerView_articles.layoutManager = LinearLayoutManager(context)
+        recyclerView_requests.adapter = articlesAdapter
+        recyclerView_requests.layoutManager = LinearLayoutManager(context)
 
         articlesAdapter.registerItemBinders(
             HelpRequestArticleBinder()

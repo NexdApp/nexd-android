@@ -18,7 +18,7 @@ class HelpRequestBinder: ItemBinder<HelpRequest, HelpRequestBinder.ViewModel>() 
 
     class ViewModel(itemView: View) : ItemViewHolder<HelpRequest>(itemView) {
         private val title: TextView = itemView.textView_title
-        private val articles: RecyclerView = itemView.recyclerView_articles
+        private val articles: RecyclerView = itemView.recyclerView_requests
         private val adapter = MultiViewAdapter()
 
         init {

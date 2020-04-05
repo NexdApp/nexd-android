@@ -39,7 +39,7 @@
                 android:text="@string/helper_request_detail_screen_title" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView_articles"
+                android:id="@+id/recyclerView_requests"
                 tools:listitem="@layout/buyer_request_item_row"
                 android:paddingHorizontal="10dp"
                 android:layout_width="match_parent"
