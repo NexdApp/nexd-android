@@ -55,6 +55,10 @@ public class HelpRequest {
   @SerializedName(SERIALIZED_NAME_ID)
   private Long id;
 
+  public static final String SERIALIZED_NAME_HELP_LIST_ID = "helpListId";
+  @SerializedName(SERIALIZED_NAME_HELP_LIST_ID)
+  private Long helpListId;
+
   public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
   private Date createdAt;
@@ -141,10 +145,6 @@ public class HelpRequest {
   public static final String SERIALIZED_NAME_REQUESTER = "requester";
   @SerializedName(SERIALIZED_NAME_REQUESTER)
   private User requester;
-
-  public static final String SERIALIZED_NAME_HELP_LIST_ID = "helpListId";
-  @SerializedName(SERIALIZED_NAME_HELP_LIST_ID)
-  private String helpListId;
 
   public static final String SERIALIZED_NAME_HELP_LIST = "helpList";
   @SerializedName(SERIALIZED_NAME_HELP_LIST)
@@ -263,6 +263,29 @@ public class HelpRequest {
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+
+  public HelpRequest helpListId(Long helpListId) {
+    
+    this.helpListId = helpListId;
+    return this;
+  }
+
+   /**
+   * Get helpListId
+   * @return helpListId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Long getHelpListId() {
+    return helpListId;
+  }
+
+
+  public void setHelpListId(Long helpListId) {
+    this.helpListId = helpListId;
   }
 
 
@@ -481,29 +504,6 @@ public class HelpRequest {
   }
 
 
-  public HelpRequest helpListId(String helpListId) {
-    
-    this.helpListId = helpListId;
-    return this;
-  }
-
-   /**
-   * Get helpListId
-   * @return helpListId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public String getHelpListId() {
-    return helpListId;
-  }
-
-
-  public void setHelpListId(String helpListId) {
-    this.helpListId = helpListId;
-  }
-
-
   public HelpRequest helpList(HelpList helpList) {
     
     this.helpList = helpList;
@@ -541,6 +541,7 @@ public class HelpRequest {
         Objects.equals(this.zipCode, helpRequest.zipCode) &&
         Objects.equals(this.city, helpRequest.city) &&
         Objects.equals(this.id, helpRequest.id) &&
+        Objects.equals(this.helpListId, helpRequest.helpListId) &&
         Objects.equals(this.createdAt, helpRequest.createdAt) &&
         Objects.equals(this.priority, helpRequest.priority) &&
         Objects.equals(this.additionalRequest, helpRequest.additionalRequest) &&
@@ -550,13 +551,12 @@ public class HelpRequest {
         Objects.equals(this.articles, helpRequest.articles) &&
         Objects.equals(this.requesterId, helpRequest.requesterId) &&
         Objects.equals(this.requester, helpRequest.requester) &&
-        Objects.equals(this.helpListId, helpRequest.helpListId) &&
         Objects.equals(this.helpList, helpRequest.helpList);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(street, number, zipCode, city, id, createdAt, priority, additionalRequest, deliveryComment, phoneNumber, status, articles, requesterId, requester, helpListId, helpList);
+    return Objects.hash(street, number, zipCode, city, id, helpListId, createdAt, priority, additionalRequest, deliveryComment, phoneNumber, status, articles, requesterId, requester, helpList);
   }
 
 
@@ -569,6 +569,7 @@ public class HelpRequest {
     sb.append("    zipCode: ").append(toIndentedString(zipCode)).append("\n");
     sb.append("    city: ").append(toIndentedString(city)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    helpListId: ").append(toIndentedString(helpListId)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    priority: ").append(toIndentedString(priority)).append("\n");
     sb.append("    additionalRequest: ").append(toIndentedString(additionalRequest)).append("\n");
@@ -578,7 +579,6 @@ public class HelpRequest {
     sb.append("    articles: ").append(toIndentedString(articles)).append("\n");
     sb.append("    requesterId: ").append(toIndentedString(requesterId)).append("\n");
     sb.append("    requester: ").append(toIndentedString(requester)).append("\n");
-    sb.append("    helpListId: ").append(toIndentedString(helpListId)).append("\n");
     sb.append("    helpList: ").append(toIndentedString(helpList)).append("\n");
     sb.append("}");
     return sb.toString();

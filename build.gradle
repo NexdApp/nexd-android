@@ -52,7 +52,10 @@ task generateApiClient(type: org.openapitools.generator.gradle.plugin.tasks.Gene
     apiPackage = "app.nexd.android.api"
     invokerPackage = "app.nexd.android"
     modelPackage = "app.nexd.android.api.model"
-    typeMappings = ["number" : "long"]
+    typeMappings = [
+            "integer" : "long",
+            "number" : "long"
+    ]
     library = "retrofit2"
     generateModelTests = false
     generateApiTests = false

@@ -33,7 +33,7 @@ public interface HelpRequestsApi {
   })
   @PUT("help-requests/{helpRequestId}/article/{articleId}")
   Observable<HelpRequest> helpRequestsControllerAddArticleInHelpRequest(
-    @retrofit2.http.Path("helpRequestId") Integer helpRequestId, @retrofit2.http.Path("articleId") Long articleId, @retrofit2.http.Body CreateOrUpdateHelpRequestArticleDto createOrUpdateHelpRequestArticleDto
+    @retrofit2.http.Path("helpRequestId") Long helpRequestId, @retrofit2.http.Path("articleId") Long articleId, @retrofit2.http.Body CreateOrUpdateHelpRequestArticleDto createOrUpdateHelpRequestArticleDto
   );
 
   /**
@@ -85,7 +85,7 @@ public interface HelpRequestsApi {
    */
   @DELETE("help-requests/{helpRequestId}/article/{articleId}")
   Observable<HelpRequest> helpRequestsControllerRemoveArticleInHelpRequest(
-    @retrofit2.http.Path("helpRequestId") Integer helpRequestId, @retrofit2.http.Path("articleId") Long articleId
+    @retrofit2.http.Path("helpRequestId") Long helpRequestId, @retrofit2.http.Path("articleId") Long articleId
   );
 
   /**

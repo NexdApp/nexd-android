@@ -77,7 +77,7 @@ class Api(private val apiClient: ApiClient = ApiClient("bearer")) :
     }
 
     override fun helpListsControllerUpdateHelpLists(
-        helpListId: Int,
+        helpListId: Long,
         helpListCreateDto: HelpListCreateDto?
     ): Observable<HelpList> {
         return helpListsApi.helpListsControllerUpdateHelpLists(helpListId, helpListCreateDto)
@@ -85,9 +85,9 @@ class Api(private val apiClient: ApiClient = ApiClient("bearer")) :
     }
 
     override fun helpListsControllerModifyArticleInHelpRequest(
-        helpListId: Int,
-        helpRequestId: Int,
-        articleId: Int,
+        helpListId: Long,
+        helpRequestId: Long,
+        articleId: Long,
         articleDone: Boolean
     ): Observable<HelpList> {
         return helpListsApi.helpListsControllerModifyArticleInHelpRequest(
@@ -103,8 +103,8 @@ class Api(private val apiClient: ApiClient = ApiClient("bearer")) :
     }
 
     override fun helpListsControllerDeleteHelpRequestFromHelpList(
-        helpListId: Int?,
-        helpRequestId: Int?
+        helpListId: Long,
+        helpRequestId: Long
     ): Observable<HelpList> {
         return helpListsApi.helpListsControllerDeleteHelpRequestFromHelpList(
             helpListId,
@@ -113,7 +113,7 @@ class Api(private val apiClient: ApiClient = ApiClient("bearer")) :
     }
 
     override fun helpListsControllerModifyArticleInAllHelpRequests(
-        helpListId: Int,
+        helpListId: Long,
         articleId: Long,
         articleDone: Boolean
     ): Observable<HelpList> {
@@ -130,15 +130,15 @@ class Api(private val apiClient: ApiClient = ApiClient("bearer")) :
     }
 
     override fun helpListsControllerAddHelpRequestToList(
-        helpListId: Int?,
-        helpRequestId: Int?
+        helpListId: Long,
+        helpRequestId: Long
     ): Observable<HelpList> {
         return helpListsApi.helpListsControllerAddHelpRequestToList(helpListId, helpRequestId)
             .subscribeOn(io())
     }
 
     override fun helpRequestsControllerAddArticleInHelpRequest(
-        helpRequestId: Int,
+        helpRequestId: Long,
         articleId: Long,
         createOrUpdateHelpRequestArticleDto: CreateOrUpdateHelpRequestArticleDto?
     ): Observable<HelpRequest> {
@@ -150,7 +150,7 @@ class Api(private val apiClient: ApiClient = ApiClient("bearer")) :
     }
 
     override fun helpRequestsControllerRemoveArticleInHelpRequest(
-        helpRequestId: Int,
+        helpRequestId: Long,
         articleId: Long
     ): Observable<HelpRequest> {
         return helpRequestsApi.helpRequestsControllerRemoveArticleInHelpRequest(

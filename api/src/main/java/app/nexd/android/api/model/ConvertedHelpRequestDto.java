@@ -31,10 +31,10 @@ import java.io.IOException;
 public class ConvertedHelpRequestDto {
   public static final String SERIALIZED_NAME_HELP_REQUEST_ID = "helpRequestId";
   @SerializedName(SERIALIZED_NAME_HELP_REQUEST_ID)
-  private Integer helpRequestId;
+  private Long helpRequestId;
 
 
-  public ConvertedHelpRequestDto helpRequestId(Integer helpRequestId) {
+  public ConvertedHelpRequestDto helpRequestId(Long helpRequestId) {
     
     this.helpRequestId = helpRequestId;
     return this;
@@ -46,12 +46,12 @@ public class ConvertedHelpRequestDto {
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public Integer getHelpRequestId() {
+  public Long getHelpRequestId() {
     return helpRequestId;
   }
 
 
-  public void setHelpRequestId(Integer helpRequestId) {
+  public void setHelpRequestId(Long helpRequestId) {
     this.helpRequestId = helpRequestId;
   }
 

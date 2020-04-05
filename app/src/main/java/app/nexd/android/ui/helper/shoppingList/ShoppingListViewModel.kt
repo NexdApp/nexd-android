@@ -62,7 +62,7 @@ class ShoppingListViewModel : ViewModel() {
     fun checkArticle(shoppingListId: Long, articleId: Long) {
         with(api) {
             helpListsControllerModifyArticleInAllHelpRequests(
-                shoppingListId.toInt(),
+                shoppingListId,
                 articleId,
                 true
             ).subscribe {
