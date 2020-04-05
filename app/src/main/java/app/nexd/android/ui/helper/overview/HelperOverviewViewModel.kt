@@ -46,7 +46,8 @@ class HelperOverviewViewModel(application: Application) : AndroidViewModel(appli
                 zipCode = null,
                 includeRequester = "true", // TODO this has to be boolean
                 status = listOf(
-                    PENDING.value
+                    PENDING.value,
+                    ONGOING.value // TODO remove this line if backend ready
                 )
             )
 

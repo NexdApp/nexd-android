@@ -135,8 +135,6 @@ class HelperOverviewFragment : Fragment() {
                     HelperOverviewFragmentDirections.toCallTranslateFragment(
                         helpRequest.id
                     )
-
-
                 }
                 findNavController().navigate(action)
             }

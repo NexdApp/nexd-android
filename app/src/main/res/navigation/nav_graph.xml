@@ -90,7 +90,7 @@
         tools:layout="@layout/fragment_helper_request_detail" >
         <argument
             android:name="request_id"
-            app:argType="long" />
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/seekerCreateRequestFragment"
@@ -199,7 +199,11 @@
         tools:layout="@layout/fragment_helper_request_finished" >
         <action
             android:id="@+id/toDetailFragment"
-            app:destination="@id/helperRequestDetailFragment" />
+            app:destination="@id/helperRequestDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/registerDetailedFragment"
@@ -233,6 +237,6 @@
         tools:layout="@layout/fragment_translate_call" >
         <argument
             android:name="callRequestId"
-            app:argType="long" />
+            app:argType="integer" />
     </fragment>
 </navigation>

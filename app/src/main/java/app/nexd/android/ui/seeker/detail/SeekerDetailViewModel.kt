@@ -38,7 +38,7 @@ class SeekerDetailViewModel: ViewModel() {
     fun cancelRequest(request: HelpRequest) {
         with(api) {
             helpRequestsControllerUpdateRequest(
-                request.id?.toBigDecimal(),
+                request.id,
                 HelpRequestCreateDto()
                     .status(HelpRequestCreateDto.StatusEnum.DEACTIVATED)
             )
