@@ -8,30 +8,30 @@
             type="app.nexd.android.ui.auth.login.LoginViewModel" />
     </data>
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="148dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="92dp"
+            android:src="@drawable/nexd_logo_rgb" />
+
+        <Space
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="@dimen/fragmentPadding">
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="148dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="92dp"
-                android:src="@drawable/nexd_logo_rgb" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2" />
-
 
             <EditText
                 android:id="@+id/editText_email"
@@ -42,14 +42,10 @@
                 android:imeOptions="actionGo"
                 android:inputType="textEmailAddress"
                 android:lines="1"
+                android:layout_marginTop="10dp"
                 android:paddingHorizontal="10dp"
                 android:text="@={viewModel.username}"
                 android:textSize="20sp" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
 
             <EditText
                 android:id="@+id/editText_password"
@@ -57,6 +53,7 @@
                 android:layout_height="wrap_content"
                 android:error="@{viewModel.passwordError}"
                 android:hint="@string/login_placeholder_password"
+                android:layout_marginTop="10dp"
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
                 android:lines="1"
@@ -66,8 +63,12 @@
 
         </LinearLayout>
 
+        <Space
+            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" />
+
         <LinearLayout
-            android:layout_alignParentBottom="true"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -100,6 +101,6 @@
                 android:text="@string/registration_term_privacy_policy"
                 android:textAllCaps="false" />
         </LinearLayout>
-    </RelativeLayout>
+    </LinearLayout>
 
 </layout>

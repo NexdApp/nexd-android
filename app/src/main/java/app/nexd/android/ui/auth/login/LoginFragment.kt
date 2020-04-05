@@ -11,8 +11,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import app.nexd.android.databinding.FragmentLoginBinding
+import app.nexd.android.ui.auth.login.LoginFragmentDirections.Companion.toRoleFragment
 import app.nexd.android.ui.auth.login.LoginViewModel.Progress.*
-import app.nexd.android.ui.auth.register.RegisterFragmentDirections.Companion.toRoleFragment
 import kotlinx.android.synthetic.main.fragment_login.*
 
 class LoginFragment : Fragment() {

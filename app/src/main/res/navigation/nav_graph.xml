@@ -137,10 +137,8 @@
         android:label="RegisterFragment"
         tools:layout="@layout/fragment_register" >
         <action
-            android:id="@+id/toRoleFragment"
-            app:destination="@id/roleFragment"
-            app:popUpTo="@id/authFragment"
-            app:popUpToInclusive="true" />
+            android:id="@+id/toRegisterDetailedFragment"
+            app:destination="@id/registerDetailedFragment" />
     </fragment>
     <fragment
         android:id="@+id/checkoutFragment"
@@ -185,5 +183,28 @@
         <action
             android:id="@+id/toDetailFragment"
             app:destination="@id/helperRequestDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerDetailedFragment"
+        android:name="app.nexd.android.ui.auth.register.RegisterDetailedFragment"
+        android:label="RegisterDetailedFragment"
+        tools:layout="@layout/fragment_register_detailed" >
+        <action
+            android:id="@+id/toRoleFragment"
+            app:destination="@id/roleFragment"
+            app:popUpTo="@id/authFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="firstName"
+            app:argType="string" />
+        <argument
+            android:name="lastName"
+            app:argType="string" />
+        <argument
+            android:name="email"
+            app:argType="string" />
+        <argument
+            android:name="password"
+            app:argType="string" />
     </fragment>
 </navigation>

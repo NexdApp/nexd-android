@@ -117,7 +117,7 @@
             android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
             android:background="@drawable/rounded_button_primary"
             android:textColor="@android:color/white"
-            android:text="@string/registration_button_title_send"
+            android:text="@string/registration_button_title_continue"
             android:textSize="25sp"
             android:layout_marginTop="40dp"
             android:drawableTint="@android:color/white"

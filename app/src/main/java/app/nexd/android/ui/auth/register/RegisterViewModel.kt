@@ -90,36 +90,14 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
         }
 
         if (success) {
-            val disposable = api.authControllerRegister(
-                RegisterDto()
-                    .firstName(firstName.value)
-                    .lastName(lastName.value)
-                    .email(email.value)
-                    .password(password.value)
+            val registrationData = RegistrationData(
+                firstName = firstName.value!!,
+                lastName = lastName.value!!,
+                email = email.value!!,
+                password = password.value!!
             )
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeBy(
-                    onNext = { responseTokenDto ->
-                        api.setBearerToken(responseTokenDto.accessToken)
-                        with(getApplication<Application>().applicationContext) {
-                            Preferences.setToken(this, responseTokenDto.accessToken)
-                        }
 
-                        val registrationData = RegistrationData(
-                            firstName = firstName.value!!,
-                            lastName = lastName.value!!,
-                            email = email.value!!,
-                            password = password.value!!
-                        )
-
-                        progress.value = Progress.Finished(registrationData)
-                    },
-                    onError = {
-                        progress.value = Progress.Error
-                    }
-                )
-
-            compositeDisposable.add(disposable)
+            progress.value = Progress.Finished(registrationData)
         }
     }
 
