@@ -4,6 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import app.nexd.android.R
+import app.nexd.android.api.model.Call
 import kotlinx.android.synthetic.main.call_item_row.view.*
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
@@ -20,7 +21,7 @@ class CallItemBinder: ItemBinder<Call, CallItemBinder.ViewHolder>() {
         }
 
         fun bind(item: Call) {
-            title.text = item.username
+            title.text = item.created.toString()
         }
     }
 

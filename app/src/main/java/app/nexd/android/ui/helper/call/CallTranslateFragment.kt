@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.ui.seeker.create.HelpRequestArticleBinder
@@ -37,13 +38,21 @@ class CallTranslateFragment: Fragment() {
             HelpRequestArticleBinder()
         )
 
-        viewModel.getArticles().observe(viewLifecycleOwner, Observer { articles ->
+        val args: CallTranslateFragmentArgs by navArgs()
+
+        viewModel.getAudioFile(args.callRequestId)
+
+        /*viewModel.getArticles().observe(viewLifecycleOwner, Observer { articles ->
             val articlesSection = ListSection<HelpRequestArticleBinder.ArticleInput>()
             val articlesInput = articles.map { HelpRequestArticleBinder.ArticleInput(it) }
             articlesSection.addAll(articlesInput)
 
             adapter.addSection(articlesSection)
         })
+
+        viewModel.getCall(args.callRequestId).observe(viewLifecycleOwner, Observer { call ->
+
+        })*/
     }
 
 }

@@ -15,7 +15,7 @@ import io.reactivex.subjects.BehaviorSubject
 
 class HelperOverviewViewModel(application: Application) : AndroidViewModel(application) {
 
-    class AvailableRequestWrapper(val requester: User, val type: RequestType, val id: Int)
+    class AvailableRequestWrapper(val requester: User, val type: RequestType, val id: Long)
     enum class RequestType {
         SHOPPING,
         TRANSCRIPT
@@ -42,9 +42,9 @@ class HelperOverviewViewModel(application: Application) : AndroidViewModel(appli
             // get all requests created by other people
             val otherRequests = api.helpRequestsControllerGetAll(
                 userId = null,
-                excludeUserId = "me",
+                excludeUserId = true,
                 zipCode = null,
-                includeRequester = "true", // TODO this has to be boolean
+                includeRequester = true,
                 status = listOf(
                     PENDING.value
                 )

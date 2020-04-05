@@ -83,7 +83,7 @@
         tools:layout="@layout/fragment_helper_request_detail" >
         <argument
             android:name="request_id"
-            app:argType="integer" />
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/seekerCreateRequestFragment"
@@ -183,7 +183,7 @@
         tools:layout="@layout/fragment_seeker_detail" >
         <argument
             android:name="requestId"
-            app:argType="integer" />
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/helpRequestFinishedFragment"
@@ -230,7 +230,7 @@
         tools:layout="@layout/fragment_translate_call" >
         <argument
             android:name="callRequestId"
-            app:argType="integer" />
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/helperTypeFragment"

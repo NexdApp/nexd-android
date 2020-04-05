@@ -47,7 +47,7 @@ class HelperDetailFragment : Fragment() {
             HelpRequestArticleBinder()
         )
 
-        viewModel.requestDetails(args.requestId.toInt()).observe(viewLifecycleOwner, Observer { request ->
+        viewModel.requestDetails(args.requestId.toLong()).observe(viewLifecycleOwner, Observer { request ->
             adapter.removeAllSections()
 
             name.text = context!!.getString(

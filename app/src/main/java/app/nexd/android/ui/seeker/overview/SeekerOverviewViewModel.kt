@@ -13,9 +13,9 @@ class SeekerOverviewViewModel : ViewModel() {
         return LiveDataReactiveStreams.fromPublisher(
             api.helpRequestsControllerGetAll(
                 "me",
+                false,
                 null,
-                null,
-                null,
+                false,
                 listOf(
                     HelpRequest.StatusEnum.PENDING.value,
                     HelpRequest.StatusEnum.ONGOING.value
@@ -24,5 +24,4 @@ class SeekerOverviewViewModel : ViewModel() {
                 .toFlowable(BackpressureStrategy.BUFFER)
         )
     }
-
 }

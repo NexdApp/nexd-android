@@ -51,7 +51,7 @@ public interface HelpListsApi {
    */
   @GET("help-lists/{helpListId}")
   Observable<HelpList> helpListsControllerFindOne(
-    @retrofit2.http.Path("helpListId") Integer helpListId
+    @retrofit2.http.Path("helpListId") Long helpListId
   );
 
   /**
@@ -89,7 +89,7 @@ public interface HelpListsApi {
    */
   @PUT("help-lists/{helpListId}/article/{articleId}")
   Observable<HelpList> helpListsControllerModifyArticleInAllHelpRequests(
-    @retrofit2.http.Path("helpListId") Integer helpListId, @retrofit2.http.Path("articleId") Integer articleId, @retrofit2.http.Query("articleDone") Boolean articleDone
+    @retrofit2.http.Path("helpListId") Integer helpListId, @retrofit2.http.Path("articleId") Long articleId, @retrofit2.http.Query("articleDone") Boolean articleDone
   );
 
   /**

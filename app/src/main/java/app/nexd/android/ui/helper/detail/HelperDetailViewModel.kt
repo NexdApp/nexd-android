@@ -13,7 +13,7 @@ import io.reactivex.schedulers.Schedulers.io
 
 class HelperDetailViewModel : ViewModel() {
 
-    fun requestDetails(requestId: Int): LiveData<HelpRequest> {
+    fun requestDetails(requestId: Long): LiveData<HelpRequest> {
         return LiveDataReactiveStreams.fromPublisher(
             api.helpRequestsControllerGetSingleRequest(requestId)
                 .doOnError {
@@ -24,7 +24,7 @@ class HelperDetailViewModel : ViewModel() {
         )
     }
 
-    fun acceptRequest(requestId: Int) {
+    fun acceptRequest(requestId: Long) {
         api.helpListsControllerGetUserLists(null)
             .map { lists ->
                 if (lists.any { it.status == HelpList.StatusEnum.ACTIVE })
@@ -40,8 +40,8 @@ class HelperDetailViewModel : ViewModel() {
                     )
                 } else {
                     api.helpListsControllerAddHelpRequestToList(
-                        shoppingList.id,
-                        requestId
+                        shoppingList.id.toInt(),
+                        requestId.toInt()
                     )
                 }
             }

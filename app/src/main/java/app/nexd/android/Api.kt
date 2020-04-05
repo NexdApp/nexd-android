@@ -72,7 +72,7 @@ class Api(private val apiClient: ApiClient = ApiClient("bearer")) :
         return articlesApi.articlesControllerFindAll().subscribeOn(io())
     }
 
-    override fun helpListsControllerFindOne(helpListId: Int): Observable<HelpList> {
+    override fun helpListsControllerFindOne(helpListId: Long): Observable<HelpList> {
         return helpListsApi.helpListsControllerFindOne(helpListId).subscribeOn(io())
     }
 
@@ -114,7 +114,7 @@ class Api(private val apiClient: ApiClient = ApiClient("bearer")) :
 
     override fun helpListsControllerModifyArticleInAllHelpRequests(
         helpListId: Int,
-        articleId: Int,
+        articleId: Long,
         articleDone: Boolean
     ): Observable<HelpList> {
         return helpListsApi.helpListsControllerModifyArticleInAllHelpRequests(
@@ -139,7 +139,7 @@ class Api(private val apiClient: ApiClient = ApiClient("bearer")) :
 
     override fun helpRequestsControllerAddArticleInHelpRequest(
         helpRequestId: Int,
-        articleId: Int,
+        articleId: Long,
         createOrUpdateHelpRequestArticleDto: CreateOrUpdateHelpRequestArticleDto?
     ): Observable<HelpRequest> {
         return helpRequestsApi.helpRequestsControllerAddArticleInHelpRequest(
@@ -151,7 +151,7 @@ class Api(private val apiClient: ApiClient = ApiClient("bearer")) :
 
     override fun helpRequestsControllerRemoveArticleInHelpRequest(
         helpRequestId: Int,
-        articleId: Int
+        articleId: Long
     ): Observable<HelpRequest> {
         return helpRequestsApi.helpRequestsControllerRemoveArticleInHelpRequest(
             helpRequestId,
@@ -161,9 +161,9 @@ class Api(private val apiClient: ApiClient = ApiClient("bearer")) :
 
     override fun helpRequestsControllerGetAll(
         userId: String?,
-        excludeUserId: String?,
+        excludeUserId: Boolean,
         zipCode: MutableList<String>?,
-        includeRequester: String?,
+        includeRequester: Boolean,
         status: List<String>?
     ): Observable<List<HelpRequest>> {
         return helpRequestsApi.helpRequestsControllerGetAll(
@@ -176,7 +176,7 @@ class Api(private val apiClient: ApiClient = ApiClient("bearer")) :
     }
 
     override fun helpRequestsControllerUpdateRequest(
-        helpRequestId: Int?,
+        helpRequestId: Long,
         helpRequestCreateDto: HelpRequestCreateDto?
     ): Observable<HelpRequest> {
         return helpRequestsApi.helpRequestsControllerUpdateRequest(
@@ -190,7 +190,7 @@ class Api(private val apiClient: ApiClient = ApiClient("bearer")) :
             .subscribeOn(io())
     }
 
-    override fun helpRequestsControllerGetSingleRequest(helpRequestId: Int?): Observable<HelpRequest> {
+    override fun helpRequestsControllerGetSingleRequest(helpRequestId: Long): Observable<HelpRequest> {
         return helpRequestsApi.helpRequestsControllerGetSingleRequest(helpRequestId)
             .subscribeOn(io())
     }
@@ -233,8 +233,14 @@ class Api(private val apiClient: ApiClient = ApiClient("bearer")) :
         return callsApi.callsControllerGetNumber().subscribeOn(io())
     }
 
-    override fun callsControllerCalls(callQueryDto: CallQueryDto?): Observable<MutableList<Call>> {
-        return callsApi.callsControllerCalls(callQueryDto).subscribeOn(io())
+    override fun callsControllerCalls(
+        limit: Long?,
+        converted: String?,
+        country: String?,
+        zip: Long?,
+        city: String?
+    ): Observable<List<Call>> {
+        return callsApi.callsControllerCalls(limit, converted, country, zip, city).subscribeOn(io())
     }
 
 

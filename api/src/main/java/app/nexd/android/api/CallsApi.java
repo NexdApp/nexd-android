@@ -11,7 +11,6 @@ import okhttp3.ResponseBody;
 import okhttp3.MultipartBody;
 
 import app.nexd.android.api.model.Call;
-import app.nexd.android.api.model.CallQueryDto;
 import app.nexd.android.api.model.ConvertedHelpRequestDto;
 import java.io.File;
 
@@ -24,15 +23,16 @@ public interface CallsApi {
   /**
    * Returns all calls with the given parameters
    * 
-   * @param callQueryDto  (required)
+   * @param limit  (optional)
+   * @param converted True if you only want to query calls which are already converted to a help request, false otherwise. Returns all calls if undefined. (optional)
+   * @param country  (optional)
+   * @param zip  (optional)
+   * @param city  (optional)
    * @return Observable&lt;List&lt;Call&gt;&gt;
    */
-  @Headers({
-    "Content-Type:application/json"
-  })
   @GET("call/calls")
   Observable<List<Call>> callsControllerCalls(
-    @retrofit2.http.Body CallQueryDto callQueryDto
+    @retrofit2.http.Query("limit") Long limit, @retrofit2.http.Query("converted") String converted, @retrofit2.http.Query("country") String country, @retrofit2.http.Query("zip") Long zip, @retrofit2.http.Query("city") String city
   );
 
   /**

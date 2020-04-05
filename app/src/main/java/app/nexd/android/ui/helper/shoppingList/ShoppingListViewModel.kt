@@ -11,8 +11,8 @@ class ShoppingListViewModel : ViewModel() {
 
     class ShoppingListEntry(
         var articleName: String,
-        var articleAmount: Int,
-        var articleId: Int,
+        var articleAmount: Long,
+        var articleId: Long,
         var isCollected: Boolean
     )
 
@@ -32,9 +32,13 @@ class ShoppingListViewModel : ViewModel() {
                     .filter { it.article != null } // if article is unknown (null), don't display it
                     .groupBy { it.article!! } // group to a Map<Article, List<HelpRequestArticle>
                     .map { entry -> // map to ShoppingListEntry
+                        var amount: Long = 0
+                        entry.value.forEach {
+                            amount += it.articleCount ?: 0 }
+
                         ShoppingListEntry(
                             articleName = entry.key.name,
-                            articleAmount = entry.value.sumBy { it.articleCount ?: 0 },
+                            articleAmount = amount,
                             articleId = entry.key.id,
                             /* TODO: we try to display "done" state of multiple articles in one checkbox */
                             isCollected = entry.value.all { it.articleDone ?: false }
@@ -55,10 +59,10 @@ class ShoppingListViewModel : ViewModel() {
         )
     }
 
-    fun checkArticle(shoppingListId: Int, articleId: Int) {
+    fun checkArticle(shoppingListId: Long, articleId: Long) {
         with(api) {
             helpListsControllerModifyArticleInAllHelpRequests(
-                shoppingListId,
+                shoppingListId.toInt(),
                 articleId,
                 true
             ).subscribe {

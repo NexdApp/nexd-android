@@ -36,7 +36,7 @@ import java.util.List;
 public class HelpList {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
-  private Integer id;
+  private Long id;
 
   public static final String SERIALIZED_NAME_OWNER_ID = "ownerId";
   @SerializedName(SERIALIZED_NAME_OWNER_ID)
@@ -113,10 +113,10 @@ public class HelpList {
 
   public static final String SERIALIZED_NAME_HELP_REQUESTS_IDS = "helpRequestsIds";
   @SerializedName(SERIALIZED_NAME_HELP_REQUESTS_IDS)
-  private List<Integer> helpRequestsIds = new ArrayList<Integer>();
+  private List<Long> helpRequestsIds = new ArrayList<Long>();
 
 
-  public HelpList id(Integer id) {
+  public HelpList id(Long id) {
     
     this.id = id;
     return this;
@@ -128,12 +128,12 @@ public class HelpList {
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public Integer getId() {
+  public Long getId() {
     return id;
   }
 
 
-  public void setId(Integer id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
@@ -278,13 +278,13 @@ public class HelpList {
   }
 
 
-  public HelpList helpRequestsIds(List<Integer> helpRequestsIds) {
+  public HelpList helpRequestsIds(List<Long> helpRequestsIds) {
     
     this.helpRequestsIds = helpRequestsIds;
     return this;
   }
 
-  public HelpList addHelpRequestsIdsItem(Integer helpRequestsIdsItem) {
+  public HelpList addHelpRequestsIdsItem(Long helpRequestsIdsItem) {
     this.helpRequestsIds.add(helpRequestsIdsItem);
     return this;
   }
@@ -295,12 +295,12 @@ public class HelpList {
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public List<Integer> getHelpRequestsIds() {
+  public List<Long> getHelpRequestsIds() {
     return helpRequestsIds;
   }
 
 
-  public void setHelpRequestsIds(List<Integer> helpRequestsIds) {
+  public void setHelpRequestsIds(List<Long> helpRequestsIds) {
     this.helpRequestsIds = helpRequestsIds;
   }
 

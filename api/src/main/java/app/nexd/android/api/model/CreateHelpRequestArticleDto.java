@@ -31,14 +31,14 @@ import java.io.IOException;
 public class CreateHelpRequestArticleDto {
   public static final String SERIALIZED_NAME_ARTICLE_ID = "articleId";
   @SerializedName(SERIALIZED_NAME_ARTICLE_ID)
-  private Integer articleId;
+  private Long articleId;
 
   public static final String SERIALIZED_NAME_ARTICLE_COUNT = "articleCount";
   @SerializedName(SERIALIZED_NAME_ARTICLE_COUNT)
-  private Integer articleCount;
+  private Long articleCount;
 
 
-  public CreateHelpRequestArticleDto articleId(Integer articleId) {
+  public CreateHelpRequestArticleDto articleId(Long articleId) {
     
     this.articleId = articleId;
     return this;
@@ -50,17 +50,17 @@ public class CreateHelpRequestArticleDto {
   **/
   @ApiModelProperty(required = true, value = "Article ID received from the article list")
 
-  public Integer getArticleId() {
+  public Long getArticleId() {
     return articleId;
   }
 
 
-  public void setArticleId(Integer articleId) {
+  public void setArticleId(Long articleId) {
     this.articleId = articleId;
   }
 
 
-  public CreateHelpRequestArticleDto articleCount(Integer articleCount) {
+  public CreateHelpRequestArticleDto articleCount(Long articleCount) {
     
     this.articleCount = articleCount;
     return this;
@@ -72,12 +72,12 @@ public class CreateHelpRequestArticleDto {
   **/
   @ApiModelProperty(required = true, value = "Number of items")
 
-  public Integer getArticleCount() {
+  public Long getArticleCount() {
     return articleCount;
   }
 
 
-  public void setArticleCount(Integer articleCount) {
+  public void setArticleCount(Long articleCount) {
     this.articleCount = articleCount;
   }
 

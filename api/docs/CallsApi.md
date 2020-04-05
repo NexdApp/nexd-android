@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## callsControllerCalls
 
-> List&lt;Call&gt; callsControllerCalls(callQueryDto)
+> List&lt;Call&gt; callsControllerCalls(limit, converted, country, zip, city)
 
 Returns all calls with the given parameters
 
@@ -38,9 +38,13 @@ public class Example {
         bearer.setBearerToken("BEARER TOKEN");
 
         CallsApi apiInstance = new CallsApi(defaultClient);
-        CallQueryDto callQueryDto = new CallQueryDto(); // CallQueryDto | 
+        Long limit = 56L; // Long | 
+        String converted = "converted_example"; // String | True if you only want to query calls which are already converted to a help request, false otherwise. Returns all calls if undefined.
+        String country = "country_example"; // String | 
+        Long zip = 56L; // Long | 
+        String city = "city_example"; // String | 
         try {
-            List<Call> result = apiInstance.callsControllerCalls(callQueryDto);
+            List<Call> result = apiInstance.callsControllerCalls(limit, converted, country, zip, city);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling CallsApi#callsControllerCalls");
@@ -58,7 +62,11 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **callQueryDto** | [**CallQueryDto**](CallQueryDto.md)|  |
+ **limit** | **Long**|  | [optional]
+ **converted** | **String**| True if you only want to query calls which are already converted to a help request, false otherwise. Returns all calls if undefined. | [optional]
+ **country** | **String**|  | [optional]
+ **zip** | **Long**|  | [optional]
+ **city** | **String**|  | [optional]
 
 ### Return type
 
@@ -70,7 +78,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 ### HTTP response details

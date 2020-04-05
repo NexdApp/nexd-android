@@ -33,15 +33,15 @@ import java.io.IOException;
 public class HelpRequestArticle {
   public static final String SERIALIZED_NAME_ARTICLE_ID = "articleId";
   @SerializedName(SERIALIZED_NAME_ARTICLE_ID)
-  private Integer articleId;
+  private Long articleId;
 
   public static final String SERIALIZED_NAME_ARTICLE_COUNT = "articleCount";
   @SerializedName(SERIALIZED_NAME_ARTICLE_COUNT)
-  private Integer articleCount;
+  private Long articleCount;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
-  private Integer id;
+  private Long id;
 
   public static final String SERIALIZED_NAME_ARTICLE = "article";
   @SerializedName(SERIALIZED_NAME_ARTICLE)
@@ -56,7 +56,7 @@ public class HelpRequestArticle {
   private HelpRequest helpRequest;
 
 
-  public HelpRequestArticle articleId(Integer articleId) {
+  public HelpRequestArticle articleId(Long articleId) {
     
     this.articleId = articleId;
     return this;
@@ -69,17 +69,17 @@ public class HelpRequestArticle {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public Integer getArticleId() {
+  public Long getArticleId() {
     return articleId;
   }
 
 
-  public void setArticleId(Integer articleId) {
+  public void setArticleId(Long articleId) {
     this.articleId = articleId;
   }
 
 
-  public HelpRequestArticle articleCount(Integer articleCount) {
+  public HelpRequestArticle articleCount(Long articleCount) {
     
     this.articleCount = articleCount;
     return this;
@@ -92,17 +92,17 @@ public class HelpRequestArticle {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public Integer getArticleCount() {
+  public Long getArticleCount() {
     return articleCount;
   }
 
 
-  public void setArticleCount(Integer articleCount) {
+  public void setArticleCount(Long articleCount) {
     this.articleCount = articleCount;
   }
 
 
-  public HelpRequestArticle id(Integer id) {
+  public HelpRequestArticle id(Long id) {
     
     this.id = id;
     return this;
@@ -115,12 +115,12 @@ public class HelpRequestArticle {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public Integer getId() {
+  public Long getId() {
     return id;
   }
 
 
-  public void setId(Integer id) {
+  public void setId(Long id) {
     this.id = id;
   }
 

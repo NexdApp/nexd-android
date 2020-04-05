@@ -190,7 +190,7 @@ public class Example {
         bearer.setBearerToken("BEARER TOKEN");
 
         HelpListsApi apiInstance = new HelpListsApi(defaultClient);
-        Integer helpListId = 56; // Integer | Id of the help list
+        Long helpListId = 56L; // Long | Id of the help list
         try {
             HelpList result = apiInstance.helpListsControllerFindOne(helpListId);
             System.out.println(result);
@@ -210,7 +210,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **helpListId** | **Integer**| Id of the help list |
+ **helpListId** | **Long**| Id of the help list |
 
 ### Return type
 
@@ -401,7 +401,7 @@ public class Example {
 
         HelpListsApi apiInstance = new HelpListsApi(defaultClient);
         Integer helpListId = 56; // Integer | Id of the help list
-        Integer articleId = 56; // Integer | Id of the article
+        Long articleId = 56L; // Long | Id of the article
         Boolean articleDone = true; // Boolean | true to set the article as \"bought\"
         try {
             HelpList result = apiInstance.helpListsControllerModifyArticleInAllHelpRequests(helpListId, articleId, articleDone);
@@ -423,7 +423,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **helpListId** | **Integer**| Id of the help list |
- **articleId** | **Integer**| Id of the article |
+ **articleId** | **Long**| Id of the article |
  **articleDone** | **Boolean**| true to set the article as \&quot;bought\&quot; |
 
 ### Return type

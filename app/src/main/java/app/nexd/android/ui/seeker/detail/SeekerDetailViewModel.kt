@@ -28,7 +28,7 @@ class SeekerDetailViewModel: ViewModel() {
         compositeDisposable.clear()
     }
 
-    fun getRequest(id: Int): LiveData<HelpRequest> {
+    fun getRequest(id: Long): LiveData<HelpRequest> {
         return LiveDataReactiveStreams.fromPublisher(
             api.helpRequestsControllerGetSingleRequest(id)
                 .onErrorReturnItem(HelpRequest()) // TODO return state
@@ -38,7 +38,7 @@ class SeekerDetailViewModel: ViewModel() {
     fun cancelRequest(request: HelpRequest) {
         with(api) {
             helpRequestsControllerUpdateRequest(
-                request.id,
+                request.id ?: 0,
                 HelpRequestCreateDto()
                     .status(HelpRequestCreateDto.StatusEnum.DEACTIVATED)
             )

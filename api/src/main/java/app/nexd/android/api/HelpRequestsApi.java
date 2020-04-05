@@ -33,7 +33,7 @@ public interface HelpRequestsApi {
   })
   @PUT("help-requests/{helpRequestId}/article/{articleId}")
   Observable<HelpRequest> helpRequestsControllerAddArticleInHelpRequest(
-    @retrofit2.http.Path("helpRequestId") Integer helpRequestId, @retrofit2.http.Path("articleId") Integer articleId, @retrofit2.http.Body CreateOrUpdateHelpRequestArticleDto createOrUpdateHelpRequestArticleDto
+    @retrofit2.http.Path("helpRequestId") Integer helpRequestId, @retrofit2.http.Path("articleId") Long articleId, @retrofit2.http.Body CreateOrUpdateHelpRequestArticleDto createOrUpdateHelpRequestArticleDto
   );
 
   /**
@@ -48,7 +48,7 @@ public interface HelpRequestsApi {
    */
   @GET("help-requests")
   Observable<List<HelpRequest>> helpRequestsControllerGetAll(
-    @retrofit2.http.Query("userId") String userId, @retrofit2.http.Query("excludeUserId") String excludeUserId, @retrofit2.http.Query("zipCode") List<String> zipCode, @retrofit2.http.Query("includeRequester") String includeRequester, @retrofit2.http.Query("status") List<String> status
+    @retrofit2.http.Query("userId") String userId, @retrofit2.http.Query("excludeUserId") Boolean excludeUserId, @retrofit2.http.Query("zipCode") List<String> zipCode, @retrofit2.http.Query("includeRequester") Boolean includeRequester, @retrofit2.http.Query("status") List<String> status
   );
 
   /**
@@ -59,7 +59,7 @@ public interface HelpRequestsApi {
    */
   @GET("help-requests/{helpRequestId}")
   Observable<HelpRequest> helpRequestsControllerGetSingleRequest(
-    @retrofit2.http.Path("helpRequestId") Integer helpRequestId
+    @retrofit2.http.Path("helpRequestId") Long helpRequestId
   );
 
   /**
@@ -85,7 +85,7 @@ public interface HelpRequestsApi {
    */
   @DELETE("help-requests/{helpRequestId}/article/{articleId}")
   Observable<HelpRequest> helpRequestsControllerRemoveArticleInHelpRequest(
-    @retrofit2.http.Path("helpRequestId") Integer helpRequestId, @retrofit2.http.Path("articleId") Integer articleId
+    @retrofit2.http.Path("helpRequestId") Integer helpRequestId, @retrofit2.http.Path("articleId") Long articleId
   );
 
   /**
@@ -100,7 +100,7 @@ public interface HelpRequestsApi {
   })
   @PUT("help-requests/{helpRequestId}")
   Observable<HelpRequest> helpRequestsControllerUpdateRequest(
-    @retrofit2.http.Path("helpRequestId") Integer helpRequestId, @retrofit2.http.Body HelpRequestCreateDto helpRequestCreateDto
+    @retrofit2.http.Path("helpRequestId") Long helpRequestId, @retrofit2.http.Body HelpRequestCreateDto helpRequestCreateDto
   );
 
 }
