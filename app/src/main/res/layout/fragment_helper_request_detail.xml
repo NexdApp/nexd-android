@@ -20,7 +20,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_margin="2dp"
-        app:cardCornerRadius="@dimen/cardRadius"
+        app:cardCornerRadius="@dimen/radius"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 

@@ -17,15 +17,15 @@
         android:label="@string/role_selection_screen_title"
         tools:layout="@layout/fragment_role">
         <action
-            android:id="@+id/action_roleFragment_to_requesterOverviewFragment"
-            app:destination="@id/seekerOverviewFragment"
+            android:id="@+id/toSeekerTypeFragment"
+            app:destination="@id/seekerTypeFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
         <action
-            android:id="@+id/action_roleFragment_to_helperOverviewFragment"
-            app:destination="@id/helperOverviewFragment"
+            android:id="@+id/toHelperTypeFragment"
+            app:destination="@id/helperTypeFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -71,13 +71,6 @@
         <action
             android:id="@+id/toFinishedFragment"
             app:destination="@id/helpRequestFinishedFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit"
-            app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_close_exit" />
-        <action
-            android:id="@+id/toCallTranslateFragment"
-            app:destination="@id/callTranslateFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
@@ -239,4 +232,62 @@
             android:name="callRequestId"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/helperTypeFragment"
+        android:name="app.nexd.android.ui.helper.type.HelperTypeFragment"
+        android:label="HelperTypeFragment"
+        tools:layout="@layout/fragment_helper_type" >
+        <action
+            android:id="@+id/toHelpRequestOverviewFragment"
+            app:destination="@id/helperOverviewFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/toCallOverviewFragment"
+            app:destination="@id/callOverviewFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/callOverviewFragment"
+        android:name="app.nexd.android.ui.helper.callOverview.CallOverviewFragment"
+        android:label="CallOverviewFragment"
+        tools:layout="@layout/fragment_call_overview" >
+        <action
+            android:id="@+id/toCallTranslateFragment"
+            app:destination="@id/callTranslateFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit"  />
+    </fragment>
+    <fragment
+        android:id="@+id/seekerTypeFragment"
+        android:name="app.nexd.android.ui.seeker.type.SeekerTypeFragment"
+        android:label="SeekerTypeFragment"
+        tools:layout="@layout/fragment_seeker_type" >
+        <action
+            android:id="@+id/toSeekerOverviewFragment"
+            app:destination="@id/seekerOverviewFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"  />
+        <action
+            android:id="@+id/toPhoneCallFragment"
+            app:destination="@id/phoneCallFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/phoneCallFragment"
+        android:name="app.nexd.android.ui.seeker.phonecall.PhoneCallFragment"
+        android:label="PhoneCallFragment"
+        tools:layout="@layout/fragment_phone_call" />
 </navigation>

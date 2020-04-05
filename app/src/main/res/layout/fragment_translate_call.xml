@@ -33,7 +33,7 @@
 
             <ImageButton
                 android:id="@+id/imagebutton_toggle"
-                style="@style/Widget.AppCompat.Button.Borderless"
+                style="@style/Widget.AppCompat.ActionButton"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:minWidth="0dp"
@@ -54,7 +54,7 @@
             android:layout_marginVertical="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="@dimen/cardRadius">
+            app:cardCornerRadius="@dimen/radius">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView_requests"

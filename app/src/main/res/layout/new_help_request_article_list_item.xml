@@ -17,11 +17,12 @@
 
     <EditText
         android:id="@+id/textView_amount"
+        android:selectAllOnFocus="true"
         android:labelFor="@id/textView_article_name"
         android:inputType="number"
         android:background="@null"
         android:textColor="@android:color/black"
-        android:textSize="18sp"
+        android:textSize="22sp"
         android:layout_weight="1"
         android:gravity="center"
         android:layout_gravity="center"

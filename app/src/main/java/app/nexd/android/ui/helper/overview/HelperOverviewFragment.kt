@@ -3,6 +3,9 @@ package app.nexd.android.ui.helper.overview
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.RelativeSizeSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -56,24 +59,14 @@ class HelperOverviewFragment : Fragment() {
 
                 updateAcceptedRequests(myAcceptedRequests)
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    button_shopping.text = Html.fromHtml(
-                        "<b>" +
-                                getString(R.string.helper_request_overview_button_summary_title)
-                                + "</b> (" +
-                            getString(R.string.helper_request_overview_button_summary_details)
-                                + " " +
-                                myAcceptedRequests.sumBy { it.articles?.size ?: 0 }
-                                + "/ 20)",
-                        Html.FROM_HTML_MODE_LEGACY
-                    )
-                } else {
-                    button_shopping.text = Html.fromHtml(
-                        "<b>%1</b> (%2 %3 / 20)".format(getString(R.string.helper_request_overview_button_summary_title),
-                            getString(R.string.helper_request_overview_button_summary_details),
-                            myAcceptedRequests.map { it.articles?.size ?: 0 }.sum())
-                    )
-                }
+                val title = "Accepted lists "
+                val small = "(${myAcceptedRequests.size} / 20)"
+                val acceptedTitle = SpannableString(title + small)
+                acceptedTitle.setSpan(
+                    RelativeSizeSpan(0.5f), title.length,
+                    title.length + small.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+                textView_acceptedLists.text = acceptedTitle
 
                 button_shopping.isEnabled = myAcceptedRequests.isNotEmpty()
             })
@@ -127,15 +120,9 @@ class HelperOverviewFragment : Fragment() {
         nearRequestList.setOnSelectionChangedListener { helpRequest: HelperOverviewViewModel.AvailableRequestWrapper,
                                                         b: Boolean, _: MutableList<HelperOverviewViewModel.AvailableRequestWrapper> ->
             if (b) {
-                val action = if (helpRequest.type == HelperOverviewViewModel.RequestType.SHOPPING) {
-                    HelperOverviewFragmentDirections.requestDetailAction(
-                        helpRequest.id
-                    )
-                } else {
-                    HelperOverviewFragmentDirections.toCallTranslateFragment(
-                        helpRequest.id
-                    )
-                }
+                val action = HelperOverviewFragmentDirections.requestDetailAction(
+                    helpRequest.id
+                )
                 findNavController().navigate(action)
             }
         }
