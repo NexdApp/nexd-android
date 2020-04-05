@@ -13,13 +13,10 @@ class ShoppingListEntryBinder: ItemBinder<ShoppingListViewModel.ShoppingListEntr
 
     class ViewHolder(itemView: View) : ItemViewHolder<ShoppingListViewModel.ShoppingListEntry>(itemView) {
         private val name: TextView = itemView.name
-        private val amount: TextView = itemView.amount
         private val collect: CheckBox = itemView.checked
 
         fun bind(entry: ShoppingListViewModel.ShoppingListEntry) {
-            name.text = entry.articleName
-            amount.text = itemView.context.getString(R.string.helper_shooping_list_amount_layout,
-                entry.articleAmount)
+            name.text = entry.articleName + "(${entry.articleAmount})"
             collect.isChecked = entry.isCollected
 
             collect.setOnCheckedChangeListener { _, isChecked ->

@@ -42,9 +42,11 @@ class SeekerDetailFragment : Fragment() {
         )
 
         viewModel.progress.observe(viewLifecycleOwner, Observer {
-            when(it) {
-                is SeekerDetailViewModel.Progress.Idle -> { }
-                is SeekerDetailViewModel.Progress.Error -> { /* TODO */ }
+            when (it) {
+                is SeekerDetailViewModel.Progress.Idle -> {
+                }
+                is SeekerDetailViewModel.Progress.Error -> { /* TODO */
+                }
                 is SeekerDetailViewModel.Progress.Canceled -> {
                     // show information
                 }
@@ -53,10 +55,13 @@ class SeekerDetailFragment : Fragment() {
 
         viewModel.getRequest(args.requestId)
             .observe(viewLifecycleOwner, Observer { request ->
+                articlesAdapter.removeAllSections()
                 val articlesList = ListSection<HelpRequestArticle>()
                 articlesList.addAll(request.articles!!)
                 articlesAdapter.addSection(articlesList)
 
+                textView_additionalRequest_label.visibility =
+                    if (request.additionalRequest.isNullOrBlank()) View.GONE else View.VISIBLE
                 textView_additionalRequest.text = request.additionalRequest
 
                 button_cancel.setOnClickListener {
