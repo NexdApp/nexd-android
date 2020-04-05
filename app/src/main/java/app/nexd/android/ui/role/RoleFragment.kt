@@ -52,7 +52,7 @@ class RoleFragment : Fragment() {
         }
 
         role_button_seeker.setOnClickListener {
-            findNavController().navigate(RoleFragmentDirections.actionRoleFragmentToRequesterOverviewFragment())
+            findNavController().navigate(RoleFragmentDirections.toSeekerTypeFragment())
         }
 
         button_logout.setOnClickListener {
