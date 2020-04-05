@@ -25,11 +25,11 @@ class DeliveryViewModel : ViewModel() {
                 .toFlowable(BackpressureStrategy.BUFFER))
     }
 
-    fun completeShoppingList(shoppingListId: Long): LiveData<Boolean> {
+    fun completeShoppingList(shoppingListId: Int): LiveData<Boolean> {
         val response = MutableLiveData<Boolean>()
         with(api) {
             helpListsControllerUpdateHelpLists(
-                shoppingListId.toBigDecimal(),
+                shoppingListId,
                 HelpListCreateDto()
                     .status(HelpListCreateDto.StatusEnum.COMPLETED)
             )

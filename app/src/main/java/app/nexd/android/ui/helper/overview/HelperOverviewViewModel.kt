@@ -16,7 +16,7 @@ class HelperOverviewViewModel(application: Application) : AndroidViewModel(appli
 
     private val reload = BehaviorSubject.create<Unit>()
 
-    // mb differnet way to get active requests??
+    // mb different way to get active requests??
     fun getMyAcceptedRequests(): LiveData<List<HelpRequest>> {
         val observable = reload.flatMap {
             api.helpListsControllerGetUserLists(null)
@@ -31,20 +31,18 @@ class HelperOverviewViewModel(application: Application) : AndroidViewModel(appli
 
     fun getOtherOpenRequests(): LiveData<List<HelpRequest>> {
         val observable = reload.flatMap {
-            api.userControllerFindMe()
-                .flatMap { me ->
-                api.helpRequestsControllerGetAll(
-                    null,
-                    me.id,
-                    null,
-                    "true",
-                    listOf(
-                        PENDING.value,
-                        ONGOING.value // TODO remove this line
-                    )
+            api.helpRequestsControllerGetAll(
+                userId = null,
+                excludeUserId = "me",
+                zipCode = null,
+                includeRequester = "true", // TODO this has to be boolean
+                status = listOf(
+                    PENDING.value,
+                    ONGOING.value // TODO remove this line
                 )
-            }
+            )
         }
+
         return LiveDataReactiveStreams.fromPublisher(observable.toFlowable(BackpressureStrategy.BUFFER))
     }
 

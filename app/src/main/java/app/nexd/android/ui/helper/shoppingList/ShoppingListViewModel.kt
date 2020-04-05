@@ -6,25 +6,19 @@ import androidx.lifecycle.ViewModel
 import app.nexd.android.api
 import app.nexd.android.api.model.HelpList
 import io.reactivex.BackpressureStrategy
-import io.reactivex.schedulers.Schedulers
-import io.reactivex.schedulers.Schedulers.io
-import io.reactivex.subjects.BehaviorSubject
 
 class ShoppingListViewModel : ViewModel() {
 
-    class ShoppingListEntry(var name: String, var amount: Int) {
-        var collected = false
-    }
     class ShoppingListEntry(
-        var articleAmount: Long,
         var articleName: String,
-        var articleId: Long,
+        var articleAmount: Int,
+        var articleId: Int,
         var isCollected: Boolean
     )
 
     fun getShoppingListArticles(): LiveData<List<ShoppingListEntry>> {
 
-        val observable = api.helpListsControllerGetUserLists("me")
+        val observable = api.helpListsControllerGetUserLists(null)
             .map { helpLists ->
                 val helpRequests = helpLists
                     .filter { it.status == HelpList.StatusEnum.ACTIVE }
@@ -32,12 +26,20 @@ class ShoppingListViewModel : ViewModel() {
                     ?.helpRequests ?: emptyList()
 
                 helpRequests
-                    .asSequence()
-                    .map { it.articles ?: emptyList() }
-                    .flatten()
-                    .filter { it.article != null }
-                    .groupBy { it.article!!.name }
-                    .map { entry -> ShoppingListEntry(entry.key, entry.value.sumBy { it.articleCount ?: 0 }) }
+                    .asSequence() // performance tweak
+                    .map { it.articles ?: emptyList() } // if article list == null, take empty list
+                    .flatten() // flatten nested articles to one list
+                    .filter { it.article != null } // if article is unknown (null), don't display it
+                    .groupBy { it.article!! } // group to a Map<Article, List<HelpRequestArticle>
+                    .map { entry -> // map to ShoppingListEntry
+                        ShoppingListEntry(
+                            articleName = entry.key.name,
+                            articleAmount = entry.value.sumBy { it.articleCount ?: 0 },
+                            articleId = entry.key.id,
+                            /* TODO: we try to display "done" state of multiple articles in one checkbox */
+                            isCollected = entry.value.all { it.articleDone ?: false }
+                        )
+                    }
                     .toList()
             }
             .onErrorReturnItem(emptyList())
@@ -53,10 +55,10 @@ class ShoppingListViewModel : ViewModel() {
         )
     }
 
-    fun checkArticle(shoppingListId: Long, articleId: Long) {
+    fun checkArticle(shoppingListId: Int, articleId: Int) {
         with(api) {
             helpListsControllerModifyArticleInAllHelpRequests(
-                shoppingListId.toBigDecimal(),
+                shoppingListId,
                 articleId,
                 true
             ).subscribe {
