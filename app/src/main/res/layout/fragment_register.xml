@@ -132,7 +132,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_margin="10dp"
             android:minHeight="0dp"
-            android:text="@string/registration_button_privacy_policy"
+            android:text="@string/registration_term_privacy_policy"
             android:textAllCaps="false" />
 
     </LinearLayout>

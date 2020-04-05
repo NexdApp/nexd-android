@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.view_request_delivery.view.*
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
 
-class HelpRequestBinder: ItemBinder<HelpRequest, HelpRequestBinder.ViewHolder>() {
+class HelpRequestBinder : ItemBinder<HelpRequest, HelpRequestBinder.ViewHolder>() {
 
     class ViewHolder(itemView: View) : ItemViewHolder<HelpRequest>(itemView) {
         private val username: TextView = itemView.textView_username
@@ -18,11 +18,15 @@ class HelpRequestBinder: ItemBinder<HelpRequest, HelpRequestBinder.ViewHolder>()
 
         fun bind(request: HelpRequest) {
             username.text = request.requester?.lastName
-            address.text = "%1 %2 %3".format(itemView.context.getString(R.string.delivery_request_address),
+            address.text = itemView.context.getString(R.string.helper_delivery_address_layout,
+                itemView.context.getString(R.string.delivery_request_address),
                 request.street,
                 request.number)
-            phoneNumber.text = "%1 %2".format(itemView.context.getString(R.string.delivery_request_phoneNumber),
-                request.phoneNumber)
+
+            phoneNumber.text = itemView.context.getString(R.string.helper_delivery_phonenumber_layout,
+                itemView.context.getString(R.string.delivery_request_phoneNumber),
+                request.phoneNumber
+            )
         }
     }
 

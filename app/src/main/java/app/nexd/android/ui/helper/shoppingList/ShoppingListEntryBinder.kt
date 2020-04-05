@@ -17,21 +17,20 @@ class ShoppingListEntryBinder: ItemBinder<ShoppingListViewModel.ShoppingListEntr
         private val collect: CheckBox = itemView.checked
 
         fun bind(entry: ShoppingListViewModel.ShoppingListEntry) {
-            name.text = entry.name
-            amount.text = "%1x".format(entry.amount)
-            collect.isChecked = entry.collected
+            name.text = entry.articleName
+            amount.text = itemView.context.getString(R.string.helper_shooping_list_amount_layout,
+                entry.articleAmount)
+            collect.isChecked = entry.isCollected
+
+            collect.setOnCheckedChangeListener { _, isChecked ->
+                entry.isCollected = isChecked
+                itemView.post {
+                    toggleItemSelection()
+                }
+            }
 
             itemView.setOnClickListener {
                 collect.isChecked = !collect.isChecked
-            }
-            name.setOnClickListener {
-                collect.isChecked = !collect.isChecked
-            }
-            amount.setOnClickListener {
-                collect.isChecked = !collect.isChecked
-            }
-            collect.setOnCheckedChangeListener { _, isChecked ->
-                entry.collected = isChecked
             }
         }
     }

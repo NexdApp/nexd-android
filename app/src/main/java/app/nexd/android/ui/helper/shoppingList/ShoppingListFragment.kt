@@ -39,14 +39,21 @@ class ShoppingListFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(ShoppingListViewModel::class.java)
 
-        viewModel.getShoppingListArticles().observe(viewLifecycleOwner, Observer { shoppingList ->
+        viewModel.getShoppingListArticles().observe(viewLifecycleOwner, Observer { shoppingListEntries ->
             val listSection = ListSection<ShoppingListViewModel.ShoppingListEntry>()
-            listSection.addAll(shoppingList)
+            listSection.addAll(shoppingListEntries)
             adapter.addSection(listSection)
 
             checkout.setOnClickListener {
                 findNavController().navigate(ShoppingListFragmentDirections.toCheckoutFragment())
             }
+
+            viewModel.getShoppingList().observe(viewLifecycleOwner, Observer { shoppingList ->
+                listSection.setOnSelectionChangedListener { item, isSelected, _ ->
+                    if (isSelected)
+                        viewModel.checkArticle(shoppingList.id, item.articleId)
+                }
+            })
         })
     }
 }

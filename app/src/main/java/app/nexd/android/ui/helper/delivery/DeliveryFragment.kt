@@ -45,15 +45,18 @@ class DeliveryFragment : Fragment() {
             val requestList = ListSection<HelpRequest>()
             requestList.addAll(shoppingList.helpRequests)
             adapter.addSection(requestList)
-        })
 
-        closeRequest.setOnClickListener {
-            SelectDialog(activity!!, getString(R.string.delivery_dialog_deliver_title),
-                getString(R.string.delivery_dialog_deliver_description))
-                .setConfirmButton(getString(R.string.delivery_dialog_delivery_button_confirm)) {
-                    findNavController().navigate(DeliveryFragmentDirections.toRoleFragment())
-                }.show()
-        }
+            closeRequest.setOnClickListener {
+                SelectDialog(activity!!, getString(R.string.delivery_dialog_deliver_title),
+                    getString(R.string.delivery_dialog_deliver_description))
+                    .setConfirmButton(getString(R.string.delivery_dialog_delivery_button_confirm)) {
+                        viewModel.completeShoppingList(shoppingList.id)
+                            .observe(viewLifecycleOwner, Observer {
+                                findNavController().navigate(DeliveryFragmentDirections.toRoleFragment())
+                            })
+                    }.show()
+            }
+        })
     }
 
 }
