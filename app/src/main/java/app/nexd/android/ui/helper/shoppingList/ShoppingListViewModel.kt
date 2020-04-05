@@ -18,7 +18,7 @@ class ShoppingListViewModel : ViewModel() {
 
     fun getShoppingListArticles(): LiveData<List<ShoppingListEntry>> {
 
-        val observable = api.helpListsControllerGetUserLists(null)
+        val observable = api.helpListsControllerGetUserLists(null) // TODO: maybe this should be "me"
             .map { helpLists ->
                 val helpRequests = helpLists
                     .filter { it.status == HelpList.StatusEnum.ACTIVE }

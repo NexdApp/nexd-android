@@ -15,7 +15,7 @@ import io.reactivex.subjects.BehaviorSubject
 
 class HelperOverviewViewModel(application: Application) : AndroidViewModel(application) {
 
-    class AvailableRequestWrapper(val requester: User, val type: RequestType, val id: Long)
+    class AvailableRequestWrapper(val requester: User, val type: RequestType, val id: Int)
     enum class RequestType {
         SHOPPING,
         TRANSCRIPT
@@ -38,55 +38,31 @@ class HelperOverviewViewModel(application: Application) : AndroidViewModel(appli
 
     fun getOtherOpenRequests(): LiveData<List<AvailableRequestWrapper>> {
         val observable = reload.flatMap {
-            api.helpRequestsControllerGetAll(
+
+            // get all requests created by other people
+            val otherRequests = api.helpRequestsControllerGetAll(
                 userId = null,
                 excludeUserId = "me",
                 zipCode = null,
                 includeRequester = "true", // TODO this has to be boolean
                 status = listOf(
-                    PENDING.value,
-                    ONGOING.value // TODO remove this line
+                    PENDING.value
                 )
             )
-            api.userControllerFindMe()
-                .flatMap { me ->
-                    api.helpRequestsControllerGetAll(
-                        null,
-                        null,
-                        "true",
-                        listOf(
-                            PENDING.value
-                        )
-                    )
-                        .map { requests ->
-                            requests.filter { it.requesterId != me.id &&
-                                    it.helpListId == null // not assigned to a shopping list yet
-                            }
-                        }
 
-                        .flatMapIterable { requests ->
-                            val requestWrapperList = mutableListOf<AvailableRequestWrapper>()
-                            requests.forEach { request ->
-                                requestWrapperList.add(
-                                    AvailableRequestWrapper(
-                                        request.requester ?: User(),
-                                        RequestType.SHOPPING,
-                                        request.id ?: 0
-                                    )
-                                )
-                            }
-                            requestWrapperList.add(
-                                AvailableRequestWrapper(
-                                    User(),
-                                    RequestType.TRANSCRIPT,
-                                    0
-                                )
-                            )
-                            return@flatMapIterable requestWrapperList
-                        }
-                        .toList()
-                        .toObservable()
-                }
+            return@flatMap otherRequests.map { helpRequests: List<HelpRequest> ->
+                helpRequests.map { helpRequest: HelpRequest ->
+                    AvailableRequestWrapper(
+                        helpRequest.requester ?: User(),
+                        RequestType.SHOPPING,
+                        helpRequest.id ?: 0
+                    )
+                }.plus(AvailableRequestWrapper(
+                    User(),
+                    RequestType.TRANSCRIPT,
+                    0
+                ))
+            }
         }
 
         return LiveDataReactiveStreams.fromPublisher(observable.toFlowable(BackpressureStrategy.BUFFER))
