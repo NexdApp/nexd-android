@@ -116,7 +116,7 @@
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
-                android:textSize="25sp"
+                android:textSize="@dimen/textSize_navigation_button"
                 android:textStyle="bold" />
 
             <Button

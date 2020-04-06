@@ -36,7 +36,7 @@ class DeliveryFragment : Fragment() {
         recylcerView_helpRequests.layoutManager = LinearLayoutManager(context)
 
         adapter.registerItemBinders(
-            HelpRequestBinder()
+            DeliveryHelpRequestBinder()
         )
 
         viewModel.getShoppingList().observe(viewLifecycleOwner, Observer { shoppingList ->

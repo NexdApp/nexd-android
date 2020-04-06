@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
-            android:textSize="35sp"
+            android:textSize="@dimen/textSize_screen_title"
             android:textStyle="bold"
             tools:text="Anna" />
 
@@ -33,9 +33,16 @@
             android:padding="5dp">
 
             <ProgressBar
-                android:id="@+id/progressBar_loading"
+                android:id="@+id/progressBar_loading_indeterminate"
                 android:layout_width="40dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="40dp" />
+            <ProgressBar
+                android:id="@+id/progressBar_loading_determinate"
+                android:visibility="gone"
+                style="?android:progressBarStyleHorizontal"
+                android:progressDrawable="@drawable/determate_progress_bar"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
             <ImageButton
                 android:id="@+id/imageButton_toggle"
                 android:visibility="gone"
@@ -67,7 +74,7 @@
                 android:layout_margin="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:listitem="@layout/new_help_request_article_list_item" />
+                tools:listitem="@layout/row_new_help_request_article" />
         </androidx.cardview.widget.CardView>
 
         <Space
@@ -78,7 +85,7 @@
         <Button
             android:id="@+id/button_transcript"
             android:textAllCaps="false"
-            android:textSize="30sp"
+            android:textSize="@dimen/textSize_button"
             android:padding="10dp"
             android:textAlignment="textStart"
             android:text="@string/helper_request_transcript_button_done"

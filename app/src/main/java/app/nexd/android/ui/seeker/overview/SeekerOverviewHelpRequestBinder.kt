@@ -7,15 +7,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.api.model.HelpRequest
 import app.nexd.android.api.model.HelpRequestArticle
-import app.nexd.android.ui.seeker.overview.HelpRequestBinder.HelpRequestViewHolder
-import kotlinx.android.synthetic.main.request_header_view.view.*
+import app.nexd.android.ui.common.HelpRequestArticleBinder
+import app.nexd.android.ui.seeker.overview.SeekerOverviewHelpRequestBinder.HelpRequestViewHolder
+import kotlinx.android.synthetic.main.row_seeker_overview_help_request.view.*
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
 import java.text.DateFormat
 
-class HelpRequestBinder : ItemBinder<HelpRequest, HelpRequestViewHolder>() {
+class SeekerOverviewHelpRequestBinder : ItemBinder<HelpRequest, HelpRequestViewHolder>() {
 
     class HelpRequestViewHolder(itemView: View) : ItemViewHolder<HelpRequest?>(itemView) {
         private val title: TextView = itemView.tv_header
@@ -50,7 +51,7 @@ class HelpRequestBinder : ItemBinder<HelpRequest, HelpRequestViewHolder>() {
     }
 
     override fun createViewHolder(parent: ViewGroup): HelpRequestViewHolder {
-        return HelpRequestViewHolder(inflate(parent, R.layout.request_header_view))
+        return HelpRequestViewHolder(inflate(parent, R.layout.row_seeker_overview_help_request))
     }
 
     override fun bindViewHolder(

@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.api.model.Call
+import app.nexd.android.ui.common.CallBinder
 import app.nexd.android.ui.helper.callOverview.CallOverviewFragmentDirections.Companion.toCallTranslateFragment
 import kotlinx.android.synthetic.main.fragment_call_overview.*
 import mva2.adapter.ListSection
@@ -36,7 +37,7 @@ class CallOverviewFragment: Fragment() {
         recyclerView_calls.adapter = callsAdapter
         recyclerView_calls.layoutManager = LinearLayoutManager(context)
         callsAdapter.registerItemBinders(
-            CallItemBinder()
+            CallBinder()
         )
 
         viewModel.getOpenCalls().observe(viewLifecycleOwner, Observer { calls ->

@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="@dimen/fragmentPadding">
+            android:padding="@dimen/horizontalPadding">
 
             <EditText
                 android:id="@+id/editText_email"
@@ -86,7 +86,7 @@
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
-                android:textSize="25sp"
+                android:textSize="@dimen/textSize_navigation_title"
                 android:textStyle="bold" />
 
             <Button

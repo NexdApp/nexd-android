@@ -1,13 +1,12 @@
-package app.nexd.android.ui.helper.overview
+package app.nexd.android.ui.common
 
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import app.nexd.android.R
 import app.nexd.android.api.model.HelpRequest
-import app.nexd.android.ui.helper.overview.HelpRequestBinder.HelpRequestViewHolder
-import kotlinx.android.synthetic.main.buyer_request_row.view.*
+import app.nexd.android.ui.common.HelpRequestBinder.HelpRequestViewHolder
+import kotlinx.android.synthetic.main.row_user.view.*
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
 
@@ -34,7 +33,7 @@ class HelpRequestBinder: ItemBinder<HelpRequest, HelpRequestViewHolder>() {
     }
 
     override fun createViewHolder(parent: ViewGroup): HelpRequestViewHolder {
-        return HelpRequestViewHolder(inflate(parent, R.layout.buyer_request_row))
+        return HelpRequestViewHolder(inflate(parent, R.layout.row_user))
     }
 
     override fun canBindData(item: Any): Boolean {

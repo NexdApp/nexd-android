@@ -1,4 +1,4 @@
-package app.nexd.android.ui.seeker.create
+package app.nexd.android.ui.common
 
 import android.view.View
 import android.view.ViewGroup
@@ -7,11 +7,11 @@ import android.widget.ImageButton
 import android.widget.TextView
 import app.nexd.android.R
 import app.nexd.android.api.model.Article
-import kotlinx.android.synthetic.main.new_help_request_article_list_item.view.*
+import kotlinx.android.synthetic.main.row_new_help_request_article.view.*
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
 
-class HelpRequestArticleBinder : ItemBinder<HelpRequestArticleBinder.ArticleInput, HelpRequestArticleBinder.ViewHolder>() {
+class HelpRequestCreateArticleBinder : ItemBinder<HelpRequestCreateArticleBinder.ArticleInput, HelpRequestCreateArticleBinder.ViewHolder>() {
 
     data class ArticleInput(val article: Article, var amount: Long = 0)
 
@@ -46,7 +46,7 @@ class HelpRequestArticleBinder : ItemBinder<HelpRequestArticleBinder.ArticleInpu
 
     override fun createViewHolder(parent: ViewGroup): ViewHolder {
         return ViewHolder(
-            inflate(parent, R.layout.new_help_request_article_list_item)
+            inflate(parent, R.layout.row_new_help_request_article)
         )
     }
 

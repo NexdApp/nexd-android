@@ -15,7 +15,7 @@ import io.reactivex.subjects.BehaviorSubject
 import io.reactivex.subjects.Subject
 import org.reactivestreams.Processor
 
-class CreateHelpRequestViewModel : ViewModel() {
+class SeekerCreateRequestViewModel : ViewModel() {
 
     enum class State {
         LOADING,
@@ -37,27 +37,10 @@ class CreateHelpRequestViewModel : ViewModel() {
         )
     }
 
-    /*
-    fun getRequestWithArticles(): LiveData<RequestFormDto> {
-        val data = api.articlesControllerFindAll()
-            .map { list ->
-                RequestFormDto()
-                    .articles(list.map {
-                        CreateRequestArticleDto()
-                            .articleId(it.id)
-                            .articleCount(0)
-                    })
-                    .city("")
-                    .additionalRequest("")
-                    .deliveryComment("")
-                    .zipCode("") // TODO insert zip
-                    .phoneNumber("")
-                    .street("")
-            }
-        return LiveDataReactiveStreams.fromPublisher(data.toFlowable(BackpressureStrategy.BUFFER))
-    }*/
-
-    fun sendRequest(request: HelpRequestCreateDto) { // TODO accept request only if at least one article is selected
+    fun sendRequest(request: HelpRequestCreateDto) {
+        if (request.articles.isNullOrEmpty()) {
+            return // request without articles shouldn't be accepted
+        }
         with(api) {
             helpRequestsControllerInsertRequestWithArticles(request)
                 .subscribe { state.onNext(State.FINISHED) }

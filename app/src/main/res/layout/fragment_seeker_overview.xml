@@ -10,20 +10,20 @@
 
     <TextView
         android:id="@+id/textView_title"
-        android:layout_margin="@dimen/fragmentPadding"
+        android:layout_margin="@dimen/horizontalPadding"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="@string/seeker_overview_screen_title"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="20sp"
+        android:textSize="@dimen/textSize_screen_title"
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_requests"
-        tools:listitem="@layout/request_header_view"
+        tools:listitem="@layout/row_seeker_overview_help_request"
         android:layout_below="@id/textView_title"
-        android:layout_marginHorizontal="@dimen/fragmentPadding"
+        android:layout_marginHorizontal="@dimen/horizontalPadding"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -44,7 +44,7 @@
         android:id="@+id/button_create_new_help_request"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fragmentPadding"
+        android:layout_margin="@dimen/horizontalPadding"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:backgroundTint="@color/colorPrimary"

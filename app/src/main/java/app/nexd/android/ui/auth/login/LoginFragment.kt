@@ -1,5 +1,7 @@
 package app.nexd.android.ui.auth.login
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -53,9 +55,22 @@ class LoginFragment : Fragment() {
                 is Finished -> proceed()
             }
         })
+
+        button_dataProtection.setOnClickListener {
+            showPrivacyPolicy()
+        }
     }
 
     private fun proceed() {
         findNavController().navigate(toRoleFragment())
+    }
+
+    private fun showPrivacyPolicy() {
+        startActivity(
+            Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://www.nexd.app/privacypage")
+            )
+        )
     }
 }

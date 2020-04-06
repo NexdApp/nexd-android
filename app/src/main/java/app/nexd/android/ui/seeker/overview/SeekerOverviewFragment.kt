@@ -39,7 +39,7 @@ class SeekerOverviewFragment : Fragment() {
         recyclerView_requests.adapter = adapter
 
         adapter.registerItemBinders(
-            HelpRequestBinder()
+            SeekerOverviewHelpRequestBinder()
         )
 
         viewModel.getHelpRequests().observe(viewLifecycleOwner, Observer { requests ->

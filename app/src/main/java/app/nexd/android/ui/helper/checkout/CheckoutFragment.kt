@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
@@ -35,7 +34,7 @@ class CheckoutFragment : Fragment() {
         recylcerView_helpRequests.adapter = adapter
         recylcerView_helpRequests.layoutManager = LinearLayoutManager(context)
         adapter.registerItemBinders(
-            HelpRequestBinder()
+            CheckoutHelpRequestBinder()
         )
 
         viewModel.getShoppingList().observe(viewLifecycleOwner, Observer { shoppingList ->

@@ -1,17 +1,17 @@
-package app.nexd.android.ui.helper.checkout
+package app.nexd.android.ui.common
 
 import android.view.View
 import android.view.ViewGroup
 import app.nexd.android.R
 import app.nexd.android.api.model.HelpRequestArticle
-import kotlinx.android.synthetic.main.shopping_list_row.view.*
+import kotlinx.android.synthetic.main.row_help_request_article.view.*
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
 
-class HelpRequestArticleBinder :
+class HelpRequestArticleBinder(private val checkable: Boolean = false) :
     ItemBinder<HelpRequestArticle, HelpRequestArticleBinder.ViewHolder>() {
 
-    class ViewHolder(itemView: View) : ItemViewHolder<HelpRequestArticle>(itemView) {
+    inner class ViewHolder(itemView: View) : ItemViewHolder<HelpRequestArticle>(itemView) {
 
         fun bind(item: HelpRequestArticle) {
             itemView.textView_amount.text = itemView.context.getString(
@@ -19,8 +19,13 @@ class HelpRequestArticleBinder :
                 item.articleCount
             )
             itemView.textView_name.text = item.article?.name
-            itemView.checkbox_checked.isChecked = item.articleDone ?: false
-            itemView.checkbox_checked.isEnabled = false
+            if (checkable) {
+                itemView.checkbox_checked.isChecked = item.articleDone ?: false
+                itemView.checkbox_checked.isEnabled = false
+                itemView.checkbox_checked.visibility = View.VISIBLE
+            } else {
+                itemView.checkbox_checked.visibility = View.GONE
+            }
         }
     }
 
@@ -30,7 +35,7 @@ class HelpRequestArticleBinder :
 
     override fun createViewHolder(parent: ViewGroup): ViewHolder {
         return ViewHolder(
-            inflate(parent, R.layout.shopping_list_row)
+            inflate(parent, R.layout.row_help_request_article)
         )
     }
 

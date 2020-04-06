@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="@dimen/fragmentPadding"
+    android:padding="@dimen/horizontalPadding"
     tools:background="@drawable/background_gradient"
     tools:context=".ui.helper.shoppingList.ShoppingListFragment">
 
@@ -17,7 +17,7 @@
     <TextView
         android:text="@string/shopping_list_screen_title"
         android:textStyle="bold"
-        android:textSize="25sp"
+        android:textSize="@dimen/textSize_screen_title"
         android:textColor="@android:color/white"
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
@@ -32,7 +32,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/shoppingList"
-            tools:listitem="@layout/shopping_list_row"
+            tools:listitem="@layout/row_help_request_article"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

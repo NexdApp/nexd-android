@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import app.nexd.android.R
 import app.nexd.android.api.model.HelpRequest
-import kotlinx.android.synthetic.main.view_request_delivery.view.*
+import kotlinx.android.synthetic.main.row_seeker_checkout_help_request.view.*
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
 
-class HelpRequestBinder : ItemBinder<HelpRequest, HelpRequestBinder.ViewHolder>() {
+class DeliveryHelpRequestBinder : ItemBinder<HelpRequest, DeliveryHelpRequestBinder.ViewHolder>() {
 
     class ViewHolder(itemView: View) : ItemViewHolder<HelpRequest>(itemView) {
         private val username: TextView = itemView.textView_username
@@ -40,7 +40,7 @@ class HelpRequestBinder : ItemBinder<HelpRequest, HelpRequestBinder.ViewHolder>(
     }
 
     override fun createViewHolder(parent: ViewGroup): ViewHolder {
-        return ViewHolder(inflate(parent, R.layout.view_request_delivery))
+        return ViewHolder(inflate(parent, R.layout.row_seeker_checkout_help_request))
     }
 
     override fun canBindData(item: Any): Boolean {

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/fragmentPadding"
+    android:padding="@dimen/horizontalPadding"
     tools:background="@drawable/background_gradient">
 
     <TextView
@@ -14,7 +14,7 @@
         android:layout_marginBottom="10dp"
         android:text="@string/seeker_detail_screen_title"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="20sp"
+        android:textSize="@dimen/textSize_screen_title"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -48,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            tools:listitem="@layout/request_list_item_view" />
+            tools:listitem="@layout/row_help_request_article" />
 
     </androidx.cardview.widget.CardView>
 

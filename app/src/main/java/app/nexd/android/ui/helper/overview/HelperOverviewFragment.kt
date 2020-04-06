@@ -1,8 +1,6 @@
 package app.nexd.android.ui.helper.overview
 
-import android.os.Build
 import android.os.Bundle
-import android.text.Html
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.RelativeSizeSpan
@@ -12,11 +10,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.api.model.HelpRequest
+import app.nexd.android.ui.common.HelpRequestBinder
 import app.nexd.android.ui.helper.overview.HelperOverviewFragmentDirections.Companion.requestDetailAction
 import kotlinx.android.synthetic.main.fragment_helper_request_overview.*
 import mva2.adapter.ListSection
@@ -52,7 +50,7 @@ class HelperOverviewFragment : Fragment() {
             HelpRequestBinder()
         )
         nearRequestsAdapter.registerItemBinders(
-            AvailableRequestBinder()
+            HelpRequestBinder()
         )
 
         viewModel.run {

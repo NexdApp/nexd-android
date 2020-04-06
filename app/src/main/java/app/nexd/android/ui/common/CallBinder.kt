@@ -1,15 +1,15 @@
-package app.nexd.android.ui.helper.callOverview
+package app.nexd.android.ui.common
 
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import app.nexd.android.R
 import app.nexd.android.api.model.Call
-import kotlinx.android.synthetic.main.call_item_row.view.*
+import kotlinx.android.synthetic.main.row_call.view.*
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
 
-class CallItemBinder: ItemBinder<Call, CallItemBinder.ViewHolder>() {
+class CallBinder: ItemBinder<Call, CallBinder.ViewHolder>() {
 
     class ViewHolder(itemView: View) : ItemViewHolder<Call>(itemView) {
         private val title: TextView = itemView.textView_title
@@ -30,7 +30,12 @@ class CallItemBinder: ItemBinder<Call, CallItemBinder.ViewHolder>() {
     }
 
     override fun createViewHolder(parent: ViewGroup): ViewHolder {
-        return ViewHolder(inflate(parent, R.layout.call_item_row))
+        return ViewHolder(
+            inflate(
+                parent,
+                R.layout.row_call
+            )
+        )
     }
 
     override fun canBindData(item: Any): Boolean {

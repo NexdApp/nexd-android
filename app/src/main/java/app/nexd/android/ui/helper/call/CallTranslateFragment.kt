@@ -1,7 +1,6 @@
 package app.nexd.android.ui.helper.call
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.api.model.CreateHelpRequestArticleDto
 import app.nexd.android.api.model.HelpRequestCreateDto
-import app.nexd.android.ui.seeker.create.HelpRequestArticleBinder
+import app.nexd.android.ui.common.HelpRequestCreateArticleBinder
 import kotlinx.android.synthetic.main.fragment_translate_call.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
@@ -40,7 +39,7 @@ class CallTranslateFragment : Fragment() {
         recyclerView_requests.adapter = adapter
         recyclerView_requests.layoutManager = LinearLayoutManager(context)
         adapter.registerItemBinders(
-            HelpRequestArticleBinder()
+            HelpRequestCreateArticleBinder()
         )
 
         val args: CallTranslateFragmentArgs by navArgs()
@@ -48,10 +47,18 @@ class CallTranslateFragment : Fragment() {
         viewModel.getAudioFile(args.callRequestId)
 
         viewModel.downloadProgess.observe(viewLifecycleOwner, Observer { percentage ->
-            if (percentage == 1f) {
-                imageButton_toggle.visibility = View.VISIBLE
-                progressBar_loading.visibility = View.GONE
+            when {
+                percentage == 1f -> {
+                    imageButton_toggle.visibility = View.VISIBLE
+                    progressBar_loading_determinate.visibility = View.GONE
+                }
+                percentage != 0f -> {
+                    progressBar_loading_determinate.visibility = View.VISIBLE
+                    progressBar_loading_indeterminate.visibility = View.GONE
+                    progressBar_loading_determinate.progress = (percentage * 100).toInt()
+                }
             }
+
         })
 
         viewModel.maxPosition.observe(viewLifecycleOwner, Observer {
@@ -94,8 +101,8 @@ class CallTranslateFragment : Fragment() {
             textView_timestamp.text = call.created.toString()
 
             viewModel.getArticles().observe(viewLifecycleOwner, Observer { articles ->
-                val articlesSection = ListSection<HelpRequestArticleBinder.ArticleInput>()
-                val articlesInput = articles.map { HelpRequestArticleBinder.ArticleInput(it) }
+                val articlesSection = ListSection<HelpRequestCreateArticleBinder.ArticleInput>()
+                val articlesInput = articles.map { HelpRequestCreateArticleBinder.ArticleInput(it) }
                 articlesSection.addAll(articlesInput)
 
                 adapter.addSection(articlesSection)

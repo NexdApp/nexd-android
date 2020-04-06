@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:background="@drawable/background_gradient"
-    android:paddingTop="@dimen/fragmentPadding"
-    android:paddingStart="@dimen/fragmentPadding"
-    android:paddingEnd="@dimen/fragmentPadding"
+    android:paddingTop="@dimen/horizontalPadding"
+    android:paddingStart="@dimen/horizontalPadding"
+    android:paddingEnd="@dimen/horizontalPadding"
     tools:context=".ui.helper.checkout.CheckoutFragment">
 
     <TextView
@@ -15,7 +15,7 @@
         android:text="@string/checkout_screen_title"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="10dp"
-        android:textSize="25sp"
+        android:textSize="@dimen/textSize_screen_title"
         android:textColor="@android:color/white"
         android:textStyle="bold"
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recylcerView_helpRequests"
-            tools:listitem="@layout/view_checkout_request"
+            tools:listitem="@layout/row_checkout_request_item_row"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

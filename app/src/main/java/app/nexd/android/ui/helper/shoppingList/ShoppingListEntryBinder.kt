@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
 import app.nexd.android.R
-import kotlinx.android.synthetic.main.shopping_list_row.view.*
+import kotlinx.android.synthetic.main.row_help_request_article.view.*
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
 
@@ -45,7 +45,7 @@ class ShoppingListEntryBinder :
 
     override fun createViewHolder(parent: ViewGroup): ViewHolder {
         return ViewHolder(
-            inflate(parent, R.layout.shopping_list_row)
+            inflate(parent, R.layout.row_help_request_article)
         )
     }
 

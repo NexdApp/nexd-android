@@ -5,16 +5,16 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:background="@drawable/background_gradient"
-    android:paddingTop="@dimen/fragmentPadding"
-    android:paddingStart="@dimen/fragmentPadding"
-    android:paddingEnd="@dimen/fragmentPadding"
+    android:paddingTop="@dimen/horizontalPadding"
+    android:paddingStart="@dimen/horizontalPadding"
+    android:paddingEnd="@dimen/horizontalPadding"
     tools:context=".ui.helper.delivery.DeliveryFragment">
 
     <TextView
         android:id="@+id/textView_title"
         android:text="@string/delivery_screen_title"
         android:layout_marginBottom="10dp"
-        android:textSize="25sp"
+        android:textSize="@dimen/textSize_screen_title"
         android:textStyle="bold"
         android:textColor="@android:color/white"
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recylcerView_helpRequests"
-            tools:listitem="@layout/view_request_delivery"
+            tools:listitem="@layout/row_seeker_checkout_help_request"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
