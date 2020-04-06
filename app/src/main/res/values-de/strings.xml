@@ -67,8 +67,8 @@
     <string name="delivery_dialog_deliver_title">"Abgeben"</string>
     <string name="delivery_dialog_deliver_description">"Bestätigen Sie die Abgabe aller angenommen Aufträge"</string>
     <string name="delivery_dialog_delivery_button_confirm">"Bestätigen"</string>
-    <string name="delivery_request_address">"Adresse: "</string>
-    <string name="delivery_request_phoneNumber">"Tel.: "</string>
+    <string name="delivery_request_address">"Postleitzahl / Ort"</string>
+    <string name="delivery_request_phoneNumber">"Telefonnummer"</string>
     <string name="seeker_detail_screen_title">"Deine Anfrage"</string>
     <string name="seeker_detail_placeholder_information">"Zusätzliche Informationen"</string>
     <string name="seeker_request_create_heading">"Ich benötige:"</string>

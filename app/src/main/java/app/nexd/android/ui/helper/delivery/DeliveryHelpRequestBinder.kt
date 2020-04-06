@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import app.nexd.android.R
 import app.nexd.android.api.model.HelpRequest
-import kotlinx.android.synthetic.main.row_seeker_checkout_help_request.view.*
+import kotlinx.android.synthetic.main.row_helper_delivery_help_request.view.*
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
 
@@ -20,18 +20,13 @@ class DeliveryHelpRequestBinder : ItemBinder<HelpRequest, DeliveryHelpRequestBin
             username.text = request.requester?.lastName
             address.text = itemView.context.getString(
                 R.string.helper_delivery_address_layout,
-                itemView.context.getString(R.string.delivery_request_address),
-                request.street,
-                request.number,
-                request.zipCode,
-                request.city
+                request.street ?: "--",
+                request.number ?: "--",
+                request.zipCode ?: "--",
+                request.city ?: "--"
             )
 
-            phoneNumber.text = itemView.context.getString(
-                R.string.helper_delivery_phone_number_layout,
-                itemView.context.getString(R.string.delivery_request_phoneNumber),
-                request.phoneNumber
-            )
+            phoneNumber.text = request.phoneNumber ?: "--"
         }
     }
 
@@ -40,7 +35,7 @@ class DeliveryHelpRequestBinder : ItemBinder<HelpRequest, DeliveryHelpRequestBin
     }
 
     override fun createViewHolder(parent: ViewGroup): ViewHolder {
-        return ViewHolder(inflate(parent, R.layout.row_seeker_checkout_help_request))
+        return ViewHolder(inflate(parent, R.layout.row_helper_delivery_help_request))
     }
 
     override fun canBindData(item: Any): Boolean {

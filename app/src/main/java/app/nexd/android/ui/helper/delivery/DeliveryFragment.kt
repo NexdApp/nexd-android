@@ -47,7 +47,6 @@ class DeliveryFragment : Fragment() {
             adapter.addSection(requestList)
 
             closeRequest.setOnClickListener {
-                findNavController().navigate(DeliveryFragmentDirections.toRoleFragment())
                 SelectBasicDialog(context, getString(R.string.delivery_dialog_deliver_title),
                 getString(R.string.delivery_dialog_deliver_description))
                     .setConfirmButton(getString(R.string.delivery_dialog_delivery_button_confirm)) {

@@ -47,8 +47,6 @@ class HelperOverviewViewModel(application: Application) : AndroidViewModel(appli
                                 PENDING.value
                             )
                         )
-                            .map { list -> list.filter { it.helpListId == null } } // TODO shouldn't be needed
-
                     }
                 }
         return LiveDataReactiveStreams.fromPublisher(observable.toFlowable(BackpressureStrategy.BUFFER))

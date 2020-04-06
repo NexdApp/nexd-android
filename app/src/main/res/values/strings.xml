@@ -68,8 +68,8 @@
     <string name="delivery_dialog_deliver_title">"Deliver"</string>
     <string name="delivery_dialog_deliver_description">"Confirm the delivery of all accepted requests"</string>
     <string name="delivery_dialog_delivery_button_confirm">"Confirm"</string>
-    <string name="delivery_request_address">"Address: "</string>
-    <string name="delivery_request_phoneNumber">"Tel.: "</string>
+    <string name="delivery_request_address">"Postal Code / Town"</string>
+    <string name="delivery_request_phoneNumber">"Telephone Number"</string>
     <string name="seeker_detail_screen_title">"Your request"</string>
     <string name="seeker_detail_placeholder_information">"Additional information"</string>
     <string name="seeker_request_create_heading">"I need:"</string>
