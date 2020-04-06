@@ -1,16 +1,16 @@
 # DefaultApi
 
-All URIs are relative to *http://localhost:3001*
+All URIs are relative to *https://nexd-backend-staging.herokuapp.com:443/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**appControllerRoot**](DefaultApi.md#appControllerRoot) | **GET** api | 
+[**appControllerGetHello**](DefaultApi.md#appControllerGetHello) | **GET**  | 
 
 
 
-## appControllerRoot
+## appControllerGetHello
 
-> appControllerRoot()
+> String appControllerGetHello()
 
 
 
@@ -27,13 +27,14 @@ import app.nexd.android.api.DefaultApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost:3001");
+        defaultClient.setBasePath("https://nexd-backend-staging.herokuapp.com:443/api/v1");
 
         DefaultApi apiInstance = new DefaultApi(defaultClient);
         try {
-            apiInstance.appControllerRoot();
+            String result = apiInstance.appControllerGetHello();
+            System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DefaultApi#appControllerRoot");
+            System.err.println("Exception when calling DefaultApi#appControllerGetHello");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -49,7 +50,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-null (empty response body)
+**String**
 
 ### Authorization
 
@@ -58,10 +59,10 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Successful |  -  |
+| **200** |  |  -  |
 

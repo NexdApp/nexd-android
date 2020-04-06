@@ -1,50 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="@dimen/fragmentPadding"
-    android:orientation="vertical"
+    tools:background="@drawable/background_gradient"
+    android:paddingTop="@dimen/fragmentPadding"
+    android:paddingStart="@dimen/fragmentPadding"
+    android:paddingEnd="@dimen/fragmentPadding"
     tools:context=".ui.helper.delivery.DeliveryFragment">
 
     <TextView
+        android:id="@+id/textView_title"
         android:text="@string/delivery_screen_title"
         android:layout_marginBottom="10dp"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:textStyle="bold"
+        android:textColor="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <ScrollView
+        android:layout_below="@id/textView_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:id="@+id/container"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recylcerView_helpRequests"
+            tools:listitem="@layout/view_request_delivery"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
     </ScrollView>
 
-    <Space
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp" />
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:id="@+id/closeRequest"
         android:src="@drawable/ic_check_black_24dp"
+        android:backgroundTint="@color/colorPrimary"
+        app:borderWidth="0dp"
+        android:tint="@color/colorPrimaryDark"
         app:fabCustomSize="70dp"
         app:maxImageSize="30dp"
         android:clickable="true"
         android:focusable="true"
         android:layout_margin="10dp"
-        android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
 
 
-</LinearLayout>
+</RelativeLayout>

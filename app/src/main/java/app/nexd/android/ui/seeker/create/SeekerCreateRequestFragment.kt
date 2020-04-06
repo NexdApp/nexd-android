@@ -11,8 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
-import app.nexd.android.api.model.CreateRequestArticleDto
-import app.nexd.android.api.model.RequestFormDto
+import app.nexd.android.api.model.CreateHelpRequestArticleDto
+import app.nexd.android.api.model.HelpRequestCreateDto
 import kotlinx.android.synthetic.main.fragment_seeker_create_request.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
@@ -34,36 +34,45 @@ class SeekerCreateRequestFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(CreateHelpRequestViewModel::class.java)
 
-        recyclerView_articles.layoutManager = LinearLayoutManager(context)
+        recyclerView_requests.layoutManager = LinearLayoutManager(context)
 
         adapter = MultiViewAdapter()
-        recyclerView_articles.adapter = adapter
+        recyclerView_requests.adapter = adapter
 
         adapter.registerItemBinders(HelpRequestArticleBinder())
 
-        viewModel.getArticles().observe(viewLifecycleOwner, Observer { articles ->
-            adapter.removeAllSections()
+        viewModel.getCurrentUser().observe(viewLifecycleOwner, Observer { currentUser ->
 
-            val articlesSection = ListSection<HelpRequestArticleBinder.ArticleInput>()
-            val articlesInput = articles.map { HelpRequestArticleBinder.ArticleInput(it) }
-            articlesSection.addAll(articlesInput)
+            viewModel.getArticles().observe(viewLifecycleOwner, Observer { articles ->
+                adapter.removeAllSections()
 
-            adapter.addSection(articlesSection)
+                val articlesSection = ListSection<HelpRequestArticleBinder.ArticleInput>()
+                val articlesInput = articles.map { HelpRequestArticleBinder.ArticleInput(it) }
+                articlesSection.addAll(articlesInput)
 
-            button_accept.setOnClickListener {
+                adapter.addSection(articlesSection)
 
-                val request = RequestFormDto()
-                    .articles(articlesInput
-                        .filter { it.amount > 0 }
-                        .map {
-                            CreateRequestArticleDto()
-                                .articleCount(it.amount)
-                                .articleId(it.article.id)
-                        })
-                    .additionalRequest(textView_additionalRequest.text.toString())
+                button_accept.setOnClickListener {
+                    val request = HelpRequestCreateDto()
+                        .articles(articlesInput
+                            .filter { it.amount > 0 }
+                            .map {
+                                CreateHelpRequestArticleDto()
+                                    .articleCount(it.amount)
+                                    .articleId(it.article.id)
 
-                viewModel.sendRequest(request)
-            }
+                            })
+                        .street(currentUser.street)
+                        .number(currentUser.number)
+                        .zipCode(currentUser.zipCode)
+                        .city(currentUser.city)
+                        .phoneNumber(currentUser.telephone)
+                        .additionalRequest(textView_additionalRequest.text.toString())
+
+                    viewModel.sendRequest(request)
+                }
+            })
+
         })
 
         viewModel.state().observe(viewLifecycleOwner, Observer {

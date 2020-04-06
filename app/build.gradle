@@ -51,7 +51,7 @@ android {
 
     buildTypes {
         release {
-            manifestPlaceholders = [APP_NAME: "Nexd"]
+            manifestPlaceholders = [APP_NAME: "nexd"]
 
             debuggable false
             minifyEnabled false
@@ -59,7 +59,7 @@ android {
             signingConfig signingConfigs.release
         }
         debug {
-            manifestPlaceholders = [APP_NAME: "Nexd Debug"]
+            manifestPlaceholders = [APP_NAME: "nexd Debug"]
 
             debuggable true
             applicationIdSuffix = ".debug"

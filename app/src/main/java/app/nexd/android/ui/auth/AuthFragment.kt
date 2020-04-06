@@ -29,5 +29,4 @@ class AuthFragment : Fragment() {
             findNavController().navigate(AuthFragmentDirections.actionAuthFragmentToRegisterFragment())
         }
     }
-
 }

@@ -3,10 +3,10 @@ package app.nexd.android.ui.auth.register
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import app.nexd.android.Api
 import app.nexd.android.Preferences
 import app.nexd.android.R
-import app.nexd.android.api.model.RegisterPayload
+import app.nexd.android.api
+import app.nexd.android.api.model.RegisterDto
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
@@ -26,8 +26,6 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
         val email: String,
         val password: String
     )
-
-    val api = Api()
 
     val firstName = MutableLiveData("")
 
@@ -92,38 +90,14 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
         }
 
         if (success) {
-            val disposable = api.authControllerRegister(
-                RegisterPayload()
-                    .firstName(firstName.value)
-                    .lastName(lastName.value)
-                    .email(email.value)
-                    .password(password.value)
-                    .role(RegisterPayload.RoleEnum.NONE)
+            val registrationData = RegistrationData(
+                firstName = firstName.value!!,
+                lastName = lastName.value!!,
+                email = email.value!!,
+                password = password.value!!
             )
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeBy(
-                    onNext = { responseTokenDto ->
 
-                        with(getApplication<Application>().applicationContext) {
-                            Preferences.setToken(this, responseTokenDto.accessToken)
-                            Preferences.setUserId(this, responseTokenDto.id)
-                        }
-
-                        val registrationData = RegistrationData(
-                            firstName = firstName.value!!,
-                            lastName = lastName.value!!,
-                            email = email.value!!,
-                            password = password.value!!
-                        )
-
-                        progress.value = Progress.Finished(registrationData)
-                    },
-                    onError = { _ ->
-                        progress.value = Progress.Error
-                    }
-                )
-
-            compositeDisposable.add(disposable)
+            progress.value = Progress.Finished(registrationData)
         }
     }
 

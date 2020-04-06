@@ -6,7 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import app.nexd.android.Api
 import app.nexd.android.Preferences
 import app.nexd.android.R
-import app.nexd.android.api.model.LoginPayload
+import app.nexd.android.api
+import app.nexd.android.api.model.LoginDto
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
@@ -20,8 +21,6 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         class Error(val message: String) : Progress()
         object Finished : Progress()
     }
-
-    val api = Api()
 
     val username = MutableLiveData("")
 
@@ -37,7 +36,6 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
     override fun onCleared() {
         super.onCleared()
-
         compositeDisposable.clear()
     }
 
@@ -55,7 +53,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
         if (correct) {
             val disposable = api.authControllerLogin(
-                LoginPayload()
+                LoginDto()
                     .email(username.value)
                     .password(password.value)
             )
@@ -65,7 +63,6 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
                         api.setBearerToken(responseTokenDto.accessToken)
                         with(getApplication<Application>().applicationContext) {
                             Preferences.setToken(this, responseTokenDto.accessToken)
-                            Preferences.setUserId(this, responseTokenDto.id)
                         }
 
                         progress.value = Progress.Finished

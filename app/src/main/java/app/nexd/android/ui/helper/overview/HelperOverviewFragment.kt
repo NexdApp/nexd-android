@@ -3,17 +3,20 @@ package app.nexd.android.ui.helper.overview
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.RelativeSizeSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
-import app.nexd.android.api.model.RequestEntity
-import app.nexd.android.ui.helper.overview.HelperOverviewFragmentDirections.Companion.actionBuyerOverviewFragmentToShoppingListFragment
+import app.nexd.android.api.model.HelpRequest
 import app.nexd.android.ui.helper.overview.HelperOverviewFragmentDirections.Companion.requestDetailAction
 import kotlinx.android.synthetic.main.fragment_helper_request_overview.*
 import mva2.adapter.ListSection
@@ -40,44 +43,33 @@ class HelperOverviewFragment : Fragment() {
         recyclerView_acceptedRequests.layoutManager = LinearLayoutManager(context)
         recyclerView_acceptedRequests.adapter = acceptedRequestsAdapter
 
-        nearRequestsAdapter = MultiViewAdapter();
+        nearRequestsAdapter = MultiViewAdapter()
         recyclerView_nearRequests.layoutManager = LinearLayoutManager(context)
         recyclerView_nearRequests.adapter = nearRequestsAdapter
 
 
         acceptedRequestsAdapter.registerItemBinders(
-            HelperOverviewBinder()
+            HelpRequestBinder()
         )
         nearRequestsAdapter.registerItemBinders(
-            HelperOverviewBinder()
+            AvailableRequestBinder()
         )
 
         viewModel.run {
-            getMyAcceptedRequests().observe(viewLifecycleOwner, Observer { requests ->
+            getMyAcceptedRequests().observe(viewLifecycleOwner, Observer { myAcceptedRequests ->
 
-                val myAcceptedRequests = requests.filter {
-                    it.status == RequestEntity.StatusEnum.ONGOING
-                }
                 updateAcceptedRequests(myAcceptedRequests)
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    button_shopping.text = Html.fromHtml(
-                        "<b>" +
-                                getString(R.string.helper_request_overview_button_summary_title)
-                                + "</b> (" +
-                            getString(R.string.helper_request_overview_button_summary_details)
-                                + " " +
-                            myAcceptedRequests.map { requestEntity -> requestEntity.articles.size }.sum()
-                                + "/ 20)",
-                        Html.FROM_HTML_MODE_LEGACY
-                    )
-                } else {
-                    button_shopping.text = Html.fromHtml(
-                        "<b>%1</b> (%2 %3 / 20)".format(getString(R.string.helper_request_overview_button_summary_title),
-                            getString(R.string.helper_request_overview_button_summary_details),
-                            myAcceptedRequests.map { requestEntity -> requestEntity.articles.size }.sum())
-                    )
-                }
+                val title = context?.getString(R.string.helper_request_overview_heading_accepted_section) ?: ""
+                val small = "(${myAcceptedRequests.size} / 20)"
+                val acceptedTitle = SpannableString(title + small)
+                acceptedTitle.setSpan(
+                    RelativeSizeSpan(0.5f), title.length,
+                    title.length + small.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+                textView_acceptedLists.text = acceptedTitle
+
+                button_shopping.isEnabled = myAcceptedRequests.isNotEmpty()
             })
 
             getOtherOpenRequests().observe(viewLifecycleOwner, Observer { requests ->
@@ -86,49 +78,52 @@ class HelperOverviewFragment : Fragment() {
         }
 
         button_shopping.setOnClickListener {
-            findNavController().navigate(actionBuyerOverviewFragmentToShoppingListFragment())
+            findNavController().navigate(HelperOverviewFragmentDirections.toShoppingListFragment())
+        }
+
+        button_previousRequests.setOnClickListener {
+            findNavController().navigate(HelperOverviewFragmentDirections.toFinishedFragment())
         }
     }
 
     override fun onResume() {
         super.onResume()
-
         viewModel.reloadData()
     }
 
-    private fun updateAcceptedRequests(acceptedRequests: List<RequestEntity>) {
+    private fun updateAcceptedRequests(acceptedRequests: List<HelpRequest>) {
         acceptedRequestsAdapter.removeAllSections()
 
-        val acceptedRequestsList = ListSection<RequestEntity>()
+        val acceptedRequestsList = ListSection<HelpRequest>()
 
         acceptedRequestsList.addAll(acceptedRequests)
-        acceptedRequestsList.setOnSelectionChangedListener { request: RequestEntity,
-                                                             b: Boolean, _: MutableList<RequestEntity> ->
+        acceptedRequestsList.setOnSelectionChangedListener { request: HelpRequest,
+                                                             b: Boolean, _: MutableList<HelpRequest> ->
             if (b) {
-                val action =
-                    requestDetailAction(
-                        request.id.toString()
-                    )
-                findNavController().navigate(action)
+                request.id?.let { id ->
+                    val action =
+                        requestDetailAction(
+                            id
+                        )
+                    findNavController().navigate(action)
+                }
             }
         }
         acceptedRequestsAdapter.addSection(acceptedRequestsList)
     }
 
-    private fun updateNearbyOpenRequests(nearRequests: List<RequestEntity>) {
+    private fun updateNearbyOpenRequests(nearRequests: List<HelpRequest>) {
         nearRequestsAdapter.removeAllSections()
 
-        val nearRequestList = ListSection<RequestEntity>()
+        val nearRequestList = ListSection<HelpRequest>()
         nearRequestList.addAll(nearRequests)
 
-        nearRequestList.setOnSelectionChangedListener { helpRequest: RequestEntity,
-                                                        b: Boolean, _: MutableList<RequestEntity> ->
+        nearRequestList.setOnSelectionChangedListener { helpRequest: HelpRequest,
+                                                        b: Boolean, _: MutableList<HelpRequest> ->
             if (b) {
-                val action =
-                    requestDetailAction(
-                        helpRequest.id.toString()
-                    )
-                findNavController().navigate(action)
+                helpRequest.id?.let {
+                    findNavController().navigate(requestDetailAction(it))
+                }
             }
         }
         nearRequestsAdapter.addSection(nearRequestList)

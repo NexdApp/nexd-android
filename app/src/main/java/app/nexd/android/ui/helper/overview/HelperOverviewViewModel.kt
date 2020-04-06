@@ -1,58 +1,54 @@
 package app.nexd.android.ui.helper.overview
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
-import androidx.lifecycle.ViewModel
-import app.nexd.android.Preferences
 import app.nexd.android.api
-import app.nexd.android.api.model.RequestEntity
-import app.nexd.android.api.model.ShoppingList
+import app.nexd.android.api.model.HelpList
+import app.nexd.android.api.model.HelpRequest
+import app.nexd.android.api.model.HelpRequest.StatusEnum.ONGOING
+import app.nexd.android.api.model.HelpRequest.StatusEnum.PENDING
+import app.nexd.android.api.model.User
 import io.reactivex.BackpressureStrategy
-import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 
 class HelperOverviewViewModel(application: Application) : AndroidViewModel(application) {
 
+    class AvailableRequestWrapper(val requester: User, val type: RequestType, val id: Long)
+    enum class RequestType {
+        SHOPPING,
+        TRANSCRIPT
+    }
+
     private val reload = BehaviorSubject.create<Unit>()
 
-    fun getMyAcceptedRequests(): LiveData<List<RequestEntity>> {
+    // mb different way to get active requests??
+    fun getMyAcceptedRequests(): LiveData<List<HelpRequest>> {
         val observable = reload.flatMap {
-            api.shoppingListControllerGetUserLists()
-                .map { lists ->
-                    if (lists.any { it.status == ShoppingList.StatusEnum.ACTIVE })
-                        lists.maxBy { it.status == ShoppingList.StatusEnum.ACTIVE }
-                    else
-                        ShoppingList()
+            api.helpListsControllerGetUserLists(null)
+                .map { helpLists ->
+                    helpLists.filter { it.status == HelpList.StatusEnum.ACTIVE }
+                        .maxBy { it.createdAt }?.helpRequests
+                        .orEmpty()
                 }
-                .flatMapSingle { list ->
-                    Observable.fromIterable(list.requests).flatMap { request ->
-                        api.requestControllerGetSingleRequest(request.requestId.toBigDecimal())
-                    }.toList()
-                }
-                .doOnError {
-                    Log.e("Error", it.message.toString())
-                }
-                .onErrorReturnItem(emptyList())
         }
         return LiveDataReactiveStreams.fromPublisher(observable.toFlowable(BackpressureStrategy.BUFFER))
     }
 
-    fun getOtherOpenRequests(): LiveData<List<RequestEntity>> {
+    fun getOtherOpenRequests(): LiveData<List<HelpRequest>> {
         val observable = reload.flatMap {
-            api.requestControllerGetAll(null, null)
-                .map { requests ->
-                    requests.filter { request ->
-                        request.requesterId != Preferences.getUserId(getApplication())
-                                && request.status == RequestEntity.StatusEnum.PENDING
-                    }
-                }
-                .doOnError { t ->
-                    Log.e("Error", t.message.toString())
-                }
-                .onErrorReturnItem(emptyList())
+            // get all requests created by other people
+            api.helpRequestsControllerGetAll(
+                userId = null,
+                excludeUserId = true,
+                zipCode = null,
+                includeRequester = true,
+                status = listOf(
+                    PENDING.value
+                )
+            )
+                .map { list -> list.filter { it.helpListId == null } } // TODO shouldn't be needed
         }
         return LiveDataReactiveStreams.fromPublisher(observable.toFlowable(BackpressureStrategy.BUFFER))
     }

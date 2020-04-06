@@ -60,7 +60,9 @@ public class UpdateUserDto {
   public enum RoleEnum {
     HELPER("helper"),
     
-    SEEKER("seeker");
+    SEEKER("seeker"),
+    
+    NONE("none");
 
     private String value;
 
@@ -102,7 +104,7 @@ public class UpdateUserDto {
 
   public static final String SERIALIZED_NAME_ROLE = "role";
   @SerializedName(SERIALIZED_NAME_ROLE)
-  private RoleEnum role;
+  private RoleEnum role = RoleEnum.NONE;
 
   public static final String SERIALIZED_NAME_TELEPHONE = "telephone";
   @SerializedName(SERIALIZED_NAME_TELEPHONE)
@@ -255,7 +257,8 @@ public class UpdateUserDto {
    * Get role
    * @return role
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public RoleEnum getRole() {
     return role;

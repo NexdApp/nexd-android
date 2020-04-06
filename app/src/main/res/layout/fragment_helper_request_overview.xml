@@ -1,87 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="@dimen/fragmentPadding"
+    tools:background="@drawable/background_gradient"
     tools:context=".ui.helper.overview.HelperOverviewFragment">
-
-    <TextView
-        android:text="@string/helper_request_overview_heading_accepted_section"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <androidx.cardview.widget.CardView
-        android:layout_margin="2dp"
-        app:cardCornerRadius="@dimen/cardRadius"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp" >
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_acceptedRequests"
-            tools:listitem="@layout/buyer_request_row"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="10dp" />
-
-    </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/button_shopping"
         style="@style/Widget.AppCompat.ActionButton"
-        tools:text="Shopping (Total 0 / 20)"
-        android:textSize="20sp"
-        android:layout_marginHorizontal="2dp"
-        android:layout_marginVertical="15dp"
-        android:textAlignment="center"
-        android:background="@drawable/round_button"
-        android:layout_width="wrap_content"
-        android:paddingHorizontal="20dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_height="wrap_content" />
-    
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+        android:drawableTint="@android:color/white"
+        android:enabled="false"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/helper_request_overview_screen_title"
+        android:textAlignment="textStart"
+        android:textColor="@android:color/white"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
     <TextView
-        android:text="@string/helper_request_overview_heading_available_section"
+        android:id="@+id/textView_acceptedLists"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="25sp"
         android:textStyle="bold"
-        android:textSize="20sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        tools:text="Accepted lists (14 / 20)" />
 
-    <androidx.cardview.widget.CardView
-        android:layout_margin="2dp"
-        app:cardCornerRadius="@dimen/cardRadius"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_acceptedRequests"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
         android:layout_weight="1"
+        tools:listitem="@layout/buyer_request_row" />
+
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="0dp" >
+        android:layout_height="wrap_content"
+        android:text="@string/helper_request_overview_heading_available_section"
+        android:textColor="@android:color/white"
+        android:textSize="25sp"
+        android:textStyle="bold" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_nearRequests"
-            tools:listitem="@layout/buyer_request_row"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:orientation="vertical" />
-
-    </androidx.cardview.widget.CardView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_nearRequests"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="3"
+        android:orientation="vertical"
+        tools:listitem="@layout/buyer_request_row" />
 
     <Button
         android:id="@+id/button_previousRequests"
         style="@style/Widget.AppCompat.ActionButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+        android:drawableTint="@android:color/white"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:layout_marginBottom="20dp"
         android:text="@string/helper_request_overview_button_previous_requests"
-        android:textSize="20sp"
-        android:layout_marginHorizontal="2dp"
-        android:layout_marginVertical="15dp"
-        android:textAlignment="center"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/round_button_white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:textAlignment="textStart"
+        android:textColor="@android:color/white"
+        android:textSize="25sp" />
 
 
 </LinearLayout>

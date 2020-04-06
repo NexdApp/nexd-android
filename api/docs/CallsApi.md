@@ -1,23 +1,21 @@
 # CallsApi
 
-All URIs are relative to *http://localhost:3001*
+All URIs are relative to *https://nexd-backend-staging.herokuapp.com:443/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**callControllerDownload**](CallsApi.md#callControllerDownload) | **GET** api/call/download/{id} | 
-[**callControllerIndex**](CallsApi.md#callControllerIndex) | **GET** api/call | 
-[**callControllerInitUpload**](CallsApi.md#callControllerInitUpload) | **GET** api/call/upload | 
-[**callControllerTranslated**](CallsApi.md#callControllerTranslated) | **PUT** api/call/translated/{id} | 
-[**callControllerUpload**](CallsApi.md#callControllerUpload) | **POST** api/call/upload/{id} | 
-[**callControllerWebhook**](CallsApi.md#callControllerWebhook) | **GET** api/call/webhook | 
+[**callsControllerCalls**](CallsApi.md#callsControllerCalls) | **GET** call/calls | Returns all calls with the given parameters
+[**callsControllerConverted**](CallsApi.md#callsControllerConverted) | **PUT** call/calls/{sid}/converted | Sets a call as converted to shopping list
+[**callsControllerGetCallUrl**](CallsApi.md#callsControllerGetCallUrl) | **GET** call/calls/{sid}/record | Redirects the request to the stored record file.
+[**callsControllerGetNumber**](CallsApi.md#callsControllerGetNumber) | **GET** call/number | Returns available numbers
 
 
 
-## callControllerDownload
+## callsControllerCalls
 
-> callControllerDownload(id)
+> List&lt;Call&gt; callsControllerCalls(limit, converted, country, zip, city)
 
-
+Returns all calls with the given parameters
 
 ### Example
 
@@ -26,20 +24,30 @@ Method | HTTP request | Description
 import app.nexd.android.ApiClient;
 import app.nexd.android.ApiException;
 import app.nexd.android.Configuration;
+import app.nexd.android.auth.*;
 import app.nexd.android.models.*;
 import app.nexd.android.api.CallsApi;
 
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost:3001");
+        defaultClient.setBasePath("https://nexd-backend-staging.herokuapp.com:443/api/v1");
+        
+        // Configure HTTP bearer authorization: bearer
+        HttpBearerAuth bearer = (HttpBearerAuth) defaultClient.getAuthentication("bearer");
+        bearer.setBearerToken("BEARER TOKEN");
 
         CallsApi apiInstance = new CallsApi(defaultClient);
-        Integer id = 56; // Integer | audio id
+        Long limit = 56L; // Long | 
+        String converted = "converted_example"; // String | True if you only want to query calls which are already converted to a help request, false otherwise. Returns all calls if undefined.
+        String country = "country_example"; // String | 
+        Long zip = 56L; // Long | 
+        String city = "city_example"; // String | 
         try {
-            apiInstance.callControllerDownload(id);
+            List<Call> result = apiInstance.callsControllerCalls(limit, converted, country, zip, city);
+            System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling CallsApi#callControllerDownload");
+            System.err.println("Exception when calling CallsApi#callsControllerCalls");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -54,80 +62,24 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| audio id |
+ **limit** | **Long**|  | [optional]
+ **converted** | **String**| True if you only want to query calls which are already converted to a help request, false otherwise. Returns all calls if undefined. | [optional]
+ **country** | **String**|  | [optional]
+ **zip** | **Long**|  | [optional]
+ **city** | **String**|  | [optional]
 
 ### Return type
 
-null (empty response body)
+[**List&lt;Call&gt;**](Call.md)
 
 ### Authorization
 
-No authorization required
+[bearer](../README.md#bearer)
 
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Successful |  -  |
-| **400** | Bad Request |  -  |
-| **401** | Unauthorized |  -  |
-
-
-## callControllerIndex
-
-> callControllerIndex()
-
-
-
-### Example
-
-```java
-// Import classes:
-import app.nexd.android.ApiClient;
-import app.nexd.android.ApiException;
-import app.nexd.android.Configuration;
-import app.nexd.android.models.*;
-import app.nexd.android.api.CallsApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost:3001");
-
-        CallsApi apiInstance = new CallsApi(defaultClient);
-        try {
-            apiInstance.callControllerIndex();
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CallsApi#callControllerIndex");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -136,11 +88,153 @@ No authorization required
 | **401** | Unauthorized |  -  |
 
 
-## callControllerInitUpload
+## callsControllerConverted
 
-> callControllerInitUpload()
+> Call callsControllerConverted(sid, convertedHelpRequestDto)
+
+Sets a call as converted to shopping list
+
+### Example
+
+```java
+// Import classes:
+import app.nexd.android.ApiClient;
+import app.nexd.android.ApiException;
+import app.nexd.android.Configuration;
+import app.nexd.android.auth.*;
+import app.nexd.android.models.*;
+import app.nexd.android.api.CallsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://nexd-backend-staging.herokuapp.com:443/api/v1");
+        
+        // Configure HTTP bearer authorization: bearer
+        HttpBearerAuth bearer = (HttpBearerAuth) defaultClient.getAuthentication("bearer");
+        bearer.setBearerToken("BEARER TOKEN");
+
+        CallsApi apiInstance = new CallsApi(defaultClient);
+        String sid = "sid_example"; // String | call sid
+        ConvertedHelpRequestDto convertedHelpRequestDto = new ConvertedHelpRequestDto(); // ConvertedHelpRequestDto | 
+        try {
+            Call result = apiInstance.callsControllerConverted(sid, convertedHelpRequestDto);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CallsApi#callsControllerConverted");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **sid** | **String**| call sid |
+ **convertedHelpRequestDto** | [**ConvertedHelpRequestDto**](ConvertedHelpRequestDto.md)|  |
+
+### Return type
+
+[**Call**](Call.md)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successful |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Couldn&#39;t find call or help request |  -  |
+
+
+## callsControllerGetCallUrl
+
+> File callsControllerGetCallUrl(sid)
+
+Redirects the request to the stored record file.
+
+### Example
+
+```java
+// Import classes:
+import app.nexd.android.ApiClient;
+import app.nexd.android.ApiException;
+import app.nexd.android.Configuration;
+import app.nexd.android.auth.*;
+import app.nexd.android.models.*;
+import app.nexd.android.api.CallsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://nexd-backend-staging.herokuapp.com:443/api/v1");
+        
+        // Configure HTTP bearer authorization: bearer
+        HttpBearerAuth bearer = (HttpBearerAuth) defaultClient.getAuthentication("bearer");
+        bearer.setBearerToken("BEARER TOKEN");
+
+        CallsApi apiInstance = new CallsApi(defaultClient);
+        String sid = "sid_example"; // String | 
+        try {
+            File result = apiInstance.callsControllerGetCallUrl(sid);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CallsApi#callsControllerGetCallUrl");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **sid** | **String**|  |
+
+### Return type
+
+[**File**](File.md)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: audio/x-wav
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Successful |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Recording not found. |  -  |
+
+
+## callsControllerGetNumber
+
+> String callsControllerGetNumber()
+
+Returns available numbers
 
 ### Example
 
@@ -155,13 +249,14 @@ import app.nexd.android.api.CallsApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost:3001");
+        defaultClient.setBasePath("https://nexd-backend-staging.herokuapp.com:443/api/v1");
 
         CallsApi apiInstance = new CallsApi(defaultClient);
         try {
-            apiInstance.callControllerInitUpload();
+            String result = apiInstance.callsControllerGetNumber();
+            System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling CallsApi#callControllerInitUpload");
+            System.err.println("Exception when calling CallsApi#callsControllerGetNumber");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -177,7 +272,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-null (empty response body)
+**String**
 
 ### Authorization
 
@@ -186,200 +281,10 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: applicaton/json
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **202** | Success |  -  |
-| **400** | Bad Request |  -  |
-| **401** | Unauthorized |  -  |
-
-
-## callControllerTranslated
-
-> callControllerTranslated(id)
-
-
-
-### Example
-
-```java
-// Import classes:
-import app.nexd.android.ApiClient;
-import app.nexd.android.ApiException;
-import app.nexd.android.Configuration;
-import app.nexd.android.models.*;
-import app.nexd.android.api.CallsApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost:3001");
-
-        CallsApi apiInstance = new CallsApi(defaultClient);
-        Integer id = 56; // Integer | audio id
-        try {
-            apiInstance.callControllerTranslated(id);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CallsApi#callControllerTranslated");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **Integer**| audio id |
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **202** | Success |  -  |
-| **400** | Bad Request |  -  |
-| **401** | Unauthorized |  -  |
-
-
-## callControllerUpload
-
-> callControllerUpload(id)
-
-
-
-### Example
-
-```java
-// Import classes:
-import app.nexd.android.ApiClient;
-import app.nexd.android.ApiException;
-import app.nexd.android.Configuration;
-import app.nexd.android.models.*;
-import app.nexd.android.api.CallsApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost:3001");
-
-        CallsApi apiInstance = new CallsApi(defaultClient);
-        Integer id = 56; // Integer | audio id
-        try {
-            apiInstance.callControllerUpload(id);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CallsApi#callControllerUpload");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **Integer**| audio id |
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **202** | Success |  -  |
-| **400** | Bad Request |  -  |
-| **401** | Unauthorized |  -  |
-
-
-## callControllerWebhook
-
-> callControllerWebhook()
-
-
-
-### Example
-
-```java
-// Import classes:
-import app.nexd.android.ApiClient;
-import app.nexd.android.ApiException;
-import app.nexd.android.Configuration;
-import app.nexd.android.models.*;
-import app.nexd.android.api.CallsApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost:3001");
-
-        CallsApi apiInstance = new CallsApi(defaultClient);
-        try {
-            apiInstance.callControllerWebhook();
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CallsApi#callControllerWebhook");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **202** | Success |  -  |
-| **400** | Bad Request |  -  |
-| **401** | Unauthorized |  -  |
+| **200** | Success |  -  |
 
