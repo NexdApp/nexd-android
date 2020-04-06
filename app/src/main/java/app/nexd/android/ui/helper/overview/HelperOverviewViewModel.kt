@@ -40,11 +40,11 @@ class HelperOverviewViewModel(application: Application) : AndroidViewModel(appli
         val observable = reload.flatMap {
             // get all requests created by other people
             api.helpRequestsControllerGetAll(
-                userId = null,
-                excludeUserId = true,
-                zipCode = null,
-                includeRequester = true,
-                status = listOf(
+                null,
+                true,
+                null,
+                true,
+                listOf(
                     PENDING.value
                 )
             )
