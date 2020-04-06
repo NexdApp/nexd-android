@@ -1,11 +1,11 @@
 # ArticlesApi
 
-All URIs are relative to *http://localhost:3001*
+All URIs are relative to *https://nexd-backend-staging.herokuapp.com:443/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**articlesControllerFindAll**](ArticlesApi.md#articlesControllerFindAll) | **GET** api/articles | 
-[**articlesControllerInsertOne**](ArticlesApi.md#articlesControllerInsertOne) | **POST** api/articles | 
+[**articlesControllerFindAll**](ArticlesApi.md#articlesControllerFindAll) | **GET** articles | List articles
+[**articlesControllerInsertOne**](ArticlesApi.md#articlesControllerInsertOne) | **POST** articles | Create an article
 
 
 
@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 > List&lt;Article&gt; articlesControllerFindAll()
 
-
+List articles
 
 ### Example
 
@@ -28,7 +28,7 @@ import app.nexd.android.api.ArticlesApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost:3001");
+        defaultClient.setBasePath("https://nexd-backend-staging.herokuapp.com:443/api/v1");
 
         ArticlesApi apiInstance = new ArticlesApi(defaultClient);
         try {
@@ -73,7 +73,7 @@ No authorization required
 
 > Article articlesControllerInsertOne(createArticleDto)
 
-
+Create an article
 
 ### Example
 
@@ -88,7 +88,7 @@ import app.nexd.android.api.ArticlesApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost:3001");
+        defaultClient.setBasePath("https://nexd-backend-staging.herokuapp.com:443/api/v1");
 
         ArticlesApi apiInstance = new ArticlesApi(defaultClient);
         CreateArticleDto createArticleDto = new CreateArticleDto(); // CreateArticleDto | 

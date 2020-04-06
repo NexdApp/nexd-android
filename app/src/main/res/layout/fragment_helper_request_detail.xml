@@ -6,10 +6,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="@dimen/fragmentPadding"
     android:orientation="vertical"
-    tools:context=".ui.helper.detail.BuyerRequestDetailFragment">
+    tools:background="@drawable/background_gradient"
+    tools:context=".ui.helper.detail.HelperDetailFragment">
 
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/textView_name"
         android:textSize="25sp"
         android:textStyle="bold"
         android:textColor="@android:color/black"
@@ -19,7 +20,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_margin="2dp"
-        app:cardCornerRadius="@dimen/cardRadius"
+        app:cardCornerRadius="@dimen/radius"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
@@ -38,7 +39,8 @@
                 android:text="@string/helper_request_detail_screen_title" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/buyer_request_items"
+                android:id="@+id/recyclerView_requests"
+                tools:listitem="@layout/buyer_request_item_row"
                 android:paddingHorizontal="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -53,7 +55,8 @@
         android:id="@+id/accept"
         android:text="@string/helper_request_detail_button_accept"
         android:textSize="20sp"
-        style="@style/Widget.AppCompat.Button.Colored"
+        android:textAllCaps="false"
+        android:background="@drawable/rounded_button_white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

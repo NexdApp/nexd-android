@@ -10,8 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
-import app.nexd.android.api.model.RequestArticle
-import app.nexd.android.ui.seeker.overview.HelpRequestItemBinder
+import app.nexd.android.api.model.HelpRequestArticle
+import app.nexd.android.ui.seeker.overview.HelpRequestArticleBinder
 import kotlinx.android.synthetic.main.fragment_seeker_detail.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
@@ -34,28 +34,40 @@ class SeekerDetailFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        recyclerView_articles.adapter = articlesAdapter
-        recyclerView_articles.layoutManager = LinearLayoutManager(context)
+        recyclerView_requests.adapter = articlesAdapter
+        recyclerView_requests.layoutManager = LinearLayoutManager(context)
 
+        articlesAdapter.registerItemBinders(
+            HelpRequestArticleBinder()
+        )
 
-        with(viewModel) {
-            getArticles().observe(viewLifecycleOwner, Observer { articles ->
-                articlesAdapter.registerItemBinders(
-                    HelpRequestItemBinder(articles)
-                )
+        viewModel.progress.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                is SeekerDetailViewModel.Progress.Idle -> {
+                }
+                is SeekerDetailViewModel.Progress.Error -> { /* TODO */
+                }
+                is SeekerDetailViewModel.Progress.Canceled -> {
+                    // show information
+                }
+            }
+        })
 
-                getRequest(args.requestId)
-                    .observe(viewLifecycleOwner, Observer { request ->
-                        val articlesList = ListSection<RequestArticle>()
-                        articlesList.addAll(request.articles)
-                        articlesAdapter.addSection(articlesList)
+        viewModel.getRequest(args.requestId)
+            .observe(viewLifecycleOwner, Observer { request ->
+                articlesAdapter.removeAllSections()
+                val articlesList = ListSection<HelpRequestArticle>()
+                articlesList.addAll(request.articles!!)
+                articlesAdapter.addSection(articlesList)
 
-                        button_delete.setOnClickListener {
-                            viewModel.cancelRequest(request.id)
-                        }
-                    })
+                textView_additionalRequest_label.visibility =
+                    if (request.additionalRequest.isNullOrBlank()) View.GONE else View.VISIBLE
+                textView_additionalRequest.text = request.additionalRequest
+
+                button_cancel.setOnClickListener {
+                    viewModel.cancelRequest(request)
+                }
             })
-        }
     }
 
 }

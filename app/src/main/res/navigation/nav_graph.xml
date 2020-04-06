@@ -17,15 +17,15 @@
         android:label="@string/role_selection_screen_title"
         tools:layout="@layout/fragment_role">
         <action
-            android:id="@+id/action_roleFragment_to_requesterOverviewFragment"
-            app:destination="@id/seekerOverviewFragment"
+            android:id="@+id/toSeekerTypeFragment"
+            app:destination="@id/seekerTypeFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
         <action
-            android:id="@+id/action_roleFragment_to_helperOverviewFragment"
-            app:destination="@id/buyerOverviewFragment"
+            android:id="@+id/toHelperTypeFragment"
+            app:destination="@id/helperTypeFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -51,8 +51,8 @@
             app:popExitAnim="@anim/fragment_close_exit"  />
     </fragment>
     <fragment
-        android:id="@+id/buyerOverviewFragment"
-        android:name="app.nexd.android.ui.helper.overview.BuyerOverviewFragment"
+        android:id="@+id/helperOverviewFragment"
+        android:name="app.nexd.android.ui.helper.overview.HelperOverviewFragment"
         tools:layout="@layout/fragment_helper_request_overview" >
         <action
             android:id="@+id/requestDetailAction"
@@ -62,8 +62,15 @@
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
         <action
-            android:id="@+id/action_buyerOverviewFragment_to_shoppingListFragment"
+            android:id="@+id/toShoppingListFragment"
             app:destination="@id/shoppingListFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/toFinishedFragment"
+            app:destination="@id/helpRequestFinishedFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
@@ -71,12 +78,12 @@
     </fragment>
     <fragment
         android:id="@+id/helperRequestDetailFragment"
-        android:name="app.nexd.android.ui.helper.detail.BuyerRequestDetailFragment"
+        android:name="app.nexd.android.ui.helper.detail.HelperDetailFragment"
         android:label="@string/helper_request_detail_screen_title"
         tools:layout="@layout/fragment_helper_request_detail" >
         <argument
             android:name="request_id"
-            app:argType="string" />
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/seekerCreateRequestFragment"
@@ -89,7 +96,7 @@
         android:label="@string/shopping_list_screen_title"
         tools:layout="@layout/fragment_shopping_list" >
         <action
-            android:id="@+id/action_shoppingListFragment_to_checkoutFragment"
+            android:id="@+id/toCheckoutFragment"
             app:destination="@id/checkoutFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
@@ -103,25 +110,31 @@
         tools:layout="@layout/fragment_auth">
         <action
             android:id="@+id/action_authFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_authFragment_to_registerFragment"
-            app:destination="@id/registerFragment" />
+            app:destination="@id/registerFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_authFragment_to_roleFragment"
             app:destination="@id/roleFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
             app:popUpTo="@id/authFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="app.nexd.android.ui.auth.LoginFragment"
+        android:name="app.nexd.android.ui.auth.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragment_to_roleFragment"
+            android:id="@+id/toRoleFragment"
             app:destination="@id/roleFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
@@ -131,12 +144,11 @@
     <fragment
         android:id="@+id/registerFragment"
         android:name="app.nexd.android.ui.auth.register.RegisterFragment"
-        android:label="RegisterFragment">
+        android:label="RegisterFragment"
+        tools:layout="@layout/fragment_register" >
         <action
-            android:id="@+id/toRoleFragment"
-            app:destination="@id/roleFragment"
-            app:popUpTo="@id/authFragment"
-            app:popUpToInclusive="true" />
+            android:id="@+id/toRegisterDetailedFragment"
+            app:destination="@id/registerDetailedFragment" />
     </fragment>
     <fragment
         android:id="@+id/checkoutFragment"
@@ -150,9 +162,6 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
-        <argument
-            android:name="shoppingList"
-            app:argType="app.nexd.android.ui.helper.shoppingList.ShoppingListViewModel$ShoppingListEntry[]" />
     </fragment>
     <fragment
         android:id="@+id/deliveryFragment"
@@ -160,7 +169,7 @@
         android:label="fragment_delivery"
         tools:layout="@layout/fragment_delivery" >
         <action
-            android:id="@+id/action_deliveryFragment_to_roleFragment"
+            android:id="@+id/toRoleFragment"
             app:destination="@id/roleFragment"
             app:enterAnim="@anim/fragment_close_enter"
             app:exitAnim="@anim/fragment_close_exit"
@@ -174,6 +183,111 @@
         tools:layout="@layout/fragment_seeker_detail" >
         <argument
             android:name="requestId"
-            app:argType="integer" />
+            app:argType="long" />
     </fragment>
+    <fragment
+        android:id="@+id/helpRequestFinishedFragment"
+        android:name="app.nexd.android.ui.helper.finished.HelpRequestFinishedFragment"
+        android:label="HelpRequestFinishedFragment"
+        tools:layout="@layout/fragment_helper_request_finished" >
+        <action
+            android:id="@+id/toDetailFragment"
+            app:destination="@id/helperRequestDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerDetailedFragment"
+        android:name="app.nexd.android.ui.auth.register.RegisterDetailedFragment"
+        android:label="RegisterDetailedFragment"
+        tools:layout="@layout/fragment_register_detailed" >
+        <action
+            android:id="@+id/toRoleFragment"
+            app:destination="@id/roleFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@id/authFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="firstName"
+            app:argType="string" />
+        <argument
+            android:name="lastName"
+            app:argType="string" />
+        <argument
+            android:name="email"
+            app:argType="string" />
+        <argument
+            android:name="password"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/callTranslateFragment"
+        android:name="app.nexd.android.ui.helper.call.CallTranslateFragment"
+        android:label="CallTranslateFragment"
+        tools:layout="@layout/fragment_translate_call" >
+        <argument
+            android:name="callRequestId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/helperTypeFragment"
+        android:name="app.nexd.android.ui.helper.type.HelperTypeFragment"
+        android:label="HelperTypeFragment"
+        tools:layout="@layout/fragment_helper_type" >
+        <action
+            android:id="@+id/toHelpRequestOverviewFragment"
+            app:destination="@id/helperOverviewFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/toCallOverviewFragment"
+            app:destination="@id/callOverviewFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/callOverviewFragment"
+        android:name="app.nexd.android.ui.helper.callOverview.CallOverviewFragment"
+        android:label="CallOverviewFragment"
+        tools:layout="@layout/fragment_call_overview" >
+        <action
+            android:id="@+id/toCallTranslateFragment"
+            app:destination="@id/callTranslateFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit"  />
+    </fragment>
+    <fragment
+        android:id="@+id/seekerTypeFragment"
+        android:name="app.nexd.android.ui.seeker.type.SeekerTypeFragment"
+        android:label="SeekerTypeFragment"
+        tools:layout="@layout/fragment_seeker_type" >
+        <action
+            android:id="@+id/toSeekerOverviewFragment"
+            app:destination="@id/seekerOverviewFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"  />
+        <action
+            android:id="@+id/toPhoneCallFragment"
+            app:destination="@id/phoneCallFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/phoneCallFragment"
+        android:name="app.nexd.android.ui.seeker.phonecall.PhoneCallFragment"
+        android:label="PhoneCallFragment"
+        tools:layout="@layout/fragment_phone_call" />
 </navigation>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="fragmentPadding">15dp</dimen>
-    <dimen name="cardRadius">20dp</dimen>
+    <dimen name="radius">10dp</dimen>
 </resources>

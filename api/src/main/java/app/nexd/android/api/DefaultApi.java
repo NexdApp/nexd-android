@@ -20,10 +20,10 @@ public interface DefaultApi {
   /**
    * 
    * 
-   * @return Completable
+   * @return Observable&lt;String&gt;
    */
-  @GET("api")
-  Completable appControllerRoot();
+  @GET("")
+  Observable<String> appControllerGetHello();
     
 
 }

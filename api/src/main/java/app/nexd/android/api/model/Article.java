@@ -31,31 +31,31 @@ import java.io.IOException;
 public class Article {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
-  private Integer id;
+  private Long id;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
 
 
-  public Article id(Integer id) {
+  public Article id(Long id) {
     
     this.id = id;
     return this;
   }
 
    /**
-   * Auto-incremented id of an article.
+   * Auto-incremented ID of an article.
    * @return id
   **/
-  @ApiModelProperty(required = true, value = "Auto-incremented id of an article.")
+  @ApiModelProperty(required = true, value = "Auto-incremented ID of an article.")
 
-  public Integer getId() {
+  public Long getId() {
     return id;
   }
 
 
-  public void setId(Integer id) {
+  public void setId(Long id) {
     this.id = id;
   }
 

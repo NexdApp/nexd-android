@@ -34,16 +34,28 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-String remoteApiUrl = "http://nexd-api-alb-1905109360.eu-central-1.elb.amazonaws.com/api"
+task removeApiSrc(type: Delete) {
+    delete project(":api").file('src')
+}
+
+String remoteApiUrl = "https://nexd-backend-staging.herokuapp.com/api/v1"
 String apiBaseUrl = project.findProperty('apiBaseUrl') == null ? remoteApiUrl : project.findProperty('apiBaseUrl')
 
-openApiGenerate {
+openApiValidate {
+    inputSpec = "$apiBaseUrl/docs-json".toString()
+}
+
+task generateApiClient(type: org.openapitools.generator.gradle.plugin.tasks.GenerateTask) {
     generatorName = "java"
     inputSpec = apiBaseUrl + "/docs-json"
     outputDir = "api"
     apiPackage = "app.nexd.android.api"
     invokerPackage = "app.nexd.android"
     modelPackage = "app.nexd.android.api.model"
+    typeMappings = [
+            "integer" : "long",
+            "number" : "long"
+    ]
     library = "retrofit2"
     generateModelTests = false
     generateApiTests = false
@@ -56,3 +68,5 @@ openApiGenerate {
             modelDocs: "false"
     ]
 }
+
+generateApiClient.dependsOn removeApiSrc

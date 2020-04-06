@@ -10,8 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
-import app.nexd.android.api.model.RequestEntity
+import app.nexd.android.api.model.HelpRequest
 import kotlinx.android.synthetic.main.fragment_seeker_overview.*
+import kotlinx.android.synthetic.main.fragment_seeker_overview.recyclerView_requests
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
 
@@ -32,31 +33,36 @@ class SeekerOverviewFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(SeekerOverviewViewModel::class.java)
 
-        recyclerView_articles.layoutManager = LinearLayoutManager(context)
+        recyclerView_requests.layoutManager = LinearLayoutManager(context)
 
         adapter = MultiViewAdapter()
-        recyclerView_articles.adapter = adapter
+        recyclerView_requests.adapter = adapter
 
-        viewModel.getArticles().observe(viewLifecycleOwner, Observer { articles ->
-            adapter.registerItemBinders(
-                HelpRequestBinder(articles)
-            )
+        adapter.registerItemBinders(
+            HelpRequestBinder()
+        )
 
-            viewModel.getHelpRequests().observe(viewLifecycleOwner, Observer { requests ->
-                adapter.removeAllSections()
+        viewModel.getHelpRequests().observe(viewLifecycleOwner, Observer { requests ->
+            adapter.removeAllSections()
 
-                val requestsSection = ListSection<RequestEntity>()
+            if (requests.isEmpty()) {
+                textView_empty.visibility = View.VISIBLE
+            } else {
+                textView_empty.visibility = View.GONE
+                val requestsSection = ListSection<HelpRequest>()
                 requestsSection.addAll(requests)
                 adapter.addSection(requestsSection)
 
                 requestsSection.setOnSelectionChangedListener { request, isSelected, _ ->
-                    if (isSelected)
-                        findNavController().navigate(
-                            SeekerOverviewFragmentDirections
-                                .toSeekerDetailFragment(request.id)
-                        )
+                    if (isSelected) {
+                        request.id?.let { requestId ->
+                            findNavController().navigate(
+                                SeekerOverviewFragmentDirections.toSeekerDetailFragment(requestId)
+                            )
+                        }
+                    }
                 }
-            })
+            }
         })
 
         button_create_new_help_request.setOnClickListener {

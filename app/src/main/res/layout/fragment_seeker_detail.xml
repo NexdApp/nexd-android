@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/fragmentPadding" >
+    android:padding="@dimen/fragmentPadding"
+    tools:background="@drawable/background_gradient">
 
     <TextView
         android:id="@+id/textView_title"
@@ -12,57 +13,65 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="@string/seeker_detail_screen_title"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/button_delete"
-        android:src="@drawable/ic_delete_black_24dp"
-        android:tint="@android:color/white"
+        android:id="@+id/button_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
         android:clickable="true"
         android:focusable="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:src="@drawable/ic_delete_black_24dp"
+        android:tint="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView_title" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
-        android:layout_marginTop="28dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="2dp"
-        app:cardCornerRadius="@dimen/cardRadius"
+        android:layout_marginTop="28dp"
+        app:cardCornerRadius="@dimen/radius"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/button_delete">
+        app:layout_constraintTop_toTopOf="@id/button_cancel">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_articles"
+            android:id="@+id/recyclerView_requests"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp" />
+            android:layout_margin="10dp"
+            tools:listitem="@layout/request_list_item_view" />
 
     </androidx.cardview.widget.CardView>
 
-    <EditText
-        android:id="@+id/editText_additionalRequest"
+    <TextView
+        android:id="@+id/textView_additionalRequest_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/seeker_detail_placeholder_information"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/textView_additionalRequest" />
+
+    <TextView
+        android:id="@+id/textView_additionalRequest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/text"
-        android:enabled="false"
-        android:importantForAutofill="no"
-        android:hint="@string/seeker_detail_placeholder_information"
-        android:inputType="text"
-        android:paddingHorizontal="10dp"
-        android:textColorHint="@color/text"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="So schnell wie nur möglich!!" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

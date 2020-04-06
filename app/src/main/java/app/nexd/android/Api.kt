@@ -2,36 +2,33 @@ package app.nexd.android
 
 import app.nexd.android.api.*
 import app.nexd.android.api.model.*
-import io.reactivex.Completable
 import io.reactivex.Observable
+import io.reactivex.schedulers.Schedulers
 import io.reactivex.schedulers.Schedulers.io
+import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
-import java.math.BigDecimal
 
 lateinit var api: Api
 
 class Api(private val apiClient: ApiClient = ApiClient("bearer")) :
+    AuthApi,
     ArticlesApi,
-    AuthenticationApi,
-    CallsApi,
-    DefaultApi,
-    RequestApi,
-    ShoppingListApi,
-    UserApi {
+    HelpListsApi,
+    HelpRequestsApi,
+    UsersApi,
+    CallsApi {
 
-    private val articlesApi : ArticlesApi
+    private val authApi: AuthApi
 
-    private val authenticationApi : AuthenticationApi
+    private val articlesApi: ArticlesApi
 
-    private val callsApi : CallsApi
+    private val helpListsApi: HelpListsApi
 
-    private val defaultApi : DefaultApi
+    private val helpRequestsApi: HelpRequestsApi
 
-    private val requestApi : RequestApi
+    private val usersApi: UsersApi
 
-    private val shoppingListApi : ShoppingListApi
-
-    private val userApi : UserApi
+    private val callsApi: CallsApi
 
     init {
         apiClient.okBuilder
@@ -43,147 +40,207 @@ class Api(private val apiClient: ApiClient = ApiClient("bearer")) :
         }
 
         articlesApi = apiClient.createService(ArticlesApi::class.java)
-        authenticationApi = apiClient.createService(AuthenticationApi::class.java)
+        authApi = apiClient.createService(AuthApi::class.java)
+        helpListsApi = apiClient.createService(HelpListsApi::class.java)
+        helpRequestsApi = apiClient.createService(HelpRequestsApi::class.java)
+        usersApi = apiClient.createService(UsersApi::class.java)
         callsApi = apiClient.createService(CallsApi::class.java)
-        defaultApi = apiClient.createService(DefaultApi::class.java)
-        requestApi = apiClient.createService(RequestApi::class.java)
-        shoppingListApi = apiClient.createService(ShoppingListApi::class.java)
-        userApi = apiClient.createService(UserApi::class.java)
+    }
+
+    fun setBearerToken(accessToken: String?) {
+        this.apiClient.setBearerToken(accessToken)
+    }
+
+    override fun authControllerRegister(registerDto: RegisterDto?): Observable<TokenDto> {
+        return authApi.authControllerRegister(registerDto).subscribeOn(io())
+    }
+
+    override fun authControllerLogin(loginDto: LoginDto): Observable<TokenDto> {
+        return authApi.authControllerLogin(loginDto).subscribeOn(io())
+    }
+
+    override fun authControllerRefreshToken(registerDto: TokenDto): Observable<TokenDto> {
+        return authApi.authControllerRefreshToken(registerDto).subscribeOn(io())
     }
 
     override fun articlesControllerInsertOne(createArticleDto: CreateArticleDto?): Observable<Article> {
-        return articlesApi.articlesControllerInsertOne(createArticleDto).subscribeOn(io())
+        return articlesApi.articlesControllerInsertOne(createArticleDto)
+            .subscribeOn(io())
     }
 
     override fun articlesControllerFindAll(): Observable<List<Article>> {
         return articlesApi.articlesControllerFindAll().subscribeOn(io())
     }
 
-    override fun authControllerRegister(registerPayload: RegisterPayload?): Observable<ResponseTokenDto> {
-        return authenticationApi.authControllerRegister(registerPayload).subscribeOn(io())
+    override fun helpListsControllerFindOne(helpListId: Long): Observable<HelpList> {
+        return helpListsApi.helpListsControllerFindOne(helpListId).subscribeOn(io())
     }
 
-    override fun authControllerLogin(loginPayload: LoginPayload?): Observable<ResponseTokenDto> {
-        return authenticationApi.authControllerLogin(loginPayload).subscribeOn(io())
+    override fun helpListsControllerUpdateHelpLists(
+        helpListId: Long,
+        helpListCreateDto: HelpListCreateDto?
+    ): Observable<HelpList> {
+        return helpListsApi.helpListsControllerUpdateHelpLists(helpListId, helpListCreateDto)
+            .subscribeOn(io())
     }
 
-    override fun callControllerDownload(id: Int?): Completable {
-        return callsApi.callControllerDownload(id).subscribeOn(io())
-    }
-
-    override fun callControllerUpload(id: Int?): Completable {
-        return callsApi.callControllerUpload(id).subscribeOn(io())
-    }
-
-    override fun callControllerTranslated(id: Int?): Completable {
-        return callsApi.callControllerTranslated(id).subscribeOn(io())
-    }
-
-    override fun callControllerIndex(): Completable {
-        return callsApi.callControllerIndex().subscribeOn(io())
-    }
-
-    override fun callControllerWebhook(): Completable {
-        return callsApi.callControllerWebhook().subscribeOn(io())
-    }
-
-    override fun callControllerInitUpload(): Completable {
-        return callsApi.callControllerInitUpload().subscribeOn(io())
-    }
-
-    override fun appControllerRoot(): Completable {
-        return defaultApi.appControllerRoot().subscribeOn(io())
-    }
-
-    override fun requestControllerMarkArticleAsDone(
-        requestId: BigDecimal?,
-        articleId: BigDecimal?,
-        requestArticleStatusDto: RequestArticleStatusDto?
-    ): Observable<RequestEntity> {
-        return requestApi.requestControllerMarkArticleAsDone(
-            requestId,
+    override fun helpListsControllerModifyArticleInHelpRequest(
+        helpListId: Long,
+        helpRequestId: Long,
+        articleId: Long,
+        articleDone: Boolean
+    ): Observable<HelpList> {
+        return helpListsApi.helpListsControllerModifyArticleInHelpRequest(
+            helpListId,
+            helpRequestId,
             articleId,
-            requestArticleStatusDto
+            articleDone
         ).subscribeOn(io())
     }
 
-    override fun requestControllerGetAll(
-        onlyMine: String?,
-        zipCode: String?
-    ): Observable<List<RequestEntity>> {
-        return requestApi.requestControllerGetAll(onlyMine, zipCode).subscribeOn(io())
+    override fun helpListsControllerGetUserLists(userId: String?): Observable<List<HelpList>> {
+        return helpListsApi.helpListsControllerGetUserLists(userId).subscribeOn(io())
     }
 
-    override fun requestControllerGetSingleRequest(requestId: BigDecimal?): Observable<RequestEntity> {
-        return requestApi.requestControllerGetSingleRequest(requestId).subscribeOn(io())
-    }
-
-    override fun requestControllerUpdateRequest(
-        requestId: BigDecimal?,
-        requestFormDto: RequestFormDto?
-    ): Observable<RequestEntity> {
-        return requestApi.requestControllerUpdateRequest(requestId, requestFormDto)
-            .subscribeOn(io())
-    }
-
-    override fun requestControllerInsertRequestWithArticles(requestFormDto: RequestFormDto?): Observable<RequestEntity> {
-        return requestApi.requestControllerInsertRequestWithArticles(requestFormDto)
-            .subscribeOn(io())
-    }
-
-    override fun shoppingListControllerAddRequestToList(
-        shoppingListId: BigDecimal?,
-        requestId: BigDecimal?
-    ): Observable<ShoppingList> {
-        return shoppingListApi.shoppingListControllerAddRequestToList(shoppingListId, requestId)
-            .subscribeOn(io())
-    }
-
-    override fun shoppingListControllerInsertNewShoppingList(shoppingListFormDto: ShoppingListFormDto?): Observable<ShoppingList> {
-        return shoppingListApi.shoppingListControllerInsertNewShoppingList(shoppingListFormDto)
-            .subscribeOn(io())
-    }
-
-    override fun shoppingListControllerDeleteRequestFromList(
-        shoppingListId: BigDecimal?,
-        requestId: BigDecimal?
-    ): Observable<ShoppingList> {
-        return shoppingListApi.shoppingListControllerDeleteRequestFromList(
-            shoppingListId,
-            requestId
+    override fun helpListsControllerDeleteHelpRequestFromHelpList(
+        helpListId: Long,
+        helpRequestId: Long
+    ): Observable<HelpList> {
+        return helpListsApi.helpListsControllerDeleteHelpRequestFromHelpList(
+            helpListId,
+            helpRequestId
         ).subscribeOn(io())
     }
 
-    override fun shoppingListControllerGetUserLists(): Observable<List<ShoppingList>> {
-        return shoppingListApi.shoppingListControllerGetUserLists().subscribeOn(io())
+    override fun helpListsControllerModifyArticleInAllHelpRequests(
+        helpListId: Long,
+        articleId: Long,
+        articleDone: Boolean
+    ): Observable<HelpList> {
+        return helpListsApi.helpListsControllerModifyArticleInAllHelpRequests(
+            helpListId,
+            articleId,
+            articleDone
+        ).subscribeOn(io())
     }
 
-    override fun shoppingListControllerUpdateShoppingList(
-        id: BigDecimal?,
-        shoppingListFormDto: ShoppingListFormDto?
-    ): Observable<ShoppingList> {
-        return shoppingListApi.shoppingListControllerUpdateShoppingList(id, shoppingListFormDto)
+    override fun helpListsControllerInsertNewHelpList(helpListCreateDto: HelpListCreateDto?): Observable<HelpList> {
+        return helpListsApi.helpListsControllerInsertNewHelpList(helpListCreateDto)
             .subscribeOn(io())
     }
 
-    override fun shoppingListControllerFindOne(id: BigDecimal?): Observable<ShoppingList> {
-        return shoppingListApi.shoppingListControllerFindOne(id).subscribeOn(io())
+    override fun helpListsControllerAddHelpRequestToList(
+        helpListId: Long,
+        helpRequestId: Long
+    ): Observable<HelpList> {
+        return helpListsApi.helpListsControllerAddHelpRequestToList(helpListId, helpRequestId)
+            .subscribeOn(io())
     }
 
-    override fun userControllerUpdate(id: Int?, updateUserDto: UpdateUserDto?): Observable<User> {
-        return userApi.userControllerUpdate(id, updateUserDto).subscribeOn(io())
+    override fun helpRequestsControllerAddArticleInHelpRequest(
+        helpRequestId: Long,
+        articleId: Long,
+        createOrUpdateHelpRequestArticleDto: CreateOrUpdateHelpRequestArticleDto?
+    ): Observable<HelpRequest> {
+        return helpRequestsApi.helpRequestsControllerAddArticleInHelpRequest(
+            helpRequestId,
+            articleId,
+            createOrUpdateHelpRequestArticleDto
+        ).subscribeOn(io())
     }
 
-    override fun userControllerFindOne(id: Int?): Observable<User> {
-        return userApi.userControllerFindOne(id).subscribeOn(io())
+    override fun helpRequestsControllerRemoveArticleInHelpRequest(
+        helpRequestId: Long,
+        articleId: Long
+    ): Observable<HelpRequest> {
+        return helpRequestsApi.helpRequestsControllerRemoveArticleInHelpRequest(
+            helpRequestId,
+            articleId
+        ).subscribeOn(io())
     }
 
-    override fun userControllerGetAll(): Observable<List<User>> {
-        return userApi.userControllerGetAll().subscribeOn(io())
+    override fun helpRequestsControllerGetAll(
+        userId: String?,
+        excludeUserId: Boolean,
+        zipCode: MutableList<String>?,
+        includeRequester: Boolean,
+        status: List<String>?
+    ): Observable<List<HelpRequest>> {
+        return helpRequestsApi.helpRequestsControllerGetAll(
+            userId,
+            excludeUserId,
+            zipCode,
+            includeRequester,
+            status
+        ).subscribeOn(io())
     }
 
-    fun setBearerToken(accessToken: String?) {
-        this.apiClient.setBearerToken(accessToken)
+    override fun helpRequestsControllerUpdateRequest(
+        helpRequestId: Long,
+        helpRequestCreateDto: HelpRequestCreateDto?
+    ): Observable<HelpRequest> {
+        return helpRequestsApi.helpRequestsControllerUpdateRequest(
+            helpRequestId,
+            helpRequestCreateDto
+        ).subscribeOn(io())
+    }
+
+    override fun helpRequestsControllerInsertRequestWithArticles(helpRequestCreateDto: HelpRequestCreateDto?): Observable<HelpRequest> {
+        return helpRequestsApi.helpRequestsControllerInsertRequestWithArticles(helpRequestCreateDto)
+            .subscribeOn(io())
+    }
+
+    override fun helpRequestsControllerGetSingleRequest(helpRequestId: Long): Observable<HelpRequest> {
+        return helpRequestsApi.helpRequestsControllerGetSingleRequest(helpRequestId)
+            .subscribeOn(io())
+    }
+
+    override fun userControllerUpdate(
+        userId: String?,
+        updateUserDto: UpdateUserDto?
+    ): Observable<User> {
+        return usersApi.userControllerUpdate(userId, updateUserDto).subscribeOn(io())
+    }
+
+    override fun userControllerFindOne(userId: String?): Observable<User> {
+        return usersApi.userControllerFindOne(userId).subscribeOn(io())
+    }
+
+    override fun userControllerGetAll(): Observable<MutableList<User>> {
+        return usersApi.userControllerGetAll().subscribeOn(io())
+    }
+
+    override fun userControllerFindMe(): Observable<User> {
+        return usersApi.userControllerFindMe().subscribeOn(io())
+    }
+
+    override fun userControllerUpdateMyself(updateUserDto: UpdateUserDto?): Observable<User> {
+        return usersApi.userControllerUpdateMyself(updateUserDto).subscribeOn(io())
+    }
+
+    override fun callsControllerConverted(
+        sid: String?,
+        convertedHelpRequestDto: ConvertedHelpRequestDto?
+    ): Observable<Call> {
+        return callsApi.callsControllerConverted(sid, convertedHelpRequestDto).subscribeOn(io())
+    }
+
+    override fun callsControllerGetCallUrl(sid: String?): Observable<ResponseBody> {
+        return callsApi.callsControllerGetCallUrl(sid).subscribeOn(io())
+    }
+
+    override fun callsControllerGetNumber(): Observable<String> {
+        return callsApi.callsControllerGetNumber().subscribeOn(io())
+    }
+
+    override fun callsControllerCalls(
+        limit: Long?,
+        converted: String?,
+        country: String?,
+        zip: Long?,
+        city: String?
+    ): Observable<List<Call>> {
+        return callsApi.callsControllerCalls(limit, converted, country, zip, city).subscribeOn(io())
     }
 
 

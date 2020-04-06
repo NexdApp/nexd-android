@@ -5,18 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
-import app.nexd.android.ui.view.CheckoutRequestView
+import app.nexd.android.api.model.HelpRequest
 import kotlinx.android.synthetic.main.fragment_checkout.*
+import mva2.adapter.ListSection
+import mva2.adapter.MultiViewAdapter
 
 class CheckoutFragment : Fragment() {
 
-    private lateinit var viewModel: CheckoutViewModel
-    private val args: CheckoutFragmentArgs by navArgs()
+    private val viewModel: CheckoutViewModel by viewModels()
+
+    private val adapter = MultiViewAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,21 +29,24 @@ class CheckoutFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_checkout, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(CheckoutViewModel::class.java)
+        recylcerView_helpRequests.adapter = adapter
+        recylcerView_helpRequests.layoutManager = LinearLayoutManager(context)
+        adapter.registerItemBinders(
+            HelpRequestBinder()
+        )
 
-        viewModel.getAcceptedRequests().observe(viewLifecycleOwner, Observer { requests ->
-            container.removeAllViews()
+        viewModel.getShoppingList().observe(viewLifecycleOwner, Observer { shoppingList ->
+            adapter.removeAllSections()
 
-            for (request in requests) {
-                val requestView = CheckoutRequestView(context!!, request)
-                container.addView(requestView)
-            }
+            val requestList = ListSection<HelpRequest>()
+            requestList.addAll(shoppingList.helpRequests)
+            adapter.addSection(requestList)
         })
 
-        startDelivery.setOnClickListener {
+        button_deliver.setOnClickListener {
             findNavController().navigate(CheckoutFragmentDirections.actionCheckoutFragmentToDeliveryFragment())
         }
     }

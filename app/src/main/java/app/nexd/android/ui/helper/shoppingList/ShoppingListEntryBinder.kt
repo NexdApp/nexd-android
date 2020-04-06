@@ -9,29 +9,32 @@ import kotlinx.android.synthetic.main.shopping_list_row.view.*
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
 
-class ShoppingListEntryBinder: ItemBinder<ShoppingListViewModel.ShoppingListEntry, ShoppingListEntryBinder.ViewHolder>() {
+class ShoppingListEntryBinder :
+    ItemBinder<ShoppingListViewModel.ShoppingListEntry, ShoppingListEntryBinder.ViewHolder>() {
 
-    class ViewHolder(itemView: View) : ItemViewHolder<ShoppingListViewModel.ShoppingListEntry>(itemView) {
-        private val name: TextView = itemView.name
-        private val amount: TextView = itemView.amount
-        private val collect: CheckBox = itemView.checked
+    class ViewHolder(itemView: View) :
+        ItemViewHolder<ShoppingListViewModel.ShoppingListEntry>(itemView) {
+        private val amount: TextView = itemView.textView_amount
+        private val name: TextView = itemView.textView_name
+        private val collect: CheckBox = itemView.checkbox_checked
 
         fun bind(entry: ShoppingListViewModel.ShoppingListEntry) {
-            name.text = entry.name
-            amount.text = "%1x".format(entry.amount)
-            collect.isChecked = entry.collected
+            amount.text = itemView.context.getString(
+                R.string.helper_shooping_list_amount_layout,
+                entry.articleAmount
+            )
+            name.text = entry.articleName
+            collect.isChecked = entry.isCollected
+
+            collect.setOnCheckedChangeListener { _, isChecked ->
+                entry.isCollected = isChecked
+                itemView.post {
+                    toggleItemSelection()
+                }
+            }
 
             itemView.setOnClickListener {
                 collect.isChecked = !collect.isChecked
-            }
-            name.setOnClickListener {
-                collect.isChecked = !collect.isChecked
-            }
-            amount.setOnClickListener {
-                collect.isChecked = !collect.isChecked
-            }
-            collect.setOnCheckedChangeListener { _, isChecked ->
-                entry.collected = isChecked
             }
         }
     }

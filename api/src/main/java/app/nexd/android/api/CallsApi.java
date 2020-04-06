@@ -10,6 +10,9 @@ import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import okhttp3.MultipartBody;
 
+import app.nexd.android.api.model.Call;
+import app.nexd.android.api.model.ConvertedHelpRequestDto;
+import java.io.File;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,63 +21,53 @@ import java.util.Map;
 
 public interface CallsApi {
   /**
+   * Returns all calls with the given parameters
    * 
-   * 
-   * @param id audio id (required)
-   * @return Completable
+   * @param limit  (optional)
+   * @param converted True if you only want to query calls which are already converted to a help request, false otherwise. Returns all calls if undefined. (optional)
+   * @param country  (optional)
+   * @param zip  (optional)
+   * @param city  (optional)
+   * @return Observable&lt;List&lt;Call&gt;&gt;
    */
-  @GET("api/call/download/{id}")
-  Completable callControllerDownload(
-    @retrofit2.http.Path("id") Integer id
+  @GET("call/calls")
+  Observable<List<Call>> callsControllerCalls(
+    @retrofit2.http.Query("limit") Long limit, @retrofit2.http.Query("converted") String converted, @retrofit2.http.Query("country") String country, @retrofit2.http.Query("zip") Long zip, @retrofit2.http.Query("city") String city
   );
 
   /**
+   * Sets a call as converted to shopping list
    * 
-   * 
-   * @return Completable
+   * @param sid call sid (required)
+   * @param convertedHelpRequestDto  (required)
+   * @return Observable&lt;Call&gt;
    */
-  @GET("api/call")
-  Completable callControllerIndex();
-    
-
-  /**
-   * 
-   * 
-   * @return Completable
-   */
-  @GET("api/call/upload")
-  Completable callControllerInitUpload();
-    
-
-  /**
-   * 
-   * 
-   * @param id audio id (required)
-   * @return Completable
-   */
-  @PUT("api/call/translated/{id}")
-  Completable callControllerTranslated(
-    @retrofit2.http.Path("id") Integer id
+  @Headers({
+    "Content-Type:application/json"
+  })
+  @PUT("call/calls/{sid}/converted")
+  Observable<Call> callsControllerConverted(
+    @retrofit2.http.Path("sid") String sid, @retrofit2.http.Body ConvertedHelpRequestDto convertedHelpRequestDto
   );
 
   /**
+   * Redirects the request to the stored record file.
    * 
-   * 
-   * @param id audio id (required)
-   * @return Completable
+   * @param sid  (required)
+   * @return Observable&lt;ResponseBody&gt;
    */
-  @POST("api/call/upload/{id}")
-  Completable callControllerUpload(
-    @retrofit2.http.Path("id") Integer id
+  @GET("call/calls/{sid}/record")
+  Observable<ResponseBody> callsControllerGetCallUrl(
+    @retrofit2.http.Path("sid") String sid
   );
 
   /**
+   * Returns available numbers
    * 
-   * 
-   * @return Completable
+   * @return Observable&lt;String&gt;
    */
-  @GET("api/call/webhook")
-  Completable callControllerWebhook();
+  @GET("call/number")
+  Observable<String> callsControllerGetNumber();
     
 
 }
