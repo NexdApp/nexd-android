@@ -42,7 +42,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "API_BASE_URL", apiBaseUrl == null ? "\"\"" : "\"${apiBaseUrl}\"")
+        buildConfigField("String", "API_BASE_URL", "\"${rootProject.ext.apiBaseUrl}\"")
     }
 
     lintOptions {
@@ -106,6 +106,10 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxkotlin:2.4.0"
 
     implementation "com.squareup.retrofit2:retrofit:2.7.1"
+    implementation "com.squareup.retrofit2:converter-scalars:2.7.1"
+    implementation "com.squareup.retrofit2:converter-gson:2.7.1"
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.7.1'
+
     implementation 'com.squareup.okhttp3:logging-interceptor:4.4.0'
 
     implementation 'dev.ahamed.mva2:adapter:2.0.0'

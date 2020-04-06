@@ -30,6 +30,10 @@ allprojects {
     }
 }
 
+ext {
+    apiBaseUrl = project.findProperty('apiBaseUrl') ?: "https://nexd-backend-staging.herokuapp.com/api/v1"
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
@@ -38,16 +42,13 @@ task removeApiSrc(type: Delete) {
     delete project(":api").file('src')
 }
 
-String remoteApiUrl = "https://nexd-backend-staging.herokuapp.com/api/v1"
-String apiBaseUrl = project.findProperty('apiBaseUrl') == null ? remoteApiUrl : project.findProperty('apiBaseUrl')
-
 openApiValidate {
     inputSpec = "$apiBaseUrl/docs-json".toString()
 }
 
 task generateApiClient(type: org.openapitools.generator.gradle.plugin.tasks.GenerateTask) {
     generatorName = "java"
-    inputSpec = apiBaseUrl + "/docs-json"
+    inputSpec = "${rootProject.ext.apiBaseUrl}/docs-json"
     outputDir = "api"
     apiPackage = "app.nexd.android.api"
     invokerPackage = "app.nexd.android"
