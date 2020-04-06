@@ -1,6 +1,5 @@
 package app.nexd.android.ui.seeker.create
 
-import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.ViewModel
@@ -9,11 +8,7 @@ import app.nexd.android.api.model.Article
 import app.nexd.android.api.model.HelpRequestCreateDto
 import app.nexd.android.api.model.User
 import io.reactivex.BackpressureStrategy
-import io.reactivex.functions.Consumer
 import io.reactivex.processors.BehaviorProcessor
-import io.reactivex.subjects.BehaviorSubject
-import io.reactivex.subjects.Subject
-import org.reactivestreams.Processor
 
 class SeekerCreateRequestViewModel : ViewModel() {
 

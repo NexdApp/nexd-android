@@ -32,8 +32,8 @@ class DeliveryFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        recylcerView_helpRequests.adapter = adapter
-        recylcerView_helpRequests.layoutManager = LinearLayoutManager(context)
+        recyclerView_helpRequests.adapter = adapter
+        recyclerView_helpRequests.layoutManager = LinearLayoutManager(context)
 
         adapter.registerItemBinders(
             DeliveryHelpRequestBinder()

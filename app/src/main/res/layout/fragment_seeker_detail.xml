@@ -71,7 +71,7 @@
         android:textColor="@android:color/white"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="So schnell wie nur möglich!!" />
+        tools:text="As fast as possible!!" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

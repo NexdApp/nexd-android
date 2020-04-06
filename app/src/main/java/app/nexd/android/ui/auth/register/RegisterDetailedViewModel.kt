@@ -4,13 +4,11 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import app.nexd.android.Preferences
 import app.nexd.android.api
 import app.nexd.android.api.model.RegisterDto
 import app.nexd.android.api.model.UpdateUserDto
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.rxkotlin.subscribeBy
 
 class RegisterDetailedViewModel(application: Application) : AndroidViewModel(application) {
 

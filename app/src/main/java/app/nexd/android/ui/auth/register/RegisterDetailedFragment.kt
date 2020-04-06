@@ -45,7 +45,7 @@ class RegisterDetailedFragment : Fragment() {
     fun register() {
         val phoneNumber = editText_phoneNumber.text
         val streetName = editText_streetName.text
-        val houseNumber = editText_houseNumber.text
+        val houseNumber = editText_houseNr.text
         val zipCode = editText_zipCode.text
         val city = editText_city.text
         var success = true
@@ -61,7 +61,7 @@ class RegisterDetailedFragment : Fragment() {
         }
 
         if (houseNumber.isNullOrEmpty()) {
-            editText_houseNumber.error = resources.getString(R.string.error_message_user_detail_field_missing)
+            editText_houseNr.error = resources.getString(R.string.error_message_user_detail_field_missing)
             success = false
         }
 
@@ -89,7 +89,7 @@ class RegisterDetailedFragment : Fragment() {
                 args.password,
                 editText_phoneNumber.text.toString(),
                 editText_streetName.text.toString(),
-                editText_houseNumber.text.toString(),
+                editText_houseNr.text.toString(),
                 editText_zipCode.text.toString(),
                 editText_city.text.toString()
             ).observe(viewLifecycleOwner, Observer {

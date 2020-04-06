@@ -28,7 +28,7 @@ class DeliveryHelpRequestBinder : ItemBinder<HelpRequest, DeliveryHelpRequestBin
             )
 
             phoneNumber.text = itemView.context.getString(
-                R.string.helper_delivery_phonenumber_layout,
+                R.string.helper_delivery_phone_number_layout,
                 itemView.context.getString(R.string.delivery_request_phoneNumber),
                 request.phoneNumber
             )

@@ -16,7 +16,7 @@
         android:orientation="vertical">
 
         <TextView
-            tools:text="Müller"
+            tools:text="Smith"
             android:id="@+id/textView_title"
             android:textSize="20sp"
             android:textAlignment="center"

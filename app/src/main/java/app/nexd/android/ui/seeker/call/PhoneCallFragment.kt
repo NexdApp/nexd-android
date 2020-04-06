@@ -1,4 +1,4 @@
-package app.nexd.android.ui.seeker.phonecall
+package app.nexd.android.ui.seeker.call
 
 import android.os.Build
 import android.os.Bundle

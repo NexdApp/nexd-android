@@ -46,7 +46,7 @@ class CallTranslateFragment : Fragment() {
 
         viewModel.getAudioFile(args.callRequestId)
 
-        viewModel.downloadProgess.observe(viewLifecycleOwner, Observer { percentage ->
+        viewModel.downloadProgress.observe(viewLifecycleOwner, Observer { percentage ->
             when {
                 percentage == 1f -> {
                     imageButton_toggle.visibility = View.VISIBLE

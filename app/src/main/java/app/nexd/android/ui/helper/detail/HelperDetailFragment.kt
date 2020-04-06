@@ -52,7 +52,7 @@ class HelperDetailFragment : Fragment() {
             adapter.removeAllSections()
 
             textView_name.text = context!!.getString(
-                R.string.helper_request_detail_name_layout,
+                R.string.user_name_layout,
                 request.requester!!.firstName
                 , request.requester!!.lastName
             )

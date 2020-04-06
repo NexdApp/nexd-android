@@ -31,8 +31,8 @@ class CheckoutFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        recylcerView_helpRequests.adapter = adapter
-        recylcerView_helpRequests.layoutManager = LinearLayoutManager(context)
+        recyclerView_helpRequests.adapter = adapter
+        recyclerView_helpRequests.layoutManager = LinearLayoutManager(context)
         adapter.registerItemBinders(
             CheckoutHelpRequestBinder()
         )

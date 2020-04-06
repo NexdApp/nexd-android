@@ -20,7 +20,7 @@ class ShoppingListEntryBinder :
 
         fun bind(entry: ShoppingListViewModel.ShoppingListEntry) {
             amount.text = itemView.context.getString(
-                R.string.helper_shooping_list_amount_layout,
+                R.string.helper_request_article_amount_layout,
                 entry.articleAmount
             )
             name.text = entry.articleName

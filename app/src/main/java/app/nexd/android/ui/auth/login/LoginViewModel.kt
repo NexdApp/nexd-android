@@ -75,7 +75,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
                                     else -> t.message()
                                 }
                             } else {
-                                t.message ?: "Unbekannter Fehler"
+                                t.message ?: getApplication<Application>().applicationContext.getString(R.string.error_message_unknown)
                             }
                         )
                     }

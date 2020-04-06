@@ -7,19 +7,11 @@ import androidx.lifecycle.LiveDataReactiveStreams
 import app.nexd.android.api
 import app.nexd.android.api.model.HelpList
 import app.nexd.android.api.model.HelpRequest
-import app.nexd.android.api.model.HelpRequest.StatusEnum.ONGOING
 import app.nexd.android.api.model.HelpRequest.StatusEnum.PENDING
-import app.nexd.android.api.model.User
 import io.reactivex.BackpressureStrategy
 import io.reactivex.subjects.BehaviorSubject
 
 class HelperOverviewViewModel(application: Application) : AndroidViewModel(application) {
-
-    class AvailableRequestWrapper(val requester: User, val type: RequestType, val id: Long)
-    enum class RequestType {
-        SHOPPING,
-        TRANSCRIPT
-    }
 
     private val reload = BehaviorSubject.create<Unit>()
 

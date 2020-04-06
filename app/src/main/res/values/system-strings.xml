@@ -1,9 +1,6 @@
 <resources>
-    <string translatable="false" name="helper_request_overview_name_layout">"%1$s %2$s"</string>
-    <string translatable="false" name="helper_request_detail_article_layout">"%1$dx %2$s"</string>
-    <string translatable="false" name="helper_request_detail_name_layout">"%1$s %2$s"</string>
+    <string translatable="false" name="user_name_layout">"%1$s %2$s"</string>
     <string translatable="false" name="helper_delivery_address_layout">"%1$s\n %2$s %3$s\n %4$s %5$s"</string>
-    <string translatable="false" name="helper_delivery_phonenumber_layout">"%1$s\n %2$s"</string>
-    <string translatable="false" name="helper_shooping_list_amount_layout">%1$dx</string>
-    <string translatable="false" name="helper_checkout_list_amount_layout">%1$dx</string>
+    <string translatable="false" name="helper_delivery_phone_number_layout">"%1$s\n %2$s"</string>
+    <string translatable="false" name="helper_request_article_amount_layout">%1$dx</string>
 </resources>

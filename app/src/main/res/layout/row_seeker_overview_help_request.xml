@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
         android:textSize="20sp"
-        tools:text="Mittwoch, 20. April 2020" />
+        tools:text="Wednesday, 20. April 2020" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_requests"

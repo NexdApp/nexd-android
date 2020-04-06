@@ -102,4 +102,6 @@
     <string name="seeker_type_screen_title">Wie würden Sie gerne Ihre Liste erstellen?</string>
     <string name="seeker_type_button_help_request">Artikel auswählen</string>
     <string name="seeker_type_button_phone_call">Einen Anruf tätigen</string>
+    <string name="seeker_overview_empty_label">Sie haben noch keine Anfragen aufgegeben. Klicken Sie rechts unten, um Ihre erste Anfrage zu erstellen.</string>
+    <string name="error_message_unknown">Unbekannter Fehler</string>
 </resources>

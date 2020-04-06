@@ -3,13 +3,8 @@ package app.nexd.android.ui.auth.register
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import app.nexd.android.Preferences
 import app.nexd.android.R
-import app.nexd.android.api
-import app.nexd.android.api.model.RegisterDto
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.subscribeBy
 
 class RegisterViewModel(application: Application) : AndroidViewModel(application) {
 

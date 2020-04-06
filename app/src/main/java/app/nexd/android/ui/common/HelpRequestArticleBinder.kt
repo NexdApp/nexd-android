@@ -15,7 +15,7 @@ class HelpRequestArticleBinder(private val checkable: Boolean = false) :
 
         fun bind(item: HelpRequestArticle) {
             itemView.textView_amount.text = itemView.context.getString(
-                R.string.helper_checkout_list_amount_layout,
+                R.string.helper_request_article_amount_layout,
                 item.articleCount
             )
             itemView.textView_name.text = item.article?.name

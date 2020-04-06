@@ -287,7 +287,7 @@
     </fragment>
     <fragment
         android:id="@+id/phoneCallFragment"
-        android:name="app.nexd.android.ui.seeker.phonecall.PhoneCallFragment"
+        android:name="app.nexd.android.ui.seeker.call.PhoneCallFragment"
         android:label="PhoneCallFragment"
         tools:layout="@layout/fragment_phone_call" />
 </navigation>

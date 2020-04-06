@@ -3,7 +3,6 @@ package app.nexd.android.ui.helper.call
 import android.annotation.SuppressLint
 import android.app.Application
 import android.media.MediaPlayer
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
@@ -16,17 +15,14 @@ import app.nexd.android.api.model.HelpRequestCreateDto
 import io.reactivex.BackpressureStrategy
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers.io
 import okhttp3.ResponseBody
 import java.io.*
 import java.util.concurrent.TimeUnit
-import java.util.logging.Handler
-import kotlin.concurrent.fixedRateTimer
 
 class CallTranslateViewModel(application: Application) : AndroidViewModel(application) {
 
     companion object {
-        const val TMP_FILENAME = "callfile.wav"
+        const val TMP_FILENAME = "callTmpFile.wav"
     }
 
     private val mediaPlayer = MediaPlayer()
@@ -35,7 +31,7 @@ class CallTranslateViewModel(application: Application) : AndroidViewModel(applic
     val isPlaying = MutableLiveData(false)
     val playbackPosition = MutableLiveData(0)
     val maxPosition = MutableLiveData(0)
-    val downloadProgess = MutableLiveData(0f)
+    val downloadProgress = MutableLiveData(0f)
 
 
     fun getCall(callId: String): LiveData<Call> {
@@ -149,7 +145,7 @@ class CallTranslateViewModel(application: Application) : AndroidViewModel(applic
                     }
                     outputStream.write(fileReader, 0, read)
                     fileSizeDownloaded += read.toLong()
-                    downloadProgess.value = fileSizeDownloaded.toFloat() / fileSize.toFloat()
+                    downloadProgress.value = fileSizeDownloaded.toFloat() / fileSize.toFloat()
                 }
                 outputStream.flush()
                 futureStudioIconFile.absolutePath

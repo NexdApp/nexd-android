@@ -27,7 +27,7 @@
         android:layout_height="wrap_content" >
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recylcerView_helpRequests"
+            android:id="@+id/recyclerView_helpRequests"
             tools:listitem="@layout/row_checkout_request_item_row"
             android:orientation="vertical"
             android:layout_width="match_parent"

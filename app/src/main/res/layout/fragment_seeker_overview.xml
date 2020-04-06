@@ -29,7 +29,7 @@
 
     <TextView
         android:id="@+id/textView_empty"
-        android:text="Sie haben noch keine Anfragen aufgegeben. Klicken Sie rechts unten, um Ihre erste Anfrage zu erstellen"
+        android:text="@string/seeker_overview_empty_label"
         android:layout_alignTop="@id/recyclerView_requests"
         android:layout_marginHorizontal="15dp"
         android:visibility="gone"

@@ -17,8 +17,8 @@
 
     <EditText
         android:id="@+id/textView_amount"
+        android:importantForAutofill="no"
         android:selectAllOnFocus="true"
-        android:labelFor="@id/textView_article_name"
         android:inputType="number"
         android:background="@null"
         android:textColor="@android:color/black"

@@ -1,4 +1,4 @@
-package app.nexd.android.ui.seeker.phonecall
+package app.nexd.android.ui.seeker.call
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
@@ -13,11 +13,11 @@ class PhoneCallViewModel : ViewModel() {
             api.callsControllerGetNumber()
                 .map {
                     // temporary fix due to wrong api return
-                    val splittedPhonenumber = it.split(":")
-                    if (splittedPhonenumber.size != 2)
+                    val phoneNumber = it.split(":")
+                    if (phoneNumber.size != 2)
                         return@map ""
                     else {
-                        splittedPhonenumber[1].replace("\"", "")
+                        phoneNumber[1].replace("\"", "")
                             .replace("}","")
                     }
                 }

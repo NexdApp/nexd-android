@@ -12,8 +12,6 @@ apply plugin: 'kotlin-kapt'
 def buildVersionCode = project.hasProperty('versionCode') ? versionCode.toInteger() : 1
 println "VersionCode is set to $buildVersionCode"
 
-String apiBaseUrl = project.findProperty('apiBaseUrl')
-
 String signingKeystore = project.findProperty('keystore')
 String signingKeystorePassword = project.findProperty('keystorePassword')
 String signingKeyAlias = project.findProperty('keyAlias')
