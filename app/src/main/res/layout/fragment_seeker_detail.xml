@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="@string/seeker_detail_screen_title"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@android:color/white"
         android:textSize="@dimen/textSize_screen_title"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,6 +64,7 @@
 
     <TextView
         android:id="@+id/textView_additionalRequest"
+        android:paddingHorizontal="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

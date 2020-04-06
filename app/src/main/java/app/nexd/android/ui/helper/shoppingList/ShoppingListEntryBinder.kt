@@ -25,6 +25,7 @@ class ShoppingListEntryBinder :
             )
             name.text = entry.articleName
             collect.isChecked = entry.isCollected
+            collect.visibility = View.VISIBLE
 
             collect.setOnCheckedChangeListener { _, isChecked ->
                 entry.isCollected = isChecked

@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:padding="@dimen/horizontalPadding"
     tools:background="@drawable/background_gradient"
-    tools:context=".ui.helper.overview.HelperOverviewFragment">
+    tools:context=".ui.helper.requestOverview.HelperOverviewFragment">
 
     <Button
         android:id="@+id/button_shopping"
@@ -43,10 +43,17 @@
         android:layout_weight="1"
         tools:listitem="@layout/row_user" />
 
-    <TextView
+    <Button
+        android:id="@+id/button_nearRequests"
+        style="@style/Widget.AppCompat.ActionButton"
+        android:drawableEnd="@drawable/ic_edit_black_24dp"
+        android:drawableTint="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/helper_request_overview_heading_available_section"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:textAlignment="textStart"
+        tools:text="Available requests at 71323"
         android:textColor="@android:color/white"
         android:textSize="@dimen/textSize_screen_title"
         android:textStyle="bold" />
@@ -73,7 +80,8 @@
         android:text="@string/helper_request_overview_button_previous_requests"
         android:textAlignment="textStart"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/textSize_button" />
+        android:textSize="@dimen/textSize_button"
+        android:textStyle="bold"/>
 
 
 </LinearLayout>

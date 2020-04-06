@@ -26,6 +26,9 @@ class HelpRequestArticleBinder(private val checkable: Boolean = false) :
             } else {
                 itemView.checkbox_checked.visibility = View.GONE
             }
+            itemView.setOnClickListener {
+                toggleItemSelection()
+            }
         }
     }
 

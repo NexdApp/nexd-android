@@ -17,7 +17,7 @@
             android:name=".ui.SplashActivity"
             android:theme="@style/SplashTheme"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity">
+            tools:ignore="LockedOrientationActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,7 +25,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.MainActivity"
-            android:windowSoftInputMode="adjustResize"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity"/>
     </application>

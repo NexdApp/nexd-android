@@ -11,10 +11,10 @@
 
     <TextView
         android:id="@+id/textView_name"
+        tools:text="Smith"
         android:textSize="@dimen/textSize_screen_title"
         android:textStyle="bold"
-        android:textColor="@android:color/black"
-        android:textAlignment="center"
+        android:textColor="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -34,8 +34,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:textSize="18sp"
-                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:textColor="@color/colorAccent"
                 android:text="@string/helper_request_detail_screen_title" />
 
             <androidx.recyclerview.widget.RecyclerView

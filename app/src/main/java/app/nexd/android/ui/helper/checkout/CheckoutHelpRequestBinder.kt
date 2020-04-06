@@ -26,7 +26,7 @@ class CheckoutHelpRequestBinder: ItemBinder<HelpRequest, CheckoutHelpRequestBind
             articles.adapter = adapter
             articles.layoutManager = LinearLayoutManager(itemView.context)
             adapter.registerItemBinders(
-                HelpRequestArticleBinder()
+                HelpRequestArticleBinder(true)
             )
         }
 

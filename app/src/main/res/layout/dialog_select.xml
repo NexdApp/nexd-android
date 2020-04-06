@@ -3,14 +3,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:padding="20dp"
-    android:background="@drawable/dialog_background"
+    android:layout_gravity="center"
+    android:background="@drawable/rounded_button_white"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent" >
+
 
     <TextView
-        android:id="@+id/details"
+        android:id="@+id/textView_title"
+        tools:text="Titel"
+        android:layout_marginBottom="10dp"
+        android:textSize="@dimen/textSize_screen_title"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textView_details"
+        tools:text="Eine Beschreibung zum obigen text"
         android:textSize="18sp"
         android:textColor="@android:color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout_container"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -20,26 +41,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
-            android:id="@+id/dismiss"
-            tools:text="Dismiss"
+            android:id="@+id/button_dismiss"
+            android:text="@string/dialog_button_abort"
             android:layout_marginVertical="2dp"
             android:textAllCaps="false"
             android:textSize="16sp"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorAccent"
             android:textStyle="bold"
-            android:fontFamily="sans-serif-thin"
             android:visibility="visible"
             style="?android:borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <Button
-            android:id="@+id/confirm"
-            tools:text="Confirm"
+            android:id="@+id/button_confirm"
+            android:text="@string/dialog_button_confirm"
             android:layout_margin="2dp"
             android:padding="10dp"
             android:textAllCaps="false"
-            android:textColor="@color/colorPrimaryDark"
+            android:textColor="@color/colorAccent"
             android:textStyle="bold"
             android:textSize="18sp"
             style="@style/Widget.AppCompat.ActionButton"

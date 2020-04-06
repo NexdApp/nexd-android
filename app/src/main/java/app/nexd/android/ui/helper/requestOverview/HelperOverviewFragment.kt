@@ -1,5 +1,6 @@
-package app.nexd.android.ui.helper.overview
+package app.nexd.android.ui.helper.requestOverview
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
@@ -7,6 +8,9 @@ import android.text.style.RelativeSizeSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -15,7 +19,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.api.model.HelpRequest
 import app.nexd.android.ui.common.HelpRequestBinder
-import app.nexd.android.ui.helper.overview.HelperOverviewFragmentDirections.Companion.requestDetailAction
+import app.nexd.android.ui.dialog.SelectTextDialog
+import app.nexd.android.ui.helper.requestOverview.HelperOverviewFragmentDirections.Companion.requestDetailAction
 import kotlinx.android.synthetic.main.fragment_helper_request_overview.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
@@ -58,21 +63,37 @@ class HelperOverviewFragment : Fragment() {
 
                 updateAcceptedRequests(myAcceptedRequests)
 
-                val title = context?.getString(R.string.helper_request_overview_heading_accepted_section) ?: ""
-                val small = "(${myAcceptedRequests.size} / 20)"
-                val acceptedTitle = SpannableString(title + small)
-                acceptedTitle.setSpan(
-                    RelativeSizeSpan(0.5f), title.length,
-                    title.length + small.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                val acceptedTitle =
+                    resources.getString(R.string.helper_request_overview_heading_accepted_section)
+                val acceptedInfo = " (${myAcceptedRequests.size} / 20)"
+                val accepted = SpannableString(acceptedTitle + acceptedInfo)
+                accepted.setSpan(
+                    RelativeSizeSpan(0.5f), acceptedTitle.length,
+                    acceptedTitle.length + acceptedInfo.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
                 )
-                textView_acceptedLists.text = acceptedTitle
+                textView_acceptedLists.text = accepted
 
                 button_shopping.isEnabled = myAcceptedRequests.isNotEmpty()
             })
 
             getOtherOpenRequests().observe(viewLifecycleOwner, Observer { requests ->
+                val nearTitle =
+                    context?.getString(R.string.helper_request_overview_heading_available_section)
+                        ?: ""
+                val nearInfo = " (PLZ ${viewModel.zipCode})"
+                val near = SpannableString(nearTitle + nearInfo)
+                near.setSpan(
+                    RelativeSizeSpan(0.5f), nearTitle.length,
+                    nearTitle.length + nearInfo.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+                button_nearRequests.text = near
+
                 updateNearbyOpenRequests(requests)
             })
+        }
+
+        button_nearRequests.setOnClickListener {
+            zipCodeDialog()
         }
 
         button_shopping.setOnClickListener {
@@ -125,6 +146,21 @@ class HelperOverviewFragment : Fragment() {
             }
         }
         nearRequestsAdapter.addSection(nearRequestList)
+    }
+
+    private fun zipCodeDialog() {
+        SelectTextDialog(
+            activity,
+            "Zip code",
+            viewModel.zipCode ?: ""
+        )
+            .setConfirmButton(
+                "Confirm"
+            ) {
+                viewModel.filterbyZipCode(it as String)
+            }
+            .show()
+            .window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
     }
 
 }

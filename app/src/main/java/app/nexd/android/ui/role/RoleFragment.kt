@@ -37,7 +37,7 @@ class RoleFragment : Fragment() {
                 ForegroundColorSpan(
                     ContextCompat.getColor(
                         context!!,
-                        R.color.colorPrimaryDark
+                        R.color.colorAccent
                     )
                 ),
                 startingString?.length ?: 0,

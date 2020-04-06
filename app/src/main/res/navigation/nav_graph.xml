@@ -52,7 +52,7 @@
     </fragment>
     <fragment
         android:id="@+id/helperOverviewFragment"
-        android:name="app.nexd.android.ui.helper.overview.HelperOverviewFragment"
+        android:name="app.nexd.android.ui.helper.requestOverview.HelperOverviewFragment"
         tools:layout="@layout/fragment_helper_request_overview" >
         <action
             android:id="@+id/requestDetailAction"

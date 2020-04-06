@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.api.model.HelpRequest
-import app.nexd.android.ui.view.SelectDialog
+import app.nexd.android.ui.dialog.SelectBasicDialog
 import kotlinx.android.synthetic.main.fragment_delivery.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
@@ -47,14 +47,16 @@ class DeliveryFragment : Fragment() {
             adapter.addSection(requestList)
 
             closeRequest.setOnClickListener {
-                SelectDialog(activity!!, getString(R.string.delivery_dialog_deliver_title),
-                    getString(R.string.delivery_dialog_deliver_description))
+                findNavController().navigate(DeliveryFragmentDirections.toRoleFragment())
+                SelectBasicDialog(context, getString(R.string.delivery_dialog_deliver_title),
+                getString(R.string.delivery_dialog_deliver_description))
                     .setConfirmButton(getString(R.string.delivery_dialog_delivery_button_confirm)) {
                         viewModel.completeShoppingList(shoppingList.id)
                             .observe(viewLifecycleOwner, Observer {
                                 findNavController().navigate(DeliveryFragmentDirections.toRoleFragment())
                             })
-                    }.show()
+                    }
+                    .show()
             }
         })
     }

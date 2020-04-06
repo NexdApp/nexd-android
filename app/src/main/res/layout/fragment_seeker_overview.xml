@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="@string/seeker_overview_screen_title"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@android:color/white"
         android:textSize="@dimen/textSize_screen_title"
         android:textStyle="bold" />
 
@@ -33,7 +33,7 @@
         android:layout_alignTop="@id/recyclerView_requests"
         android:layout_marginHorizontal="15dp"
         android:visibility="gone"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/colorAccent"
         android:textSize="20sp"
         android:padding="10dp"
         android:background="@drawable/rounded_button_white"

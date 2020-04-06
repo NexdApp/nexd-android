@@ -1,4 +1,4 @@
-package app.nexd.android.ui.helper.overview
+package app.nexd.android.ui.helper.requestOverview
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -13,11 +13,15 @@ import io.reactivex.subjects.BehaviorSubject
 
 class HelperOverviewViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val reload = BehaviorSubject.create<Unit>()
+    private val reloadAccepted = BehaviorSubject.create<Unit>()
+    private val reloadNearby = BehaviorSubject.create<Unit>()
+
+    var zipCode: String? = null
+        private set
 
     // mb different way to get active requests??
     fun getMyAcceptedRequests(): LiveData<List<HelpRequest>> {
-        val observable = reload.flatMap {
+        val observable = reloadAccepted.flatMap {
             api.helpListsControllerGetUserLists(null)
                 .map { helpLists ->
                     helpLists.filter { it.status == HelpList.StatusEnum.ACTIVE }
@@ -29,24 +33,34 @@ class HelperOverviewViewModel(application: Application) : AndroidViewModel(appli
     }
 
     fun getOtherOpenRequests(): LiveData<List<HelpRequest>> {
-        val observable = reload.flatMap {
-            // get all requests created by other people
-            api.helpRequestsControllerGetAll(
-                null,
-                true,
-                null,
-                true,
-                listOf(
-                    PENDING.value
-                )
-            )
-                .map { list -> list.filter { it.helpListId == null } } // TODO shouldn't be needed
-        }
+        val observable =
+            api.userControllerFindMe()
+                .flatMap { currentUser ->
+                    zipCode = currentUser.zipCode
+                    reloadNearby.flatMap { // get all requests created by other people
+                        api.helpRequestsControllerGetAll(
+                            "me",
+                            true,
+                            listOf(zipCode, ""),
+                            true,
+                            listOf(
+                                PENDING.value
+                            )
+                        )
+                            .map { list -> list.filter { it.helpListId == null } } // TODO shouldn't be needed
+
+                    }
+                }
         return LiveDataReactiveStreams.fromPublisher(observable.toFlowable(BackpressureStrategy.BUFFER))
     }
 
     fun reloadData() {
-        reload.onNext(Unit)
+        reloadAccepted.onNext(Unit)
+        reloadNearby.onNext(Unit)
     }
 
+    fun filterbyZipCode(zipCode: String) {
+        this.zipCode = zipCode
+        reloadNearby.onNext(Unit)
+    }
 }
