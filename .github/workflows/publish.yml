@@ -36,8 +36,4 @@ jobs:
         run: ./gradlew publishReleaseApk -PversionCode="${GITHUB_RUN_NUMBER}" -Pkeystore=${{ steps.keystore.outputs.filePath }} -PkeystorePassword="${KEYSTORE_PASSWORD}" -PkeyAlias="${KEYSTORE_KEY_ALIAS}" -PkeyPassword="${KEYSTORE_KEY_PASSWORD}"
 
       - name: Publish Listing
-        env:
-          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-          KEYSTORE_KEY_ALIAS: ${{ secrets.KEYSTORE_KEY_ALIAS }}
-          KEYSTORE_KEY_PASSWORD: ${{ secrets.KEYSTORE_KEY_PASSWORD }}
         run: ./gradlew publishListing
