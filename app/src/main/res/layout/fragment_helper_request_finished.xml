@@ -11,7 +11,8 @@
     <TextView
         android:text="@string/helper_request_finished_screen_title"
         android:textStyle="bold"
-        android:textSize="20sp"
+        android:textSize="25sp"
+        android:textColor="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

@@ -5,4 +5,5 @@
     <string translatable="false" name="helper_delivery_address_layout">"%1$s\n %2$s %3$s\n %4$s %5$s"</string>
     <string translatable="false" name="helper_delivery_phonenumber_layout">"%1$s\n %2$s"</string>
     <string translatable="false" name="helper_shooping_list_amount_layout">%1$dx</string>
+    <string translatable="false" name="helper_checkout_list_amount_layout">%1$dx</string>
 </resources>

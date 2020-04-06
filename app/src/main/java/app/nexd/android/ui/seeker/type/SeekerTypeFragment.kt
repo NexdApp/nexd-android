@@ -28,7 +28,7 @@ class SeekerTypeFragment: Fragment() {
             findNavController().navigate(toSeekerOverviewFragment())
         }
 
-        button_phonecall.setOnClickListener {
+        button_phone_call.setOnClickListener {
             findNavController().navigate(toPhoneCallFragment())
         }
 

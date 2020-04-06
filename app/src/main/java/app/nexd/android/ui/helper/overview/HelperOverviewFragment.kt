@@ -17,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.api.model.HelpRequest
+import app.nexd.android.ui.helper.overview.HelperOverviewFragmentDirections.Companion.requestDetailAction
 import kotlinx.android.synthetic.main.fragment_helper_request_overview.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
@@ -59,7 +60,7 @@ class HelperOverviewFragment : Fragment() {
 
                 updateAcceptedRequests(myAcceptedRequests)
 
-                val title = "Accepted lists "
+                val title = context?.getString(R.string.helper_request_overview_heading_accepted_section) ?: ""
                 val small = "(${myAcceptedRequests.size} / 20)"
                 val acceptedTitle = SpannableString(title + small)
                 acceptedTitle.setSpan(
@@ -101,7 +102,7 @@ class HelperOverviewFragment : Fragment() {
             if (b) {
                 request.id?.let { id ->
                     val action =
-                        HelperOverviewFragmentDirections.requestDetailAction(
+                        requestDetailAction(
                             id
                         )
                     findNavController().navigate(action)
@@ -111,19 +112,18 @@ class HelperOverviewFragment : Fragment() {
         acceptedRequestsAdapter.addSection(acceptedRequestsList)
     }
 
-    private fun updateNearbyOpenRequests(nearRequests: List<HelperOverviewViewModel.AvailableRequestWrapper>) {
+    private fun updateNearbyOpenRequests(nearRequests: List<HelpRequest>) {
         nearRequestsAdapter.removeAllSections()
 
-        val nearRequestList = ListSection<HelperOverviewViewModel.AvailableRequestWrapper>()
+        val nearRequestList = ListSection<HelpRequest>()
         nearRequestList.addAll(nearRequests)
 
-        nearRequestList.setOnSelectionChangedListener { helpRequest: HelperOverviewViewModel.AvailableRequestWrapper,
-                                                        b: Boolean, _: MutableList<HelperOverviewViewModel.AvailableRequestWrapper> ->
+        nearRequestList.setOnSelectionChangedListener { helpRequest: HelpRequest,
+                                                        b: Boolean, _: MutableList<HelpRequest> ->
             if (b) {
-                val action = HelperOverviewFragmentDirections.requestDetailAction(
-                    helpRequest.id
-                )
-                findNavController().navigate(action)
+                helpRequest.id?.let {
+                    findNavController().navigate(requestDetailAction(it))
+                }
             }
         }
         nearRequestsAdapter.addSection(nearRequestList)

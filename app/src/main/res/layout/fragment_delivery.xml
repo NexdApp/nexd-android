@@ -5,16 +5,18 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:background="@drawable/background_gradient"
-    android:padding="@dimen/fragmentPadding"
+    android:paddingTop="@dimen/fragmentPadding"
+    android:paddingStart="@dimen/fragmentPadding"
+    android:paddingEnd="@dimen/fragmentPadding"
     tools:context=".ui.helper.delivery.DeliveryFragment">
 
     <TextView
         android:id="@+id/textView_title"
         android:text="@string/delivery_screen_title"
         android:layout_marginBottom="10dp"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:textStyle="bold"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

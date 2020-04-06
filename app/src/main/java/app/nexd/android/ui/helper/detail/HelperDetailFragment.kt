@@ -47,10 +47,10 @@ class HelperDetailFragment : Fragment() {
             HelpRequestArticleBinder()
         )
 
-        viewModel.requestDetails(args.requestId.toLong()).observe(viewLifecycleOwner, Observer { request ->
+        viewModel.requestDetails(args.requestId).observe(viewLifecycleOwner, Observer { request ->
             adapter.removeAllSections()
 
-            name.text = context!!.getString(
+            textView_name.text = context!!.getString(
                 R.string.helper_request_detail_name_layout,
                 request.requester!!.firstName
                 , request.requester!!.lastName

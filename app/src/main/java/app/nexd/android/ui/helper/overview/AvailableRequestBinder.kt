@@ -2,18 +2,17 @@ package app.nexd.android.ui.helper.overview
 
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import app.nexd.android.R
+import app.nexd.android.api.model.HelpRequest
 import kotlinx.android.synthetic.main.buyer_request_row.view.*
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
 
-class AvailableRequestBinder: ItemBinder<HelperOverviewViewModel.AvailableRequestWrapper, AvailableRequestBinder.ViewHolder>() {
+class AvailableRequestBinder: ItemBinder<HelpRequest, AvailableRequestBinder.ViewHolder>() {
 
-    class ViewHolder(itemView: View): ItemViewHolder<HelperOverviewViewModel.AvailableRequestWrapper>(itemView) {
+    class ViewHolder(itemView: View): ItemViewHolder<HelpRequest>(itemView) {
         private val title: TextView = itemView.textView_title
-        private val requestType: ImageView = itemView.imageView_requestType
 
         init {
             itemView.setOnClickListener {
@@ -21,19 +20,14 @@ class AvailableRequestBinder: ItemBinder<HelperOverviewViewModel.AvailableReques
             }
         }
 
-        fun bind(request: HelperOverviewViewModel.AvailableRequestWrapper) {
+        fun bind(request: HelpRequest) {
             title.text = itemView.context.getString(R.string.helper_request_overview_name_layout,
-                request.requester.firstName,
-                request.requester.lastName)
-            if (request.type == HelperOverviewViewModel.RequestType.SHOPPING) {
-                requestType.setImageResource(R.drawable.ic_shopping_basket_black_24dp)
-            } else {
-                requestType.setImageResource(R.drawable.ic_local_phone_black_24dp)
-            }
+                request.requester?.firstName,
+                request.requester?.lastName)
         }
     }
 
-    override fun bindViewHolder(holder: ViewHolder, item: HelperOverviewViewModel.AvailableRequestWrapper) {
+    override fun bindViewHolder(holder: ViewHolder, item: HelpRequest) {
         holder.bind(item)
     }
 
@@ -42,7 +36,7 @@ class AvailableRequestBinder: ItemBinder<HelperOverviewViewModel.AvailableReques
     }
 
     override fun canBindData(item: Any): Boolean {
-        return item is HelperOverviewViewModel.AvailableRequestWrapper
+        return item is HelpRequest
     }
 
 }

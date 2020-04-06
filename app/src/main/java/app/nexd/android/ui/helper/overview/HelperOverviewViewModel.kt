@@ -36,11 +36,10 @@ class HelperOverviewViewModel(application: Application) : AndroidViewModel(appli
         return LiveDataReactiveStreams.fromPublisher(observable.toFlowable(BackpressureStrategy.BUFFER))
     }
 
-    fun getOtherOpenRequests(): LiveData<List<AvailableRequestWrapper>> {
+    fun getOtherOpenRequests(): LiveData<List<HelpRequest>> {
         val observable = reload.flatMap {
-
             // get all requests created by other people
-            val otherRequests = api.helpRequestsControllerGetAll(
+            api.helpRequestsControllerGetAll(
                 userId = null,
                 excludeUserId = true,
                 zipCode = null,
@@ -49,18 +48,8 @@ class HelperOverviewViewModel(application: Application) : AndroidViewModel(appli
                     PENDING.value
                 )
             )
-
-            return@flatMap otherRequests.map { helpRequests: List<HelpRequest> ->
-                helpRequests.map { helpRequest: HelpRequest ->
-                    AvailableRequestWrapper(
-                        helpRequest.requester ?: User(),
-                        RequestType.SHOPPING,
-                        helpRequest.id ?: 0
-                    )
-                }
-            }
+                .map { list -> list.filter { it.helpListId == null } } // TODO shouldn't be needed
         }
-
         return LiveDataReactiveStreams.fromPublisher(observable.toFlowable(BackpressureStrategy.BUFFER))
     }
 

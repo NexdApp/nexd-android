@@ -7,10 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import app.nexd.android.R
 import kotlinx.android.synthetic.main.fragment_phone_call.*
 
 class PhoneCallFragment : Fragment() {
+
+    private val viewModel: PhoneCallViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,16 +27,18 @@ class PhoneCallFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val phoneNumber = "0182/2233213"
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            textView_details.text = Html.fromHtml(
-                "Please call <b>$phoneNumber</b><br>to record your shopping order.",
-                Html.FROM_HTML_MODE_LEGACY
-            )
-        } else {
-            textView_details.text = "Please call $phoneNumber to record your shoppping order."
-        }
-
+        viewModel.getPhoneNumber().observe(viewLifecycleOwner, Observer { phoneNumber ->
+            textView_details.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                Html.fromHtml(
+                    getString(R.string.seeker_phone_call_text, phoneNumber),
+                    Html.FROM_HTML_MODE_LEGACY
+                )
+            } else {
+                Html.fromHtml(
+                    getString(R.string.seeker_phone_call_text, phoneNumber)
+                )
+            }
+        })
     }
 
 }

@@ -15,7 +15,6 @@ class HelpRequestBinder: ItemBinder<HelpRequest, HelpRequestViewHolder>() {
 
     class HelpRequestViewHolder(itemView: View): ItemViewHolder<HelpRequest>(itemView) {
         private val title: TextView = itemView.textView_title
-        private val requestType: ImageView = itemView.imageView_requestType
 
         init {
             itemView.setOnClickListener {
@@ -25,13 +24,8 @@ class HelpRequestBinder: ItemBinder<HelpRequest, HelpRequestViewHolder>() {
 
         fun bind(request: HelpRequest) {
             title.text = itemView.context.getString(R.string.helper_request_overview_name_layout,
-                request.requester!!.firstName,
-                request.requester!!.lastName)
-            if (true) {
-                requestType.setImageResource(R.drawable.ic_shopping_basket_black_24dp)
-            } else {
-                requestType.setImageResource(R.drawable.ic_local_phone_black_24dp)
-            }
+                request.requester?.firstName,
+                request.requester?.lastName)
         }
     }
 
