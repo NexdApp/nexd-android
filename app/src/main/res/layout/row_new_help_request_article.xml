@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="40dp"
+    android:layout_height="70dp"
+    android:paddingBottom="15dp"
     android:orientation="horizontal"
-    android:background="@drawable/background_gradient"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageButton
+
+
+    <TextView
+        android:id="@+id/textView_article_name"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        android:background="@drawable/rounded_button_white"
+        android:paddingHorizontal="10dp"
+        android:gravity="center_vertical|start"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="10dp"
+        tools:text="Milch"/>
+
+
+    <!--<ImageButton
         android:id="@+id/button_decrease"
         android:layout_weight="1"
         android:layout_width="0dp"
@@ -14,25 +30,24 @@
         android:padding="5dp"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_remove_circle_outline_black_24dp"
-        style="@style/Widget.AppCompat.ActionButton" />
+        style="@style/Widget.AppCompat.ActionButton" />-->
 
     <EditText
         android:id="@+id/textView_amount"
         android:importantForAutofill="no"
         android:selectAllOnFocus="true"
         android:inputType="number"
-        android:background="@null"
-        android:textColor="@android:color/black"
-        android:textSize="22sp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:background="@drawable/round_button_white"
+        android:textColor="@color/colorPrimary"
+        android:textAlignment="center"
+        android:padding="0dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
         tools:text="0" />
 
-
-    <ImageButton
+    <!--<ImageButton
         android:id="@+id/button_increase"
         android:layout_weight="1"
         android:layout_width="0dp"
@@ -40,17 +55,6 @@
         android:scaleType="fitCenter"
         style="@style/Widget.AppCompat.ActionButton"
         android:padding="5dp"
-        android:src="@drawable/ic_add_circle_outline_black_24dp" />
-
-    <TextView
-        android:id="@+id/textView_article_name"
-        android:textColor="@android:color/black"
-        android:textSize="22sp"
-        android:paddingHorizontal="10dp"
-        android:gravity="center_vertical|start"
-        android:layout_weight="4"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        tools:text="Milch"/>
+        android:src="@drawable/ic_add_circle_outline_black_24dp" />-->
 
 </LinearLayout>

@@ -18,18 +18,18 @@ class HelpRequestCreateArticleBinder : ItemBinder<HelpRequestCreateArticleBinder
     class ViewHolder(itemView: View) : ItemViewHolder<ArticleInput>(itemView) {
         var name: TextView = itemView.textView_article_name
         var amount: EditText = itemView.textView_amount
-        var increase: ImageButton = itemView.button_increase
-        var decrease: ImageButton = itemView.button_decrease
+        /*var increase: ImageButton = itemView.button_increase
+        var decrease: ImageButton = itemView.button_decrease*/
     }
 
     override fun bindViewHolder(holder: ViewHolder, item: ArticleInput) {
         holder.amount.setText(item.amount.toString(), TextView.BufferType.EDITABLE)
         holder.name.text = item.article.name
 
-        holder.increase.setOnClickListener {
+        /*holder.increase.setOnClickListener {
             item.amount += 1
             holder.amount.setText(item.amount.toString(), TextView.BufferType.EDITABLE)
-        }
+        }*/
 
         holder.amount.setOnEditorActionListener { _, _, _ ->
             val numberStr = holder.amount.text.toString()
@@ -38,10 +38,10 @@ class HelpRequestCreateArticleBinder : ItemBinder<HelpRequestCreateArticleBinder
             false
         }
 
-        holder.decrease.setOnClickListener {
+        /*holder.decrease.setOnClickListener {
             item.amount = if (item.amount == 0.toLong()) 0 else item.amount - 1
             holder.amount.setText(item.amount.toString(), TextView.BufferType.EDITABLE)
-        }
+        }*/
     }
 
     override fun createViewHolder(parent: ViewGroup): ViewHolder {

@@ -47,10 +47,6 @@ class CallTranslateFragment : Fragment() {
             HelpRequestCreateArticleBinder()
         )
 
-        val args: CallTranslateFragmentArgs by navArgs()
-
-        viewModel.downloadAudioFile(args.callRequestId)
-
         seekBar_slider.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 if (fromUser)
@@ -64,10 +60,13 @@ class CallTranslateFragment : Fragment() {
             }
         })
 
+        val args: CallTranslateFragmentArgs by navArgs()
 
+        viewModel.downloadAudioFile(args.callRequestId)
 
         viewModel.getCall(args.callRequestId).observe(viewLifecycleOwner, Observer { call ->
             viewModel.getArticles().observe(viewLifecycleOwner, Observer { articles ->
+                adapter.removeAllSections()
                 val articlesSection = ListSection<HelpRequestCreateArticleBinder.ArticleInput>()
                 val articlesInput = articles.map { HelpRequestCreateArticleBinder.ArticleInput(it) }
                 articlesSection.addAll(articlesInput)
