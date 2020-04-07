@@ -2,6 +2,7 @@ package app.nexd.android
 
 import app.nexd.android.api.*
 import io.reactivex.schedulers.Schedulers.io
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
@@ -35,5 +36,10 @@ private class NexdApiClient : ApiClient("bearer") {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(io()))
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonCustomConverterFactory.create(JSON().gson))
+
+
+        val loggingInterceptor = HttpLoggingInterceptor()
+            .setLevel(HttpLoggingInterceptor.Level.BODY)
+        okBuilder.addInterceptor(loggingInterceptor)
     }
 }
