@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="@dimen/horizontalPadding"
+    android:paddingTop="@dimen/topPadding"
+    android:paddingHorizontal="@dimen/horizontalPadding"
     tools:background="@drawable/background_gradient"
     tools:context=".ui.helper.requestOverview.HelperOverviewFragment">
 

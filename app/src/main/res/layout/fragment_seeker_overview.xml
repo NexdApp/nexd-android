@@ -33,7 +33,7 @@
         android:layout_alignTop="@id/recyclerView_requests"
         android:layout_marginHorizontal="15dp"
         android:visibility="gone"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="20sp"
         android:padding="10dp"
         android:background="@drawable/rounded_button_white"
@@ -47,10 +47,9 @@
         android:layout_margin="@dimen/horizontalPadding"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:backgroundTint="@color/colorPrimary"
         app:borderWidth="0dp"
         android:src="@drawable/baseline_add_shopping_cart_24"
-        android:tint="@android:color/white"
+        android:tint="@color/colorPrimaryDark"
         android:clickable="true"
         android:focusable="true" />
 

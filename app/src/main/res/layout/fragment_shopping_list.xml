@@ -55,8 +55,7 @@
         android:focusable="true"
         android:layout_margin="10dp"
         app:borderWidth="0dp"
-        android:tint="@color/colorAccent"
-        android:backgroundTint="@color/colorPrimary"
+        android:tint="@color/colorPrimaryDark"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/ic_shopping_cart_white_100dp" />
 

@@ -5,9 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:background="@drawable/background_gradient"
-    android:paddingTop="@dimen/horizontalPadding"
-    android:paddingStart="@dimen/horizontalPadding"
-    android:paddingEnd="@dimen/horizontalPadding"
+    android:paddingTop="@dimen/topPadding"
+    android:paddingHorizontal="@dimen/horizontalPadding"
     tools:context=".ui.helper.checkout.CheckoutFragment">
 
     <TextView
@@ -46,8 +45,7 @@
         android:focusable="true"
         android:layout_margin="10dp"
         app:borderWidth="0dp"
-        android:tint="@color/colorAccent"
-        android:backgroundTint="@color/colorPrimary"
+        android:tint="@color/colorPrimaryDark"
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

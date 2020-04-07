@@ -41,13 +41,6 @@ class MainActivity : AppCompatActivity() {
         api = Api()
         api.setBearerToken(Preferences.getToken(this))
         hideKeyboardOnTouch()
-
-        val input = EditText(applicationContext)
-        val lp = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.MATCH_PARENT
-        )
-        input.layoutParams = lp
     }
 
     /**

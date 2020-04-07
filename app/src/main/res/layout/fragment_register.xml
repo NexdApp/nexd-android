@@ -19,7 +19,8 @@
         <ImageView
             android:id="@+id/imageView"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/linearLayout_input"            android:layout_width="match_parent"
+            app:layout_constraintBottom_toTopOf="@id/linearLayout_input"
+            android:layout_width="match_parent"
             android:layout_height="148dp"
             android:layout_gravity="center"
             android:src="@drawable/nexd_logo_rgb" />

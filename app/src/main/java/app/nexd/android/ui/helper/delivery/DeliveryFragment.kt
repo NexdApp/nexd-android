@@ -46,16 +46,20 @@ class DeliveryFragment : Fragment() {
             requestList.addAll(shoppingList.helpRequests)
             adapter.addSection(requestList)
 
-            closeRequest.setOnClickListener {
-                SelectBasicDialog(context, getString(R.string.delivery_dialog_deliver_title),
-                getString(R.string.delivery_dialog_deliver_description))
-                    .setConfirmButton(getString(R.string.delivery_dialog_delivery_button_confirm)) {
-                        viewModel.completeShoppingList(shoppingList.id)
-                            .observe(viewLifecycleOwner, Observer {
-                                findNavController().navigate(DeliveryFragmentDirections.toRoleFragment())
-                            })
-                    }
-                    .show()
+            context?.let { context ->
+                closeRequest.setOnClickListener {
+                    SelectBasicDialog(
+                        context, getString(R.string.delivery_dialog_deliver_title),
+                        getString(R.string.delivery_dialog_deliver_description)
+                    )
+                        .setConfirmButton(getString(R.string.delivery_dialog_delivery_button_confirm)) {
+                            viewModel.completeShoppingList(shoppingList.id)
+                                .observe(viewLifecycleOwner, Observer {
+                                    findNavController().navigate(DeliveryFragmentDirections.toRoleFragment())
+                                })
+                        }
+                        .show()
+                }
             }
         })
     }

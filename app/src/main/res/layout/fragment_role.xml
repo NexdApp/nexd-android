@@ -18,7 +18,7 @@
         android:text="@string/role_selection_button_logout"
         android:textAllCaps="false"
         android:textSize="17sp"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,7 +53,7 @@
             android:layout_height="1dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="40dp"
-            android:background="@color/colorAccent" />
+            android:background="@color/colorPrimaryDark" />
 
     </LinearLayout>
 
@@ -68,7 +68,7 @@
         android:text="@string/role_selection_seeker"
         android:textAlignment="textStart"
         android:textAllCaps="false"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="@dimen/textSize_navigation_button"
         android:textStyle="bold" />
 
@@ -84,7 +84,7 @@
         android:text="@string/role_selection_helper"
         android:textAlignment="textStart"
         android:textAllCaps="false"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="@dimen/textSize_navigation_button"
         android:textStyle="bold" />
 

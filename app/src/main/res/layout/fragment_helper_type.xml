@@ -35,7 +35,7 @@
         android:text="@string/helper_type_button_shopping"
         android:textAlignment="textStart"
         android:textAllCaps="false"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="@dimen/textSize_navigation_button"
         android:textStyle="bold" />
 
@@ -51,7 +51,7 @@
         android:text="@string/helper_type_button_transcript"
         android:textAlignment="textStart"
         android:textAllCaps="false"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="@dimen/textSize_navigation_button"
         android:textStyle="bold" />
 

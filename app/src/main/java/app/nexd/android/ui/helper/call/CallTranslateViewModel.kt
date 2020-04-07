@@ -21,10 +21,6 @@ import java.util.concurrent.TimeUnit
 
 class CallTranslateViewModel(application: Application) : AndroidViewModel(application) {
 
-    companion object {
-        const val TMP_FILENAME = "callTmpFile.wav"
-    }
-
     private val mediaPlayer = MediaPlayer()
     private var updateTimer: Disposable? = null
 
@@ -126,7 +122,7 @@ class CallTranslateViewModel(application: Application) : AndroidViewModel(applic
     private fun saveFile(body: ResponseBody): String? {
         return try {
             val futureStudioIconFile =
-                File(getApplication<Application>().applicationContext.filesDir, TMP_FILENAME)
+                File(getApplication<Application>().applicationContext.cacheDir, "callTmpFile.wav")
             if (!futureStudioIconFile.exists())
                 futureStudioIconFile.createNewFile()
 

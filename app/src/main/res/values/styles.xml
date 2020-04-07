@@ -8,6 +8,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:statusBarColor">@color/colorPrimary</item>
 
         <item name="fontFamily">@font/proxima_nova_soft</item>
         <item name="android:fontFamily">@font/proxima_nova_soft</item>
@@ -18,6 +19,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="android:statusBarColor">@color/colorPrimary</item>
     </style>
 
 </resources>

@@ -149,18 +149,20 @@ class HelperOverviewFragment : Fragment() {
     }
 
     private fun zipCodeDialog() {
-        SelectTextDialog(
-            activity,
-            "Zip code",
-            viewModel.zipCode ?: ""
-        )
-            .setConfirmButton(
-                "Confirm"
-            ) {
-                viewModel.filterbyZipCode(it as String)
-            }
-            .show()
-            .window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        context?.let { context ->
+            SelectTextDialog(
+                context,
+                "Zip code",
+                viewModel.zipCode ?: ""
+            )
+                .setConfirmButton(
+                    "Confirm"
+                ) {
+                    viewModel.filterbyZipCode(it as String)
+                }
+                .show()
+                .window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        }
     }
 
 }

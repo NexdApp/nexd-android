@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:textSize="20sp"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorPrimaryDark"
                 android:text="@string/helper_request_detail_screen_title" />
 
             <androidx.recyclerview.widget.RecyclerView

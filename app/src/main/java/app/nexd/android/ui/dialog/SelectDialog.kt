@@ -6,13 +6,14 @@ import android.text.method.LinkMovementMethod
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
+import androidx.core.content.ContextCompat
 import app.nexd.android.R
 import kotlinx.android.synthetic.main.dialog_select.view.*
 
 
 abstract class SelectDialog @JvmOverloads constructor(
-    context: Context?,
-    caption: String = "Eingeben",
+    context: Context,
+    caption: String = context.getString(R.string.dialog_caption),
     details: CharSequence? = null,
     layout: ViewGroup? = null
 ) : AlertDialog.Builder(context) {

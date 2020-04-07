@@ -2,8 +2,8 @@
 <resources>
     <color name="text">#4EBF96</color>
     <color name="colorPrimary">#4EBF96</color>
-    <color name="colorPrimaryDark">#4EBF96</color>
-    <color name="colorAccent">#0C2E45</color>
+    <color name="colorPrimaryDark">#0C2E45</color>
+    <color name="colorAccent">#4EBF96</color>
     <color name="ic_launcher_background">#FFFFFF</color>
 
     <color name="white_translucent">#70ffffff</color>

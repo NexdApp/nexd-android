@@ -64,9 +64,8 @@
         android:focusable="true"
         android:layout_margin="10dp"
         android:layout_gravity="center_horizontal"
-        android:tint="@color/colorAccent"
+        android:tint="@color/colorPrimaryDark"
         app:borderWidth="0dp"
-        android:backgroundTint="@android:color/white"
         android:src="@drawable/ic_check_black_24dp" />
 
 </LinearLayout>

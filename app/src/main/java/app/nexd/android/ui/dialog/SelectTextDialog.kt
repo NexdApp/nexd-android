@@ -11,7 +11,7 @@ import android.widget.TextView
 import app.nexd.android.R
 
 class SelectTextDialog @JvmOverloads constructor(
-    context: Context?, caption: String = "", value: String = "", details: CharSequence = ""
+    context: Context, caption: String = "", value: String = "", details: CharSequence = ""
 ) : SelectDialog(context, caption, details) {
 
     private var mText: EditText
