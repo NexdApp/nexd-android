@@ -19,25 +19,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <androidx.cardview.widget.CardView
-        android:background="@android:color/white"
-        app:cardCornerRadius="@dimen/radius"
-        android:layout_margin="2dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_requests"
+        tools:listitem="@layout/row_new_help_request_article"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_requests"
-            tools:listitem="@layout/row_new_help_request_article"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp" />
-
-    </androidx.cardview.widget.CardView>
-
-    <Space
         android:layout_weight="1"
-        android:layout_width="match_parent"
         android:layout_height="0dp" />
 
     <EditText
