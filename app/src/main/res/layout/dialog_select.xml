@@ -45,7 +45,7 @@
             android:text="@string/dialog_button_abort"
             android:layout_marginVertical="2dp"
             android:textAllCaps="false"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textColor="@color/colorPrimaryDark"
             android:textStyle="bold"
             android:visibility="visible"

@@ -3,27 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!--<data>
+    <data>
 
+        <import type="android.view.View" />
         <variable
             name="viewModel"
             type="app.nexd.android.ui.helper.call.CallTranslateViewModel" />
-    </data>-->
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="10dp"
+        android:paddingHorizontal="@dimen/horizontalPadding"
+        android:paddingTop="@dimen/topPadding"
         tools:background="@drawable/background_gradient">
 
         <TextView
-            android:id="@+id/textView_timestamp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
             android:textSize="@dimen/textSize_screen_title"
             android:textStyle="bold"
+            android:text="@={viewModel.timestamp}"
             tools:text="Anna" />
 
         <LinearLayout
@@ -34,31 +36,41 @@
 
             <ProgressBar
                 android:id="@+id/progressBar_loading_indeterminate"
+                android:indeterminateTint="@color/colorPrimaryDark"
+                android:visibility="@{viewModel.downloadStarted  ? View.GONE : View.VISIBLE}"
                 android:layout_width="40dp"
                 android:layout_height="40dp" />
             <ProgressBar
                 android:id="@+id/progressBar_loading_determinate"
-                android:visibility="gone"
+                android:indeterminateTint="@color/colorPrimaryDark"
+                tools:visibility="gone"
+                android:visibility="@{viewModel.isDownloading ? View.VISIBLE : View.GONE}"
+                android:progress="@{viewModel.downloadProgress}"
                 style="?android:progressBarStyleHorizontal"
                 android:progressDrawable="@drawable/determinate_progress_bar"
                 android:layout_width="40dp"
                 android:layout_height="40dp" />
             <ImageButton
                 android:id="@+id/imageButton_toggle"
-                android:visibility="gone"
+                tools:visibility="gone"
+                android:visibility="@{viewModel.downloadFinished ? View.VISIBLE : View.GONE}"
                 style="@style/Widget.AppCompat.ActionButton"
                 android:layout_width="40dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:minWidth="0dp"
                 android:padding="0dp"
-                android:src="@drawable/ic_play_arrow_black_24dp" />
+                android:onClick="@{() -> viewModel.togglePlayback()}"
+                android:src="@{viewModel.isPlaying ? @drawable/ic_pause_black_24dp : @drawable/ic_play_arrow_black_24dp}" />
 
             <SeekBar
                 android:id="@+id/seekBar_slider"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:max="@{viewModel.maxPosition}"
+                android:progress="@{viewModel.playbackPosition}"
                 android:progressBackgroundTint="@android:color/white"
+                android:progressTint="@android:color/white"
                 android:thumbTint="@android:color/white" />
 
         </LinearLayout>
@@ -85,13 +97,14 @@
         <Button
             android:id="@+id/button_transcript"
             android:textAllCaps="false"
-            android:textSize="@dimen/textSize_button"
-            android:padding="10dp"
+            android:textStyle="bold"
+            android:textSize="@dimen/textSize_button_large"
             android:textAlignment="textStart"
             android:text="@string/helper_request_transcript_button_done"
-            android:textColor="@android:color/white"
-            android:drawableTint="@android:color/white"
-            android:background="@drawable/rounded_button_outer_white"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginBottom="20dp"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:drawableTint="@color/colorPrimary"
             android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

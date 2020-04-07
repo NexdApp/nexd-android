@@ -11,9 +11,9 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import app.nexd.android.R
 import app.nexd.android.api.model.CreateHelpRequestArticleDto
 import app.nexd.android.api.model.HelpRequestCreateDto
+import app.nexd.android.databinding.FragmentTranslateCallBinding
 import app.nexd.android.ui.common.HelpRequestCreateArticleBinder
 import kotlinx.android.synthetic.main.fragment_translate_call.*
 import mva2.adapter.ListSection
@@ -23,6 +23,8 @@ class CallTranslateFragment : Fragment() {
 
     private val viewModel: CallTranslateViewModel by viewModels()
 
+    private lateinit var binding: FragmentTranslateCallBinding
+
     private val adapter = MultiViewAdapter()
 
     override fun onCreateView(
@@ -30,7 +32,10 @@ class CallTranslateFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_translate_call, container, false)
+        binding = FragmentTranslateCallBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = viewModel
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,43 +49,7 @@ class CallTranslateFragment : Fragment() {
 
         val args: CallTranslateFragmentArgs by navArgs()
 
-        viewModel.getAudioFile(args.callRequestId)
-
-        viewModel.downloadProgress.observe(viewLifecycleOwner, Observer { percentage ->
-            when {
-                percentage == 1f -> {
-                    imageButton_toggle.visibility = View.VISIBLE
-                    progressBar_loading_determinate.visibility = View.GONE
-                }
-                percentage != 0f -> {
-                    progressBar_loading_determinate.visibility = View.VISIBLE
-                    progressBar_loading_indeterminate.visibility = View.GONE
-                    progressBar_loading_determinate.progress = (percentage * 100).toInt()
-                }
-            }
-
-        })
-
-        viewModel.maxPosition.observe(viewLifecycleOwner, Observer {
-            seekBar_slider.max = it
-        })
-
-        viewModel.playbackPosition.observe(viewLifecycleOwner, Observer {
-            seekBar_slider.progress = it
-        })
-
-        viewModel.isPlaying.observe(viewLifecycleOwner, Observer { isPlaying ->
-            imageButton_toggle.setImageResource(
-                if (isPlaying)
-                    R.drawable.ic_pause_black_24dp
-                else
-                    R.drawable.ic_play_arrow_black_24dp
-            )
-        })
-
-        imageButton_toggle.setOnClickListener {
-            viewModel.togglePlayback()
-        }
+        viewModel.downloadAudioFile(args.callRequestId)
 
         seekBar_slider.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
@@ -98,8 +67,6 @@ class CallTranslateFragment : Fragment() {
 
 
         viewModel.getCall(args.callRequestId).observe(viewLifecycleOwner, Observer { call ->
-            textView_timestamp.text = call.created.toString()
-
             viewModel.getArticles().observe(viewLifecycleOwner, Observer { articles ->
                 val articlesSection = ListSection<HelpRequestCreateArticleBinder.ArticleInput>()
                 val articlesInput = articles.map { HelpRequestCreateArticleBinder.ArticleInput(it) }
@@ -117,12 +84,12 @@ class CallTranslateFragment : Fragment() {
                                     .articleId(it.article.id)
 
                             })
-                        /*.street(currentUser.street)
-                        .number(currentUser.number)
-                        .zipCode(currentUser.zipCode)
-                        .city(currentUser.city)
-                        .phoneNumber(currentUser.telephone)
-                        .additionalRequest(textView_additionalRequest.text.toString())*/
+                    /*.street(currentUser.street)
+                    .number(currentUser.number)
+                    .zipCode(currentUser.zipCode)
+                    .city(currentUser.city)
+                    .phoneNumber(currentUser.telephone)
+                    .additionalRequest(textView_additionalRequest.text.toString())*/
                     viewModel.convertToHelpRequest(call.sid, request)
                         .observe(viewLifecycleOwner, Observer {
                             findNavController().navigateUp()

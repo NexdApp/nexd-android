@@ -12,11 +12,14 @@ import app.nexd.android.api.model.Article
 import app.nexd.android.api.model.Call
 import app.nexd.android.api.model.ConvertedHelpRequestDto
 import app.nexd.android.api.model.HelpRequestCreateDto
+import app.nexd.android.ui.common.Constants.Companion.DATE_FORMAT
 import io.reactivex.BackpressureStrategy
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import okhttp3.ResponseBody
 import java.io.*
+import java.text.SimpleDateFormat
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 class CallTranslateViewModel(application: Application) : AndroidViewModel(application) {
@@ -24,10 +27,16 @@ class CallTranslateViewModel(application: Application) : AndroidViewModel(applic
     private val mediaPlayer = MediaPlayer()
     private var updateTimer: Disposable? = null
 
+    val timestamp = MutableLiveData("")
+
     val isPlaying = MutableLiveData(false)
     val playbackPosition = MutableLiveData(0)
     val maxPosition = MutableLiveData(0)
-    val downloadProgress = MutableLiveData(0f)
+
+    val downloadProgress = MutableLiveData(0)
+    val downloadStarted = MutableLiveData(false)
+    val isDownloading = MutableLiveData(false)
+    val downloadFinished = MutableLiveData(false)
 
 
     fun getCall(callId: String): LiveData<Call> {
@@ -40,6 +49,11 @@ class CallTranslateViewModel(application: Application) : AndroidViewModel(applic
                 null
             )
                 .map { list -> list.first { it.sid == callId } }
+                .observeOn(AndroidSchedulers.mainThread())
+                .map { // TODO change to subscribe if binding complete
+                    timestamp.value = SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).format(it.created)
+                    it
+                }
                 .toFlowable(BackpressureStrategy.LATEST)
         )
     }
@@ -84,7 +98,7 @@ class CallTranslateViewModel(application: Application) : AndroidViewModel(applic
     }
 
     @SuppressLint("CheckResult")
-    fun getAudioFile(callId: String): LiveData<Boolean> {
+    fun downloadAudioFile(callId: String): LiveData<Boolean> {
         val response = MutableLiveData<Boolean>()
         api.callsControllerGetCallUrl(callId)
             .observeOn(AndroidSchedulers.mainThread())
@@ -134,6 +148,8 @@ class CallTranslateViewModel(application: Application) : AndroidViewModel(applic
                 var fileSizeDownloaded: Long = 0
                 inputStream = body.byteStream()
                 outputStream = FileOutputStream(futureStudioIconFile)
+                downloadStarted.value = true
+                isDownloading.value = true
                 while (true) {
                     val read: Int = inputStream.read(fileReader)
                     if (read == -1) {
@@ -141,8 +157,10 @@ class CallTranslateViewModel(application: Application) : AndroidViewModel(applic
                     }
                     outputStream.write(fileReader, 0, read)
                     fileSizeDownloaded += read.toLong()
-                    downloadProgress.value = fileSizeDownloaded.toFloat() / fileSize.toFloat()
+                    downloadProgress.value = (fileSizeDownloaded * 100 / fileSize).toInt()
                 }
+                isDownloading.value = false
+                downloadFinished.value = true
                 outputStream.flush()
                 futureStudioIconFile.absolutePath
             } catch (e: IOException) {

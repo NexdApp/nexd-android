@@ -12,12 +12,14 @@ import android.view.WindowManager
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.api.model.HelpRequest
+import app.nexd.android.databinding.FragmentHelperRequestOverviewBinding
 import app.nexd.android.ui.common.HelpRequestBinder
 import app.nexd.android.ui.dialog.SelectTextDialog
 import app.nexd.android.ui.helper.requestOverview.HelperOverviewFragmentDirections.Companion.requestDetailAction
@@ -27,7 +29,8 @@ import mva2.adapter.MultiViewAdapter
 
 class HelperOverviewFragment : Fragment() {
 
-    private lateinit var viewModel: HelperOverviewViewModel
+    private val viewModel: HelperOverviewViewModel by viewModels()
+    private lateinit var binding: FragmentHelperRequestOverviewBinding
     private lateinit var nearRequestsAdapter: MultiViewAdapter
     private lateinit var acceptedRequestsAdapter: MultiViewAdapter
 
@@ -35,12 +38,14 @@ class HelperOverviewFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_helper_request_overview, container, false)
+        binding = FragmentHelperRequestOverviewBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = viewModel
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(HelperOverviewViewModel::class.java)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         acceptedRequestsAdapter = MultiViewAdapter()
         recyclerView_acceptedRequests.layoutManager = LinearLayoutManager(context)

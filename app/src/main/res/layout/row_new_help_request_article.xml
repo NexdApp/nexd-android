@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="40dp"
     android:orientation="horizontal"
+    android:background="@drawable/background_gradient"
     xmlns:tools="http://schemas.android.com/tools">
 
     <ImageButton
@@ -12,7 +13,7 @@
         android:layout_height="match_parent"
         android:padding="5dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_minus"
+        android:src="@drawable/ic_remove_circle_outline_black_24dp"
         style="@style/Widget.AppCompat.ActionButton" />
 
     <EditText
@@ -39,7 +40,7 @@
         android:scaleType="fitCenter"
         style="@style/Widget.AppCompat.ActionButton"
         android:padding="5dp"
-        android:src="@drawable/ic_add" />
+        android:src="@drawable/ic_add_circle_outline_black_24dp" />
 
     <TextView
         android:id="@+id/textView_article_name"

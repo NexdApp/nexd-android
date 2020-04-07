@@ -8,6 +8,7 @@ import app.nexd.android.api
 import app.nexd.android.api.model.HelpList
 import app.nexd.android.api.model.HelpRequest
 import app.nexd.android.api.model.HelpRequest.StatusEnum.PENDING
+import app.nexd.android.ui.common.Constants.Companion.USER_ME
 import io.reactivex.BackpressureStrategy
 import io.reactivex.subjects.BehaviorSubject
 
@@ -39,7 +40,7 @@ class HelperOverviewViewModel(application: Application) : AndroidViewModel(appli
                     zipCode = currentUser.zipCode
                     reloadNearby.flatMap { // get all requests created by other people
                         api.helpRequestsControllerGetAll(
-                            "me",
+                            USER_ME,
                             true,
                             listOf(zipCode, ""),
                             true,
