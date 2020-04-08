@@ -12,6 +12,8 @@
     <string name="helper_request_overview_screen_title">"Aktuelle Einkaufsliste"</string>
     <string name="helper_request_overview_heading_accepted_section">"Angenommen Anfragen"</string>
     <string name="helper_request_overview_heading_available_section">"Verfügbare Anfragen"</string>
+    <string name="helper_request_overview_button_filter_zip">"Postleitzahl"</string>
+    <string name="helper_request_overview_heading_open_section_zip">\" (PLZ %1$s)\"</string>
     <string name="helper_request_overview_unknown_requester">"- UNBEKANNT -"</string>
     <string name="helper_request_overview_button_title_start">"Start"</string>
     <string name="helper_request_overview_error_title">"Fehler!"</string>

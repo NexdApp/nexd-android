@@ -12,6 +12,9 @@
     <string name="helper_request_overview_screen_title">"Current Items List"</string>
     <string name="helper_request_overview_heading_accepted_section">"Accepted lists"</string>
     <string name="helper_request_overview_heading_available_section">"Available requests"</string>
+    <string name="helper_request_overview_heading_accepted_section_counter" translatable="false">" (%1$d / 20)"</string>
+    <string name="helper_request_overview_button_filter_zip">"Zip code"</string>
+    <string name="helper_request_overview_heading_open_section_zip">" (zip %1$s)"</string>
     <string name="helper_request_overview_unknown_requester">"- unknown -"</string>
     <string name="helper_request_overview_button_title_start">"Start"</string>
     <string name="helper_request_overview_error_title">"Error!"</string>
@@ -106,5 +109,4 @@
     <string name="seeker_type_button_help_request">"Select items"</string>
     <string name="seeker_type_button_phone_call">"Make a\nphone call"</string>
     <string name="seeker_overview_empty_label">"You haven't sent any requests yet. Please click below right to create your first request."</string>
-    <string translatable="false" name="helper_request_overview_heading_accepted_section_counter">" (%1$d / 20)"</string>
 </resources>

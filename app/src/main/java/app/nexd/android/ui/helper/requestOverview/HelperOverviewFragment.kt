@@ -88,7 +88,7 @@ class HelperOverviewFragment : Fragment() {
                 val nearTitle =
                     context?.getString(R.string.helper_request_overview_heading_available_section)
                         ?: ""
-                val nearInfo = " (PLZ ${viewModel.zipCode})"
+                val nearInfo = getString(R.string.helper_request_overview_heading_open_section_zip)
                 val near = SpannableString(nearTitle + nearInfo)
                 near.setSpan(
                     RelativeSizeSpan(0.5f), nearTitle.length,
@@ -160,12 +160,10 @@ class HelperOverviewFragment : Fragment() {
         context?.let { context ->
             SelectTextDialog(
                 context,
-                "Zip code",
+                getString(R.string.helper_request_overview_button_filter_zip),
                 viewModel.zipCode ?: ""
             )
-                .setConfirmButton(
-                    "Confirm"
-                ) {
+                .setConfirmButton {
                     viewModel.filterbyZipCode(it as String)
                 }
                 .show()
