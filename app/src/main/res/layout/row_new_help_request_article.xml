@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="70dp"
     android:paddingBottom="15dp"
-    android:orientation="horizontal"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:orientation="horizontal">
 
 
 
@@ -37,13 +37,16 @@
         android:importantForAutofill="no"
         android:selectAllOnFocus="true"
         android:inputType="number"
+        android:imeOptions="actionDone"
         android:background="@drawable/round_button_white"
         android:textColor="@color/colorPrimary"
         android:textAlignment="center"
-        android:padding="0dp"
+        android:paddingVertical="0dp"
+        android:paddingHorizontal="3dp"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_width="42dp"
+        android:minWidth="42dp"
+        android:layout_width="wrap_content"
         android:layout_height="42dp"
         tools:text="0" />
 

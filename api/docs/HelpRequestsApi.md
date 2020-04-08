@@ -115,8 +115,8 @@ public class Example {
         bearer.setBearerToken("BEARER TOKEN");
 
         HelpRequestsApi apiInstance = new HelpRequestsApi(defaultClient);
-        String userId = "userId_example"; // String | If included, filter by userId, \"me\" for the requesting user, otherwise all users are replied.
-        Boolean excludeUserId = true; // Boolean | If true, the given userId is excluded (and not filtered for as default)
+        String userId = "userId_example"; // String | If included, filter by userId, \"me\" for the requesting user, otherwise all users are replied. The excludeUserId query inverts the logic and excludes the given userId. 
+        Boolean excludeUserId = true; // Boolean | If true, the given userId (in query) is excluded (and not filtered for as default). Requires the userId query.
         List<String> zipCode = Arrays.asList(); // List<String> | Filter by an array of zipCodes
         Boolean includeRequester = true; // Boolean | If \"true\", the requester object is included in each help request
         List<String> status = Arrays.asList(); // List<String> | Array of status to filter for
@@ -139,8 +139,8 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **userId** | **String**| If included, filter by userId, \&quot;me\&quot; for the requesting user, otherwise all users are replied. | [optional]
- **excludeUserId** | **Boolean**| If true, the given userId is excluded (and not filtered for as default) | [optional]
+ **userId** | **String**| If included, filter by userId, \&quot;me\&quot; for the requesting user, otherwise all users are replied. The excludeUserId query inverts the logic and excludes the given userId.  | [optional]
+ **excludeUserId** | **Boolean**| If true, the given userId (in query) is excluded (and not filtered for as default). Requires the userId query. | [optional]
  **zipCode** | [**List&lt;String&gt;**](String.md)| Filter by an array of zipCodes | [optional]
  **includeRequester** | **Boolean**| If \&quot;true\&quot;, the requester object is included in each help request | [optional]
  **status** | [**List&lt;String&gt;**](String.md)| Array of status to filter for | [optional] [enum: pending, ongoing, completed, deactivated]

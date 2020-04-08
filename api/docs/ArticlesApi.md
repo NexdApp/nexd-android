@@ -71,7 +71,7 @@ No authorization required
 
 ## articlesControllerInsertOne
 
-> Article articlesControllerInsertOne(createArticleDto)
+> Article articlesControllerInsertOne(xAdminSecret, createArticleDto)
 
 Create an article
 
@@ -91,9 +91,10 @@ public class Example {
         defaultClient.setBasePath("https://nexd-backend-staging.herokuapp.com:443/api/v1");
 
         ArticlesApi apiInstance = new ArticlesApi(defaultClient);
+        String xAdminSecret = "xAdminSecret_example"; // String | Secret to access the admin functions.
         CreateArticleDto createArticleDto = new CreateArticleDto(); // CreateArticleDto | 
         try {
-            Article result = apiInstance.articlesControllerInsertOne(createArticleDto);
+            Article result = apiInstance.articlesControllerInsertOne(xAdminSecret, createArticleDto);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ArticlesApi#articlesControllerInsertOne");
@@ -111,6 +112,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **xAdminSecret** | **String**| Secret to access the admin functions. |
  **createArticleDto** | [**CreateArticleDto**](CreateArticleDto.md)|  |
 
 ### Return type

@@ -99,4 +99,9 @@ class CallTranslateFragment : Fragment() {
         })
     }
 
+    override fun onPause() {
+        super.onPause()
+        viewModel.pausePlayback()
+    }
+
 }

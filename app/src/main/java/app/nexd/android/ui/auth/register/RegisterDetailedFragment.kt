@@ -9,22 +9,29 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import app.nexd.android.R
+import app.nexd.android.databinding.FragmentRegisterDetailedBinding
+import app.nexd.android.ui.auth.register.RegisterDetailedViewModel.Progress.*
+import app.nexd.android.ui.common.DefaultSnackbar
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_register_detailed.*
+import java.lang.Error
 
 class RegisterDetailedFragment : Fragment() {
 
-    private val args: RegisterDetailedFragmentArgs by navArgs()
-
     private val viewModel: RegisterDetailedViewModel by viewModels()
+
+    private lateinit var binding: FragmentRegisterDetailedBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_register_detailed, container, false)
+        binding = FragmentRegisterDetailedBinding.inflate(inflater, container, false)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -32,70 +39,39 @@ class RegisterDetailedFragment : Fragment() {
 
         editText_city.setOnEditorActionListener { _, i, _ ->
             if (i == EditorInfo.IME_ACTION_DONE) {
-                register()
+                viewModel.setUserDetails()
             }
             false
         }
 
-        button_register.setOnClickListener {
-            register()
-        }
+        checkbox_data_protection.text = context?.getString(R.string.registration_label_privacy_policy_agreement_android,
+            context?.getString(R.string.registration_term_privacy_policy))
+
+        viewModel.progress.observe(viewLifecycleOwner, Observer { progress ->
+            progressBar.visibility = View.GONE
+            editText_phoneNumber.isEnabled = true
+            editText_street.isEnabled = true
+            editText_houseNr.isEnabled = true
+            editText_zipCode.isEnabled = true
+            editText_city.isEnabled = true
+
+            when (progress) {
+                is Idle -> { /* do nothing in idle */ }
+                is Loading -> {
+                    progressBar.visibility = View.VISIBLE
+                    editText_phoneNumber.isEnabled = false
+                    editText_street.isEnabled = false
+                    editText_houseNr.isEnabled = false
+                    editText_zipCode.isEnabled = false
+                    editText_city.isEnabled = false
+                }
+                is Error -> {
+                    DefaultSnackbar(button_register, progress.message.toString(), Snackbar.LENGTH_SHORT)
+                }
+                is Finished -> {
+                    findNavController().navigate(RegisterDetailedFragmentDirections.toRoleFragment())
+                }
+            }
+        })
     }
-
-    fun register() {
-        val phoneNumber = editText_phoneNumber.text
-        val streetName = editText_streetName.text
-        val houseNumber = editText_houseNr.text
-        val zipCode = editText_zipCode.text
-        val city = editText_city.text
-        var success = true
-
-        if (phoneNumber.isNullOrEmpty()) {
-            editText_phoneNumber.error = resources.getString(R.string.error_message_user_detail_field_missing)
-            success = false
-        }
-
-        if (streetName.isNullOrEmpty()) {
-            editText_streetName.error = resources.getString(R.string.error_message_user_detail_field_missing)
-            success = false
-        }
-
-        if (houseNumber.isNullOrEmpty()) {
-            editText_houseNr.error = resources.getString(R.string.error_message_user_detail_field_missing)
-            success = false
-        }
-
-        if (zipCode.isNullOrEmpty()) {
-            editText_zipCode.error = resources.getString(R.string.error_message_user_detail_field_missing)
-            success = false
-        }
-
-        if (city.isNullOrEmpty()) {
-            editText_city.error = resources.getString(R.string.error_message_user_detail_field_missing)
-            success = false
-        }
-
-        if (!checkbox_data_protection.isChecked) {
-            checkbox_data_protection.error =
-                resources.getString(R.string.error_message_registration_field_missing)
-            success = false
-        }
-
-        if (success) {
-            viewModel.register(
-                args.firstName,
-                args.lastName,
-                args.email,
-                args.password,
-                editText_phoneNumber.text.toString(),
-                editText_streetName.text.toString(),
-                editText_houseNr.text.toString(),
-                editText_zipCode.text.toString(),
-                editText_city.text.toString()
-            ).observe(viewLifecycleOwner, Observer {
-                findNavController().navigate(RegisterDetailedFragmentDirections.toRoleFragment())
-            })
-        }
-    }
-
 }

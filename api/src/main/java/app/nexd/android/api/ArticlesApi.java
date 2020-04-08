@@ -31,6 +31,7 @@ public interface ArticlesApi {
   /**
    * Create an article
    * 
+   * @param xAdminSecret Secret to access the admin functions. (required)
    * @param createArticleDto  (required)
    * @return Observable&lt;Article&gt;
    */
@@ -39,7 +40,7 @@ public interface ArticlesApi {
   })
   @POST("articles")
   Observable<Article> articlesControllerInsertOne(
-    @retrofit2.http.Body CreateArticleDto createArticleDto
+    @retrofit2.http.Header("x-admin-secret") String xAdminSecret, @retrofit2.http.Body CreateArticleDto createArticleDto
   );
 
 }

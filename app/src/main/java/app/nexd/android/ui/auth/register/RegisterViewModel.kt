@@ -3,16 +3,21 @@ package app.nexd.android.ui.auth.register
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import app.nexd.android.Preferences
 import app.nexd.android.R
+import app.nexd.android.api
+import app.nexd.android.api.model.RegisterDto
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import retrofit2.HttpException
 
 class RegisterViewModel(application: Application) : AndroidViewModel(application) {
 
     sealed class Progress {
         object Idle : Progress()
         object Loading : Progress()
-        object Error : Progress()
-        class Finished(val registrationData: RegistrationData) : Progress()
+        class Error(val message: String) : Progress()
+        object Finished : Progress()
     }
 
     data class RegistrationData(
@@ -85,14 +90,36 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
         }
 
         if (success) {
-            val registrationData = RegistrationData(
-                firstName = firstName.value!!,
-                lastName = lastName.value!!,
-                email = email.value!!,
-                password = password.value!!
-            )
-
-            progress.value = Progress.Finished(registrationData)
+            progress.value = Progress.Loading
+            with(api) {
+                authControllerRegister(
+                    RegisterDto()
+                        .firstName(firstName.value)
+                        .lastName(lastName.value)
+                        .email(email.value)
+                        .password(password.value)
+                )
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnError {
+                        progress.value = Progress.Error(
+                            if (it is HttpException) {
+                                when (it.code()) {
+                                    406 -> "Nutzer bereits registriert"
+                                    else -> it.message()
+                                }
+                            } else {
+                                it.message.toString()
+                            }
+                        )
+                    }
+                    .subscribe {
+                        api.setBearerToken(it.accessToken)
+                        with(getApplication<Application>().applicationContext) {
+                            Preferences.setToken(this, it.accessToken)
+                        }
+                        progress.value = Progress.Finished
+                    }
+            }
         }
     }
 

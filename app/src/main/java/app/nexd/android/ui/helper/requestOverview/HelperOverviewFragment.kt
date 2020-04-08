@@ -70,7 +70,10 @@ class HelperOverviewFragment : Fragment() {
 
                 val acceptedTitle =
                     resources.getString(R.string.helper_request_overview_heading_accepted_section)
-                val acceptedInfo = " (${myAcceptedRequests.size} / 20)"
+                val acceptedInfo = context?.getString(
+                    R.string.helper_request_overview_heading_accepted_section_counter,
+                    myAcceptedRequests.size
+                ) ?: ""
                 val accepted = SpannableString(acceptedTitle + acceptedInfo)
                 accepted.setSpan(
                     RelativeSizeSpan(0.5f), acceptedTitle.length,

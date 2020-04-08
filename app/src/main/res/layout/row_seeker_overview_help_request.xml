@@ -12,7 +12,8 @@
         android:id="@+id/tv_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
         android:textSize="20sp"
         tools:text="Wednesday, 20. April 2020" />
 

@@ -16,7 +16,7 @@
     <string name="helper_request_overview_button_title_start">"Start"</string>
     <string name="helper_request_overview_error_title">"Error!"</string>
     <string name="helper_request_overview_error_message">"Your request could not be sent! Please try again."</string>
-    <string name="helper_request_transcript_button_done">"Add order to Current Item List"</string>
+    <string name="helper_request_transcript_button_done">"Add to help requests"</string>
     <string name="shopping_list_screen_title">"Shopping list"</string>
     <string name="shopping_list_button_title_checkout">"Checkout"</string>
     <string name="shopping_list_overview_error_title">"Error!"</string>
@@ -89,7 +89,8 @@
     <string name="error_message_registration_password_too_short">"At least 6 characters"</string>
     <string name="error_message_registration_invalid_email">"Invalid E-mail address"</string>
     <string name="error_message_user_detail_field_missing">"Please fill in"</string>
-    <string name="registration_label_privacy_policy_agreement">"By creating an account, I agree to Nexd's %1$@"</string>
+    <string name="registration_label_privacy_policy_agreement_ios">"By creating an account, I agree to Nexd's %1$@"</string>
+    <string name="registration_label_privacy_policy_agreement_android">"By creating an account, I agree to Nexd's %1$s"</string>
     <string name="registration_term_privacy_policy">"Privacy Policy"</string>
     <string name="helper_request_overview_button_previous_requests">"Previous purchases"</string>
     <string name="seeker_overview_screen_title">"Your requests:"</string>
@@ -105,4 +106,5 @@
     <string name="seeker_type_button_help_request">"Select items"</string>
     <string name="seeker_type_button_phone_call">"Make a\nphone call"</string>
     <string name="seeker_overview_empty_label">"You haven't sent any requests yet. Please click below right to create your first request."</string>
+    <string translatable="false" name="helper_request_overview_heading_accepted_section_counter">" (%1$d / 20)"</string>
 </resources>

@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/textSize_large_title"
+            android:textSize="@dimen/textSize_navigation_title"
             android:textStyle="bold"
             android:text="@={viewModel.timestamp}"
             tools:text="Anna" />

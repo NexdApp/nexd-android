@@ -3,10 +3,10 @@
     <dimen name="topPadding">20dp</dimen>
     <dimen name="horizontalPadding">15dp</dimen>
     <dimen name="radius">10dp</dimen>
+
     <dimen name="textSize_button_large">35sp</dimen>
-    <dimen name="textSize_large_title">35sp</dimen>
-    <dimen name="textSize_navigation_title">30sp</dimen>
-    <dimen name="textSize_screen_title">25sp</dimen>
-    <dimen name="textSize_button">25sp</dimen>
     <dimen name="textSize_navigation_button">30sp</dimen>
+    <dimen name="textSize_button">25sp</dimen>
+    <dimen name="textSize_navigation_title">35sp</dimen>
+    <dimen name="textSize_screen_title">30sp</dimen>
 </resources>

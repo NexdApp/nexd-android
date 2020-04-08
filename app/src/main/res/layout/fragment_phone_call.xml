@@ -15,9 +15,10 @@
     <TextView
         android:id="@+id/textView_details"
         android:autoLink="phone"
+        android:textColorLink="@color/colorPrimaryDark"
         tools:text="Please call 0182/2233213\nto record your shopping order."
         android:textColor="@android:color/white"
-        android:textSize="@dimen/textSize_large_title"
+        android:textSize="@dimen/textSize_navigation_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

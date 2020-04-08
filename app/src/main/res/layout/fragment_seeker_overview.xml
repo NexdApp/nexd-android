@@ -40,17 +40,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_create_new_help_request"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/horizontalPadding"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        app:borderWidth="0dp"
-        android:src="@drawable/baseline_add_shopping_cart_24"
-        android:tint="@color/colorPrimaryDark"
+        app:fabCustomSize="70dp"
+        app:maxImageSize="30dp"
         android:clickable="true"
-        android:focusable="true" />
+        android:focusable="true"
+        android:layout_margin="10dp"
+        app:borderWidth="0dp"
+        android:tint="@color/colorPrimaryDark"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/baseline_add_shopping_cart_24" />
 
 </RelativeLayout>
