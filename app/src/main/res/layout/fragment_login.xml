@@ -8,12 +8,31 @@
             type="app.nexd.android.ui.auth.login.LoginViewModel" />
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white">
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_alignParentTop="true"
+            android:visibility="gone"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:max="100"
+            android:padding="0dp"
+            android:layout_marginTop="-6dp"
+            android:layout_marginBottom="-8dp"
+            android:indeterminateTint="@color/colorPrimaryDark" />
+
+        <LinearLayout
+            android:layout_alignParentTop="true"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
@@ -31,12 +50,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="@dimen/fragmentPadding">
+            android:padding="@dimen/horizontalPadding">
 
             <EditText
                 android:id="@+id/editText_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autofillHints="emailAddress"
                 android:error="@{viewModel.usernameError}"
                 android:hint="@string/login_placeholder_username"
                 android:imeOptions="actionGo"
@@ -50,6 +70,7 @@
                 android:id="@+id/editText_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autofillHints="password"
                 android:error="@{viewModel.passwordError}"
                 android:hint="@string/login_placeholder_password"
                 android:layout_marginTop="20dp"
@@ -86,7 +107,7 @@
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
-                android:textSize="25sp"
+                android:textSize="@dimen/textSize_navigation_title"
                 android:textStyle="bold" />
 
             <Button
@@ -100,6 +121,7 @@
                 android:text="@string/registration_term_privacy_policy"
                 android:textAllCaps="false" />
         </LinearLayout>
-    </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
 
 </layout>

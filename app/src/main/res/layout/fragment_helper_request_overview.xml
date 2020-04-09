@@ -1,79 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="@dimen/fragmentPadding"
-    tools:background="@drawable/background_gradient"
-    tools:context=".ui.helper.overview.HelperOverviewFragment">
+<layout>
 
-    <Button
-        android:id="@+id/button_shopping"
-        style="@style/Widget.AppCompat.ActionButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
-        android:drawableTint="@android:color/white"
-        android:enabled="false"
-        android:paddingStart="0dp"
-        android:paddingEnd="0dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/helper_request_overview_screen_title"
-        android:textAlignment="textStart"
-        android:textColor="@android:color/white"
-        android:textSize="25sp"
-        android:textStyle="bold" />
+    <data>
 
-    <TextView
-        android:id="@+id/textView_acceptedLists"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        tools:text="Accepted lists (14 / 20)" />
+        <variable
+            name="viewModel"
+            type="app.nexd.android.ui.helper.requestOverview.HelperOverviewViewModel" />
+    </data>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_acceptedRequests"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="10dp"
-        android:layout_weight="1"
-        tools:listitem="@layout/buyer_request_row" />
 
-    <TextView
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/helper_request_overview_heading_available_section"
-        android:textColor="@android:color/white"
-        android:textSize="25sp"
-        android:textStyle="bold" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_nearRequests"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="20dp"
-        android:layout_weight="3"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:listitem="@layout/buyer_request_row" />
+        android:paddingHorizontal="@dimen/horizontalPadding"
+        android:paddingTop="@dimen/topPadding"
+        tools:background="@drawable/background_gradient"
+        tools:context=".ui.helper.requestOverview.HelperOverviewFragment">
 
-    <Button
-        android:id="@+id/button_previousRequests"
-        style="@style/Widget.AppCompat.ActionButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
-        android:drawableTint="@android:color/white"
-        android:paddingStart="0dp"
-        android:paddingEnd="0dp"
-        android:layout_marginBottom="20dp"
-        android:text="@string/helper_request_overview_button_previous_requests"
-        android:textAlignment="textStart"
-        android:textColor="@android:color/white"
-        android:textSize="25sp" />
+        <Button
+            android:id="@+id/button_shopping"
+            android:textAllCaps="false"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+            android:drawableTint="@android:color/white"
+            android:enabled="false"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:text="@string/helper_request_overview_screen_title"
+            android:textAlignment="textStart"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textSize_button"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_acceptedLists"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textSize_screen_title"
+            android:textStyle="bold"
+            tools:text="Accepted lists (14 / 20)" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_acceptedRequests"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            tools:listitem="@layout/row_user" />
+
+        <Button
+            android:id="@+id/button_nearRequests"
+            android:textAllCaps="false"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_edit_black_24dp"
+            android:drawableTint="@android:color/white"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:textAlignment="textStart"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textSize_screen_title"
+            android:textStyle="bold"
+            tools:text="Available requests at 71323" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_nearRequests"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            tools:listitem="@layout/row_user" />
+
+        <Button
+            android:id="@+id/button_previousRequests"
+            android:textAllCaps="false"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+            android:drawableTint="@android:color/white"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:text="@string/helper_request_overview_button_previous_requests"
+            android:textAlignment="textStart"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textSize_button"
+            android:textStyle="bold" />
 
 
-</LinearLayout>
+    </LinearLayout>
+</layout>

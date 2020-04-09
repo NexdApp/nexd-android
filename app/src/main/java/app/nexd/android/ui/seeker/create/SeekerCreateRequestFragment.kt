@@ -13,13 +13,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.api.model.CreateHelpRequestArticleDto
 import app.nexd.android.api.model.HelpRequestCreateDto
+import app.nexd.android.ui.common.HelpRequestCreateArticleBinder
 import kotlinx.android.synthetic.main.fragment_seeker_create_request.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
 
 class SeekerCreateRequestFragment : Fragment() {
 
-    private lateinit var viewModel: CreateHelpRequestViewModel
+    private lateinit var viewModel: SeekerCreateRequestViewModel
 
     private lateinit var adapter: MultiViewAdapter
 
@@ -32,22 +33,22 @@ class SeekerCreateRequestFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(CreateHelpRequestViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(SeekerCreateRequestViewModel::class.java)
 
         recyclerView_requests.layoutManager = LinearLayoutManager(context)
 
         adapter = MultiViewAdapter()
         recyclerView_requests.adapter = adapter
 
-        adapter.registerItemBinders(HelpRequestArticleBinder())
+        adapter.registerItemBinders(HelpRequestCreateArticleBinder())
 
         viewModel.getCurrentUser().observe(viewLifecycleOwner, Observer { currentUser ->
 
             viewModel.getArticles().observe(viewLifecycleOwner, Observer { articles ->
                 adapter.removeAllSections()
 
-                val articlesSection = ListSection<HelpRequestArticleBinder.ArticleInput>()
-                val articlesInput = articles.map { HelpRequestArticleBinder.ArticleInput(it) }
+                val articlesSection = ListSection<HelpRequestCreateArticleBinder.ArticleInput>()
+                val articlesInput = articles.map { HelpRequestCreateArticleBinder.ArticleInput(it) }
                 articlesSection.addAll(articlesInput)
 
                 adapter.addSection(articlesSection)
@@ -78,7 +79,7 @@ class SeekerCreateRequestFragment : Fragment() {
         viewModel.state().observe(viewLifecycleOwner, Observer {
             when (it) {
                 // TODO: handle all states
-                CreateHelpRequestViewModel.State.FINISHED -> findNavController().popBackStack()
+                SeekerCreateRequestViewModel.State.FINISHED -> findNavController().popBackStack()
                 else -> Log.d(SeekerCreateRequestFragment::class.simpleName, "unhandled state $it")
             }
         })

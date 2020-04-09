@@ -5,19 +5,20 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="@dimen/fragmentPadding"
+    android:paddingHorizontal="@dimen/horizontalPadding"
     tools:background="@drawable/background_gradient"
     tools:context=".ui.helper.shoppingList.ShoppingListFragment">
 
     <Space
         android:layout_weight="1"
+        android:minWidth="@dimen/topPadding"
         android:layout_width="match_parent"
         android:layout_height="0dp" />
 
     <TextView
         android:text="@string/shopping_list_screen_title"
         android:textStyle="bold"
-        android:textSize="25sp"
+        android:textSize="@dimen/textSize_screen_title"
         android:textColor="@android:color/white"
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
@@ -32,7 +33,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/shoppingList"
-            tools:listitem="@layout/shopping_list_row"
+            tools:listitem="@layout/row_help_request_article"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -53,6 +54,8 @@
         android:clickable="true"
         android:focusable="true"
         android:layout_margin="10dp"
+        app:borderWidth="0dp"
+        android:tint="@color/colorPrimaryDark"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/ic_shopping_cart_white_100dp" />
 

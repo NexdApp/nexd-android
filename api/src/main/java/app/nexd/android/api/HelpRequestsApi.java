@@ -39,8 +39,8 @@ public interface HelpRequestsApi {
   /**
    * Get and filter for various help requests
    * 
-   * @param userId If included, filter by userId, \&quot;me\&quot; for the requesting user, otherwise all users are replied. (optional)
-   * @param excludeUserId If true, the given userId is excluded (and not filtered for as default) (optional)
+   * @param userId If included, filter by userId, \&quot;me\&quot; for the requesting user, otherwise all users are replied. The excludeUserId query inverts the logic and excludes the given userId.  (optional)
+   * @param excludeUserId If true, the given userId (in query) is excluded (and not filtered for as default). Requires the userId query. (optional)
    * @param zipCode Filter by an array of zipCodes (optional, default to new ArrayList&lt;String&gt;())
    * @param includeRequester If \&quot;true\&quot;, the requester object is included in each help request (optional)
    * @param status Array of status to filter for (optional, default to new ArrayList&lt;String&gt;())

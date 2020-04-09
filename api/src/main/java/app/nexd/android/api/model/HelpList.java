@@ -38,6 +38,10 @@ public class HelpList {
   @SerializedName(SERIALIZED_NAME_ID)
   private Long id;
 
+  public static final String SERIALIZED_NAME_HELP_REQUESTS_IDS = "helpRequestsIds";
+  @SerializedName(SERIALIZED_NAME_HELP_REQUESTS_IDS)
+  private List<Long> helpRequestsIds = new ArrayList<Long>();
+
   public static final String SERIALIZED_NAME_OWNER_ID = "ownerId";
   @SerializedName(SERIALIZED_NAME_OWNER_ID)
   private String ownerId;
@@ -111,10 +115,6 @@ public class HelpList {
   @SerializedName(SERIALIZED_NAME_HELP_REQUESTS)
   private List<HelpRequest> helpRequests = new ArrayList<HelpRequest>();
 
-  public static final String SERIALIZED_NAME_HELP_REQUESTS_IDS = "helpRequestsIds";
-  @SerializedName(SERIALIZED_NAME_HELP_REQUESTS_IDS)
-  private List<Long> helpRequestsIds = new ArrayList<Long>();
-
 
   public HelpList id(Long id) {
     
@@ -135,6 +135,33 @@ public class HelpList {
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+
+  public HelpList helpRequestsIds(List<Long> helpRequestsIds) {
+    
+    this.helpRequestsIds = helpRequestsIds;
+    return this;
+  }
+
+  public HelpList addHelpRequestsIdsItem(Long helpRequestsIdsItem) {
+    this.helpRequestsIds.add(helpRequestsIdsItem);
+    return this;
+  }
+
+   /**
+   * List of help request IDs
+   * @return helpRequestsIds
+  **/
+  @ApiModelProperty(required = true, value = "List of help request IDs")
+
+  public List<Long> getHelpRequestsIds() {
+    return helpRequestsIds;
+  }
+
+
+  public void setHelpRequestsIds(List<Long> helpRequestsIds) {
+    this.helpRequestsIds = helpRequestsIds;
   }
 
 
@@ -278,33 +305,6 @@ public class HelpList {
   }
 
 
-  public HelpList helpRequestsIds(List<Long> helpRequestsIds) {
-    
-    this.helpRequestsIds = helpRequestsIds;
-    return this;
-  }
-
-  public HelpList addHelpRequestsIdsItem(Long helpRequestsIdsItem) {
-    this.helpRequestsIds.add(helpRequestsIdsItem);
-    return this;
-  }
-
-   /**
-   * Get helpRequestsIds
-   * @return helpRequestsIds
-  **/
-  @ApiModelProperty(required = true, value = "")
-
-  public List<Long> getHelpRequestsIds() {
-    return helpRequestsIds;
-  }
-
-
-  public void setHelpRequestsIds(List<Long> helpRequestsIds) {
-    this.helpRequestsIds = helpRequestsIds;
-  }
-
-
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -315,18 +315,18 @@ public class HelpList {
     }
     HelpList helpList = (HelpList) o;
     return Objects.equals(this.id, helpList.id) &&
+        Objects.equals(this.helpRequestsIds, helpList.helpRequestsIds) &&
         Objects.equals(this.ownerId, helpList.ownerId) &&
         Objects.equals(this.owner, helpList.owner) &&
         Objects.equals(this.createdAt, helpList.createdAt) &&
         Objects.equals(this.updatedAt, helpList.updatedAt) &&
         Objects.equals(this.status, helpList.status) &&
-        Objects.equals(this.helpRequests, helpList.helpRequests) &&
-        Objects.equals(this.helpRequestsIds, helpList.helpRequestsIds);
+        Objects.equals(this.helpRequests, helpList.helpRequests);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, ownerId, owner, createdAt, updatedAt, status, helpRequests, helpRequestsIds);
+    return Objects.hash(id, helpRequestsIds, ownerId, owner, createdAt, updatedAt, status, helpRequests);
   }
 
 
@@ -335,13 +335,13 @@ public class HelpList {
     StringBuilder sb = new StringBuilder();
     sb.append("class HelpList {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    helpRequestsIds: ").append(toIndentedString(helpRequestsIds)).append("\n");
     sb.append("    ownerId: ").append(toIndentedString(ownerId)).append("\n");
     sb.append("    owner: ").append(toIndentedString(owner)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    helpRequests: ").append(toIndentedString(helpRequests)).append("\n");
-    sb.append("    helpRequestsIds: ").append(toIndentedString(helpRequestsIds)).append("\n");
     sb.append("}");
     return sb.toString();
   }

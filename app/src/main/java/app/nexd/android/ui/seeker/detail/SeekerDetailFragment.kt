@@ -11,7 +11,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.api.model.HelpRequestArticle
-import app.nexd.android.ui.seeker.overview.HelpRequestArticleBinder
+import app.nexd.android.ui.common.HelpRequestArticleBinder
 import kotlinx.android.synthetic.main.fragment_seeker_detail.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter

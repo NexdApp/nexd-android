@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:paddingBottom="15dp"
+    android:orientation="horizontal">
+
+
+
+    <TextView
+        android:id="@+id/textView_article_name"
+        android:textColor="@android:color/black"
+        android:textSize="22sp"
+        android:background="@drawable/rounded_button_white"
+        android:paddingHorizontal="10dp"
+        android:gravity="center_vertical|start"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="10dp"
+        tools:text="Milch"/>
+
+
+    <!--<ImageButton
+        android:id="@+id/button_decrease"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:padding="5dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_remove_circle_outline_black_24dp"
+        style="@style/Widget.AppCompat.ActionButton" />-->
+
+    <EditText
+        android:id="@+id/textView_amount"
+        android:importantForAutofill="no"
+        android:selectAllOnFocus="true"
+        android:inputType="number"
+        android:imeOptions="actionDone"
+        android:background="@drawable/round_button_white"
+        android:textColor="@color/colorPrimary"
+        android:textAlignment="center"
+        android:paddingVertical="0dp"
+        android:paddingHorizontal="3dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:minWidth="42dp"
+        android:layout_width="wrap_content"
+        android:layout_height="42dp"
+        tools:text="0" />
+
+    <!--<ImageButton
+        android:id="@+id/button_increase"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:scaleType="fitCenter"
+        style="@style/Widget.AppCompat.ActionButton"
+        android:padding="5dp"
+        android:src="@drawable/ic_add_circle_outline_black_24dp" />-->
+
+</LinearLayout>

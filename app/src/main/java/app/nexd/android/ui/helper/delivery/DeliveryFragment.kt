@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.api.model.HelpRequest
-import app.nexd.android.ui.view.SelectDialog
+import app.nexd.android.ui.dialog.SelectBasicDialog
 import kotlinx.android.synthetic.main.fragment_delivery.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
@@ -32,11 +32,11 @@ class DeliveryFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        recylcerView_helpRequests.adapter = adapter
-        recylcerView_helpRequests.layoutManager = LinearLayoutManager(context)
+        recyclerView_helpRequests.adapter = adapter
+        recyclerView_helpRequests.layoutManager = LinearLayoutManager(context)
 
         adapter.registerItemBinders(
-            HelpRequestBinder()
+            DeliveryHelpRequestBinder()
         )
 
         viewModel.getShoppingList().observe(viewLifecycleOwner, Observer { shoppingList ->
@@ -46,15 +46,20 @@ class DeliveryFragment : Fragment() {
             requestList.addAll(shoppingList.helpRequests)
             adapter.addSection(requestList)
 
-            closeRequest.setOnClickListener {
-                SelectDialog(activity!!, getString(R.string.delivery_dialog_deliver_title),
-                    getString(R.string.delivery_dialog_deliver_description))
-                    .setConfirmButton(getString(R.string.delivery_dialog_delivery_button_confirm)) {
-                        viewModel.completeShoppingList(shoppingList.id)
-                            .observe(viewLifecycleOwner, Observer {
-                                findNavController().navigate(DeliveryFragmentDirections.toRoleFragment())
-                            })
-                    }.show()
+            context?.let { context ->
+                closeRequest.setOnClickListener {
+                    SelectBasicDialog(
+                        context, getString(R.string.delivery_dialog_deliver_title),
+                        getString(R.string.delivery_dialog_deliver_description)
+                    )
+                        .setConfirmButton(getString(R.string.delivery_dialog_delivery_button_confirm)) {
+                            viewModel.completeShoppingList(shoppingList.id)
+                                .observe(viewLifecycleOwner, Observer {
+                                    findNavController().navigate(DeliveryFragmentDirections.toRoleFragment())
+                                })
+                        }
+                        .show()
+                }
             }
         })
     }

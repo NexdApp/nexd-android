@@ -12,6 +12,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.api.model.HelpRequestArticle
+import app.nexd.android.ui.common.HelpRequestArticleBinder
 import kotlinx.android.synthetic.main.fragment_helper_request_detail.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
@@ -51,7 +52,7 @@ class HelperDetailFragment : Fragment() {
             adapter.removeAllSections()
 
             textView_name.text = context!!.getString(
-                R.string.helper_request_detail_name_layout,
+                R.string.user_name_layout,
                 request.requester!!.firstName
                 , request.requester!!.lastName
             )

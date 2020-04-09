@@ -38,7 +38,7 @@
             android:text="@string/role_screen_title"
             android:textStyle="bold"
             android:textColor="@android:color/white"
-            android:textSize="35sp" />
+            android:textSize="@dimen/textSize_navigation_title" />
 
         <TextView
             android:layout_width="match_parent"
@@ -46,7 +46,7 @@
             android:gravity="top"
             android:text="@string/role_screen_subtitle"
             android:textColor="@android:color/white"
-            android:textSize="30sp" />
+            android:textSize="@dimen/textSize_navigation_title" />
 
         <View
             android:layout_width="match_parent"
@@ -69,7 +69,7 @@
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="30sp"
+        android:textSize="@dimen/textSize_navigation_button"
         android:textStyle="bold" />
 
     <Button
@@ -85,7 +85,7 @@
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="30sp"
+        android:textSize="@dimen/textSize_navigation_button"
         android:textStyle="bold" />
 
 

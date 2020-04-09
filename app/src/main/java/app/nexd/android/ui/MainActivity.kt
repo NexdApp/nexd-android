@@ -1,20 +1,20 @@
 package app.nexd.android.ui
 
-import android.content.Context
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.LinearLayout
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import app.nexd.android.Api
 import app.nexd.android.Preferences
 import app.nexd.android.R
 import app.nexd.android.api
+import app.nexd.android.ui.dialog.SelectTextDialog
 import io.reactivex.plugins.RxJavaPlugins
 
 class MainActivity : AppCompatActivity() {
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
      * hides keyboard if no editText was touched
      */
     private fun hideKeyboardOnTouch() {
-        hideKeyboardOnTouch(findViewById(android.R.id.content))
+        hideKeyboardOnTouch(findViewById(R.id.nav_host_fragment))
     }
 
     /**
@@ -89,10 +89,4 @@ class MainActivity : AppCompatActivity() {
             currentFocus!!.clearFocus()
         }
     }
-
-    fun showKeyboard(editText: EditText) {
-        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT)
-    }
-
 }

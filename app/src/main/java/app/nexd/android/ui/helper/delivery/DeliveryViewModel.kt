@@ -9,7 +9,6 @@ import app.nexd.android.api
 import app.nexd.android.api.model.HelpList
 import app.nexd.android.api.model.HelpListCreateDto
 import io.reactivex.BackpressureStrategy
-import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 
 class DeliveryViewModel : ViewModel() {

@@ -10,26 +10,26 @@
 
     <TextView
         android:id="@+id/textView_title"
-        android:layout_margin="@dimen/fragmentPadding"
+        android:layout_margin="@dimen/horizontalPadding"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="@string/seeker_overview_screen_title"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/textSize_screen_title"
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_requests"
-        tools:listitem="@layout/request_header_view"
+        tools:listitem="@layout/row_seeker_overview_help_request"
         android:layout_below="@id/textView_title"
-        android:layout_marginHorizontal="@dimen/fragmentPadding"
+        android:layout_marginHorizontal="@dimen/horizontalPadding"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <TextView
         android:id="@+id/textView_empty"
-        android:text="Sie haben noch keine Anfragen aufgegeben. Klicken Sie rechts unten, um Ihre erste Anfrage zu erstellen"
+        android:text="@string/seeker_overview_empty_label"
         android:layout_alignTop="@id/recyclerView_requests"
         android:layout_marginHorizontal="15dp"
         android:visibility="gone"
@@ -40,18 +40,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_create_new_help_request"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fragmentPadding"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:backgroundTint="@color/colorPrimary"
-        app:borderWidth="0dp"
-        android:src="@drawable/baseline_add_shopping_cart_24"
-        android:tint="@android:color/white"
+        app:fabCustomSize="70dp"
+        app:maxImageSize="30dp"
         android:clickable="true"
-        android:focusable="true" />
+        android:focusable="true"
+        android:layout_margin="10dp"
+        app:borderWidth="0dp"
+        android:tint="@color/colorPrimaryDark"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/baseline_add_shopping_cart_24" />
 
 </RelativeLayout>

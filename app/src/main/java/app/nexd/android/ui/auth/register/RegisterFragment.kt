@@ -8,18 +8,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import app.nexd.android.databinding.FragmentRegisterBinding
 import app.nexd.android.ui.auth.register.RegisterFragmentDirections.Companion.toRegisterDetailedFragment
 import app.nexd.android.ui.auth.register.RegisterViewModel.Progress.*
+import app.nexd.android.ui.common.DefaultSnackbar
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_register.*
 
 
 class RegisterFragment : Fragment() {
 
-    private lateinit var viewModel: RegisterViewModel
+    private val viewModel: RegisterViewModel by viewModels()
 
     private lateinit var binding: FragmentRegisterBinding
 
@@ -27,19 +30,14 @@ class RegisterFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentRegisterBinding.inflate(inflater, container, false)
+        binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
-
-        binding.viewModel = viewModel
 
         editText_password_confirm.setOnEditorActionListener { _, i, _ ->
             if (i == EditorInfo.IME_ACTION_DONE) {
@@ -53,21 +51,30 @@ class RegisterFragment : Fragment() {
         }
 
         viewModel.progress.observe(viewLifecycleOwner, Observer { progress ->
+            progressBar.visibility = View.GONE
+            editText_first_name.isEnabled = true
+            editText_last_name.isEnabled = true
+            editText_email.isEnabled = true
+            editText_password.isEnabled = true
+            editText_password_confirm.isEnabled = true
+
             when (progress) {
                 is Idle -> { /* nothing to do here */
                 }
-                is Loading -> { /* TODO (AS): display a loading animation */
+                is Loading -> {
+                    progressBar.visibility = View.VISIBLE
+                    editText_first_name.isEnabled = false
+                    editText_last_name.isEnabled = false
+                    editText_email.isEnabled = false
+                    editText_password.isEnabled = false
+                    editText_password_confirm.isEnabled = false
                 }
-                is Error -> { /* TODO (AS): display error toast. */
+                is Error -> {
+                    DefaultSnackbar(button_register, progress.message, Snackbar.LENGTH_SHORT)
                 }
                 is Finished -> {
                     findNavController().navigate(
-                        toRegisterDetailedFragment(
-                            progress.registrationData.firstName,
-                            progress.registrationData.lastName,
-                            progress.registrationData.email,
-                            progress.registrationData.password
-                        )
+                        toRegisterDetailedFragment()
                     )
                 }
             }

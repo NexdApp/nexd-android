@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/fragmentPadding"
+    android:padding="@dimen/horizontalPadding"
     tools:background="@drawable/background_gradient">
 
     <TextView
@@ -13,8 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="@string/seeker_detail_screen_title"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/textSize_screen_title"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -48,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            tools:listitem="@layout/request_list_item_view" />
+            tools:listitem="@layout/row_help_request_article" />
 
     </androidx.cardview.widget.CardView>
 
@@ -64,6 +64,7 @@
 
     <TextView
         android:id="@+id/textView_additionalRequest"
+        android:paddingHorizontal="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -71,7 +72,7 @@
         android:textColor="@android:color/white"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="So schnell wie nur möglich!!" />
+        tools:text="As fast as possible!!" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

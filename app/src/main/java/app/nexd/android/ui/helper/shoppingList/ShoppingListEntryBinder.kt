@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
 import app.nexd.android.R
-import kotlinx.android.synthetic.main.shopping_list_row.view.*
+import kotlinx.android.synthetic.main.row_help_request_article.view.*
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
 
@@ -20,11 +20,12 @@ class ShoppingListEntryBinder :
 
         fun bind(entry: ShoppingListViewModel.ShoppingListEntry) {
             amount.text = itemView.context.getString(
-                R.string.helper_shooping_list_amount_layout,
+                R.string.helper_request_article_amount_layout,
                 entry.articleAmount
             )
             name.text = entry.articleName
             collect.isChecked = entry.isCollected
+            collect.visibility = View.VISIBLE
 
             collect.setOnCheckedChangeListener { _, isChecked ->
                 entry.isCollected = isChecked
@@ -45,7 +46,7 @@ class ShoppingListEntryBinder :
 
     override fun createViewHolder(parent: ViewGroup): ViewHolder {
         return ViewHolder(
-            inflate(parent, R.layout.shopping_list_row)
+            inflate(parent, R.layout.row_help_request_article)
         )
     }
 

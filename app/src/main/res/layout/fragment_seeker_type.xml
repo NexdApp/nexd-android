@@ -22,7 +22,7 @@
         android:text="@string/seeker_type_screen_title"
         android:textColor="@android:color/white"
         android:textStyle="bold"
-        android:textSize="30sp" />
+        android:textSize="@dimen/textSize_navigation_title" />
 
     <Button
         android:id="@+id/button_help_request"
@@ -36,7 +36,7 @@
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="30sp"
+        android:textSize="@dimen/textSize_navigation_button"
         android:textStyle="bold" />
 
     <Button
@@ -52,7 +52,7 @@
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="30sp"
+        android:textSize="@dimen/textSize_navigation_button"
         android:textStyle="bold" />
 
     <Space

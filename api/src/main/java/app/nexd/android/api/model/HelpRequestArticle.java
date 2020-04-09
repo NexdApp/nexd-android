@@ -31,6 +31,10 @@ import java.io.IOException;
  */
 
 public class HelpRequestArticle {
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private Long id;
+
   public static final String SERIALIZED_NAME_ARTICLE_ID = "articleId";
   @SerializedName(SERIALIZED_NAME_ARTICLE_ID)
   private Long articleId;
@@ -38,10 +42,6 @@ public class HelpRequestArticle {
   public static final String SERIALIZED_NAME_ARTICLE_COUNT = "articleCount";
   @SerializedName(SERIALIZED_NAME_ARTICLE_COUNT)
   private Long articleCount;
-
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private Long id;
 
   public static final String SERIALIZED_NAME_ARTICLE = "article";
   @SerializedName(SERIALIZED_NAME_ARTICLE)
@@ -54,6 +54,29 @@ public class HelpRequestArticle {
   public static final String SERIALIZED_NAME_HELP_REQUEST = "helpRequest";
   @SerializedName(SERIALIZED_NAME_HELP_REQUEST)
   private HelpRequest helpRequest;
+
+
+  public HelpRequestArticle id(Long id) {
+    
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * Get id
+   * @return id
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Long getId() {
+    return id;
+  }
+
+
+  public void setId(Long id) {
+    this.id = id;
+  }
 
 
   public HelpRequestArticle articleId(Long articleId) {
@@ -99,29 +122,6 @@ public class HelpRequestArticle {
 
   public void setArticleCount(Long articleCount) {
     this.articleCount = articleCount;
-  }
-
-
-  public HelpRequestArticle id(Long id) {
-    
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * Get id
-   * @return id
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public Long getId() {
-    return id;
-  }
-
-
-  public void setId(Long id) {
-    this.id = id;
   }
 
 
@@ -203,9 +203,9 @@ public class HelpRequestArticle {
       return false;
     }
     HelpRequestArticle helpRequestArticle = (HelpRequestArticle) o;
-    return Objects.equals(this.articleId, helpRequestArticle.articleId) &&
+    return Objects.equals(this.id, helpRequestArticle.id) &&
+        Objects.equals(this.articleId, helpRequestArticle.articleId) &&
         Objects.equals(this.articleCount, helpRequestArticle.articleCount) &&
-        Objects.equals(this.id, helpRequestArticle.id) &&
         Objects.equals(this.article, helpRequestArticle.article) &&
         Objects.equals(this.articleDone, helpRequestArticle.articleDone) &&
         Objects.equals(this.helpRequest, helpRequestArticle.helpRequest);
@@ -213,7 +213,7 @@ public class HelpRequestArticle {
 
   @Override
   public int hashCode() {
-    return Objects.hash(articleId, articleCount, id, article, articleDone, helpRequest);
+    return Objects.hash(id, articleId, articleCount, article, articleDone, helpRequest);
   }
 
 
@@ -221,9 +221,9 @@ public class HelpRequestArticle {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class HelpRequestArticle {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    articleId: ").append(toIndentedString(articleId)).append("\n");
     sb.append("    articleCount: ").append(toIndentedString(articleCount)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    article: ").append(toIndentedString(article)).append("\n");
     sb.append("    articleDone: ").append(toIndentedString(articleDone)).append("\n");
     sb.append("    helpRequest: ").append(toIndentedString(helpRequest)).append("\n");
