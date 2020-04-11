@@ -215,9 +215,9 @@
     </fragment>
     <fragment
         android:id="@+id/callTranslateFragment"
-        android:name="app.nexd.android.ui.helper.call.CallTranslateFragment"
+        android:name="app.nexd.android.ui.helper.transcript.articles.TranscriptArticlesFragment"
         android:label="CallTranslateFragment"
-        tools:layout="@layout/fragment_translate_call" >
+        tools:layout="@layout/fragment_transcript_articles" >
         <argument
             android:name="callRequestId"
             app:argType="string" />

@@ -1,4 +1,4 @@
-package app.nexd.android.ui.helper.call
+package app.nexd.android.ui.helper.transcript.articles
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,17 +13,17 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.api.model.CreateHelpRequestArticleDto
 import app.nexd.android.api.model.HelpRequestCreateDto
-import app.nexd.android.databinding.FragmentTranslateCallBinding
+import app.nexd.android.databinding.FragmentTranscriptArticlesBinding
 import app.nexd.android.ui.common.HelpRequestCreateArticleBinder
-import kotlinx.android.synthetic.main.fragment_translate_call.*
+import kotlinx.android.synthetic.main.fragment_transcript_articles.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
 
-class CallTranslateFragment : Fragment() {
+class TranscriptArticlesFragment : Fragment() {
 
     private val viewModel: CallTranslateViewModel by viewModels()
 
-    private lateinit var binding: FragmentTranslateCallBinding
+    private lateinit var binding: FragmentTranscriptArticlesBinding
 
     private val adapter = MultiViewAdapter()
 
@@ -32,7 +32,7 @@ class CallTranslateFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentTranslateCallBinding.inflate(inflater, container, false)
+        binding = FragmentTranscriptArticlesBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
         return binding.root

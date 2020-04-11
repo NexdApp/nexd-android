@@ -1,6 +1,5 @@
-package app.nexd.android.ui.helper.call
+package app.nexd.android.ui.helper.transcript.articles
 
-import android.annotation.SuppressLint
 import android.app.Application
 import android.media.MediaPlayer
 import androidx.lifecycle.AndroidViewModel
@@ -22,7 +21,6 @@ import okhttp3.ResponseBody
 import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.concurrent.TimeUnit
 
 class CallTranslateViewModel(application: Application) : AndroidViewModel(application) {
 
