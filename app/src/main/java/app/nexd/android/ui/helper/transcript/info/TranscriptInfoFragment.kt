@@ -6,17 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import app.nexd.android.R
+import app.nexd.android.databinding.FragmentTranscriptInfoBinding
 
 class TranscriptInfoFragment : Fragment() {
 
     private lateinit var viewModel: TranscriptInfoViewModel
 
+    private lateinit var binding: FragmentTranscriptInfoBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_transcript_info, container, false)
+        binding = FragmentTranscriptInfoBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
+
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
