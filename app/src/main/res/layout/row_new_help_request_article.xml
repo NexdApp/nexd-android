@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="70dp"
     android:paddingBottom="15dp"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    tools:background="@drawable/background_gradient">
 
 
 

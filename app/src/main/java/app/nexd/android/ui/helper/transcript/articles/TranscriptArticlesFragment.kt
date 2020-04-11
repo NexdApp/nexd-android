@@ -21,7 +21,7 @@ import mva2.adapter.MultiViewAdapter
 
 class TranscriptArticlesFragment : Fragment() {
 
-    private val viewModel: CallTranslateViewModel by viewModels()
+    private val viewModel: TranscriptArticlesViewModel by viewModels()
 
     private lateinit var binding: FragmentTranscriptArticlesBinding
 
@@ -60,7 +60,7 @@ class TranscriptArticlesFragment : Fragment() {
             }
         })
 
-        val args: CallTranslateFragmentArgs by navArgs()
+        val args: TranscriptArticlesFragmentArgs by navArgs()
 
         viewModel.downloadAudioFile(args.callRequestId)
 

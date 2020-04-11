@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="app.nexd.android.ui.helper.transcript.info.TranscriptInfoViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        android:paddingHorizontal="25dp"
+        android:paddingVertical="30dp">
+
+        <TextView
+            android:id="@+id/textView_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Personal data"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textSize_navigation_title"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_first_name_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:labelFor="@id/editText_first_name_value"
+            android:padding="8dp"
+            android:text="First name"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_title" />
+
+        <EditText
+            android:id="@+id/editText_first_name_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_button_white"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:nextFocusDown="@id/editText_last_name_value"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toStartOf="@+id/editText_last_name_value"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_first_name_label" />
+
+        <TextView
+            android:id="@+id/textView_last_name_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:labelFor="@id/editText_last_name_value"
+            android:padding="8dp"
+            android:text="Last name"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_title" />
+
+        <EditText
+            android:id="@+id/editText_last_name_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:background="@drawable/rounded_button_white"
+            android:nextFocusDown="@id/editText_street_value"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/editText_first_name_value"
+            app:layout_constraintTop_toBottomOf="@+id/textView_last_name_label" />
+
+        <TextView
+            android:id="@+id/textView_street_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:labelFor="@id/editText_street_value"
+            android:padding="8dp"
+            android:text="Street"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText_last_name_value" />
+
+        <EditText
+            android:id="@+id/editText_street_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_button_white"
+            android:nextFocusDown="@id/editText_street_number_value"
+            android:inputType="textAutoComplete"
+            android:padding="10dp"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            android:layout_marginEnd="14dp"
+            app:layout_constraintEnd_toStartOf="@id/editText_street_number_value"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_street_label" />
+
+        <TextView
+            android:id="@+id/textView_street_number_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:labelFor="@id/editText_street_number_value"
+            android:padding="8dp"
+            android:text="Number"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText_last_name_value" />
+
+        <EditText
+            android:id="@+id/editText_street_number_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_button_white"
+            android:inputType="number"
+            android:padding="10dp"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            android:nextFocusDown="@id/editText_postal_code_value"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/textView_street_number_label"
+            app:layout_constraintTop_toBottomOf="@+id/textView_street_label" />
+
+        <TextView
+            android:id="@+id/textView_postal_code_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="8dp"
+            android:text="Postal code"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText_street_value" />
+
+        <EditText
+            android:id="@+id/editText_postal_code_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_button_white"
+            android:inputType="number"
+            android:padding="10dp"
+            android:textColor="@android:color/black"
+            android:nextFocusDown="@id/editText_city_value"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="@+id/textView_postal_code_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_postal_code_label" />
+
+        <TextView
+            android:id="@+id/textView_city_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="8dp"
+            android:text="City"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText_street_value" />
+
+        <EditText
+            android:id="@+id/editText_city_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_button_white"
+            android:inputType="textPostalAddress"
+            android:padding="10dp"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            android:layout_marginStart="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/editText_postal_code_value"
+            app:layout_constraintTop_toBottomOf="@+id/textView_postal_code_label" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

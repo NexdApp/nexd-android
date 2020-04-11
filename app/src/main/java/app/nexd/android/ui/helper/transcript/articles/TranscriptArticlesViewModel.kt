@@ -22,7 +22,7 @@ import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class CallTranslateViewModel(application: Application) : AndroidViewModel(application) {
+class TranscriptArticlesViewModel(application: Application) : AndroidViewModel(application) {
 
     private val medPlayer = MediaPlayerAdapter()
 

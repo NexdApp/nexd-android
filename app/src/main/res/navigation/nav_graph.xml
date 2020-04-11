@@ -248,12 +248,8 @@
         android:label="CallOverviewFragment"
         tools:layout="@layout/fragment_call_overview" >
         <action
-            android:id="@+id/toCallTranslateFragment"
-            app:destination="@id/callTranslateFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit"
-            app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_close_exit"  />
+            android:id="@+id/action_callOverviewFragment_to_transcriptMetaFragment"
+            app:destination="@id/transcriptMetaFragment" />
     </fragment>
     <fragment
         android:id="@+id/seekerTypeFragment"
@@ -280,4 +276,12 @@
         android:name="app.nexd.android.ui.seeker.call.PhoneCallFragment"
         android:label="PhoneCallFragment"
         tools:layout="@layout/fragment_phone_call" />
+    <fragment
+        android:id="@+id/transcriptMetaFragment"
+        android:name="app.nexd.android.ui.helper.transcript.info.TranscriptInfoFragment"
+        android:label="TranscriptMetaFragment" >
+        <action
+            android:id="@+id/action_transcriptMetaFragment_to_callTranslateFragment"
+            app:destination="@id/callTranslateFragment" />
+    </fragment>
 </navigation>
