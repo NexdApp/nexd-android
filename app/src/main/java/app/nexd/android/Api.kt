@@ -1,6 +1,7 @@
 package app.nexd.android
 
 import app.nexd.android.api.*
+import com.itkacher.okhttpprofiler.OkHttpProfilerInterceptor
 import io.reactivex.schedulers.Schedulers.io
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -40,6 +41,9 @@ private class NexdApiClient : ApiClient("bearer") {
 
         val loggingInterceptor = HttpLoggingInterceptor()
             .setLevel(HttpLoggingInterceptor.Level.BODY)
+
         okBuilder.addInterceptor(loggingInterceptor)
+
+        okBuilder.addInterceptor(OkHttpProfilerInterceptor())
     }
 }

@@ -114,9 +114,9 @@ public class User {
   @SerializedName(SERIALIZED_NAME_ROLE)
   private RoleEnum role = RoleEnum.NONE;
 
-  public static final String SERIALIZED_NAME_TELEPHONE = "telephone";
-  @SerializedName(SERIALIZED_NAME_TELEPHONE)
-  private String telephone;
+  public static final String SERIALIZED_NAME_PHONE_NUMBER = "phoneNumber";
+  @SerializedName(SERIALIZED_NAME_PHONE_NUMBER)
+  private String phoneNumber;
 
 
   public User street(String street) {
@@ -322,26 +322,26 @@ public class User {
   }
 
 
-  public User telephone(String telephone) {
+  public User phoneNumber(String phoneNumber) {
     
-    this.telephone = telephone;
+    this.phoneNumber = phoneNumber;
     return this;
   }
 
    /**
-   * Get telephone
-   * @return telephone
+   * Get phoneNumber
+   * @return phoneNumber
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public String getTelephone() {
-    return telephone;
+  public String getPhoneNumber() {
+    return phoneNumber;
   }
 
 
-  public void setTelephone(String telephone) {
-    this.telephone = telephone;
+  public void setPhoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
   }
 
 
@@ -363,12 +363,12 @@ public class User {
         Objects.equals(this.lastName, user.lastName) &&
         Objects.equals(this.email, user.email) &&
         Objects.equals(this.role, user.role) &&
-        Objects.equals(this.telephone, user.telephone);
+        Objects.equals(this.phoneNumber, user.phoneNumber);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(street, number, zipCode, city, id, firstName, lastName, email, role, telephone);
+    return Objects.hash(street, number, zipCode, city, id, firstName, lastName, email, role, phoneNumber);
   }
 
 
@@ -385,7 +385,7 @@ public class User {
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
-    sb.append("    telephone: ").append(toIndentedString(telephone)).append("\n");
+    sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("}");
     return sb.toString();
   }

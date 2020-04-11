@@ -42,11 +42,13 @@ public interface UsersApi {
   /**
    * Get all users
    * 
+   * @param xAdminSecret Secret to access the admin functions. (required)
    * @return Observable&lt;List&lt;User&gt;&gt;
    */
   @GET("users")
-  Observable<List<User>> userControllerGetAll();
-    
+  Observable<List<User>> userControllerGetAll(
+    @retrofit2.http.Header("x-admin-secret") String xAdminSecret
+  );
 
   /**
    * Update profile of a specific user

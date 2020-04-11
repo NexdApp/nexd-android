@@ -85,7 +85,7 @@ class RegisterDetailedViewModel(application: Application) : AndroidViewModel(app
             with(api) {
                 userControllerUpdateMyself(
                     UpdateUserDto()
-                        .telephone(phoneNumber.value)
+                        .phoneNumber(phoneNumber.value)
                         .street(street.value)
                         .number(houseNumber.value)
                         .zipCode(zipCode.value)

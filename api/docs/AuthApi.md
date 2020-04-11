@@ -72,6 +72,8 @@ No authorization required
 |-------------|-------------|------------------|
 | **200** | Successful Login |  -  |
 | **201** |  |  -  |
+| **400** | Bad Request |  -  |
+| **409** | Conflict |  -  |
 
 
 ## authControllerRefreshToken
@@ -136,6 +138,7 @@ No authorization required
 |-------------|-------------|------------------|
 | **201** | Successful token refresh |  -  |
 | **400** | Bad Request |  -  |
+| **409** | Conflict |  -  |
 
 
 ## authControllerRegister
@@ -200,5 +203,5 @@ No authorization required
 |-------------|-------------|------------------|
 | **201** | Successful Registration |  -  |
 | **400** | Bad Request |  -  |
-| **406** | Already exists |  -  |
+| **409** | Conflict |  -  |
 

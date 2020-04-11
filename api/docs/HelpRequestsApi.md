@@ -119,7 +119,7 @@ public class Example {
         Boolean excludeUserId = true; // Boolean | If true, the given userId (in query) is excluded (and not filtered for as default). Requires the userId query.
         List<String> zipCode = Arrays.asList(); // List<String> | Filter by an array of zipCodes
         Boolean includeRequester = true; // Boolean | If \"true\", the requester object is included in each help request
-        List<String> status = Arrays.asList(); // List<String> | Array of status to filter for
+        List<HelpRequestStatus> status = Arrays.asList(); // List<HelpRequestStatus> | Array of status to filter for
         try {
             List<HelpRequest> result = apiInstance.helpRequestsControllerGetAll(userId, excludeUserId, zipCode, includeRequester, status);
             System.out.println(result);
@@ -143,7 +143,7 @@ Name | Type | Description  | Notes
  **excludeUserId** | **Boolean**| If true, the given userId (in query) is excluded (and not filtered for as default). Requires the userId query. | [optional]
  **zipCode** | [**List&lt;String&gt;**](String.md)| Filter by an array of zipCodes | [optional]
  **includeRequester** | **Boolean**| If \&quot;true\&quot;, the requester object is included in each help request | [optional]
- **status** | [**List&lt;String&gt;**](String.md)| Array of status to filter for | [optional] [enum: pending, ongoing, completed, deactivated]
+ **status** | [**List&lt;HelpRequestStatus&gt;**](HelpRequestStatus.md)| Array of status to filter for | [optional]
 
 ### Return type
 
