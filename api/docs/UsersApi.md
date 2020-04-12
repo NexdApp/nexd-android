@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 ## userControllerGetAll
 
-> List&lt;User&gt; userControllerGetAll()
+> List&lt;User&gt; userControllerGetAll(xAdminSecret)
 
 Get all users
 
@@ -175,8 +175,9 @@ public class Example {
         bearer.setBearerToken("BEARER TOKEN");
 
         UsersApi apiInstance = new UsersApi(defaultClient);
+        String xAdminSecret = "xAdminSecret_example"; // String | Secret to access the admin functions.
         try {
-            List<User> result = apiInstance.userControllerGetAll();
+            List<User> result = apiInstance.userControllerGetAll(xAdminSecret);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling UsersApi#userControllerGetAll");
@@ -191,7 +192,10 @@ public class Example {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xAdminSecret** | **String**| Secret to access the admin functions. |
 
 ### Return type
 

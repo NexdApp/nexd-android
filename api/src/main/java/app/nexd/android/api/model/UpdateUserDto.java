@@ -106,9 +106,9 @@ public class UpdateUserDto {
   @SerializedName(SERIALIZED_NAME_ROLE)
   private RoleEnum role = RoleEnum.NONE;
 
-  public static final String SERIALIZED_NAME_TELEPHONE = "telephone";
-  @SerializedName(SERIALIZED_NAME_TELEPHONE)
-  private String telephone;
+  public static final String SERIALIZED_NAME_PHONE_NUMBER = "phoneNumber";
+  @SerializedName(SERIALIZED_NAME_PHONE_NUMBER)
+  private String phoneNumber;
 
 
   public UpdateUserDto street(String street) {
@@ -270,26 +270,26 @@ public class UpdateUserDto {
   }
 
 
-  public UpdateUserDto telephone(String telephone) {
+  public UpdateUserDto phoneNumber(String phoneNumber) {
     
-    this.telephone = telephone;
+    this.phoneNumber = phoneNumber;
     return this;
   }
 
    /**
-   * Get telephone
-   * @return telephone
+   * Get phoneNumber
+   * @return phoneNumber
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public String getTelephone() {
-    return telephone;
+  public String getPhoneNumber() {
+    return phoneNumber;
   }
 
 
-  public void setTelephone(String telephone) {
-    this.telephone = telephone;
+  public void setPhoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
   }
 
 
@@ -309,12 +309,12 @@ public class UpdateUserDto {
         Objects.equals(this.firstName, updateUserDto.firstName) &&
         Objects.equals(this.lastName, updateUserDto.lastName) &&
         Objects.equals(this.role, updateUserDto.role) &&
-        Objects.equals(this.telephone, updateUserDto.telephone);
+        Objects.equals(this.phoneNumber, updateUserDto.phoneNumber);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(street, number, zipCode, city, firstName, lastName, role, telephone);
+    return Objects.hash(street, number, zipCode, city, firstName, lastName, role, phoneNumber);
   }
 
 
@@ -329,7 +329,7 @@ public class UpdateUserDto {
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
-    sb.append("    telephone: ").append(toIndentedString(telephone)).append("\n");
+    sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("}");
     return sb.toString();
   }

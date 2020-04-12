@@ -67,7 +67,7 @@ class SeekerCreateRequestFragment : Fragment() {
                         .number(currentUser.number)
                         .zipCode(currentUser.zipCode)
                         .city(currentUser.city)
-                        .phoneNumber(currentUser.telephone)
+                        .phoneNumber(currentUser.phoneNumber)
                         .additionalRequest(textView_additionalRequest.text.toString())
 
                     viewModel.sendRequest(request)

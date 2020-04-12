@@ -78,7 +78,8 @@ public class RegisterDto {
    * Get firstName
    * @return firstName
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getFirstName() {
     return firstName;
@@ -100,7 +101,8 @@ public class RegisterDto {
    * Get lastName
    * @return lastName
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getLastName() {
     return lastName;
