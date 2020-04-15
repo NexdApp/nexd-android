@@ -24,10 +24,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener { controller, destination, _ ->
+            Log.v("Navigation", destination.toString())
             runOnUiThread {
                 // skip authentication if it
                 if (destination.id == R.id.authFragment) {
                     Preferences.getToken(this)?.let {
+                        Log.v("Navigation", "redirect to roleFragment")
                         controller.navigate(R.id.roleFragment)
                     }
                 }

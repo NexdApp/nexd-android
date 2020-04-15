@@ -29,6 +29,14 @@ import java.io.IOException;
  */
 
 public class UpdateUserDto {
+  public static final String SERIALIZED_NAME_FIRST_NAME = "firstName";
+  @SerializedName(SERIALIZED_NAME_FIRST_NAME)
+  private String firstName;
+
+  public static final String SERIALIZED_NAME_LAST_NAME = "lastName";
+  @SerializedName(SERIALIZED_NAME_LAST_NAME)
+  private String lastName;
+
   public static final String SERIALIZED_NAME_STREET = "street";
   @SerializedName(SERIALIZED_NAME_STREET)
   private String street;
@@ -44,14 +52,6 @@ public class UpdateUserDto {
   public static final String SERIALIZED_NAME_CITY = "city";
   @SerializedName(SERIALIZED_NAME_CITY)
   private String city;
-
-  public static final String SERIALIZED_NAME_FIRST_NAME = "firstName";
-  @SerializedName(SERIALIZED_NAME_FIRST_NAME)
-  private String firstName;
-
-  public static final String SERIALIZED_NAME_LAST_NAME = "lastName";
-  @SerializedName(SERIALIZED_NAME_LAST_NAME)
-  private String lastName;
 
   /**
    * Gets or Sets role
@@ -109,6 +109,52 @@ public class UpdateUserDto {
   public static final String SERIALIZED_NAME_PHONE_NUMBER = "phoneNumber";
   @SerializedName(SERIALIZED_NAME_PHONE_NUMBER)
   private String phoneNumber;
+
+
+  public UpdateUserDto firstName(String firstName) {
+    
+    this.firstName = firstName;
+    return this;
+  }
+
+   /**
+   * Get firstName
+   * @return firstName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getFirstName() {
+    return firstName;
+  }
+
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+
+  public UpdateUserDto lastName(String lastName) {
+    
+    this.lastName = lastName;
+    return this;
+  }
+
+   /**
+   * Get lastName
+   * @return lastName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getLastName() {
+    return lastName;
+  }
+
+
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
 
 
   public UpdateUserDto street(String street) {
@@ -203,50 +249,6 @@ public class UpdateUserDto {
   }
 
 
-  public UpdateUserDto firstName(String firstName) {
-    
-    this.firstName = firstName;
-    return this;
-  }
-
-   /**
-   * Get firstName
-   * @return firstName
-  **/
-  @ApiModelProperty(required = true, value = "")
-
-  public String getFirstName() {
-    return firstName;
-  }
-
-
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
-
-
-  public UpdateUserDto lastName(String lastName) {
-    
-    this.lastName = lastName;
-    return this;
-  }
-
-   /**
-   * Get lastName
-   * @return lastName
-  **/
-  @ApiModelProperty(required = true, value = "")
-
-  public String getLastName() {
-    return lastName;
-  }
-
-
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
-
-
   public UpdateUserDto role(RoleEnum role) {
     
     this.role = role;
@@ -302,19 +304,19 @@ public class UpdateUserDto {
       return false;
     }
     UpdateUserDto updateUserDto = (UpdateUserDto) o;
-    return Objects.equals(this.street, updateUserDto.street) &&
+    return Objects.equals(this.firstName, updateUserDto.firstName) &&
+        Objects.equals(this.lastName, updateUserDto.lastName) &&
+        Objects.equals(this.street, updateUserDto.street) &&
         Objects.equals(this.number, updateUserDto.number) &&
         Objects.equals(this.zipCode, updateUserDto.zipCode) &&
         Objects.equals(this.city, updateUserDto.city) &&
-        Objects.equals(this.firstName, updateUserDto.firstName) &&
-        Objects.equals(this.lastName, updateUserDto.lastName) &&
         Objects.equals(this.role, updateUserDto.role) &&
         Objects.equals(this.phoneNumber, updateUserDto.phoneNumber);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(street, number, zipCode, city, firstName, lastName, role, phoneNumber);
+    return Objects.hash(firstName, lastName, street, number, zipCode, city, role, phoneNumber);
   }
 
 
@@ -322,12 +324,12 @@ public class UpdateUserDto {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateUserDto {\n");
+    sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
+    sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
     sb.append("    street: ").append(toIndentedString(street)).append("\n");
     sb.append("    number: ").append(toIndentedString(number)).append("\n");
     sb.append("    zipCode: ").append(toIndentedString(zipCode)).append("\n");
     sb.append("    city: ").append(toIndentedString(city)).append("\n");
-    sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
-    sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("}");

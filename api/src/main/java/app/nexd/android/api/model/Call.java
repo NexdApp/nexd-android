@@ -16,6 +16,7 @@ package app.nexd.android.api.model;
 import java.util.Objects;
 import java.util.Arrays;
 import app.nexd.android.api.model.HelpRequest;
+import app.nexd.android.api.model.User;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -35,17 +36,17 @@ public class Call {
   @SerializedName(SERIALIZED_NAME_SID)
   private String sid;
 
-  public static final String SERIALIZED_NAME_CREATED = "created";
-  @SerializedName(SERIALIZED_NAME_CREATED)
-  private Date created;
+  public static final String SERIALIZED_NAME_CREATED_AT = "createdAt";
+  @SerializedName(SERIALIZED_NAME_CREATED_AT)
+  private Date createdAt;
 
-  public static final String SERIALIZED_NAME_RECORD_URL = "recordUrl";
-  @SerializedName(SERIALIZED_NAME_RECORD_URL)
-  private String recordUrl;
+  public static final String SERIALIZED_NAME_UPDATED_AT = "updatedAt";
+  @SerializedName(SERIALIZED_NAME_UPDATED_AT)
+  private Date updatedAt;
 
-  public static final String SERIALIZED_NAME_TRANSCRIPTION_URL = "transcriptionUrl";
-  @SerializedName(SERIALIZED_NAME_TRANSCRIPTION_URL)
-  private String transcriptionUrl;
+  public static final String SERIALIZED_NAME_RECORDING_URL = "recordingUrl";
+  @SerializedName(SERIALIZED_NAME_RECORDING_URL)
+  private String recordingUrl;
 
   public static final String SERIALIZED_NAME_CONVERTED_HELP_REQUEST = "convertedHelpRequest";
   @SerializedName(SERIALIZED_NAME_CONVERTED_HELP_REQUEST)
@@ -66,6 +67,14 @@ public class Call {
   public static final String SERIALIZED_NAME_CITY = "city";
   @SerializedName(SERIALIZED_NAME_CITY)
   private String city;
+
+  public static final String SERIALIZED_NAME_CONVERTER_ID = "converterId";
+  @SerializedName(SERIALIZED_NAME_CONVERTER_ID)
+  private String converterId;
+
+  public static final String SERIALIZED_NAME_CONVERTER = "converter";
+  @SerializedName(SERIALIZED_NAME_CONVERTER)
+  private User converter;
 
 
   public Call sid(String sid) {
@@ -90,71 +99,70 @@ public class Call {
   }
 
 
-  public Call created(Date created) {
+  public Call createdAt(Date createdAt) {
     
-    this.created = created;
+    this.createdAt = createdAt;
     return this;
   }
 
    /**
-   * Get created
-   * @return created
+   * Get createdAt
+   * @return createdAt
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public Date getCreated() {
-    return created;
+  public Date getCreatedAt() {
+    return createdAt;
   }
 
 
-  public void setCreated(Date created) {
-    this.created = created;
+  public void setCreatedAt(Date createdAt) {
+    this.createdAt = createdAt;
   }
 
 
-  public Call recordUrl(String recordUrl) {
+  public Call updatedAt(Date updatedAt) {
     
-    this.recordUrl = recordUrl;
+    this.updatedAt = updatedAt;
     return this;
   }
 
    /**
-   * Get recordUrl
-   * @return recordUrl
+   * Get updatedAt
+   * @return updatedAt
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
 
-  public String getRecordUrl() {
-    return recordUrl;
+  public Date getUpdatedAt() {
+    return updatedAt;
   }
 
 
-  public void setRecordUrl(String recordUrl) {
-    this.recordUrl = recordUrl;
+  public void setUpdatedAt(Date updatedAt) {
+    this.updatedAt = updatedAt;
   }
 
 
-  public Call transcriptionUrl(String transcriptionUrl) {
+  public Call recordingUrl(String recordingUrl) {
     
-    this.transcriptionUrl = transcriptionUrl;
+    this.recordingUrl = recordingUrl;
     return this;
   }
 
    /**
-   * Get transcriptionUrl
-   * @return transcriptionUrl
+   * Get recordingUrl
+   * @return recordingUrl
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public String getTranscriptionUrl() {
-    return transcriptionUrl;
+  public String getRecordingUrl() {
+    return recordingUrl;
   }
 
 
-  public void setTranscriptionUrl(String transcriptionUrl) {
-    this.transcriptionUrl = transcriptionUrl;
+  public void setRecordingUrl(String recordingUrl) {
+    this.recordingUrl = recordingUrl;
   }
 
 
@@ -273,6 +281,51 @@ public class Call {
   }
 
 
+  public Call converterId(String converterId) {
+    
+    this.converterId = converterId;
+    return this;
+  }
+
+   /**
+   * Get converterId
+   * @return converterId
+  **/
+  @ApiModelProperty(required = true, value = "")
+
+  public String getConverterId() {
+    return converterId;
+  }
+
+
+  public void setConverterId(String converterId) {
+    this.converterId = converterId;
+  }
+
+
+  public Call converter(User converter) {
+    
+    this.converter = converter;
+    return this;
+  }
+
+   /**
+   * Get converter
+   * @return converter
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public User getConverter() {
+    return converter;
+  }
+
+
+  public void setConverter(User converter) {
+    this.converter = converter;
+  }
+
+
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -283,19 +336,21 @@ public class Call {
     }
     Call call = (Call) o;
     return Objects.equals(this.sid, call.sid) &&
-        Objects.equals(this.created, call.created) &&
-        Objects.equals(this.recordUrl, call.recordUrl) &&
-        Objects.equals(this.transcriptionUrl, call.transcriptionUrl) &&
+        Objects.equals(this.createdAt, call.createdAt) &&
+        Objects.equals(this.updatedAt, call.updatedAt) &&
+        Objects.equals(this.recordingUrl, call.recordingUrl) &&
         Objects.equals(this.convertedHelpRequest, call.convertedHelpRequest) &&
         Objects.equals(this.phoneNumber, call.phoneNumber) &&
         Objects.equals(this.country, call.country) &&
         Objects.equals(this.zip, call.zip) &&
-        Objects.equals(this.city, call.city);
+        Objects.equals(this.city, call.city) &&
+        Objects.equals(this.converterId, call.converterId) &&
+        Objects.equals(this.converter, call.converter);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(sid, created, recordUrl, transcriptionUrl, convertedHelpRequest, phoneNumber, country, zip, city);
+    return Objects.hash(sid, createdAt, updatedAt, recordingUrl, convertedHelpRequest, phoneNumber, country, zip, city, converterId, converter);
   }
 
 
@@ -304,14 +359,16 @@ public class Call {
     StringBuilder sb = new StringBuilder();
     sb.append("class Call {\n");
     sb.append("    sid: ").append(toIndentedString(sid)).append("\n");
-    sb.append("    created: ").append(toIndentedString(created)).append("\n");
-    sb.append("    recordUrl: ").append(toIndentedString(recordUrl)).append("\n");
-    sb.append("    transcriptionUrl: ").append(toIndentedString(transcriptionUrl)).append("\n");
+    sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
+    sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
+    sb.append("    recordingUrl: ").append(toIndentedString(recordingUrl)).append("\n");
     sb.append("    convertedHelpRequest: ").append(toIndentedString(convertedHelpRequest)).append("\n");
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    zip: ").append(toIndentedString(zip)).append("\n");
     sb.append("    city: ").append(toIndentedString(city)).append("\n");
+    sb.append("    converterId: ").append(toIndentedString(converterId)).append("\n");
+    sb.append("    converter: ").append(toIndentedString(converter)).append("\n");
     sb.append("}");
     return sb.toString();
   }

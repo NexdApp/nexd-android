@@ -20,7 +20,7 @@ class HelpRequestCreateArticleBinder : ItemBinder<HelpRequestCreateArticleBinder
 
     class ViewHolder(itemView: View) : ItemViewHolder<ArticleInput>(itemView) {
         var name: TextView = itemView.textView_article_name
-        var amount: EditText = itemView.textView_amount
+        var amount: EditText = itemView.editText_articleCount
     }
 
     override fun bindViewHolder(holder: ViewHolder, item: ArticleInput) {

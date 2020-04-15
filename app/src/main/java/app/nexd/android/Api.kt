@@ -16,7 +16,7 @@ class Api(private val apiClient: ApiClient = NexdApiClient()) :
     HelpListsApi by apiClient.createService(HelpListsApi::class.java),
     HelpRequestsApi by apiClient.createService(HelpRequestsApi::class.java),
     UsersApi by apiClient.createService(UsersApi::class.java),
-    CallsApi by apiClient.createService(CallsApi::class.java) {
+    PhoneApi by apiClient.createService(PhoneApi::class.java) {
 
     fun setBearerToken(token: String?) {
         apiClient.setBearerToken(token)

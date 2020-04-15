@@ -214,15 +214,6 @@
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
-        android:id="@+id/callTranslateFragment"
-        android:name="app.nexd.android.ui.helper.transcript.articles.TranscriptArticlesFragment"
-        android:label="CallTranslateFragment"
-        tools:layout="@layout/fragment_transcript_articles" >
-        <argument
-            android:name="callRequestId"
-            app:argType="string" />
-    </fragment>
-    <fragment
         android:id="@+id/helperTypeFragment"
         android:name="app.nexd.android.ui.helper.type.HelperTypeFragment"
         android:label="HelperTypeFragment"
@@ -236,20 +227,11 @@
             app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/toCallOverviewFragment"
-            app:destination="@id/callOverviewFragment"
+            app:destination="@id/nav_transcript"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
-    </fragment>
-    <fragment
-        android:id="@+id/callOverviewFragment"
-        android:name="app.nexd.android.ui.helper.callOverview.CallOverviewFragment"
-        android:label="CallOverviewFragment"
-        tools:layout="@layout/fragment_call_overview" >
-        <action
-            android:id="@+id/action_callOverviewFragment_to_transcriptMetaFragment"
-            app:destination="@id/transcriptMetaFragment" />
     </fragment>
     <fragment
         android:id="@+id/seekerTypeFragment"
@@ -276,12 +258,44 @@
         android:name="app.nexd.android.ui.seeker.call.PhoneCallFragment"
         android:label="PhoneCallFragment"
         tools:layout="@layout/fragment_phone_call" />
-    <fragment
-        android:id="@+id/transcriptMetaFragment"
-        android:name="app.nexd.android.ui.helper.transcript.info.TranscriptInfoFragment"
-        android:label="TranscriptMetaFragment" >
-        <action
-            android:id="@+id/action_transcriptMetaFragment_to_callTranslateFragment"
-            app:destination="@id/callTranslateFragment" />
-    </fragment>
+    <navigation
+        android:id="@+id/nav_transcript"
+        android:label="Transcript"
+        app:startDestination="@id/callOverviewFragment">
+        <fragment
+            android:id="@+id/transcriptArticlesFragment"
+            android:name="app.nexd.android.ui.helper.transcript.articles.TranscriptArticlesFragment"
+            android:label="TranscriptArticlesFragment"
+            tools:layout="@layout/fragment_transcript_articles">
+            <action
+                android:id="@+id/action_transcriptArticlesFragment_to_callOverviewFragment"
+                app:destination="@id/callOverviewFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/transcriptInfoFragment"
+            android:name="app.nexd.android.ui.helper.transcript.info.TranscriptInfoFragment"
+            android:label="TranscriptInfoFragment"
+            tools:layout="@layout/fragment_transcript_info">
+            <action
+                android:id="@+id/action_transcriptInfoFragment_to_transcriptArticlesFragment"
+                app:destination="@id/transcriptArticlesFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right" />
+        </fragment>
+        <fragment
+            android:id="@+id/callOverviewFragment"
+            android:name="app.nexd.android.ui.helper.transcript.calls.TranscriptCallsFragment"
+            android:label="CallOverviewFragment"
+            tools:layout="@layout/fragment_transcript_calls">
+            <action
+                android:id="@+id/action_callOverviewFragment_to_transcriptInfoFragment"
+                app:destination="@id/transcriptInfoFragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right" />
+        </fragment>
+    </navigation>
 </navigation>
