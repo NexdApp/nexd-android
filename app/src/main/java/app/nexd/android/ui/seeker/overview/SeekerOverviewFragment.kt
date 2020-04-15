@@ -67,8 +67,7 @@ class SeekerOverviewFragment : Fragment() {
 
         button_create_new_help_request.setOnClickListener {
             findNavController().navigate(
-                SeekerOverviewFragmentDirections
-                    .actionSeekerOverviewFragmentToCreateHelpRequestFragment()
+                SeekerOverviewFragmentDirections.toSeekerCreateFragment()
             )
         }
     }

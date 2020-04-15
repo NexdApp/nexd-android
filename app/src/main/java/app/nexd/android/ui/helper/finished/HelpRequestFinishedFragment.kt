@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.api.model.HelpRequest
+import app.nexd.android.databinding.FragmentHelperRequestFinishedBinding
 import app.nexd.android.ui.common.HelpRequestBinder
 import kotlinx.android.synthetic.main.fragment_helper_request_finished.*
 import mva2.adapter.ListSection
@@ -22,12 +23,17 @@ class HelpRequestFinishedFragment: Fragment() {
 
     private val adapter = MultiViewAdapter()
 
+    private lateinit var binding: FragmentHelperRequestFinishedBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_helper_request_finished, container, false)
+        binding = FragmentHelperRequestFinishedBinding.inflate(inflater, container, false)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

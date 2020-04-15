@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.api.model.HelpRequest
+import app.nexd.android.databinding.FragmentDeliveryBinding
 import app.nexd.android.ui.dialog.SelectBasicDialog
 import kotlinx.android.synthetic.main.fragment_delivery.*
 import mva2.adapter.ListSection
@@ -22,15 +23,20 @@ class DeliveryFragment : Fragment() {
 
     private val adapter = MultiViewAdapter()
 
+    private lateinit var binding: FragmentDeliveryBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_delivery, container, false)
+        binding = FragmentDeliveryBinding.inflate(inflater, container, false)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         recyclerView_helpRequests.adapter = adapter
         recyclerView_helpRequests.layoutManager = LinearLayoutManager(context)

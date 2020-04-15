@@ -1,12 +1,15 @@
 package app.nexd.android.ui.auth.register
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import app.nexd.android.Preferences
 import app.nexd.android.R
 import app.nexd.android.api
 import app.nexd.android.api.model.RegisterDto
+import app.nexd.android.models.ErrorResponse
+import com.google.gson.Gson
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import retrofit2.HttpException
@@ -100,25 +103,27 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
                         .password(password.value)
                 )
                     .observeOn(AndroidSchedulers.mainThread())
-                    .doOnError {
-                        progress.value = Progress.Error(
-                            if (it is HttpException) {
-                                when (it.code()) {
-                                    406 -> "Nutzer bereits registriert"
-                                    else -> it.message()
-                                }
-                            } else {
-                                it.message.toString()
-                            }
-                        )
-                    }
-                    .subscribe {
+                    .subscribe({
                         api.setBearerToken(it.accessToken)
                         with(getApplication<Application>().applicationContext) {
                             Preferences.setToken(this, it.accessToken)
                         }
                         progress.value = Progress.Finished
-                    }
+                    }, {
+                        progress.value = Progress.Error(
+                            if (it is HttpException) {
+                                val errorBody = it.response()?.errorBody()
+                                if (errorBody != null) {
+                                    Gson().fromJson(errorBody.string(), ErrorResponse::class.java)
+                                        .message.firstOrNull() ?: it.message()
+                                } else {
+                                    it.message()
+                                }
+                            } else {
+                                it.message.toString()
+                            }
+                        )
+                    })
             }
         }
     }

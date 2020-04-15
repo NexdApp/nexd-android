@@ -11,8 +11,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.api.model.Call
+import app.nexd.android.databinding.FragmentCallOverviewBinding
 import app.nexd.android.ui.common.CallBinder
+import app.nexd.android.ui.common.DefaultSnackbar
 import app.nexd.android.ui.helper.callOverview.CallOverviewFragmentDirections.Companion.toCallTranslateFragment
+import app.nexd.android.ui.helper.callOverview.CallOverviewViewModel.Progress.Error
+import app.nexd.android.ui.helper.callOverview.CallOverviewViewModel.Progress.Idle
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_call_overview.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
@@ -23,12 +28,17 @@ class CallOverviewFragment: Fragment() {
 
     private val viewModel: CallOverviewViewModel by viewModels()
 
+    private lateinit var binding: FragmentCallOverviewBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_call_overview, container, false)
+        binding = FragmentCallOverviewBinding.inflate(inflater, container, false)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -50,6 +60,16 @@ class CallOverviewFragment: Fragment() {
             callsList.setOnSelectionChangedListener { call, isSelected, _ ->
                 if (isSelected)
                     findNavController().navigate(toCallTranslateFragment(call.sid))
+            }
+        })
+
+        viewModel.progress.observe(viewLifecycleOwner, Observer { progress ->
+            when (progress) {
+                is Idle -> {
+                }
+                is Error -> {
+                    DefaultSnackbar(view, progress.message, Snackbar.LENGTH_SHORT)
+                }
             }
         })
 
