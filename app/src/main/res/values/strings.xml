@@ -93,12 +93,6 @@
     <string name="helper_request_finished_screen_title">"Completed requests:"</string>
     <string name="helper_request_overview_item_type_recording">"Recording"</string>
     <string name="helper_request_overview_item_type_list">"List"</string>
-
-    <!-- Title of the user profile screen -->
-    <string name="user_profile_screen_title">"User profile"</string>
-
-    <!-- Logout button title -->
-    <string name="user_profile_button_title_logout">"Logout"</string>
     <string name="helper_request_transcript_button_done">"Add order to Current Item List"</string>
     <string name="role_screen_title">"Welcome, "</string>
     <string name="role_screen_subtitle">"What would you like to do today?"</string>
