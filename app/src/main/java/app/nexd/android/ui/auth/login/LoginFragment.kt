@@ -38,12 +38,14 @@ class LoginFragment : Fragment() {
     ): View? {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.viewModel = viewModel
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.viewModel = viewModel
 
         editText_password.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -71,15 +73,17 @@ class LoginFragment : Fragment() {
                 is Error -> {
                     DefaultSnackbar(button_login, progress.message, Snackbar.LENGTH_SHORT)
                 }
-                is Finished -> {
-                    findNavController().navigate(toRoleFragment())
-                }
+                is Finished -> proceed()
             }
         })
 
         button_dataProtection.setOnClickListener {
             showPrivacyPolicy()
         }
+    }
+
+    private fun proceed() {
+        findNavController().navigate(toRoleFragment())
     }
 
     private fun showPrivacyPolicy() {

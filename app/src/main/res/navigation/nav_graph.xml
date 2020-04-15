@@ -36,7 +36,7 @@
         android:name="app.nexd.android.ui.seeker.overview.SeekerOverviewFragment"
         tools:layout="@layout/fragment_seeker_overview" >
         <action
-            android:id="@+id/toSeekerCreateFragment"
+            android:id="@+id/action_seekerOverviewFragment_to_createHelpRequestFragment"
             app:destination="@id/seekerCreateRequestFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
@@ -55,7 +55,7 @@
         android:name="app.nexd.android.ui.helper.requestOverview.HelperOverviewFragment"
         tools:layout="@layout/fragment_helper_request_overview" >
         <action
-            android:id="@+id/toRequestDetailAction"
+            android:id="@+id/requestDetailAction"
             app:destination="@id/helperRequestDetailFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
