@@ -39,12 +39,6 @@
 
     <!-- Logout button title -->
     <string name="user_profile_button_title_logout">"Abmelden"</string>
-
-    <!-- Localizable.strings
-  Nexd
-
-  Created by Tobias Schröpf on 21.03.20.
-  Copyright © 2020 Tobias Schröpf. All rights reserved. -->
     <string name="dialog_button_abort">"Abbrechen"</string>
     <string name="dialog_button_confirm">"Bestätigen"</string>
     <string name="login_placeholder_username">"Benutzername"</string>
@@ -88,7 +82,7 @@
     <string name="error_message_user_detail_field_missing">"Bitte ausfüllen"</string>
     <string name="registration_label_privacy_policy_agreement">"Mit der Registrierung akzeptiere ich die %1$@"</string>
     <string name="registration_term_privacy_policy">"Datenschutzbestimmungen"</string>
-    <string name="helper_request_overview_button_previous_requests">"Previous purchases"</string>
+    <string name="helper_request_overview_button_previous_requests">"Frühere Anfragen"</string>
     <string name="seeker_overview_screen_title">"Your requests:"</string>
     <string name="helper_request_finished_screen_title">"Vorherige Anfragen:"</string>
     <string name="helper_request_overview_item_type_recording">"Sprachnachricht"</string>
