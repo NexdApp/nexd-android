@@ -87,6 +87,7 @@
     <string name="error_message_registration_invalid_email">"Invalid E-mail address"</string>
     <string name="error_message_user_detail_field_missing">"Please fill in"</string>
     <string name="registration_label_privacy_policy_agreement">"By creating an account, I agree to Nexd's %1$@"</string>
+    <string name="registration_label_privacy_policy_agreement_android">"By creating an account, I agree to Nexd's %s"</string>
     <string name="registration_term_privacy_policy">"Privacy Policy"</string>
     <string name="helper_request_overview_button_previous_requests">"Previous purchases"</string>
     <string name="seeker_overview_screen_title">"Your requests:"</string>
@@ -131,4 +132,9 @@ phone call"</string>
     <string name="transcribe_info_input_text_title_last_name">"Last name"</string>
     <string name="transcribe_info_input_text_title_postal_code">"Postal code"</string>
     <string name="transcribe_info_button_title_confirm">"Confirm Info"</string>
+    <string name="transcribe_info_input_text_title_street">Street</string>
+    <string name="transcribe_info_input_text_title_street_number">Number</string>
+    <string name="transcribe_info_input_text_title_city">City</string>
+    <string name="transcribe_articles_screen_title">Shopping list</string>
+    <string name="transcribe_articles_button_title_confirm">Confirm</string>
 </resources>

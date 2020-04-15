@@ -87,8 +87,9 @@
     <string name="error_message_registration_invalid_email">"Ungültige E-Mail Adresse"</string>
     <string name="error_message_user_detail_field_missing">"Bitte ausfüllen"</string>
     <string name="registration_label_privacy_policy_agreement">"Mit der Registrierung akzeptiere ich die %1$@"</string>
+    <string name="registration_label_privacy_policy_agreement_android">"Mit der Registrierung akzeptiere ich die %s"</string>
     <string name="registration_term_privacy_policy">"Datenschutzbestimmungen"</string>
-    <string name="helper_request_overview_button_previous_requests">"Previous purchases"</string>
+    <string name="helper_request_overview_button_previous_requests">"Vorherige Anfragen"</string>
     <string name="seeker_overview_screen_title">"Your requests:"</string>
     <string name="helper_request_finished_screen_title">"Vorherige Anfragen:"</string>
     <string name="helper_request_overview_item_type_recording">"Sprachnachricht"</string>
@@ -130,4 +131,9 @@
     <string name="transcribe_info_input_text_title_last_name">"Nachname"</string>
     <string name="transcribe_info_input_text_title_postal_code">"Postleitzahl"</string>
     <string name="transcribe_info_button_title_confirm">"Info bestätigen"</string>
+    <string name="transcribe_info_input_text_title_street">Straße</string>
+    <string name="transcribe_info_input_text_title_street_number">Nummer</string>
+    <string name="transcribe_info_input_text_title_city">Stadt</string>
+    <string name="transcribe_articles_screen_title">EInkaufszettel</string>
+    <string name="transcribe_articles_button_title_confirm">Bestätigen</string>
 </resources>

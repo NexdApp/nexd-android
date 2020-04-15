@@ -151,7 +151,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                tools:text="@string/registration_label_privacy_policy_agreement_ios" />
+                tools:text="@string/registration_label_privacy_policy_agreement" />
 
             <Button
                 android:id="@+id/button_register"

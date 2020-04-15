@@ -68,33 +68,20 @@ class HelperOverviewFragment : Fragment() {
 
                 updateAcceptedRequests(myAcceptedRequests)
 
-                val acceptedTitle =
-                    resources.getString(R.string.helper_request_overview_heading_accepted_section)
-                val acceptedInfo = context?.getString(
-                    R.string.helper_request_overview_heading_accepted_section_counter,
-                    myAcceptedRequests.size
-                ) ?: ""
-                val accepted = SpannableString(acceptedTitle + acceptedInfo)
-                accepted.setSpan(
-                    RelativeSizeSpan(0.5f), acceptedTitle.length,
-                    acceptedTitle.length + acceptedInfo.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-                )
-                textView_acceptedLists.text = accepted
-
                 button_shopping.isEnabled = myAcceptedRequests.isNotEmpty()
             })
 
             getOtherOpenRequests().observe(viewLifecycleOwner, Observer { requests ->
-                val nearTitle =
-                    context?.getString(R.string.helper_request_overview_heading_available_section)
-                        ?: ""
-                val nearInfo = getString(R.string.helper_request_overview_heading_open_section_zip)
-                val near = SpannableString(nearTitle + nearInfo)
-                near.setSpan(
-                    RelativeSizeSpan(0.5f), nearTitle.length,
-                    nearTitle.length + nearInfo.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-                )
-                button_nearRequests.text = near
+//                val nearTitle =
+//                    context?.getString(R.string.helper_request_overview_heading_available_section)
+//                        ?: ""
+//                val nearInfo = getString(R.string.helper_request_overview_heading_open_section_zip)
+//                val near = SpannableString(nearTitle + nearInfo)
+//                near.setSpan(
+//                    RelativeSizeSpan(0.5f), nearTitle.length,
+//                    nearTitle.length + nearInfo.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+//                )
+//                button_nearRequests.text = near
 
                 updateNearbyOpenRequests(requests)
             })
@@ -160,7 +147,8 @@ class HelperOverviewFragment : Fragment() {
         context?.let { context ->
             SelectTextDialog(
                 context,
-                getString(R.string.helper_request_overview_button_filter_zip),
+//                getString(R.string.helper_request_overview_button_filter_zip),
+                "",
                 viewModel.zipCode ?: ""
             )
                 .setConfirmButton {
