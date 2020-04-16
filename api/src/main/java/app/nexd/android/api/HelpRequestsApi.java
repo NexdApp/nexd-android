@@ -13,6 +13,7 @@ import okhttp3.MultipartBody;
 import app.nexd.android.api.model.CreateOrUpdateHelpRequestArticleDto;
 import app.nexd.android.api.model.HelpRequest;
 import app.nexd.android.api.model.HelpRequestCreateDto;
+import app.nexd.android.api.model.HelpRequestStatus;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,12 +44,12 @@ public interface HelpRequestsApi {
    * @param excludeUserId If true, the given userId (in query) is excluded (and not filtered for as default). Requires the userId query. (optional)
    * @param zipCode Filter by an array of zipCodes (optional, default to new ArrayList&lt;String&gt;())
    * @param includeRequester If \&quot;true\&quot;, the requester object is included in each help request (optional)
-   * @param status Array of status to filter for (optional, default to new ArrayList&lt;String&gt;())
+   * @param status Array of status to filter for (optional, default to new ArrayList&lt;HelpRequestStatus&gt;())
    * @return Observable&lt;List&lt;HelpRequest&gt;&gt;
    */
   @GET("help-requests")
   Observable<List<HelpRequest>> helpRequestsControllerGetAll(
-    @retrofit2.http.Query("userId") String userId, @retrofit2.http.Query("excludeUserId") Boolean excludeUserId, @retrofit2.http.Query("zipCode") List<String> zipCode, @retrofit2.http.Query("includeRequester") Boolean includeRequester, @retrofit2.http.Query("status") List<String> status
+    @retrofit2.http.Query("userId") String userId, @retrofit2.http.Query("excludeUserId") Boolean excludeUserId, @retrofit2.http.Query("zipCode") List<String> zipCode, @retrofit2.http.Query("includeRequester") Boolean includeRequester, @retrofit2.http.Query("status") List<HelpRequestStatus> status
   );
 
   /**

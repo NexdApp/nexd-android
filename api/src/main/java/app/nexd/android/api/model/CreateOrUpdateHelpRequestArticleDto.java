@@ -46,6 +46,7 @@ public class CreateOrUpdateHelpRequestArticleDto {
 
    /**
    * Number of items
+   * minimum: 1
    * @return articleCount
   **/
   @ApiModelProperty(required = true, value = "Number of items")

@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.dialog_select.view.*
 
 abstract class SelectDialog @JvmOverloads constructor(
     context: Context,
-    caption: String = context.getString(R.string.dialog_caption),
+    caption: String,
     details: CharSequence? = null,
     layout: ViewGroup? = null
 ) : AlertDialog.Builder(context) {

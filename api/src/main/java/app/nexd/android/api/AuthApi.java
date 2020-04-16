@@ -10,6 +10,8 @@ import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import okhttp3.MultipartBody;
 
+import app.nexd.android.api.model.HttpBadRequestResponse;
+import app.nexd.android.api.model.HttpConflictResponse;
 import app.nexd.android.api.model.LoginDto;
 import app.nexd.android.api.model.RegisterDto;
 import app.nexd.android.api.model.TokenDto;

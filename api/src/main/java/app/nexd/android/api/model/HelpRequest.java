@@ -15,6 +15,7 @@ package app.nexd.android.api.model;
 
 import java.util.Objects;
 import java.util.Arrays;
+import app.nexd.android.api.model.Call;
 import app.nexd.android.api.model.HelpList;
 import app.nexd.android.api.model.HelpRequestArticle;
 import app.nexd.android.api.model.User;
@@ -35,6 +36,14 @@ import java.util.List;
  */
 
 public class HelpRequest {
+  public static final String SERIALIZED_NAME_FIRST_NAME = "firstName";
+  @SerializedName(SERIALIZED_NAME_FIRST_NAME)
+  private String firstName;
+
+  public static final String SERIALIZED_NAME_LAST_NAME = "lastName";
+  @SerializedName(SERIALIZED_NAME_LAST_NAME)
+  private String lastName;
+
   public static final String SERIALIZED_NAME_STREET = "street";
   @SerializedName(SERIALIZED_NAME_STREET)
   private String street;
@@ -149,6 +158,56 @@ public class HelpRequest {
   public static final String SERIALIZED_NAME_HELP_LIST = "helpList";
   @SerializedName(SERIALIZED_NAME_HELP_LIST)
   private HelpList helpList;
+
+  public static final String SERIALIZED_NAME_CALL = "call";
+  @SerializedName(SERIALIZED_NAME_CALL)
+  private Call call;
+
+
+  public HelpRequest firstName(String firstName) {
+    
+    this.firstName = firstName;
+    return this;
+  }
+
+   /**
+   * Get firstName
+   * @return firstName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getFirstName() {
+    return firstName;
+  }
+
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+
+  public HelpRequest lastName(String lastName) {
+    
+    this.lastName = lastName;
+    return this;
+  }
+
+   /**
+   * Get lastName
+   * @return lastName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getLastName() {
+    return lastName;
+  }
+
+
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
 
 
   public HelpRequest street(String street) {
@@ -527,6 +586,29 @@ public class HelpRequest {
   }
 
 
+  public HelpRequest call(Call call) {
+    
+    this.call = call;
+    return this;
+  }
+
+   /**
+   * Get call
+   * @return call
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Call getCall() {
+    return call;
+  }
+
+
+  public void setCall(Call call) {
+    this.call = call;
+  }
+
+
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -536,7 +618,9 @@ public class HelpRequest {
       return false;
     }
     HelpRequest helpRequest = (HelpRequest) o;
-    return Objects.equals(this.street, helpRequest.street) &&
+    return Objects.equals(this.firstName, helpRequest.firstName) &&
+        Objects.equals(this.lastName, helpRequest.lastName) &&
+        Objects.equals(this.street, helpRequest.street) &&
         Objects.equals(this.number, helpRequest.number) &&
         Objects.equals(this.zipCode, helpRequest.zipCode) &&
         Objects.equals(this.city, helpRequest.city) &&
@@ -551,12 +635,13 @@ public class HelpRequest {
         Objects.equals(this.articles, helpRequest.articles) &&
         Objects.equals(this.requesterId, helpRequest.requesterId) &&
         Objects.equals(this.requester, helpRequest.requester) &&
-        Objects.equals(this.helpList, helpRequest.helpList);
+        Objects.equals(this.helpList, helpRequest.helpList) &&
+        Objects.equals(this.call, helpRequest.call);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(street, number, zipCode, city, id, helpListId, createdAt, priority, additionalRequest, deliveryComment, phoneNumber, status, articles, requesterId, requester, helpList);
+    return Objects.hash(firstName, lastName, street, number, zipCode, city, id, helpListId, createdAt, priority, additionalRequest, deliveryComment, phoneNumber, status, articles, requesterId, requester, helpList, call);
   }
 
 
@@ -564,6 +649,8 @@ public class HelpRequest {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class HelpRequest {\n");
+    sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
+    sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
     sb.append("    street: ").append(toIndentedString(street)).append("\n");
     sb.append("    number: ").append(toIndentedString(number)).append("\n");
     sb.append("    zipCode: ").append(toIndentedString(zipCode)).append("\n");
@@ -580,6 +667,7 @@ public class HelpRequest {
     sb.append("    requesterId: ").append(toIndentedString(requesterId)).append("\n");
     sb.append("    requester: ").append(toIndentedString(requester)).append("\n");
     sb.append("    helpList: ").append(toIndentedString(helpList)).append("\n");
+    sb.append("    call: ").append(toIndentedString(call)).append("\n");
     sb.append("}");
     return sb.toString();
   }

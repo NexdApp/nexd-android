@@ -99,21 +99,26 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     implementation "androidx.lifecycle:lifecycle-reactivestreams:2.2.0"
 
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.17'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.19'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     implementation "io.reactivex.rxjava2:rxkotlin:2.4.0"
 
-    implementation "com.squareup.retrofit2:retrofit:2.7.1"
-    implementation "com.squareup.retrofit2:converter-scalars:2.7.1"
-    implementation "com.squareup.retrofit2:converter-gson:2.7.1"
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.7.1'
+    implementation "com.squareup.retrofit2:retrofit:2.8.1"
+    implementation "com.squareup.retrofit2:converter-scalars:2.8.1"
+    implementation "com.squareup.retrofit2:converter-gson:2.8.1"
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.8.1'
 
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.4.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.4.1'
+
+    implementation 'com.itkacher.okhttpprofiler:okhttpprofiler:1.0.7'
 
     implementation 'dev.ahamed.mva2:adapter:2.0.0'
-    implementation 'dev.ahamed.mva2:ext-databinding:2.0.0'  // DataBinding
-    implementation 'dev.ahamed.mva2:ext-decorator:2.0.0'    // Decorators
-    implementation 'dev.ahamed.mva2:ext-diffutil-rx:2.0.0'  // RxDiffUtil
+    implementation 'dev.ahamed.mva2:ext-databinding:2.0.0'
+    implementation 'dev.ahamed.mva2:ext-decorator:2.0.0'
+    implementation 'dev.ahamed.mva2:ext-diffutil-rx:2.0.0'
+
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.11.4'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.11.4'
 
     testImplementation 'junit:junit:4.13'
 

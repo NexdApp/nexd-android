@@ -2,7 +2,6 @@
 <layout>
 
     <data>
-
         <variable
             name="viewModel"
             type="app.nexd.android.ui.helper.requestOverview.HelperOverviewViewModel" />
@@ -45,13 +44,13 @@
             android:textColor="@android:color/white"
             android:textSize="@dimen/textSize_screen_title"
             android:textStyle="bold"
-            tools:text="Accepted lists (14 / 20)" />
+            android:text="@string/helper_request_overview_heading_accepted_section" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_acceptedRequests"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginVertical="10dp"
             android:layout_weight="1"
             tools:listitem="@layout/row_user" />
 
@@ -65,11 +64,11 @@
             android:drawableTint="@android:color/white"
             android:paddingStart="0dp"
             android:paddingEnd="0dp"
+            android:text="@string/helper_request_overview_heading_available_section"
             android:textAlignment="textStart"
             android:textColor="@android:color/white"
             android:textSize="@dimen/textSize_screen_title"
-            android:textStyle="bold"
-            tools:text="Available requests at 71323" />
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_nearRequests"

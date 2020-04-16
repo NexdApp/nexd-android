@@ -41,6 +41,10 @@ public class RegisterDto {
   @SerializedName(SERIALIZED_NAME_LAST_NAME)
   private String lastName;
 
+  public static final String SERIALIZED_NAME_PHONE_NUMBER = "phoneNumber";
+  @SerializedName(SERIALIZED_NAME_PHONE_NUMBER)
+  private String phoneNumber;
+
   public static final String SERIALIZED_NAME_PASSWORD = "password";
   @SerializedName(SERIALIZED_NAME_PASSWORD)
   private String password;
@@ -78,7 +82,8 @@ public class RegisterDto {
    * Get firstName
    * @return firstName
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getFirstName() {
     return firstName;
@@ -100,7 +105,8 @@ public class RegisterDto {
    * Get lastName
    * @return lastName
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getLastName() {
     return lastName;
@@ -109,6 +115,29 @@ public class RegisterDto {
 
   public void setLastName(String lastName) {
     this.lastName = lastName;
+  }
+
+
+  public RegisterDto phoneNumber(String phoneNumber) {
+    
+    this.phoneNumber = phoneNumber;
+    return this;
+  }
+
+   /**
+   * Get phoneNumber
+   * @return phoneNumber
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getPhoneNumber() {
+    return phoneNumber;
+  }
+
+
+  public void setPhoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
   }
 
 
@@ -146,12 +175,13 @@ public class RegisterDto {
     return Objects.equals(this.email, registerDto.email) &&
         Objects.equals(this.firstName, registerDto.firstName) &&
         Objects.equals(this.lastName, registerDto.lastName) &&
+        Objects.equals(this.phoneNumber, registerDto.phoneNumber) &&
         Objects.equals(this.password, registerDto.password);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(email, firstName, lastName, password);
+    return Objects.hash(email, firstName, lastName, phoneNumber, password);
   }
 
 
@@ -162,6 +192,7 @@ public class RegisterDto {
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
     sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
+    sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("}");
     return sb.toString();
