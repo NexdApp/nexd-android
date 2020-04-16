@@ -39,12 +39,6 @@
 
     <!-- Logout button title -->
     <string name="user_profile_button_title_logout">"Logout"</string>
-
-    <!-- Localizable.strings
-  Nexd
-
-  Created by Tobias Schröpf on 21.03.20.
-  Copyright © 2020 Tobias Schröpf. All rights reserved. -->
     <string name="dialog_button_abort">"Abort"</string>
     <string name="dialog_button_confirm">"Confirm"</string>
     <string name="login_placeholder_username">"Username"</string>
