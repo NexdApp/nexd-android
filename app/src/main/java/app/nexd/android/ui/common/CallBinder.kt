@@ -24,7 +24,7 @@ class CallBinder: ItemBinder<Call, CallBinder.ViewHolder>() {
         }
 
         fun bind(item: Call) {
-            title.text = SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).format(item.created)
+            title.text = SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).format(item.createdAt)
         }
     }
 

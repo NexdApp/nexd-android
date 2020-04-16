@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingHorizontal="@dimen/horizontalPadding"
-    android:paddingTop="@dimen/topPadding"
+    android:paddingVertical="@dimen/topPadding"
     tools:background="@drawable/background_gradient"
     tools:context=".ui.helper.requestOverview.HelperOverviewFragment">
 
@@ -20,6 +20,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_calls"
         tools:listitem="@layout/row_call"
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

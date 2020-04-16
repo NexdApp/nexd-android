@@ -32,6 +32,14 @@ import java.util.List;
  */
 
 public class HelpRequestCreateDto {
+  public static final String SERIALIZED_NAME_FIRST_NAME = "firstName";
+  @SerializedName(SERIALIZED_NAME_FIRST_NAME)
+  private String firstName;
+
+  public static final String SERIALIZED_NAME_LAST_NAME = "lastName";
+  @SerializedName(SERIALIZED_NAME_LAST_NAME)
+  private String lastName;
+
   public static final String SERIALIZED_NAME_STREET = "street";
   @SerializedName(SERIALIZED_NAME_STREET)
   private String street;
@@ -118,6 +126,52 @@ public class HelpRequestCreateDto {
   public static final String SERIALIZED_NAME_PHONE_NUMBER = "phoneNumber";
   @SerializedName(SERIALIZED_NAME_PHONE_NUMBER)
   private String phoneNumber;
+
+
+  public HelpRequestCreateDto firstName(String firstName) {
+    
+    this.firstName = firstName;
+    return this;
+  }
+
+   /**
+   * Get firstName
+   * @return firstName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getFirstName() {
+    return firstName;
+  }
+
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+
+  public HelpRequestCreateDto lastName(String lastName) {
+    
+    this.lastName = lastName;
+    return this;
+  }
+
+   /**
+   * Get lastName
+   * @return lastName
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getLastName() {
+    return lastName;
+  }
+
+
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
 
 
   public HelpRequestCreateDto street(String street) {
@@ -344,7 +398,9 @@ public class HelpRequestCreateDto {
       return false;
     }
     HelpRequestCreateDto helpRequestCreateDto = (HelpRequestCreateDto) o;
-    return Objects.equals(this.street, helpRequestCreateDto.street) &&
+    return Objects.equals(this.firstName, helpRequestCreateDto.firstName) &&
+        Objects.equals(this.lastName, helpRequestCreateDto.lastName) &&
+        Objects.equals(this.street, helpRequestCreateDto.street) &&
         Objects.equals(this.number, helpRequestCreateDto.number) &&
         Objects.equals(this.zipCode, helpRequestCreateDto.zipCode) &&
         Objects.equals(this.city, helpRequestCreateDto.city) &&
@@ -357,7 +413,7 @@ public class HelpRequestCreateDto {
 
   @Override
   public int hashCode() {
-    return Objects.hash(street, number, zipCode, city, articles, status, additionalRequest, deliveryComment, phoneNumber);
+    return Objects.hash(firstName, lastName, street, number, zipCode, city, articles, status, additionalRequest, deliveryComment, phoneNumber);
   }
 
 
@@ -365,6 +421,8 @@ public class HelpRequestCreateDto {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class HelpRequestCreateDto {\n");
+    sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
+    sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
     sb.append("    street: ").append(toIndentedString(street)).append("\n");
     sb.append("    number: ").append(toIndentedString(number)).append("\n");
     sb.append("    zipCode: ").append(toIndentedString(zipCode)).append("\n");

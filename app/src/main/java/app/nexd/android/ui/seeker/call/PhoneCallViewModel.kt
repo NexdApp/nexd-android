@@ -10,17 +10,7 @@ class PhoneCallViewModel : ViewModel() {
 
     fun getPhoneNumber(): LiveData<String> {
         return LiveDataReactiveStreams.fromPublisher(
-            api.callsControllerGetNumber()
-                .map {
-                    // temporary fix due to wrong api return
-                    val phoneNumber = it.split(":")
-                    if (phoneNumber.size != 2)
-                        return@map ""
-                    else {
-                        phoneNumber[1].replace("\"", "")
-                            .replace("}","")
-                    }
-                }
+            api.phoneControllerGetNumbers()
                 .toFlowable(BackpressureStrategy.LATEST)
         )
     }
