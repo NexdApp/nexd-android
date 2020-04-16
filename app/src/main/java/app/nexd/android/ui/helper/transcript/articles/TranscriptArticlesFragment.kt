@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
@@ -47,6 +48,16 @@ class TranscriptArticlesFragment : Fragment() {
             val section = ListSection<TranscriptArticlesItemViewModel>()
             section.addAll(articles)
             adapter.addSection(section)
+        })
+
+        button_transcript.setOnClickListener {
+            viewModel.saveHelpRequest()
+        }
+
+        viewModel.call.observe(viewLifecycleOwner,  Observer {
+            if (it == null) {
+                findNavController().popBackStack(R.id.callOverviewFragment, false)
+            }
         })
     }
 

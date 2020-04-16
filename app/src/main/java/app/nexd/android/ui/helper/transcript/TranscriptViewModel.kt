@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import app.nexd.android.R
 import app.nexd.android.api
 import app.nexd.android.api.model.Call
+import app.nexd.android.api.model.CreateHelpRequestArticleDto
+import app.nexd.android.api.model.HelpRequestCreateDto
 import app.nexd.android.ui.helper.transcript.articles.TranscriptArticlesItemViewModel
 import app.nexd.android.ui.utils.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
@@ -196,6 +198,37 @@ class TranscriptViewModel : ViewModel() {
     }
 
     fun saveHelpRequest() {
+        val helpRequestArticles = articles.value?.let { list ->
+            list
+                .filter { (it.articleCount.value?.toLong() ?: 0L) > 0L }
+                .map {
+                    CreateHelpRequestArticleDto()
+                        .articleId(it.articleId)
+                        .articleCount(it.articleCount.value!!.toLong())
+                }
+        }
 
+        if (helpRequestArticles.isNullOrEmpty()) {
+            error.value = R.string.error_message_unknown // TODO: use proper error message
+            return
+        }
+
+        val data = HelpRequestCreateDto()
+            .firstName(firstName.value)
+            .lastName(lastName.value)
+            .street(street.value)
+            .number(number.value)
+            .zipCode(zipCode.value)
+            .city(city.value)
+            .articles(helpRequestArticles)
+
+        val disposable = api.helpRequestsControllerInsertRequestWithArticles(data)
+            .observeOn(mainThread())
+            .subscribeBy(
+                onNext = { resetData() },
+                onError = { error.value = R.string.error_message_unknown } // TODO: use proper error message
+            )
+
+        compositeDisposable.add(disposable)
     }
 }
