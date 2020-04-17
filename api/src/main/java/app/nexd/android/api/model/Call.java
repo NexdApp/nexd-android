@@ -15,7 +15,6 @@ package app.nexd.android.api.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import app.nexd.android.api.model.HelpRequest;
 import app.nexd.android.api.model.User;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
@@ -48,9 +47,9 @@ public class Call {
   @SerializedName(SERIALIZED_NAME_RECORDING_URL)
   private String recordingUrl;
 
-  public static final String SERIALIZED_NAME_CONVERTED_HELP_REQUEST = "convertedHelpRequest";
-  @SerializedName(SERIALIZED_NAME_CONVERTED_HELP_REQUEST)
-  private HelpRequest convertedHelpRequest;
+  public static final String SERIALIZED_NAME_CONVERTED_HELP_REQUEST_ID = "convertedHelpRequestId";
+  @SerializedName(SERIALIZED_NAME_CONVERTED_HELP_REQUEST_ID)
+  private Long convertedHelpRequestId;
 
   public static final String SERIALIZED_NAME_PHONE_NUMBER = "phoneNumber";
   @SerializedName(SERIALIZED_NAME_PHONE_NUMBER)
@@ -166,26 +165,26 @@ public class Call {
   }
 
 
-  public Call convertedHelpRequest(HelpRequest convertedHelpRequest) {
+  public Call convertedHelpRequestId(Long convertedHelpRequestId) {
     
-    this.convertedHelpRequest = convertedHelpRequest;
+    this.convertedHelpRequestId = convertedHelpRequestId;
     return this;
   }
 
    /**
-   * Get convertedHelpRequest
-   * @return convertedHelpRequest
+   * Get convertedHelpRequestId
+   * @return convertedHelpRequestId
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public HelpRequest getConvertedHelpRequest() {
-    return convertedHelpRequest;
+  public Long getConvertedHelpRequestId() {
+    return convertedHelpRequestId;
   }
 
 
-  public void setConvertedHelpRequest(HelpRequest convertedHelpRequest) {
-    this.convertedHelpRequest = convertedHelpRequest;
+  public void setConvertedHelpRequestId(Long convertedHelpRequestId) {
+    this.convertedHelpRequestId = convertedHelpRequestId;
   }
 
 
@@ -339,7 +338,7 @@ public class Call {
         Objects.equals(this.createdAt, call.createdAt) &&
         Objects.equals(this.updatedAt, call.updatedAt) &&
         Objects.equals(this.recordingUrl, call.recordingUrl) &&
-        Objects.equals(this.convertedHelpRequest, call.convertedHelpRequest) &&
+        Objects.equals(this.convertedHelpRequestId, call.convertedHelpRequestId) &&
         Objects.equals(this.phoneNumber, call.phoneNumber) &&
         Objects.equals(this.country, call.country) &&
         Objects.equals(this.zip, call.zip) &&
@@ -350,7 +349,7 @@ public class Call {
 
   @Override
   public int hashCode() {
-    return Objects.hash(sid, createdAt, updatedAt, recordingUrl, convertedHelpRequest, phoneNumber, country, zip, city, converterId, converter);
+    return Objects.hash(sid, createdAt, updatedAt, recordingUrl, convertedHelpRequestId, phoneNumber, country, zip, city, converterId, converter);
   }
 
 
@@ -362,7 +361,7 @@ public class Call {
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("    recordingUrl: ").append(toIndentedString(recordingUrl)).append("\n");
-    sb.append("    convertedHelpRequest: ").append(toIndentedString(convertedHelpRequest)).append("\n");
+    sb.append("    convertedHelpRequestId: ").append(toIndentedString(convertedHelpRequestId)).append("\n");
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    zip: ").append(toIndentedString(zip)).append("\n");

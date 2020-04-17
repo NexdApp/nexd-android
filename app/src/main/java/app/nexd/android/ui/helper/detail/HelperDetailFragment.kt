@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
+import app.nexd.android.api.model.HelpRequest
 import app.nexd.android.api.model.HelpRequestArticle
 import app.nexd.android.ui.common.HelpRequestArticleBinder
 import kotlinx.android.synthetic.main.fragment_helper_request_detail.*
@@ -48,13 +49,13 @@ class HelperDetailFragment : Fragment() {
             HelpRequestArticleBinder()
         )
 
-        viewModel.requestDetails(args.requestId).observe(viewLifecycleOwner, Observer { request ->
+        viewModel.requestDetails(args.requestId).observe(viewLifecycleOwner, Observer { request: HelpRequest ->
             adapter.removeAllSections()
 
             textView_name.text = context!!.getString(
                 R.string.user_name_layout,
-                request.requester!!.firstName
-                , request.requester!!.lastName
+                request.firstName
+                , request.lastName
             )
 
             val list = ListSection<HelpRequestArticle>()

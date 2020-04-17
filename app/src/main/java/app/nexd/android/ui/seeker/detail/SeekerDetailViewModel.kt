@@ -31,7 +31,7 @@ class SeekerDetailViewModel: ViewModel() {
     fun getRequest(id: Long): LiveData<HelpRequest> {
         return LiveDataReactiveStreams.fromPublisher(
             api.helpRequestsControllerGetSingleRequest(id)
-                .onErrorReturnItem(HelpRequest()) // TODO return state
+                .onErrorReturnItem(HelpRequest()) // TODO: error handling
                 .toFlowable(BackpressureStrategy.LATEST))
     }
 

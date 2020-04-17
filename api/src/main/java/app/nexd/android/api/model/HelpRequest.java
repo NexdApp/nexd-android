@@ -15,7 +15,6 @@ package app.nexd.android.api.model;
 
 import java.util.Objects;
 import java.util.Arrays;
-import app.nexd.android.api.model.Call;
 import app.nexd.android.api.model.HelpList;
 import app.nexd.android.api.model.HelpRequestArticle;
 import app.nexd.android.api.model.User;
@@ -67,6 +66,10 @@ public class HelpRequest {
   public static final String SERIALIZED_NAME_HELP_LIST_ID = "helpListId";
   @SerializedName(SERIALIZED_NAME_HELP_LIST_ID)
   private Long helpListId;
+
+  public static final String SERIALIZED_NAME_CALL_ID = "callId";
+  @SerializedName(SERIALIZED_NAME_CALL_ID)
+  private Long callId;
 
   public static final String SERIALIZED_NAME_CREATED_AT = "created_at";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
@@ -158,10 +161,6 @@ public class HelpRequest {
   public static final String SERIALIZED_NAME_HELP_LIST = "helpList";
   @SerializedName(SERIALIZED_NAME_HELP_LIST)
   private HelpList helpList;
-
-  public static final String SERIALIZED_NAME_CALL = "call";
-  @SerializedName(SERIALIZED_NAME_CALL)
-  private Call call;
 
 
   public HelpRequest firstName(String firstName) {
@@ -345,6 +344,29 @@ public class HelpRequest {
 
   public void setHelpListId(Long helpListId) {
     this.helpListId = helpListId;
+  }
+
+
+  public HelpRequest callId(Long callId) {
+    
+    this.callId = callId;
+    return this;
+  }
+
+   /**
+   * Get callId
+   * @return callId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Long getCallId() {
+    return callId;
+  }
+
+
+  public void setCallId(Long callId) {
+    this.callId = callId;
   }
 
 
@@ -586,29 +608,6 @@ public class HelpRequest {
   }
 
 
-  public HelpRequest call(Call call) {
-    
-    this.call = call;
-    return this;
-  }
-
-   /**
-   * Get call
-   * @return call
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public Call getCall() {
-    return call;
-  }
-
-
-  public void setCall(Call call) {
-    this.call = call;
-  }
-
-
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -626,6 +625,7 @@ public class HelpRequest {
         Objects.equals(this.city, helpRequest.city) &&
         Objects.equals(this.id, helpRequest.id) &&
         Objects.equals(this.helpListId, helpRequest.helpListId) &&
+        Objects.equals(this.callId, helpRequest.callId) &&
         Objects.equals(this.createdAt, helpRequest.createdAt) &&
         Objects.equals(this.priority, helpRequest.priority) &&
         Objects.equals(this.additionalRequest, helpRequest.additionalRequest) &&
@@ -635,13 +635,12 @@ public class HelpRequest {
         Objects.equals(this.articles, helpRequest.articles) &&
         Objects.equals(this.requesterId, helpRequest.requesterId) &&
         Objects.equals(this.requester, helpRequest.requester) &&
-        Objects.equals(this.helpList, helpRequest.helpList) &&
-        Objects.equals(this.call, helpRequest.call);
+        Objects.equals(this.helpList, helpRequest.helpList);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(firstName, lastName, street, number, zipCode, city, id, helpListId, createdAt, priority, additionalRequest, deliveryComment, phoneNumber, status, articles, requesterId, requester, helpList, call);
+    return Objects.hash(firstName, lastName, street, number, zipCode, city, id, helpListId, callId, createdAt, priority, additionalRequest, deliveryComment, phoneNumber, status, articles, requesterId, requester, helpList);
   }
 
 
@@ -657,6 +656,7 @@ public class HelpRequest {
     sb.append("    city: ").append(toIndentedString(city)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    helpListId: ").append(toIndentedString(helpListId)).append("\n");
+    sb.append("    callId: ").append(toIndentedString(callId)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    priority: ").append(toIndentedString(priority)).append("\n");
     sb.append("    additionalRequest: ").append(toIndentedString(additionalRequest)).append("\n");
@@ -667,7 +667,6 @@ public class HelpRequest {
     sb.append("    requesterId: ").append(toIndentedString(requesterId)).append("\n");
     sb.append("    requester: ").append(toIndentedString(requester)).append("\n");
     sb.append("    helpList: ").append(toIndentedString(helpList)).append("\n");
-    sb.append("    call: ").append(toIndentedString(call)).append("\n");
     sb.append("}");
     return sb.toString();
   }
