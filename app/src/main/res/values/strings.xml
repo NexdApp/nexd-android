@@ -55,6 +55,8 @@
     <string name="helper_request_overview_button_summary_title">"Shopping"</string>
     <string name="helper_request_overview_button_summary_details">"Total "</string>
     <string name="helper_request_detail_screen_title">"To collect"</string>
+    <string name="helper_request_detail_message_cancelled">"Your request was deleted"</string>
+    <string name="helper_request_detail_message_error_on_cancellation">"Your request could not be deleted"</string>
     <string name="helper_request_detail_button_accepted">"Request already accepted"</string>
     <string name="helper_request_detail_button_accept">"Will do!"</string>
     <string name="delivery_screen_title">"Delivery!"</string>

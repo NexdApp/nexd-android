@@ -55,6 +55,8 @@
     <string name="helper_request_overview_button_summary_title">"Einkaufen"</string>
     <string name="helper_request_overview_button_summary_details">"Insg. "</string>
     <string name="helper_request_detail_screen_title">"Zu Einkaufen"</string>
+    <string name="helper_request_detail_message_cancelled">"Anfrage wurde gelöscht"</string>
+    <string name="helper_request_detail_message_error_on_cancellation">"Anfrage konnte nicht gelöscht werden"</string>
     <string name="helper_request_detail_button_accepted">"Anfrage bereits angenommen"</string>
     <string name="helper_request_detail_button_accept">"Mach ich!"</string>
     <string name="delivery_screen_title">"Abgabe!"</string>

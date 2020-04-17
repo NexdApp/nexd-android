@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
@@ -45,10 +47,13 @@ class SeekerDetailFragment : Fragment() {
             when (it) {
                 is SeekerDetailViewModel.Progress.Idle -> {
                 }
-                is SeekerDetailViewModel.Progress.Error -> { /* TODO */
+                is SeekerDetailViewModel.Progress.Error -> {
+                    Toast.makeText(requireContext(), getText(R.string.helper_request_detail_message_error_on_cancellation), Toast.LENGTH_LONG).show()
                 }
                 is SeekerDetailViewModel.Progress.Canceled -> {
                     // show information
+                    Toast.makeText(requireContext(), getText(R.string.helper_request_detail_message_cancelled), Toast.LENGTH_LONG).show()
+                    findNavController().navigate(R.id.seekerOverviewFragment)
                 }
             }
         })
