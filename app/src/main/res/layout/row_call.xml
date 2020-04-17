@@ -1,21 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<Button xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:background="@drawable/rounded_button_white_translucent"
-    android:paddingHorizontal="10dp"
-    android:paddingVertical="15dp"
-    android:layout_marginBottom="10dp"
+    android:id="@+id/button_call"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <TextView
-        android:id="@+id/textView_title"
-        tools:text="Berger"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-</LinearLayout>
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    style="@style/ListButton"
+    tools:text="Call title" />

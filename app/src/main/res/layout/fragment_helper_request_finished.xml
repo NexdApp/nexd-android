@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    tools:background="@drawable/background_gradient"
     android:paddingTop="@dimen/topPadding"
     android:paddingHorizontal="@dimen/horizontalPadding"
     android:layout_width="match_parent"

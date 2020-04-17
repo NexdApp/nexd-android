@@ -4,7 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:background="@drawable/background_gradient"
     android:paddingTop="@dimen/topPadding"
     android:paddingHorizontal="@dimen/horizontalPadding"
     tools:context=".ui.helper.checkout.CheckoutFragment">

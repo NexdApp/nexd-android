@@ -6,7 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:paddingHorizontal="@dimen/horizontalPadding"
-    tools:background="@drawable/background_gradient"
     tools:context=".ui.helper.shoppingList.ShoppingListFragment">
 
     <Space
