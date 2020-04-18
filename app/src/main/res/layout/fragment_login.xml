@@ -100,7 +100,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                android:background="@drawable/rounded_button_primary"
+                android:background="@drawable/rounded_primary"
                 android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
                 android:drawableTint="@android:color/white"
                 android:onClick="@{() -> viewModel.login()}"

@@ -23,7 +23,7 @@
     </style>
 
     <style name="ListButton">
-        <item name="android:background">@drawable/rounded_button_outer</item>
+        <item name="android:background">@drawable/rounded_outer</item>
         <item name="android:drawableEnd">@drawable/ic_chevron_right_black_24dp</item>
         <item name="android:drawableTint">@android:color/white</item>
         <item name="android:paddingTop">7dp</item>

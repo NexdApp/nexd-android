@@ -164,7 +164,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="2dp"
-                android:background="@drawable/rounded_button_primary"
+                android:background="@drawable/rounded_primary"
                 android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
                 android:drawableTint="@android:color/white"
                 android:padding="20dp"
