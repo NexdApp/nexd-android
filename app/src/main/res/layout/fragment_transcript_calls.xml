@@ -6,7 +6,6 @@
     android:orientation="vertical"
     android:paddingHorizontal="@dimen/horizontalPadding"
     android:paddingVertical="@dimen/topPadding"
-    tools:background="@drawable/background_gradient"
     tools:context=".ui.helper.requestOverview.HelperOverviewFragment">
 
     <TextView
