@@ -19,17 +19,17 @@
         <action
             android:id="@+id/toSeekerTypeFragment"
             app:destination="@id/seekerTypeFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:enterAnim="@animator/slide_in_right_to_left"
+            app:exitAnim="@animator/slide_out_right_to_left"
+            app:popEnterAnim="@animator/slide_in_left_to_right"
+            app:popExitAnim="@animator/slide_out_left_to_right" />
         <action
             android:id="@+id/toHelperTypeFragment"
             app:destination="@id/helperTypeFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:enterAnim="@animator/slide_in_right_to_left"
+            app:exitAnim="@animator/slide_out_right_to_left"
+            app:popEnterAnim="@animator/slide_in_left_to_right"
+            app:popExitAnim="@animator/slide_out_left_to_right" />
     </fragment>
     <fragment
         android:id="@+id/seekerOverviewFragment"
@@ -38,17 +38,17 @@
         <action
             android:id="@+id/action_seekerOverviewFragment_to_createHelpRequestFragment"
             app:destination="@id/seekerCreateRequestFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit"
-            app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_close_exit" />
+            app:enterAnim="@animator/slide_in_right_to_left"
+            app:exitAnim="@animator/slide_out_right_to_left"
+            app:popEnterAnim="@animator/slide_in_left_to_right"
+            app:popExitAnim="@animator/slide_out_left_to_right" />
         <action
             android:id="@+id/toSeekerDetailFragment"
             app:destination="@id/seekerDetailFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit"
-            app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_close_exit"  />
+            app:enterAnim="@animator/slide_in_right_to_left"
+            app:exitAnim="@animator/slide_out_right_to_left"
+            app:popEnterAnim="@animator/slide_in_left_to_right"
+            app:popExitAnim="@animator/slide_out_left_to_right"  />
     </fragment>
     <fragment
         android:id="@+id/helperOverviewFragment"
@@ -57,24 +57,24 @@
         <action
             android:id="@+id/requestDetailAction"
             app:destination="@id/helperRequestDetailFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit"
-            app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_close_exit" />
+            app:enterAnim="@animator/slide_in_right_to_left"
+            app:exitAnim="@animator/slide_out_right_to_left"
+            app:popEnterAnim="@animator/slide_in_left_to_right"
+            app:popExitAnim="@animator/slide_out_left_to_right" />
         <action
             android:id="@+id/toShoppingListFragment"
             app:destination="@id/shoppingListFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit"
-            app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_close_exit" />
+            app:enterAnim="@animator/slide_in_right_to_left"
+            app:exitAnim="@animator/slide_out_right_to_left"
+            app:popEnterAnim="@animator/slide_in_left_to_right"
+            app:popExitAnim="@animator/slide_out_left_to_right" />
         <action
             android:id="@+id/toFinishedFragment"
             app:destination="@id/helpRequestFinishedFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit"
-            app:popEnterAnim="@anim/fragment_close_enter"
-            app:popExitAnim="@anim/fragment_close_exit" />
+            app:enterAnim="@animator/slide_in_right_to_left"
+            app:exitAnim="@animator/slide_out_right_to_left"
+            app:popEnterAnim="@animator/slide_in_left_to_right"
+            app:popExitAnim="@animator/slide_out_left_to_right" />
     </fragment>
     <fragment
         android:id="@+id/helperRequestDetailFragment"
@@ -98,10 +98,10 @@
         <action
             android:id="@+id/toCheckoutFragment"
             app:destination="@id/checkoutFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:enterAnim="@animator/slide_in_right_to_left"
+            app:exitAnim="@animator/slide_out_right_to_left"
+            app:popEnterAnim="@animator/slide_in_left_to_right"
+            app:popExitAnim="@animator/slide_out_left_to_right" />
     </fragment>
     <fragment
         android:id="@+id/authFragment"
@@ -111,19 +111,19 @@
         <action
             android:id="@+id/action_authFragment_to_loginFragment"
             app:destination="@id/loginFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@animator/slide_in_right_to_left"
+            app:exitAnim="@animator/slide_out_right_to_left"
+            app:popEnterAnim="@animator/slide_in_left_to_right"
+            app:popExitAnim="@animator/slide_out_left_to_right"
             app:popUpTo="@id/authFragment"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_authFragment_to_registerFragment"
             app:destination="@id/registerFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:enterAnim="@animator/slide_in_right_to_left"
+            app:exitAnim="@animator/slide_out_right_to_left"
+            app:popEnterAnim="@animator/slide_in_left_to_right"
+            app:popExitAnim="@animator/slide_out_left_to_right" />
         <action
             android:id="@+id/action_authFragment_to_roleFragment"
             app:destination="@id/roleFragment"
@@ -138,8 +138,10 @@
         <action
             android:id="@+id/toRoleFragment"
             app:destination="@id/roleFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
+            app:enterAnim="@animator/slide_in_right_to_left"
+            app:exitAnim="@animator/slide_out_right_to_left"
+            app:popEnterAnim="@animator/slide_in_left_to_right"
+            app:popExitAnim="@animator/slide_out_left_to_right"
             app:popUpTo="@id/authFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -150,7 +152,11 @@
         tools:layout="@layout/fragment_register" >
         <action
             android:id="@+id/toRegisterDetailedFragment"
-            app:destination="@id/registerDetailedFragment" />
+            app:destination="@id/registerDetailedFragment"
+            app:enterAnim="@animator/slide_in_right_to_left"
+            app:exitAnim="@animator/slide_out_right_to_left"
+            app:popEnterAnim="@animator/slide_in_left_to_right"
+            app:popExitAnim="@animator/slide_out_left_to_right" />
     </fragment>
     <fragment
         android:id="@+id/checkoutFragment"
@@ -160,10 +166,10 @@
         <action
             android:id="@+id/action_checkoutFragment_to_deliveryFragment"
             app:destination="@id/deliveryFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:enterAnim="@animator/slide_in_right_to_left"
+            app:exitAnim="@animator/slide_out_right_to_left"
+            app:popEnterAnim="@animator/slide_in_left_to_right"
+            app:popExitAnim="@animator/slide_out_left_to_right" />
     </fragment>
     <fragment
         android:id="@+id/deliveryFragment"
@@ -173,8 +179,10 @@
         <action
             android:id="@+id/toRoleFragment"
             app:destination="@id/roleFragment"
-            app:enterAnim="@anim/fragment_close_enter"
-            app:exitAnim="@anim/fragment_close_exit"
+            app:enterAnim="@animator/slide_in_right_to_left"
+            app:exitAnim="@animator/slide_out_right_to_left"
+            app:popEnterAnim="@animator/slide_in_left_to_right"
+            app:popExitAnim="@animator/slide_out_left_to_right"
             app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
     </fragment>
@@ -195,10 +203,10 @@
         <action
             android:id="@+id/toDetailFragment"
             app:destination="@id/helperRequestDetailFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:enterAnim="@animator/slide_in_right_to_left"
+            app:exitAnim="@animator/slide_out_right_to_left"
+            app:popEnterAnim="@animator/slide_in_left_to_right"
+            app:popExitAnim="@animator/slide_out_left_to_right" />
     </fragment>
     <fragment
         android:id="@+id/registerDetailedFragment"
@@ -208,8 +216,10 @@
         <action
             android:id="@+id/toRoleFragment"
             app:destination="@id/roleFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
+            app:enterAnim="@animator/slide_in_right_to_left"
+            app:exitAnim="@animator/slide_out_right_to_left"
+            app:popEnterAnim="@animator/slide_in_left_to_right"
+            app:popExitAnim="@animator/slide_out_left_to_right"
             app:popUpTo="@id/authFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -221,17 +231,17 @@
         <action
             android:id="@+id/toHelpRequestOverviewFragment"
             app:destination="@id/helperOverviewFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:enterAnim="@animator/slide_in_right_to_left"
+            app:exitAnim="@animator/slide_out_right_to_left"
+            app:popEnterAnim="@animator/slide_in_left_to_right"
+            app:popExitAnim="@animator/slide_out_left_to_right" />
         <action
             android:id="@+id/toCallOverviewFragment"
             app:destination="@id/nav_transcript"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:enterAnim="@animator/slide_in_right_to_left"
+            app:exitAnim="@animator/slide_out_right_to_left"
+            app:popEnterAnim="@animator/slide_in_left_to_right"
+            app:popExitAnim="@animator/slide_out_left_to_right" />
     </fragment>
     <fragment
         android:id="@+id/seekerTypeFragment"
@@ -241,17 +251,17 @@
         <action
             android:id="@+id/toSeekerOverviewFragment"
             app:destination="@id/seekerOverviewFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"  />
+            app:enterAnim="@animator/slide_in_right_to_left"
+            app:exitAnim="@animator/slide_out_right_to_left"
+            app:popEnterAnim="@animator/slide_in_left_to_right"
+            app:popExitAnim="@animator/slide_out_left_to_right"  />
         <action
             android:id="@+id/toPhoneCallFragment"
             app:destination="@id/phoneCallFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            app:enterAnim="@animator/slide_in_right_to_left"
+            app:exitAnim="@animator/slide_out_right_to_left"
+            app:popEnterAnim="@animator/slide_in_left_to_right"
+            app:popExitAnim="@animator/slide_out_left_to_right" />
     </fragment>
     <fragment
         android:id="@+id/phoneCallFragment"
@@ -266,11 +276,7 @@
             android:id="@+id/transcriptArticlesFragment"
             android:name="app.nexd.android.ui.helper.transcript.articles.TranscriptArticlesFragment"
             android:label="TranscriptArticlesFragment"
-            tools:layout="@layout/fragment_transcript_articles">
-            <action
-                android:id="@+id/action_transcriptArticlesFragment_to_callOverviewFragment"
-                app:destination="@id/callOverviewFragment" />
-        </fragment>
+            tools:layout="@layout/fragment_transcript_articles"/>
         <fragment
             android:id="@+id/transcriptInfoFragment"
             android:name="app.nexd.android.ui.helper.transcript.info.TranscriptInfoFragment"
@@ -279,10 +285,10 @@
             <action
                 android:id="@+id/action_transcriptInfoFragment_to_transcriptArticlesFragment"
                 app:destination="@id/transcriptArticlesFragment"
-                app:enterAnim="@anim/slide_in_right"
-                app:exitAnim="@anim/slide_out_left"
-                app:popEnterAnim="@anim/slide_in_left"
-                app:popExitAnim="@anim/slide_out_right" />
+                app:enterAnim="@animator/slide_in_right_to_left"
+                app:exitAnim="@animator/slide_out_right_to_left"
+                app:popEnterAnim="@animator/slide_in_left_to_right"
+                app:popExitAnim="@animator/slide_out_left_to_right" />
         </fragment>
         <fragment
             android:id="@+id/callOverviewFragment"
@@ -292,10 +298,10 @@
             <action
                 android:id="@+id/action_callOverviewFragment_to_transcriptInfoFragment"
                 app:destination="@id/transcriptInfoFragment"
-                app:enterAnim="@anim/slide_in_right"
-                app:exitAnim="@anim/slide_out_left"
-                app:popEnterAnim="@anim/slide_in_left"
-                app:popExitAnim="@anim/slide_out_right" />
+                app:enterAnim="@animator/slide_in_right_to_left"
+                app:exitAnim="@animator/slide_out_right_to_left"
+                app:popEnterAnim="@animator/slide_in_left_to_right"
+                app:popExitAnim="@animator/slide_out_left_to_right" />
         </fragment>
     </navigation>
 </navigation>

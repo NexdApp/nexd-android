@@ -2,27 +2,25 @@ package app.nexd.android.ui.common
 
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import app.nexd.android.R
 import app.nexd.android.api.model.HelpRequest
 import app.nexd.android.ui.common.HelpRequestBinder.HelpRequestViewHolder
-import kotlinx.android.synthetic.main.row_user.view.*
+import kotlinx.android.synthetic.main.row_help_request.view.*
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
 
 class HelpRequestBinder: ItemBinder<HelpRequest, HelpRequestViewHolder>() {
 
     class HelpRequestViewHolder(itemView: View): ItemViewHolder<HelpRequest>(itemView) {
-        private val title: TextView = itemView.textView_title
 
         init {
-            itemView.setOnClickListener {
+            itemView.button_help_request.setOnClickListener {
                 toggleItemSelection()
             }
         }
 
         fun bind(request: HelpRequest) {
-            title.text = itemView.context.getString(R.string.user_name_layout,
+            itemView.button_help_request.text = itemView.context.getString(R.string.user_name_layout,
                 request.requester?.firstName,
                 request.requester?.lastName)
         }
@@ -33,7 +31,7 @@ class HelpRequestBinder: ItemBinder<HelpRequest, HelpRequestViewHolder>() {
     }
 
     override fun createViewHolder(parent: ViewGroup): HelpRequestViewHolder {
-        return HelpRequestViewHolder(inflate(parent, R.layout.row_user))
+        return HelpRequestViewHolder(inflate(parent, R.layout.row_help_request))
     }
 
     override fun canBindData(item: Any): Boolean {
