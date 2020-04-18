@@ -3,17 +3,11 @@
     <color name="text">#4EBF96</color>
     <color name="colorPrimary">#4EBF96</color>
     <color name="colorPrimaryDark">#0C2E45</color>
-    <color name="colorAccent">#4EBF96</color>
-    <color name="ic_launcher_background">#FFFFFF</color>
+    <color name="colorAccent">#ffffff</color>
 
     <color name="white_semi_translucent">#e0ffffff</color>
     <color name="white_translucent">#70ffffff</color>
 
-    <color name="grey_0">#ffffff</color>
-    <color name="grey_100">#f8f9fa</color>
-    <color name="grey_200">#f1f3f5</color>
-    <color name="grey_300">#e9ecef</color>
-    <color name="grey_400">#dee2e6</color>
     <color name="grey_500">#ced4da</color>
 
     <color name="grey_border">#ACACAC</color>
