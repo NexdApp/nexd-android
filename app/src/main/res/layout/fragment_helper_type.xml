@@ -5,42 +5,59 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="10dp"
+    tools:background="@color/colorPrimary"
     tools:context=".ui.role.RoleFragment">
 
     <Space
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="0dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginBottom="40dp"
         android:gravity="top"
+        android:layout_marginBottom="40dp"
+        android:layout_marginHorizontal="10dp"
         android:text="@string/helper_type_screen_title"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/textSize_navigation_title"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textSize="@dimen/textSize_navigation_title" />
 
     <Button
         android:id="@+id/button_shopping"
-        style="@style/ListButtonExtraLarge"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/helper_type_button_shopping" />
+        android:layout_height="110dp"
+        android:background="@drawable/rounded_outer"
+        android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+        android:drawableTint="@android:color/white"
+        android:paddingHorizontal="23dp"
+        android:text="@string/helper_type_button_shopping"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/textSize_navigation_button"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/button_transcript"
         android:layout_width="match_parent"
         android:layout_height="110dp"
         android:layout_marginTop="20dp"
-        style="@style/ListButtonExtraLarge"
-        android:text="@string/helper_type_button_transcript" />
+        android:background="@drawable/rounded_outer"
+        android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+        android:drawableTint="@android:color/white"
+        android:paddingHorizontal="23dp"
+        android:text="@string/helper_type_button_transcript"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/textSize_navigation_button"
+        android:textStyle="bold" />
 
     <Space
+        android:layout_weight="2"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2" />
+        android:layout_height="0dp" />
 
 </LinearLayout>

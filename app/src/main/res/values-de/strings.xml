@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="login_screen_title">"Login"</string>
     <string name="login_button_title_login">"Einloggen"</string>
     <string name="login_button_title_register">"Registrieren"</string>
-    <string name="registration_screen_title">"Registrierung"</string>
     <string name="registration_button_title_continue">"Weiter"</string>
     <string name="registration_button_title_send">"Bestätigen"</string>
     <string name="role_selection_screen_title">"Rolle"</string>
@@ -12,33 +10,13 @@
     <string name="helper_request_overview_screen_title">"Übersicht"</string>
     <string name="helper_request_overview_heading_accepted_section">"Angenommen:"</string>
     <string name="helper_request_overview_heading_available_section">"Suchen:"</string>
-    <string name="helper_request_overview_unknown_requester">"- UNBEKANNT -"</string>
-    <string name="helper_request_overview_button_title_start">"Start"</string>
-    <string name="helper_request_overview_error_title">"Fehler!"</string>
-    <string name="helper_request_overview_error_message">"Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuchen Sie er erneut."</string>
     <string name="shopping_list_screen_title">"Einkaufsliste"</string>
-    <string name="shopping_list_button_title_checkout">"Zur Kasse"</string>
-    <string name="shopping_list_overview_error_title">"Fehler!"</string>
-    <string name="shopping_list_overview_error_loading_failed_message">"Beim Laden der Einkaufsliste ist ein Fehler aufgetreten! Bitte versuchen Sie es erneut."</string>
     <string name="checkout_screen_title">"An der Kasse"</string>
-    <string name="checkout_button_title_complete">"Fertig"</string>
-    <string name="seeker_item_selection_screen_title">"Artikel"</string>
-    <string name="seeker_submit_button_title">"Senden"</string>
-    <string name="seeker_success_title">"Fertig!"</string>
-    <string name="seeker_success_message">"Die Anfrage wurde erfolgreich aufgegeben."</string>
-    <string name="seeker_error_title">"Fehler!"</string>
-    <string name="seeker_error_message">"Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuchen Sie er erneut."</string>
-    <string name="error_title">"Fehler"</string>
     <string name="error_message_login_failed">"Login fehlgeschlagen. Bitte versuchen Sie es erneut."</string>
-    <string name="error_message_registration_validation_failed">"Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut."</string>
-    <string name="error_message_registration_failed">"Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut."</string>
-    <string name="error_button_ok">"OK"</string>
 
     <!-- Title of the user profile screen -->
-    <string name="user_profile_screen_title">"Benutzerprofil"</string>
 
     <!-- Logout button title -->
-    <string name="user_profile_button_title_logout">"Abmelden"</string>
     <string name="dialog_button_abort">"Abbrechen"</string>
     <string name="dialog_button_confirm">"Bestätigen"</string>
     <string name="login_placeholder_username">"Benutzername"</string>
@@ -46,14 +24,10 @@
     <string name="registration_placeholder_email">"E-Mail"</string>
     <string name="registration_placeholder_firstName">"Vorname"</string>
     <string name="registration_placeholder_lastName">"Nachname"</string>
-    <string name="registration_placeholder_phone">"Telefon"</string>
-    <string name="registration_placeholder_zip">"Postleitzahl"</string>
     <string name="registration_placeholder_password">"Passwort"</string>
     <string name="registration_placeholder_confirm_password">"Passwort bestätigen"</string>
     <string name="registration_button_privacy_policy">"Datenschutzhinweise"</string>
     <string name="role_selection_button_logout">"Ausloggen"</string>
-    <string name="helper_request_overview_button_summary_title">"Einkaufen"</string>
-    <string name="helper_request_overview_button_summary_details">"Insg. "</string>
     <string name="helper_request_detail_screen_title">"Zu Einkaufen"</string>
     <string name="helper_request_detail_message_cancelled">"Anfrage wurde gelöscht"</string>
     <string name="helper_request_detail_message_error_on_cancellation">"Anfrage konnte nicht gelöscht werden"</string>
@@ -69,61 +43,46 @@
     <string name="seeker_detail_placeholder_information">"Zusätzliche Informationen"</string>
     <string name="seeker_request_create_heading">"Ich benötige:"</string>
     <string name="seeker_request_create_placeholder_information">"Zusätzliche Informationen"</string>
-    <string name="user_input_details_screen_title">"Geben Sie weitere Details ein"</string>
     <string name="user_input_details_placeholder_phoneNumber">"Tel. Nr."</string>
     <string name="user_input_details_placeholder_street">"Straße"</string>
     <string name="user_input_details_placeholder_houseNumber">"Nr."</string>
     <string name="user_input_details_placeholder_zipCode">"PLZ"</string>
     <string name="user_input_details_placeholder_city">"Ort"</string>
-    <string name="user_input_details_confirm">"Bestätigen"</string>
     <string name="error_message_login_field_missing">"Bitte ausfüllen"</string>
     <string name="error_message_registration_password_match">"Passwörter stimmen nicht überein"</string>
     <string name="error_message_registration_field_missing">"Bitte ausfüllen"</string>
-    <string name="error_message_registration_password_too_short">"mind. 6 Zeichen"</string>
-    <string name="error_message_registration_invalid_email">"Ungültige E-Mail Adresse"</string>
     <string name="error_message_user_detail_field_missing">"Bitte ausfüllen"</string>
     <string name="registration_label_privacy_policy_agreement">"Mit der Registrierung akzeptiere ich die %1$@"</string>
+    <string name="registration_label_privacy_policy_agreement_android">"Mit der Registrierung akzeptiere ich die %1$s"</string>
     <string name="registration_term_privacy_policy">"Datenschutzbestimmungen"</string>
     <string name="helper_request_overview_button_previous_requests">"Frühere Anfragen"</string>
+    <string name="helper_request_overview_button_filter_zip">"Postleitzahl"</string>
+    <string name="helper_request_overview_heading_open_section_zip">" (PLZ %1$s)"</string>
     <string name="seeker_overview_screen_title">"Your requests:"</string>
     <string name="helper_request_finished_screen_title">"Vorherige Anfragen:"</string>
-    <string name="helper_request_overview_item_type_recording">"Sprachnachricht"</string>
-    <string name="helper_request_overview_item_type_list">"Liste"</string>
-    <string name="helper_request_transcript_button_done">"Füge Bestellung zur aktuellen Shoppingliste hinzu"</string>
-    <string name="role_screen_title">"Wilkommen, "</string>
+    <string name="role_screen_title">"Wilkommen,\n%1$s."</string>
     <string name="role_screen_subtitle">"Was möchten Sie heute tun?"</string>
     <string name="helper_type_screen_title">"Wie würden Sie gerne helfen?"</string>
     <string name="helper_type_button_shopping">"Ich möchte shoppen!"</string>
     <string name="helper_type_button_transcript">"Einen Anruf übersetzen!"</string>
     <string name="helper_call_overview_screen_title">"Offene Anrufe:"</string>
-    <string name="seeker_phone_call_text"><![CDATA[Rufen Sie bitte <br><b>%1$s</b><br>um Ihre Einkaufsliste aufzuzeigen.]]></string>
+    <string name="seeker_phone_call_text">"Rufen Sie bitte <br><b>%1$s</b></br>um Ihre Einkaufsliste aufzuzeigen."</string>
     <string name="seeker_type_screen_title">"Wie würden Sie gerne Ihre Liste erstellen?"</string>
     <string name="seeker_type_button_help_request">"Artikel auswählen"</string>
     <string name="seeker_type_button_phone_call">"Einen Anruf tätigen"</string>
     <string name="error_message_unknown">"Unbekannter Fehler"</string>
     <string name="seeker_overview_empty_label">"Sie haben noch keine Anfragen aufgegeben. Klicken Sie rechts unten, um Ihre erste Anfrage zu erstellen."</string>
-    <string name="role_screen_title_ios">"Willkommen, %@"</string>
-    <string name="seeker_phone_call_text_ios">"Rufen Sie bitte %@ um Ihre Einkaufsliste aufzuzeigen."</string>
-    <string name="back_button_title">"Zurück"</string>
-    <string name="cancel_button_title">"Abbrechen"</string>
-    <string name="confirm_button_title">"Bestätigen"</string>
-    <string name="loading_overlay_message">"Wird geladen..."</string>
-    <string name="ok_button_title">"OK"</string>
-    <string name="seeker_request_create_placeholder_delivery_comment">"Lieferhinweis"</string>
-    <string name="helper_request_overview_button_title_current_items_list">"Einkaufsliste"</string>
 
     <!-- Fuzzy -->
-    <string name="helper_request_overview_open_request_item_details_format_ios">"vor %1$@, %2$@"</string>
-    <string name="delivery_confirmation_screen_title">"Vielen Dank für deine Hilfe!"</string>
-    <string name="delivery_confirmation_section_header">"Kontaktinformation für %1$@:"</string>
-    <string name="delivery_confirmation_phone_number_title">"Telefonnummer"</string>
-    <string name="delivery_confirmation_address_title">"Postleitzahl / Ort"</string>
-    <string name="delivery_confirmation_confirm_button_title">"Einkauf beenden"</string>
-    <string name="error_dialog_authentication_failed_title">"Authentifizierung fehlgeschlagen!"</string>
-    <string name="error_dialog_authentication_failed_message">"Benutzerauthentifizierung fehlgeschlagen. Bitte logge dich erneut ein."</string>
     <string name="transcribe_info_screen_title">"Anruferinfos"</string>
     <string name="transcribe_info_input_text_title_first_name">"Vorname"</string>
     <string name="transcribe_info_input_text_title_last_name">"Nachname"</string>
     <string name="transcribe_info_input_text_title_postal_code">"Postleitzahl"</string>
     <string name="transcribe_info_button_title_confirm">"Info bestätigen"</string>
+    <string name="transcribe_info_input_text_title_street">Straße</string>
+    <string name="transcribe_info_input_text_title_street_number">Nummer</string>
+    <string name="transcribe_info_input_text_title_city">Stadt</string>
+    <string name="transcribe_articles_screen_title">Einkaufsliste</string>
+    <string name="transcribe_articles_button_title_confirm">Bestätigen</string>
+    <string name="select_text_dialog_text_hint_default">Eingeben</string>
 </resources>

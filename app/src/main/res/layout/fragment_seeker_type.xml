@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="10dp"
+    tools:background="@color/colorPrimary"
     tools:context=".ui.role.RoleFragment">
 
     <Space
@@ -27,7 +28,7 @@
         android:id="@+id/button_help_request"
         android:layout_width="match_parent"
         android:layout_height="110dp"
-        android:background="@drawable/rounded_button_white_translucent"
+        android:background="@drawable/rounded_outer"
         android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
         android:drawableTint="@android:color/white"
         android:paddingHorizontal="23dp"
@@ -43,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="110dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/rounded_button_white_translucent"
+        android:background="@drawable/rounded_outer"
         android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
         android:drawableTint="@android:color/white"
         android:paddingHorizontal="23dp"

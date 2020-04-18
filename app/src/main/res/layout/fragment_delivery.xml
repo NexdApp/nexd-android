@@ -1,52 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:paddingTop="@dimen/topPadding"
-    android:paddingHorizontal="@dimen/horizontalPadding"
-    tools:context=".ui.helper.delivery.DeliveryFragment">
+<layout>
 
-    <TextView
-        android:id="@+id/textView_title"
-        android:text="@string/delivery_screen_title"
-        android:layout_marginBottom="10dp"
-        android:textSize="@dimen/textSize_screen_title"
-        android:textStyle="bold"
-        android:textColor="@android:color/white"
+    <data>
+
+        <variable
+            name="viewModel"
+            type="app.nexd.android.ui.helper.delivery.DeliveryViewModel" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:paddingHorizontal="@dimen/horizontalPadding"
+        android:paddingTop="@dimen/topPadding"
+        tools:background="@color/colorPrimary"
+        tools:context=".ui.helper.delivery.DeliveryFragment">
 
-    <ScrollView
-        android:layout_below="@id/textView_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_helpRequests"
-            tools:listitem="@layout/row_helper_delivery_help_request"
-            android:orientation="vertical"
+        <TextView
+            android:id="@+id/textView_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/delivery_screen_title"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textSize_screen_title"
+            android:textStyle="bold" />
 
-    </ScrollView>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_title">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/closeRequest"
-        android:src="@drawable/ic_check_black_24dp"
-        app:borderWidth="0dp"
-        android:tint="@color/colorPrimaryDark"
-        app:fabCustomSize="70dp"
-        app:maxImageSize="30dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:layout_margin="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_helpRequests"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                tools:listitem="@layout/row_helper_delivery_help_request" />
 
+        </ScrollView>
 
-
-</RelativeLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/closeRequest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_check_black_24dp"
+            android:tint="@color/colorPrimaryDark"
+            app:borderWidth="0dp"
+            app:fabCustomSize="70dp"
+            app:maxImageSize="30dp" />
+    </RelativeLayout>
+</layout>

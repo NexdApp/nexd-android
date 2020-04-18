@@ -40,10 +40,11 @@ class SelectTextDialog @JvmOverloads constructor(
         }
 
         this.value = value
+        setLabel()
     }
 
     @JvmOverloads
-    fun setText(
+    fun setLabel(
         inputType: Int = InputType.TYPE_CLASS_TEXT,
         label: String? = null
     ): SelectTextDialog {
@@ -51,7 +52,7 @@ class SelectTextDialog @JvmOverloads constructor(
 
         if (label.isNullOrEmpty()) {
             mLabel.visibility = View.GONE
-            mText.hint = "Eingeben"
+            mText.hint = context.getString(R.string.select_text_dialog_text_hint_default)
         } else {
             mLabel.text = label
             mLabel.visibility = View.VISIBLE

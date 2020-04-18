@@ -161,7 +161,7 @@ Name | Type | Description  | Notes
 
 ## phoneControllerGetNumbers
 
-> String phoneControllerGetNumbers()
+> List&lt;PhoneNumberDto&gt; phoneControllerGetNumbers()
 
 Returns available numbers
 
@@ -182,7 +182,7 @@ public class Example {
 
         PhoneApi apiInstance = new PhoneApi(defaultClient);
         try {
-            String result = apiInstance.phoneControllerGetNumbers();
+            List<PhoneNumberDto> result = apiInstance.phoneControllerGetNumbers();
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PhoneApi#phoneControllerGetNumbers");
@@ -201,7 +201,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**String**
+[**List&lt;PhoneNumberDto&gt;**](PhoneNumberDto.md)
 
 ### Authorization
 
@@ -215,5 +215,5 @@ No authorization required
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Success |  -  |
+| **200** |  |  -  |
 

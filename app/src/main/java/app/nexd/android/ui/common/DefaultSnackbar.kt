@@ -3,7 +3,6 @@ package app.nexd.android.ui.common
 import android.graphics.Typeface
 import android.util.TypedValue
 import android.view.View
-import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.StringRes
 import androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -30,7 +29,7 @@ class DefaultSnackbar(parent: View, text: CharSequence, duration: Int) {
         snackBarView.layoutParams = params
         snackBarView.setPadding(0, 0, 0 , 0)
         snackBarView.background = ContextCompat.getDrawable(parent.context,
-            R.drawable.rounded_button_white_semi_translucent)
+            R.drawable.rounded_white_semi_translucent)
 
         val textView: TextView = snackBarView.findViewById(
             com.google.android.material.R.id.snackbar_text)
