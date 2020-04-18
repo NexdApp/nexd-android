@@ -43,12 +43,15 @@ class SeekerDetailViewModel: ViewModel() {
                     .status(HelpRequestCreateDto.StatusEnum.DEACTIVATED)
             )
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnError {
-                    progress.value = Progress.Error
-                }
-                .subscribe {
-                    progress.value = Progress.Canceled
-                }
+                .subscribe(
+                    {
+                        progress.value = Progress.Canceled
+                    },
+                    {
+                        progress.value = Progress.Error
+                    }
+                )
+
         }
     }
 

@@ -54,7 +54,7 @@ class SeekerDetailFragment : Fragment() {
                 is SeekerDetailViewModel.Progress.Canceled -> {
                     // show information
                     Toast.makeText(requireContext(), getText(R.string.helper_request_detail_message_cancelled), Toast.LENGTH_LONG).show()
-                    findNavController().navigate(R.id.seekerOverviewFragment)
+                    findNavController().navigateUp()
                 }
             }
         }
