@@ -27,17 +27,23 @@
         <item name="android:background">@drawable/rounded_button_outer</item>
         <item name="android:drawableEnd">@drawable/ic_chevron_right_black_24dp</item>
         <item name="android:drawableTint">@android:color/white</item>
-        <item name="android:paddingTop">15dp</item>
-        <item name="android:paddingBottom">15dp</item>
+        <item name="android:paddingTop">7dp</item>
+        <item name="android:paddingBottom">7dp</item>
         <item name="android:paddingStart">15dp</item>
         <item name="android:paddingEnd">20dp</item>
         <item name="android:textAlignment">textStart</item>
-        <item name="android:textSize">35sp</item>
+        <item name="android:textSize">30sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/colorPrimaryDark</item>
     </style>
 
     <style name="ListButtonLarge" parent="ListButton">
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:paddingBottom">15dp</item>
+        <item name="android:textSize">35sp</item>
+    </style>
+
+    <style name="ListButtonExtraLarge" parent="ListButtonLarge">
         <item name="android:minHeight">130dp</item>
     </style>
 
