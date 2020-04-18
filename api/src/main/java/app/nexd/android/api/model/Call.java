@@ -31,6 +31,10 @@ import java.util.Date;
  */
 
 public class Call {
+  public static final String SERIALIZED_NAME_CONVERTED_HELP_REQUEST_ID = "convertedHelpRequestId";
+  @SerializedName(SERIALIZED_NAME_CONVERTED_HELP_REQUEST_ID)
+  private Long convertedHelpRequestId;
+
   public static final String SERIALIZED_NAME_SID = "sid";
   @SerializedName(SERIALIZED_NAME_SID)
   private String sid;
@@ -46,10 +50,6 @@ public class Call {
   public static final String SERIALIZED_NAME_RECORDING_URL = "recordingUrl";
   @SerializedName(SERIALIZED_NAME_RECORDING_URL)
   private String recordingUrl;
-
-  public static final String SERIALIZED_NAME_CONVERTED_HELP_REQUEST_ID = "convertedHelpRequestId";
-  @SerializedName(SERIALIZED_NAME_CONVERTED_HELP_REQUEST_ID)
-  private Long convertedHelpRequestId;
 
   public static final String SERIALIZED_NAME_PHONE_NUMBER = "phoneNumber";
   @SerializedName(SERIALIZED_NAME_PHONE_NUMBER)
@@ -74,6 +74,29 @@ public class Call {
   public static final String SERIALIZED_NAME_CONVERTER = "converter";
   @SerializedName(SERIALIZED_NAME_CONVERTER)
   private User converter;
+
+
+  public Call convertedHelpRequestId(Long convertedHelpRequestId) {
+    
+    this.convertedHelpRequestId = convertedHelpRequestId;
+    return this;
+  }
+
+   /**
+   * Get convertedHelpRequestId
+   * @return convertedHelpRequestId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Long getConvertedHelpRequestId() {
+    return convertedHelpRequestId;
+  }
+
+
+  public void setConvertedHelpRequestId(Long convertedHelpRequestId) {
+    this.convertedHelpRequestId = convertedHelpRequestId;
+  }
 
 
   public Call sid(String sid) {
@@ -162,29 +185,6 @@ public class Call {
 
   public void setRecordingUrl(String recordingUrl) {
     this.recordingUrl = recordingUrl;
-  }
-
-
-  public Call convertedHelpRequestId(Long convertedHelpRequestId) {
-    
-    this.convertedHelpRequestId = convertedHelpRequestId;
-    return this;
-  }
-
-   /**
-   * Get convertedHelpRequestId
-   * @return convertedHelpRequestId
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public Long getConvertedHelpRequestId() {
-    return convertedHelpRequestId;
-  }
-
-
-  public void setConvertedHelpRequestId(Long convertedHelpRequestId) {
-    this.convertedHelpRequestId = convertedHelpRequestId;
   }
 
 
@@ -290,7 +290,8 @@ public class Call {
    * Get converterId
    * @return converterId
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
 
   public String getConverterId() {
     return converterId;
@@ -334,11 +335,11 @@ public class Call {
       return false;
     }
     Call call = (Call) o;
-    return Objects.equals(this.sid, call.sid) &&
+    return Objects.equals(this.convertedHelpRequestId, call.convertedHelpRequestId) &&
+        Objects.equals(this.sid, call.sid) &&
         Objects.equals(this.createdAt, call.createdAt) &&
         Objects.equals(this.updatedAt, call.updatedAt) &&
         Objects.equals(this.recordingUrl, call.recordingUrl) &&
-        Objects.equals(this.convertedHelpRequestId, call.convertedHelpRequestId) &&
         Objects.equals(this.phoneNumber, call.phoneNumber) &&
         Objects.equals(this.country, call.country) &&
         Objects.equals(this.zip, call.zip) &&
@@ -349,7 +350,7 @@ public class Call {
 
   @Override
   public int hashCode() {
-    return Objects.hash(sid, createdAt, updatedAt, recordingUrl, convertedHelpRequestId, phoneNumber, country, zip, city, converterId, converter);
+    return Objects.hash(convertedHelpRequestId, sid, createdAt, updatedAt, recordingUrl, phoneNumber, country, zip, city, converterId, converter);
   }
 
 
@@ -357,11 +358,11 @@ public class Call {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Call {\n");
+    sb.append("    convertedHelpRequestId: ").append(toIndentedString(convertedHelpRequestId)).append("\n");
     sb.append("    sid: ").append(toIndentedString(sid)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("    recordingUrl: ").append(toIndentedString(recordingUrl)).append("\n");
-    sb.append("    convertedHelpRequestId: ").append(toIndentedString(convertedHelpRequestId)).append("\n");
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    zip: ").append(toIndentedString(zip)).append("\n");

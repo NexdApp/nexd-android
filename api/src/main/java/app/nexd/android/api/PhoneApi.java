@@ -12,6 +12,7 @@ import okhttp3.MultipartBody;
 
 import app.nexd.android.api.model.Call;
 import app.nexd.android.api.model.HelpRequestCreateDto;
+import app.nexd.android.api.model.PhoneNumberDto;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,10 +54,10 @@ public interface PhoneApi {
   /**
    * Returns available numbers
    * 
-   * @return Observable&lt;String&gt;
+   * @return Observable&lt;List&lt;PhoneNumberDto&gt;&gt;
    */
   @GET("phone/numbers")
-  Observable<String> phoneControllerGetNumbers();
+  Observable<List<PhoneNumberDto>> phoneControllerGetNumbers();
     
 
 }
