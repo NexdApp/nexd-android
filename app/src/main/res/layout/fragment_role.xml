@@ -1,32 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     android:orientation="vertical"
-    android:padding="10dp"
-    tools:background="@color/colorPrimary"
     tools:context=".ui.role.RoleFragment">
+
+    <View
+        android:id="@+id/view_top"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimary" />
+
+
+    <Button
+        android:id="@+id/button_profile"
+        android:gravity="center"
+        android:textSize="65sp"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        tools:text="TJ"
+        android:layout_below="@id/view_top"
+        android:layout_marginTop="-65dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/round_button_grey"
+        android:layout_width="130dp"
+        android:layout_height="130dp" />
 
     <Button
         android:id="@+id/button_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_button_outer"
+        android:layout_margin="5dp"
         android:padding="10dp"
         android:text="@string/role_selection_button_logout"
         android:textAllCaps="false"
+        android:textColor="@android:color/white"
         android:textSize="17sp"
-        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:layout_below="@id/button_profile"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/horizontalPadding">
 
         <TextView
             android:id="@+id/textView_title"
@@ -35,58 +59,53 @@
             android:layout_marginTop="21dp"
             android:layout_marginBottom="18dp"
             android:gravity="top"
-            android:text="@string/role_screen_title"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/textSize_navigation_title"
             android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/textSize_navigation_title" />
+            tools:text="Welcome,\nSmith." />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
             android:gravity="top"
             android:text="@string/role_screen_subtitle"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/textSize_navigation_title" />
+            android:textColor="@color/grey"
+            android:textSize="@dimen/textSize_screen_title"
+            android:textStyle="bold" />
 
-        <View
+
+        <Button
+            android:id="@+id/role_button_seeker"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="40dp"
-            android:background="@color/colorPrimaryDark" />
+            android:layout_height="110dp"
+            android:background="@drawable/rounded_button_outer_primary"
+            android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+            android:drawableTint="@color/colorPrimary"
+            android:paddingHorizontal="10dp"
+            android:text="@string/role_selection_seeker"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/textSize_navigation_button"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/role_button_helper"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/rounded_button_outer_primary"
+            android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+            android:drawableTint="@color/colorPrimary"
+            android:paddingHorizontal="10dp"
+            android:text="@string/role_selection_helper"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/textSize_navigation_button"
+            android:textStyle="bold" />
+
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/role_button_seeker"
-        android:layout_width="match_parent"
-        android:layout_height="110dp"
-        android:background="@drawable/rounded_button_white_translucent"
-        android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
-        android:drawableTint="@android:color/white"
-        android:paddingHorizontal="10dp"
-        android:text="@string/role_selection_seeker"
-        android:textAlignment="textStart"
-        android:textAllCaps="false"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="@dimen/textSize_navigation_button"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/role_button_helper"
-        android:layout_width="match_parent"
-        android:layout_height="110dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/rounded_button_white_translucent"
-        android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
-        android:drawableTint="@android:color/white"
-        android:paddingHorizontal="10dp"
-        android:text="@string/role_selection_helper"
-        android:textAlignment="textStart"
-        android:textAllCaps="false"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="@dimen/textSize_navigation_button"
-        android:textStyle="bold" />
-
-
-</LinearLayout>
+</RelativeLayout>

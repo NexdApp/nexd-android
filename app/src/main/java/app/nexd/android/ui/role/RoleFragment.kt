@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import app.nexd.android.R
+import kotlinx.android.synthetic.main.fragment_helper_request_detail.*
 import kotlinx.android.synthetic.main.fragment_role.*
 
 class RoleFragment : Fragment() {
@@ -30,21 +31,15 @@ class RoleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getMe().observe(viewLifecycleOwner, Observer { currentUser ->
-            val startingString = context?.getString(R.string.role_screen_title)
-            val fullTitle = startingString + currentUser.firstName
-            val title = SpannableString(fullTitle)
-            title.setSpan(
-                ForegroundColorSpan(
-                    ContextCompat.getColor(
-                        context!!,
-                        R.color.colorPrimaryDark
-                    )
-                ),
-                startingString?.length ?: 0,
-                fullTitle.length, 0
+            textView_title.text = getString(
+                R.string.role_screen_title,
+                currentUser.firstName
             )
-
-            textView_title.setText(title, TextView.BufferType.SPANNABLE)
+            button_profile.text = getString(
+                R.string.user_name_abbreviation,
+                currentUser.firstName?.first() ?: "",
+                currentUser.lastName?.first() ?: ""
+            )
         })
 
         role_button_helper.setOnClickListener {
