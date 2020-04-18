@@ -42,4 +42,8 @@
         <item name="android:textSize">35sp</item>
     </style>
 
+    <style name="AuthenticationEditText" parent="Widget.AppCompat.EditText">
+        <item name="colorControlActivated">@color/colorPrimary</item>
+    </style>
+
 </resources>

@@ -55,6 +55,7 @@
                 android:lines="1"
                 android:text="@={viewModel.phoneNumber}"
                 android:error="@{viewModel.phoneNumberError}"
+                android:theme="@style/AuthenticationEditText"
                 android:nextFocusDown="@id/editText_street"
                 android:paddingHorizontal="10dp"
                 android:textSize="20sp" />
@@ -77,6 +78,7 @@
                     android:lines="1"
                     android:text="@={viewModel.street}"
                     android:error="@{viewModel.streetError}"
+                    android:theme="@style/AuthenticationEditText"
                     android:nextFocusRight="@id/editText_houseNr"
                     android:paddingHorizontal="10dp"
                     android:textSize="20sp" />
@@ -94,6 +96,7 @@
                     android:lines="1"
                     android:text="@={viewModel.houseNumber}"
                     android:error="@{viewModel.houseNumberError}"
+                    android:theme="@style/AuthenticationEditText"
                     android:nextFocusDown="@id/editText_zipCode"
                     android:paddingHorizontal="10dp"
                     android:textSize="20sp" />
@@ -118,6 +121,7 @@
                     android:lines="1"
                     android:text="@={viewModel.zipCode}"
                     android:error="@{viewModel.zipCodeError}"
+                    android:theme="@style/AuthenticationEditText"
                     android:nextFocusRight="@id/editText_city"
                     android:paddingHorizontal="10dp"
                     android:textSize="20sp" />
@@ -135,6 +139,7 @@
                     android:lines="1"
                     android:text="@={viewModel.locality}"
                     android:error="@{viewModel.localityError}"
+                    android:theme="@style/AuthenticationEditText"
                     android:paddingHorizontal="10dp"
                     android:textSize="20sp" />
             </LinearLayout>
