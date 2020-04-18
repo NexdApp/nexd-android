@@ -1,5 +1,6 @@
 <resources>
     <string translatable="false" name="user_name_layout">"%1$s %2$s"</string>
     <string translatable="false" name="helper_delivery_address_layout">"%1$s %2$s, %3$s %4$s"</string>
-    <string translatable="false" name="helper_request_article_amount_layout">%1$dx</string>
+    <string translatable="false" name="helper_request_article_amount_layout">"%1$dx"</string>
+    <string translatable="false" name="user_name_abbreviation">"%1$s%2$s"</string>
 </resources>

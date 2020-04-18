@@ -1,13 +1,9 @@
 package app.nexd.android.ui.role
 
 import android.os.Bundle
-import android.text.SpannableString
-import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -30,21 +26,15 @@ class RoleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getMe().observe(viewLifecycleOwner, Observer { currentUser ->
-            val startingString = context?.getString(R.string.role_screen_title)
-            val fullTitle = startingString + currentUser.firstName
-            val title = SpannableString(fullTitle)
-            title.setSpan(
-                ForegroundColorSpan(
-                    ContextCompat.getColor(
-                        context!!,
-                        R.color.colorPrimaryDark
-                    )
-                ),
-                startingString?.length ?: 0,
-                fullTitle.length, 0
+            textView_title.text = getString(
+                R.string.role_screen_title,
+                currentUser.firstName
             )
-
-            textView_title.setText(title, TextView.BufferType.SPANNABLE)
+            button_profile.text = getString(
+                R.string.user_name_abbreviation,
+                currentUser.firstName?.first() ?: "",
+                currentUser.lastName?.first() ?: ""
+            )
         })
 
         role_button_helper.setOnClickListener {

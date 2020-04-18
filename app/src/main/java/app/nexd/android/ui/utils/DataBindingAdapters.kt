@@ -11,5 +11,4 @@ object DataBindingAdapters {
     fun textViewBindError(view: TextView, @StringRes error: Int) {
         view.error = if (error != 0) view.context.getString(error) else null
     }
-
 }

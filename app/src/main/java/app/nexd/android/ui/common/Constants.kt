@@ -4,5 +4,6 @@ abstract class Constants {
     companion object {
         const val DATE_FORMAT = "dd MMM YYYY HH:mm"
         const val USER_ME = "me"
+        const val MAXIMAL_ACCEPTED_REQUESTS = 20
     }
 }

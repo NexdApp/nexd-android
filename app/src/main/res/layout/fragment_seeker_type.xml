@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@color/colorPrimary"
     tools:context=".ui.role.RoleFragment">
 
 
@@ -49,7 +49,7 @@
             android:id="@+id/button_record_list"
             android:layout_width="match_parent"
             android:layout_height="110dp"
-            android:background="@drawable/rounded_button_outer"
+            android:background="@drawable/rounded_outer"
             android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
             android:drawableTint="@android:color/white"
             android:paddingHorizontal="23dp"
@@ -65,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="110dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/rounded_button_outer"
+            android:background="@drawable/rounded_outer"
             android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
             android:drawableTint="@android:color/white"
             android:paddingHorizontal="23dp"
@@ -81,7 +81,7 @@
             android:layout_width="match_parent"
             android:layout_height="110dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/rounded_button_outer"
+            android:background="@drawable/rounded_outer"
             android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
             android:drawableTint="@android:color/white"
             android:paddingHorizontal="23dp"

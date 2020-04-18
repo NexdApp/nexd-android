@@ -9,7 +9,6 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:statusBarColor">@color/colorPrimary</item>
-        <item name="android:background">@drawable/background</item>
 
         <item name="fontFamily">@font/proxima_nova_soft</item>
         <item name="android:fontFamily">@font/proxima_nova_soft</item>
@@ -24,7 +23,7 @@
     </style>
 
     <style name="ListButton">
-        <item name="android:background">@drawable/rounded_button_outer</item>
+        <item name="android:background">@drawable/rounded_outer</item>
         <item name="android:drawableEnd">@drawable/ic_chevron_right_black_24dp</item>
         <item name="android:drawableTint">@android:color/white</item>
         <item name="android:paddingTop">7dp</item>
@@ -43,8 +42,8 @@
         <item name="android:textSize">35sp</item>
     </style>
 
-    <style name="ListButtonExtraLarge" parent="ListButtonLarge">
-        <item name="android:minHeight">130dp</item>
+    <style name="AuthenticationEditText" parent="Widget.AppCompat.EditText">
+        <item name="colorControlActivated">@color/colorPrimary</item>
     </style>
 
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.ActionBar">
