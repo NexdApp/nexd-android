@@ -1,62 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.role.RoleFragment">
 
-    <Space
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp" />
 
-    <TextView
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/seeker_type_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="top"
-        android:layout_marginBottom="40dp"
-        android:layout_marginHorizontal="10dp"
-        android:text="@string/seeker_type_screen_title"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"
-        android:textSize="@dimen/textSize_navigation_title" />
+        android:clickable="true"
+        android:focusable="true"
+        android:theme="@style/ToolbarTheme"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:navigationIcon="?attr/homeAsUpIndicator" />
 
-    <Button
-        android:id="@+id/button_help_request"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="110dp"
-        android:background="@drawable/rounded_button_white_translucent"
-        android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
-        android:drawableTint="@android:color/white"
-        android:paddingHorizontal="23dp"
-        android:text="@string/seeker_type_button_help_request"
-        android:textAlignment="textStart"
-        android:textAllCaps="false"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="@dimen/textSize_navigation_button"
-        android:textStyle="bold" />
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/seeker_type_toolbar"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-    <Button
-        android:id="@+id/button_phone_call"
-        android:layout_width="match_parent"
-        android:layout_height="110dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/rounded_button_white_translucent"
-        android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
-        android:drawableTint="@android:color/white"
-        android:paddingHorizontal="23dp"
-        android:text="@string/seeker_type_button_phone_call"
-        android:textAlignment="textStart"
-        android:textAllCaps="false"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="@dimen/textSize_navigation_button"
-        android:textStyle="bold" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
-    <Space
-        android:layout_weight="2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginBottom="40dp"
+            android:gravity="top"
+            android:text="@string/seeker_type_screen_title"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textSize_navigation_title"
+            android:textStyle="bold" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/button_record_list"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:background="@drawable/rounded_button_outer"
+            android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+            android:drawableTint="@android:color/white"
+            android:paddingHorizontal="23dp"
+            android:text="@string/seeker_type_button_record_list"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/textSize_navigation_button"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/button_help_request"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/rounded_button_outer"
+            android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+            android:drawableTint="@android:color/white"
+            android:paddingHorizontal="23dp"
+            android:text="@string/seeker_type_button_help_request"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/textSize_navigation_button"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/button_phone_call"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/rounded_button_outer"
+            android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+            android:drawableTint="@android:color/white"
+            android:paddingHorizontal="23dp"
+            android:text="@string/seeker_type_button_phone_call"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/textSize_navigation_button"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

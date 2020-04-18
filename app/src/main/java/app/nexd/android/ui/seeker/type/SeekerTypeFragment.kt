@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import app.nexd.android.R
 import app.nexd.android.ui.seeker.type.SeekerTypeFragmentDirections.Companion.toPhoneCallFragment
+import app.nexd.android.ui.seeker.type.SeekerTypeFragmentDirections.Companion.toRecordFragment
 import app.nexd.android.ui.seeker.type.SeekerTypeFragmentDirections.Companion.toSeekerOverviewFragment
 import kotlinx.android.synthetic.main.fragment_seeker_type.*
 
@@ -24,6 +25,10 @@ class SeekerTypeFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        button_record_list.setOnClickListener {
+            findNavController().navigate(toRecordFragment())
+        }
+
         button_help_request.setOnClickListener {
             findNavController().navigate(toSeekerOverviewFragment())
         }
@@ -32,7 +37,9 @@ class SeekerTypeFragment: Fragment() {
             findNavController().navigate(toPhoneCallFragment())
         }
 
-
+        seeker_type_toolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
 }
