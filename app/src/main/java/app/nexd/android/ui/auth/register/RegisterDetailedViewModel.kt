@@ -2,15 +2,11 @@ package app.nexd.android.ui.auth.register
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import app.nexd.android.Preferences
 import app.nexd.android.R
 import app.nexd.android.api
-import app.nexd.android.api.model.RegisterDto
 import app.nexd.android.api.model.UpdateUserDto
 import io.reactivex.android.schedulers.AndroidSchedulers
-import retrofit2.HttpException
 
 class RegisterDetailedViewModel(application: Application) : AndroidViewModel(application) {
 

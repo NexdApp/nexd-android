@@ -15,7 +15,6 @@ import app.nexd.android.ui.auth.register.RegisterDetailedViewModel.Progress.*
 import app.nexd.android.ui.common.DefaultSnackbar
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_register_detailed.*
-import java.lang.Error
 
 class RegisterDetailedFragment : Fragment() {
 

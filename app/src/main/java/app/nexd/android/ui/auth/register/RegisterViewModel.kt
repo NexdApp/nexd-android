@@ -10,7 +10,6 @@ import app.nexd.android.api.model.RegisterDto
 import app.nexd.android.ui.utils.ErrorUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import retrofit2.HttpException
 
 class RegisterViewModel(application: Application) : AndroidViewModel(application) {
 

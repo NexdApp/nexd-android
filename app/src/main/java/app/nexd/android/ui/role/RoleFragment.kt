@@ -1,19 +1,14 @@
 package app.nexd.android.ui.role
 
 import android.os.Bundle
-import android.text.SpannableString
-import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import app.nexd.android.R
-import kotlinx.android.synthetic.main.fragment_helper_request_detail.*
 import kotlinx.android.synthetic.main.fragment_role.*
 
 class RoleFragment : Fragment() {
