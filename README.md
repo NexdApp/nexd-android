@@ -38,4 +38,4 @@ The code is structured based on MVVM architeccture and clean architecture with t
 
 ## Localization
 
-We are using [POOEditor]() for localization management. Newly introduced strings have to be provided there and after that an automatic push has to be triggered. Contact [andre-stefanov](https://github.com/andre-stefanov) for further details.
+We are using [POEditor]() for localization management. Newly introduced strings have to be provided there and after that an automatic push has to be triggered. Contact [andre-stefanov](https://github.com/andre-stefanov) for further details.
