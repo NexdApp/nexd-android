@@ -7,7 +7,6 @@ import app.nexd.android.Preferences
 import app.nexd.android.R
 import app.nexd.android.api
 import app.nexd.android.api.model.LoginDto
-import app.nexd.android.ui.utils.ErrorUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy

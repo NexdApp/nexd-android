@@ -2,7 +2,17 @@ package app.nexd.android;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
-import com.google.gson.JsonElement;
+
+import java.io.IOException;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Type;
+import java.text.DateFormat;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import app.nexd.android.auth.ApiKeyAuth;
+import app.nexd.android.auth.HttpBasicAuth;
+import app.nexd.android.auth.HttpBearerAuth;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
@@ -12,17 +22,6 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
-import app.nexd.android.auth.HttpBasicAuth;
-import app.nexd.android.auth.HttpBearerAuth;
-import app.nexd.android.auth.ApiKeyAuth;
-
-import java.io.IOException;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Type;
-import java.text.DateFormat;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.HashMap;
 
 public class ApiClient {
 
