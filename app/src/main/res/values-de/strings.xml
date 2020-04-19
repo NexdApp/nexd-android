@@ -67,7 +67,9 @@
     <string name="helper_type_button_transcript">"Einen Anruf übersetzen!"</string>
     <string name="helper_call_overview_screen_title">"Offene Anrufe:"</string>
     <string name="seeker_phone_call_text">"Rufen Sie bitte <br><b>%1$s</b></br>um Ihre Einkaufsliste aufzuzeigen."</string>
-    <string name="seeker_type_screen_title">"Wie würden Sie gerne Ihre Liste erstellen?"</string>
+    <string name="seeker_type_screen_title">"Wie würden Sie gerne
+Ihre Liste erstellen?"</string>
+    <string name="seeker_type_button_record_list">"Liste aufzeichnen"</string>
     <string name="seeker_type_button_help_request">"Artikel auswählen"</string>
     <string name="seeker_type_button_phone_call">"Einen Anruf tätigen"</string>
     <string name="error_message_unknown">"Unbekannter Fehler"</string>
