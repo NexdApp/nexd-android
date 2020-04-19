@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.api.model.HelpRequest
 import kotlinx.android.synthetic.main.fragment_seeker_overview.*
-import kotlinx.android.synthetic.main.fragment_seeker_overview.recyclerView_requests
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
 

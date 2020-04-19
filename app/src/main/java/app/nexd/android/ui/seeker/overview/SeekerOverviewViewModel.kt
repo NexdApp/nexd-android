@@ -5,7 +5,8 @@ import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.ViewModel
 import app.nexd.android.api
 import app.nexd.android.api.model.HelpRequest
-import app.nexd.android.api.model.HelpRequestStatus.*
+import app.nexd.android.api.model.HelpRequestStatus.ONGOING
+import app.nexd.android.api.model.HelpRequestStatus.PENDING
 import io.reactivex.BackpressureStrategy
 
 class SeekerOverviewViewModel : ViewModel() {
