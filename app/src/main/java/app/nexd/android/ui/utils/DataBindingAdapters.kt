@@ -1,6 +1,5 @@
 package app.nexd.android.ui.utils
 
-import android.text.SpannableString
 import android.widget.TextView
 import androidx.annotation.StringRes
 import androidx.databinding.BindingAdapter

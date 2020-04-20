@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import app.nexd.android.R
 import app.nexd.android.api.model.Call
-import app.nexd.android.ui.common.Constants.Companion.DATE_FORMAT
 import kotlinx.android.synthetic.main.row_call.view.*
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder

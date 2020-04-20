@@ -1,24 +1,17 @@
 package app.nexd.android.api;
 
-import app.nexd.android.CollectionFormats.*;
-
-import io.reactivex.Observable;
-import io.reactivex.Completable;
-import retrofit2.http.*;
-
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
-import okhttp3.MultipartBody;
+import java.util.List;
 
 import app.nexd.android.api.model.CreateOrUpdateHelpRequestArticleDto;
 import app.nexd.android.api.model.HelpRequest;
 import app.nexd.android.api.model.HelpRequestCreateDto;
 import app.nexd.android.api.model.HelpRequestStatus;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import io.reactivex.Observable;
+import retrofit2.http.DELETE;
+import retrofit2.http.GET;
+import retrofit2.http.Headers;
+import retrofit2.http.POST;
+import retrofit2.http.PUT;
 
 public interface HelpRequestsApi {
   /**

@@ -1,9 +1,5 @@
 package app.nexd.android.auth;
 
-import java.io.IOException;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import org.apache.oltu.oauth2.client.HttpClient;
 import org.apache.oltu.oauth2.client.request.OAuthClientRequest;
 import org.apache.oltu.oauth2.client.response.OAuthClientResponse;
@@ -11,14 +7,15 @@ import org.apache.oltu.oauth2.client.response.OAuthClientResponseFactory;
 import org.apache.oltu.oauth2.common.exception.OAuthProblemException;
 import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
 
+import java.io.IOException;
+import java.util.Map;
+import java.util.Map.Entry;
 
-import okhttp3.Interceptor;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Request.Builder;
-import okhttp3.Response;
-import okhttp3.MediaType;
 import okhttp3.RequestBody;
+import okhttp3.Response;
 
 
 public class OAuthOkHttpClient implements HttpClient {
