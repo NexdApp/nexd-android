@@ -249,13 +249,6 @@
         android:label="SeekerTypeFragment"
         tools:layout="@layout/fragment_seeker_type" >
         <action
-            android:id="@+id/toRecordFragment"
-            app:destination="@id/recordFragment"
-            app:enterAnim="@animator/slide_in_right_to_left"
-            app:exitAnim="@animator/slide_out_right_to_left"
-            app:popEnterAnim="@animator/slide_in_left_to_right"
-            app:popExitAnim="@animator/slide_out_left_to_right" />
-        <action
             android:id="@+id/toSeekerOverviewFragment"
             app:destination="@id/seekerOverviewFragment"
             app:enterAnim="@animator/slide_in_right_to_left"
@@ -270,11 +263,6 @@
             app:popEnterAnim="@animator/slide_in_left_to_right"
             app:popExitAnim="@animator/slide_out_left_to_right" />
     </fragment>
-    <fragment
-        android:id="@+id/recordFragment"
-        android:name="app.nexd.android.ui.seeker.record.RecordFragment"
-        android:label="RecordFragment"
-        tools:layout="@layout/fragment_record" />
     <fragment
         android:id="@+id/phoneCallFragment"
         android:name="app.nexd.android.ui.seeker.call.PhoneCallFragment"

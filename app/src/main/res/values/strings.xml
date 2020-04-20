@@ -68,10 +68,7 @@
     <string name="helper_type_button_transcript">"Transcript a call!"</string>
     <string name="helper_call_overview_screen_title">"Open calls:"</string>
     <string name="seeker_phone_call_text">"Please call <br><b>%1$s</b></br>to record your shopping order."</string>
-    <string name="seeker_type_screen_title">"How would you like
-to make your list?"</string>
-    <string name="seeker_type_button_record_list">"Record my
-shopping list"</string>
+    <string name="seeker_type_screen_title">"How would you like to make your list?"</string>
     <string name="seeker_type_button_help_request">"Select items"</string>
     <string name="seeker_type_button_phone_call">"Make a
 phone call"</string>
