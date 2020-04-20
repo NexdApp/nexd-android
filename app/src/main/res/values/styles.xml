@@ -46,4 +46,8 @@
         <item name="colorControlActivated">@color/colorPrimary</item>
     </style>
 
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="colorControlNormal">@color/colorPrimaryDark</item>
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
 </resources>

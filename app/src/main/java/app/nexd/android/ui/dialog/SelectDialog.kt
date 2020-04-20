@@ -4,10 +4,13 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.text.method.LinkMovementMethod
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.*
-import androidx.core.content.ContextCompat
+import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.TextView
 import app.nexd.android.R
 import kotlinx.android.synthetic.main.dialog_select.view.*
 

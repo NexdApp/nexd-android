@@ -32,7 +32,9 @@ class SeekerTypeFragment: Fragment() {
             findNavController().navigate(toPhoneCallFragment())
         }
 
-
+        seeker_type_toolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
 }
