@@ -2,6 +2,7 @@ package app.nexd.android.ui.dialog
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.text.method.LinkMovementMethod
 import android.view.*
 import android.view.inputmethod.InputMethodManager
@@ -44,6 +45,7 @@ abstract class SelectDialog @JvmOverloads constructor(
 
     private var confirmListener: ((Any) -> Unit)? = null
     private var negativeListener: (() -> Unit)? = null
+    private var dismissListener: DialogInterface.OnDismissListener? = null
 
     init {
         val view = LayoutInflater.from(context).inflate(R.layout.dialog_select, null)
@@ -117,9 +119,17 @@ abstract class SelectDialog @JvmOverloads constructor(
         return this
     }
 
+    override fun setOnDismissListener(onDismissListener: DialogInterface.OnDismissListener?): SelectDialog {
+        this.dismissListener = onDismissListener
+        return this
+    }
+
     override fun show(): AlertDialog {
         alertDialog = super.show()
-        alertDialog?.setOnDismissListener { closeKeyboard() }
+        alertDialog?.setOnDismissListener {
+            closeKeyboard()
+            dismissListener?.onDismiss(it)
+        }
         alertDialog?.window?.setBackgroundDrawable(null)
         return alertDialog!!
     }

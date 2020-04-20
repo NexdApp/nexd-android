@@ -75,7 +75,7 @@ class HelperOverviewFragment : Fragment() {
                                 getString(R.string.helper_request_overview_button_filter_zip),
                                 progress.zipCode
                             )
-                                .setNegativeButton {
+                                .setOnDismissListener {
                                     viewModel.progress.value = Idle
                                 }
                                 .setConfirmButton {
