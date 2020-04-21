@@ -65,7 +65,7 @@ class RegisterDetailedFragment : Fragment() {
                     editText_city.isEnabled = false
                 }
                 is Error -> {
-                    DefaultSnackbar(button_register, progress.message.toString(), Snackbar.LENGTH_SHORT)
+                    DefaultSnackbar(view, progress.message, Snackbar.LENGTH_SHORT)
                 }
                 is Finished -> {
                     findNavController().navigate(RegisterDetailedFragmentDirections.toRoleFragment())
