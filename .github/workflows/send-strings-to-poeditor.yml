@@ -1,0 +1,16 @@
+name: Send Strings to POEditor
+
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+  poeditor:
+    - name: English
+      uses: joelwmale/webhook-action@master
+      env:
+        WEBHOOK_URL: ${{ secrets.WEBHOOK_POEDITOR_UPLOAD_ENGLISH }}
+    - name: German
+      uses: joelwmale/webhook-action@master
+      env:
+        WEBHOOK_URL: ${{ secrets.WEBHOOK_POEDITOR_UPLOAD_GERMAN }}
