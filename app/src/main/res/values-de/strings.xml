@@ -41,7 +41,7 @@
   Copyright © 2020 Tobias Schröpf. All rights reserved. -->
     <string name="dialog_button_abort">"Abbrechen"</string>
     <string name="dialog_button_confirm">"Bestätigen"</string>
-    <string name="login_placeholder_username">"Benutzername"</string>
+    <string name="login_placeholder_username">"E-Mail"</string>
     <string name="login_placeholder_password">"Passwort"</string>
     <string name="registration_placeholder_email">"E-Mail"</string>
     <string name="registration_placeholder_firstName">"Vorname"</string>
