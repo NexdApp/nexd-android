@@ -27,7 +27,7 @@
     <string name="seeker_success_title">"Fertig!"</string>
     <string name="seeker_success_message">"Die Anfrage wurde erfolgreich aufgegeben."</string>
     <string name="seeker_error_title">"Fehler!"</string>
-    <string name="seeker_error_message">"Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuchen Sie er erneut."</string>
+    <string name="seeker_error_message">"Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuche erneut."</string>
     <string name="error_title">"Fehler"</string>
     <string name="error_message_login_failed">"Login fehlgeschlagen. Bitte versuchen Sie es erneut."</string>
     <string name="error_message_registration_validation_failed">"Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut."</string>
