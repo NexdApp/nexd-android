@@ -3,6 +3,8 @@ name: Send Strings to POEditor
 on:
   push:
     branches: [ develop ]
+    paths:
+      - 'app/**/strings.xml'
 
 jobs:
   poeditor:
@@ -10,13 +12,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # upload android strings to POEditor
+
       - name: English
         uses: joelwmale/webhook-action@master
         env:
           WEBHOOK_URL: ${{ secrets.WEBHOOK_POEDITOR_UPLOAD_ENGLISH }}
           data: ""
+
       - name: German
         uses: joelwmale/webhook-action@master
         env:
           WEBHOOK_URL: ${{ secrets.WEBHOOK_POEDITOR_UPLOAD_GERMAN }}
+          data: ""
+
+      # update ios translations from POEditor
+
+      - name: Update IOS English
+        uses: joelwmale/webhook-action@master
+        env:
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_POEDITOR_IOS_ENGLISH }}
+          data: ""
+
+      - name: Update IOS English
+        uses: joelwmale/webhook-action@master
+        env:
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_POEDITOR_IOS_GERMAN }}
           data: ""
