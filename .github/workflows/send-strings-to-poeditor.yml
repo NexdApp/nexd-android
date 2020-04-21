@@ -6,11 +6,12 @@ on:
 
 jobs:
   poeditor:
-    - name: English
-      uses: joelwmale/webhook-action@master
-      env:
-        WEBHOOK_URL: ${{ secrets.WEBHOOK_POEDITOR_UPLOAD_ENGLISH }}
-    - name: German
-      uses: joelwmale/webhook-action@master
-      env:
-        WEBHOOK_URL: ${{ secrets.WEBHOOK_POEDITOR_UPLOAD_GERMAN }}
+    steps:
+      - name: English
+        uses: joelwmale/webhook-action@master
+        env:
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_POEDITOR_UPLOAD_ENGLISH }}
+      - name: German
+        uses: joelwmale/webhook-action@master
+        env:
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_POEDITOR_UPLOAD_GERMAN }}
