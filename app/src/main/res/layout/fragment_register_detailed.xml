@@ -155,6 +155,8 @@
 
                 <CheckBox
                     android:id="@+id/checkbox_data_protection"
+                    tools:checked="true"
+                    android:buttonTint="@color/colorPrimary"
                     android:checked="@={viewModel.dataProtection}"
                     android:error="@{viewModel.dataProtectionError}"
                     android:layout_width="wrap_content"

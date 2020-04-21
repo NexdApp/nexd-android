@@ -69,7 +69,7 @@ class RegisterFragment : Fragment() {
                     editText_password_confirm.isEnabled = false
                 }
                 is Error -> {
-                    DefaultSnackbar(button_register, progress.message, Snackbar.LENGTH_SHORT)
+                    DefaultSnackbar(view, progress.message, Snackbar.LENGTH_SHORT)
                 }
                 is Finished -> {
                     findNavController().navigate(
