@@ -114,9 +114,7 @@
             app:enterAnim="@animator/slide_in_right_to_left"
             app:exitAnim="@animator/slide_out_right_to_left"
             app:popEnterAnim="@animator/slide_in_left_to_right"
-            app:popExitAnim="@animator/slide_out_left_to_right"
-            app:popUpTo="@id/authFragment"
-            app:popUpToInclusive="true" />
+            app:popExitAnim="@animator/slide_out_left_to_right" />
         <action
             android:id="@+id/action_authFragment_to_registerFragment"
             app:destination="@id/registerFragment"
@@ -126,6 +124,9 @@
             app:popExitAnim="@animator/slide_out_left_to_right" />
         <action
             android:id="@+id/action_authFragment_to_roleFragment"
+            app:destination="@id/roleFragment" />
+        <action
+            android:id="@+id/action_authFragment_to_roleFragment_on_auth_valid"
             app:destination="@id/roleFragment"
             app:popUpTo="@id/authFragment"
             app:popUpToInclusive="true" />
