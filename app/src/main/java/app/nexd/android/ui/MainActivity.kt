@@ -9,7 +9,6 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import app.nexd.android.R
-import app.nexd.android.ui.auth.AuthFragmentDirections
 import io.reactivex.plugins.RxJavaPlugins
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -24,12 +23,9 @@ class MainActivity : AppCompatActivity() {
         findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener { controller, destination, _ ->
             Log.v("Navigation", destination.toString())
             runOnUiThread {
-                // skip authentication if it
-                if (destination.id == R.id.authFragment) {
-                    if (mainViewModel.isAuthenticated()) {
-                        Log.v("Navigation", "redirect to roleFragment")
-                        controller.navigate(AuthFragmentDirections.actionAuthFragmentToRoleFragmentOnAuthValid())
-                    }
+                // skip authentication if user is logged in
+                mainViewModel.getNavigationDestination()?.let {
+                    controller.navigate(it)
                 }
             }
         }
