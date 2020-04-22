@@ -29,12 +29,16 @@ Use following command to trigger a new generation (if e.g. api has changed):
 
 The code is structured based on MVVM architeccture and clean architecture with the goal of easier testability and maintainablity. 
 
-### Core technologies
+### Core technologies and architectures
 - Kotlin
 - MVVM as proposed in [Official Android Documentation](https://developer.android.com/jetpack/docs/guide)
-- RxJava
-- Retrofit
-- Jetpack Navigation
+
+## Used libraries
+- [RxJava](https://github.com/ReactiveX/RxJava)
+- [Retrofit](https://github.com/square/retrofit)
+- [Jetpack Navigation](https://developer.android.com/jetpack/)
+- [OpenAPI Generator](https://github.com/OpenAPITools/openapi-generator)
+- TODO
 
 ## Localization
 
