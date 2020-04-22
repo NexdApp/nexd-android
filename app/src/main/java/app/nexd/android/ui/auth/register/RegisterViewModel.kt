@@ -2,7 +2,9 @@ package app.nexd.android.ui.auth.register
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import app.nexd.android.Preferences
 import app.nexd.android.R
 import app.nexd.android.api
@@ -18,6 +20,7 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
         object Loading : Progress()
         class Error(val message: String) : Progress()
         object Finished : Progress()
+        object Registered : Progress()
     }
 
     data class RegistrationData(
@@ -48,6 +51,10 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
     val passwordConfirmationError = MutableLiveData(0)
 
     val progress = MutableLiveData<Progress>(Progress.Idle)
+
+    val alreadyRegistered: LiveData<Boolean> = Transformations.map(progress) {
+         it is Progress.Registered
+    }
 
     private val compositeDisposable = CompositeDisposable()
 

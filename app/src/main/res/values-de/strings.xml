@@ -5,6 +5,7 @@
     <string name="login_button_title_register">"Registrieren"</string>
     <string name="registration_screen_title">"Registrierung"</string>
     <string name="registration_button_title_continue">"Weiter"</string>
+    <string name="register_already_registered_message">Danke für Deine Registrierung. Jetzt brauchen wir noch ein paar Informationen.</string>
     <string name="registration_button_title_send">"Bestätigen"</string>
     <string name="role_selection_screen_title">"Rolle"</string>
     <string name="role_selection_seeker">"Ich brauche etwas!"</string>

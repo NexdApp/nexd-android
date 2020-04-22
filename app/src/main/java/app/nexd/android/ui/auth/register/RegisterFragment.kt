@@ -46,41 +46,42 @@ class RegisterFragment : Fragment() {
         }
 
         button_register.setOnClickListener {
-            viewModel.register()
+            when (viewModel.progress.value) {
+                // we might come back using navigation and can't register again
+                is Registered -> findNavController().navigate(toRegisterDetailedFragment())
+                else -> viewModel.register()
+            }
         }
 
         viewModel.progress.observe(viewLifecycleOwner, Observer { progress ->
             progressBar.visibility = View.GONE
-            editText_first_name.isEnabled = true
-            editText_last_name.isEnabled = true
-            editText_email.isEnabled = true
-            editText_password.isEnabled = true
-            editText_password_confirm.isEnabled = true
+            enableInputFields()
 
             when (progress) {
                 is Idle -> { /* nothing to do here */
                 }
                 is Loading -> {
                     progressBar.visibility = View.VISIBLE
-                    editText_first_name.isEnabled = false
-                    editText_last_name.isEnabled = false
-                    editText_email.isEnabled = false
-                    editText_password.isEnabled = false
-                    editText_password_confirm.isEnabled = false
+                    disableInputFields()
                 }
                 is Error -> {
                     DefaultSnackbar(view, progress.message, Snackbar.LENGTH_SHORT)
                 }
                 is Finished -> {
-                    findNavController().navigate(
-                        toRegisterDetailedFragment()
-                    )
+                    disableInputFields()
+                    viewModel.progress.value = Registered
+                    findNavController().navigate(toRegisterDetailedFragment())
                 }
+                is Registered -> disableInputFields()
             }
         })
 
         button_dataProtection.setOnClickListener {
             showPrivacyPolicy()
+        }
+
+        register_toolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
         }
     }
 
@@ -91,6 +92,22 @@ class RegisterFragment : Fragment() {
                 Uri.parse("https://www.nexd.app/privacypage")
             )
         )
+    }
+
+    private fun enableInputFields() {
+        editText_first_name.isEnabled = true
+        editText_last_name.isEnabled = true
+        editText_email.isEnabled = true
+        editText_password.isEnabled = true
+        editText_password_confirm.isEnabled = true
+    }
+
+    private fun disableInputFields() {
+        editText_first_name.isEnabled = false
+        editText_last_name.isEnabled = false
+        editText_email.isEnabled = false
+        editText_password.isEnabled = false
+        editText_password_confirm.isEnabled = false
     }
 
 }

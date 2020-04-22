@@ -72,6 +72,10 @@ class LoginFragment : Fragment() {
         button_dataProtection.setOnClickListener {
             showPrivacyPolicy()
         }
+
+        login_toolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 
     private fun proceed() {
