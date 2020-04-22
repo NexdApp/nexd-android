@@ -1,25 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    tools:background="@drawable/background_gradient"
-    android:paddingTop="@dimen/topPadding"
-    android:paddingHorizontal="@dimen/horizontalPadding"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout>
 
-    <TextView
-        android:text="@string/helper_request_finished_screen_title"
-        android:textStyle="bold"
-        android:textSize="@dimen/textSize_screen_title"
-        android:textColor="@android:color/white"
+    <data>
+
+        <variable
+            name="viewModel"
+            type="app.nexd.android.ui.helper.finished.HelpRequestFinishedViewModel" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/horizontalPadding"
+        android:paddingTop="@dimen/topPadding"
+        tools:background="@color/colorPrimary">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_requests"
-        tools:listitem="@layout/row_user"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/helper_request_finished_screen_title"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textSize_screen_title"
+            android:textStyle="bold" />
 
-</LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_requests"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/row_user" />
+
+    </LinearLayout>
+</layout>

@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:padding="20dp"
     android:layout_gravity="center"
-    android:background="@drawable/rounded_button_white"
+    android:background="@drawable/rounded_white"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
@@ -63,7 +63,7 @@
             android:textStyle="bold"
             android:textSize="18sp"
             style="@style/Widget.AppCompat.ActionButton"
-            android:background="@drawable/rounded_button_outer"
+            android:background="@drawable/rounded_outer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>

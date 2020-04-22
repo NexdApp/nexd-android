@@ -19,7 +19,7 @@ class HelperDetailViewModel : ViewModel() {
                 .doOnError {
                     Log.e("Error", it.message.toString())
                 }
-                .onErrorReturnItem(HelpRequest())
+                .onErrorReturnItem(HelpRequest()) // TODO: error handling
                 .toFlowable(BackpressureStrategy.BUFFER)
         )
     }

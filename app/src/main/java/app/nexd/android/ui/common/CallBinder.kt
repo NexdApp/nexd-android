@@ -2,10 +2,9 @@ package app.nexd.android.ui.common
 
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Button
 import app.nexd.android.R
 import app.nexd.android.api.model.Call
-import app.nexd.android.ui.common.Constants.Companion.DATE_FORMAT
 import kotlinx.android.synthetic.main.row_call.view.*
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
@@ -15,7 +14,7 @@ import java.util.*
 class CallBinder: ItemBinder<Call, CallBinder.ViewHolder>() {
 
     class ViewHolder(itemView: View) : ItemViewHolder<Call>(itemView) {
-        private val title: TextView = itemView.textView_title
+        private val button: Button = itemView.button_call
 
         init {
             itemView.setOnClickListener {
@@ -24,7 +23,7 @@ class CallBinder: ItemBinder<Call, CallBinder.ViewHolder>() {
         }
 
         fun bind(item: Call) {
-            title.text = SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).format(item.createdAt)
+            button.text = SimpleDateFormat("EEE HH:mm", Locale.getDefault()).format(item.createdAt)
         }
     }
 

@@ -52,7 +52,7 @@ class TranscriptCallsFragment: Fragment() {
     }
 
     private fun observeViewModels() {
-        viewModel.calls.observe(viewLifecycleOwner, Observer { calls ->
+        viewModel.calls.observe(viewLifecycleOwner, Observer { calls: List<Call> ->
             callsAdapter.removeAllSections()
 
             val callsList = ListSection<Call>()

@@ -13,23 +13,19 @@
 
 package app.nexd.android.api.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import app.nexd.android.api.model.Call;
-import app.nexd.android.api.model.HelpList;
-import app.nexd.android.api.model.HelpRequestArticle;
-import app.nexd.android.api.model.User;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * HelpRequest
@@ -159,9 +155,9 @@ public class HelpRequest {
   @SerializedName(SERIALIZED_NAME_HELP_LIST)
   private HelpList helpList;
 
-  public static final String SERIALIZED_NAME_CALL = "call";
-  @SerializedName(SERIALIZED_NAME_CALL)
-  private Call call;
+  public static final String SERIALIZED_NAME_CALL_SID = "callSid";
+  @SerializedName(SERIALIZED_NAME_CALL_SID)
+  private String callSid;
 
 
   public HelpRequest firstName(String firstName) {
@@ -586,26 +582,26 @@ public class HelpRequest {
   }
 
 
-  public HelpRequest call(Call call) {
+  public HelpRequest callSid(String callSid) {
     
-    this.call = call;
+    this.callSid = callSid;
     return this;
   }
 
    /**
-   * Get call
-   * @return call
+   * Get callSid
+   * @return callSid
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public Call getCall() {
-    return call;
+  public String getCallSid() {
+    return callSid;
   }
 
 
-  public void setCall(Call call) {
-    this.call = call;
+  public void setCallSid(String callSid) {
+    this.callSid = callSid;
   }
 
 
@@ -636,12 +632,12 @@ public class HelpRequest {
         Objects.equals(this.requesterId, helpRequest.requesterId) &&
         Objects.equals(this.requester, helpRequest.requester) &&
         Objects.equals(this.helpList, helpRequest.helpList) &&
-        Objects.equals(this.call, helpRequest.call);
+        Objects.equals(this.callSid, helpRequest.callSid);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(firstName, lastName, street, number, zipCode, city, id, helpListId, createdAt, priority, additionalRequest, deliveryComment, phoneNumber, status, articles, requesterId, requester, helpList, call);
+    return Objects.hash(firstName, lastName, street, number, zipCode, city, id, helpListId, createdAt, priority, additionalRequest, deliveryComment, phoneNumber, status, articles, requesterId, requester, helpList, callSid);
   }
 
 
@@ -667,7 +663,7 @@ public class HelpRequest {
     sb.append("    requesterId: ").append(toIndentedString(requesterId)).append("\n");
     sb.append("    requester: ").append(toIndentedString(requester)).append("\n");
     sb.append("    helpList: ").append(toIndentedString(helpList)).append("\n");
-    sb.append("    call: ").append(toIndentedString(call)).append("\n");
+    sb.append("    callSid: ").append(toIndentedString(callSid)).append("\n");
     sb.append("}");
     return sb.toString();
   }

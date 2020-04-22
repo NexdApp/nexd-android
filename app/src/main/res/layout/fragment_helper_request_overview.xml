@@ -2,100 +2,123 @@
 <layout>
 
     <data>
+
         <variable
             name="viewModel"
             type="app.nexd.android.ui.helper.requestOverview.HelperOverviewViewModel" />
     </data>
 
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingHorizontal="@dimen/horizontalPadding"
-        android:paddingTop="@dimen/topPadding"
-        tools:background="@drawable/background_gradient"
-        tools:context=".ui.helper.requestOverview.HelperOverviewFragment">
+        android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/button_shopping"
-            android:textAllCaps="false"
-            style="@style/Widget.AppCompat.Button.Borderless"
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_alignParentTop="true"
+            tools:visibility="visible"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
-            android:drawableTint="@android:color/white"
-            android:enabled="false"
-            android:paddingStart="0dp"
-            android:paddingEnd="0dp"
-            android:text="@string/helper_request_overview_screen_title"
-            android:textAlignment="textStart"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/textSize_button"
-            android:textStyle="bold" />
+            android:indeterminate="true"
+            android:max="100"
+            android:padding="0dp"
+            android:layout_marginTop="-6dp"
+            android:layout_marginBottom="-8dp"
+            android:indeterminateTint="@color/colorPrimaryDark" />
 
-        <TextView
-            android:id="@+id/textView_acceptedLists"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/textSize_screen_title"
-            android:textStyle="bold"
-            android:text="@string/helper_request_overview_heading_accepted_section" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_acceptedRequests"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginVertical="10dp"
-            android:layout_weight="1"
-            tools:listitem="@layout/row_user" />
-
-        <Button
-            android:id="@+id/button_nearRequests"
-            android:textAllCaps="false"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_edit_black_24dp"
-            android:drawableTint="@android:color/white"
-            android:paddingStart="0dp"
-            android:paddingEnd="0dp"
-            android:text="@string/helper_request_overview_heading_available_section"
-            android:textAlignment="textStart"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/textSize_screen_title"
-            android:textStyle="bold" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_nearRequests"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginBottom="20dp"
-            android:layout_weight="3"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            tools:listitem="@layout/row_user" />
+            android:paddingHorizontal="@dimen/horizontalPadding"
+            android:paddingTop="@dimen/topPadding"
+            tools:background="@color/colorPrimary"
+            tools:context=".ui.helper.requestOverview.HelperOverviewFragment">
 
-        <Button
-            android:id="@+id/button_previousRequests"
-            android:textAllCaps="false"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
-            android:drawableTint="@android:color/white"
-            android:paddingStart="0dp"
-            android:paddingEnd="0dp"
-            android:text="@string/helper_request_overview_button_previous_requests"
-            android:textAlignment="textStart"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/textSize_button"
-            android:textStyle="bold" />
+            <Button
+                android:id="@+id/button_shopping"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+                android:drawableTint="@android:color/white"
+                android:enabled="@{!viewModel.myAcceptedRequests.empty}"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp"
+                android:text="@string/helper_request_overview_screen_title"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/textSize_button"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView_acceptedLists"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.myAcceptedRequestsTitle}"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/textSize_screen_title"
+                android:textStyle="bold"
+                tools:text="Accepted lists (14 / 20)" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_acceptedRequests"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="10dp"
+                android:layout_weight="1"
+                tools:listitem="@layout/row_user" />
+
+            <Button
+                android:id="@+id/button_nearRequests"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/ic_edit_black_24dp"
+                android:drawableTint="@android:color/white"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp"
+                android:text="@{viewModel.openRequestsTitle}"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/textSize_screen_title"
+                android:textStyle="bold"
+                android:onClick="@{() -> viewModel.editZipCode()}"
+                tools:text="Available requests at 71323" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_nearRequests"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="20dp"
+                android:layout_weight="3"
+                android:orientation="vertical"
+                tools:listitem="@layout/row_user" />
+
+            <Button
+                android:id="@+id/button_previousRequests"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+                android:drawableTint="@android:color/white"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp"
+                android:text="@string/helper_request_overview_button_previous_requests"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/textSize_button"
+                android:textStyle="bold" />
 
 
-    </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
 </layout>

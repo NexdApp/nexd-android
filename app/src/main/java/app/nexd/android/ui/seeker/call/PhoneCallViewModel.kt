@@ -11,6 +11,9 @@ class PhoneCallViewModel : ViewModel() {
     fun getPhoneNumber(): LiveData<String> {
         return LiveDataReactiveStreams.fromPublisher(
             api.phoneControllerGetNumbers()
+                .map {
+                    it.first().number
+                }
                 .toFlowable(BackpressureStrategy.LATEST)
         )
     }

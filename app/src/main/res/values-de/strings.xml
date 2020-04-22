@@ -27,21 +27,21 @@
     <string name="seeker_success_title">"Fertig!"</string>
     <string name="seeker_success_message">"Die Anfrage wurde erfolgreich aufgegeben."</string>
     <string name="seeker_error_title">"Fehler!"</string>
-    <string name="seeker_error_message">"Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuchen Sie er erneut."</string>
+    <string name="seeker_error_message">"Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuche erneut."</string>
     <string name="error_title">"Fehler"</string>
     <string name="error_message_login_failed">"Login fehlgeschlagen. Bitte versuchen Sie es erneut."</string>
     <string name="error_message_registration_validation_failed">"Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut."</string>
     <string name="error_message_registration_failed">"Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut."</string>
     <string name="error_button_ok">"OK"</string>
 
-    <!-- Title of the user profile screen -->
-    <string name="user_profile_screen_title">"Benutzerprofil"</string>
+    <!-- Localizable.strings
+  Nexd
 
-    <!-- Logout button title -->
-    <string name="user_profile_button_title_logout">"Abmelden"</string>
+  Created by Tobias Schröpf on 21.03.20.
+  Copyright © 2020 Tobias Schröpf. All rights reserved. -->
     <string name="dialog_button_abort">"Abbrechen"</string>
     <string name="dialog_button_confirm">"Bestätigen"</string>
-    <string name="login_placeholder_username">"Benutzername"</string>
+    <string name="login_placeholder_username">"E-Mail"</string>
     <string name="login_placeholder_password">"Passwort"</string>
     <string name="registration_placeholder_email">"E-Mail"</string>
     <string name="registration_placeholder_firstName">"Vorname"</string>
@@ -77,24 +77,26 @@
     <string name="error_message_login_field_missing">"Bitte ausfüllen"</string>
     <string name="error_message_registration_password_match">"Passwörter stimmen nicht überein"</string>
     <string name="error_message_registration_field_missing">"Bitte ausfüllen"</string>
-    <string name="error_message_registration_password_too_short">"mind. 6 Zeichen"</string>
+    <string name="error_message_registration_password_too_short">"mind. 8 Zeichen"</string>
     <string name="error_message_registration_invalid_email">"Ungültige E-Mail Adresse"</string>
     <string name="error_message_user_detail_field_missing">"Bitte ausfüllen"</string>
     <string name="registration_label_privacy_policy_agreement">"Mit der Registrierung akzeptiere ich die %1$@"</string>
     <string name="registration_term_privacy_policy">"Datenschutzbestimmungen"</string>
-    <string name="helper_request_overview_button_previous_requests">"Frühere Anfragen"</string>
+    <string name="helper_request_overview_button_previous_requests">"Vorherige Anfragen"</string>
     <string name="seeker_overview_screen_title">"Your requests:"</string>
     <string name="helper_request_finished_screen_title">"Vorherige Anfragen:"</string>
     <string name="helper_request_overview_item_type_recording">"Sprachnachricht"</string>
     <string name="helper_request_overview_item_type_list">"Liste"</string>
     <string name="helper_request_transcript_button_done">"Füge Bestellung zur aktuellen Shoppingliste hinzu"</string>
     <string name="role_screen_title">"Wilkommen, "</string>
-    <string name="role_screen_subtitle">"Was möchten Sie heute tun?"</string>
+    <string name="role_screen_subtitle">"Was möchtest Du heute tun?"</string>
     <string name="helper_type_screen_title">"Wie würden Sie gerne helfen?"</string>
     <string name="helper_type_button_shopping">"Ich möchte shoppen!"</string>
     <string name="helper_type_button_transcript">"Einen Anruf übersetzen!"</string>
     <string name="helper_call_overview_screen_title">"Offene Anrufe:"</string>
-    <string name="seeker_phone_call_text"><![CDATA[Rufen Sie bitte <br><b>%1$s</b><br>um Ihre Einkaufsliste aufzuzeigen.]]></string>
+
+    <!-- Fuzzy -->
+    <string name="seeker_phone_call_text">"\"Rufen Sie bitte &lt;/br&gt;&lt;b&gt;%1$s&lt;/b&gt;&lt;/br&gt;um Ihre Einkaufsliste aufzuzeigen.\""</string>
     <string name="seeker_type_screen_title">"Wie würden Sie gerne Ihre Liste erstellen?"</string>
     <string name="seeker_type_button_help_request">"Artikel auswählen"</string>
     <string name="seeker_type_button_phone_call">"Einen Anruf tätigen"</string>
@@ -124,4 +126,31 @@
     <string name="transcribe_info_input_text_title_last_name">"Nachname"</string>
     <string name="transcribe_info_input_text_title_postal_code">"Postleitzahl"</string>
     <string name="transcribe_info_button_title_confirm">"Info bestätigen"</string>
+
+    <!-- Title of the user profile screen -->
+    <string name="user_profile_screen_title">"Benutzerprofil"</string>
+
+    <!-- Logout button title -->
+    <string name="user_profile_button_title_logout">"Abmelden"</string>
+    <string name="transcribe_info_input_text_title_street">"Straße"</string>
+    <string name="transcribe_info_input_text_title_street_number">"Nummer"</string>
+    <string name="transcribe_info_input_text_title_city">"Stadt"</string>
+    <string name="transcribe_articles_screen_title">"EInkaufszettel"</string>
+    <string name="transcribe_articles_button_title_confirm">"Bestätigen"</string>
+    <string name="transcribe_info_input_text_title_phone_number">"Telefon"</string>
+    <string name="transcribe_end_screen_title_ios">"Vielen Dank für deine Hilfe zur Bearbeitung der Anfrage!"</string>
+    <string name="transcribe_end_button_title_complete">"Fertig"</string>
+    <string name="transcribe_articles_error_message">"Speichern fehlgeschlagen. Bitte überprüfe, dass die eingegebenen Daten korrekt und valide sind!"</string>
+    <string name="transcribe_articles_error_title">"Anfrage fehlgeschlagen!"</string>
+    <string name="transcribe_info_error_title_no_calls">"Keine Anrufe vorhanden!"</string>
+    <string name="transcribe_info_error_message_no_calls">"Keine Anrufe gefunden, die übersetzt werden können. Bitte versuch es später wieder!"</string>
+    <string name="error_message_registration_user_already_exists">"Das Benutzerkonto existiert bereits."</string>
+    <string name="error_message_input_validation_phone_number_invalid">"Telefonnummer ist nicht im gültigen Format: +4915112345678"</string>
+    <string name="error_message_input_validation_zip_code_invalid">"Bitte gib die korrekte Postleitzahl an"</string>
+    <string name="registration_label_privacy_policy_agreement_android">"Mit der Registrierung akzeptiere ich die %1$s"</string>
+    <string name="helper_request_overview_button_filter_zip">"Postleitzahl"</string>
+    <string name="helper_request_overview_heading_open_section_zip">" (PLZ %1$s)"</string>
+    <string name="helper_request_detail_message_cancelled">"Anfrage wurde gelöscht"</string>
+    <string name="helper_request_detail_message_error_on_cancellation">"Anfrage konnte nicht gelöscht werden"</string>
+    <string name="select_text_dialog_text_hint_default">"Eingeben"</string>
 </resources>

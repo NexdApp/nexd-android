@@ -15,7 +15,6 @@ import app.nexd.android.ui.auth.register.RegisterDetailedViewModel.Progress.*
 import app.nexd.android.ui.common.DefaultSnackbar
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_register_detailed.*
-import java.lang.Error
 
 class RegisterDetailedFragment : Fragment() {
 
@@ -66,7 +65,7 @@ class RegisterDetailedFragment : Fragment() {
                     editText_city.isEnabled = false
                 }
                 is Error -> {
-                    DefaultSnackbar(button_register, progress.message.toString(), Snackbar.LENGTH_SHORT)
+                    DefaultSnackbar(view, progress.message, Snackbar.LENGTH_SHORT)
                 }
                 is Finished -> {
                     findNavController().navigate(RegisterDetailedFragmentDirections.toRoleFragment())

@@ -6,15 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import android.widget.LinearLayout
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import app.nexd.android.Api
 import app.nexd.android.Preferences
 import app.nexd.android.R
 import app.nexd.android.api
-import app.nexd.android.ui.dialog.SelectTextDialog
+import app.nexd.android.ui.auth.AuthFragmentDirections
 import io.reactivex.plugins.RxJavaPlugins
 
 class MainActivity : AppCompatActivity() {
@@ -30,7 +28,7 @@ class MainActivity : AppCompatActivity() {
                 if (destination.id == R.id.authFragment) {
                     Preferences.getToken(this)?.let {
                         Log.v("Navigation", "redirect to roleFragment")
-                        controller.navigate(R.id.roleFragment)
+                        controller.navigate(AuthFragmentDirections.actionAuthFragmentToRoleFragmentOnAuthValid())
                     }
                 }
             }

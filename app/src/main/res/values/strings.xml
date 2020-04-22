@@ -34,14 +34,14 @@
     <string name="error_message_registration_failed">"User registration failed. Please try again."</string>
     <string name="error_button_ok">"OK"</string>
 
-    <!-- Title of the user profile screen -->
-    <string name="user_profile_screen_title">"User profile"</string>
+    <!-- Localizable.strings
+  Nexd
 
-    <!-- Logout button title -->
-    <string name="user_profile_button_title_logout">"Logout"</string>
+  Created by Tobias Schröpf on 21.03.20.
+  Copyright © 2020 Tobias Schröpf. All rights reserved. -->
     <string name="dialog_button_abort">"Abort"</string>
     <string name="dialog_button_confirm">"Confirm"</string>
-    <string name="login_placeholder_username">"Username"</string>
+    <string name="login_placeholder_username">"E-mail"</string>
     <string name="login_placeholder_password">"Password"</string>
     <string name="registration_placeholder_email">"E-mail"</string>
     <string name="registration_placeholder_firstName">"First name"</string>
@@ -75,13 +75,12 @@
     <string name="user_input_details_placeholder_city">"Place"</string>
     <string name="user_input_details_confirm">"Confirm"</string>
     <string name="error_message_login_field_missing">"Please fill in"</string>
-    <string name="error_message_registration_password_match">"Passwords dont match"</string>
+    <string name="error_message_registration_password_match">"Passwords don't match"</string>
     <string name="error_message_registration_field_missing">"Please fill in"</string>
-    <string name="error_message_registration_password_too_short">"At least 6 characters"</string>
+    <string name="error_message_registration_password_too_short">"At least 8 characters"</string>
     <string name="error_message_registration_invalid_email">"Invalid E-mail address"</string>
     <string name="error_message_user_detail_field_missing">"Please fill in"</string>
     <string name="registration_label_privacy_policy_agreement">"By creating an account, I agree to Nexd's %1$@"</string>
-    <string name="registration_label_privacy_policy_agreement_android">"By creating an account, I agree to Nexd's %s"</string>
     <string name="registration_term_privacy_policy">"Privacy Policy"</string>
     <string name="helper_request_overview_button_previous_requests">"Previous purchases"</string>
     <string name="seeker_overview_screen_title">"Your requests:"</string>
@@ -92,10 +91,12 @@
     <string name="role_screen_title">"Welcome, "</string>
     <string name="role_screen_subtitle">"What would you like to do today?"</string>
     <string name="helper_type_screen_title">"How would you like to help?"</string>
-    <string name="helper_type_button_shopping">"I\'d like to shop!"</string>
+    <string name="helper_type_button_shopping">"I'd like to shop!"</string>
     <string name="helper_type_button_transcript">"Transcript a call!"</string>
     <string name="helper_call_overview_screen_title">"Open calls:"</string>
-    <string name="seeker_phone_call_text"><![CDATA[Please call <br><b>%1$s</b><br>to record your shopping order.]]></string>
+
+    <!-- Fuzzy -->
+    <string name="seeker_phone_call_text">"\"Please call &lt;/br&gt;&lt;b&gt;%1$s&lt;/b&gt;&lt;/br&gt;to record your shopping order.\""</string>
     <string name="seeker_type_screen_title">"How would you like to make your list?"</string>
     <string name="seeker_type_button_help_request">"Select items"</string>
     <string name="seeker_type_button_phone_call">"Make a
@@ -126,9 +127,32 @@ phone call"</string>
     <string name="transcribe_info_input_text_title_last_name">"Last name"</string>
     <string name="transcribe_info_input_text_title_postal_code">"Postal code"</string>
     <string name="transcribe_info_button_title_confirm">"Confirm Info"</string>
-    <string name="transcribe_info_input_text_title_street">Street</string>
-    <string name="transcribe_info_input_text_title_street_number">Number</string>
-    <string name="transcribe_info_input_text_title_city">City</string>
-    <string name="transcribe_articles_screen_title">Shopping list</string>
-    <string name="transcribe_articles_button_title_confirm">Confirm</string>
+
+    <!-- Title of the user profile screen -->
+    <string name="user_profile_screen_title">"User profile"</string>
+
+    <!-- Logout button title -->
+    <string name="user_profile_button_title_logout">"Logout"</string>
+    <string name="transcribe_info_input_text_title_street">"Street"</string>
+    <string name="transcribe_info_input_text_title_street_number">"Number"</string>
+    <string name="transcribe_info_input_text_title_city">"City"</string>
+    <string name="transcribe_articles_screen_title">"Shopping list"</string>
+    <string name="transcribe_articles_button_title_confirm">"Confirm"</string>
+    <string name="transcribe_info_input_text_title_phone_number">"Phone number"</string>
+    <string name="transcribe_end_screen_title_ios">"Thank you for helping complete the request!"</string>
+    <string name="transcribe_end_button_title_complete">"Done"</string>
+    <string name="transcribe_articles_error_message">"Saving the help request failed. Please make sure the data is correct and valid!"</string>
+    <string name="transcribe_articles_error_title">"Request failed!"</string>
+    <string name="transcribe_info_error_title_no_calls">"No calls found!"</string>
+    <string name="transcribe_info_error_message_no_calls">"Currently there are no calls waiting for translation. Please try again later!"</string>
+    <string name="error_message_registration_user_already_exists">"Account is already registered!"</string>
+    <string name="error_message_input_validation_phone_number_invalid">"Phone number doesn't match the expected format: +4915112345678"</string>
+    <string name="error_message_input_validation_zip_code_invalid">"Please enter the valid zip code"</string>
+    <string name="registration_label_privacy_policy_agreement_android">"By creating an account, I agree to Nexd's %1$s"</string>
+    <string name="helper_request_overview_heading_accepted_section_counter" translatable="false">" (%1$d / %2$d)"</string>
+    <string name="helper_request_overview_button_filter_zip">"Zip code"</string>
+    <string name="helper_request_overview_heading_open_section_zip">" (zip %1$s)"</string>
+    <string name="helper_request_detail_message_cancelled">"Your request was deleted"</string>
+    <string name="helper_request_detail_message_error_on_cancellation">"Your request could not be deleted"</string>
+    <string name="select_text_dialog_text_hint_default">"Input"</string>
 </resources>
