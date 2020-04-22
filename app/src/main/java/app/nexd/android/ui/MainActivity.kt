@@ -8,14 +8,14 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
-import app.nexd.android.Api
-import app.nexd.android.Preferences
 import app.nexd.android.R
-import app.nexd.android.api
 import app.nexd.android.ui.auth.AuthFragmentDirections
 import io.reactivex.plugins.RxJavaPlugins
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
+
+    private val mainViewModel : MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
             runOnUiThread {
                 // skip authentication if it
                 if (destination.id == R.id.authFragment) {
-                    Preferences.getToken(this)?.let {
+                    if (!mainViewModel.isAuthenticated()) {
                         Log.v("Navigation", "redirect to roleFragment")
                         controller.navigate(AuthFragmentDirections.actionAuthFragmentToRoleFragmentOnAuthValid())
                     }
@@ -38,8 +38,6 @@ class MainActivity : AppCompatActivity() {
             Log.e(MainActivity::class.simpleName, "unhandled error", it)
         }
 
-        api = Api()
-        api.setBearerToken(Preferences.getToken(this))
         hideKeyboardOnTouch()
     }
 

@@ -30,7 +30,7 @@ Use following command to trigger a new generation (if e.g. api has changed):
 The code is structured based on MVVM architeccture and clean architecture with the goal of easier testability and maintainablity. 
 
 ### Core technologies and architectures
-- Kotlin
+- [Kotlin](https://github.com/JetBrains/kotlin)
 - MVVM as proposed in [Official Android Documentation](https://developer.android.com/jetpack/docs/guide)
 
 ## Used libraries
