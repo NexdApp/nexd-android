@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -131,6 +132,22 @@
                     android:paddingHorizontal="10dp"
                     android:text="@={viewModel.passwordConfirmation}"
                     android:textSize="20sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <CheckBox
+                    android:id="@+id/checkbox_data_protection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:buttonTint="@color/colorPrimary"
+                    android:checked="@={viewModel.dataProtection}"
+                    android:error="@{viewModel.dataProtectionError}"
+                    tools:checked="true"
+                    tools:text="@string/registration_label_privacy_policy_agreement" />
 
                 <Button
                     android:id="@+id/button_register"

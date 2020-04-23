@@ -47,6 +47,10 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
 
     val passwordConfirmationError = MutableLiveData(0)
 
+    val dataProtection = MutableLiveData(false)
+
+    val dataProtectionError = MutableLiveData(0)
+
     val progress = MutableLiveData<Progress>(Progress.Idle)
 
     private val compositeDisposable = CompositeDisposable()
@@ -88,6 +92,12 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
             passwordConfirmationError.value = R.string.error_message_registration_password_match
             success = false
         }
+
+        if (dataProtection.value == false) {
+            dataProtectionError.value = R.string.error_message_registration_field_missing
+            success = false
+        } else
+            dataProtectionError.value = 0
 
         if (success) {
             progress.value = Progress.Loading
