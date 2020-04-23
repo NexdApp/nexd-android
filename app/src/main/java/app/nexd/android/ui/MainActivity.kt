@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
             runOnUiThread {
                 // skip authentication if it
                 if (destination.id == R.id.authFragment) {
-                    if (!mainViewModel.isAuthenticated()) {
+                    if (mainViewModel.isAuthenticated()) {
                         Log.v("Navigation", "redirect to roleFragment")
                         controller.navigate(AuthFragmentDirections.actionAuthFragmentToRoleFragmentOnAuthValid())
                     }

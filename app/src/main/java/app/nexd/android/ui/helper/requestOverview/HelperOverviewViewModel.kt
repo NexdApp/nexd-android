@@ -7,8 +7,8 @@ import android.text.Spanned
 import android.text.style.RelativeSizeSpan
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import app.nexd.android.Api
 import app.nexd.android.R
-import app.nexd.android.api
 import app.nexd.android.api.model.HelpList
 import app.nexd.android.api.model.HelpRequest
 import app.nexd.android.api.model.HelpRequestStatus
@@ -16,12 +16,12 @@ import app.nexd.android.ui.common.Constants.Companion.MAXIMAL_ACCEPTED_REQUESTS
 import app.nexd.android.ui.common.Constants.Companion.USER_ME
 import io.reactivex.android.schedulers.AndroidSchedulers
 
-class HelperOverviewViewModel(application: Application) : AndroidViewModel(application) {
+class HelperOverviewViewModel(application: Application, private val api: Api) : AndroidViewModel(application) {
 
     sealed class Progress {
         object Idle : Progress()
         object Loading : Progress()
-        class ZipCodeDialog(val zipCode: String): Progress()
+        class ZipCodeDialog(val zipCode: String) : Progress()
         class Error(val message: String) : Progress()
     }
 
@@ -65,7 +65,8 @@ class HelperOverviewViewModel(application: Application) : AndroidViewModel(appli
                 progress.value = Progress.Idle
 
                 val acceptedTitle = getApplication<Application>().resources.getString(
-                        R.string.helper_request_overview_heading_accepted_section)
+                    R.string.helper_request_overview_heading_accepted_section
+                )
                 val acceptedInfo = getApplication<Application>().resources.getString(
                     R.string.helper_request_overview_heading_accepted_section_counter,
                     it.size,

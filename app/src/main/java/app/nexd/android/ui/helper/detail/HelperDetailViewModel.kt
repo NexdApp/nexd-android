@@ -4,14 +4,14 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.ViewModel
-import app.nexd.android.api
+import app.nexd.android.Api
 import app.nexd.android.api.model.HelpList
 import app.nexd.android.api.model.HelpListCreateDto
 import app.nexd.android.api.model.HelpRequest
 import io.reactivex.BackpressureStrategy
 import io.reactivex.schedulers.Schedulers.io
 
-class HelperDetailViewModel : ViewModel() {
+class HelperDetailViewModel(private val api: Api) : ViewModel() {
 
     fun requestDetails(requestId: Long): LiveData<HelpRequest> {
         return LiveDataReactiveStreams.fromPublisher(

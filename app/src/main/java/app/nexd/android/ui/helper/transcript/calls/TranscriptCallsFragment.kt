@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.api.model.Call
+import app.nexd.android.di.sharedGraphViewModel
 import app.nexd.android.ui.common.CallBinder
 import app.nexd.android.ui.helper.transcript.TranscriptViewModel
 import app.nexd.android.ui.helper.transcript.calls.TranscriptCallsFragmentDirections.Companion.actionCallOverviewFragmentToTranscriptInfoFragment
@@ -20,7 +20,7 @@ import mva2.adapter.MultiViewAdapter
 
 class TranscriptCallsFragment: Fragment() {
 
-    private val viewModel : TranscriptViewModel by navGraphViewModels(R.id.nav_transcript)
+    private val viewModel : TranscriptViewModel by sharedGraphViewModel(R.id.nav_transcript)
 
     private val callsAdapter = MultiViewAdapter()
 

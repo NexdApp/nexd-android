@@ -3,13 +3,13 @@ package app.nexd.android.ui.helper.finished
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.ViewModel
-import app.nexd.android.api
+import app.nexd.android.Api
 import app.nexd.android.api.model.HelpList
 import app.nexd.android.api.model.HelpRequest
 import io.reactivex.BackpressureStrategy
 import io.reactivex.subjects.BehaviorSubject
 
-class HelpRequestFinishedViewModel: ViewModel() {
+class HelpRequestFinishedViewModel(private val api: Api) : ViewModel() {
 
     private val reload = BehaviorSubject.createDefault(Unit)
 

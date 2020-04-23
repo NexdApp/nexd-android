@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,10 +14,11 @@ import app.nexd.android.ui.common.HelpRequestBinder
 import kotlinx.android.synthetic.main.fragment_helper_request_finished.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HelpRequestFinishedFragment: Fragment() {
 
-    private val viewModel: HelpRequestFinishedViewModel by viewModels()
+    private val vm: HelpRequestFinishedViewModel by viewModel()
 
     private val adapter = MultiViewAdapter()
 
@@ -39,7 +39,7 @@ class HelpRequestFinishedFragment: Fragment() {
             HelpRequestBinder()
         )
 
-        viewModel.getFinishedRequests().observe(viewLifecycleOwner, Observer { requests ->
+        vm.getFinishedRequests().observe(viewLifecycleOwner, Observer { requests ->
             adapter.removeAllSections()
 
             val requestList = ListSection<HelpRequest>()

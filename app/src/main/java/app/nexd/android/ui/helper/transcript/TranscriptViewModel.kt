@@ -3,8 +3,8 @@ package app.nexd.android.ui.helper.transcript
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import app.nexd.android.Api
 import app.nexd.android.R
-import app.nexd.android.api
 import app.nexd.android.api.model.Call
 import app.nexd.android.api.model.CreateHelpRequestArticleDto
 import app.nexd.android.api.model.HelpRequestCreateDto
@@ -14,7 +14,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 
-class TranscriptViewModel : ViewModel() {
+class TranscriptViewModel(private val api: Api) : ViewModel() {
 
     /**
      * General error that could happen during the whole transcription flow

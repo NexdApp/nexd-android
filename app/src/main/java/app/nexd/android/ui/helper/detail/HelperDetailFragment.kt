@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,19 +16,14 @@ import app.nexd.android.ui.common.HelpRequestArticleBinder
 import kotlinx.android.synthetic.main.fragment_helper_request_detail.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class HelperDetailFragment : Fragment() {
 
     private val args: HelperDetailFragmentArgs by navArgs()
 
-    private lateinit var viewModel: HelperDetailViewModel
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        viewModel = ViewModelProvider(this).get(HelperDetailViewModel::class.java)
-    }
+    private val viewModel: HelperDetailViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

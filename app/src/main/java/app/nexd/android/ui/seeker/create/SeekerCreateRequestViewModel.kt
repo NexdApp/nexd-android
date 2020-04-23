@@ -3,14 +3,14 @@ package app.nexd.android.ui.seeker.create
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.ViewModel
-import app.nexd.android.api
+import app.nexd.android.Api
 import app.nexd.android.api.model.Article
 import app.nexd.android.api.model.HelpRequestCreateDto
 import app.nexd.android.api.model.User
 import io.reactivex.BackpressureStrategy
 import io.reactivex.processors.BehaviorProcessor
 
-class SeekerCreateRequestViewModel : ViewModel() {
+class SeekerCreateRequestViewModel(private val api: Api) : ViewModel() {
 
     enum class State {
         LOADING,

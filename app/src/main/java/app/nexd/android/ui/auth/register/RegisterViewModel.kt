@@ -1,17 +1,19 @@
 package app.nexd.android.ui.auth.register
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import app.nexd.android.Api
 import app.nexd.android.Preferences
 import app.nexd.android.R
-import app.nexd.android.api
 import app.nexd.android.api.model.RegisterDto
 import app.nexd.android.ui.utils.ErrorUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 
-class RegisterViewModel(application: Application) : AndroidViewModel(application) {
+class RegisterViewModel(
+    private val api: Api,
+    private val preferences: Preferences
+) : ViewModel() {
 
     sealed class Progress {
         object Idle : Progress()
@@ -101,10 +103,8 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
                 )
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
-                        api.setBearerToken(it.accessToken)
-                        with(getApplication<Application>().applicationContext) {
-                            Preferences.setToken(this, it.accessToken)
-                        }
+                        preferences.setToken(it.accessToken)
+
                         progress.value = Progress.Finished
                     }, {
                         progress.value = Progress.Error(ErrorUtil.parseError(it).firstMessage)

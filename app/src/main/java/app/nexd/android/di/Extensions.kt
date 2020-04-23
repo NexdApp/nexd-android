@@ -1,4 +1,4 @@
-package app.nexd.android.ui.utils
+package app.nexd.android.di
 
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
