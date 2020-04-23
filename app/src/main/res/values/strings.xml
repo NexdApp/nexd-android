@@ -41,7 +41,7 @@
   Copyright © 2020 Tobias Schröpf. All rights reserved. -->
     <string name="dialog_button_abort">"Abort"</string>
     <string name="dialog_button_confirm">"Confirm"</string>
-    <string name="login_placeholder_username">"Username"</string>
+    <string name="login_placeholder_username">"E-mail"</string>
     <string name="login_placeholder_password">"Password"</string>
     <string name="registration_placeholder_email">"E-mail"</string>
     <string name="registration_placeholder_firstName">"First name"</string>
@@ -75,7 +75,7 @@
     <string name="user_input_details_placeholder_city">"Place"</string>
     <string name="user_input_details_confirm">"Confirm"</string>
     <string name="error_message_login_field_missing">"Please fill in"</string>
-    <string name="error_message_registration_password_match">"Passwords dont match"</string>
+    <string name="error_message_registration_password_match">"Passwords don't match"</string>
     <string name="error_message_registration_field_missing">"Please fill in"</string>
     <string name="error_message_registration_password_too_short">"At least 8 characters"</string>
     <string name="error_message_registration_invalid_email">"Invalid E-mail address"</string>
