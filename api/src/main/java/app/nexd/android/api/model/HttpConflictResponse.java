@@ -13,13 +13,10 @@
 
 package app.nexd.android.api.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
 
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -33,58 +30,9 @@ public class HttpConflictResponse {
   @SerializedName(SERIALIZED_NAME_STATUS_CODE)
   private Long statusCode;
 
-  /**
-   * Specific error code from enum
-   */
-  @JsonAdapter(ErrorCodeEnum.Adapter.class)
-  public enum ErrorCodeEnum {
-    USERS_USER_EXISTS("USERS_USER_EXISTS");
-
-    private String value;
-
-    ErrorCodeEnum(String value) {
-      this.value = value;
-    }
-
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    public static ErrorCodeEnum fromValue(String value) {
-      for (ErrorCodeEnum b : ErrorCodeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-
-    public static class Adapter extends TypeAdapter<ErrorCodeEnum> {
-      @Override
-      public void write(final JsonWriter jsonWriter, final ErrorCodeEnum enumeration) throws IOException {
-        jsonWriter.value(enumeration.getValue());
-      }
-
-      @Override
-      public ErrorCodeEnum read(final JsonReader jsonReader) throws IOException {
-        String value =  jsonReader.nextString();
-        return ErrorCodeEnum.fromValue(value);
-      }
-    }
-  }
-
-  public static final String SERIALIZED_NAME_ERROR_CODE = "errorCode";
-  @SerializedName(SERIALIZED_NAME_ERROR_CODE)
-  private ErrorCodeEnum errorCode;
-
-  public static final String SERIALIZED_NAME_ERROR_DESCRIPTION = "errorDescription";
-  @SerializedName(SERIALIZED_NAME_ERROR_DESCRIPTION)
-  private String errorDescription;
+  public static final String SERIALIZED_NAME_ERRORS = "errors";
+  @SerializedName(SERIALIZED_NAME_ERRORS)
+  private List<ConflictErrorEntry> errors = new ArrayList<ConflictErrorEntry>();
 
 
   public HttpConflictResponse statusCode(Long statusCode) {
@@ -109,47 +57,30 @@ public class HttpConflictResponse {
   }
 
 
-  public HttpConflictResponse errorCode(ErrorCodeEnum errorCode) {
+  public HttpConflictResponse errors(List<ConflictErrorEntry> errors) {
     
-    this.errorCode = errorCode;
+    this.errors = errors;
+    return this;
+  }
+
+  public HttpConflictResponse addErrorsItem(ConflictErrorEntry errorsItem) {
+    this.errors.add(errorsItem);
     return this;
   }
 
    /**
-   * Specific error code from enum
-   * @return errorCode
-  **/
-  @ApiModelProperty(required = true, value = "Specific error code from enum")
-
-  public ErrorCodeEnum getErrorCode() {
-    return errorCode;
-  }
-
-
-  public void setErrorCode(ErrorCodeEnum errorCode) {
-    this.errorCode = errorCode;
-  }
-
-
-  public HttpConflictResponse errorDescription(String errorDescription) {
-    
-    this.errorDescription = errorDescription;
-    return this;
-  }
-
-   /**
-   * Get errorDescription
-   * @return errorDescription
+   * Get errors
+   * @return errors
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public String getErrorDescription() {
-    return errorDescription;
+  public List<ConflictErrorEntry> getErrors() {
+    return errors;
   }
 
 
-  public void setErrorDescription(String errorDescription) {
-    this.errorDescription = errorDescription;
+  public void setErrors(List<ConflictErrorEntry> errors) {
+    this.errors = errors;
   }
 
 
@@ -163,13 +94,12 @@ public class HttpConflictResponse {
     }
     HttpConflictResponse httpConflictResponse = (HttpConflictResponse) o;
     return Objects.equals(this.statusCode, httpConflictResponse.statusCode) &&
-        Objects.equals(this.errorCode, httpConflictResponse.errorCode) &&
-        Objects.equals(this.errorDescription, httpConflictResponse.errorDescription);
+        Objects.equals(this.errors, httpConflictResponse.errors);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(statusCode, errorCode, errorDescription);
+    return Objects.hash(statusCode, errors);
   }
 
 
@@ -178,8 +108,7 @@ public class HttpConflictResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class HttpConflictResponse {\n");
     sb.append("    statusCode: ").append(toIndentedString(statusCode)).append("\n");
-    sb.append("    errorCode: ").append(toIndentedString(errorCode)).append("\n");
-    sb.append("    errorDescription: ").append(toIndentedString(errorDescription)).append("\n");
+    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
     sb.append("}");
     return sb.toString();
   }
