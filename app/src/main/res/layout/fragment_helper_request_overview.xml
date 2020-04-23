@@ -46,7 +46,7 @@
                 android:layout_marginBottom="10dp"
                 android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
                 android:drawableTint="@android:color/white"
-                android:enabled="@{!viewModel.myAcceptedRequests.empty}"
+                android:enabled="@{viewModel.myAcceptedRequests.empty}"
                 android:paddingStart="0dp"
                 android:paddingEnd="0dp"
                 android:text="@string/helper_request_overview_screen_title"
@@ -60,19 +60,19 @@
                 android:id="@+id/textView_acceptedLists"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.myAcceptedRequestsTitle}"
+                android:text="@string/helper_request_overview_heading_accepted_section"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/textSize_screen_title"
-                android:textStyle="bold"
-                tools:text="Accepted lists (14 / 20)" />
+                android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView_acceptedRequests"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                tools:listitem="@layout/row_user" />
+                tools:listitem="@layout/row_call" />
 
             <Button
                 android:id="@+id/button_nearRequests"
@@ -83,23 +83,23 @@
                 android:drawableTint="@android:color/white"
                 android:paddingStart="0dp"
                 android:paddingEnd="0dp"
-                android:text="@{viewModel.openRequestsTitle}"
+                android:text="@string/helper_request_overview_heading_available_section"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/textSize_screen_title"
                 android:textStyle="bold"
-                android:onClick="@{() -> viewModel.editZipCode()}"
-                tools:text="Available requests at 71323" />
+                android:onClick="@{() -> viewModel.editZipCode()}"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView_nearRequests"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginBottom="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_weight="3"
                 android:orientation="vertical"
-                tools:listitem="@layout/row_user" />
+                tools:listitem="@layout/row_call" />
 
             <Button
                 android:id="@+id/button_previousRequests"
