@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,10 +21,11 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_helper_request_overview.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HelperOverviewFragment : Fragment() {
 
-    private val viewModel: HelperOverviewViewModel by viewModels()
+    private val vm: HelperOverviewViewModel by viewModel()
     private lateinit var binding: FragmentHelperRequestOverviewBinding
 
     private val nearRequestsAdapter = MultiViewAdapter()
@@ -37,7 +37,7 @@ class HelperOverviewFragment : Fragment() {
     ): View? {
         binding = FragmentHelperRequestOverviewBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.viewModel = viewModel
+        binding.viewModel = vm
         return binding.root
     }
 
@@ -56,72 +56,70 @@ class HelperOverviewFragment : Fragment() {
             HelpRequestBinder()
         )
 
-        viewModel.run {
-            progress.observe(viewLifecycleOwner, Observer { progress ->
-                when (progress) {
-                    is Idle -> {
-                        progressBar.visibility = View.GONE
-                    }
-                    is Loading -> {
-                        progressBar.visibility = View.VISIBLE
-                    }
-                    is ZipCodeDialog -> {
-                        context?.let { context ->
-                            SelectTextDialog(
-                                context,
-                                getString(R.string.helper_request_overview_button_filter_zip),
-                                progress.zipCode
-                            )
-                                .setOnDismissListener {
-                                    viewModel.progress.value = Idle
-                                }
-                                .setConfirmButton {
-                                    viewModel.filterbyZipCode(it as String)
-                                }
-                                .show()
-                                .window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
-                        }
-                    }
-                    is Error -> {
-                        progressBar.visibility = View.GONE
-                        DefaultSnackbar(view, progress.message, Snackbar.LENGTH_SHORT)
+        vm.progress.observe(viewLifecycleOwner, Observer { progress ->
+            when (progress) {
+                is Idle -> {
+                    progressBar.visibility = View.GONE
+                }
+                is Loading -> {
+                    progressBar.visibility = View.VISIBLE
+                }
+                is ZipCodeDialog -> {
+                    context?.let { context ->
+                        SelectTextDialog(
+                            context,
+                            getString(R.string.helper_request_overview_button_filter_zip),
+                            progress.zipCode
+                        )
+                            .setOnDismissListener {
+                                vm.progress.value = Idle
+                            }
+                            .setConfirmButton {
+                                vm.filterByZipCode(it as String)
+                            }
+                            .show()
+                            .window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
                     }
                 }
-            })
+                is Error -> {
+                    progressBar.visibility = View.GONE
+                    DefaultSnackbar(view, progress.message, Snackbar.LENGTH_SHORT)
+                }
+            }
+        })
 
-            myAcceptedRequests.observe(viewLifecycleOwner, Observer { acceptedRequests ->
-                acceptedRequestsAdapter.removeAllSections()
+        vm.myAcceptedRequests.observe(viewLifecycleOwner, Observer { acceptedRequests ->
+            acceptedRequestsAdapter.removeAllSections()
 
-                val acceptedRequestsList = ListSection<HelpRequest>()
+            val acceptedRequestsList = ListSection<HelpRequest>()
 
-                acceptedRequestsList.addAll(acceptedRequests)
-                acceptedRequestsList.setOnSelectionChangedListener { request: HelpRequest,
-                                                                     b: Boolean, _ ->
-                    if (b) {
-                        request.id?.let {
-                            findNavController().navigate(requestDetailAction(it))
-                        }
+            acceptedRequestsList.addAll(acceptedRequests)
+            acceptedRequestsList.setOnSelectionChangedListener { request: HelpRequest,
+                                                                 b: Boolean, _ ->
+                if (b) {
+                    request.id?.let {
+                        findNavController().navigate(requestDetailAction(it))
                     }
                 }
-                acceptedRequestsAdapter.addSection(acceptedRequestsList)
-            })
+            }
+            acceptedRequestsAdapter.addSection(acceptedRequestsList)
+        })
 
-            openRequests.observe(viewLifecycleOwner, Observer { requests ->
-                nearRequestsAdapter.removeAllSections()
+        vm.openRequests.observe(viewLifecycleOwner, Observer { requests ->
+            nearRequestsAdapter.removeAllSections()
 
-                val nearRequestList = ListSection<HelpRequest>()
-                nearRequestList.addAll(requests)
-                nearRequestList.setOnSelectionChangedListener { helpRequest: HelpRequest,
-                                                                b: Boolean, _ ->
-                    if (b) {
-                        helpRequest.id?.let {
-                            findNavController().navigate(requestDetailAction(it))
-                        }
+            val nearRequestList = ListSection<HelpRequest>()
+            nearRequestList.addAll(requests)
+            nearRequestList.setOnSelectionChangedListener { helpRequest: HelpRequest,
+                                                            b: Boolean, _ ->
+                if (b) {
+                    helpRequest.id?.let {
+                        findNavController().navigate(requestDetailAction(it))
                     }
                 }
-                nearRequestsAdapter.addSection(nearRequestList)
-            })
-        }
+            }
+            nearRequestsAdapter.addSection(nearRequestList)
+        })
 
         button_shopping.setOnClickListener {
             findNavController().navigate(HelperOverviewFragmentDirections.toShoppingListFragment())
@@ -130,12 +128,6 @@ class HelperOverviewFragment : Fragment() {
         button_previousRequests.setOnClickListener {
             findNavController().navigate(HelperOverviewFragmentDirections.toFinishedFragment())
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel.loadMyAcceptedRequests()
-        viewModel.loadNearOpenRequests()
     }
 
 }

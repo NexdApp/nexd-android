@@ -1,15 +1,14 @@
 package app.nexd.android.ui.role
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
+import androidx.lifecycle.ViewModel
+import app.nexd.android.Api
 import app.nexd.android.Preferences
-import app.nexd.android.api
 import app.nexd.android.api.model.User
 import io.reactivex.BackpressureStrategy
 
-class RoleViewModel(application: Application) : AndroidViewModel(application) {
+class RoleViewModel(private val api: Api, private val preferences: Preferences) : ViewModel() {
 
     fun getMe(): LiveData<User> {
         return LiveDataReactiveStreams.fromPublisher(
@@ -19,7 +18,7 @@ class RoleViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun logout() {
-        Preferences.removeToken(getApplication())
+        preferences.setToken(null)
         // Preferences.removeUserId(getApplication())
     }
 

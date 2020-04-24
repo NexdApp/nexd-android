@@ -3,8 +3,8 @@ package app.nexd.android.ui.helper.transcript
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import app.nexd.android.Api
 import app.nexd.android.R
-import app.nexd.android.api
 import app.nexd.android.api.model.Call
 import app.nexd.android.api.model.CreateHelpRequestArticleDto
 import app.nexd.android.api.model.HelpRequestCreateDto
@@ -14,7 +14,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 
-class TranscriptViewModel : ViewModel() {
+class TranscriptViewModel(private val api: Api) : ViewModel() {
 
     /**
      * General error that could happen during the whole transcription flow
@@ -213,16 +213,18 @@ class TranscriptViewModel : ViewModel() {
             return
         }
 
-        val data = HelpRequestCreateDto()
-            .firstName(firstName.value)
-            .lastName(lastName.value)
-            .street(street.value)
-            .number(number.value)
-            .zipCode(zipCode.value)
-            .city(city.value)
-            .articles(helpRequestArticles)
+        val data = HelpRequestCreateDto().also { dto ->
+            dto.firstName = firstName.value
+            dto.lastName = lastName.value
+            dto.street = street.value
+            dto.number = number.value
+            dto.zipCode = zipCode.value
+            dto.city = city.value
+            dto.phoneNumber = call.value?.phoneNumber
+            dto.articles = helpRequestArticles
+        }
 
-        val disposable = api.helpRequestsControllerInsertRequestWithArticles(data)
+        val disposable = api.phoneControllerConverted(call.value?.sid, data)
             .observeOn(mainThread())
             .subscribeBy(
                 onNext = { resetData() },

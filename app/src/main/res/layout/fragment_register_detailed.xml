@@ -59,10 +59,11 @@
                     android:lines="1"
                     android:text="@={viewModel.phoneNumber}"
                     android:error="@{viewModel.phoneNumberError}"
-                    android:theme="@style/AuthenticationEditText"
+                    style="@style/AuthenticationEditText"
                     android:nextFocusDown="@id/editText_street"
                     android:paddingHorizontal="10dp"
-                    android:textSize="20sp" />
+                    android:drawableEnd="@drawable/ic_telephone_num"/>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -82,10 +83,9 @@
                         android:lines="1"
                         android:text="@={viewModel.street}"
                         android:error="@{viewModel.streetError}"
-                        android:theme="@style/AuthenticationEditText"
+                        style="@style/AuthenticationEditText"
                         android:nextFocusRight="@id/editText_houseNr"
-                        android:paddingHorizontal="10dp"
-                        android:textSize="20sp" />
+                        android:paddingHorizontal="10dp"/>
 
                     <EditText
                         android:id="@+id/editText_houseNr"
@@ -100,10 +100,9 @@
                         android:lines="1"
                         android:text="@={viewModel.houseNumber}"
                         android:error="@{viewModel.houseNumberError}"
-                        android:theme="@style/AuthenticationEditText"
+                        style="@style/AuthenticationEditText"
                         android:nextFocusDown="@id/editText_zipCode"
-                        android:paddingHorizontal="10dp"
-                        android:textSize="20sp" />
+                        android:paddingHorizontal="10dp"/>
 
                 </LinearLayout>
 
@@ -125,10 +124,9 @@
                         android:lines="1"
                         android:text="@={viewModel.zipCode}"
                         android:error="@{viewModel.zipCodeError}"
-                        android:theme="@style/AuthenticationEditText"
+                        style="@style/AuthenticationEditText"
                         android:nextFocusRight="@id/editText_city"
-                        android:paddingHorizontal="10dp"
-                        android:textSize="20sp" />
+                        android:paddingHorizontal="10dp"/>
 
                     <EditText
                         android:id="@+id/editText_city"
@@ -143,9 +141,8 @@
                         android:lines="1"
                         android:text="@={viewModel.locality}"
                         android:error="@{viewModel.localityError}"
-                        android:theme="@style/AuthenticationEditText"
-                        android:paddingHorizontal="10dp"
-                        android:textSize="20sp" />
+                        style="@style/AuthenticationEditText"
+                        android:paddingHorizontal="10dp"/>
                 </LinearLayout>
 
                 <Button
