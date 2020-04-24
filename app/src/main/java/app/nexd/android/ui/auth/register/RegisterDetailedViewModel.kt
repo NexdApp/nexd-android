@@ -1,15 +1,16 @@
 package app.nexd.android.ui.auth.register
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import app.nexd.android.Api
 import app.nexd.android.R
-import app.nexd.android.api
 import app.nexd.android.api.model.UpdateUserDto
 import app.nexd.android.ui.utils.ErrorUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
 
-class RegisterDetailedViewModel(application: Application) : AndroidViewModel(application) {
+class RegisterDetailedViewModel(
+    private val api: Api
+) : ViewModel() {
 
     sealed class Progress {
         object Idle : Progress()

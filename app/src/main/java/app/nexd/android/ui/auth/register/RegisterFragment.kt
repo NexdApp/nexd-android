@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import app.nexd.android.R
@@ -18,11 +17,12 @@ import app.nexd.android.ui.auth.register.RegisterViewModel.Progress.*
 import app.nexd.android.ui.common.DefaultSnackbar
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_register.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class RegisterFragment : Fragment() {
 
-    private val viewModel: RegisterViewModel by viewModels()
+    private val vm: RegisterViewModel by viewModel()
 
     private lateinit var binding: FragmentRegisterBinding
 
@@ -31,7 +31,7 @@ class RegisterFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentRegisterBinding.inflate(inflater, container, false)
-        binding.viewModel = viewModel
+        binding.viewModel = vm
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
@@ -41,7 +41,7 @@ class RegisterFragment : Fragment() {
 
         editText_password_confirm.setOnEditorActionListener { _, i, _ ->
             if (i == EditorInfo.IME_ACTION_DONE) {
-                viewModel.register()
+                vm.register()
             }
             false
         }
@@ -52,10 +52,10 @@ class RegisterFragment : Fragment() {
         )
 
         button_register.setOnClickListener {
-            viewModel.register()
+            vm.register()
         }
 
-        viewModel.progress.observe(viewLifecycleOwner, Observer { progress ->
+        vm.progress.observe(viewLifecycleOwner, Observer { progress ->
             progressBar.visibility = View.GONE
             editText_first_name.isEnabled = true
             editText_last_name.isEnabled = true

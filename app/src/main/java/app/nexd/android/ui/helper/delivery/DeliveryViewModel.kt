@@ -5,13 +5,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import app.nexd.android.api
+import app.nexd.android.Api
 import app.nexd.android.api.model.HelpList
 import app.nexd.android.api.model.HelpListCreateDto
 import io.reactivex.BackpressureStrategy
 import io.reactivex.android.schedulers.AndroidSchedulers
 
-class DeliveryViewModel : ViewModel() {
+class DeliveryViewModel(private val api: Api) : ViewModel() {
 
     fun getShoppingList(): LiveData<HelpList> {
         return LiveDataReactiveStreams.fromPublisher(

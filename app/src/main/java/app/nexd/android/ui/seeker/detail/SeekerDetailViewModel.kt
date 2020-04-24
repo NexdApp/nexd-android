@@ -4,14 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import app.nexd.android.api
+import app.nexd.android.Api
 import app.nexd.android.api.model.HelpRequest
 import app.nexd.android.api.model.HelpRequestCreateDto
 import io.reactivex.BackpressureStrategy
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 
-class SeekerDetailViewModel: ViewModel() {
+class SeekerDetailViewModel(private val api: Api) : ViewModel() {
 
     sealed class Progress {
         object Idle : Progress()
@@ -32,7 +32,8 @@ class SeekerDetailViewModel: ViewModel() {
         return LiveDataReactiveStreams.fromPublisher(
             api.helpRequestsControllerGetSingleRequest(id)
                 .onErrorReturnItem(HelpRequest()) // TODO: error handling
-                .toFlowable(BackpressureStrategy.LATEST))
+                .toFlowable(BackpressureStrategy.LATEST)
+        )
     }
 
     fun cancelRequest(request: HelpRequest) {
