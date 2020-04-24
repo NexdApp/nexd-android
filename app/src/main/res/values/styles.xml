@@ -12,6 +12,7 @@
 
         <item name="fontFamily">@font/proxima_nova_soft</item>
         <item name="android:fontFamily">@font/proxima_nova_soft</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
     </style>
 
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
@@ -43,7 +44,11 @@
     </style>
 
     <style name="AuthenticationEditText" parent="Widget.AppCompat.EditText">
-        <item name="colorControlActivated">@color/colorPrimary</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/grey_border</item>
+        <item name="android:drawableTint">@color/grey_border</item>
+        <item name="fontFamily">@font/proxima_nova_soft_bold</item>
+        <item name="android:fontFamily">@font/proxima_nova_soft_bold</item>
     </style>
 
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.ActionBar">
