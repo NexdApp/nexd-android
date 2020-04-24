@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import app.nexd.android.R
 import app.nexd.android.databinding.FragmentRegisterDetailedBinding
 import app.nexd.android.ui.auth.register.RegisterDetailedViewModel.Progress.*
 import app.nexd.android.ui.common.DefaultSnackbar
@@ -42,9 +41,6 @@ class RegisterDetailedFragment : Fragment() {
             }
             false
         }
-
-        checkbox_data_protection.text = context?.getString(R.string.registration_label_privacy_policy_agreement_android,
-            context?.getString(R.string.registration_term_privacy_policy))
 
         viewModel.progress.observe(viewLifecycleOwner, Observer { progress ->
             progressBar.visibility = View.GONE
