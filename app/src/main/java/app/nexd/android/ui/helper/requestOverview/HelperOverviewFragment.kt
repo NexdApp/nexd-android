@@ -76,7 +76,7 @@ class HelperOverviewFragment : Fragment() {
                                     viewModel.progress.value = Idle
                                 }
                                 .setConfirmButton {
-                                    viewModel.filterbyZipCode(it as String)
+                                    viewModel.filterByZipCode(it as String)
                                 }
                                 .show()
                                 .window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
@@ -130,12 +130,6 @@ class HelperOverviewFragment : Fragment() {
         button_previousRequests.setOnClickListener {
             findNavController().navigate(HelperOverviewFragmentDirections.toFinishedFragment())
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel.loadMyAcceptedRequests()
-        viewModel.loadNearOpenRequests()
     }
 
 }
