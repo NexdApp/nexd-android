@@ -30,13 +30,9 @@ public class HttpBadRequestResponse {
   @SerializedName(SERIALIZED_NAME_STATUS_CODE)
   private Long statusCode;
 
-  public static final String SERIALIZED_NAME_ERROR = "error";
-  @SerializedName(SERIALIZED_NAME_ERROR)
-  private String error;
-
-  public static final String SERIALIZED_NAME_MESSAGE = "message";
-  @SerializedName(SERIALIZED_NAME_MESSAGE)
-  private List<String> message = new ArrayList<String>();
+  public static final String SERIALIZED_NAME_ERRORS = "errors";
+  @SerializedName(SERIALIZED_NAME_ERRORS)
+  private List<BadRequestErrorEntry> errors = new ArrayList<BadRequestErrorEntry>();
 
 
   public HttpBadRequestResponse statusCode(Long statusCode) {
@@ -61,52 +57,30 @@ public class HttpBadRequestResponse {
   }
 
 
-  public HttpBadRequestResponse error(String error) {
+  public HttpBadRequestResponse errors(List<BadRequestErrorEntry> errors) {
     
-    this.error = error;
+    this.errors = errors;
+    return this;
+  }
+
+  public HttpBadRequestResponse addErrorsItem(BadRequestErrorEntry errorsItem) {
+    this.errors.add(errorsItem);
     return this;
   }
 
    /**
-   * Get error
-   * @return error
+   * Get errors
+   * @return errors
   **/
-  @ApiModelProperty(example = "Bad Request", required = true, value = "")
+  @ApiModelProperty(required = true, value = "")
 
-  public String getError() {
-    return error;
+  public List<BadRequestErrorEntry> getErrors() {
+    return errors;
   }
 
 
-  public void setError(String error) {
-    this.error = error;
-  }
-
-
-  public HttpBadRequestResponse message(List<String> message) {
-    
-    this.message = message;
-    return this;
-  }
-
-  public HttpBadRequestResponse addMessageItem(String messageItem) {
-    this.message.add(messageItem);
-    return this;
-  }
-
-   /**
-   * Get message
-   * @return message
-  **/
-  @ApiModelProperty(example = "[\"password must be longer than or equal to 8 characters\"]", required = true, value = "")
-
-  public List<String> getMessage() {
-    return message;
-  }
-
-
-  public void setMessage(List<String> message) {
-    this.message = message;
+  public void setErrors(List<BadRequestErrorEntry> errors) {
+    this.errors = errors;
   }
 
 
@@ -120,13 +94,12 @@ public class HttpBadRequestResponse {
     }
     HttpBadRequestResponse httpBadRequestResponse = (HttpBadRequestResponse) o;
     return Objects.equals(this.statusCode, httpBadRequestResponse.statusCode) &&
-        Objects.equals(this.error, httpBadRequestResponse.error) &&
-        Objects.equals(this.message, httpBadRequestResponse.message);
+        Objects.equals(this.errors, httpBadRequestResponse.errors);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(statusCode, error, message);
+    return Objects.hash(statusCode, errors);
   }
 
 
@@ -135,8 +108,7 @@ public class HttpBadRequestResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class HttpBadRequestResponse {\n");
     sb.append("    statusCode: ").append(toIndentedString(statusCode)).append("\n");
-    sb.append("    error: ").append(toIndentedString(error)).append("\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
     sb.append("}");
     return sb.toString();
   }
