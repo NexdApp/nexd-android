@@ -130,10 +130,4 @@ class HelperOverviewFragment : Fragment() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        vm.loadMyAcceptedRequests()
-        vm.loadNearOpenRequests()
-    }
-
 }
