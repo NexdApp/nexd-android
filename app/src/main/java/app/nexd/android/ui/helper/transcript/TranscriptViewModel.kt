@@ -213,16 +213,18 @@ class TranscriptViewModel : ViewModel() {
             return
         }
 
-        val data = HelpRequestCreateDto()
-            .firstName(firstName.value)
-            .lastName(lastName.value)
-            .street(street.value)
-            .number(number.value)
-            .zipCode(zipCode.value)
-            .city(city.value)
-            .articles(helpRequestArticles)
+        val data = HelpRequestCreateDto().also { dto ->
+            dto.firstName = firstName.value
+            dto.lastName = lastName.value
+            dto.street = street.value
+            dto.number = number.value
+            dto.zipCode = zipCode.value
+            dto.city = city.value
+            dto.phoneNumber = call.value?.phoneNumber
+            dto.articles = helpRequestArticles
+        }
 
-        val disposable = api.helpRequestsControllerInsertRequestWithArticles(data)
+        val disposable = api.phoneControllerConverted(call.value?.sid, data)
             .observeOn(mainThread())
             .subscribeBy(
                 onNext = { resetData() },
