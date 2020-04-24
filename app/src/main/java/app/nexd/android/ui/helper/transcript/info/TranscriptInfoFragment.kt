@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_transcript_info.*
 
 class TranscriptInfoFragment : Fragment(), NavController.OnDestinationChangedListener {
 
-    private val viewModel: TranscriptViewModel by sharedGraphViewModel(R.id.nav_transcript)
+    private val transcriptViewModel: TranscriptViewModel by sharedGraphViewModel(R.id.nav_transcript)
 
     private lateinit var binding: FragmentTranscriptInfoBinding
 
@@ -36,7 +36,7 @@ class TranscriptInfoFragment : Fragment(), NavController.OnDestinationChangedLis
         super.onViewCreated(view, savedInstanceState)
 
         button_confirm.setOnClickListener {
-            if (viewModel.validateInfo()) {
+            if (transcriptViewModel.validateInfo()) {
                 findNavController().navigate(
                     actionTranscriptInfoFragmentToTranscriptArticlesFragment()
                 )
@@ -49,9 +49,9 @@ class TranscriptInfoFragment : Fragment(), NavController.OnDestinationChangedLis
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        binding.viewModel = viewModel
+        binding.viewModel = transcriptViewModel
 
-        viewModel.call.observe(viewLifecycleOwner, Observer {
+        transcriptViewModel.call.observe(viewLifecycleOwner, Observer {
             if (it == null) {
                 findNavController().popBackStack(R.id.callOverviewFragment, false)
             }
@@ -64,7 +64,7 @@ class TranscriptInfoFragment : Fragment(), NavController.OnDestinationChangedLis
         arguments: Bundle?
     ) {
         if (destination.id == R.id.callOverviewFragment) {
-            viewModel.cancelTranscription()
+            transcriptViewModel.cancelTranscription()
         }
     }
 

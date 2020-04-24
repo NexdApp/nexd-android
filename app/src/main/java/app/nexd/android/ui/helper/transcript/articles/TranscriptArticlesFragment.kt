@@ -18,7 +18,7 @@ import mva2.adapter.MultiViewAdapter
 
 class TranscriptArticlesFragment : Fragment() {
 
-    private val viewModel: TranscriptViewModel by sharedGraphViewModel(R.id.nav_transcript)
+    private val transcriptViewModel: TranscriptViewModel by sharedGraphViewModel(R.id.nav_transcript)
 
     private lateinit var binding: FragmentTranscriptArticlesBinding
 
@@ -29,7 +29,7 @@ class TranscriptArticlesFragment : Fragment() {
     ): View? {
         binding = FragmentTranscriptArticlesBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.viewModel = viewModel
+        binding.viewModel = transcriptViewModel
         return binding.root
     }
 
@@ -42,7 +42,7 @@ class TranscriptArticlesFragment : Fragment() {
         recyclerview_helpRequestArticles.adapter = adapter
         recyclerview_helpRequestArticles.layoutManager = LinearLayoutManager(context)
 
-        viewModel.articles.observe(viewLifecycleOwner, Observer { articles ->
+        transcriptViewModel.articles.observe(viewLifecycleOwner, Observer { articles ->
             adapter.removeAllSections()
 
             val section = ListSection<TranscriptArticlesItemViewModel>()
@@ -51,10 +51,10 @@ class TranscriptArticlesFragment : Fragment() {
         })
 
         button_transcript.setOnClickListener {
-            viewModel.saveHelpRequest()
+            transcriptViewModel.saveHelpRequest()
         }
 
-        viewModel.call.observe(viewLifecycleOwner,  Observer {
+        transcriptViewModel.call.observe(viewLifecycleOwner,  Observer {
             if (it == null) {
                 findNavController().popBackStack(R.id.callOverviewFragment, false)
             }
