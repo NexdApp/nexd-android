@@ -75,7 +75,7 @@ class HelperOverviewFragment : Fragment() {
                                 vm.progress.value = Idle
                             }
                             .setConfirmButton {
-                                vm.filterbyZipCode(it as String)
+                                vm.filterByZipCode(it as String)
                             }
                             .show()
                             .window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
