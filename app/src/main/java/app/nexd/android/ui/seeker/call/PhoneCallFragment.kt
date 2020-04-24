@@ -7,14 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import app.nexd.android.R
 import kotlinx.android.synthetic.main.fragment_phone_call.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PhoneCallFragment : Fragment() {
 
-    private val viewModel: PhoneCallViewModel by viewModels()
+    private val vm: PhoneCallViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,7 +27,7 @@ class PhoneCallFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getPhoneNumber().observe(viewLifecycleOwner, Observer { phoneNumber ->
+        vm.getPhoneNumber().observe(viewLifecycleOwner, Observer { phoneNumber ->
             textView_details.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 Html.fromHtml(
                     getString(R.string.seeker_phone_call_text, phoneNumber),

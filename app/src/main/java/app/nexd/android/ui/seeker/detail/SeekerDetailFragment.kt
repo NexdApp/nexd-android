@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,10 +16,11 @@ import app.nexd.android.ui.utils.livedata.observe
 import kotlinx.android.synthetic.main.fragment_seeker_detail.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SeekerDetailFragment : Fragment() {
 
-    private val viewModel: SeekerDetailViewModel by viewModels()
+    private val vm: SeekerDetailViewModel by viewModel()
     private val args: SeekerDetailFragmentArgs by navArgs()
 
     private val articlesAdapter = MultiViewAdapter()
@@ -43,7 +43,7 @@ class SeekerDetailFragment : Fragment() {
             HelpRequestArticleBinder()
         )
 
-        viewModel.progress.observe(viewLifecycleOwner) {
+        vm.progress.observe(viewLifecycleOwner) {
             when (it) {
                 is SeekerDetailViewModel.Progress.Idle -> {
                 }
@@ -58,7 +58,7 @@ class SeekerDetailFragment : Fragment() {
             }
         }
 
-        viewModel.getRequest(args.requestId).observe(viewLifecycleOwner) { request ->
+        vm.getRequest(args.requestId).observe(viewLifecycleOwner) { request ->
             articlesAdapter.removeAllSections()
             val articlesList = ListSection<HelpRequestArticle>()
             articlesList.addAll(request.articles!!)
@@ -69,7 +69,7 @@ class SeekerDetailFragment : Fragment() {
             textView_additionalRequest.text = request.additionalRequest
 
             button_cancel.setOnClickListener {
-                viewModel.cancelRequest(request)
+                vm.cancelRequest(request)
             }
         }
     }

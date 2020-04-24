@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.api.model.Call
+import app.nexd.android.di.sharedGraphViewModel
 import app.nexd.android.ui.common.CallBinder
 import app.nexd.android.ui.helper.transcript.TranscriptViewModel
 import app.nexd.android.ui.helper.transcript.calls.TranscriptCallsFragmentDirections.Companion.actionCallOverviewFragmentToTranscriptInfoFragment
@@ -20,7 +20,7 @@ import mva2.adapter.MultiViewAdapter
 
 class TranscriptCallsFragment: Fragment() {
 
-    private val viewModel : TranscriptViewModel by navGraphViewModels(R.id.nav_transcript)
+    private val transcriptViewModel : TranscriptViewModel by sharedGraphViewModel(R.id.nav_transcript)
 
     private val callsAdapter = MultiViewAdapter()
 
@@ -48,11 +48,11 @@ class TranscriptCallsFragment: Fragment() {
     override fun onResume() {
         super.onResume()
 
-        viewModel.reloadCalls()
+        transcriptViewModel.reloadCalls()
     }
 
     private fun observeViewModels() {
-        viewModel.calls.observe(viewLifecycleOwner, Observer { calls: List<Call> ->
+        transcriptViewModel.calls.observe(viewLifecycleOwner, Observer { calls: List<Call> ->
             callsAdapter.removeAllSections()
 
             val callsList = ListSection<Call>()
@@ -60,11 +60,11 @@ class TranscriptCallsFragment: Fragment() {
             callsAdapter.addSection(callsList)
 
             callsList.setOnSelectionChangedListener { call, _, _ ->
-                viewModel.transcriptCall(call)
+                transcriptViewModel.transcriptCall(call)
             }
         })
 
-        viewModel.call.observe(viewLifecycleOwner, Observer {
+        transcriptViewModel.call.observe(viewLifecycleOwner, Observer {
             it?.run {
                 findNavController().navigate(actionCallOverviewFragmentToTranscriptInfoFragment())
             }

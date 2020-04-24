@@ -3,11 +3,11 @@ package app.nexd.android.ui.helper.shoppingList
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.ViewModel
-import app.nexd.android.api
+import app.nexd.android.Api
 import app.nexd.android.api.model.HelpList
 import io.reactivex.BackpressureStrategy
 
-class ShoppingListViewModel : ViewModel() {
+class ShoppingListViewModel(private val api: Api) : ViewModel() {
 
     class ShoppingListEntry(
         var articleName: String,

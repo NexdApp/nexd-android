@@ -6,17 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import kotlinx.android.synthetic.main.fragment_shopping_list.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ShoppingListFragment : Fragment() {
 
-    private lateinit var viewModel: ShoppingListViewModel
+    private val viewModel: ShoppingListViewModel by viewModel()
     private lateinit var adapter: MultiViewAdapter
 
     override fun onCreateView(
@@ -36,8 +36,6 @@ class ShoppingListFragment : Fragment() {
         adapter.registerItemBinders(
             ShoppingListEntryBinder()
         )
-
-        viewModel = ViewModelProvider(this).get(ShoppingListViewModel::class.java)
 
         viewModel.getShoppingListArticles().observe(viewLifecycleOwner, Observer { shoppingListEntries ->
             val listSection = ListSection<ShoppingListViewModel.ShoppingListEntry>()

@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
@@ -14,10 +13,11 @@ import app.nexd.android.api.model.HelpRequest
 import kotlinx.android.synthetic.main.fragment_seeker_overview.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SeekerOverviewFragment : Fragment() {
 
-    private lateinit var viewModel: SeekerOverviewViewModel
+    private val vm: SeekerOverviewViewModel by viewModel()
 
     private lateinit var adapter: MultiViewAdapter
 
@@ -30,7 +30,6 @@ class SeekerOverviewFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(SeekerOverviewViewModel::class.java)
 
         recyclerView_requests.layoutManager = LinearLayoutManager(context)
 
@@ -41,7 +40,7 @@ class SeekerOverviewFragment : Fragment() {
             SeekerOverviewHelpRequestBinder()
         )
 
-        viewModel.getHelpRequests().observe(viewLifecycleOwner, Observer { requests ->
+        vm.getHelpRequests().observe(viewLifecycleOwner, Observer { requests ->
             adapter.removeAllSections()
 
             if (requests.isEmpty()) {
