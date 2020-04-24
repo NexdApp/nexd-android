@@ -48,8 +48,8 @@ class HelperDetailFragment : Fragment() {
 
             textView_name.text = context!!.getString(
                 R.string.user_name_layout,
-                request.firstName
-                , request.lastName
+                request.requester!!.firstName
+                , request.requester!!.lastName
             )
 
             val list = ListSection<HelpRequestArticle>()

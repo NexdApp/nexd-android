@@ -145,22 +145,6 @@
                         android:paddingHorizontal="10dp"/>
                 </LinearLayout>
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
-
-                <CheckBox
-                    android:id="@+id/checkbox_data_protection"
-                    tools:checked="true"
-                    android:buttonTint="@color/colorPrimary"
-                    android:checked="@={viewModel.dataProtection}"
-                    android:error="@{viewModel.dataProtectionError}"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    tools:text="@string/registration_label_privacy_policy_agreement" />
-
                 <Button
                     android:id="@+id/button_register"
                     android:layout_width="match_parent"
