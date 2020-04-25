@@ -1,7 +1,6 @@
 package app.nexd.android.ui.auth.register
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -69,7 +68,6 @@ class RegisterDetailedFragment : Fragment() {
                     DefaultSnackbar(view, progress.message, Snackbar.LENGTH_SHORT)
                 }
                 is Finished -> {
-                    Log.d("Navigation", "RegisterDetailedFragmentDirections.toRoleFragment()")
                     findNavController().navigate(RegisterDetailedFragmentDirections.toRoleFragment())
                 }
             }
