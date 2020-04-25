@@ -9,7 +9,6 @@ import app.nexd.android.ui.auth.register.RegisterViewModel
 import app.nexd.android.ui.helper.checkout.CheckoutViewModel
 import app.nexd.android.ui.helper.delivery.DeliveryViewModel
 import app.nexd.android.ui.helper.detail.HelperDetailViewModel
-import app.nexd.android.ui.helper.finished.HelpRequestFinishedViewModel
 import app.nexd.android.ui.helper.requestOverview.HelperOverviewViewModel
 import app.nexd.android.ui.helper.shoppingList.ShoppingListViewModel
 import app.nexd.android.ui.helper.transcript.TranscriptViewModel
@@ -40,8 +39,6 @@ val appModule = module {
     viewModel { HelperOverviewViewModel(get(), get()) }
 
     viewModel { TranscriptViewModel(get()) }
-
-    viewModel { HelpRequestFinishedViewModel(get()) }
 
     viewModel { CheckoutViewModel(get()) }
 

@@ -68,13 +68,6 @@
             app:exitAnim="@animator/slide_out_right_to_left"
             app:popEnterAnim="@animator/slide_in_left_to_right"
             app:popExitAnim="@animator/slide_out_left_to_right" />
-        <action
-            android:id="@+id/toFinishedFragment"
-            app:destination="@id/helpRequestFinishedFragment"
-            app:enterAnim="@animator/slide_in_right_to_left"
-            app:exitAnim="@animator/slide_out_right_to_left"
-            app:popEnterAnim="@animator/slide_in_left_to_right"
-            app:popExitAnim="@animator/slide_out_left_to_right" />
     </fragment>
     <fragment
         android:id="@+id/helperRequestDetailFragment"
@@ -197,19 +190,6 @@
         <argument
             android:name="requestId"
             app:argType="long" />
-    </fragment>
-    <fragment
-        android:id="@+id/helpRequestFinishedFragment"
-        android:name="app.nexd.android.ui.helper.finished.HelpRequestFinishedFragment"
-        android:label="HelpRequestFinishedFragment"
-        tools:layout="@layout/fragment_helper_request_finished" >
-        <action
-            android:id="@+id/toDetailFragment"
-            app:destination="@id/helperRequestDetailFragment"
-            app:enterAnim="@animator/slide_in_right_to_left"
-            app:exitAnim="@animator/slide_out_right_to_left"
-            app:popEnterAnim="@animator/slide_in_left_to_right"
-            app:popExitAnim="@animator/slide_out_left_to_right" />
     </fragment>
     <fragment
         android:id="@+id/registerDetailedFragment"
