@@ -69,8 +69,9 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
                 articles
                     .map { article ->
                         HelpRequestCreateArticleBinder.ArticleInput(
-                            article,
-                            0
+                            article.id,
+                            MutableLiveData(article.name),
+                            MutableLiveData(0L.toString())
                         )
                     }
             }
@@ -184,11 +185,11 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
     fun saveHelpRequest() {
         val helpRequestArticles = articles.value?.let { list ->
             list
-                .filter { (it.amount) > 0L }
+                .filter { (it.amount.value?.toLong() ?: 0L) > 0L }
                 .map {
                     CreateHelpRequestArticleDto()
-                        .articleId(it.article.id)
-                        .articleCount(it.amount)
+                        .articleId(it.articleId)
+                        .articleCount(it.amount.value!!.toLong())
                 }
         }
 

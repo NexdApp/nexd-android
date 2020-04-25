@@ -46,10 +46,10 @@ class HelperDetailFragment : Fragment() {
         viewModel.requestDetails(args.requestId).observe(viewLifecycleOwner, Observer { request: HelpRequest ->
             adapter.removeAllSections()
 
-            textView_name.text = context!!.getString(
+            textView_name.text = resources.getString(
                 R.string.user_name_layout,
-                request.requester!!.firstName
-                , request.requester!!.lastName
+                request.firstName
+                , request.lastName
             )
 
             val list = ListSection<HelpRequestArticle>()
