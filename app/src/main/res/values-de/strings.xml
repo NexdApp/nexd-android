@@ -96,7 +96,7 @@
     <string name="helper_call_overview_screen_title">"Offene Anrufe:"</string>
 
     <!-- Fuzzy -->
-    <string name="seeker_phone_call_text">"\"Rufen Sie bitte &lt;/br&gt;&lt;b&gt;%1$s&lt;/b&gt;&lt;/br&gt;um Ihre Einkaufsliste aufzuzeigen.\""</string>
+    <string name="seeker_phone_call_text">"Rufen Sie bitte &lt;/br&gt;&lt;b&gt;%1$s&lt;/b&gt;&lt;/br&gt;um Ihre Einkaufsliste aufzuzeigen."</string>
     <string name="seeker_type_screen_title">"Wie würden Sie gerne Ihre Liste erstellen?"</string>
     <string name="seeker_type_button_help_request">"Artikel auswählen"</string>
     <string name="seeker_type_button_phone_call">"Einen Anruf tätigen"</string>

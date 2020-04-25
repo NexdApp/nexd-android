@@ -1,5 +1,6 @@
 package app.nexd.android.ui.helper.transcript
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,6 +9,7 @@ import app.nexd.android.R
 import app.nexd.android.api.model.Call
 import app.nexd.android.api.model.CreateHelpRequestArticleDto
 import app.nexd.android.api.model.HelpRequestCreateDto
+import app.nexd.android.ui.common.HelpRequestCreateArticleBinder
 import app.nexd.android.ui.helper.transcript.articles.TranscriptArticlesItemViewModel
 import app.nexd.android.ui.utils.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
@@ -20,11 +22,6 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
      * General error that could happen during the whole transcription flow
      */
     val error = SingleLiveEvent<Int>()
-
-    /**
-     * List of currently untranslated calls
-     */
-    val calls = MutableLiveData<List<Call>>()
 
     /**
      * Currently selected call to transcript
@@ -53,7 +50,7 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
 
     // Articles
 
-    val articles: MutableLiveData<List<TranscriptArticlesItemViewModel>> =
+    val articles: MutableLiveData<List<HelpRequestCreateArticleBinder.ArticleInput>> =
         MutableLiveData(emptyList())
 
     /**
@@ -62,15 +59,18 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
      */
     private val compositeDisposable = CompositeDisposable()
 
+    init {
+        transcriptCall()
+    }
+
     private fun loadArticles() {
         val observable = api.articlesControllerFindAll()
             .map { articles ->
                 articles
                     .map { article ->
-                        TranscriptArticlesItemViewModel(
-                            article.id,
-                            MutableLiveData(article.name),
-                            MutableLiveData(0L.toString())
+                        HelpRequestCreateArticleBinder.ArticleInput(
+                            article,
+                            0
                         )
                     }
             }
@@ -84,43 +84,27 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
         compositeDisposable.add(disposable)
     }
 
-    fun reloadCalls() {
-        val calls = api.phoneControllerGetCalls(
+    @SuppressLint("CheckResult")
+    fun transcriptCall() {
+        resetData()
+
+        api.phoneControllerGetCalls(
             null,
-            10,
+            1,
             false,
             null,
             null,
             null
         )
-
-        val disposable = calls
+            .firstOrError()
             .observeOn(mainThread())
-            .subscribeBy(
-                onNext = {
-
-                    this.calls.setValue(it)
-                },
-                onError = {
-                    Log.e(TranscriptViewModel::class.simpleName, "Failed to load calls", it)
-                    this.error.value =
-                        R.string.error_message_unknown // TODO: use proper error message
-                }
-            )
-
-        compositeDisposable.add(disposable)
-    }
-
-    fun transcriptCall(call: Call) {
-        resetData()
-
-        this.call.value = call
+            .subscribe({
+                call.value = it.firstOrNull()
+            }, {
+                error.value = R.string.error_message_unknown // TODO: use proper error message
+            })
 
         loadArticles()
-    }
-
-    fun cancelTranscription() {
-        resetData()
     }
 
     private fun resetData() {
@@ -200,11 +184,11 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
     fun saveHelpRequest() {
         val helpRequestArticles = articles.value?.let { list ->
             list
-                .filter { (it.articleCount.value?.toLong() ?: 0L) > 0L }
+                .filter { (it.amount) > 0L }
                 .map {
                     CreateHelpRequestArticleDto()
-                        .articleId(it.articleId)
-                        .articleCount(it.articleCount.value!!.toLong())
+                        .articleId(it.article.id)
+                        .articleCount(it.amount)
                 }
         }
 
@@ -227,7 +211,7 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
         val disposable = api.phoneControllerConverted(call.value?.sid, data)
             .observeOn(mainThread())
             .subscribeBy(
-                onNext = { resetData() },
+                onNext = { call.value = null },
                 onError = { error.value = R.string.error_message_unknown } // TODO: use proper error message
             )
 

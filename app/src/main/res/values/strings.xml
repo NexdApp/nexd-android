@@ -96,7 +96,7 @@
     <string name="helper_call_overview_screen_title">"Open calls:"</string>
 
     <!-- Fuzzy -->
-    <string name="seeker_phone_call_text">"\"Please call &lt;/br&gt;&lt;b&gt;%1$s&lt;/b&gt;&lt;/br&gt;to record your shopping order.\""</string>
+    <string name="seeker_phone_call_text">"Please call &lt;/br&gt;&lt;b&gt;%1$s&lt;/b&gt;&lt;/br&gt;to record your shopping order."</string>
     <string name="seeker_type_screen_title">"How would you like to make your list?"</string>
     <string name="seeker_type_button_help_request">"Select items"</string>
     <string name="seeker_type_button_phone_call">"Make a
@@ -157,4 +157,6 @@ phone call"</string>
     <string name="select_text_dialog_text_hint_default">"Input"</string>
     <string name="helper_overview_error_empty_zipcode">No zip code selected</string>
     <string name="shopping_list_button_checkout">Order Completed</string>
+    <string name="transcript_summary_button_transcript">Transcribe another call</string>
+    <string name="transcript_summary_title">"Thank you for helping complete %1$s's order!"</string>
 </resources>

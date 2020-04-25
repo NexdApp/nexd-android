@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.databinding.FragmentTranscriptArticlesBinding
 import app.nexd.android.di.sharedGraphViewModel
+import app.nexd.android.ui.common.HelpRequestCreateArticleBinder
 import app.nexd.android.ui.helper.transcript.TranscriptViewModel
+import app.nexd.android.ui.helper.transcript.articles.TranscriptArticlesFragmentDirections.Companion.toTranscriptSummaryFragment
 import kotlinx.android.synthetic.main.fragment_transcript_articles.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
@@ -37,7 +39,7 @@ class TranscriptArticlesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val adapter = MultiViewAdapter()
-        adapter.registerItemBinders(TranscriptArticlesItemBinder())
+        adapter.registerItemBinders(HelpRequestCreateArticleBinder())
 
         recyclerview_helpRequestArticles.adapter = adapter
         recyclerview_helpRequestArticles.layoutManager = LinearLayoutManager(context)
@@ -45,7 +47,7 @@ class TranscriptArticlesFragment : Fragment() {
         transcriptViewModel.articles.observe(viewLifecycleOwner, Observer { articles ->
             adapter.removeAllSections()
 
-            val section = ListSection<TranscriptArticlesItemViewModel>()
+            val section = ListSection<HelpRequestCreateArticleBinder.ArticleInput>()
             section.addAll(articles)
             adapter.addSection(section)
         })
@@ -56,7 +58,7 @@ class TranscriptArticlesFragment : Fragment() {
 
         transcriptViewModel.call.observe(viewLifecycleOwner,  Observer {
             if (it == null) {
-                findNavController().popBackStack(R.id.callOverviewFragment, false)
+                findNavController().navigate(toTranscriptSummaryFragment())
             }
         })
     }
