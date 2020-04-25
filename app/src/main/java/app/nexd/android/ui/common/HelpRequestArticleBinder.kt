@@ -20,11 +20,9 @@ class HelpRequestArticleBinder(private val checkable: Boolean = false) :
             )
             itemView.textView_name.text = item.article?.name
             if (checkable) {
-                itemView.checkbox_checked.isChecked = item.articleDone ?: false
-                itemView.checkbox_checked.isEnabled = false
-                itemView.checkbox_checked.visibility = View.VISIBLE
+                itemView.view_crossed.visibility = if (item.articleDone == true) View.VISIBLE else View.GONE
             } else {
-                itemView.checkbox_checked.visibility = View.GONE
+                itemView.view_crossed.visibility = View.GONE
             }
             itemView.setOnClickListener {
                 toggleItemSelection()

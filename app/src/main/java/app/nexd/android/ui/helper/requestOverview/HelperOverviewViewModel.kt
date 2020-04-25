@@ -12,6 +12,7 @@ import app.nexd.android.api.model.HelpRequest
 import app.nexd.android.api.model.HelpRequestStatus
 import app.nexd.android.ui.common.Constants.Companion.USER_ME
 import io.reactivex.BackpressureStrategy
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.subjects.BehaviorSubject
@@ -40,11 +41,11 @@ class HelperOverviewViewModel(application: Application, private val api: Api) : 
     init {
         compositeDisposable.add(
             api.userControllerFindMe()
-                .filter { it.zipCode != null }
-                .map { it.zipCode!! }
+                .map { it.zipCode ?: error(application.getString(R.string.helper_overview_error_empty_zipcode)) }
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(
                     onNext = { zipCode.onNext(it) },
-                    onError = { progress.value = Progress.Error("Error") } // TODO: proper error handling
+                    onError = { progress.value = Progress.Error(it.message.toString()) } // TODO: proper error handling
                 )
         )
 

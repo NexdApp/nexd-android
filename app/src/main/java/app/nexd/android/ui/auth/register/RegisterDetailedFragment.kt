@@ -47,7 +47,6 @@ class RegisterDetailedFragment : Fragment() {
 
         checkbox_data_protection.text = context?.getString(R.string.registration_label_privacy_policy_agreement_android,
             context?.getString(R.string.registration_term_privacy_policy))
-
         vm.progress.observe(viewLifecycleOwner, Observer { progress ->
             progressBar.visibility = View.GONE
             editText_phoneNumber.isEnabled = true

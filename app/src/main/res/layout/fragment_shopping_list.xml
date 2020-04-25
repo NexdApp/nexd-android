@@ -14,60 +14,83 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingHorizontal="@dimen/horizontalPadding"
         tools:background="@color/colorPrimary"
         tools:context=".ui.helper.shoppingList.ShoppingListFragment">
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:minWidth="@dimen/topPadding" />
-
-        <TextView
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_back"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="@string/shopping_list_screen_title"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/textSize_screen_title"
-            android:textStyle="bold" />
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            android:background="@android:color/white"
-            app:cardCornerRadius="@dimen/radius">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/shoppingList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                tools:listitem="@layout/row_help_request_article" />
-
-        </androidx.cardview.widget.CardView>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/checkout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="10dp"
             android:clickable="true"
             android:focusable="true"
-            android:src="@drawable/ic_shopping_cart_white_100dp"
-            android:tint="@color/colorPrimaryDark"
-            app:borderWidth="0dp"
-            app:fabCustomSize="70dp"
-            app:maxImageSize="30dp" />
+            android:theme="@style/ToolbarTheme"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="?attr/homeAsUpIndicator" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:paddingHorizontal="@dimen/horizontalPadding">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:minWidth="@dimen/topPadding" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="@string/shopping_list_screen_title"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/textSize_screen_title"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:background="@android:color/white"
+                app:cardCornerRadius="@dimen/radius">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView_shoppingList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    tools:listitem="@layout/row_help_request_article" />
+
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/button_checkout"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+                android:drawableTint="@android:color/white"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp"
+                android:text="@string/shopping_list_button_checkout"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/textSize_button"
+                android:textStyle="bold" />
 
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:minWidth="@dimen/topPadding" />
+
+        </LinearLayout>
     </LinearLayout>
 </layout>
