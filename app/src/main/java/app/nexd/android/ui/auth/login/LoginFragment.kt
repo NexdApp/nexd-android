@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import app.nexd.android.databinding.FragmentLoginBinding
 import app.nexd.android.ui.auth.login.LoginFragmentDirections.Companion.toRoleFragment
 import app.nexd.android.ui.auth.login.LoginViewModel.Progress.*
+import app.nexd.android.ui.common.Constants
 import app.nexd.android.ui.common.DefaultSnackbar
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_login.*
@@ -82,7 +83,7 @@ class LoginFragment : Fragment() {
         startActivity(
             Intent(
                 Intent.ACTION_VIEW,
-                Uri.parse("https://www.nexd.app/privacypage")
+                Uri.parse(Constants.PRIVACY_POLICY_URL)
             )
         )
     }
