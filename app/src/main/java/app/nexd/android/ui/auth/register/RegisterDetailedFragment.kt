@@ -1,12 +1,13 @@
 package app.nexd.android.ui.auth.register
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -14,13 +15,15 @@ import androidx.navigation.ui.setupWithNavController
 import app.nexd.android.R
 import app.nexd.android.databinding.FragmentRegisterDetailedBinding
 import app.nexd.android.ui.auth.register.RegisterDetailedViewModel.Progress.*
+import app.nexd.android.ui.common.Constants
 import app.nexd.android.ui.common.DefaultSnackbar
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_register_detailed.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegisterDetailedFragment : Fragment() {
 
-    private val viewModel: RegisterDetailedViewModel by viewModels()
+    private val vm: RegisterDetailedViewModel by viewModel()
 
     private lateinit var binding: FragmentRegisterDetailedBinding
 
@@ -30,7 +33,7 @@ class RegisterDetailedFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentRegisterDetailedBinding.inflate(inflater, container, false)
-        binding.viewModel = viewModel
+        binding.viewModel = vm
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
@@ -45,15 +48,12 @@ class RegisterDetailedFragment : Fragment() {
 
         editText_city.setOnEditorActionListener { _, i, _ ->
             if (i == EditorInfo.IME_ACTION_DONE) {
-                viewModel.setUserDetails()
+                vm.setUserDetails()
             }
             false
         }
 
-        checkbox_data_protection.text = context?.getString(R.string.registration_label_privacy_policy_agreement_android,
-            context?.getString(R.string.registration_term_privacy_policy))
-
-        viewModel.progress.observe(viewLifecycleOwner, Observer { progress ->
+        vm.progress.observe(viewLifecycleOwner, Observer { progress ->
             progressBar.visibility = View.GONE
             editText_phoneNumber.isEnabled = true
             editText_street.isEnabled = true
@@ -80,8 +80,17 @@ class RegisterDetailedFragment : Fragment() {
             }
         })
 
-        register_detailed_toolbar.setNavigationOnClickListener {
-            findNavController().popBackStack()
+        button_dataProtection_detail_registration.setOnClickListener {
+            showPrivacyPolicy()
         }
+    }
+
+    private fun showPrivacyPolicy() {
+        startActivity(
+            Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse(Constants.PRIVACY_POLICY_URL)
+            )
+        )
     }
 }

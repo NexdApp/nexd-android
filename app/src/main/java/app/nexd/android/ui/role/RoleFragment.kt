@@ -5,15 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import app.nexd.android.R
 import kotlinx.android.synthetic.main.fragment_role.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RoleFragment : Fragment() {
 
-    private val viewModel: RoleViewModel by viewModels()
+    private val vm: RoleViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,7 +25,7 @@ class RoleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getMe().observe(viewLifecycleOwner, Observer { currentUser ->
+        vm.getMe().observe(viewLifecycleOwner, Observer { currentUser ->
             textView_title.text = getString(
                 R.string.role_screen_title,
                 currentUser.firstName
@@ -46,7 +46,7 @@ class RoleFragment : Fragment() {
         }
 
         button_logout.setOnClickListener {
-            viewModel.logout()
+            vm.logout()
             findNavController().navigate(R.id.actionLogin)
         }
     }

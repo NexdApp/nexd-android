@@ -1,17 +1,19 @@
 package app.nexd.android.ui.auth.register
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import app.nexd.android.Api
 import app.nexd.android.Preferences
 import app.nexd.android.R
-import app.nexd.android.api
 import app.nexd.android.api.model.RegisterDto
 import app.nexd.android.ui.utils.ErrorUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 
-class RegisterViewModel(application: Application) : AndroidViewModel(application) {
+class RegisterViewModel(
+    private val api: Api,
+    private val preferences: Preferences
+) : ViewModel() {
 
     sealed class Progress {
         object Idle : Progress()
@@ -39,6 +41,10 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
     val passwordConfirmation = MutableLiveData("")
 
     val passwordConfirmationError = MutableLiveData(0)
+
+    val dataProtection = MutableLiveData(false)
+
+    val dataProtectionError = MutableLiveData(0)
 
     val progress = MutableLiveData<Progress>(Progress.Idle)
 
@@ -82,6 +88,13 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
             success = false
         }
 
+        if (dataProtection.value == false) {
+            dataProtectionError.value = R.string.error_message_registration_field_missing
+            success = false
+        } else {
+            dataProtectionError.value = 0
+        }
+
         if (success) {
             progress.value = Progress.Loading
             with(api) {
@@ -94,10 +107,8 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
                 )
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
-                        api.setBearerToken(it.accessToken)
-                        with(getApplication<Application>().applicationContext) {
-                            Preferences.setToken(this, it.accessToken)
-                        }
+                        preferences.setToken(it.accessToken)
+
                         progress.value = Progress.Finished
                     }, {
                         progress.value = Progress.Error(ErrorUtil.parseError(it).firstMessage)

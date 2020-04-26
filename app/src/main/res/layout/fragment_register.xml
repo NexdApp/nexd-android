@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -75,7 +76,7 @@
                         android:layout_marginTop="10dp"
                         android:autofillHints="personGivenName"
                         android:error="@{viewModel.firstNameError}"
-                        android:theme="@style/AuthenticationEditText"
+                        style="@style/AuthenticationEditText"
                         android:hint="@string/registration_placeholder_firstName"
                         android:imeOptions="actionNext"
                         android:inputType="textCapWords"
@@ -83,7 +84,7 @@
                         android:nextFocusDown="@id/editText_last_name"
                         android:paddingHorizontal="10dp"
                         android:text="@={viewModel.firstName}"
-                        android:textSize="20sp" />
+                        android:drawableEnd="@drawable/ic_person"/>
 
                     <EditText
                         android:id="@+id/editText_last_name"
@@ -91,7 +92,7 @@
                         android:layout_height="wrap_content"
                         android:autofillHints="personFamilyName"
                         android:error="@{viewModel.lastNameError}"
-                        android:theme="@style/AuthenticationEditText"
+                        style="@style/AuthenticationEditText"
                         android:hint="@string/registration_placeholder_lastName"
                         android:imeOptions="actionNext"
                         android:inputType="textCapWords"
@@ -99,7 +100,7 @@
                         android:nextFocusDown="@id/editText_email"
                         android:paddingHorizontal="10dp"
                         android:text="@={viewModel.lastName}"
-                        android:textSize="20sp" />
+                        android:drawableEnd="@drawable/ic_person"/>
 
                     <EditText
                         android:id="@+id/editText_email"
@@ -107,7 +108,7 @@
                         android:layout_height="wrap_content"
                         android:autofillHints="emailAddress"
                         android:error="@{viewModel.emailError}"
-                        android:theme="@style/AuthenticationEditText"
+                        style="@style/AuthenticationEditText"
                         android:hint="@string/registration_placeholder_email"
                         android:imeOptions="actionNext"
                         android:inputType="textEmailAddress"
@@ -115,7 +116,7 @@
                         android:nextFocusDown="@id/editText_password"
                         android:paddingHorizontal="10dp"
                         android:text="@={viewModel.email}"
-                        android:textSize="20sp" />
+                        android:drawableEnd="@drawable/ic_email"/>
 
                     <EditText
                         android:id="@+id/editText_password"
@@ -124,7 +125,7 @@
                         android:layout_marginTop="20dp"
                         android:autofillHints="newPassword"
                         android:error="@{viewModel.passwordError}"
-                        android:theme="@style/AuthenticationEditText"
+                        style="@style/AuthenticationEditText"
                         android:hint="@string/registration_placeholder_password"
                         android:imeOptions="actionNext"
                         android:inputType="textPassword"
@@ -132,7 +133,7 @@
                         android:nextFocusDown="@id/editText_password_confirm"
                         android:paddingHorizontal="10dp"
                         android:text="@={viewModel.password}"
-                        android:textSize="20sp" />
+                        android:drawableEnd="@drawable/ic_lock"/>
 
                     <EditText
                         android:id="@+id/editText_password_confirm"
@@ -140,14 +141,30 @@
                         android:layout_height="wrap_content"
                         android:autofillHints="newPassword"
                         android:error="@{viewModel.passwordConfirmationError}"
-                        android:theme="@style/AuthenticationEditText"
+                        style="@style/AuthenticationEditText"
                         android:hint="@string/registration_placeholder_confirm_password"
                         android:imeOptions="actionDone"
                         android:inputType="textPassword"
                         android:lines="1"
                         android:paddingHorizontal="10dp"
                         android:text="@={viewModel.passwordConfirmation}"
-                        android:textSize="20sp" />
+                        android:drawableEnd="@drawable/ic_lock"/>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <CheckBox
+                    android:id="@+id/checkbox_data_protection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:buttonTint="@color/colorPrimary"
+                    android:checked="@={viewModel.dataProtection}"
+                    android:error="@{viewModel.dataProtectionError}"
+                    tools:checked="true"
+                    tools:text="@string/registration_label_privacy_policy_agreement" />
 
                     <Button
                         android:id="@+id/button_register"

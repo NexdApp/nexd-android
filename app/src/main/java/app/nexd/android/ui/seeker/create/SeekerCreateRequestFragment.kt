@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
@@ -17,10 +16,11 @@ import app.nexd.android.ui.common.HelpRequestCreateArticleBinder
 import kotlinx.android.synthetic.main.fragment_seeker_create_request.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SeekerCreateRequestFragment : Fragment() {
 
-    private lateinit var viewModel: SeekerCreateRequestViewModel
+    private val vm: SeekerCreateRequestViewModel by viewModel()
 
     private lateinit var adapter: MultiViewAdapter
 
@@ -33,7 +33,6 @@ class SeekerCreateRequestFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(SeekerCreateRequestViewModel::class.java)
 
         recyclerView_requests.layoutManager = LinearLayoutManager(context)
 
@@ -42,9 +41,9 @@ class SeekerCreateRequestFragment : Fragment() {
 
         adapter.registerItemBinders(HelpRequestCreateArticleBinder())
 
-        viewModel.getCurrentUser().observe(viewLifecycleOwner, Observer { currentUser ->
+        vm.getCurrentUser().observe(viewLifecycleOwner, Observer { currentUser ->
 
-            viewModel.getArticles().observe(viewLifecycleOwner, Observer { articles ->
+            vm.getArticles().observe(viewLifecycleOwner, Observer { articles ->
                 adapter.removeAllSections()
 
                 val articlesSection = ListSection<HelpRequestCreateArticleBinder.ArticleInput>()
@@ -70,13 +69,13 @@ class SeekerCreateRequestFragment : Fragment() {
                         .phoneNumber(currentUser.phoneNumber)
                         .additionalRequest(textView_additionalRequest.text.toString())
 
-                    viewModel.sendRequest(request)
+                    vm.sendRequest(request)
                 }
             })
 
         })
 
-        viewModel.state().observe(viewLifecycleOwner, Observer {
+        vm.state().observe(viewLifecycleOwner, Observer {
             when (it) {
                 // TODO: handle all states
                 SeekerCreateRequestViewModel.State.FINISHED -> findNavController().popBackStack()

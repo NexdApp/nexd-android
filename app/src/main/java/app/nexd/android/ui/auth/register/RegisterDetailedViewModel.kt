@@ -1,15 +1,16 @@
 package app.nexd.android.ui.auth.register
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import app.nexd.android.Api
 import app.nexd.android.R
-import app.nexd.android.api
 import app.nexd.android.api.model.UpdateUserDto
 import app.nexd.android.ui.utils.ErrorUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
 
-class RegisterDetailedViewModel(application: Application) : AndroidViewModel(application) {
+class RegisterDetailedViewModel(
+    private val api: Api
+) : ViewModel() {
 
     sealed class Progress {
         object Idle : Progress()
@@ -37,10 +38,6 @@ class RegisterDetailedViewModel(application: Application) : AndroidViewModel(app
     val locality = MutableLiveData("")
 
     val localityError = MutableLiveData(0)
-
-    val dataProtection = MutableLiveData(false)
-
-    val dataProtectionError = MutableLiveData(0)
 
     val progress = MutableLiveData<Progress>(Progress.Idle)
 
@@ -77,12 +74,6 @@ class RegisterDetailedViewModel(application: Application) : AndroidViewModel(app
             success = false
         } else
             localityError.value = 0
-
-        if (dataProtection.value == false) {
-            dataProtectionError.value = R.string.error_message_registration_field_missing
-            success = false
-        } else
-            dataProtectionError.value = 0
 
         if (success) {
             progress.value = Progress.Loading

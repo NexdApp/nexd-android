@@ -68,14 +68,14 @@
                 android:layout_height="wrap_content"
                 android:autofillHints="emailAddress"
                 android:error="@{viewModel.usernameError}"
-                android:theme="@style/AuthenticationEditText"
+                style="@style/AuthenticationEditText"
                 android:hint="@string/login_placeholder_username"
                 android:imeOptions="actionGo"
                 android:inputType="textEmailAddress"
                 android:lines="1"
                 android:paddingHorizontal="10dp"
                 android:text="@={viewModel.username}"
-                android:textSize="20sp" />
+                android:drawableEnd="@drawable/ic_person"/>
 
             <EditText
                 android:id="@+id/editText_password"
@@ -83,7 +83,7 @@
                 android:layout_height="wrap_content"
                 android:autofillHints="password"
                 android:error="@{viewModel.passwordError}"
-                android:theme="@style/AuthenticationEditText"
+                style="@style/AuthenticationEditText"
                 android:hint="@string/login_placeholder_password"
                 android:layout_marginTop="20dp"
                 android:imeOptions="actionDone"
@@ -91,7 +91,7 @@
                 android:lines="1"
                 android:paddingHorizontal="10dp"
                 android:text="@={viewModel.password}"
-                android:textSize="20sp" />
+                android:drawableEnd="@drawable/ic_lock"/>
 
         </LinearLayout>
 

@@ -5,7 +5,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.MutableLiveData
-import app.nexd.android.api
+import app.nexd.android.Api
+import app.nexd.android.R
 import app.nexd.android.api.model.HelpList
 import app.nexd.android.api.model.HelpRequest
 import app.nexd.android.api.model.HelpRequestStatus
@@ -15,7 +16,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.subjects.BehaviorSubject
 
-class HelperOverviewViewModel(application: Application) : AndroidViewModel(application) {
+class HelperOverviewViewModel(application: Application, private val api: Api) : AndroidViewModel(application) {
 
     sealed class Progress {
         object Idle : Progress()

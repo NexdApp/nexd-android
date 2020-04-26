@@ -4,11 +4,11 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.ViewModel
-import app.nexd.android.api
+import app.nexd.android.Api
 import app.nexd.android.api.model.HelpList
 import io.reactivex.BackpressureStrategy
 
-class CheckoutViewModel: ViewModel() {
+class CheckoutViewModel(private val api: Api) : ViewModel() {
 
     fun getShoppingList(): LiveData<HelpList> {
         return LiveDataReactiveStreams.fromPublisher(

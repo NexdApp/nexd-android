@@ -8,20 +8,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import app.nexd.android.R
 import app.nexd.android.databinding.FragmentRegisterBinding
 import app.nexd.android.ui.auth.register.RegisterFragmentDirections.Companion.toRegisterDetailedFragment
 import app.nexd.android.ui.auth.register.RegisterViewModel.Progress.*
+import app.nexd.android.ui.common.Constants
 import app.nexd.android.ui.common.DefaultSnackbar
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_register.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class RegisterFragment : Fragment() {
 
-    private val viewModel: RegisterViewModel by viewModels()
+    private val vm: RegisterViewModel by viewModel()
 
     private lateinit var binding: FragmentRegisterBinding
 
@@ -30,7 +32,7 @@ class RegisterFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentRegisterBinding.inflate(inflater, container, false)
-        binding.viewModel = viewModel
+        binding.viewModel = vm
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
@@ -40,16 +42,21 @@ class RegisterFragment : Fragment() {
 
         editText_password_confirm.setOnEditorActionListener { _, i, _ ->
             if (i == EditorInfo.IME_ACTION_DONE) {
-                viewModel.register()
+                vm.register()
             }
             false
         }
 
+        checkbox_data_protection.text = context?.getString(
+            R.string.registration_label_privacy_policy_agreement_android,
+            context?.getString(R.string.registration_term_privacy_policy)
+        )
+
         button_register.setOnClickListener {
-            viewModel.register()
+            vm.register()
         }
 
-        viewModel.progress.observe(viewLifecycleOwner, Observer { progress ->
+        vm.progress.observe(viewLifecycleOwner, Observer { progress ->
             progressBar.visibility = View.GONE
 
             when (progress) {
@@ -80,7 +87,7 @@ class RegisterFragment : Fragment() {
         startActivity(
             Intent(
                 Intent.ACTION_VIEW,
-                Uri.parse("https://www.nexd.app/privacypage")
+                Uri.parse(Constants.PRIVACY_POLICY_URL)
             )
         )
     }
