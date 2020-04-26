@@ -1,5 +1,7 @@
 package app.nexd.android.ui.auth.register
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,14 +10,12 @@ import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import app.nexd.android.R
 import app.nexd.android.databinding.FragmentRegisterDetailedBinding
 import app.nexd.android.ui.auth.register.RegisterDetailedViewModel.Progress.*
+import app.nexd.android.ui.common.Constants
 import app.nexd.android.ui.common.DefaultSnackbar
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_register.*
 import kotlinx.android.synthetic.main.fragment_register_detailed.*
-import kotlinx.android.synthetic.main.fragment_register_detailed.progressBar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegisterDetailedFragment : Fragment() {
@@ -45,9 +45,6 @@ class RegisterDetailedFragment : Fragment() {
             false
         }
 
-        checkbox_data_protection.text = context?.getString(R.string.registration_label_privacy_policy_agreement_android,
-            context?.getString(R.string.registration_term_privacy_policy))
-
         vm.progress.observe(viewLifecycleOwner, Observer { progress ->
             progressBar.visibility = View.GONE
             editText_phoneNumber.isEnabled = true
@@ -74,5 +71,18 @@ class RegisterDetailedFragment : Fragment() {
                 }
             }
         })
+
+        button_dataProtection_detail_registration.setOnClickListener {
+            showPrivacyPolicy()
+        }
+    }
+
+    private fun showPrivacyPolicy() {
+        startActivity(
+            Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse(Constants.PRIVACY_POLICY_URL)
+            )
+        )
     }
 }

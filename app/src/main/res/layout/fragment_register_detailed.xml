@@ -164,7 +164,7 @@
                     android:textStyle="bold" />
 
                 <Button
-                    android:id="@+id/button_dataProtection"
+                    android:id="@+id/button_dataProtection_detail_registration"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
