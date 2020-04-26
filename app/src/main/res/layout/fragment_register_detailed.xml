@@ -19,9 +19,6 @@
             android:id="@+id/register_detailed_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:theme="@style/ToolbarThemeWhite"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:navigationIcon="?attr/homeAsUpIndicator" />

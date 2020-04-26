@@ -143,7 +143,7 @@
             app:exitAnim="@animator/slide_out_right_to_left"
             app:popEnterAnim="@animator/slide_in_left_to_right"
             app:popExitAnim="@animator/slide_out_left_to_right"
-            app:popUpTo="@id/authFragment"
+            app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
@@ -157,7 +157,9 @@
             app:enterAnim="@animator/slide_in_right_to_left"
             app:exitAnim="@animator/slide_out_right_to_left"
             app:popEnterAnim="@animator/slide_in_left_to_right"
-            app:popExitAnim="@animator/slide_out_left_to_right" />
+            app:popExitAnim="@animator/slide_out_left_to_right"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/checkoutFragment"
@@ -212,8 +214,7 @@
     <fragment
         android:id="@+id/registerDetailedFragment"
         android:name="app.nexd.android.ui.auth.register.RegisterDetailedFragment"
-        android:label="RegisterDetailedFragment"
-        tools:layout="@layout/fragment_register_detailed" >
+        tools:layout="@layout/fragment_register_detailed">
         <action
             android:id="@+id/toRoleFragment"
             app:destination="@id/roleFragment"

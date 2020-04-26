@@ -7,8 +7,6 @@
         <variable
             name="viewModel"
             type="app.nexd.android.ui.auth.register.RegisterViewModel" />
-
-        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,8 +23,7 @@
             android:theme="@style/ToolbarThemeWhite"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:navigationIcon="?attr/homeAsUpIndicator"
-            android:visibility="@{ viewModel.alreadyRegistered ? View.INVISIBLE : View.VISIBLE }" />
+            app:navigationIcon="?attr/homeAsUpIndicator" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -135,8 +132,7 @@
                         android:nextFocusDown="@id/editText_password_confirm"
                         android:paddingHorizontal="10dp"
                         android:text="@={viewModel.password}"
-                        android:textSize="20sp"
-                        android:visibility="@{ viewModel.alreadyRegistered ? View.GONE : View.VISIBLE }" />
+                        android:textSize="20sp" />
 
                     <EditText
                         android:id="@+id/editText_password_confirm"
@@ -151,19 +147,7 @@
                         android:lines="1"
                         android:paddingHorizontal="10dp"
                         android:text="@={viewModel.passwordConfirmation}"
-                        android:textSize="20sp"
-                        android:visibility="@{ viewModel.alreadyRegistered ? View.GONE : View.VISIBLE }" />
-
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:paddingTop="8dp"
-                        android:paddingBottom="8dp"
-                        android:visibility="@{ viewModel.alreadyRegistered ? View.VISIBLE : View.GONE }"
-                        android:text="@string/register_already_registered_message"
-                        />
+                        android:textSize="20sp" />
 
                     <Button
                         android:id="@+id/button_register"
