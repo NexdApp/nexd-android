@@ -2,8 +2,8 @@ package app.nexd.android.ui.common
 
 abstract class Constants {
     companion object {
-        const val DATE_FORMAT = "dd MMM YYYY HH:mm"
         const val USER_ME = "me"
-        const val MAXIMAL_ACCEPTED_REQUESTS = 20
+
+        const val PRIVACY_POLICY_URL = "https://www.nexd.app/privacypage"
     }
 }

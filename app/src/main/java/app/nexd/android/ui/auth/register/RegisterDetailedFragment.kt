@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import app.nexd.android.databinding.FragmentRegisterDetailedBinding
 import app.nexd.android.ui.auth.register.RegisterDetailedViewModel.Progress.*
+import app.nexd.android.ui.common.Constants
 import app.nexd.android.ui.common.DefaultSnackbar
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_register_detailed.*
@@ -80,7 +81,7 @@ class RegisterDetailedFragment : Fragment() {
         startActivity(
             Intent(
                 Intent.ACTION_VIEW,
-                Uri.parse("https://www.nexd.app/privacypage")
+                Uri.parse(Constants.PRIVACY_POLICY_URL)
             )
         )
     }
