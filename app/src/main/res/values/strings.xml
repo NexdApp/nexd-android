@@ -16,7 +16,7 @@
     <string name="helper_request_overview_button_title_start">"Start"</string>
     <string name="helper_request_overview_error_title">"Error!"</string>
     <string name="helper_request_overview_error_message">"Your request could not be sent! Please try again."</string>
-    <string name="shopping_list_screen_title">"Current Items List"</string>
+    <string name="shopping_list_screen_title">"Shopping list"</string>
     <string name="shopping_list_button_title_checkout">"Checkout"</string>
     <string name="shopping_list_overview_error_title">"Error!"</string>
     <string name="shopping_list_overview_error_loading_failed_message">"Shopping list could not be loaded. Please try again!"</string>

@@ -20,7 +20,11 @@ class HelpRequestArticleBinder(private val checkable: Boolean = false) :
             )
             itemView.textView_name.text = item.article?.name
             if (checkable) {
-                itemView.view_crossed.visibility = if (item.articleDone == true) View.VISIBLE else View.GONE
+                itemView.view_crossed.visibility = if (item.articleDone == true) {
+                    View.VISIBLE
+                } else {
+                    View.GONE
+                }
             } else {
                 itemView.view_crossed.visibility = View.GONE
             }
