@@ -1,6 +1,7 @@
 package app.nexd.android.ui.helper.requestOverview
 
 import android.app.Application
+import androidx.annotation.StringRes
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
@@ -23,7 +24,7 @@ class HelperOverviewViewModel(application: Application, private val api: Api) : 
         object Idle : Progress()
         object Loading : Progress()
         class ZipCodeDialog(val zipCode: String) : Progress()
-        class Error(val message: String) : Progress()
+        class Error(@StringRes val message: Int) : Progress()
     }
 
     // TODO: refactor to proper two way data binding
@@ -41,11 +42,11 @@ class HelperOverviewViewModel(application: Application, private val api: Api) : 
     init {
         compositeDisposable.add(
             api.userControllerFindMe()
-                .map { it.zipCode ?: error(application.getString(R.string.helper_overview_error_empty_zipcode)) }
+                .map { it.zipCode ?: "" }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(
                     onNext = { zipCode.onNext(it) },
-                    onError = { progress.value = Progress.Error(it.message.toString()) } // TODO: proper error handling
+                    onError = { progress.value = Progress.Error(R.string.error_message_unknown) } // TODO: proper error handling
                 )
         )
 
