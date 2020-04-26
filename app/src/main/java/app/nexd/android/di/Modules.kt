@@ -18,6 +18,7 @@ import app.nexd.android.ui.seeker.call.PhoneCallViewModel
 import app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel
 import app.nexd.android.ui.seeker.detail.SeekerDetailViewModel
 import app.nexd.android.ui.seeker.overview.SeekerOverviewViewModel
+import app.nexd.android.ui.utils.ApiErrorTranslator
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -27,13 +28,15 @@ val appModule = module {
 
     single { Api(preferences = get()) }
 
+    factory { ApiErrorTranslator() }
+
     viewModel { MainViewModel(get()) }
 
     viewModel { RoleViewModel(get(), get()) }
 
-    viewModel { RegisterViewModel(get(), get()) }
+    viewModel { RegisterViewModel(get(), get(), get()) }
 
-    viewModel { RegisterDetailedViewModel(get()) }
+    viewModel { RegisterDetailedViewModel(get(), get()) }
 
     viewModel { LoginViewModel(get(), get()) }
 

@@ -6,13 +6,14 @@ import app.nexd.android.Api
 import app.nexd.android.Preferences
 import app.nexd.android.R
 import app.nexd.android.api.model.RegisterDto
-import app.nexd.android.ui.utils.ErrorUtil
+import app.nexd.android.ui.utils.ApiErrorTranslator
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 
 class RegisterViewModel(
     private val api: Api,
-    private val preferences: Preferences
+    private val preferences: Preferences,
+    private val apiErrorTranslator: ApiErrorTranslator
 ) : ViewModel() {
 
     sealed class Progress {
@@ -118,7 +119,7 @@ class RegisterViewModel(
 
                         progress.value = Progress.Finished
                     }, {
-                        progress.value = Progress.Error(ErrorUtil.parseError(it).firstMessage)
+                        progress.value = Progress.Error(apiErrorTranslator.translate(it))
                     })
             }
         }

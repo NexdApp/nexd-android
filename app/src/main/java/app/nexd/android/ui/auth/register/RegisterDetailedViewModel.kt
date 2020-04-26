@@ -5,11 +5,12 @@ import androidx.lifecycle.ViewModel
 import app.nexd.android.Api
 import app.nexd.android.R
 import app.nexd.android.api.model.UpdateUserDto
-import app.nexd.android.ui.utils.ErrorUtil
+import app.nexd.android.ui.utils.ApiErrorTranslator
 import io.reactivex.android.schedulers.AndroidSchedulers
 
 class RegisterDetailedViewModel(
-    private val api: Api
+    private val api: Api,
+    private val apiErrorTranslator: ApiErrorTranslator
 ) : ViewModel() {
 
     sealed class Progress {
@@ -90,7 +91,7 @@ class RegisterDetailedViewModel(
                     .subscribe({
                         progress.value = Progress.Finished
                     }, {
-                        progress.value = Progress.Error(ErrorUtil.parseError(it).firstMessage)
+                        progress.value = Progress.Error(apiErrorTranslator.translate(it))
                     })
             }
         }
