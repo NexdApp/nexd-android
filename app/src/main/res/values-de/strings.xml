@@ -59,7 +59,7 @@
     <string name="helper_request_detail_button_accept">"Mach ich!"</string>
     <string name="delivery_screen_title">"Abgabe!"</string>
     <string name="delivery_dialog_deliver_title">"Abgeben"</string>
-    <string name="delivery_dialog_deliver_description">"Bestätigen Sie die Abgabe aller angenommen Aufträge"</string>
+    <string name="delivery_dialog_deliver_description">"Bitte bestätige die Abgabe aller angenommen Aufträge"</string>
     <string name="delivery_dialog_delivery_button_confirm">"Bestätigen"</string>
     <string name="delivery_request_address">"Adresse: "</string>
     <string name="delivery_request_phoneNumber">"Tel.: "</string>
@@ -67,7 +67,7 @@
     <string name="seeker_detail_placeholder_information">"Zusätzliche Informationen"</string>
     <string name="seeker_request_create_heading">"Ich benötige:"</string>
     <string name="seeker_request_create_placeholder_information">"Zusätzliche Informationen"</string>
-    <string name="user_input_details_screen_title">"Geben Sie weitere Details ein"</string>
+    <string name="user_input_details_screen_title">"Gib weitere Details ein"</string>
     <string name="user_input_details_placeholder_phoneNumber">"Tel. Nr."</string>
     <string name="user_input_details_placeholder_street">"Straße"</string>
     <string name="user_input_details_placeholder_houseNumber">"Nr."</string>
@@ -89,21 +89,21 @@
     <string name="helper_request_overview_item_type_list">"Liste"</string>
     <string name="helper_request_transcript_button_done">"Füge Bestellung zur aktuellen Shoppingliste hinzu"</string>
     <string name="role_screen_title">"Willkommen, "</string>
-    <string name="role_screen_subtitle">"Was möchtest Du heute tun?"</string>
-    <string name="helper_type_screen_title">"Wie würden Sie gerne helfen?"</string>
+    <string name="role_screen_subtitle">"Was möchtest du heute tun?"</string>
+    <string name="helper_type_screen_title">"Wie würdest du gerne helfen?"</string>
     <string name="helper_type_button_shopping">"Ich möchte shoppen!"</string>
     <string name="helper_type_button_transcript">"Einen Anruf übersetzen!"</string>
     <string name="helper_call_overview_screen_title">"Offene Anrufe:"</string>
 
     <!-- Fuzzy -->
-    <string name="seeker_phone_call_text">"\"Rufen Sie bitte &lt;/br&gt;&lt;b&gt;%1$s&lt;/b&gt;&lt;/br&gt;um Ihre Einkaufsliste aufzuzeigen.\""</string>
-    <string name="seeker_type_screen_title">"Wie würden Sie gerne Ihre Liste erstellen?"</string>
+    <string name="seeker_phone_call_text">"\Bitte ruf &lt;/br&gt;&lt;b&gt;%1$s&lt;/b&gt;&lt;/br&gt; an, um deine Einkaufsliste aufzuzeigen.\"</string>
+    <string name="seeker_type_screen_title">"Wie würdest du gerne deine Liste erstellen?"</string>
     <string name="seeker_type_button_help_request">"Artikel auswählen"</string>
     <string name="seeker_type_button_phone_call">"Einen Anruf tätigen"</string>
     <string name="error_message_unknown">"Unbekannter Fehler"</string>
-    <string name="seeker_overview_empty_label">"Sie haben noch keine Anfragen aufgegeben. Klicken Sie rechts unten, um Ihre erste Anfrage zu erstellen."</string>
+    <string name="seeker_overview_empty_label">"Du hast noch keine Anfrage aufgegeben. Klicke rechts unten, um deine erste Anfrage zu erstellen."</string>
     <string name="role_screen_title_ios">"Willkommen, %@"</string>
-    <string name="seeker_phone_call_text_ios">"Rufen Sie bitte %@ um Ihre Einkaufsliste aufzuzeigen."</string>
+    <string name="seeker_phone_call_text_ios">"Ruf bitte %@, um deine Einkaufsliste aufzuzeigen."</string>
     <string name="back_button_title">"Zurück"</string>
     <string name="cancel_button_title">"Abbrechen"</string>
     <string name="confirm_button_title">"Bestätigen"</string>
@@ -135,7 +135,7 @@
     <string name="transcribe_info_input_text_title_street">"Straße"</string>
     <string name="transcribe_info_input_text_title_street_number">"Nummer"</string>
     <string name="transcribe_info_input_text_title_city">"Stadt"</string>
-    <string name="transcribe_articles_screen_title">"EInkaufszettel"</string>
+    <string name="transcribe_articles_screen_title">"Einkaufszettel"</string>
     <string name="transcribe_articles_button_title_confirm">"Bestätigen"</string>
     <string name="transcribe_info_input_text_title_phone_number">"Telefon"</string>
     <string name="transcribe_end_screen_title_ios">"Vielen Dank für deine Hilfe zur Bearbeitung der Anfrage!"</string>
@@ -153,4 +153,6 @@
     <string name="helper_request_detail_message_cancelled">"Anfrage wurde gelöscht"</string>
     <string name="helper_request_detail_message_error_on_cancellation">"Anfrage konnte nicht gelöscht werden"</string>
     <string name="select_text_dialog_text_hint_default">"Eingeben"</string>
+    <string name="shopping_list_button_checkout">Zur Kasse</string>
+    <string name="helper_overview_error_empty_zipcode">Keine PLZ ausgewählt</string>
 </resources>
