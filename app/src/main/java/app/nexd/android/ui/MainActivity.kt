@@ -38,16 +38,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * finish activity if start fragment showing
-     */
-    override fun onBackPressed() {
-        if (findNavController(R.id.nav_host_fragment).currentDestination?.id == R.id.roleFragment)
-            finish()
-        else
-            super.onBackPressed()
-    }
-
-    /**
      * hides keyboard if no editText was touched
      */
     private fun hideKeyboardOnTouch() {
