@@ -10,6 +10,7 @@ import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import app.nexd.android.databinding.FragmentLoginBinding
 import app.nexd.android.ui.auth.login.LoginFragmentDirections.Companion.toRoleFragment
 import app.nexd.android.ui.auth.login.LoginViewModel.Progress.*
@@ -37,6 +38,8 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        login_toolbar.setupWithNavController(findNavController())
 
         binding.viewModel = vm
 
