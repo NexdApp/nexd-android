@@ -10,6 +10,9 @@ import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
+import app.nexd.android.R
 import app.nexd.android.databinding.FragmentRegisterDetailedBinding
 import app.nexd.android.ui.auth.register.RegisterDetailedViewModel.Progress.*
 import app.nexd.android.ui.common.Constants
@@ -37,6 +40,11 @@ class RegisterDetailedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        with(findNavController()) {
+            val appBarConfiguration = AppBarConfiguration(setOf(R.id.registerDetailedFragment))
+            register_detailed_toolbar.setupWithNavController(this, appBarConfiguration)
+        }
 
         editText_city.setOnEditorActionListener { _, i, _ ->
             if (i == EditorInfo.IME_ACTION_DONE) {
