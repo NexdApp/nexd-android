@@ -22,13 +22,6 @@ class RegisterViewModel(
         object Finished : Progress()
     }
 
-    data class RegistrationData(
-        val firstName: String,
-        val lastName: String,
-        val email: String,
-        val password: String
-    )
-
     val firstName = MutableLiveData("")
 
     val firstNameError = MutableLiveData(0)

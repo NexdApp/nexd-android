@@ -3,13 +3,15 @@ package app.nexd.android.ui.auth.register
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import app.nexd.android.Api
+import app.nexd.android.Preferences
 import app.nexd.android.R
 import app.nexd.android.api.model.UpdateUserDto
 import app.nexd.android.ui.utils.ErrorUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
 
 class RegisterDetailedViewModel(
-    private val api: Api
+    private val api: Api,
+    private val preferences: Preferences
 ) : ViewModel() {
 
     sealed class Progress {
@@ -88,6 +90,7 @@ class RegisterDetailedViewModel(
                 )
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
+                        preferences.registrationComplete = true
                         progress.value = Progress.Finished
                     }, {
                         progress.value = Progress.Error(ErrorUtil.parseError(it).firstMessage)

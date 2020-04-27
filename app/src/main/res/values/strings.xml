@@ -155,8 +155,5 @@ phone call"</string>
     <string name="helper_request_detail_message_cancelled">"Your request was deleted"</string>
     <string name="helper_request_detail_message_error_on_cancellation">"Your request could not be deleted"</string>
     <string name="select_text_dialog_text_hint_default">"Input"</string>
-    <string name="helper_overview_error_empty_zipcode">No zip code selected</string>
-    <string name="shopping_list_button_checkout">Order Completed</string>
-    <string name="transcript_summary_button_transcript">Transcribe another call</string>
-    <string name="transcript_summary_title">"Thank you for helping complete %1$s's order!"</string>
+
 </resources>
