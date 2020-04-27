@@ -10,6 +10,7 @@ import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import app.nexd.android.R
 import app.nexd.android.databinding.FragmentRegisterBinding
 import app.nexd.android.ui.auth.register.RegisterFragmentDirections.Companion.toRegisterDetailedFragment
@@ -39,6 +40,8 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        register_toolbar.setupWithNavController(findNavController())
 
         editText_password_confirm.setOnEditorActionListener { _, i, _ ->
             if (i == EditorInfo.IME_ACTION_DONE) {
@@ -76,10 +79,6 @@ class RegisterFragment : Fragment() {
 
         button_dataProtection.setOnClickListener {
             showPrivacyPolicy()
-        }
-
-        register_toolbar.setNavigationOnClickListener {
-            findNavController().navigateUp()
         }
     }
 

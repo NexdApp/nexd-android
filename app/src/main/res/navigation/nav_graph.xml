@@ -148,7 +148,6 @@
     <fragment
         android:id="@+id/registerFragment"
         android:name="app.nexd.android.ui.auth.register.RegisterFragment"
-        android:label="RegisterFragment"
         tools:layout="@layout/fragment_register" >
         <action
             android:id="@+id/toRegisterDetailedFragment"
