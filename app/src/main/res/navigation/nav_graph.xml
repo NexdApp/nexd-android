@@ -134,7 +134,6 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="app.nexd.android.ui.auth.login.LoginFragment"
-        android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/toRoleFragment"
