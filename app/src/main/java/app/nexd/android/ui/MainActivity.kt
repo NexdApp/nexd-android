@@ -25,7 +25,9 @@ class MainActivity : AppCompatActivity() {
             runOnUiThread {
                 // skip authentication if user is logged in
                 mainViewModel.getNavigationDestination()?.let {
-                    controller.navigate(it)
+                    if (controller.currentDestination?.id != it) {
+                        controller.navigate(it)
+                    }
                 }
             }
         }
