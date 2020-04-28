@@ -16,7 +16,7 @@ class ShoppingListEntryBinder :
         ItemViewHolder<ShoppingListViewModel.ShoppingListEntry>(itemView) {
         private val amount: TextView = itemView.textView_amount
         private val name: TextView = itemView.textView_name
-        private val collect: CheckBox = itemView.checkbox_checked
+        private val crossed: View = itemView.view_crossed
 
         fun bind(entry: ShoppingListViewModel.ShoppingListEntry) {
             amount.text = itemView.context.getString(
@@ -24,18 +24,12 @@ class ShoppingListEntryBinder :
                 entry.articleAmount
             )
             name.text = entry.articleName
-            collect.isChecked = entry.isCollected
-            collect.visibility = View.VISIBLE
-
-            collect.setOnCheckedChangeListener { _, isChecked ->
-                entry.isCollected = isChecked
-                itemView.post {
-                    toggleItemSelection()
-                }
-            }
+            crossed.visibility = if (entry.isCollected) View.VISIBLE else View.GONE
 
             itemView.setOnClickListener {
-                collect.isChecked = !collect.isChecked
+                entry.isCollected = !entry.isCollected
+                crossed.visibility = if (entry.isCollected) View.VISIBLE else View.GONE
+                toggleItemSelection()
             }
         }
     }

@@ -153,4 +153,6 @@
     <string name="helper_request_detail_message_cancelled">"Anfrage wurde gelöscht"</string>
     <string name="helper_request_detail_message_error_on_cancellation">"Anfrage konnte nicht gelöscht werden"</string>
     <string name="select_text_dialog_text_hint_default">"Eingeben"</string>
+    <string name="shopping_list_button_checkout">Zur Kasse</string>
+    <string name="helper_overview_error_empty_zipcode">Keine PLZ ausgewählt</string>
 </resources>
