@@ -1,7 +1,6 @@
 package app.nexd.android.ui.helper.transcript
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import app.nexd.android.Api
@@ -10,7 +9,6 @@ import app.nexd.android.api.model.Call
 import app.nexd.android.api.model.CreateHelpRequestArticleDto
 import app.nexd.android.api.model.HelpRequestCreateDto
 import app.nexd.android.ui.common.HelpRequestCreateArticleBinder
-import app.nexd.android.ui.helper.transcript.articles.TranscriptArticlesItemViewModel
 import app.nexd.android.ui.utils.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
 import io.reactivex.disposables.CompositeDisposable
