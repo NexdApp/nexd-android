@@ -1,24 +1,23 @@
 package app.nexd.android.ui
 
-import androidx.lifecycle.ViewModel
-import app.nexd.android.Preferences
 import android.util.Log
-import androidx.annotation.IdRes
-import app.nexd.android.R
+import androidx.lifecycle.ViewModel
+import androidx.navigation.NavDirections
+import app.nexd.android.NavGraphDirections
+import app.nexd.android.Preferences
 
 class MainViewModel(private val preferences: Preferences) : ViewModel() {
 
     private fun isAuthenticated() = !preferences.getToken().isNullOrBlank()
 
-    @IdRes
-    fun getNavigationDestination(): Int? {
+    fun getNavigationOverride(): NavDirections? {
         return if (isAuthenticated()) {
             if (preferences.registrationComplete) {
                 Log.v("Navigation", "redirect to roleFragment")
-                R.id.roleFragment
+                NavGraphDirections.toRoleFragmentOnAuth()
             } else {
                 Log.v("Navigation", "redirect to registerDetailedViewModel")
-                R.id.registerDetailedFragment
+                NavGraphDirections.toRegisterDetailedFragmentOnAuth()
             }
         } else null
     }
