@@ -284,4 +284,24 @@
                 app:popExitAnim="@animator/slide_out_left_to_right" />
         </fragment>
     </navigation>
+
+    <action
+        android:id="@+id/toRegisterDetailedFragmentOnAuth"
+        app:destination="@id/registerDetailedFragment"
+        app:enterAnim="@animator/slide_in_right_to_left"
+        app:exitAnim="@animator/slide_out_right_to_left"
+        app:popEnterAnim="@animator/slide_in_left_to_right"
+        app:popExitAnim="@animator/slide_out_left_to_right"
+        app:popUpTo="@id/nav_graph"
+        app:popUpToInclusive="true" />
+    <action
+        android:id="@+id/toRoleFragmentOnAuth"
+        app:destination="@id/roleFragment"
+        app:enterAnim="@animator/slide_in_right_to_left"
+        app:exitAnim="@animator/slide_out_right_to_left"
+        app:popEnterAnim="@animator/slide_in_left_to_right"
+        app:popExitAnim="@animator/slide_out_left_to_right"
+        app:popUpTo="@id/nav_graph"
+        app:popUpToInclusive="true" />
+
 </navigation>
