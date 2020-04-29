@@ -156,4 +156,5 @@
     <string name="shopping_list_button_checkout">Zur Kasse</string>
     <string name="transcript_summary_button_transcript">Einen weiteren Anruf übertragen</string>
     <string name="transcript_summary_title">Danke, dass du %1$s\'s Bestellung vervollständigt hast!</string>
+    <string name="transcript_error_empty_calls">Es gibt zur Zeit keine Anrufe zum übersetzen</string>
 </resources>

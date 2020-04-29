@@ -25,6 +25,7 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
      * Currently selected call to transcript
      */
     val call = MutableLiveData<Call?>(null)
+    val callError = MutableLiveData<Int?>(null)
 
     // Personal information
 
@@ -47,19 +48,13 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
     val cityError = MutableLiveData<Int?>(null)
 
     // Articles
-
-    val articles: MutableLiveData<List<HelpRequestCreateArticleBinder.ArticleInput>> =
-        MutableLiveData(emptyList())
+    val articles = MutableLiveData(emptyList<HelpRequestCreateArticleBinder.ArticleInput>())
 
     /**
      * This disposable is to be used for rx subscriptions not bound to a live data lifecycle.
      * It will be cleared on ViewModel onCleared.
      */
     private val compositeDisposable = CompositeDisposable()
-
-    init {
-        transcriptCall()
-    }
 
     private fun loadArticles() {
         val observable = api.articlesControllerFindAll()
@@ -85,30 +80,6 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
 
     @SuppressLint("CheckResult")
     fun transcriptCall() {
-        resetData()
-
-        api.phoneControllerGetCalls(
-            null,
-            1,
-            false,
-            null,
-            null,
-            null
-        )
-            .firstOrError()
-            .observeOn(mainThread())
-            .subscribe({
-                call.value = it.firstOrNull()
-            }, {
-                error.value = R.string.error_message_unknown // TODO: use proper error message
-            })
-
-        loadArticles()
-    }
-
-    private fun resetData() {
-        call.value = null
-
         firstName.value = null
         lastName.value = null
         street.value = null
@@ -123,7 +94,27 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
         cityError.value = null
         error.value = null
 
-        articles.value = emptyList()
+        api.phoneControllerGetCalls(
+            null,
+            1,
+            false,
+            null,
+            null,
+            null
+        )
+            .firstOrError()
+            .observeOn(mainThread())
+            .subscribe({
+                val call = it.firstOrNull()
+                if (call == null) {
+                    callError.value = R.string.transcript_error_empty_calls
+                }
+                this.call.value = call
+            }, {
+                error.value = R.string.error_message_unknown // TODO: use proper error message
+            })
+
+        loadArticles()
     }
 
     override fun onCleared() {

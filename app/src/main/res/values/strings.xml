@@ -158,4 +158,5 @@ phone call"</string>
     <string name="shopping_list_button_checkout">Order Completed</string>
     <string name="transcript_summary_button_transcript">Transcribe another call</string>
     <string name="transcript_summary_title">"Thank you for helping complete %1$s's order!"</string>
+    <string name="transcript_error_empty_calls">There are no calls to transcript currently</string>
 </resources>
