@@ -1,7 +1,6 @@
 package app.nexd.android.ui.seeker.create
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,11 +15,11 @@ import app.nexd.android.ui.common.HelpRequestCreateArticleBinder
 import kotlinx.android.synthetic.main.fragment_seeker_create_request.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class SeekerCreateRequestFragment : Fragment() {
 
-    private val vm: SeekerCreateRequestViewModel by viewModel()
+    private val vm: SeekerCreateRequestViewModel by sharedViewModel()
 
     private lateinit var adapter: MultiViewAdapter
 
@@ -62,6 +61,8 @@ class SeekerCreateRequestFragment : Fragment() {
                                     .articleId(it.article.id)
 
                             })
+                        .firstName(currentUser.firstName)
+                        .lastName(currentUser.lastName)
                         .street(currentUser.street)
                         .number(currentUser.number)
                         .zipCode(currentUser.zipCode)
@@ -69,19 +70,10 @@ class SeekerCreateRequestFragment : Fragment() {
                         .phoneNumber(currentUser.phoneNumber)
                         .additionalRequest(textView_additionalRequest.text.toString())
 
-                    vm.sendRequest(request)
+                    vm.requestToConfirm = request
+                    findNavController().navigate(R.id.action_seekerCreateRequestFragment_to_seekerCreateRequestEnterAddressFragment)
                 }
             })
-
-        })
-
-        vm.state().observe(viewLifecycleOwner, Observer {
-            when (it) {
-                // TODO: handle all states
-                SeekerCreateRequestViewModel.State.FINISHED -> findNavController().popBackStack()
-                else -> Log.d(SeekerCreateRequestFragment::class.simpleName, "unhandled state $it")
-            }
         })
     }
-
 }

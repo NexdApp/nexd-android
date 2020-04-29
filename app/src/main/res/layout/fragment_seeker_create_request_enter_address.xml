@@ -2,154 +2,118 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:padding="@dimen/horizontalPadding">
 
-
-    <ImageButton
-        android:id="@+id/button_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/exo_controls_previous" />
-
-    <TextView
-        android:id="@+id/textView_current_page"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-
-        android:text="2/3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView_enter_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-
-        android:text="Anna, enter your adddress."
+        android:text="Please confirm your delivery address"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_back" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/textView_first_name"
+        android:id="@+id/editText_first_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="24dp"
-
+        android:backgroundTint="@color/grey_500"
         android:hint="@string/registration_placeholder_firstName"
+        android:textColorHint="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
         app:layout_constraintTop_toBottomOf="@+id/textView_enter_address" />
 
     <EditText
-        android:id="@+id/textView_last_name"
+        android:id="@+id/editText_last_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-
+        android:backgroundTint="@color/grey_500"
         android:hint="@string/registration_placeholder_lastName"
+        android:textColorHint="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@+id/textView_first_name" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_first_name" />
 
     <EditText
-        android:id="@+id/textView_street"
+        android:id="@+id/editText_street"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-
+        android:backgroundTint="@color/grey_500"
         android:hint="@string/user_input_details_placeholder_street"
+        android:textColorHint="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@+id/textView_last_name" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_last_name" />
 
     <EditText
-        android:id="@+id/textView_street_number"
+        android:id="@+id/editText_street_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-
+        android:backgroundTint="@color/grey_500"
         android:hint="@string/user_input_details_placeholder_houseNumber"
+        android:textColorHint="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@+id/textView_street" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_street" />
 
     <EditText
-        android:id="@+id/textView_postal_code"
+        android:id="@+id/editText_zip_code"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-
+        android:backgroundTint="@color/grey_500"
         android:hint="@string/registration_placeholder_zip"
+        android:textColorHint="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@+id/textView_street_number" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_street_number" />
 
     <EditText
-        android:id="@+id/textView_city"
+        android:id="@+id/editText_city"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-
+        android:backgroundTint="@color/grey_500"
         android:hint="@string/user_input_details_placeholder_city"
+        android:textColorHint="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@+id/textView_postal_code" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_zip_code" />
 
     <EditText
-        android:id="@+id/textView_phoneNumber"
+        android:id="@+id/editText_phoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-
+        android:backgroundTint="@color/grey_500"
         android:hint="@string/registration_placeholder_phone"
+        android:textColorHint="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_city" />
 
-        app:layout_constraintTop_toBottomOf="@+id/textView_city" />
-
-    <Button
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:layout_marginBottom="32dp"
-
-        android:text="enter address"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_check_black_24dp"
+        android:tint="@color/colorPrimaryDark"
+        app:borderWidth="0dp"
+        app:fabCustomSize="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:maxImageSize="30dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

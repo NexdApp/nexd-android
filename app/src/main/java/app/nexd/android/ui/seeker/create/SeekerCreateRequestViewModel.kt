@@ -19,6 +19,7 @@ class SeekerCreateRequestViewModel(private val api: Api) : ViewModel() {
     }
 
     private val state = BehaviorProcessor.createDefault(State.LOADING)
+    lateinit var requestToConfirm: HelpRequestCreateDto
 
     fun getCurrentUser(): LiveData<User> {
         return LiveDataReactiveStreams.fromPublisher(
@@ -32,12 +33,12 @@ class SeekerCreateRequestViewModel(private val api: Api) : ViewModel() {
         )
     }
 
-    fun sendRequest(request: HelpRequestCreateDto) {
-        if (request.articles.isNullOrEmpty()) {
+    fun sendRequest() {
+        if (requestToConfirm.articles.isNullOrEmpty()) {
             return // request without articles shouldn't be accepted
         }
         with(api) {
-            helpRequestsControllerInsertRequestWithArticles(request)
+            helpRequestsControllerInsertRequestWithArticles(requestToConfirm)
                 .subscribe { state.onNext(State.FINISHED) }
         }
     }

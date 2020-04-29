@@ -10,12 +10,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import app.nexd.android.R
 import app.nexd.android.ui.auth.AuthFragmentDirections
+import app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel
 import io.reactivex.plugins.RxJavaPlugins
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
     private val mainViewModel : MainViewModel by viewModel()
+    val seSeekerCreateRequestVM: SeekerCreateRequestViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
