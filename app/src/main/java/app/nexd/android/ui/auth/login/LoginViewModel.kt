@@ -21,7 +21,7 @@ class LoginViewModel(
         object Idle : Progress()
         object Loading : Progress()
         class Error(@StringRes val message: Int) : Progress()
-        object Finished : Progress()
+        class Finished(val token: String) : Progress()
     }
 
     val username = MutableLiveData("")
@@ -63,9 +63,7 @@ class LoginViewModel(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(
                     onNext = { responseTokenDto ->
-                        preferences.setToken(responseTokenDto.accessToken)
-
-                        progress.value = Progress.Finished
+                        progress.value = Progress.Finished(token = responseTokenDto.accessToken)
                     },
                     onError = { t ->
                         progress.value = Progress.Error(

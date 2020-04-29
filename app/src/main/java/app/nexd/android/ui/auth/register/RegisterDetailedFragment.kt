@@ -14,16 +14,19 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import app.nexd.android.R
 import app.nexd.android.databinding.FragmentRegisterDetailedBinding
+import app.nexd.android.ui.MainViewModel
 import app.nexd.android.ui.auth.register.RegisterDetailedViewModel.Progress.*
 import app.nexd.android.ui.common.Constants
 import app.nexd.android.ui.common.DefaultSnackbar
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_register_detailed.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegisterDetailedFragment : Fragment() {
 
     private val vm: RegisterDetailedViewModel by viewModel()
+    private val activityVm by sharedViewModel<MainViewModel>()
 
     private lateinit var binding: FragmentRegisterDetailedBinding
 
@@ -75,7 +78,8 @@ class RegisterDetailedFragment : Fragment() {
                     DefaultSnackbar(view, progress.message, Snackbar.LENGTH_SHORT)
                 }
                 is Finished -> {
-                    findNavController().navigate(RegisterDetailedFragmentDirections.toRoleFragment())
+                    activityVm.refreshUser()
+                    findNavController().popBackStack()
                 }
             }
         })

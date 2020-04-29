@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
 import app.nexd.android.R
 import io.reactivex.plugins.RxJavaPlugins
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -20,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener { controller, destination, _ ->
+/*        findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener { controller, destination, _ ->
             Log.v("Navigation", destination.toString())
             runOnUiThread {
                 // skip authentication if user is logged in
@@ -28,7 +27,7 @@ class MainActivity : AppCompatActivity() {
                         controller.navigate(it)
                 }
             }
-        }
+        }*/
 
         RxJavaPlugins.setErrorHandler {
             Log.e(MainActivity::class.simpleName, "unhandled error", it)

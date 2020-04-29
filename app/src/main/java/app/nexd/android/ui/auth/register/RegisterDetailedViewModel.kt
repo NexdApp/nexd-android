@@ -90,7 +90,6 @@ class RegisterDetailedViewModel(
                 )
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
-                        preferences.registrationComplete = true
                         progress.value = Progress.Finished
                     }, {
                         progress.value = Progress.Error(ErrorUtil.parseError(it).firstMessage)
