@@ -1,6 +1,6 @@
 # PhoneApi
 
-All URIs are relative to *http://localhost:3001/api/v1*
+All URIs are relative to *https://nexd-backend-staging.herokuapp.com:443/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -30,7 +30,7 @@ import app.nexd.android.api.PhoneApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost:3001/api/v1");
+        defaultClient.setBasePath("https://nexd-backend-staging.herokuapp.com:443/api/v1");
         
         // Configure HTTP bearer authorization: bearer
         HttpBearerAuth bearer = (HttpBearerAuth) defaultClient.getAuthentication("bearer");
@@ -101,7 +101,7 @@ import app.nexd.android.api.PhoneApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost:3001/api/v1");
+        defaultClient.setBasePath("https://nexd-backend-staging.herokuapp.com:443/api/v1");
         
         // Configure HTTP bearer authorization: bearer
         HttpBearerAuth bearer = (HttpBearerAuth) defaultClient.getAuthentication("bearer");
@@ -178,7 +178,7 @@ import app.nexd.android.api.PhoneApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost:3001/api/v1");
+        defaultClient.setBasePath("https://nexd-backend-staging.herokuapp.com:443/api/v1");
 
         PhoneApi apiInstance = new PhoneApi(defaultClient);
         try {
