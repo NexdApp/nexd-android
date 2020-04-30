@@ -1,14 +1,17 @@
 package app.nexd.android.ui.seeker.create
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import app.nexd.android.R
-import kotlinx.android.synthetic.main.fragment_seeker_create_request_enter_address.*
+import kotlinx.android.synthetic.main.fragment_seeker_create_request_confirm_address.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class SeekerCreateRequestEnterAddressFragment : Fragment() {
@@ -20,7 +23,7 @@ class SeekerCreateRequestEnterAddressFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(
-            R.layout.fragment_seeker_create_request_enter_address,
+            R.layout.fragment_seeker_create_request_confirm_address,
             container,
             false
         )
@@ -39,13 +42,14 @@ class SeekerCreateRequestEnterAddressFragment : Fragment() {
 
 
         vm.getCurrentUser().observe(viewLifecycleOwner, Observer { currentUser ->
-            firstName = currentUser.firstName ?: ""
-            lastName = currentUser.lastName ?: ""
-            street = currentUser.street ?: ""
-            streetNumber = currentUser.number ?: ""
-            zipCode = currentUser.zipCode ?: ""
-            city = currentUser.city ?: ""
-            phoneNumber = currentUser.phoneNumber ?: ""
+
+            firstName = vm.requestToConfirm?.firstName ?: currentUser.firstName ?: ""
+            lastName = vm.requestToConfirm?.lastName ?: currentUser.lastName ?: ""
+            street = vm.requestToConfirm?.street ?: currentUser.street ?: ""
+            streetNumber = vm.requestToConfirm?.number ?: currentUser.number ?: ""
+            zipCode = vm.requestToConfirm?.zipCode ?: currentUser.zipCode ?: ""
+            city = vm.requestToConfirm?.city ?: currentUser.city ?: ""
+            phoneNumber = vm.requestToConfirm?.phoneNumber ?: currentUser.phoneNumber ?: ""
 
             editText_first_name.setText(firstName)
             editText_last_name.setText(lastName)
@@ -54,7 +58,6 @@ class SeekerCreateRequestEnterAddressFragment : Fragment() {
             editText_zip_code.setText(zipCode)
             editText_city.setText(city)
             editText_phoneNumber.setText(phoneNumber)
-
 
             button_confirm.setOnClickListener {
                 if (!editText_first_name.isEmptyShowError() ||
@@ -73,14 +76,30 @@ class SeekerCreateRequestEnterAddressFragment : Fragment() {
                     city = editText_city.text.toString()
                     phoneNumber = editText_phoneNumber.text.toString()
 
-                    vm.requestToConfirm.firstName(firstName)
+                    vm.requestToConfirm!!.firstName(firstName)
                         .lastName(lastName)
                         .street(street)
                         .number(streetNumber)
                         .zipCode(zipCode)
                         .city(city)
                         .phoneNumber(phoneNumber)
+
+                    vm.sendRequest()
                 }
+            }
+        })
+
+        vm.state().observe(viewLifecycleOwner, Observer {
+            when (it) {
+                SeekerCreateRequestViewModel.State.FINISHED -> {
+                    Toast.makeText(
+                        requireContext(),
+                        "Request successfully submitted",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    findNavController().navigate(R.id.action_seekerCreateRequestEnterAddressFragment_to_seekerOverviewFragment)
+                }
+                else -> Log.d(SeekerCreateRequestFragment::class.simpleName, "unhandled state $it")
             }
         })
 

@@ -67,6 +67,7 @@
     <string name="seeker_detail_placeholder_information">"Zusätzliche Informationen"</string>
     <string name="seeker_request_create_heading">"Ich benötige:"</string>
     <string name="seeker_request_create_placeholder_information">"Zusätzliche Informationen"</string>
+    <string name="seeker_request_create_confirm_address">"Bitte bestätige deine Lieferadresse"</string>
     <string name="user_input_details_screen_title">"Geben Sie weitere Details ein"</string>
     <string name="user_input_details_placeholder_phoneNumber">"Tel. Nr."</string>
     <string name="user_input_details_placeholder_street">"Straße"</string>

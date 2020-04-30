@@ -99,22 +99,12 @@
         android:id="@+id/seekerCreateRequestEnterAddressFragment"
         android:name="app.nexd.android.ui.seeker.create.SeekerCreateRequestEnterAddressFragment"
         android:label="SeekerCreateRequestEnterAddressFragment"
-        tools:layout="@layout/fragment_seeker_create_request_enter_address">
+        tools:layout="@layout/fragment_seeker_create_request_confirm_address">
         <action
-            android:id="@+id/action_seekerCreateRequestEnterAddressFragment_to_seekerCreateRequestConfirmFragment"
-            app:destination="@id/seekerCreateRequestConfirmFragment" />
+            android:id="@+id/action_seekerCreateRequestEnterAddressFragment_to_seekerOverviewFragment"
+            app:destination="@id/seekerOverviewFragment" />
     </fragment>
 
-
-    <fragment
-        android:id="@+id/seekerCreateRequestConfirmFragment"
-        android:name="app.nexd.android.ui.seeker.create.SeekerCreateRequestConfirmFragment"
-        android:label="SeekerCreateRequestConfirmFragment"
-        tools:layout="@layout/fragment_seeker_create_request_order_summary">
-        <action
-            android:id="@+id/action_seekerCreateRequestConfirmFragment_to_seekerCreateRequestFragment"
-            app:destination="@id/seekerCreateRequestFragment" />
-    </fragment>
 
     <fragment
         android:id="@+id/shoppingListFragment"
