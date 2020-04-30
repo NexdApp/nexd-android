@@ -47,4 +47,4 @@ We are using [POEditor](https://poeditor.com/) for localization management. Newl
 
 ## Continous integration/delivery
 
-Github actions are used as CI/CD. 
+[Github actions](https://github.com/features/actions) are used as CI/CD. 
