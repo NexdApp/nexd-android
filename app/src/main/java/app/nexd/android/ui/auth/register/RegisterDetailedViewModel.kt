@@ -5,6 +5,7 @@ import androidx.annotation.StringRes
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import app.nexd.android.Api
+import app.nexd.android.Preferences
 import app.nexd.android.R
 import app.nexd.android.api.model.BackendErrorEntry.ErrorCodeEnum.VALIDATION_PHONENUMBER_INVALID
 import app.nexd.android.api.model.UpdateUserDto
@@ -12,7 +13,8 @@ import app.nexd.android.network.BackendError
 import io.reactivex.android.schedulers.AndroidSchedulers
 
 class RegisterDetailedViewModel(
-    private val api: Api
+    private val api: Api,
+    private val preferences: Preferences
 ) : ViewModel() {
 
     sealed class Progress {
@@ -91,6 +93,7 @@ class RegisterDetailedViewModel(
                 )
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
+                        preferences.registrationComplete = true
                         progress.value = Progress.Finished
                     }, { error ->
                         if (error is BackendError) {

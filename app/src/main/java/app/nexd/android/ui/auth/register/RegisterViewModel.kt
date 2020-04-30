@@ -111,6 +111,7 @@ class RegisterViewModel(
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
                         {
+                            preferences.registrationComplete = false
                             preferences.setToken(it.accessToken)
                             progress.value = Progress.Finished
                         },

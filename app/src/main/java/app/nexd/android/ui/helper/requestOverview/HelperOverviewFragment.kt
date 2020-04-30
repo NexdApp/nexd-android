@@ -124,10 +124,6 @@ class HelperOverviewFragment : Fragment() {
         button_shopping.setOnClickListener {
             findNavController().navigate(HelperOverviewFragmentDirections.toShoppingListFragment())
         }
-
-        button_previousRequests.setOnClickListener {
-            findNavController().navigate(HelperOverviewFragmentDirections.toFinishedFragment())
-        }
     }
 
 }
