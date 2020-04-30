@@ -78,7 +78,6 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
         compositeDisposable.add(disposable)
     }
 
-    @SuppressLint("CheckResult")
     fun transcriptCall() {
         firstName.value = null
         lastName.value = null
@@ -94,7 +93,7 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
         cityError.value = null
         error.value = null
 
-        api.phoneControllerGetCalls(
+        compositeDisposable.add(api.phoneControllerGetCalls(
             null,
             1,
             false,
@@ -102,7 +101,6 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
             null,
             null
         )
-            .firstOrError()
             .observeOn(mainThread())
             .subscribe({
                 val call = it.firstOrNull()
@@ -112,7 +110,7 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
                 this.call.value = call
             }, {
                 error.value = R.string.error_message_unknown // TODO: use proper error message
-            })
+            }))
 
         loadArticles()
     }
