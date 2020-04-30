@@ -1,6 +1,6 @@
 # ArticlesApi
 
-All URIs are relative to *https://nexd-backend-staging.herokuapp.com:443/api/v1*
+All URIs are relative to *http://localhost:3001/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -28,7 +28,7 @@ import app.nexd.android.api.ArticlesApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://nexd-backend-staging.herokuapp.com:443/api/v1");
+        defaultClient.setBasePath("http://localhost:3001/api/v1");
 
         ArticlesApi apiInstance = new ArticlesApi(defaultClient);
         try {
@@ -88,7 +88,7 @@ import app.nexd.android.api.ArticlesApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://nexd-backend-staging.herokuapp.com:443/api/v1");
+        defaultClient.setBasePath("http://localhost:3001/api/v1");
 
         ArticlesApi apiInstance = new ArticlesApi(defaultClient);
         String xAdminSecret = "xAdminSecret_example"; // String | Secret to access the admin functions.

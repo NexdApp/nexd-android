@@ -1,34 +1,29 @@
 package app.nexd.android.ui.auth.register
 
+import android.util.Log
+import androidx.annotation.StringRes
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import app.nexd.android.Api
 import app.nexd.android.Preferences
 import app.nexd.android.R
+import app.nexd.android.api.model.BackendErrorEntry.ErrorCodeEnum.*
 import app.nexd.android.api.model.RegisterDto
-import app.nexd.android.ui.utils.ApiErrorTranslator
+import app.nexd.android.network.BackendError
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 
 class RegisterViewModel(
     private val api: Api,
-    private val preferences: Preferences,
-    private val apiErrorTranslator: ApiErrorTranslator
+    private val preferences: Preferences
 ) : ViewModel() {
 
     sealed class Progress {
         object Idle : Progress()
         object Loading : Progress()
-        class Error(val message: String) : Progress()
+        class Error(@StringRes val message: Int? = null) : Progress()
         object Finished : Progress()
     }
-
-    data class RegistrationData(
-        val firstName: String,
-        val lastName: String,
-        val email: String,
-        val password: String
-    )
 
     val firstName = MutableLiveData("")
 
@@ -114,14 +109,52 @@ class RegisterViewModel(
                         .password(password.value)
                 )
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({
-                        preferences.setToken(it.accessToken)
-
-                        progress.value = Progress.Finished
-                    }, {
-                        progress.value = Progress.Error(apiErrorTranslator.translate(it))
-                    })
+                    .subscribe(
+                        {
+                            preferences.setToken(it.accessToken)
+                            progress.value = Progress.Finished
+                        },
+                        {
+                            handleErrors(it)
+                        }
+                    )
             }
+        }
+    }
+
+    private fun handleErrors(throwable: Throwable) {
+        if (throwable is BackendError) {
+            throwable.errorCodes.forEach {
+                when (it) {
+                    USERS_USER_EXISTS -> {
+                        emailError.value =
+                            R.string.error_message_registration_user_already_exists
+                    }
+                    VALIDATION_PASSWORD_TOO_SHORT -> {
+                        passwordError.value = R.string.error_message_registration_password_too_short
+                        passwordConfirmationError.value =
+                            R.string.error_message_registration_password_too_short
+                    }
+                    VALIDATION_EMAIL_INVALID -> {
+                        emailError.value = R.string.error_message_registration_invalid_email
+                    }
+                    else -> {
+                        Log.e(
+                            RegisterViewModel::class.simpleName,
+                            "Unknown error $it",
+                            throwable
+                        )
+
+                        progress.value = Progress.Error()
+                    }
+                }
+            }
+
+            progress.value = Progress.Error()
+        }
+
+        if (progress.value !is Progress.Error) {
+            progress.value = Progress.Error(R.string.error_message_unknown)
         }
     }
 

@@ -22,20 +22,20 @@ import java.util.Objects;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * HttpBadRequestResponse
+ * BackendErrorResponse
  */
 
-public class HttpBadRequestResponse {
+public class BackendErrorResponse {
   public static final String SERIALIZED_NAME_STATUS_CODE = "statusCode";
   @SerializedName(SERIALIZED_NAME_STATUS_CODE)
   private Long statusCode;
 
   public static final String SERIALIZED_NAME_ERRORS = "errors";
   @SerializedName(SERIALIZED_NAME_ERRORS)
-  private List<BadRequestErrorEntry> errors = new ArrayList<BadRequestErrorEntry>();
+  private List<BackendErrorEntry> errors = new ArrayList<BackendErrorEntry>();
 
 
-  public HttpBadRequestResponse statusCode(Long statusCode) {
+  public BackendErrorResponse statusCode(Long statusCode) {
     
     this.statusCode = statusCode;
     return this;
@@ -57,13 +57,13 @@ public class HttpBadRequestResponse {
   }
 
 
-  public HttpBadRequestResponse errors(List<BadRequestErrorEntry> errors) {
+  public BackendErrorResponse errors(List<BackendErrorEntry> errors) {
     
     this.errors = errors;
     return this;
   }
 
-  public HttpBadRequestResponse addErrorsItem(BadRequestErrorEntry errorsItem) {
+  public BackendErrorResponse addErrorsItem(BackendErrorEntry errorsItem) {
     this.errors.add(errorsItem);
     return this;
   }
@@ -74,12 +74,12 @@ public class HttpBadRequestResponse {
   **/
   @ApiModelProperty(required = true, value = "")
 
-  public List<BadRequestErrorEntry> getErrors() {
+  public List<BackendErrorEntry> getErrors() {
     return errors;
   }
 
 
-  public void setErrors(List<BadRequestErrorEntry> errors) {
+  public void setErrors(List<BackendErrorEntry> errors) {
     this.errors = errors;
   }
 
@@ -92,9 +92,9 @@ public class HttpBadRequestResponse {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    HttpBadRequestResponse httpBadRequestResponse = (HttpBadRequestResponse) o;
-    return Objects.equals(this.statusCode, httpBadRequestResponse.statusCode) &&
-        Objects.equals(this.errors, httpBadRequestResponse.errors);
+    BackendErrorResponse backendErrorResponse = (BackendErrorResponse) o;
+    return Objects.equals(this.statusCode, backendErrorResponse.statusCode) &&
+        Objects.equals(this.errors, backendErrorResponse.errors);
   }
 
   @Override
@@ -106,7 +106,7 @@ public class HttpBadRequestResponse {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class HttpBadRequestResponse {\n");
+    sb.append("class BackendErrorResponse {\n");
     sb.append("    statusCode: ").append(toIndentedString(statusCode)).append("\n");
     sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
     sb.append("}");
