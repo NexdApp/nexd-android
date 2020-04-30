@@ -25,16 +25,24 @@ import java.util.Objects;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * ConflictErrorEntry
+ * BackendErrorEntry
  */
 
-public class ConflictErrorEntry {
+public class BackendErrorEntry {
   /**
    * Specific error code from enum
    */
   @JsonAdapter(ErrorCodeEnum.Adapter.class)
   public enum ErrorCodeEnum {
-    USERS_USER_EXISTS("USERS_USER_EXISTS");
+    VALIDATION_EMAIL_INVALID("VALIDATION_EMAIL_INVALID"),
+    
+    VALIDATION_PHONENUMBER_INVALID("VALIDATION_PHONENUMBER_INVALID"),
+    
+    VALIDATION_PASSWORD_TOO_SHORT("VALIDATION_PASSWORD_TOO_SHORT"),
+    
+    USERS_USER_EXISTS("USERS_USER_EXISTS"),
+    
+    USERS_USER_NOT_FOUND("USERS_USER_NOT_FOUND");
 
     private String value;
 
@@ -83,7 +91,7 @@ public class ConflictErrorEntry {
   private String errorDescription;
 
 
-  public ConflictErrorEntry errorCode(ErrorCodeEnum errorCode) {
+  public BackendErrorEntry errorCode(ErrorCodeEnum errorCode) {
     
     this.errorCode = errorCode;
     return this;
@@ -105,7 +113,7 @@ public class ConflictErrorEntry {
   }
 
 
-  public ConflictErrorEntry errorDescription(String errorDescription) {
+  public BackendErrorEntry errorDescription(String errorDescription) {
     
     this.errorDescription = errorDescription;
     return this;
@@ -135,9 +143,9 @@ public class ConflictErrorEntry {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ConflictErrorEntry conflictErrorEntry = (ConflictErrorEntry) o;
-    return Objects.equals(this.errorCode, conflictErrorEntry.errorCode) &&
-        Objects.equals(this.errorDescription, conflictErrorEntry.errorDescription);
+    BackendErrorEntry backendErrorEntry = (BackendErrorEntry) o;
+    return Objects.equals(this.errorCode, backendErrorEntry.errorCode) &&
+        Objects.equals(this.errorDescription, backendErrorEntry.errorDescription);
   }
 
   @Override
@@ -149,7 +157,7 @@ public class ConflictErrorEntry {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ConflictErrorEntry {\n");
+    sb.append("class BackendErrorEntry {\n");
     sb.append("    errorCode: ").append(toIndentedString(errorCode)).append("\n");
     sb.append("    errorDescription: ").append(toIndentedString(errorDescription)).append("\n");
     sb.append("}");

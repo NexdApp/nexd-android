@@ -69,7 +69,9 @@ class RegisterFragment : Fragment() {
                     progressBar.visibility = View.VISIBLE
                 }
                 is Error -> {
-                    DefaultSnackbar(view, progress.message, Snackbar.LENGTH_SHORT)
+                    progress.message?.let { message ->
+                        DefaultSnackbar(view, message, Snackbar.LENGTH_SHORT)
+                    }
                 }
                 is Finished -> {
                     findNavController().navigate(toRegisterDetailedFragment())
