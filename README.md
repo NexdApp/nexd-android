@@ -24,6 +24,7 @@ Use following command to trigger a new generation (if e.g. api has changed):
 ```
 ./gradlew generateApiClient
 ```
+Please optimize imports on the :api module after a fresh client generation.
 
 ## Architecture
 
