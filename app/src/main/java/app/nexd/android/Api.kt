@@ -34,6 +34,7 @@ private class NexdApiClient(private val preferences: Preferences) : ApiClient() 
             .baseUrl(baseUrl)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(io()))
             .addConverterFactory(ScalarsConverterFactory.create())
+            .addConverterFactory(GsonCustomConverterFactory.create(JSON().gson))
 
         val loggingInterceptor = HttpLoggingInterceptor()
             .setLevel(HttpLoggingInterceptor.Level.BODY)
