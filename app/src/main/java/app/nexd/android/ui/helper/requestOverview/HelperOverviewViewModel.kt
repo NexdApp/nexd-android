@@ -1,6 +1,7 @@
 package app.nexd.android.ui.helper.requestOverview
 
 import android.app.Application
+import androidx.annotation.StringRes
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
@@ -12,6 +13,7 @@ import app.nexd.android.api.model.HelpRequest
 import app.nexd.android.api.model.HelpRequestStatus
 import app.nexd.android.ui.common.Constants.Companion.USER_ME
 import io.reactivex.BackpressureStrategy
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.subjects.BehaviorSubject
@@ -22,7 +24,7 @@ class HelperOverviewViewModel(application: Application, private val api: Api) : 
         object Idle : Progress()
         object Loading : Progress()
         class ZipCodeDialog(val zipCode: String) : Progress()
-        class Error(val message: String) : Progress()
+        class Error(@StringRes val message: Int) : Progress()
     }
 
     // TODO: refactor to proper two way data binding
@@ -40,11 +42,11 @@ class HelperOverviewViewModel(application: Application, private val api: Api) : 
     init {
         compositeDisposable.add(
             api.userControllerFindMe()
-                .filter { it.zipCode != null }
-                .map { it.zipCode!! }
+                .map { it.zipCode ?: "" }
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(
                     onNext = { zipCode.onNext(it) },
-                    onError = { progress.value = Progress.Error("Error") } // TODO: proper error handling
+                    onError = { progress.value = Progress.Error(R.string.error_message_unknown) } // TODO: proper error handling
                 )
         )
 
@@ -61,7 +63,7 @@ class HelperOverviewViewModel(application: Application, private val api: Api) : 
                 USER_ME,
                 true,
                 listOf(zip),
-                true,
+                false,
                 listOf(HelpRequestStatus.PENDING)
             )
         }

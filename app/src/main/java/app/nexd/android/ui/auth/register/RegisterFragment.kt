@@ -10,10 +10,12 @@ import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import app.nexd.android.R
 import app.nexd.android.databinding.FragmentRegisterBinding
 import app.nexd.android.ui.auth.register.RegisterFragmentDirections.Companion.toRegisterDetailedFragment
 import app.nexd.android.ui.auth.register.RegisterViewModel.Progress.*
+import app.nexd.android.ui.common.Constants
 import app.nexd.android.ui.common.DefaultSnackbar
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_register.*
@@ -39,6 +41,8 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        register_toolbar.setupWithNavController(findNavController())
+
         editText_password_confirm.setOnEditorActionListener { _, i, _ ->
             if (i == EditorInfo.IME_ACTION_DONE) {
                 vm.register()
@@ -57,30 +61,20 @@ class RegisterFragment : Fragment() {
 
         vm.progress.observe(viewLifecycleOwner, Observer { progress ->
             progressBar.visibility = View.GONE
-            editText_first_name.isEnabled = true
-            editText_last_name.isEnabled = true
-            editText_email.isEnabled = true
-            editText_password.isEnabled = true
-            editText_password_confirm.isEnabled = true
 
             when (progress) {
                 is Idle -> { /* nothing to do here */
                 }
                 is Loading -> {
                     progressBar.visibility = View.VISIBLE
-                    editText_first_name.isEnabled = false
-                    editText_last_name.isEnabled = false
-                    editText_email.isEnabled = false
-                    editText_password.isEnabled = false
-                    editText_password_confirm.isEnabled = false
                 }
                 is Error -> {
-                    DefaultSnackbar(view, progress.message, Snackbar.LENGTH_SHORT)
+                    progress.message?.let { message ->
+                        DefaultSnackbar(view, message, Snackbar.LENGTH_SHORT)
+                    }
                 }
                 is Finished -> {
-                    findNavController().navigate(
-                        toRegisterDetailedFragment()
-                    )
+                    findNavController().navigate(toRegisterDetailedFragment())
                 }
             }
         })
@@ -94,7 +88,7 @@ class RegisterFragment : Fragment() {
         startActivity(
             Intent(
                 Intent.ACTION_VIEW,
-                Uri.parse("https://www.nexd.app/privacypage")
+                Uri.parse(Constants.PRIVACY_POLICY_URL)
             )
         )
     }

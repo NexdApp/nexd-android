@@ -148,9 +148,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_white"
-            android:inputType="number"
             android:nextFocusDown="@id/editText_postal_code_value"
             android:padding="10dp"
+            android:inputType="textPostalAddress"
             android:textColor="@android:color/black"
             android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -158,7 +158,8 @@
             app:layout_constraintTop_toBottomOf="@+id/textView_street_label"
             android:text="@={viewModel.number}"
             android:error="@{viewModel.numberError}"
-            tools:text="42" />
+            tools:text="42"
+            tools:ignore="TextFields" />
 
         <TextView
             android:id="@+id/textView_postal_code_label"
@@ -230,8 +231,7 @@
             android:drawableTint="@android:color/white"
             android:clickable="true"
             android:focusable="true"
-            android:paddingStart="0dp"
-            android:paddingEnd="0dp"
+            android:padding="5dp"
             android:text="@string/transcribe_info_button_title_confirm"
             android:textAlignment="textStart"
             android:textAllCaps="false"
@@ -239,6 +239,7 @@
             android:textSize="@dimen/textSize_button"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

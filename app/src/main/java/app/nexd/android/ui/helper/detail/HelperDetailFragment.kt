@@ -43,28 +43,31 @@ class HelperDetailFragment : Fragment() {
             HelpRequestArticleBinder()
         )
 
-        viewModel.requestDetails(args.requestId).observe(viewLifecycleOwner, Observer { request: HelpRequest ->
-            adapter.removeAllSections()
+        viewModel.requestDetails(args.requestId)
+            .observe(viewLifecycleOwner, Observer { request: HelpRequest ->
+                adapter.removeAllSections()
 
-            textView_name.text = context!!.getString(
-                R.string.user_name_layout,
-                request.requester!!.firstName
-                , request.requester!!.lastName
-            )
+                textView_name.text = resources.getString(
+                    R.string.user_name_layout,
+                    request.firstName,
+                    request.lastName
+                )
 
-            val list = ListSection<HelpRequestArticle>()
-            list.addAll(request.articles!!)
-            adapter.addSection(list)
-
-            setAccepted(request.helpListId != null)
-
-            accept.setOnClickListener {
-                request.id?.let {
-                    viewModel.acceptRequest(it)
-                    findNavController().popBackStack()
+                val list = ListSection<HelpRequestArticle>()
+                request.articles?.let {
+                    list.addAll(it)
                 }
-            }
-        })
+                adapter.addSection(list)
+
+                setAccepted(request.helpListId != null)
+
+                accept.setOnClickListener {
+                    request.id?.let {
+                        viewModel.acceptRequest(it)
+                        findNavController().popBackStack()
+                    }
+                }
+            })
     }
 
     private fun setAccepted(accepted: Boolean) {

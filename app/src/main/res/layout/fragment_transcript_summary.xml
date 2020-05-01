@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="app.nexd.android.ui.helper.transcript.TranscriptViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/horizontalPadding"
+        android:paddingVertical="@dimen/topPadding"
+        tools:background="@color/colorPrimary"
+        tools:context=".ui.helper.requestOverview.HelperOverviewFragment">
+
+        <TextView
+            android:id="@+id/textView_title"
+            android:text="@{@string/transcript_summary_title(viewModel.firstName)}"
+            android:layout_marginBottom="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textSize_screen_title"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/view_separator" />
+
+        <View
+            android:id="@+id/view_separator"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.4" />
+
+        <Button
+            android:id="@+id/button_transcript"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+            android:drawableTint="@android:color/white"
+            android:text="@string/transcript_summary_button_transcript"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textSize_button_large"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/view_separator" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
