@@ -134,4 +134,8 @@ class SeekerCreateRequestViewModel(private val api: Api) : ViewModel() {
         requestToConfirm = request
         state.onNext(State.PROCESSING)
     }
+
+    internal fun setStateToLoading() {
+        state.onNext(State.LOADING)
+    }
 }
