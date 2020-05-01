@@ -1,57 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="@dimen/horizontalPadding"
-    tools:background="@color/colorPrimary"
-    tools:context=".ui.seeker.create.SeekerCreateRequestFragment">
+<layout>
 
-    <TextView
-        android:text="@string/seeker_request_create_heading"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"
-        android:textSize="@dimen/textSize_screen_title"
-        android:layout_marginBottom="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <data>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_requests"
-        tools:listitem="@layout/row_new_help_request_article"
+        <variable
+            name="viewModel"
+            type="app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:layout_height="0dp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:background="@color/colorPrimary"
+        tools:context=".ui.seeker.create.SeekerCreateRequestFragment">
 
-    <EditText
-        android:id="@+id/textView_additionalRequest"
-        android:layout_marginTop="20dp"
-        android:importantForAutofill="no"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:paddingHorizontal="10dp"
-        android:textSize="20sp"
-        android:textColor="@android:color/white"
-        android:hint="@string/seeker_request_create_placeholder_information"
-        android:backgroundTint="@color/grey_500"
-        android:textColorHint="@android:color/white" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ToolbarTheme"
+            app:navigationIcon="?android:homeAsUpIndicator"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/button_accept"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:fabCustomSize="70dp"
-        app:maxImageSize="30dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:layout_margin="10dp"
-        android:layout_gravity="center_horizontal"
-        android:tint="@color/colorPrimaryDark"
-        app:borderWidth="0dp"
-        android:src="@drawable/ic_check_black_24dp" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingHorizontal="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/textView_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/seeker_request_create_screen_title"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/textSize_screen_title"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_requests"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView_title"
+                app:layout_constraintBottom_toTopOf="@id/button_abort"
+                tools:listitem="@layout/row_new_help_request_article" />
+
+            <Button
+                android:id="@+id/button_abort"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/button_confirm"
+                android:text="@string/cancel_button_title"
+                android:textAllCaps="false"
+                android:drawableEnd="@drawable/ic_close_black_24dp"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/holo_red_dark"
+                android:drawableTint="@android:color/holo_red_dark"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/button_confirm"
+                android:onClick="@{() -> viewModel.sendRequest()}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.75"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:text="@string/confirm_button_title"
+                android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:drawableTint="@android:color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

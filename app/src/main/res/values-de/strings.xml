@@ -65,7 +65,7 @@
     <string name="delivery_request_phoneNumber">"Tel.: "</string>
     <string name="seeker_detail_screen_title">"Deine Anfrage"</string>
     <string name="seeker_detail_placeholder_information">"Zusätzliche Informationen"</string>
-    <string name="seeker_request_create_heading">"Ich benötige:"</string>
+    <string name="seeker_request_create_screen_title">"Wähle alle Artikel"</string>
     <string name="seeker_request_create_placeholder_information">"Zusätzliche Informationen"</string>
     <string name="user_input_details_screen_title">"Gib weitere Details ein"</string>
     <string name="user_input_details_placeholder_phoneNumber">"Tel. Nr."</string>

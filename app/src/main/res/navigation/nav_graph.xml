@@ -81,7 +81,7 @@
     <fragment
         android:id="@+id/seekerCreateRequestFragment"
         android:name="app.nexd.android.ui.seeker.create.SeekerCreateRequestFragment"
-        android:label="@string/seeker_request_create_heading"
+        android:label="@string/seeker_request_create_screen_title"
         tools:layout="@layout/fragment_seeker_create_request" />
     <fragment
         android:id="@+id/shoppingListFragment"
