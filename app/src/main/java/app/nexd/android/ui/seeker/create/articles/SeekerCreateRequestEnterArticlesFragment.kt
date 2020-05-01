@@ -1,4 +1,4 @@
-package app.nexd.android.ui.seeker.create
+package app.nexd.android.ui.seeker.create.articles
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,15 +11,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.api.model.CreateHelpRequestArticleDto
 import app.nexd.android.api.model.HelpRequestCreateDto
+import app.nexd.android.di.sharedGraphViewModel
 import app.nexd.android.ui.common.HelpRequestCreateArticleBinder
-import kotlinx.android.synthetic.main.fragment_seeker_create_request.*
+import app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel
+import kotlinx.android.synthetic.main.fragment_seeker_create_request_enter_articles.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
-class SeekerCreateRequestFragment : Fragment() {
+class SeekerCreateRequestEnterArticlesFragment : Fragment() {
 
-    private val vm: SeekerCreateRequestViewModel by sharedViewModel()
+    private val vm: SeekerCreateRequestViewModel by sharedGraphViewModel(R.id.nav_seeker_create_request)
 
     private lateinit var adapter: MultiViewAdapter
 
@@ -27,7 +28,11 @@ class SeekerCreateRequestFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_seeker_create_request, container, false)
+        return inflater.inflate(
+            R.layout.fragment_seeker_create_request_enter_articles,
+            container,
+            false
+        )
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -71,7 +76,7 @@ class SeekerCreateRequestFragment : Fragment() {
                         .additionalRequest(textView_additionalRequest.text.toString())
 
                     vm.requestToConfirm = request
-                    findNavController().navigate(R.id.action_seekerCreateRequestFragment_to_seekerCreateRequestEnterAddressFragment)
+                    findNavController().navigate(R.id.action_seekerCreateRequestEnterArticlesFragment_to_seekerCreateRequestEnterAddressFragment)
                 }
             })
         })

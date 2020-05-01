@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/authFragment">
+    app:startDestination="@id/nav_transcript">
 
     <action
         android:id="@+id/actionLogin"
@@ -37,7 +37,7 @@
         tools:layout="@layout/fragment_seeker_overview" >
         <action
             android:id="@+id/action_seekerOverviewFragment_to_createHelpRequestFragment"
-            app:destination="@id/seekerCreateRequestFragment"
+            app:destination="@id/nav_seeker_create_request"
             app:enterAnim="@animator/slide_in_right_to_left"
             app:exitAnim="@animator/slide_out_right_to_left"
             app:popEnterAnim="@animator/slide_in_left_to_right"
@@ -84,25 +84,6 @@
         <argument
             android:name="request_id"
             app:argType="long" />
-    </fragment>
-    <fragment
-        android:id="@+id/seekerCreateRequestFragment"
-        android:name="app.nexd.android.ui.seeker.create.SeekerCreateRequestFragment"
-        android:label="@string/seeker_request_create_heading"
-        tools:layout="@layout/fragment_seeker_create_request">
-        <action
-            android:id="@+id/action_seekerCreateRequestFragment_to_seekerCreateRequestEnterAddressFragment"
-            app:destination="@id/seekerCreateRequestEnterAddressFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/seekerCreateRequestEnterAddressFragment"
-        android:name="app.nexd.android.ui.seeker.create.SeekerCreateRequestEnterAddressFragment"
-        android:label="SeekerCreateRequestEnterAddressFragment"
-        tools:layout="@layout/fragment_seeker_create_request_confirm_address">
-        <action
-            android:id="@+id/action_seekerCreateRequestEnterAddressFragment_to_seekerOverviewFragment"
-            app:destination="@id/seekerOverviewFragment" />
     </fragment>
 
 
@@ -321,6 +302,29 @@
                 app:exitAnim="@animator/slide_out_right_to_left"
                 app:popEnterAnim="@animator/slide_in_left_to_right"
                 app:popExitAnim="@animator/slide_out_left_to_right" />
+        </fragment>
+    </navigation>
+    <navigation
+        android:id="@+id/nav_seeker_create_request"
+        android:label="create"
+        app:startDestination="@id/seekerCreateRequestEnterArticlesFragment">
+        <fragment
+            android:id="@+id/seekerCreateRequestEnterArticlesFragment"
+            android:name="app.nexd.android.ui.seeker.create.articles.SeekerCreateRequestEnterArticlesFragment"
+            android:label="@string/seeker_request_create_heading"
+            tools:layout="@layout/fragment_seeker_create_request_enter_articles">
+            <action
+                android:id="@+id/action_seekerCreateRequestEnterArticlesFragment_to_seekerCreateRequestEnterAddressFragment"
+                app:destination="@id/seekerCreateRequestEnterAddressFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/seekerCreateRequestEnterAddressFragment"
+            android:name="app.nexd.android.ui.seeker.create.address.SeekerCreateRequestEnterAddressFragment"
+            android:label="SeekerCreateRequestEnterAddressFragment"
+            tools:layout="@layout/fragment_seeker_create_request_confirm_address">
+            <action
+                android:id="@+id/action_seekerCreateRequestEnterAddressFragment_to_seekerOverviewFragment"
+                app:destination="@id/seekerOverviewFragment" />
         </fragment>
     </navigation>
 

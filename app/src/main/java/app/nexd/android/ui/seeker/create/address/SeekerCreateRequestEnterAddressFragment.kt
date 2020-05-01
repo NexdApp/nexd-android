@@ -1,4 +1,4 @@
-package app.nexd.android.ui.seeker.create
+package app.nexd.android.ui.seeker.create.address
 
 import android.os.Bundle
 import android.util.Log
@@ -11,11 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import app.nexd.android.R
+import app.nexd.android.di.sharedGraphViewModel
+import app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel
+import app.nexd.android.ui.seeker.create.articles.SeekerCreateRequestEnterArticlesFragment
 import kotlinx.android.synthetic.main.fragment_seeker_create_request_confirm_address.*
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class SeekerCreateRequestEnterAddressFragment : Fragment() {
-    private val vm: SeekerCreateRequestViewModel by sharedViewModel()
+    private val vm: SeekerCreateRequestViewModel by sharedGraphViewModel(R.id.nav_seeker_create_request)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -99,7 +101,10 @@ class SeekerCreateRequestEnterAddressFragment : Fragment() {
                     ).show()
                     findNavController().navigate(R.id.action_seekerCreateRequestEnterAddressFragment_to_seekerOverviewFragment)
                 }
-                else -> Log.d(SeekerCreateRequestFragment::class.simpleName, "unhandled state $it")
+                else -> Log.d(
+                    SeekerCreateRequestEnterArticlesFragment::class.simpleName,
+                    "unhandled state $it"
+                )
             }
         })
 
