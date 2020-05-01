@@ -13,6 +13,7 @@ import app.nexd.android.databinding.FragmentTranscriptArticlesBinding
 import app.nexd.android.di.sharedGraphViewModel
 import app.nexd.android.ui.common.HelpRequestCreateArticleBinder
 import app.nexd.android.ui.helper.transcript.TranscriptViewModel
+import app.nexd.android.ui.helper.transcript.TranscriptViewModel.Progress.Finished
 import app.nexd.android.ui.helper.transcript.articles.TranscriptArticlesFragmentDirections.Companion.toTranscriptSummaryFragment
 import kotlinx.android.synthetic.main.fragment_transcript_articles.*
 import mva2.adapter.ListSection
@@ -56,9 +57,10 @@ class TranscriptArticlesFragment : Fragment() {
             transcriptViewModel.saveHelpRequest()
         }
 
-        transcriptViewModel.call.observe(viewLifecycleOwner,  Observer {
-            if (it == null) {
-                findNavController().navigate(toTranscriptSummaryFragment())
+        transcriptViewModel.progress.observe(viewLifecycleOwner,  Observer {
+            when (it) {
+                Finished -> findNavController().navigate(toTranscriptSummaryFragment())
+                // TODO: handle other states
             }
         })
     }

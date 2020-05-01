@@ -251,7 +251,7 @@
     <navigation
         android:id="@+id/nav_transcript"
         android:label="Transcript"
-        app:startDestination="@id/transcriptLoadingFragment">
+        app:startDestination="@id/transcriptInfoFragment">
         <fragment
             android:id="@+id/transcriptArticlesFragment"
             android:name="app.nexd.android.ui.helper.transcript.articles.TranscriptArticlesFragment"
@@ -286,23 +286,14 @@
             android:label="TranscriptSummaryFragment"
             tools:layout="@layout/fragment_transcript_summary">
             <action
-                android:id="@+id/toTranscriptLoadingFragment"
-                app:destination="@id/transcriptLoadingFragment"
+                android:id="@+id/toTranscriptInfoFragment"
+                app:destination="@id/transcriptInfoFragment"
+                app:popUpTo="@id/transcriptSummaryFragment"
+                app:popUpToInclusive="true"
                 app:enterAnim="@animator/slide_in_right_to_left"
                 app:exitAnim="@animator/slide_out_right_to_left"
                 app:popEnterAnim="@animator/slide_in_left_to_right"
-                app:popExitAnim="@animator/slide_out_left_to_right"
-                app:popUpTo="@id/transcriptSummaryFragment"
-                app:popUpToInclusive="true" />
-        </fragment>
-        <fragment
-            android:id="@+id/transcriptLoadingFragment"
-            android:name="app.nexd.android.ui.helper.transcript.loading.TranscriptLoadingFragment"
-            android:label="TranscriptLoadingFragment"
-            tools:layout="@layout/fragment_transcript_loading">
-            <action
-                android:id="@+id/toTranscriptInfoFragment"
-                app:destination="@id/transcriptInfoFragment" />
+                app:popExitAnim="@animator/slide_out_left_to_right" />
         </fragment>
     </navigation>
 

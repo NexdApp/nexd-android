@@ -38,4 +38,10 @@ class TranscriptInfoFragment : Fragment() {
             }
         }
     }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        transcriptViewModel.transcriptCall()
+    }
 }

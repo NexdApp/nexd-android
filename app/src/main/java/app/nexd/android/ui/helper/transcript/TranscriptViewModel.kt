@@ -1,6 +1,6 @@
 package app.nexd.android.ui.helper.transcript
 
-import android.annotation.SuppressLint
+import androidx.annotation.StringRes
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import app.nexd.android.Api
@@ -9,23 +9,26 @@ import app.nexd.android.api.model.Call
 import app.nexd.android.api.model.CreateHelpRequestArticleDto
 import app.nexd.android.api.model.HelpRequestCreateDto
 import app.nexd.android.ui.common.HelpRequestCreateArticleBinder
-import app.nexd.android.ui.utils.SingleLiveEvent
+import app.nexd.android.ui.helper.transcript.TranscriptViewModel.Progress.Error
 import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 
 class TranscriptViewModel(private val api: Api) : ViewModel() {
 
-    /**
-     * General error that could happen during the whole transcription flow
-     */
-    val error = SingleLiveEvent<Int>()
+    sealed class Progress {
+        object Idle : Progress()
+        object Loading : Progress()
+        object Finished : Progress()
+        class Error(@StringRes val message: Int? = null) : Progress()
+    }
+
+    val progress = MutableLiveData<Progress>()
 
     /**
      * Currently selected call to transcript
      */
     val call = MutableLiveData<Call?>(null)
-    val callError = MutableLiveData<Int?>(null)
 
     // Personal information
 
@@ -79,21 +82,11 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
     }
 
     fun transcriptCall() {
-        firstName.value = null
-        lastName.value = null
-        street.value = null
-        number.value = null
-        zipCode.value = null
-        city.value = null
-        firstNameError.value = null
-        lastNameError.value = null
-        streetError.value = null
-        numberError.value = null
-        zipCodeError.value = null
-        cityError.value = null
-        error.value = null
+        reset()
 
-        compositeDisposable.add(api.phoneControllerGetCalls(
+        progress.value = Progress.Loading
+
+        val callsObservable = api.phoneControllerGetCalls(
             null,
             1,
             false,
@@ -101,16 +94,20 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
             null,
             null
         )
+
+        val disposable = callsObservable
             .observeOn(mainThread())
-            .subscribe({
-                val call = it.firstOrNull()
-                if (call == null) {
-                    callError.value = R.string.transcript_error_empty_calls
+            .subscribe({ calls ->
+                calls.firstOrNull()?.let {
+                    call.value = it
+                } ?: run {
+                    progress.value = Error(R.string.transcript_error_empty_calls)
                 }
-                this.call.value = call
             }, {
-                error.value = R.string.error_message_unknown // TODO: use proper error message
-            }))
+                progress.value = Error(R.string.error_message_unknown)
+            })
+
+        compositeDisposable.add(disposable)
 
         loadArticles()
     }
@@ -171,8 +168,7 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
 
     fun saveHelpRequest() {
         val helpRequestArticles = articles.value?.let { list ->
-            list
-                .filter { (it.amount.value?.toLong() ?: 0L) > 0L }
+            list.filter { (it.amount.value?.toLong() ?: 0L) > 0L }
                 .map {
                     CreateHelpRequestArticleDto()
                         .articleId(it.articleId)
@@ -181,7 +177,7 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
         }
 
         if (helpRequestArticles.isNullOrEmpty()) {
-            error.value = R.string.error_message_unknown // TODO: use proper error message
+            progress.value = Error(R.string.error_message_unknown)
             return
         }
 
@@ -199,10 +195,30 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
         val disposable = api.phoneControllerConverted(call.value?.sid, data)
             .observeOn(mainThread())
             .subscribeBy(
-                onNext = { call.value = null },
-                onError = { error.value = R.string.error_message_unknown } // TODO: use proper error message
+                onNext = {
+                    progress.value = Progress.Finished
+                },
+                onError = {
+                    progress.value = Error(R.string.error_message_unknown)
+                } // TODO: use proper error message
             )
 
         compositeDisposable.add(disposable)
+    }
+
+    private fun reset() {
+        call.value = null
+        firstName.value = null
+        lastName.value = null
+        street.value = null
+        number.value = null
+        zipCode.value = null
+        city.value = null
+        firstNameError.value = null
+        lastNameError.value = null
+        streetError.value = null
+        numberError.value = null
+        zipCodeError.value = null
+        cityError.value = null
     }
 }

@@ -10,7 +10,6 @@ import app.nexd.android.R
 import app.nexd.android.databinding.FragmentTranscriptSummaryBinding
 import app.nexd.android.di.sharedGraphViewModel
 import app.nexd.android.ui.helper.transcript.TranscriptViewModel
-import app.nexd.android.ui.helper.transcript.summary.TranscriptSummaryFragmentDirections.Companion.toTranscriptLoadingFragment
 import kotlinx.android.synthetic.main.fragment_transcript_summary.*
 
 class TranscriptSummaryFragment: Fragment() {
@@ -34,7 +33,7 @@ class TranscriptSummaryFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         button_transcript.setOnClickListener {
-            findNavController().navigate(toTranscriptLoadingFragment())
+            findNavController().navigate(TranscriptSummaryFragmentDirections.toTranscriptInfoFragment())
         }
     }
 }

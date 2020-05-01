@@ -54,7 +54,9 @@ class HelperDetailFragment : Fragment() {
                 )
 
                 val list = ListSection<HelpRequestArticle>()
-                list.addAll(request.articles!!)
+                request.articles?.let {
+                    list.addAll(it)
+                }
                 adapter.addSection(list)
 
                 setAccepted(request.helpListId != null)
