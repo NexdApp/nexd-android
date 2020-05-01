@@ -2,6 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel" />
+    </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -32,12 +39,15 @@
                 android:layout_marginTop="32dp"
                 android:autofillHints="personGivenName"
                 android:backgroundTint="@color/grey_500"
+                android:error="@{viewModel.firstNameError}"
                 android:hint="@string/registration_placeholder_firstName"
                 android:imeOptions="actionNext"
                 android:inputType="textPersonName"
                 android:paddingHorizontal="10dp"
+                android:text="@={viewModel.firstName}"
                 android:textColor="@android:color/white"
-                android:textColorHint="@color/grey_500" />
+                android:textColorHint="@color/grey_500"
+                android:textCursorDrawable="@android:color/white" />
 
             <EditText
                 android:id="@+id/editText_last_name"
@@ -46,12 +56,15 @@
                 android:layout_marginTop="12dp"
                 android:autofillHints="personFamilyName"
                 android:backgroundTint="@color/grey_500"
+                android:error="@{viewModel.lastNameError}"
                 android:hint="@string/registration_placeholder_lastName"
                 android:imeOptions="actionNext"
                 android:inputType="textPersonName"
                 android:paddingHorizontal="10dp"
+                android:text="@={viewModel.lastName}"
                 android:textColor="@android:color/white"
-                android:textColorHint="@color/grey_500" />
+                android:textColorHint="@color/grey_500"
+                android:textCursorDrawable="@android:color/white" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -66,14 +79,17 @@
                     android:layout_weight="4"
                     android:autofillHints="streetAddress"
                     android:backgroundTint="@color/grey_500"
+                    android:error="@{viewModel.streetError}"
                     android:hint="@string/user_input_details_placeholder_street"
                     android:imeOptions="actionNext"
                     android:inputType="textCapWords"
                     android:lines="1"
                     android:nextFocusRight="@id/editText_street_number"
                     android:paddingHorizontal="10dp"
+                    android:text="@={viewModel.street}"
                     android:textColor="@android:color/white"
-                    android:textColorHint="@color/grey_500" />
+                    android:textColorHint="@color/grey_500"
+                    android:textCursorDrawable="@android:color/white" />
 
                 <EditText
                     android:id="@+id/editText_street_number"
@@ -82,14 +98,17 @@
                     android:layout_weight="1"
                     android:autofillHints="houseNumber"
                     android:backgroundTint="@color/grey_500"
+                    android:error="@{viewModel.numberError}"
                     android:hint="@string/user_input_details_placeholder_houseNumber"
                     android:imeOptions="actionNext"
                     android:inputType="text"
                     android:lines="1"
                     android:nextFocusDown="@id/editText_zip_code"
                     android:paddingHorizontal="10dp"
+                    android:text="@={viewModel.number}"
                     android:textColor="@android:color/white"
-                    android:textColorHint="@color/grey_500" />
+                    android:textColorHint="@color/grey_500"
+                    android:textCursorDrawable="@android:color/white" />
             </LinearLayout>
 
             <LinearLayout
@@ -105,14 +124,17 @@
                     android:layout_weight="1"
                     android:autofillHints="postalCode"
                     android:backgroundTint="@color/grey_500"
+                    android:error="@{viewModel.zipCodeError}"
                     android:hint="@string/registration_placeholder_zip"
                     android:imeOptions="actionNext"
-                    android:inputType="textPostalAddress"
+                    android:inputType="number"
                     android:lines="1"
                     android:nextFocusRight="@id/editText_city"
                     android:paddingHorizontal="10dp"
+                    android:text="@={viewModel.zipCode}"
                     android:textColor="@android:color/white"
-                    android:textColorHint="@color/grey_500" />
+                    android:textColorHint="@color/grey_500"
+                    android:textCursorDrawable="@android:color/white" />
 
                 <EditText
                     android:id="@+id/editText_city"
@@ -121,14 +143,17 @@
                     android:layout_weight="3"
                     android:autofillHints="city"
                     android:backgroundTint="@color/grey_500"
+                    android:error="@{viewModel.cityError}"
                     android:hint="@string/user_input_details_placeholder_city"
                     android:imeOptions="actionNext"
                     android:inputType="textCapWords"
                     android:lines="1"
                     android:nextFocusDown="@id/editText_phoneNumber"
                     android:paddingHorizontal="10dp"
+                    android:text="@={viewModel.city}"
                     android:textColor="@android:color/white"
-                    android:textColorHint="@color/grey" />
+                    android:textColorHint="@color/grey"
+                    android:textCursorDrawable="@android:color/white" />
             </LinearLayout>
 
 
@@ -140,13 +165,16 @@
                 android:layout_marginBottom="16dp"
                 android:autofillHints="phoneNumber"
                 android:backgroundTint="@color/grey_500"
+                android:error="@{viewModel.phoneNumberError}"
                 android:hint="@string/registration_placeholder_phone"
                 android:imeOptions="actionDone"
                 android:inputType="phone"
                 android:lines="1"
                 android:paddingHorizontal="10dp"
+                android:text="@={viewModel.phoneNumber}"
                 android:textColor="@android:color/white"
-                android:textColorHint="@color/grey_500" />
+                android:textColorHint="@color/grey_500"
+                android:textCursorDrawable="@android:color/white" />
 
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -1,6 +1,7 @@
 package app.nexd.android.ui.seeker.create.articles
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -58,6 +59,7 @@ class SeekerCreateRequestEnterArticlesFragment : Fragment() {
                 adapter.addSection(articlesSection)
 
                 button_accept.setOnClickListener {
+
                     val request = HelpRequestCreateDto()
                         .articles(articlesInput
                             .filter { it.amount > 0 }
@@ -75,6 +77,7 @@ class SeekerCreateRequestEnterArticlesFragment : Fragment() {
                         .city(currentUser.city)
                         .phoneNumber(currentUser.phoneNumber)
                         .additionalRequest(textView_additionalRequest.text.toString())
+
                     if (request.articles.isNullOrEmpty()) {
                         Toast.makeText(
                             requireContext(),
@@ -82,12 +85,23 @@ class SeekerCreateRequestEnterArticlesFragment : Fragment() {
                             Toast.LENGTH_SHORT
                         ).show()
                     } else {
-                        vm.requestToConfirm = request
-                        findNavController().navigate(R.id.action_seekerCreateRequestEnterArticlesFragment_to_seekerCreateRequestConfirmAddressFragment)
+                        vm.setRequestToConfirm(request)
                     }
-
                 }
             })
+        })
+
+        vm.state().observe(viewLifecycleOwner, Observer {
+            when (it) {
+                SeekerCreateRequestViewModel.State.PROCESSING -> {
+                    findNavController().navigate(R.id.action_seekerCreateRequestEnterArticlesFragment_to_seekerCreateRequestConfirmAddressFragment)
+                }
+                else -> Log.d(
+                    SeekerCreateRequestEnterArticlesFragment::class.simpleName,
+                    "unhandled state $it"
+                )
+            }
+
         })
     }
 }
