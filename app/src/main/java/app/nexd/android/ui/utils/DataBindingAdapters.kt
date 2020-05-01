@@ -11,4 +11,10 @@ object DataBindingAdapters {
     fun textViewBindError(view: TextView, @StringRes error: Int) {
         view.error = if (error != 0) view.context.getString(error) else null
     }
+
+    @BindingAdapter("android:text")
+    @JvmStatic
+    fun textViewBindText(view: TextView, @StringRes text: Int) {
+        view.text = if (text != 0) view.context.getString(text) else null
+    }
 }

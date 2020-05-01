@@ -96,7 +96,7 @@
     <string name="helper_call_overview_screen_title">"Offene Anrufe:"</string>
 
     <!-- Fuzzy -->
-    <string name="seeker_phone_call_text">"\Bitte ruf &lt;/br&gt;&lt;b&gt;%1$s&lt;/b&gt;&lt;/br&gt; an, um deine Einkaufsliste aufzuzeigen.\"</string>
+    <string name="seeker_phone_call_text">"Rufe bitte &lt;/br&gt;&lt;b&gt;%1$s&lt;/b&gt;&lt;/br&gt;um deine Einkaufsliste aufzuzeichnen."</string>
     <string name="seeker_type_screen_title">"Wie würdest du gerne deine Liste erstellen?"</string>
     <string name="seeker_type_button_help_request">"Artikel auswählen"</string>
     <string name="seeker_type_button_phone_call">"Einen Anruf tätigen"</string>
@@ -154,5 +154,7 @@
     <string name="helper_request_detail_message_error_on_cancellation">"Anfrage konnte nicht gelöscht werden"</string>
     <string name="select_text_dialog_text_hint_default">"Eingeben"</string>
     <string name="shopping_list_button_checkout">Zur Kasse</string>
-    <string name="helper_overview_error_empty_zipcode">Keine PLZ ausgewählt</string>
+    <string name="transcript_summary_button_transcript">Einen weiteren Anruf übertragen</string>
+    <string name="transcript_summary_title">Danke, dass du %1$s\'s Bestellung vervollständigt hast!</string>
+    <string name="transcript_error_empty_calls">Es gibt zur Zeit keine Anrufe zum übersetzen</string>
 </resources>

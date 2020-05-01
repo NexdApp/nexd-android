@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -47,7 +48,7 @@ class SeekerCreateRequestFragment : Fragment() {
                 adapter.removeAllSections()
 
                 val articlesSection = ListSection<HelpRequestCreateArticleBinder.ArticleInput>()
-                val articlesInput = articles.map { HelpRequestCreateArticleBinder.ArticleInput(it) }
+                val articlesInput = articles.map { HelpRequestCreateArticleBinder.ArticleInput(it.id, MutableLiveData(it.name), MutableLiveData(0L.toString())) }
                 articlesSection.addAll(articlesInput)
 
                 adapter.addSection(articlesSection)
@@ -55,11 +56,11 @@ class SeekerCreateRequestFragment : Fragment() {
                 button_accept.setOnClickListener {
                     val request = HelpRequestCreateDto()
                         .articles(articlesInput
-                            .filter { it.amount > 0 }
+                            .filter { it.amount.value?.toLong() ?: 0L > 0L }
                             .map {
                                 CreateHelpRequestArticleDto()
-                                    .articleCount(it.amount)
-                                    .articleId(it.article.id)
+                                    .articleCount(it.amount.value!!.toLong())
+                                    .articleId(it.articleId)
 
                             })
                         .street(currentUser.street)

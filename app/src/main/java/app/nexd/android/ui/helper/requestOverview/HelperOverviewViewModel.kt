@@ -63,7 +63,7 @@ class HelperOverviewViewModel(application: Application, private val api: Api) : 
                 USER_ME,
                 true,
                 listOf(zip),
-                true,
+                false,
                 listOf(HelpRequestStatus.PENDING)
             )
         }
