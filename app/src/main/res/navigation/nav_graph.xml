@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/nav_transcript">
+    app:startDestination="@id/authFragment">
 
     <action
         android:id="@+id/actionLogin"
@@ -140,7 +140,7 @@
             app:exitAnim="@animator/slide_out_right_to_left"
             app:popEnterAnim="@animator/slide_in_left_to_right"
             app:popExitAnim="@animator/slide_out_left_to_right"
-            app:popUpTo="@id/authFragment"
+            app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
@@ -155,7 +155,7 @@
             app:exitAnim="@animator/slide_out_right_to_left"
             app:popEnterAnim="@animator/slide_in_left_to_right"
             app:popExitAnim="@animator/slide_out_left_to_right"
-            app:popUpTo="@id/authFragment"
+            app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
@@ -314,16 +314,16 @@
             android:label="@string/seeker_request_create_heading"
             tools:layout="@layout/fragment_seeker_create_request_enter_articles">
             <action
-                android:id="@+id/action_seekerCreateRequestEnterArticlesFragment_to_seekerCreateRequestEnterAddressFragment"
-                app:destination="@id/seekerCreateRequestEnterAddressFragment" />
+                android:id="@+id/action_seekerCreateRequestEnterArticlesFragment_to_seekerCreateRequestConfirmAddressFragment"
+                app:destination="@id/seekerCreateRequestConfirmAddressFragment" />
         </fragment>
         <fragment
-            android:id="@+id/seekerCreateRequestEnterAddressFragment"
-            android:name="app.nexd.android.ui.seeker.create.address.SeekerCreateRequestEnterAddressFragment"
-            android:label="SeekerCreateRequestEnterAddressFragment"
+            android:id="@+id/seekerCreateRequestConfirmAddressFragment"
+            android:name="app.nexd.android.ui.seeker.create.address.SeekerCreateRequestConfirmAddressFragment"
+            android:label="SeekerCreateRequestConfirmAddressFragment"
             tools:layout="@layout/fragment_seeker_create_request_confirm_address">
             <action
-                android:id="@+id/action_seekerCreateRequestEnterAddressFragment_to_seekerOverviewFragment"
+                android:id="@+id/action_seekerCreateRequestConfirmAddressFragment_to_seekerOverviewFragment"
                 app:destination="@id/seekerOverviewFragment" />
         </fragment>
     </navigation>

@@ -16,7 +16,7 @@ import app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel
 import app.nexd.android.ui.seeker.create.articles.SeekerCreateRequestEnterArticlesFragment
 import kotlinx.android.synthetic.main.fragment_seeker_create_request_confirm_address.*
 
-class SeekerCreateRequestEnterAddressFragment : Fragment() {
+class SeekerCreateRequestConfirmAddressFragment : Fragment() {
     private val vm: SeekerCreateRequestViewModel by sharedGraphViewModel(R.id.nav_seeker_create_request)
 
     override fun onCreateView(
@@ -62,13 +62,13 @@ class SeekerCreateRequestEnterAddressFragment : Fragment() {
             editText_phoneNumber.setText(phoneNumber)
 
             button_confirm.setOnClickListener {
-                if (!editText_first_name.isEmptyShowError() ||
-                    !editText_last_name.isEmptyShowError() ||
-                    !editText_street.isEmptyShowError() ||
-                    !editText_street_number.isEmptyShowError() ||
-                    !editText_zip_code.isEmptyShowError() ||
-                    !editText_city.isEmptyShowError() ||
-                    !editText_phoneNumber.isEmptyShowError()
+                if (editText_first_name.isCorrectOrShowError() &&
+                    editText_last_name.isCorrectOrShowError() &&
+                    editText_street.isCorrectOrShowError() &&
+                    editText_street_number.isCorrectOrShowError() &&
+                    editText_zip_code.isCorrectOrShowError() &&
+                    editText_city.isCorrectOrShowError() &&
+                    editText_phoneNumber.isCorrectOrShowError()
                 ) {
                     firstName = editText_first_name.text.toString()
                     lastName = editText_last_name.text.toString()
@@ -96,10 +96,10 @@ class SeekerCreateRequestEnterAddressFragment : Fragment() {
                 SeekerCreateRequestViewModel.State.FINISHED -> {
                     Toast.makeText(
                         requireContext(),
-                        "Request successfully submitted",
+                        getString(R.string.seeker_request_create_successfully_submitted),
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.action_seekerCreateRequestEnterAddressFragment_to_seekerOverviewFragment)
+                    findNavController().navigate(R.id.action_seekerCreateRequestConfirmAddressFragment_to_seekerOverviewFragment)
                 }
                 else -> Log.d(
                     SeekerCreateRequestEnterArticlesFragment::class.simpleName,
@@ -110,12 +110,12 @@ class SeekerCreateRequestEnterAddressFragment : Fragment() {
 
     }
 
-    private fun EditText.isEmptyShowError(): Boolean {
+    private fun EditText.isCorrectOrShowError(): Boolean {
         if (this.text.isBlank()) {
             this.error = getString(R.string.error_message_user_detail_field_missing)
-            return true
+            return false
         }
-        return false
+        return true
     }
 
 

@@ -37,7 +37,7 @@
                 android:inputType="textPersonName"
                 android:paddingHorizontal="10dp"
                 android:textColor="@android:color/white"
-                android:textColorHint="@android:color/white" />
+                android:textColorHint="@color/grey_500" />
 
             <EditText
                 android:id="@+id/editText_last_name"
@@ -51,7 +51,7 @@
                 android:inputType="textPersonName"
                 android:paddingHorizontal="10dp"
                 android:textColor="@android:color/white"
-                android:textColorHint="@android:color/white" />
+                android:textColorHint="@color/grey_500" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -73,7 +73,7 @@
                     android:nextFocusRight="@id/editText_street_number"
                     android:paddingHorizontal="10dp"
                     android:textColor="@android:color/white"
-                    android:textColorHint="@android:color/white" />
+                    android:textColorHint="@color/grey_500" />
 
                 <EditText
                     android:id="@+id/editText_street_number"
@@ -89,7 +89,7 @@
                     android:nextFocusDown="@id/editText_zip_code"
                     android:paddingHorizontal="10dp"
                     android:textColor="@android:color/white"
-                    android:textColorHint="@android:color/white" />
+                    android:textColorHint="@color/grey_500" />
             </LinearLayout>
 
             <LinearLayout
@@ -112,7 +112,7 @@
                     android:nextFocusRight="@id/editText_city"
                     android:paddingHorizontal="10dp"
                     android:textColor="@android:color/white"
-                    android:textColorHint="@android:color/white" />
+                    android:textColorHint="@color/grey_500" />
 
                 <EditText
                     android:id="@+id/editText_city"
@@ -128,7 +128,7 @@
                     android:nextFocusDown="@id/editText_phoneNumber"
                     android:paddingHorizontal="10dp"
                     android:textColor="@android:color/white"
-                    android:textColorHint="@android:color/white" />
+                    android:textColorHint="@color/grey" />
             </LinearLayout>
 
 
@@ -146,7 +146,7 @@
                 android:lines="1"
                 android:paddingHorizontal="10dp"
                 android:textColor="@android:color/white"
-                android:textColorHint="@android:color/white" />
+                android:textColorHint="@color/grey_500" />
 
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
