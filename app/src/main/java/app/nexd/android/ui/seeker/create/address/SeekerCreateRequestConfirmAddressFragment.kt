@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
@@ -45,6 +46,13 @@ class SeekerCreateRequestConfirmAddressFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         vm.setAddressTextFieldsFromCurrentUser()
+
+        binding.editTextPhoneNumber.setOnEditorActionListener { _, i, _ ->
+            if (i == EditorInfo.IME_ACTION_DONE) {
+                vm.sendRequest()
+            }
+            false
+        }
 
         button_confirm.setOnClickListener {
             vm.sendRequest()
