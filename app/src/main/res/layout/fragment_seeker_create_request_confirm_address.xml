@@ -12,9 +12,10 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
@@ -30,7 +31,10 @@
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
                 android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/editText_first_name"
@@ -47,7 +51,10 @@
                 android:text="@={viewModel.firstName}"
                 android:textColor="@android:color/white"
                 android:textColorHint="@color/grey_500"
-                android:textCursorDrawable="@android:color/white" />
+                android:textCursorDrawable="@android:color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView_enter_address" />
 
             <EditText
                 android:id="@+id/editText_last_name"
@@ -64,13 +71,20 @@
                 android:text="@={viewModel.lastName}"
                 android:textColor="@android:color/white"
                 android:textColorHint="@color/grey_500"
-                android:textCursorDrawable="@android:color/white" />
+                android:textCursorDrawable="@android:color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/editText_first_name" />
 
             <LinearLayout
+                android:id="@+id/linearLayout_street_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/editText_last_name">
 
                 <EditText
                     android:id="@+id/editText_street"
@@ -113,10 +127,14 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linearLayout_zipCode_city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout_street_number">
 
                 <EditText
                     android:id="@+id/editText_zip_code"
@@ -175,22 +193,31 @@
                 android:text="@={viewModel.phoneNumber}"
                 android:textColor="@android:color/white"
                 android:textColorHint="@color/grey_500"
-                android:textCursorDrawable="@android:color/white" />
+                android:textCursorDrawable="@android:color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout_zipCode_city" />
 
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
+            <Button
                 android:id="@+id/button_confirm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|bottom"
-                android:layout_margin="10dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:src="@drawable/ic_check_black_24dp"
-                android:tint="@color/colorPrimaryDark"
-                app:borderWidth="0dp"
-                app:fabCustomSize="70dp"
-                app:maxImageSize="30dp" />
-        </LinearLayout>
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/rounded_white"
+                android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+                android:drawableTint="@color/colorPrimary"
+                android:padding="20dp"
+                android:text="@string/seeker_request_create_submit"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/textSize_navigation_button"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/editText_phoneNumber"
+                app:layout_constraintVertical_bias="1.0" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

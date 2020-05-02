@@ -68,6 +68,7 @@
     <string name="seeker_request_create_heading">"I need:"</string>
     <string name="seeker_request_create_placeholder_information">"Additional information"</string>
     <string name="seeker_request_create_confirm_address">"Please confirm your delivery address"</string>
+    <string name="seeker_request_create_submit">"Submit Request"</string>
     <string name="user_input_details_screen_title">"Input further information"</string>
     <string name="user_input_details_placeholder_phoneNumber">"Tel."</string>
     <string name="user_input_details_placeholder_street">"Street"</string>
