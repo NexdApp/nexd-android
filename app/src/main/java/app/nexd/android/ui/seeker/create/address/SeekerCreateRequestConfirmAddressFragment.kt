@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -51,11 +50,6 @@ class SeekerCreateRequestConfirmAddressFragment : Fragment() {
         vm.state().observe(viewLifecycleOwner, Observer {
             when (it) {
                 SeekerCreateRequestViewModel.State.FINISHED -> {
-                    Toast.makeText(
-                        requireContext(),
-                        getString(R.string.seeker_request_create_successfully_submitted),
-                        Toast.LENGTH_SHORT
-                    ).show()
                     findNavController().navigate(SeekerCreateRequestConfirmAddressFragmentDirections.toSeekerOverviewFragment())
                 }
                 SeekerCreateRequestViewModel.State.LOADING -> {
