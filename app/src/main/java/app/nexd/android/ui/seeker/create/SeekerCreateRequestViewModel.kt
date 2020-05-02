@@ -25,36 +25,36 @@ class SeekerCreateRequestViewModel(private val api: Api) : ViewModel() {
     private var requestToConfirm: HelpRequestCreateDto? = null
 
     val firstName = MutableLiveData("")
-    val firstNameError = MutableLiveData(0)
+    val firstNameError = MutableLiveData<Int?>(null)
 
     val lastName = MutableLiveData("")
-    val lastNameError = MutableLiveData(0)
+    val lastNameError = MutableLiveData<Int?>(null)
 
     val street = MutableLiveData("")
-    val streetError = MutableLiveData(0)
+    val streetError = MutableLiveData<Int?>(null)
 
     val number = MutableLiveData("")
-    val numberError = MutableLiveData(0)
+    val numberError = MutableLiveData<Int?>(null)
 
     val zipCode = MutableLiveData("")
-    val zipCodeError = MutableLiveData(0)
+    val zipCodeError = MutableLiveData<Int?>(null)
 
     val city = MutableLiveData("")
-    val cityError = MutableLiveData(0)
+    val cityError = MutableLiveData<Int?>(null)
 
     val phoneNumber = MutableLiveData("")
-    val phoneNumberError = MutableLiveData(0)
+    val phoneNumberError = MutableLiveData<Int?>(null)
 
-    val additionalRequest = MutableLiveData("")
+    val additionalRequest = MutableLiveData<Int?>(null)
 
     internal fun sendRequest() {
-        val success = firstName.errorCheck(firstNameError) &&
-                lastName.errorCheck(lastNameError) &&
-                street.errorCheck(streetError) &&
-                number.errorCheck(numberError) &&
-                zipCode.errorCheck(zipCodeError) &&
-                city.errorCheck(cityError) &&
-                phoneNumber.errorCheck(phoneNumberError)
+        val success = firstName.hasValueOrSetError(firstNameError) &&
+                lastName.hasValueOrSetError(lastNameError) &&
+                street.hasValueOrSetError(streetError) &&
+                number.hasValueOrSetError(numberError) &&
+                zipCode.hasValueOrSetError(zipCodeError) &&
+                city.hasValueOrSetError(cityError) &&
+                phoneNumber.hasValueOrSetError(phoneNumberError)
 
         if (success) {
             with(api) {
@@ -115,12 +115,12 @@ class SeekerCreateRequestViewModel(private val api: Api) : ViewModel() {
 
     fun state() = LiveDataReactiveStreams.fromPublisher(state)
 
-    private fun MutableLiveData<String>.errorCheck(errorField: MutableLiveData<Int>): Boolean {
+    private fun MutableLiveData<String>.hasValueOrSetError(errorField: MutableLiveData<Int?>): Boolean {
         return if (this.value.isNullOrBlank()) {
             errorField.value = R.string.error_message_user_detail_field_missing
             false
         } else {
-            errorField.value = 0
+            errorField.value = null
             true
         }
     }
