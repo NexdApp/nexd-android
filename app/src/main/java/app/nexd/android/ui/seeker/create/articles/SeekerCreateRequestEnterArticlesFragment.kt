@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.api.model.CreateHelpRequestArticleDto
 import app.nexd.android.api.model.HelpRequestCreateDto
+import app.nexd.android.databinding.FragmentSeekerCreateRequestEnterArticlesBinding
 import app.nexd.android.di.sharedGraphViewModel
 import app.nexd.android.ui.common.HelpRequestCreateArticleBinder
 import app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel
@@ -26,16 +27,18 @@ class SeekerCreateRequestEnterArticlesFragment : Fragment() {
     private val vm: SeekerCreateRequestViewModel by sharedGraphViewModel(R.id.nav_seeker_create_request)
 
     private lateinit var adapter: MultiViewAdapter
+    private lateinit var binding: FragmentSeekerCreateRequestEnterArticlesBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(
-            R.layout.fragment_seeker_create_request_enter_articles,
-            container,
-            false
-        )
+        binding =
+            FragmentSeekerCreateRequestEnterArticlesBinding.inflate(inflater, container, false)
+        binding.viewModel = vm
+        binding.lifecycleOwner = viewLifecycleOwner
+        return binding.root
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

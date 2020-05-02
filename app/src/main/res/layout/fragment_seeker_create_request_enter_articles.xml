@@ -1,58 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingHorizontal="@dimen/horizontalPadding"
-    android:paddingTop="@dimen/topPadding"
-    tools:background="@color/colorPrimary"
-    tools:context=".ui.seeker.create.articles.SeekerCreateRequestEnterArticlesFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:text="@string/seeker_request_create_heading"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"
-        android:textSize="@dimen/textSize_screen_title"
-        android:layout_marginBottom="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <data>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_requests"
-        tools:listitem="@layout/row_new_help_request_article"
+        <variable
+            name="viewModel"
+            type="app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:layout_height="0dp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/horizontalPadding"
+        android:paddingTop="@dimen/topPadding"
+        tools:background="@color/colorPrimary"
+        tools:context=".ui.seeker.create.articles.SeekerCreateRequestEnterArticlesFragment">
 
-    <EditText
-        android:id="@+id/textView_additionalRequest"
-        android:layout_marginTop="20dp"
-        android:importantForAutofill="no"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:paddingHorizontal="10dp"
-        android:textSize="20sp"
-        android:textColor="@android:color/white"
-        android:hint="@string/seeker_request_create_placeholder_information"
-        android:backgroundTint="@color/grey_500"
-        android:textColorHint="@android:color/white" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/seeker_request_create_heading"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/textSize_screen_title"
+            android:textStyle="bold" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/button_accept"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:fabCustomSize="70dp"
-        app:maxImageSize="30dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:layout_margin="10dp"
-        android:layout_gravity="center_horizontal"
-        android:tint="@color/colorPrimaryDark"
-        app:borderWidth="0dp"
-        android:src="@drawable/ic_check_black_24dp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_requests"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            tools:listitem="@layout/row_new_help_request_article" />
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/textView_additionalRequest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/grey_500"
+            android:hint="@string/seeker_request_create_placeholder_information"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:paddingHorizontal="10dp"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
+            android:textSize="20sp" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/button_accept"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_check_black_24dp"
+            android:tint="@color/colorPrimaryDark"
+            app:borderWidth="0dp"
+            app:fabCustomSize="70dp"
+            app:maxImageSize="30dp" />
+
+    </LinearLayout>
+</layout>
