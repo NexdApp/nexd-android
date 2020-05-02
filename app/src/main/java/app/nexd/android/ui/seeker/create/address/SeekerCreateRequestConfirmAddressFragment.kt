@@ -15,7 +15,6 @@ import app.nexd.android.R
 import app.nexd.android.databinding.FragmentSeekerCreateRequestConfirmAddressBinding
 import app.nexd.android.di.sharedGraphViewModel
 import app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel
-import kotlinx.android.synthetic.main.fragment_seeker_create_request_confirm_address.*
 
 class SeekerCreateRequestConfirmAddressFragment : Fragment() {
     private val vm: SeekerCreateRequestViewModel by sharedGraphViewModel(R.id.nav_seeker_create_request)
@@ -54,7 +53,7 @@ class SeekerCreateRequestConfirmAddressFragment : Fragment() {
             false
         }
 
-        button_confirm.setOnClickListener {
+        binding.buttonConfirm.setOnClickListener {
             vm.sendRequest()
         }
 

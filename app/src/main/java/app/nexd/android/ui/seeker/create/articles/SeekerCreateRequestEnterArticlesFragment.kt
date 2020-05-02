@@ -18,7 +18,6 @@ import app.nexd.android.databinding.FragmentSeekerCreateRequestEnterArticlesBind
 import app.nexd.android.di.sharedGraphViewModel
 import app.nexd.android.ui.common.HelpRequestCreateArticleBinder
 import app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel
-import kotlinx.android.synthetic.main.fragment_seeker_create_request_enter_articles.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
 
@@ -44,10 +43,10 @@ class SeekerCreateRequestEnterArticlesFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        recyclerView_requests.layoutManager = LinearLayoutManager(context)
+        binding.recyclerViewRequests.layoutManager = LinearLayoutManager(context)
 
         adapter = MultiViewAdapter()
-        recyclerView_requests.adapter = adapter
+        binding.recyclerViewRequests.adapter = adapter
 
         adapter.registerItemBinders(HelpRequestCreateArticleBinder())
 
@@ -62,7 +61,7 @@ class SeekerCreateRequestEnterArticlesFragment : Fragment() {
 
                 adapter.addSection(articlesSection)
 
-                button_accept.setOnClickListener {
+                binding.buttonAccept.setOnClickListener {
 
                     val request = HelpRequestCreateDto()
                         .articles(articlesInput
@@ -80,7 +79,7 @@ class SeekerCreateRequestEnterArticlesFragment : Fragment() {
                         .zipCode(currentUser.zipCode)
                         .city(currentUser.city)
                         .phoneNumber(currentUser.phoneNumber)
-                        .additionalRequest(textView_additionalRequest.text.toString())
+                        .additionalRequest(binding.textViewAdditionalRequest.text.toString())
 
                     if (request.articles.isNullOrEmpty()) {
                         Toast.makeText(
