@@ -5,6 +5,7 @@ import java.util.List;
 import app.nexd.android.api.model.UpdateUserDto;
 import app.nexd.android.api.model.User;
 import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.PUT;
@@ -66,7 +67,7 @@ public interface UsersApi {
     "Content-Type:application/json"
   })
   @PUT("users/me")
-  Observable<User> userControllerUpdateMyself(
+  Single<User> userControllerUpdateMyself(
     @retrofit2.http.Body UpdateUserDto updateUserDto
   );
 

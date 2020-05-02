@@ -4,6 +4,8 @@ import app.nexd.android.Api
 import app.nexd.android.Preferences
 import app.nexd.android.ui.MainViewModel
 import app.nexd.android.ui.auth.login.LoginViewModel
+import app.nexd.android.ui.auth.register.ErrorTranslator
+import app.nexd.android.ui.auth.register.InputValidator
 import app.nexd.android.ui.auth.register.RegisterDetailedViewModel
 import app.nexd.android.ui.auth.register.RegisterViewModel
 import app.nexd.android.ui.helper.checkout.CheckoutViewModel
@@ -26,13 +28,17 @@ val appModule = module {
 
     single { Api(preferences = get()) }
 
+    factory { InputValidator() }
+
+    factory { ErrorTranslator() }
+
     viewModel { MainViewModel(get()) }
 
     viewModel { RoleViewModel(get(), get()) }
 
     viewModel { RegisterViewModel(get(), get()) }
 
-    viewModel { RegisterDetailedViewModel(get(), get()) }
+    viewModel { RegisterDetailedViewModel(get(), get(), get(), get()) }
 
     viewModel { LoginViewModel(get(), get()) }
 
