@@ -36,8 +36,6 @@ class SeekerCreateRequestConfirmAddressFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        vm.setAddressTextFieldsFromCurrentUser()
-
         binding.editTextPhoneNumber.setOnEditorActionListener { _, i, _ ->
             if (i == EditorInfo.IME_ACTION_DONE) {
                 vm.sendRequest()
@@ -48,6 +46,8 @@ class SeekerCreateRequestConfirmAddressFragment : Fragment() {
         binding.buttonConfirm.setOnClickListener {
             vm.sendRequest()
         }
+
+
 
         vm.state().observe(viewLifecycleOwner, Observer {
             when (it) {

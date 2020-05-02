@@ -51,7 +51,11 @@ class SeekerCreateRequestEnterArticlesFragment : Fragment() {
 
         adapter.registerItemBinders(HelpRequestCreateArticleBinder())
 
+        // set initial address info
+        vm.setUserInfo()
+
         vm.getCurrentUser().observe(viewLifecycleOwner, Observer { currentUser ->
+
 
             vm.getArticles().observe(viewLifecycleOwner, Observer { articles ->
                 adapter.removeAllSections()

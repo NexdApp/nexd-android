@@ -78,28 +78,6 @@ class SeekerCreateRequestViewModel(private val api: Api) : ViewModel() {
         )
     }
 
-    internal fun setAddressTextFieldsFromCurrentUser() {
-        requestToConfirm.let {
-            // in case the value isNullOrBlank, it will be set to the parameter
-            // parameter: 1. saved value from current request, 2. user's info, 3. ""
-            firstName.value = firstName.setValueIfNullOrBlank(
-                it?.firstName ?: getCurrentUser().value?.firstName ?: ""
-            )
-            lastName.value = lastName.setValueIfNullOrBlank(
-                it?.lastName ?: getCurrentUser().value?.lastName ?: ""
-            )
-            street.value =
-                street.setValueIfNullOrBlank(it?.street ?: getCurrentUser().value?.street ?: "")
-            number.value =
-                number.setValueIfNullOrBlank(it?.number ?: getCurrentUser().value?.number ?: "")
-            zipCode.value =
-                zipCode.setValueIfNullOrBlank(it?.zipCode ?: getCurrentUser().value?.zipCode ?: "")
-            city.value = city.setValueIfNullOrBlank(it?.city ?: getCurrentUser().value?.city ?: "")
-            phoneNumber.value = phoneNumber.setValueIfNullOrBlank(
-                it?.phoneNumber ?: getCurrentUser().value?.phoneNumber ?: ""
-            )
-        }
-    }
 
     private fun setRequestFromEditTextFields() {
         requestToConfirm!!.let {
@@ -125,10 +103,18 @@ class SeekerCreateRequestViewModel(private val api: Api) : ViewModel() {
         }
     }
 
-    private fun MutableLiveData<String>.setValueIfNullOrBlank(valueToSet: String): String {
-        return if (this.value.isNullOrBlank()) valueToSet
-        else this.value!!
+    internal fun setUserInfo() {
+        getCurrentUser().let {
+            firstName.value = it.value?.firstName ?: ""
+            lastName.value = it.value?.firstName ?: ""
+            street.value = it.value?.firstName ?: ""
+            number.value = it.value?.firstName ?: ""
+            zipCode.value = it.value?.firstName ?: ""
+            city.value = it.value?.firstName ?: ""
+            phoneNumber.value = it.value?.firstName ?: ""
+        }
     }
+
 
     internal fun setRequestToConfirm(request: HelpRequestCreateDto) {
         requestToConfirm = request
