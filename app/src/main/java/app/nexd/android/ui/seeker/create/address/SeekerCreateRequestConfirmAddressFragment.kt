@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
-import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -31,14 +30,6 @@ class SeekerCreateRequestConfirmAddressFragment : Fragment() {
         binding.viewModel = vm
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        val onBackPressedCallback = requireActivity().onBackPressedDispatcher.addCallback(this) {
-            vm.setStateToLoading()
-        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
