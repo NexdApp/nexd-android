@@ -49,9 +49,9 @@ public class UpdateUserDto {
   @SerializedName(SERIALIZED_NAME_ZIP_CODE)
   private String zipCode;
 
-  public static final String SERIALIZED_NAME_CITY = "city";
-  @SerializedName(SERIALIZED_NAME_CITY)
-  private String city;
+  public static final String SERIALIZED_NAME_LOCALITY = "city";
+  @SerializedName(SERIALIZED_NAME_LOCALITY)
+  private String locality;
 
   /**
    * Gets or Sets role
@@ -228,7 +228,7 @@ public class UpdateUserDto {
 
   public UpdateUserDto city(String city) {
     
-    this.city = city;
+    this.locality = city;
     return this;
   }
 
@@ -239,13 +239,13 @@ public class UpdateUserDto {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public String getCity() {
-    return city;
+  public String getLocality() {
+    return locality;
   }
 
 
-  public void setCity(String city) {
-    this.city = city;
+  public void setLocality(String locality) {
+    this.locality = locality;
   }
 
 
@@ -309,14 +309,14 @@ public class UpdateUserDto {
         Objects.equals(this.street, updateUserDto.street) &&
         Objects.equals(this.number, updateUserDto.number) &&
         Objects.equals(this.zipCode, updateUserDto.zipCode) &&
-        Objects.equals(this.city, updateUserDto.city) &&
+        Objects.equals(this.locality, updateUserDto.locality) &&
         Objects.equals(this.role, updateUserDto.role) &&
         Objects.equals(this.phoneNumber, updateUserDto.phoneNumber);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(firstName, lastName, street, number, zipCode, city, role, phoneNumber);
+    return Objects.hash(firstName, lastName, street, number, zipCode, locality, role, phoneNumber);
   }
 
 
@@ -329,7 +329,7 @@ public class UpdateUserDto {
     sb.append("    street: ").append(toIndentedString(street)).append("\n");
     sb.append("    number: ").append(toIndentedString(number)).append("\n");
     sb.append("    zipCode: ").append(toIndentedString(zipCode)).append("\n");
-    sb.append("    city: ").append(toIndentedString(city)).append("\n");
+    sb.append("    city: ").append(toIndentedString(locality)).append("\n");
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("}");

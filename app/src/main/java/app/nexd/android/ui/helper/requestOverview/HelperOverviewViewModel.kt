@@ -11,7 +11,7 @@ import app.nexd.android.R
 import app.nexd.android.api.model.HelpList
 import app.nexd.android.api.model.HelpRequest
 import app.nexd.android.api.model.HelpRequestStatus
-import app.nexd.android.ui.common.Constants.Companion.USER_ME
+import app.nexd.android.ui.common.Constants.USER_ME
 import io.reactivex.BackpressureStrategy
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
