@@ -66,7 +66,7 @@ class SeekerCreateRequestConfirmAddressFragment : Fragment() {
                         getString(R.string.seeker_request_create_successfully_submitted),
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.action_seekerCreateRequestConfirmAddressFragment_to_seekerOverviewFragment)
+                    findNavController().navigate(SeekerCreateRequestConfirmAddressFragmentDirections.toSeekerOverviewFragment())
                 }
                 SeekerCreateRequestViewModel.State.LOADING -> {
                     findNavController().popBackStack()

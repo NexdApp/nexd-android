@@ -320,10 +320,10 @@
         <fragment
             android:id="@+id/seekerCreateRequestEnterArticlesFragment"
             android:name="app.nexd.android.ui.seeker.create.articles.SeekerCreateRequestEnterArticlesFragment"
-            android:label="@string/seeker_request_create_heading"
+            android:label="SeekerCreateRequestEnterArticlesFragment"
             tools:layout="@layout/fragment_seeker_create_request_enter_articles">
             <action
-                android:id="@+id/action_seekerCreateRequestEnterArticlesFragment_to_seekerCreateRequestConfirmAddressFragment"
+                android:id="@+id/toSeekerCreateRequestConfirmAddressFragment"
                 app:destination="@id/seekerCreateRequestConfirmAddressFragment"
                 app:enterAnim="@animator/slide_in_right_to_left"
                 app:exitAnim="@animator/slide_out_right_to_left"
@@ -336,7 +336,7 @@
             android:label="SeekerCreateRequestConfirmAddressFragment"
             tools:layout="@layout/fragment_seeker_create_request_confirm_address">
             <action
-                android:id="@+id/action_seekerCreateRequestConfirmAddressFragment_to_seekerOverviewFragment"
+                android:id="@+id/toSeekerOverviewFragment"
                 app:destination="@id/seekerOverviewFragment"
                 app:enterAnim="@animator/slide_in_right_to_left"
                 app:exitAnim="@animator/slide_out_right_to_left"

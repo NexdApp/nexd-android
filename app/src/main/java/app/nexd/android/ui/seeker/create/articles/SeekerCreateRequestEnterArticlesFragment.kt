@@ -98,7 +98,7 @@ class SeekerCreateRequestEnterArticlesFragment : Fragment() {
         vm.state().observe(viewLifecycleOwner, Observer {
             when (it) {
                 SeekerCreateRequestViewModel.State.PROCESSING -> {
-                    findNavController().navigate(R.id.action_seekerCreateRequestEnterArticlesFragment_to_seekerCreateRequestConfirmAddressFragment)
+                    findNavController().navigate(SeekerCreateRequestEnterArticlesFragmentDirections.toSeekerCreateRequestConfirmAddressFragment())
                 }
                 else -> Log.d(
                     SeekerCreateRequestEnterArticlesFragment::class.simpleName,
