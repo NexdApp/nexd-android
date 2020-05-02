@@ -18,6 +18,7 @@ import app.nexd.android.databinding.FragmentSeekerCreateRequestEnterArticlesBind
 import app.nexd.android.di.sharedGraphViewModel
 import app.nexd.android.ui.common.HelpRequestCreateArticleBinder
 import app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel
+import app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel.State.PROCESSING
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
 
@@ -96,7 +97,7 @@ class SeekerCreateRequestEnterArticlesFragment : Fragment() {
 
         vm.state().observe(viewLifecycleOwner, Observer {
             when (it) {
-                SeekerCreateRequestViewModel.State.PROCESSING -> {
+                PROCESSING -> {
                     findNavController().navigate(SeekerCreateRequestEnterArticlesFragmentDirections.toSeekerCreateRequestConfirmAddressFragment())
                 }
                 else -> Log.d(

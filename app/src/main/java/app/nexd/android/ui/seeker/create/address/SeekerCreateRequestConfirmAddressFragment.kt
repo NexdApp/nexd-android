@@ -13,6 +13,8 @@ import app.nexd.android.R
 import app.nexd.android.databinding.FragmentSeekerCreateRequestConfirmAddressBinding
 import app.nexd.android.di.sharedGraphViewModel
 import app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel
+import app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel.State.FINISHED
+import app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel.State.LOADING
 
 class SeekerCreateRequestConfirmAddressFragment : Fragment() {
     private val vm: SeekerCreateRequestViewModel by sharedGraphViewModel(R.id.nav_seeker_create_request)
@@ -49,10 +51,10 @@ class SeekerCreateRequestConfirmAddressFragment : Fragment() {
 
         vm.state().observe(viewLifecycleOwner, Observer {
             when (it) {
-                SeekerCreateRequestViewModel.State.FINISHED -> {
+                FINISHED -> {
                     findNavController().navigate(SeekerCreateRequestConfirmAddressFragmentDirections.toSeekerOverviewFragment())
                 }
-                SeekerCreateRequestViewModel.State.LOADING -> {
+                LOADING -> {
                     findNavController().popBackStack()
                 }
                 else -> Log.d(
