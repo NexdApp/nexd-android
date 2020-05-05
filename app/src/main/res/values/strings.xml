@@ -110,7 +110,7 @@ phone call"</string>
     <string name="back_button_title">"Back"</string>
     <string name="cancel_button_title">"Cancel"</string>
     <string name="confirm_button_title">"Confirm"</string>
-    <string name="loading_overlay_message">"Loading..."</string>
+    <string name="loading_overlay_message">"Loading…"</string>
     <string name="ok_button_title">"OK"</string>
     <string name="seeker_request_create_placeholder_delivery_comment">"Delivery comment"</string>
     <string name="helper_request_overview_button_title_current_items_list">"Current Items List"</string>
@@ -163,16 +163,14 @@ phone call"</string>
     <string name="keyboard_accessory_text_done">"Done"</string>
     <string name="helper_request_detail_button_remove">"Remove from shopping list!"</string>
     <string name="shopping_list_button_checkout">"Order Completed"</string>
-    <string name="helper_overview_error_empty_zipcode"></string>
+    <string name="helper_overview_error_empty_zipcode">"Zip code not selected"</string>
     <string name="helper_request_filter_settings_screen_title">"Filter settings"</string>
     <string name="helper_request_filter_settings_heading_zipcode">"Zip code for local search:"</string>
     <string name="helper_request_filter_settings_placeholder_zipcode">"Zip code"</string>
-    <string name="helper_request_overview_filter_selected_zip">"Open requests for regtion: %1$@"</string>
+    <string name="helper_request_overview_filter_selected_zip">"Open requests for region: %1$@"</string>
     <string name="helper_request_overview_filter_inactive">"All open requests"</string>
     <string name="transcript_summary_button_transcript">"Transcribe another call"</string>
     <string name="transcript_summary_title">"Thank you for helping complete %1$s's order!"</string>
     <string name="transcript_error_empty_calls">"There are no calls to transcript currently"</string>
-    <string name="transcript_error_empty_calls">There are no calls to transcript currently</string>
     <string name="seeker_request_create_no_articles">Please enter at least 1 article</string>
-    <string name="seeker_request_create_successfully_submitted">Request successfully submitted</string>
 </resources>

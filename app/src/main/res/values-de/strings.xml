@@ -109,7 +109,7 @@
     <string name="back_button_title">"Zurück"</string>
     <string name="cancel_button_title">"Abbrechen"</string>
     <string name="confirm_button_title">"Bestätigen"</string>
-    <string name="loading_overlay_message">"Wird geladen..."</string>
+    <string name="loading_overlay_message">"Wird geladen…"</string>
     <string name="ok_button_title">"OK"</string>
     <string name="seeker_request_create_placeholder_delivery_comment">"Lieferhinweis"</string>
     <string name="helper_request_overview_button_title_current_items_list">"Einkaufsliste"</string>
@@ -167,4 +167,8 @@
     <string name="helper_request_filter_settings_placeholder_zipcode">"Postleitzahl"</string>
     <string name="helper_request_overview_filter_selected_zip">"Offene Anfragen für die Region: %1$@"</string>
     <string name="helper_request_overview_filter_inactive">"Alle offenen Anfragen"</string>
+    <string name="transcript_summary_button_transcript">"Einen weiteren Anruf übertragen"</string>
+    <string name="transcript_summary_title">"Danke, dass du %1$s's Bestellung vervollständigt hast!"</string>
+    <string name="transcript_error_empty_calls">"Es gibt zur Zeit keine Anrufe zum übersetzen"</string>
+    <string name="seeker_request_create_no_articles">"Bitte mindestens 1 Artikel wählen"</string>
 </resources>
