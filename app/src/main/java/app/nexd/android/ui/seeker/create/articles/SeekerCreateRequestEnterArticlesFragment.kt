@@ -5,15 +5,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
-import app.nexd.android.api.model.CreateHelpRequestArticleDto
-import app.nexd.android.api.model.HelpRequestCreateDto
 import app.nexd.android.databinding.FragmentSeekerCreateRequestEnterArticlesBinding
 import app.nexd.android.di.sharedGraphViewModel
 import app.nexd.android.ui.common.HelpRequestCreateArticleBinder
@@ -51,52 +47,21 @@ class SeekerCreateRequestEnterArticlesFragment : Fragment() {
 
         adapter.registerItemBinders(HelpRequestCreateArticleBinder())
 
-        // set initial address info
+
+        vm.getArticleListSection()
         vm.setUserInfo()
 
-        vm.getCurrentUser().observe(viewLifecycleOwner, Observer { currentUser ->
+        vm.articles.observe(viewLifecycleOwner, Observer { articles ->
+            adapter.removeAllSections()
+            val articleListSection = ListSection<HelpRequestCreateArticleBinder.ArticleInput>()
+            articleListSection.addAll(articles)
+            adapter.addSection(articleListSection)
 
-
-            vm.getArticles().observe(viewLifecycleOwner, Observer { articles ->
-                adapter.removeAllSections()
-
-                val articlesSection = ListSection<HelpRequestCreateArticleBinder.ArticleInput>()
-                val articlesInput = articles.map { HelpRequestCreateArticleBinder.ArticleInput(it.id, MutableLiveData(it.name), MutableLiveData(0L.toString())) }
-                articlesSection.addAll(articlesInput)
-
-                adapter.addSection(articlesSection)
-
-                binding.buttonAccept.setOnClickListener {
-
-                    val request = HelpRequestCreateDto()
-                        .articles(articlesInput
-                            .filter { it.amount.value?.toLong() ?: 0L > 0L }
-                            .map {
-                                CreateHelpRequestArticleDto()
-                                    .articleCount(it.amount.value!!.toLong())
-                                    .articleId(it.articleId)
-
-                            })
-                        .firstName(currentUser.firstName)
-                        .lastName(currentUser.lastName)
-                        .street(currentUser.street)
-                        .number(currentUser.number)
-                        .zipCode(currentUser.zipCode)
-                        .city(currentUser.city)
-                        .phoneNumber(currentUser.phoneNumber)
-                        .additionalRequest(binding.textViewAdditionalRequest.text.toString())
-
-                    if (request.articles.isNullOrEmpty()) {
-                        Toast.makeText(
-                            requireContext(),
-                            getString(R.string.seeker_request_create_no_articles),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    } else {
-                        vm.setRequestToConfirm(request)
-                    }
+            binding.buttonAccept.setOnClickListener {
+                if (!vm.selectedArticlesListIsNotEmpty()) {
+                    // show error message
                 }
-            })
+            }
         })
 
         vm.state().observe(viewLifecycleOwner, Observer {

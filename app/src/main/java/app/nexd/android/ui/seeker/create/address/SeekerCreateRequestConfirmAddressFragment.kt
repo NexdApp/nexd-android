@@ -14,7 +14,6 @@ import app.nexd.android.databinding.FragmentSeekerCreateRequestConfirmAddressBin
 import app.nexd.android.di.sharedGraphViewModel
 import app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel
 import app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel.State.FINISHED
-import app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel.State.LOADING
 
 class SeekerCreateRequestConfirmAddressFragment : Fragment() {
     private val vm: SeekerCreateRequestViewModel by sharedGraphViewModel(R.id.nav_seeker_create_request)
@@ -36,6 +35,7 @@ class SeekerCreateRequestConfirmAddressFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+
         binding.editTextPhoneNumber.setOnEditorActionListener { _, i, _ ->
             if (i == EditorInfo.IME_ACTION_DONE) {
                 vm.sendRequest()
@@ -53,9 +53,6 @@ class SeekerCreateRequestConfirmAddressFragment : Fragment() {
             when (it) {
                 FINISHED -> {
                     findNavController().navigate(SeekerCreateRequestConfirmAddressFragmentDirections.toSeekerOverviewFragment())
-                }
-                LOADING -> {
-                    findNavController().popBackStack()
                 }
                 else -> Log.d(
                     SeekerCreateRequestConfirmAddressFragment::class.simpleName,

@@ -42,6 +42,7 @@
             android:layout_marginTop="20dp"
             android:backgroundTint="@color/grey_500"
             android:hint="@string/seeker_request_create_placeholder_information"
+            android:text="@={viewModel.additionalInformation}"
             android:importantForAutofill="no"
             android:inputType="text"
             android:paddingHorizontal="10dp"
