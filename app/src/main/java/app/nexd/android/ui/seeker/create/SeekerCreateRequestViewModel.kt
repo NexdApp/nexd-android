@@ -31,28 +31,31 @@ class SeekerCreateRequestViewModel(private val api: Api) : ViewModel() {
             .map { articles ->
                 articles.map { HelpRequestCreateArticleBinder.ArticleInput(it) }
             }
+            .onErrorReturn {
+                progress.value = Progress.Error(R.string.error_message_unknown)
+                emptyList()
+            }
             .toFlowable(BackpressureStrategy.BUFFER)
     )
 
     private val compositeDisposable = CompositeDisposable()
 
     fun sendRequest() {
-        val articles = this.articles.value
-            ?.filter { it.amount > 0 }
-            ?.map {
-                CreateHelpRequestArticleDto()
-                    .articleCount(it.amount)
-                    .articleId(it.article.id)
-            } ?: kotlin.run {
-                return
-            }
+        val articles = this.articles.value ?: return
 
         // TODO add additional information when in design
         val disposable = api.userControllerFindMe()
             .flatMap { currentUser ->
                 api.helpRequestsControllerInsertRequestWithArticles(
                     HelpRequestCreateDto()
-                        .articles(articles)
+                        .articles(
+                            articles.filter { it.amount > 0 }
+                                .map {
+                                    CreateHelpRequestArticleDto()
+                                        .articleCount(it.amount)
+                                        .articleId(it.article.id)
+                                }
+                        )
                         .street(currentUser.street)
                         .number(currentUser.number)
                         .zipCode(currentUser.zipCode)
