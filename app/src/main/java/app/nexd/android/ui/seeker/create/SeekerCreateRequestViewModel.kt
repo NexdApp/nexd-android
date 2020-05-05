@@ -49,11 +49,11 @@ class SeekerCreateRequestViewModel(private val api: Api) : ViewModel() {
                 api.helpRequestsControllerInsertRequestWithArticles(
                     HelpRequestCreateDto()
                         .articles(
-                            articles.filter { it.amount > 0 }
+                            articles.filter { it.amount.value?.toLong() ?: 0L > 0L }
                                 .map {
                                     CreateHelpRequestArticleDto()
-                                        .articleCount(it.amount)
-                                        .articleId(it.article.id)
+                                        .articleCount(it.amount.value!!.toLong())
+                                        .articleId(it.articleId)
                                 }
                         )
                         .street(currentUser.street)

@@ -62,14 +62,7 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
     private fun loadArticles() {
         val observable = api.articlesControllerFindAll()
             .map { articles ->
-                articles
-                    .map { article ->
-                        HelpRequestCreateArticleBinder.ArticleInput(
-                            article.id,
-                            MutableLiveData(article.name),
-                            MutableLiveData(0L.toString())
-                        )
-                    }
+                articles.map { HelpRequestCreateArticleBinder.ArticleInput(it) }
             }
 
         val disposable = observable
