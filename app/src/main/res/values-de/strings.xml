@@ -167,15 +167,4 @@
     <string name="helper_request_filter_settings_placeholder_zipcode">"Postleitzahl"</string>
     <string name="helper_request_overview_filter_selected_zip">"Offene Anfragen für die Region: %1$@"</string>
     <string name="helper_request_overview_filter_inactive">"Alle offenen Anfragen"</string>
-    <string name="transcript_summary_button_transcript">"Einen weiteren Anruf übertragen"</string>
-    <string name="transcript_summary_title">"Danke, dass du %1$s's Bestellung vervollständigt hast!"</string>
-    <string name="transcript_error_empty_calls">"Es gibt zur Zeit keine Anrufe zum übersetzen"</string>
-    <string name="seeker_request_create_no_articles">Bitte mindestens 1 Artikel wählen</string>
-    <string name="seeker_request_create_successfully_submitted">Anfrage erfolgreich eingereicht</string>
-    <string name="shopping_list_button_checkout">Zur Kasse</string>
-    <string name="transcript_summary_button_transcript">Einen weiteren Anruf übertragen</string>
-    <string name="transcript_summary_title">Danke, dass du %1$s\'s Bestellung vervollständigt hast!</string>
-    <string name="transcript_error_empty_calls">Es gibt zur Zeit keine Anrufe zum übersetzen</string>
-    <string name="seeker_request_create_no_articles">Bitte mindestens 1 Artikel wählen</string>
-    <string name="seeker_request_create_successfully_submitted">Anfrage erfolgreich eingereicht</string>
 </resources>
