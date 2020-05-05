@@ -66,6 +66,7 @@ class ShoppingListViewModel(private val api: Api) : ViewModel() {
                 articleId,
                 true
             ).subscribe {
+
             }
         }
     }

@@ -1,6 +1,6 @@
 package app.nexd.android.ui.helper.transcript
 
-import android.util.Log
+import androidx.annotation.StringRes
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import app.nexd.android.Api
@@ -8,23 +8,22 @@ import app.nexd.android.R
 import app.nexd.android.api.model.Call
 import app.nexd.android.api.model.CreateHelpRequestArticleDto
 import app.nexd.android.api.model.HelpRequestCreateDto
-import app.nexd.android.ui.helper.transcript.articles.TranscriptArticlesItemViewModel
-import app.nexd.android.ui.utils.SingleLiveEvent
+import app.nexd.android.ui.common.HelpRequestCreateArticleBinder
+import app.nexd.android.ui.helper.transcript.TranscriptViewModel.Progress.Error
 import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 
 class TranscriptViewModel(private val api: Api) : ViewModel() {
 
-    /**
-     * General error that could happen during the whole transcription flow
-     */
-    val error = SingleLiveEvent<Int>()
+    sealed class Progress {
+        object Idle : Progress()
+        object Loading : Progress()
+        object Finished : Progress()
+        class Error(@StringRes val message: Int? = null) : Progress()
+    }
 
-    /**
-     * List of currently untranslated calls
-     */
-    val calls = MutableLiveData<List<Call>>()
+    val progress = MutableLiveData<Progress>()
 
     /**
      * Currently selected call to transcript
@@ -52,9 +51,7 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
     val cityError = MutableLiveData<Int?>(null)
 
     // Articles
-
-    val articles: MutableLiveData<List<TranscriptArticlesItemViewModel>> =
-        MutableLiveData(emptyList())
+    val articles = MutableLiveData(emptyList<HelpRequestCreateArticleBinder.ArticleInput>())
 
     /**
      * This disposable is to be used for rx subscriptions not bound to a live data lifecycle.
@@ -67,7 +64,7 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
             .map { articles ->
                 articles
                     .map { article ->
-                        TranscriptArticlesItemViewModel(
+                        HelpRequestCreateArticleBinder.ArticleInput(
                             article.id,
                             MutableLiveData(article.name),
                             MutableLiveData(0L.toString())
@@ -84,63 +81,35 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
         compositeDisposable.add(disposable)
     }
 
-    fun reloadCalls() {
-        val calls = api.phoneControllerGetCalls(
+    fun transcriptCall() {
+        reset()
+
+        progress.value = Progress.Loading
+
+        val callsObservable = api.phoneControllerGetCalls(
             null,
-            10,
+            1,
             false,
             null,
             null,
             null
         )
 
-        val disposable = calls
+        val disposable = callsObservable
             .observeOn(mainThread())
-            .subscribeBy(
-                onNext = {
-
-                    this.calls.setValue(it)
-                },
-                onError = {
-                    Log.e(TranscriptViewModel::class.simpleName, "Failed to load calls", it)
-                    this.error.value =
-                        R.string.error_message_unknown // TODO: use proper error message
+            .subscribe({ calls ->
+                calls.firstOrNull()?.let {
+                    call.value = it
+                } ?: run {
+                    progress.value = Error(R.string.transcript_error_empty_calls)
                 }
-            )
+            }, {
+                progress.value = Error(R.string.error_message_unknown)
+            })
 
         compositeDisposable.add(disposable)
-    }
-
-    fun transcriptCall(call: Call) {
-        resetData()
-
-        this.call.value = call
 
         loadArticles()
-    }
-
-    fun cancelTranscription() {
-        resetData()
-    }
-
-    private fun resetData() {
-        call.value = null
-
-        firstName.value = null
-        lastName.value = null
-        street.value = null
-        number.value = null
-        zipCode.value = null
-        city.value = null
-        firstNameError.value = null
-        lastNameError.value = null
-        streetError.value = null
-        numberError.value = null
-        zipCodeError.value = null
-        cityError.value = null
-        error.value = null
-
-        articles.value = emptyList()
     }
 
     override fun onCleared() {
@@ -199,17 +168,16 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
 
     fun saveHelpRequest() {
         val helpRequestArticles = articles.value?.let { list ->
-            list
-                .filter { (it.articleCount.value?.toLong() ?: 0L) > 0L }
+            list.filter { (it.amount.value?.toLong() ?: 0L) > 0L }
                 .map {
                     CreateHelpRequestArticleDto()
                         .articleId(it.articleId)
-                        .articleCount(it.articleCount.value!!.toLong())
+                        .articleCount(it.amount.value!!.toLong())
                 }
         }
 
         if (helpRequestArticles.isNullOrEmpty()) {
-            error.value = R.string.error_message_unknown // TODO: use proper error message
+            progress.value = Error(R.string.error_message_unknown)
             return
         }
 
@@ -227,10 +195,30 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
         val disposable = api.phoneControllerConverted(call.value?.sid, data)
             .observeOn(mainThread())
             .subscribeBy(
-                onNext = { resetData() },
-                onError = { error.value = R.string.error_message_unknown } // TODO: use proper error message
+                onNext = {
+                    progress.value = Progress.Finished
+                },
+                onError = {
+                    progress.value = Error(R.string.error_message_unknown)
+                } // TODO: use proper error message
             )
 
         compositeDisposable.add(disposable)
+    }
+
+    private fun reset() {
+        call.value = null
+        firstName.value = null
+        lastName.value = null
+        street.value = null
+        number.value = null
+        zipCode.value = null
+        city.value = null
+        firstNameError.value = null
+        lastNameError.value = null
+        streetError.value = null
+        numberError.value = null
+        zipCodeError.value = null
+        cityError.value = null
     }
 }

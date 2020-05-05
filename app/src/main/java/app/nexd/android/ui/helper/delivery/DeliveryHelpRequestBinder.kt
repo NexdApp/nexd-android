@@ -17,7 +17,7 @@ class DeliveryHelpRequestBinder : ItemBinder<HelpRequest, DeliveryHelpRequestBin
         private val phoneNumber: TextView = itemView.textView_phoneNumber
 
         fun bind(request: HelpRequest) {
-            username.text = request.requester?.lastName
+            username.text = request.lastName
             address.text = itemView.context.getString(
                 R.string.helper_delivery_address_layout,
                 request.street ?: "--",

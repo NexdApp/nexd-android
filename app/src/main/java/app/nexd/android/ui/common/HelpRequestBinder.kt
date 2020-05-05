@@ -21,8 +21,8 @@ class HelpRequestBinder: ItemBinder<HelpRequest, HelpRequestViewHolder>() {
 
         fun bind(request: HelpRequest) {
             itemView.button_help_request.text = itemView.context.getString(R.string.user_name_layout,
-                request.requester?.firstName,
-                request.requester?.lastName)
+                request.firstName,
+                request.lastName)
         }
     }
 
