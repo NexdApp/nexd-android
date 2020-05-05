@@ -1,27 +1,27 @@
 package app.nexd.android.ui.seeker.create
 
-import androidx.lifecycle.LiveDataReactiveStreams
+import androidx.annotation.StringRes
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import app.nexd.android.Api
 import app.nexd.android.R
 import app.nexd.android.api.model.CreateHelpRequestArticleDto
 import app.nexd.android.api.model.HelpRequestCreateDto
+import app.nexd.android.api.model.User
 import app.nexd.android.ui.common.HelpRequestCreateArticleBinder
 import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.processors.BehaviorProcessor
 
 class SeekerCreateRequestViewModel(private val api: Api) : ViewModel() {
 
-    enum class State {
-        LOADING,
-        IDLE,
-        PROCESSING,
-        FINISHED
+    sealed class Progress {
+        object Idle : Progress()
+        object Loading : Progress()
+        class Error(@StringRes val message: Int? = null) : Progress()
+        object Finished : Progress()
     }
 
-    private val state = BehaviorProcessor.createDefault(State.LOADING)
+    val progress = MutableLiveData<Progress>(Progress.Idle)
 
     val firstName = MutableLiveData<String?>()
     val firstNameError = MutableLiveData<Int?>(null)
@@ -46,10 +46,9 @@ class SeekerCreateRequestViewModel(private val api: Api) : ViewModel() {
 
     val additionalInformation = MutableLiveData<String>()
 
+    private val currentUser = MutableLiveData<User?>(null)
     val articles = MutableLiveData(emptyList<HelpRequestCreateArticleBinder.ArticleInput>())
-
-    private var selectedArticles = emptyList<CreateHelpRequestArticleDto>()
-
+    private var selectedArticles = mutableListOf<CreateHelpRequestArticleDto>()
 
     private val compositeDisposable = CompositeDisposable()
 
@@ -62,10 +61,9 @@ class SeekerCreateRequestViewModel(private val api: Api) : ViewModel() {
                     zipCode.hasValueOrSetError(zipCodeError) &&
                     city.hasValueOrSetError(cityError) &&
                     phoneNumber.hasValueOrSetError(phoneNumberError) &&
-                    !articles.value.isNullOrEmpty()
+                    !selectedArticles.isNullOrEmpty()
 
         if (success) {
-
             with(api) {
                 helpRequestsControllerInsertRequestWithArticles(
                     HelpRequestCreateDto()
@@ -78,57 +76,61 @@ class SeekerCreateRequestViewModel(private val api: Api) : ViewModel() {
                         .city(city.value)
                         .phoneNumber(phoneNumber.value)
                         .additionalRequest(additionalInformation.value)
-                ).subscribe { state.onNext(State.FINISHED) }
+                ).subscribe {
+                    progress.postValue(Progress.Finished)
+                }
             }
-        }
-    }
-
-    internal fun selectedArticlesListIsNotEmpty(): Boolean {
-        setSelectedArticles()
-        return if (selectedArticles.isNotEmpty()) {
-            state.onNext(State.LOADING)
-            true
         } else {
-            false
+            progress.value = Progress.Error(R.string.error_message_user_detail_field_missing)
         }
     }
 
-    internal fun getArticleListSection() {
-        val observable = api.articlesControllerFindAll().map {
-            it.map { article ->
-                HelpRequestCreateArticleBinder.ArticleInput(
-                    article.id,
-                    MutableLiveData(article.name),
-                    MutableLiveData(0L.toString())
-                )
-            }
+    internal fun confirmSelectedArticles() {
+        selectedArticles.clear()
+        setSelectedArticles()
+        if (selectedArticles.isNotEmpty()) {
+            progress.value = Progress.Loading
+        } else {
+            progress.value = Progress.Error(R.string.seeker_request_create_no_articles)
         }
-        val disposable = observable
-            .observeOn(mainThread())
-            .subscribe {
-                articles.value = it
+    }
+
+    internal fun setArticleListSection() {
+        if (articles.value.isNullOrEmpty()) {
+            val observable = api.articlesControllerFindAll().map {
+                it.map { article ->
+                    HelpRequestCreateArticleBinder.ArticleInput(
+                        article.id,
+                        MutableLiveData(article.name),
+                        MutableLiveData(0L.toString())
+                    )
+                }
             }
-        compositeDisposable.add(disposable)
+            val disposable = observable
+                .observeOn(mainThread())
+                .subscribe {
+                    articles.value = it
+                }
+            compositeDisposable.add(disposable)
+        }
     }
 
     internal fun setUserInfo() {
-        val observable = api.userControllerFindMe()
-        val disposable = observable.observeOn(mainThread())
-            .subscribe {
-                firstName.value = it.firstName ?: ""
-                lastName.value = it.lastName ?: ""
-                street.value = it.street ?: ""
-                number.value = it.number ?: ""
-                zipCode.value = it.zipCode ?: ""
-                city.value = it.city ?: ""
-                phoneNumber.value = it.phoneNumber ?: ""
-            }
-        compositeDisposable.add(disposable)
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        compositeDisposable.clear()
+        if (currentUser.value == null) {
+            val observable = api.userControllerFindMe()
+            val disposable = observable.observeOn(mainThread())
+                .subscribe {
+                    currentUser.value = it
+                    firstName.value = it.firstName ?: ""
+                    lastName.value = it.lastName ?: ""
+                    street.value = it.street ?: ""
+                    number.value = it.number ?: ""
+                    zipCode.value = it.zipCode ?: ""
+                    city.value = it.city ?: ""
+                    phoneNumber.value = it.phoneNumber ?: ""
+                }
+            compositeDisposable.add(disposable)
+        }
     }
 
     private fun setSelectedArticles() {
@@ -137,13 +139,16 @@ class SeekerCreateRequestViewModel(private val api: Api) : ViewModel() {
                 CreateHelpRequestArticleDto()
                     .articleCount(it.amount.value!!.toLong())
                     .articleId(it.articleId)
-            }
+            }.toMutableList()
         } else {
-            emptyList()
+            mutableListOf()
         }
     }
 
-    fun state() = LiveDataReactiveStreams.fromPublisher(state)
+    override fun onCleared() {
+        super.onCleared()
+        compositeDisposable.clear()
+    }
 
     private fun MutableLiveData<String?>.hasValueOrSetError(errorField: MutableLiveData<Int?>): Boolean {
         return if (this.value.isNullOrBlank()) {
@@ -154,7 +159,4 @@ class SeekerCreateRequestViewModel(private val api: Api) : ViewModel() {
             true
         }
     }
-
-
-
 }

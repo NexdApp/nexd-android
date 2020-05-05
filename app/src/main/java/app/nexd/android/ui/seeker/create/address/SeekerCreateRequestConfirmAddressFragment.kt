@@ -12,8 +12,11 @@ import androidx.navigation.fragment.findNavController
 import app.nexd.android.R
 import app.nexd.android.databinding.FragmentSeekerCreateRequestConfirmAddressBinding
 import app.nexd.android.di.sharedGraphViewModel
+import app.nexd.android.ui.common.DefaultSnackbar
 import app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel
-import app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel.State.FINISHED
+import app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel.Progress.*
+import app.nexd.android.ui.seeker.create.articles.SeekerCreateRequestEnterArticlesFragment
+import com.google.android.material.snackbar.Snackbar
 
 class SeekerCreateRequestConfirmAddressFragment : Fragment() {
     private val vm: SeekerCreateRequestViewModel by sharedGraphViewModel(R.id.nav_seeker_create_request)
@@ -35,7 +38,11 @@ class SeekerCreateRequestConfirmAddressFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        initUi()
+        setVmObserver()
+    }
 
+    private fun initUi() {
         binding.editTextPhoneNumber.setOnEditorActionListener { _, i, _ ->
             if (i == EditorInfo.IME_ACTION_DONE) {
                 vm.sendRequest()
@@ -46,16 +53,27 @@ class SeekerCreateRequestConfirmAddressFragment : Fragment() {
         binding.buttonConfirm.setOnClickListener {
             vm.sendRequest()
         }
+    }
 
-
-
-        vm.state().observe(viewLifecycleOwner, Observer {
+    private fun setVmObserver() {
+        vm.progress.observe(viewLifecycleOwner, Observer {
             when (it) {
-                FINISHED -> {
+                is Idle -> {
+                    // nothing to do
+                }
+                is Loading -> {
+                    //
+                }
+                is Error -> {
+                    it.message?.let { errorMessageId ->
+                        DefaultSnackbar(binding.root, errorMessageId, Snackbar.LENGTH_SHORT)
+                    }
+                }
+                is Finished -> {
                     findNavController().navigate(SeekerCreateRequestConfirmAddressFragmentDirections.toSeekerOverviewFragment())
                 }
                 else -> Log.d(
-                    SeekerCreateRequestConfirmAddressFragment::class.simpleName,
+                    SeekerCreateRequestEnterArticlesFragment::class.simpleName,
                     "unhandled state $it"
                 )
             }
