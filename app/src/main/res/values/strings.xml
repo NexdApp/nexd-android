@@ -170,4 +170,6 @@ phone call"</string>
     <string name="transcript_summary_button_transcript">"Transcribe another call"</string>
     <string name="transcript_summary_title">"Thank you for helping complete %1$s's order!"</string>
     <string name="transcript_error_empty_calls">"There are no calls to transcript currently"</string>
+    <string name="helper_request_detail_additional_request_header">Additional Request</string>
+    <string name="helper_request_detail_delivery_address_header">Delivery Address</string>
 </resources>

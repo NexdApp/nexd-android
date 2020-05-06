@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="requestId"
             type="Long" />
+
         <variable
             name="viewModel"
             type="app.nexd.android.ui.helper.detail.HelperDetailViewModel" />
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="@dimen/horizontalPadding"
         tools:background="@color/colorPrimary"
         tools:context=".ui.helper.detail.HelperDetailFragment">
+
 
         <TextView
             android:id="@+id/textView_name"
@@ -27,13 +30,18 @@
             android:textColor="@android:color/white"
             android:textSize="@dimen/textSize_screen_title"
             android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Smith" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardView_requests"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
-            app:cardCornerRadius="@dimen/radius">
+            app:cardCornerRadius="@dimen/radius"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_name">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -42,7 +50,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/textView_requests_header"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
@@ -56,24 +64,84 @@
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="10dp"
                     tools:listitem="@layout/row_help_request_article" />
+
+                <TextView
+                    android:id="@+id/textView_additionalRequest_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/helper_request_detail_additional_request_header"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="20sp" />
+
+                <ScrollView
+                    android:id="@+id/scrollView_additionalRequest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textView_additionalRequest"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="blablabla" />
+                </ScrollView>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <Space
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView_additional_request"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/radius"
+            app:layout_constraintBottom_toTopOf="@id/button_accept"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardView_requests">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView_delivery_address_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="@string/helper_request_detail_delivery_address_header"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="20sp" />
+
+                <ScrollView
+                    android:id="@+id/scrollView_additional_request"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView_delivery_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="10dp"
+                        tools:text="Max Mustermann\nMusterstr. 15\n12345 Musterstadt" />
+
+                </ScrollView>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <Button
-            android:id="@+id/accept"
+            android:id="@+id/button_accept"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_white"
+            android:onClick="@{() -> viewModel.acceptRequest(requestId)}"
             android:text="@string/helper_request_detail_button_accept"
             android:textAllCaps="false"
             android:textSize="20sp"
-            android:onClick="@{() -> viewModel.acceptRequest(requestId)}"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardView_additional_request" />
 
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
