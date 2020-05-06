@@ -9,8 +9,6 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import app.nexd.android.R
-import app.nexd.android.api.model.HelpRequest
 import app.nexd.android.api.model.HelpRequestArticle
 import app.nexd.android.databinding.FragmentHelperRequestDetailBinding
 import app.nexd.android.ui.common.HelpRequestArticleBinder
@@ -27,6 +25,8 @@ class HelperDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentHelperRequestDetailBinding
 
+    private var requestId: Long = 0L
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,46 +39,34 @@ class HelperDetailFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
+        requestId = args.requestId
         val adapter = MultiViewAdapter()
+        viewModel.setInfo(args.requestId)
         binding.recyclerViewRequests.adapter = adapter
         binding.recyclerViewRequests.layoutManager = LinearLayoutManager(context)
-
         adapter.registerItemBinders(
             HelpRequestArticleBinder()
         )
 
-        viewModel.requestDetails(args.requestId)
-            .observe(viewLifecycleOwner, Observer { request: HelpRequest ->
+        viewModel.requestArticles
+            .observe(viewLifecycleOwner, Observer { articles ->
                 adapter.removeAllSections()
-
-                binding.textViewName.text = resources.getString(
-                    R.string.user_name_layout,
-                    request.firstName,
-                    request.lastName
-                )
-
                 val list = ListSection<HelpRequestArticle>()
-                request.articles?.let {
+                articles?.let {
                     list.addAll(it)
                 }
                 adapter.addSection(list)
-
-                setAccepted(request.helpListId != null)
-
-                binding.buttonAccept.setOnClickListener {
-                    request.id?.let {
-                        viewModel.acceptRequest(it)
-                        findNavController().popBackStack()
-                    }
-                }
             })
-    }
 
-    private fun setAccepted(accepted: Boolean) {
-        binding.buttonAccept.text =
-            getString(if (accepted) R.string.helper_request_detail_button_accepted else R.string.helper_request_detail_button_accept)
-        binding.buttonAccept.isEnabled = !accepted
-    }
+        viewModel.requestIsAccepted.observe(viewLifecycleOwner, Observer {
+            viewModel.setButtonText()
+        })
 
+        viewModel.idOfRequest.observe(viewLifecycleOwner, Observer { idOfRequest ->
+            binding.buttonAccept.setOnClickListener {
+                viewModel.acceptRequest(idOfRequest)
+                findNavController().popBackStack()
+            }
+        })
+    }
 }

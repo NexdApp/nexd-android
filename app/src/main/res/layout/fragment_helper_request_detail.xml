@@ -23,25 +23,16 @@
         tools:context=".ui.helper.detail.HelperDetailFragment">
 
 
-        <TextView
-            android:id="@+id/textView_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/textSize_screen_title"
-            android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Smith" />
-
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView_requests"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
             app:cardCornerRadius="@dimen/radius"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView_name">
+            tools:layout_editor_absoluteY="58dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -83,6 +74,7 @@
                         android:id="@+id/textView_additionalRequest"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:text="@{viewModel.additionalRequest}"
                         tools:text="blablabla" />
                 </ScrollView>
             </LinearLayout>
@@ -96,11 +88,13 @@
             app:layout_constraintBottom_toTopOf="@id/button_accept"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cardView_requests">
+            app:layout_constraintTop_toBottomOf="@id/cardView_requests"
+            app:layout_constraintVertical_bias="0.0">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="10dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -121,7 +115,7 @@
                         android:id="@+id/textView_delivery_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingHorizontal="10dp"
+                        android:text="@{viewModel.firstName + viewModel.lastName + '\n' + viewModel.street + viewModel.number + '\n' + viewModel.zipCode + viewModel.city}"
                         tools:text="Max Mustermann\nMusterstr. 15\n12345 Musterstadt" />
 
                 </ScrollView>
@@ -133,8 +127,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_white"
+            android:enabled="@{!viewModel.requestIsAccepted}"
             android:onClick="@{() -> viewModel.acceptRequest(requestId)}"
-            android:text="@string/helper_request_detail_button_accept"
+            android:text="@{viewModel.buttonText}"
             android:textAllCaps="false"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
