@@ -15,7 +15,7 @@ public interface ArticlesApi {
    * 
    * @return Observable&lt;List&lt;Article&gt;&gt;
    */
-  @GET("article/articles")
+  @GET("articles")
   Observable<List<Article>> articlesControllerFindAll();
     
 
@@ -29,7 +29,7 @@ public interface ArticlesApi {
   @Headers({
     "Content-Type:application/json"
   })
-  @POST("article/articles")
+  @POST("articles")
   Observable<Article> articlesControllerInsertOne(
     @retrofit2.http.Header("x-admin-secret") String xAdminSecret, @retrofit2.http.Body CreateArticleDto createArticleDto
   );
