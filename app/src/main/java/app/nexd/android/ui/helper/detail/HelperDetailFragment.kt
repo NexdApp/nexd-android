@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.api.model.HelpRequest
 import app.nexd.android.api.model.HelpRequestArticle
+import app.nexd.android.databinding.FragmentHelperRequestDetailBinding
 import app.nexd.android.ui.common.HelpRequestArticleBinder
-import kotlinx.android.synthetic.main.fragment_helper_request_detail.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -25,19 +25,24 @@ class HelperDetailFragment : Fragment() {
 
     private val viewModel: HelperDetailViewModel by viewModel()
 
+    private lateinit var binding: FragmentHelperRequestDetailBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_helper_request_detail, container, false)
+        binding = FragmentHelperRequestDetailBinding.inflate(inflater, container, false)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         val adapter = MultiViewAdapter()
-        recyclerView_requests.adapter = adapter
-        recyclerView_requests.layoutManager = LinearLayoutManager(context)
+        binding.recyclerViewRequests.adapter = adapter
+        binding.recyclerViewRequests.layoutManager = LinearLayoutManager(context)
 
         adapter.registerItemBinders(
             HelpRequestArticleBinder()
@@ -47,7 +52,7 @@ class HelperDetailFragment : Fragment() {
             .observe(viewLifecycleOwner, Observer { request: HelpRequest ->
                 adapter.removeAllSections()
 
-                textView_name.text = resources.getString(
+                binding.textViewName.text = resources.getString(
                     R.string.user_name_layout,
                     request.firstName,
                     request.lastName
@@ -61,7 +66,7 @@ class HelperDetailFragment : Fragment() {
 
                 setAccepted(request.helpListId != null)
 
-                accept.setOnClickListener {
+                binding.accept.setOnClickListener {
                     request.id?.let {
                         viewModel.acceptRequest(it)
                         findNavController().popBackStack()
@@ -71,9 +76,9 @@ class HelperDetailFragment : Fragment() {
     }
 
     private fun setAccepted(accepted: Boolean) {
-        accept.text =
+        binding.accept.text =
             getString(if (accepted) R.string.helper_request_detail_button_accepted else R.string.helper_request_detail_button_accept)
-        accept.isEnabled = !accepted
+        binding.accept.isEnabled = !accepted
     }
 
 }
