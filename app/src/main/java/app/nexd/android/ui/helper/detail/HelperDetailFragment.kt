@@ -66,7 +66,7 @@ class HelperDetailFragment : Fragment() {
 
                 setAccepted(request.helpListId != null)
 
-                binding.accept.setOnClickListener {
+                binding.buttonAccept.setOnClickListener {
                     request.id?.let {
                         viewModel.acceptRequest(it)
                         findNavController().popBackStack()
@@ -76,9 +76,9 @@ class HelperDetailFragment : Fragment() {
     }
 
     private fun setAccepted(accepted: Boolean) {
-        binding.accept.text =
+        binding.buttonAccept.text =
             getString(if (accepted) R.string.helper_request_detail_button_accepted else R.string.helper_request_detail_button_accept)
-        binding.accept.isEnabled = !accepted
+        binding.buttonAccept.isEnabled = !accepted
     }
 
 }
