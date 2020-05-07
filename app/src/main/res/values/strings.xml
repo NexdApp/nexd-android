@@ -112,8 +112,6 @@ phone call"</string>
     <string name="ok_button_title">"OK"</string>
     <string name="seeker_request_create_placeholder_delivery_comment">"Delivery comment"</string>
     <string name="helper_request_overview_button_title_current_items_list">"Current Items List"</string>
-
-    <!-- Fuzzy -->
     <string name="helper_request_overview_open_request_item_details_format_ios">"%1$@ ago, %2$@"</string>
     <string name="delivery_confirmation_screen_title">"Thank you for completing the orders!"</string>
     <string name="delivery_confirmation_section_header">"%1$@'s contact information:"</string>
@@ -170,4 +168,5 @@ phone call"</string>
     <string name="transcript_summary_button_transcript">"Transcribe another call"</string>
     <string name="transcript_summary_title">"Thank you for helping complete %1$s's order!"</string>
     <string name="transcript_error_empty_calls">"There are no calls to transcript currently"</string>
+    <string name="user_input_details_explanation_text">"Your account has been created. Additionally you may provide some personal information to make creating help requests easier. All fields are optional and can be left empty."</string>
 </resources>
