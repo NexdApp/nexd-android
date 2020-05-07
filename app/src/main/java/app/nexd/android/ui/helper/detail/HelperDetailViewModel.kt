@@ -1,11 +1,9 @@
 package app.nexd.android.ui.helper.detail
 
-import android.content.res.Resources
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import app.nexd.android.Api
-import app.nexd.android.R
 import app.nexd.android.api.model.HelpList
 import app.nexd.android.api.model.HelpListCreateDto
 import app.nexd.android.api.model.HelpRequestArticle
@@ -15,6 +13,7 @@ import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers.io
 
 class HelperDetailViewModel(private val api: Api) : ViewModel() {
+
 
     val additionalRequest = MutableLiveData<String>()
     val firstName = MutableLiveData<String>()
@@ -75,16 +74,10 @@ class HelperDetailViewModel(private val api: Api) : ViewModel() {
                     additionalRequest.value = it.additionalRequest
                     idOfRequest.value = it.id
                     requestIsAccepted.value = (it.helpListId != null)
-
                 }
             )
 
         compositeDisposable.add(disposable)
-    }
-
-    fun setButtonText() {
-        buttonText.value = Resources.getSystem()
-            .getString(if (requestIsAccepted.value == true) R.string.helper_request_detail_button_accepted else R.string.helper_request_detail_button_accept)
     }
 
     override fun onCleared() {

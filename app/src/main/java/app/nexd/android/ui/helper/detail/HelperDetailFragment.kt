@@ -22,10 +22,8 @@ class HelperDetailFragment : Fragment() {
     private val args: HelperDetailFragmentArgs by navArgs()
 
     private val viewModel: HelperDetailViewModel by viewModel()
-
+    private lateinit var adapter: MultiViewAdapter
     private lateinit var binding: FragmentHelperRequestDetailBinding
-
-    private var requestId: Long = 0L
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,15 +37,22 @@ class HelperDetailFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        requestId = args.requestId
-        val adapter = MultiViewAdapter()
+
         viewModel.setInfo(args.requestId)
+        initRecyclerView()
+        setVmObserver()
+    }
+
+    private fun initRecyclerView() {
+        adapter = MultiViewAdapter()
         binding.recyclerViewRequests.adapter = adapter
         binding.recyclerViewRequests.layoutManager = LinearLayoutManager(context)
         adapter.registerItemBinders(
             HelpRequestArticleBinder()
         )
+    }
 
+    private fun setVmObserver() {
         viewModel.requestArticles
             .observe(viewLifecycleOwner, Observer { articles ->
                 adapter.removeAllSections()
@@ -57,10 +62,6 @@ class HelperDetailFragment : Fragment() {
                 }
                 adapter.addSection(list)
             })
-
-        viewModel.requestIsAccepted.observe(viewLifecycleOwner, Observer {
-            viewModel.setButtonText()
-        })
 
         viewModel.idOfRequest.observe(viewLifecycleOwner, Observer { idOfRequest ->
             binding.buttonAccept.setOnClickListener {
