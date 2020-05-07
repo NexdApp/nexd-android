@@ -15,7 +15,6 @@ import app.nexd.android.ui.common.HelpRequestCreateArticleBinder
 import app.nexd.android.ui.helper.transcript.TranscriptViewModel
 import app.nexd.android.ui.helper.transcript.TranscriptViewModel.Progress.Finished
 import app.nexd.android.ui.helper.transcript.articles.TranscriptArticlesFragmentDirections.Companion.toTranscriptSummaryFragment
-import kotlinx.android.synthetic.main.fragment_transcript_articles.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
 
@@ -42,8 +41,8 @@ class TranscriptArticlesFragment : Fragment() {
         val adapter = MultiViewAdapter()
         adapter.registerItemBinders(HelpRequestCreateArticleBinder())
 
-        recyclerview_helpRequestArticles.adapter = adapter
-        recyclerview_helpRequestArticles.layoutManager = LinearLayoutManager(context)
+        binding.recyclerviewHelpRequestArticles.adapter = adapter
+        binding.recyclerviewHelpRequestArticles.layoutManager = LinearLayoutManager(context)
 
         transcriptViewModel.articles.observe(viewLifecycleOwner, Observer { articles ->
             adapter.removeAllSections()
@@ -53,7 +52,7 @@ class TranscriptArticlesFragment : Fragment() {
             adapter.addSection(section)
         })
 
-        button_transcript.setOnClickListener {
+        binding.buttonTranscript.setOnClickListener {
             transcriptViewModel.saveHelpRequest()
         }
 
@@ -64,5 +63,16 @@ class TranscriptArticlesFragment : Fragment() {
             }
         })
     }
+
+    override fun onPause() {
+        super.onPause()
+        binding.playerView.player?.playWhenReady = false
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.playerView.player?.playWhenReady = true
+    }
+
 
 }

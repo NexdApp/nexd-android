@@ -11,7 +11,6 @@ import app.nexd.android.databinding.FragmentTranscriptInfoBinding
 import app.nexd.android.di.sharedGraphViewModel
 import app.nexd.android.ui.helper.transcript.TranscriptViewModel
 import app.nexd.android.ui.helper.transcript.info.TranscriptInfoFragmentDirections.Companion.toTranscriptArticlesFragment
-import kotlinx.android.synthetic.main.fragment_transcript_info.*
 
 class TranscriptInfoFragment : Fragment() {
 
@@ -32,11 +31,21 @@ class TranscriptInfoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        button_confirm.setOnClickListener {
+        binding.buttonConfirm.setOnClickListener {
             if (transcriptViewModel.validateInfo()) {
                 findNavController().navigate(toTranscriptArticlesFragment())
             }
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        binding.playerView.player?.playWhenReady = false
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.playerView.player?.playWhenReady = true
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
