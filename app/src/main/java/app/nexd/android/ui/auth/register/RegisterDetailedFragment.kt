@@ -18,7 +18,6 @@ import app.nexd.android.ui.auth.register.RegisterDetailedViewModel.Progress.*
 import app.nexd.android.ui.common.Constants
 import app.nexd.android.ui.common.DefaultSnackbar
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_register_detailed.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegisterDetailedFragment : Fragment() {
@@ -43,46 +42,43 @@ class RegisterDetailedFragment : Fragment() {
 
         with(findNavController()) {
             val appBarConfiguration = AppBarConfiguration(setOf(R.id.registerDetailedFragment))
-            register_detailed_toolbar.setupWithNavController(this, appBarConfiguration)
+            binding.registerDetailedToolbar.setupWithNavController(this, appBarConfiguration)
         }
 
-        editText_city.setOnEditorActionListener { _, i, _ ->
+        binding.editTextCity.setOnEditorActionListener { _, i, _ ->
             if (i == EditorInfo.IME_ACTION_DONE) {
-                vm.setUserDetails()
+                if (binding.buttonRegister.isEnabled) binding.buttonRegister.performClick()
             }
             false
         }
 
-        vm.progress.observe(viewLifecycleOwner, Observer { progress ->
-            progressBar.visibility = View.GONE
-            editText_phoneNumber.isEnabled = true
-            editText_street.isEnabled = true
-            editText_houseNr.isEnabled = true
-            editText_zipCode.isEnabled = true
-            editText_city.isEnabled = true
+        binding.buttonRegister.setOnClickListener {
+            switchUiIsEnabled(false)
+            vm.setUserDetails()
+        }
 
+        vm.progress.observe(viewLifecycleOwner, Observer { progress ->
             when (progress) {
                 is Idle -> { /* do nothing in idle */ }
                 is Loading -> {
-                    progressBar.visibility = View.VISIBLE
-                    editText_phoneNumber.isEnabled = false
-                    editText_street.isEnabled = false
-                    editText_houseNr.isEnabled = false
-                    editText_zipCode.isEnabled = false
-                    editText_city.isEnabled = false
+                    binding.progressBar.visibility = View.VISIBLE
                 }
                 is Error -> {
                     progress.message?.let {
                         DefaultSnackbar(view, it, Snackbar.LENGTH_SHORT)
                     }
+                    binding.progressBar.visibility = View.GONE
+                    switchUiIsEnabled(true)
                 }
                 is Finished -> {
                     findNavController().navigate(RegisterDetailedFragmentDirections.toRoleFragment())
+                    binding.progressBar.visibility = View.GONE
+                    switchUiIsEnabled(true)
                 }
             }
         })
 
-        button_dataProtection_detail_registration.setOnClickListener {
+        binding.buttonDataProtectionDetailRegistration.setOnClickListener {
             showPrivacyPolicy()
         }
     }
@@ -94,5 +90,16 @@ class RegisterDetailedFragment : Fragment() {
                 Uri.parse(Constants.PRIVACY_POLICY_URL)
             )
         )
+    }
+
+    private fun switchUiIsEnabled(enable: Boolean) {
+        binding.apply {
+            editTextPhoneNumber.isEnabled = enable
+            editTextStreet.isEnabled = enable
+            editTextHouseNr.isEnabled = enable
+            editTextZipCode.isEnabled = enable
+            editTextCity.isEnabled = enable
+            buttonRegister.isEnabled = enable
+        }
     }
 }

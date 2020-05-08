@@ -120,6 +120,8 @@ class RegisterViewModel(
                         }
                     )
             }
+        } else {
+            progress.value = Progress.Error()
         }
     }
 
