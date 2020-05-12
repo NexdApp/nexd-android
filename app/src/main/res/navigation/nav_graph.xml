@@ -251,19 +251,29 @@
     <navigation
         android:id="@+id/nav_transcript"
         android:label="Transcript"
-        app:startDestination="@id/callOverviewFragment">
+        app:startDestination="@id/transcriptInfoFragment">
         <fragment
             android:id="@+id/transcriptArticlesFragment"
             android:name="app.nexd.android.ui.helper.transcript.articles.TranscriptArticlesFragment"
             android:label="TranscriptArticlesFragment"
-            tools:layout="@layout/fragment_transcript_articles"/>
+            tools:layout="@layout/fragment_transcript_articles">
+            <action
+                android:id="@+id/toTranscriptSummaryFragment"
+                app:destination="@id/transcriptSummaryFragment"
+                app:enterAnim="@animator/slide_in_right_to_left"
+                app:exitAnim="@animator/slide_out_right_to_left"
+                app:popEnterAnim="@animator/slide_in_left_to_right"
+                app:popExitAnim="@animator/slide_out_left_to_right"
+                app:popUpTo="@id/transcriptInfoFragment"
+                app:popUpToInclusive="true" />
+        </fragment>
         <fragment
             android:id="@+id/transcriptInfoFragment"
             android:name="app.nexd.android.ui.helper.transcript.info.TranscriptInfoFragment"
             android:label="TranscriptInfoFragment"
             tools:layout="@layout/fragment_transcript_info">
             <action
-                android:id="@+id/action_transcriptInfoFragment_to_transcriptArticlesFragment"
+                android:id="@+id/toTranscriptArticlesFragment"
                 app:destination="@id/transcriptArticlesFragment"
                 app:enterAnim="@animator/slide_in_right_to_left"
                 app:exitAnim="@animator/slide_out_right_to_left"
@@ -271,13 +281,15 @@
                 app:popExitAnim="@animator/slide_out_left_to_right" />
         </fragment>
         <fragment
-            android:id="@+id/callOverviewFragment"
-            android:name="app.nexd.android.ui.helper.transcript.calls.TranscriptCallsFragment"
-            android:label="CallOverviewFragment"
-            tools:layout="@layout/fragment_transcript_calls">
+            android:id="@+id/transcriptSummaryFragment"
+            android:name="app.nexd.android.ui.helper.transcript.summary.TranscriptSummaryFragment"
+            android:label="TranscriptSummaryFragment"
+            tools:layout="@layout/fragment_transcript_summary">
             <action
-                android:id="@+id/action_callOverviewFragment_to_transcriptInfoFragment"
+                android:id="@+id/toTranscriptInfoFragment"
                 app:destination="@id/transcriptInfoFragment"
+                app:popUpTo="@id/transcriptSummaryFragment"
+                app:popUpToInclusive="true"
                 app:enterAnim="@animator/slide_in_right_to_left"
                 app:exitAnim="@animator/slide_out_right_to_left"
                 app:popEnterAnim="@animator/slide_in_left_to_right"

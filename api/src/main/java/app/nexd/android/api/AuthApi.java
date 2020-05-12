@@ -1,9 +1,12 @@
 package app.nexd.android.api;
 
+import app.nexd.android.api.model.EmailPasswordResetDto;
 import app.nexd.android.api.model.LoginDto;
 import app.nexd.android.api.model.RegisterDto;
 import app.nexd.android.api.model.TokenDto;
+import io.reactivex.Completable;
 import io.reactivex.Observable;
+import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
@@ -48,6 +51,31 @@ public interface AuthApi {
   @POST("auth/register")
   Observable<TokenDto> authControllerRegister(
     @retrofit2.http.Body RegisterDto registerDto
+  );
+
+  /**
+   * Email password reset initiation
+   * 
+   * @param email  (required)
+   * @return Completable
+   */
+  @GET("auth/reset_email_password_initiate/{email}")
+  Completable authControllerResetEmailPasswordInitiate(
+    @retrofit2.http.Path("email") String email
+  );
+
+  /**
+   * Email password reset initiation
+   * 
+   * @param emailPasswordResetDto  (required)
+   * @return Completable
+   */
+  @Headers({
+    "Content-Type:application/json"
+  })
+  @POST("auth/reset_email_password_complete")
+  Completable authControllerResetPasswordComplete(
+    @retrofit2.http.Body EmailPasswordResetDto emailPasswordResetDto
   );
 
 }

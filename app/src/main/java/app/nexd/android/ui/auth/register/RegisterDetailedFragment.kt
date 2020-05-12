@@ -75,7 +75,9 @@ class RegisterDetailedFragment : Fragment() {
                     editText_city.isEnabled = false
                 }
                 is Error -> {
-                    DefaultSnackbar(view, progress.message, Snackbar.LENGTH_SHORT)
+                    progress.message?.let {
+                        DefaultSnackbar(view, it, Snackbar.LENGTH_SHORT)
+                    }
                 }
                 is Finished -> {
                     activityVm.setUserAsComplete()

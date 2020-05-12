@@ -15,6 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        tools:background="@color/colorPrimary"
         android:paddingHorizontal="15dp"
         android:paddingTop="20dp">
 
@@ -60,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
-            android:drawableTint="@color/colorPrimary"
+            android:drawableTint="@android:color/white"
             android:text="@string/transcribe_articles_button_title_confirm"
             android:textAlignment="textStart"
             android:textAllCaps="false"

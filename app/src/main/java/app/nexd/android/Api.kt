@@ -2,6 +2,7 @@ package app.nexd.android
 
 import app.nexd.android.BuildConfig.API_BASE_URL
 import app.nexd.android.api.*
+import app.nexd.android.network.BackendErrorInterceptor
 import com.itkacher.okhttpprofiler.OkHttpProfilerInterceptor
 import io.reactivex.schedulers.Schedulers.io
 import okhttp3.Interceptor
@@ -35,11 +36,12 @@ private class NexdApiClient(private val preferences: Preferences) : ApiClient() 
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonCustomConverterFactory.create(JSON().gson))
 
-
         val loggingInterceptor = HttpLoggingInterceptor()
             .setLevel(HttpLoggingInterceptor.Level.BODY)
 
         okBuilder.addInterceptor(loggingInterceptor)
+
+        okBuilder.addInterceptor(BackendErrorInterceptor())
 
         // auth interceptor
         okBuilder.addInterceptor(Interceptor { chain ->
