@@ -73,7 +73,7 @@ class LoginFragment : Fragment() {
                     DefaultSnackbar(button_login, progress.message, Snackbar.LENGTH_SHORT)
                 }
                 is Finished -> {
-                    activityVm.authenticateWithToken(progress.token)
+                    activityVm.authenticate(progress.token)
                     findNavController().navigate(NavGraphDirections.toRoleFragmentOnAuth())
                 }
             }

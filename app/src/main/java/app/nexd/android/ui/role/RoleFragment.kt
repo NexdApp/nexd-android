@@ -34,11 +34,11 @@ class RoleFragment : Fragment() {
         activityVm.authState.observe(viewLifecycleOwner, Observer {
             Log.d("YARAFANG", "auth state $it")
             when (it) {
-                AuthState.UNAUTHENTICATED -> findNavController().navigate(
+                null, AuthState.UNAUTHENTICATED -> findNavController().navigate(
                     NavGraphDirections.toAuthFragmentOnAuth())
-                AuthState.REGISTERED -> findNavController().navigate(
+                AuthState.INCOMPLETE -> findNavController().navigate(
                     NavGraphDirections.toRegisterDetailedFragmentOnAuth())
-                AuthState.COMPLETE -> {} // no-op
+                AuthState.REGISTERED, AuthState.COMPLETE -> {} // no-op
             }
         })
 
@@ -63,7 +63,7 @@ class RoleFragment : Fragment() {
         }
 
         button_logout.setOnClickListener {
-            vm.logout()
+            activityVm.logout()
             findNavController().navigate(R.id.actionLogin)
         }
     }

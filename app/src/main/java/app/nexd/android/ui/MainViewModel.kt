@@ -1,19 +1,23 @@
 package app.nexd.android.ui
 
 import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDirections
 import app.nexd.android.Api
 import app.nexd.android.NavGraphDirections
 import app.nexd.android.Preferences
 import app.nexd.android.R
-import app.nexd.android.api.model.User
 import io.reactivex.BackpressureStrategy
+import io.reactivex.android.schedulers.AndroidSchedulers
 
 enum class AuthState {
     UNAUTHENTICATED,
     REGISTERED,
+    INCOMPLETE,
     COMPLETE
 }
 
@@ -40,56 +44,50 @@ class MainViewModel(
         return ret
     }
 
-    private val token = MutableLiveData<String>()
+    private val token = MutableLiveData<String?>(preferences.getToken())
 
-    private val userRefreshTrigger = MutableLiveData<Boolean>()
-    val user: LiveData<User> = run {
-        val userMediator = MediatorLiveData<User>()
-        userMediator.addSource(token) {
-            userMediator.value =
-               LiveDataReactiveStreams.fromPublisher(
-                   api.userControllerFindMe()
-                       .toFlowable(BackpressureStrategy.LATEST)
-               ).value
-        }
-        userMediator.addSource(userRefreshTrigger) {
-            userMediator.value =
-                LiveDataReactiveStreams.fromPublisher(
+    private val _detailsAdded = MutableLiveData<Boolean>()
+
+
+    private val _authState = MediatorLiveData<AuthState>().apply {
+        value = AuthState.UNAUTHENTICATED
+
+        addSource(token) {
+            when (it) {
+                null, "" -> AuthState.UNAUTHENTICATED
+                else -> {
+                    value = AuthState.REGISTERED
                     api.userControllerFindMe()
                         .toFlowable(BackpressureStrategy.LATEST)
-                ).value
-        }
-        userMediator
-    }
-
-
-    private val _authState = run {
-        val authMediator = MediatorLiveData<AuthState>()
-        authMediator.postValue(AuthState.UNAUTHENTICATED)
-
-        authMediator.addSource(user) { user ->
-            Log.d("user mediatior", "user triggered with value $user")
-            user?.let {
-                val hasEmptyDetail = with(user) {
-                    phoneNumber.isNullOrEmpty()
-                        || street.isNullOrEmpty()
-                        || number.isNullOrEmpty()
-                        || zipCode.isNullOrEmpty()
-                        || city.isNullOrEmpty()
-                }
-                authMediator.value = when (hasEmptyDetail) {
-                    true -> AuthState.REGISTERED
-                    false -> AuthState.COMPLETE
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe { user ->
+                            val hasEmptyDetail = with(user) {
+                                phoneNumber.isNullOrEmpty()
+                                        || street.isNullOrEmpty()
+                                        || number.isNullOrEmpty()
+                                        || zipCode.isNullOrEmpty()
+                                        || city.isNullOrEmpty()
+                            }
+                            if (hasEmptyDetail) {
+                                value = AuthState.INCOMPLETE
+                                Log.d("auth", "incomplete")
+                            }
+                        }
                 }
             }
         }
-        authMediator
+        addSource(_detailsAdded) {
+            value = AuthState.COMPLETE
+        }
     }
-    val authState: LiveData<AuthState> = _authState
+    val authState: LiveData<AuthState> = run {
+        Log.d("auth state flow", "${_authState.value}")
+        _authState }
 
-    fun authenticateWithToken(token: String) {
+    fun authenticate(token: String) {
         preferences.setToken(token) // for API use
         this.token.value = token
+
     }
 
     fun logout() {
@@ -97,9 +95,8 @@ class MainViewModel(
         this.token.value = null
     }
 
-    fun refreshUser() {
-        userRefreshTrigger.value = true
-
+    fun setUserAsComplete() {
+        _detailsAdded.value = true
     }
 
 }

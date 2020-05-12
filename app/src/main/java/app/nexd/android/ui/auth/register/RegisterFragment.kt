@@ -74,8 +74,8 @@ class RegisterFragment : Fragment() {
                     DefaultSnackbar(view, progress.message, Snackbar.LENGTH_SHORT)
                 }
                 is Finished -> {
-                    activityVm.authenticateWithToken(progress.token)
-                    findNavController().popBackStack() // auth state will navigate to details
+                    activityVm.authenticate(progress.token)
+                    findNavController().navigateUp() // auth state will navigate to details
                 }
             }
         })

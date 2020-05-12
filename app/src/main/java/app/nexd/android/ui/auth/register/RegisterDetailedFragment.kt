@@ -78,8 +78,8 @@ class RegisterDetailedFragment : Fragment() {
                     DefaultSnackbar(view, progress.message, Snackbar.LENGTH_SHORT)
                 }
                 is Finished -> {
-                    activityVm.refreshUser()
-                    findNavController().popBackStack()
+                    activityVm.setUserAsComplete()
+                    findNavController().navigateUp()
                 }
             }
         })
