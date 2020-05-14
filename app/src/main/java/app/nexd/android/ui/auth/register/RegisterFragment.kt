@@ -77,7 +77,7 @@ class RegisterFragment : Fragment() {
                 }
                 is Finished -> {
                     activityVm.authenticate(progress.token)
-                    findNavController().navigateUp() // auth state will navigate to details
+                    findNavController().navigate(RegisterFragmentDirections.toRegisterDetailedFragment())
                 }
             }
         })

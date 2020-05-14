@@ -19,16 +19,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-/*        findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener { controller, destination, _ ->
-            Log.v("Navigation", destination.toString())
-            runOnUiThread {
-                // skip authentication if user is logged in
-                mainViewModel.getNavigationOverride(destination)?.let {
-                        controller.navigate(it)
-                }
-            }
-        }*/
-
         RxJavaPlugins.setErrorHandler {
             Log.e(MainActivity::class.simpleName, "unhandled error", it)
         }

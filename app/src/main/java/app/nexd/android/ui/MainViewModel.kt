@@ -5,12 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.navigation.NavDestination
-import androidx.navigation.NavDirections
 import app.nexd.android.Api
-import app.nexd.android.NavGraphDirections
 import app.nexd.android.Preferences
-import app.nexd.android.R
 import io.reactivex.BackpressureStrategy
 import io.reactivex.android.schedulers.AndroidSchedulers
 
@@ -25,24 +21,6 @@ class MainViewModel(
     private val api: Api,
     private val preferences: Preferences) : ViewModel() {
 
-
-
-    private fun isAuthenticated() = !preferences.getToken().isNullOrBlank()
-
-    fun getNavigationOverride(destination: NavDestination): NavDirections? {
-
-        var ret: NavDirections? = null
-        if (isAuthenticated()) {
-            if (!preferences.registrationComplete && destination.id != R.id.registerDetailedFragment) {
-                Log.v("Navigation", "redirect toRegisterDetailedFragmentOnAuth")
-                ret = NavGraphDirections.toRegisterDetailedFragmentOnAuth()
-            } else if (destination.id == R.id.authFragment) {
-                Log.v("Navigation", "toRoleFragmentOnAuth")
-                ret = NavGraphDirections.toRoleFragmentOnAuth()
-            }
-        }
-        return ret
-    }
 
     private val token = MutableLiveData<String?>(preferences.getToken())
 
