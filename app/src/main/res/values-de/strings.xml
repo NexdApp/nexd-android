@@ -67,8 +67,6 @@
     <string name="seeker_detail_placeholder_information">"Zusätzliche Informationen"</string>
     <string name="seeker_request_create_heading">"Ich benötige:"</string>
     <string name="seeker_request_create_placeholder_information">"Zusätzliche Informationen"</string>
-    <string name="seeker_request_create_confirm_address">"Bitte bestätige deine Lieferadresse"</string>
-    <string name="seeker_request_create_submit">"Anfrage senden"</string>
     <string name="user_input_details_screen_title">"Gib weitere Details ein"</string>
     <string name="user_input_details_placeholder_phoneNumber">"Tel. Nr."</string>
     <string name="user_input_details_placeholder_street">"Straße"</string>
@@ -170,6 +168,8 @@
     <string name="transcript_summary_button_transcript">"Einen weiteren Anruf übertragen"</string>
     <string name="transcript_summary_title">"Danke, dass du %1$s's Bestellung vervollständigt hast!"</string>
     <string name="transcript_error_empty_calls">"Es gibt zur Zeit keine Anrufe zum übersetzen"</string>
-    <string name="seeker_request_create_no_articles">"Bitte mindestens 1 Artikel wählen"</string>
     <string name="user_input_details_explanation_text">"Das Benutzerkonto wurde erstellt. Du kannst zusätzlich weitere Informationen hinterlegen um künftig die Erstellung deiner Anfragen zu vereinfachen. Alle Felder sind jedoch optional und können leer gelassen werden."</string>
+    <string name="seeker_request_create_confirm_address">"Bitte bestätige deine Lieferadresse"</string>
+    <string name="seeker_request_create_submit">"Anfrage senden"</string>
+    <string name="seeker_request_create_no_articles">"Bitte mindestens 1 Artikel wählen"</string>
 </resources>
