@@ -67,8 +67,6 @@
     <string name="seeker_detail_placeholder_information">"Additional information"</string>
     <string name="seeker_request_create_heading">"I need:"</string>
     <string name="seeker_request_create_placeholder_information">"Additional information"</string>
-    <string name="seeker_request_create_confirm_address">"Please confirm your delivery address"</string>
-    <string name="seeker_request_create_submit">"Submit Request"</string>
     <string name="user_input_details_screen_title">"Input further information"</string>
     <string name="user_input_details_placeholder_phoneNumber">"Tel."</string>
     <string name="user_input_details_placeholder_street">"Street"</string>
@@ -170,6 +168,8 @@ phone call"</string>
     <string name="transcript_summary_button_transcript">"Transcribe another call"</string>
     <string name="transcript_summary_title">"Thank you for helping complete %1$s's order!"</string>
     <string name="transcript_error_empty_calls">"There are no calls to transcript currently"</string>
-    <string name="seeker_request_create_no_articles">Please enter at least 1 article</string>
     <string name="user_input_details_explanation_text">"Your account has been created. Additionally you may provide some personal information to make creating help requests easier. All fields are optional and can be left empty."</string>
+    <string name="seeker_request_create_confirm_address">"Please confirm your delivery address"</string>
+    <string name="seeker_request_create_submit">"Submit Request"</string>
+    <string name="seeker_request_create_no_articles">"Please enter at least 1 article"</string>
 </resources>
