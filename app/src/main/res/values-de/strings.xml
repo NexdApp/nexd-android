@@ -171,4 +171,5 @@
     <string name="transcript_summary_title">"Danke, dass du %1$s's Bestellung vervollständigt hast!"</string>
     <string name="transcript_error_empty_calls">"Es gibt zur Zeit keine Anrufe zum übersetzen"</string>
     <string name="seeker_request_create_no_articles">"Bitte mindestens 1 Artikel wählen"</string>
+    <string name="user_input_details_explanation_text">"Das Benutzerkonto wurde erstellt. Du kannst zusätzlich weitere Informationen hinterlegen um künftig die Erstellung deiner Anfragen zu vereinfachen. Alle Felder sind jedoch optional und können leer gelassen werden."</string>
 </resources>

@@ -17,9 +17,4 @@ class RoleViewModel(private val api: Api, private val preferences: Preferences) 
         )
     }
 
-    fun logout() {
-        preferences.setToken(null)
-        // Preferences.removeUserId(getApplication())
-    }
-
 }
