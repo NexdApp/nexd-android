@@ -11,18 +11,21 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import app.nexd.android.NavGraphDirections
 import app.nexd.android.databinding.FragmentLoginBinding
-import app.nexd.android.ui.auth.login.LoginFragmentDirections.Companion.toRoleFragment
+import app.nexd.android.ui.MainViewModel
 import app.nexd.android.ui.auth.login.LoginViewModel.Progress.*
 import app.nexd.android.ui.common.Constants
 import app.nexd.android.ui.common.DefaultSnackbar
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_login.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment() {
 
     private val vm: LoginViewModel by viewModel()
+    private val activityVm by sharedViewModel<MainViewModel>()
 
     private lateinit var binding: FragmentLoginBinding
 
@@ -69,17 +72,16 @@ class LoginFragment : Fragment() {
                 is Error -> {
                     DefaultSnackbar(button_login, progress.message, Snackbar.LENGTH_SHORT)
                 }
-                is Finished -> proceed()
+                is Finished -> {
+                    activityVm.authenticate(progress.token)
+                    findNavController().navigate(NavGraphDirections.toRoleFragmentOnAuth())
+                }
             }
         })
 
         button_dataProtection.setOnClickListener {
             showPrivacyPolicy()
         }
-    }
-
-    private fun proceed() {
-        findNavController().navigate(toRoleFragment())
     }
 
     private fun showPrivacyPolicy() {
