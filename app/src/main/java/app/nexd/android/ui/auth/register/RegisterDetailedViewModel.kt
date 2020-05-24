@@ -93,7 +93,6 @@ class RegisterDetailedViewModel(
                 )
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
-                        preferences.registrationComplete = true
                         progress.value = Progress.Finished
                     }, { error ->
                         if (error is BackendError) {
@@ -121,6 +120,8 @@ class RegisterDetailedViewModel(
                         }
                     })
             }
+        } else {
+            progress.value = Progress.Error()
         }
     }
 

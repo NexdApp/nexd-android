@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/horizontalPadding"
+            android:paddingTop="@dimen/topPadding">
+
+            <TextView
+                android:id="@+id/textView_enter_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/seeker_request_create_confirm_address"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editText_first_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:autofillHints="personGivenName"
+                android:backgroundTint="@color/grey_500"
+                android:error="@{viewModel.firstNameError}"
+                android:hint="@string/registration_placeholder_firstName"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName"
+                android:paddingHorizontal="@dimen/horizontalPadding"
+                android:text="@={viewModel.firstName}"
+                android:textColor="@android:color/white"
+                android:textColorHint="@color/grey_500"
+                android:textCursorDrawable="@android:color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView_enter_address" />
+
+            <EditText
+                android:id="@+id/editText_last_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:autofillHints="personFamilyName"
+                android:backgroundTint="@color/grey_500"
+                android:error="@{viewModel.lastNameError}"
+                android:hint="@string/registration_placeholder_lastName"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName"
+                android:paddingHorizontal="@dimen/horizontalPadding"
+                android:text="@={viewModel.lastName}"
+                android:textColor="@android:color/white"
+                android:textColorHint="@color/grey_500"
+                android:textCursorDrawable="@android:color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/editText_first_name" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout_street_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/editText_last_name">
+
+                <EditText
+                    android:id="@+id/editText_street"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:autofillHints="streetAddress"
+                    android:backgroundTint="@color/grey_500"
+                    android:error="@{viewModel.streetError}"
+                    android:hint="@string/user_input_details_placeholder_street"
+                    android:imeOptions="actionNext"
+                    android:inputType="textCapWords"
+                    android:lines="1"
+                    android:nextFocusRight="@id/editText_street_number"
+                    android:paddingHorizontal="@dimen/horizontalPadding"
+                    android:text="@={viewModel.street}"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@color/grey_500"
+                    android:textCursorDrawable="@android:color/white" />
+
+                <EditText
+                    android:id="@+id/editText_street_number"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints="houseNumber"
+                    android:backgroundTint="@color/grey_500"
+                    android:error="@{viewModel.numberError}"
+                    android:hint="@string/user_input_details_placeholder_houseNumber"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:lines="1"
+                    android:nextFocusDown="@id/editText_zip_code"
+                    android:paddingHorizontal="@dimen/horizontalPadding"
+                    android:text="@={viewModel.number}"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@color/grey_500"
+                    android:textCursorDrawable="@android:color/white"
+                    tools:ignore="TextFields" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout_zipCode_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout_street_number">
+
+                <EditText
+                    android:id="@+id/editText_zip_code"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:autofillHints="postalCode"
+                    android:backgroundTint="@color/grey_500"
+                    android:error="@{viewModel.zipCodeError}"
+                    android:hint="@string/registration_placeholder_zip"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:lines="1"
+                    android:nextFocusRight="@id/editText_city"
+                    android:paddingHorizontal="@dimen/horizontalPadding"
+                    android:text="@={viewModel.zipCode}"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@color/grey_500"
+                    android:textCursorDrawable="@android:color/white" />
+
+                <EditText
+                    android:id="@+id/editText_city"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:autofillHints="city"
+                    android:backgroundTint="@color/grey_500"
+                    android:error="@{viewModel.cityError}"
+                    android:hint="@string/user_input_details_placeholder_city"
+                    android:imeOptions="actionNext"
+                    android:inputType="textCapWords"
+                    android:lines="1"
+                    android:nextFocusDown="@id/editText_phoneNumber"
+                    android:paddingHorizontal="@dimen/horizontalPadding"
+                    android:text="@={viewModel.city}"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@color/grey"
+                    android:textCursorDrawable="@android:color/white" />
+            </LinearLayout>
+
+
+            <EditText
+                android:id="@+id/editText_phoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="16dp"
+                android:autofillHints="phoneNumber"
+                android:backgroundTint="@color/grey_500"
+                android:error="@{viewModel.phoneNumberError}"
+                android:hint="@string/registration_placeholder_phone"
+                android:imeOptions="actionDone"
+                android:inputType="phone"
+                android:lines="1"
+                android:paddingHorizontal="@dimen/horizontalPadding"
+                android:text="@={viewModel.phoneNumber}"
+                android:textColor="@android:color/white"
+                android:textColorHint="@color/grey_500"
+                android:textCursorDrawable="@android:color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout_zipCode_city" />
+
+            <Button
+                android:id="@+id/button_confirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/rounded_white"
+                android:drawableEnd="@drawable/ic_chevron_right_black_24dp"
+                android:drawableTint="@color/colorPrimary"
+                android:padding="20dp"
+                android:text="@string/seeker_request_create_submit"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/textSize_navigation_button"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/editText_phoneNumber"
+                app:layout_constraintVertical_bias="1.0" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

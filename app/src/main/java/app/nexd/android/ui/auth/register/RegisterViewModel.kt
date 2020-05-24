@@ -22,7 +22,7 @@ class RegisterViewModel(
         object Idle : Progress()
         object Loading : Progress()
         class Error(@StringRes val message: Int? = null) : Progress()
-        object Finished : Progress()
+        class Finished(val token: String) : Progress()
     }
 
     val firstName = MutableLiveData("")
@@ -111,15 +111,15 @@ class RegisterViewModel(
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
                         {
-                            preferences.registrationComplete = false
-                            preferences.setToken(it.accessToken)
-                            progress.value = Progress.Finished
+                            progress.value = Progress.Finished(token = it.accessToken)
                         },
                         {
                             handleErrors(it)
                         }
                     )
             }
+        } else {
+            progress.value = Progress.Error()
         }
     }
 
