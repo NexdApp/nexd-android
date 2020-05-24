@@ -45,9 +45,9 @@ class RegisterDetailedFragment : Fragment() {
             binding.registerDetailedToolbar.setupWithNavController(this, appBarConfiguration)
         }
 
-        binding.editTextCity.setOnEditorActionListener { _, i, _ ->
-            if (i == EditorInfo.IME_ACTION_DONE) {
-                if (binding.buttonRegister.isEnabled) binding.buttonRegister.performClick()
+        binding.editTextCity.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE && binding.buttonRegister.isEnabled) {
+                binding.buttonRegister.performClick()
             }
             false
         }
@@ -92,6 +92,7 @@ class RegisterDetailedFragment : Fragment() {
         )
     }
 
+    // TODO: migrate that to ViewModel and bind visibility
     private fun switchUiIsEnabled(enable: Boolean) {
         binding.apply {
             editTextPhoneNumber.isEnabled = enable
