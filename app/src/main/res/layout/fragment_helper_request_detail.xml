@@ -114,10 +114,10 @@
                         android:id="@+id/textView_delivery_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@{viewModel.firstName + ' ' + viewModel.lastName + '\n' + viewModel.street + ' ' + viewModel.number + '\n' + viewModel.zipCode + ' ' + viewModel.city}"
+                        android:text="@{viewModel.firstName + '\n' + viewModel.street + ' ' + viewModel.number + '\n' + viewModel.zipCode + ' ' + viewModel.city}"
                         android:textColor="@android:color/black"
                         android:textSize="16sp"
-                        tools:text="Max Mustermann\nMusterstr. 15\n12345 Musterstadt" />
+                        tools:text="Max\nMusterstr. 15\n12345 Musterstadt" />
 
                 </ScrollView>
             </LinearLayout>
