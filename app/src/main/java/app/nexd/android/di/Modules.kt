@@ -26,7 +26,7 @@ val appModule = module {
 
     single { Api(preferences = get()) }
 
-    viewModel { MainViewModel(get()) }
+    viewModel { MainViewModel(get(), get()) }
 
     viewModel { RoleViewModel(get(), get()) }
 
