@@ -1,29 +1,80 @@
 package app.nexd.android.ui
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.navigation.NavDestination
-import androidx.navigation.NavDirections
-import app.nexd.android.NavGraphDirections
+import app.nexd.android.Api
 import app.nexd.android.Preferences
-import app.nexd.android.R
+import io.reactivex.BackpressureStrategy
+import io.reactivex.android.schedulers.AndroidSchedulers
 
-class MainViewModel(private val preferences: Preferences) : ViewModel() {
+enum class AuthState {
+    UNAUTHENTICATED,
+    REGISTERED,
+    INCOMPLETE,
+    COMPLETE
+}
 
-    private fun isAuthenticated() = !preferences.getToken().isNullOrBlank()
+class MainViewModel(
+    private val api: Api,
+    private val preferences: Preferences) : ViewModel() {
 
-    fun getNavigationOverride(destination: NavDestination): NavDirections? {
 
-        var ret: NavDirections? = null
-        if (isAuthenticated()) {
-            if (!preferences.registrationComplete && destination.id != R.id.registerDetailedFragment) {
-                Log.v("Navigation", "redirect toRegisterDetailedFragmentOnAuth")
-                ret = NavGraphDirections.toRegisterDetailedFragmentOnAuth()
-            } else if (destination.id == R.id.authFragment) {
-                Log.v("Navigation", "toRoleFragmentOnAuth")
-                ret = NavGraphDirections.toRoleFragmentOnAuth()
+    private val token = MutableLiveData<String?>(preferences.getToken())
+
+    private val _detailsAdded = MutableLiveData<Boolean>()
+
+
+    private val _authState = MediatorLiveData<AuthState>().apply {
+        value = AuthState.UNAUTHENTICATED
+
+        addSource(token) {
+            when (it) {
+                null, "" -> AuthState.UNAUTHENTICATED
+                else -> {
+                    value = AuthState.REGISTERED
+                    api.userControllerFindMe()
+                        .toFlowable(BackpressureStrategy.LATEST)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe { user ->
+                            val hasEmptyDetail = with(user) {
+                                phoneNumber.isNullOrEmpty()
+                                        || street.isNullOrEmpty()
+                                        || number.isNullOrEmpty()
+                                        || zipCode.isNullOrEmpty()
+                                        || city.isNullOrEmpty()
+                            }
+                            if (hasEmptyDetail) {
+                                value = AuthState.INCOMPLETE
+                                Log.d("auth", "incomplete")
+                            }
+                        }
+                }
             }
         }
-        return ret
+        addSource(_detailsAdded) {
+            value = AuthState.COMPLETE
+        }
     }
+    val authState: LiveData<AuthState> = run {
+        Log.d("auth state flow", "${_authState.value}")
+        _authState }
+
+    fun authenticate(token: String) {
+        preferences.setToken(token) // for API use
+        this.token.value = token
+
+    }
+
+    fun logout() {
+        preferences.setToken("")
+        this.token.value = null
+    }
+
+    fun setUserAsComplete() {
+        _detailsAdded.value = true
+    }
+
 }

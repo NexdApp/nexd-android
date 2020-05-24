@@ -13,17 +13,20 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import app.nexd.android.R
 import app.nexd.android.databinding.FragmentRegisterBinding
-import app.nexd.android.ui.auth.register.RegisterFragmentDirections.Companion.toRegisterDetailedFragment
+import app.nexd.android.ui.MainViewModel
 import app.nexd.android.ui.auth.register.RegisterViewModel.Progress.*
 import app.nexd.android.ui.common.Constants
 import app.nexd.android.ui.common.DefaultSnackbar
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.fragment_register.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class RegisterFragment : Fragment() {
 
     private val vm: RegisterViewModel by viewModel()
+    private val activityVm by sharedViewModel<MainViewModel>()
 
     private lateinit var binding: FragmentRegisterBinding
 
@@ -76,7 +79,8 @@ class RegisterFragment : Fragment() {
                     switchUiIsEnabled(true)
                 }
                 is Finished -> {
-                    findNavController().navigate(toRegisterDetailedFragment())
+                    activityVm.authenticate(progress.token)
+                    findNavController().navigate(RegisterFragmentDirections.toRegisterDetailedFragment())
                     switchUiIsEnabled(true)
                 }
             }

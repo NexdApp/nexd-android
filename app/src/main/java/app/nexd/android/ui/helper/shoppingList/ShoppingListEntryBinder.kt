@@ -2,7 +2,6 @@ package app.nexd.android.ui.helper.shoppingList
 
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
 import android.widget.TextView
 import app.nexd.android.R
 import kotlinx.android.synthetic.main.row_help_request_article.view.*
