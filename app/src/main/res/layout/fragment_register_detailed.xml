@@ -58,7 +58,8 @@
                         android:layout_marginTop="92dp"
                         android:layout_height="148dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/nexd_logo_rgb" />
+                        android:src="@drawable/nexd_logo_rgb"
+                        tools:ignore="ContentDescription" />
 
                     <EditText
                         android:id="@+id/editText_phoneNumber"
@@ -173,7 +174,6 @@
                         android:drawableTint="@android:color/white"
                         android:padding="20dp"
                         android:text="@string/registration_button_title_send"
-                        android:onClick="@{() -> viewModel.setUserDetails()}"
                         android:textAlignment="textStart"
                         android:textAllCaps="false"
                         android:textColor="@android:color/white"

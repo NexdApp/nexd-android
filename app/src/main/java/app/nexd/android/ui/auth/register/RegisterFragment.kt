@@ -43,46 +43,50 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        register_toolbar.setupWithNavController(findNavController())
+        binding.registerToolbar.setupWithNavController(findNavController())
 
-        editText_password_confirm.setOnEditorActionListener { _, i, _ ->
+        binding.editTextPasswordConfirm.setOnEditorActionListener { _, i, _ ->
             if (i == EditorInfo.IME_ACTION_DONE) {
-                vm.register()
+                if (binding.buttonRegister.isEnabled) binding.buttonRegister.performClick()
             }
             false
         }
 
-        checkbox_data_protection.text = context?.getString(
+        binding.checkboxDataProtection.text = context?.getString(
             R.string.registration_label_privacy_policy_agreement_android,
             context?.getString(R.string.registration_term_privacy_policy)
         )
 
-        button_register.setOnClickListener {
+        binding.buttonRegister.setOnClickListener {
+            switchUiIsEnabled(false)
             vm.register()
         }
 
+
         vm.progress.observe(viewLifecycleOwner, Observer { progress ->
-            progressBar.visibility = View.GONE
+            binding.progressBar.visibility = View.GONE
 
             when (progress) {
                 is Idle -> { /* nothing to do here */
                 }
                 is Loading -> {
-                    progressBar.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.VISIBLE
                 }
                 is Error -> {
                     progress.message?.let { message ->
                         DefaultSnackbar(view, message, Snackbar.LENGTH_SHORT)
                     }
+                    switchUiIsEnabled(true)
                 }
                 is Finished -> {
                     activityVm.authenticate(progress.token)
                     findNavController().navigate(RegisterFragmentDirections.toRegisterDetailedFragment())
+                    switchUiIsEnabled(true)
                 }
             }
         })
 
-        button_dataProtection.setOnClickListener {
+        binding.buttonDataProtection.setOnClickListener {
             showPrivacyPolicy()
         }
     }
@@ -94,6 +98,19 @@ class RegisterFragment : Fragment() {
                 Uri.parse(Constants.PRIVACY_POLICY_URL)
             )
         )
+    }
+
+    private fun switchUiIsEnabled(enable: Boolean) {
+        binding.apply {
+            buttonRegister.isEnabled = enable
+            editTextFirstName.isEnabled = enable
+            editTextLastName.isEnabled = enable
+            editTextEmail.isEnabled = enable
+            editTextPassword.isEnabled = enable
+            editTextPasswordConfirm.isEnabled = enable
+            checkboxDataProtection.isEnabled = enable
+        }
+
     }
 
 }
