@@ -29,7 +29,8 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@id/register_toolbar" >
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/register_toolbar">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -62,7 +63,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="148dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/nexd_logo_rgb" />
+                        android:src="@drawable/nexd_logo_rgb"
+                        tools:ignore="ContentDescription" />
 
                     <Space
                         android:layout_weight="1"
