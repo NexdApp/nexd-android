@@ -14,6 +14,11 @@ import io.reactivex.schedulers.Schedulers.io
 
 class HelperDetailViewModel(private val api: Api) : ViewModel() {
 
+    sealed class Progress {
+        object Idle : Progress()
+        object Loading : Progress()
+        object Finished : Progress()
+    }
 
     val additionalRequest = MutableLiveData<String>()
     val firstName = MutableLiveData<String>()
@@ -26,6 +31,8 @@ class HelperDetailViewModel(private val api: Api) : ViewModel() {
     val requestIsAccepted = MutableLiveData<Boolean>()
     val buttonText = MutableLiveData<String>()
     val idOfRequest = MutableLiveData<Long>()
+
+    val progress = MutableLiveData<Progress>(Progress.Loading)
 
     private val compositeDisposable = CompositeDisposable()
 
@@ -53,6 +60,8 @@ class HelperDetailViewModel(private val api: Api) : ViewModel() {
             .subscribeOn(io())
             .doOnError {
                 Log.e("Error", it.message.toString())
+            }.doOnComplete {
+                progress.value = Progress.Finished
             }
             .blockingSubscribe()
     }
@@ -62,8 +71,12 @@ class HelperDetailViewModel(private val api: Api) : ViewModel() {
 
         val disposable = observable
             .observeOn(AndroidSchedulers.mainThread())
+            .doOnComplete {
+                progress.value = Progress.Idle
+            }
             .subscribeBy(
                 onNext = {
+
                     requestArticles.value = it.articles
                     firstName.value = it.firstName
                     lastName.value = it.lastName
@@ -76,7 +89,6 @@ class HelperDetailViewModel(private val api: Api) : ViewModel() {
                     requestIsAccepted.value = (it.helpListId != null)
                 }
             )
-
         compositeDisposable.add(disposable)
     }
 

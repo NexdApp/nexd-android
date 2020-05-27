@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import app.nexd.android.R
 import app.nexd.android.databinding.FragmentShoppingListBinding
 import app.nexd.android.ui.helper.shoppingList.ShoppingListFragmentDirections.Companion.toCheckoutFragment
 import kotlinx.android.synthetic.main.fragment_shopping_list.*
@@ -38,6 +37,8 @@ class ShoppingListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        binding.progressBar.visibility = View.VISIBLE
+
         adapter = MultiViewAdapter()
         recyclerView_shoppingList.addItemDecoration(adapter.itemDecoration)
         recyclerView_shoppingList.layoutManager = LinearLayoutManager(context)
@@ -50,10 +51,13 @@ class ShoppingListFragment : Fragment() {
         )
 
         viewModel.getShoppingListArticles().observe(viewLifecycleOwner, Observer { shoppingListEntries ->
+            binding.progressBar.visibility = View.VISIBLE
             adapter.removeAllSections()
             val listSection = ListSection<ShoppingListViewModel.ShoppingListEntry>()
             listSection.addAll(shoppingListEntries)
             adapter.addSection(listSection)
+
+            binding.progressBar.visibility = View.GONE
 
             button_checkout.setOnClickListener {
                 findNavController().navigate(toCheckoutFragment())
