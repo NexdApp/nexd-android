@@ -28,6 +28,10 @@ public class CreateOrUpdateHelpRequestArticleDto {
   @SerializedName(SERIALIZED_NAME_ARTICLE_COUNT)
   private Long articleCount;
 
+  public static final String SERIALIZED_NAME_UNIT_ID = "unitId";
+  @SerializedName(SERIALIZED_NAME_UNIT_ID)
+  private Long unitId;
+
   public static final String SERIALIZED_NAME_ARTICLE_DONE = "articleDone";
   @SerializedName(SERIALIZED_NAME_ARTICLE_DONE)
   private Boolean articleDone;
@@ -53,6 +57,30 @@ public class CreateOrUpdateHelpRequestArticleDto {
 
   public void setArticleCount(Long articleCount) {
     this.articleCount = articleCount;
+  }
+
+
+  public CreateOrUpdateHelpRequestArticleDto unitId(Long unitId) {
+    
+    this.unitId = unitId;
+    return this;
+  }
+
+   /**
+   * Unit id of the article
+   * minimum: 0
+   * @return unitId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Unit id of the article")
+
+  public Long getUnitId() {
+    return unitId;
+  }
+
+
+  public void setUnitId(Long unitId) {
+    this.unitId = unitId;
   }
 
 
@@ -89,12 +117,13 @@ public class CreateOrUpdateHelpRequestArticleDto {
     }
     CreateOrUpdateHelpRequestArticleDto createOrUpdateHelpRequestArticleDto = (CreateOrUpdateHelpRequestArticleDto) o;
     return Objects.equals(this.articleCount, createOrUpdateHelpRequestArticleDto.articleCount) &&
+        Objects.equals(this.unitId, createOrUpdateHelpRequestArticleDto.unitId) &&
         Objects.equals(this.articleDone, createOrUpdateHelpRequestArticleDto.articleDone);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(articleCount, articleDone);
+    return Objects.hash(articleCount, unitId, articleDone);
   }
 
 
@@ -103,6 +132,7 @@ public class CreateOrUpdateHelpRequestArticleDto {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateOrUpdateHelpRequestArticleDto {\n");
     sb.append("    articleCount: ").append(toIndentedString(articleCount)).append("\n");
+    sb.append("    unitId: ").append(toIndentedString(unitId)).append("\n");
     sb.append("    articleDone: ").append(toIndentedString(articleDone)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import app.nexd.android.Api
 import app.nexd.android.R
+import app.nexd.android.api.model.AvailableLanguages
 import app.nexd.android.api.model.CreateHelpRequestArticleDto
 import app.nexd.android.api.model.HelpRequestCreateDto
 import app.nexd.android.api.model.User
@@ -97,15 +98,16 @@ class SeekerCreateRequestViewModel(private val api: Api) : ViewModel() {
 
     internal fun setArticleListSection() {
         if (articles.value.isNullOrEmpty()) {
-            val observable = api.articlesControllerFindAll().map {
-                it.map { article ->
-                    HelpRequestCreateArticleBinder.ArticleInput(
-                        article.id,
-                        MutableLiveData(article.name),
-                        MutableLiveData(0L.toString())
-                    )
+            val observable = api.articlesControllerFindAll(10, "", AvailableLanguages.DE, false)
+                .map {
+                    it.map { article ->
+                        HelpRequestCreateArticleBinder.ArticleInput(
+                            article.id,
+                            MutableLiveData(article.name),
+                            MutableLiveData(0L.toString())
+                        )
+                    }
                 }
-            }
             val disposable = observable
                 .observeOn(mainThread())
                 .subscribe {

@@ -62,6 +62,7 @@ task generateApiClient(type: org.openapitools.generator.gradle.plugin.tasks.Gene
     library = "retrofit2"
     generateModelTests = false
     generateApiTests = false
+    generateModelDocumentation = false
     configOptions = [
             useRxJava2             : "true",
             dateLibrary            : "legacy",

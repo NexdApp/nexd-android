@@ -4,14 +4,15 @@ All URIs are relative to *https://nexd-backend-staging.herokuapp.com:443/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**articlesControllerFindAll**](ArticlesApi.md#articlesControllerFindAll) | **GET** articles | List articles
-[**articlesControllerInsertOne**](ArticlesApi.md#articlesControllerInsertOne) | **POST** articles | Create an article
+[**articlesControllerFindAll**](ArticlesApi.md#articlesControllerFindAll) | **GET** article/articles | List articles
+[**articlesControllerGetUnits**](ArticlesApi.md#articlesControllerGetUnits) | **GET** article/units | Get a list of units
+[**articlesControllerInsertOne**](ArticlesApi.md#articlesControllerInsertOne) | **POST** article/articles | Create an article
 
 
 
 ## articlesControllerFindAll
 
-> List&lt;Article&gt; articlesControllerFindAll()
+> List&lt;Article&gt; articlesControllerFindAll(limit, startsWith, language, onlyVerified)
 
 List articles
 
@@ -22,6 +23,7 @@ List articles
 import app.nexd.android.ApiClient;
 import app.nexd.android.ApiException;
 import app.nexd.android.Configuration;
+import app.nexd.android.auth.*;
 import app.nexd.android.models.*;
 import app.nexd.android.api.ArticlesApi;
 
@@ -29,10 +31,18 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://nexd-backend-staging.herokuapp.com:443/api/v1");
+        
+        // Configure HTTP bearer authorization: bearer
+        HttpBearerAuth bearer = (HttpBearerAuth) defaultClient.getAuthentication("bearer");
+        bearer.setBearerToken("BEARER TOKEN");
 
         ArticlesApi apiInstance = new ArticlesApi(defaultClient);
+        Long limit = 56L; // Long | Maximum number of articles 
+        String startsWith = "startsWith_example"; // String | Starts with the given string. Empty string does not filter.
+        AvailableLanguages language = new AvailableLanguages(); // AvailableLanguages | 
+        Boolean onlyVerified = true; // Boolean | true to only gets the list of curated articles (default: true)
         try {
-            List<Article> result = apiInstance.articlesControllerFindAll();
+            List<Article> result = apiInstance.articlesControllerFindAll(limit, startsWith, language, onlyVerified);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ArticlesApi#articlesControllerFindAll");
@@ -47,7 +57,13 @@ public class Example {
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **limit** | **Long**| Maximum number of articles  | [optional]
+ **startsWith** | **String**| Starts with the given string. Empty string does not filter. | [optional]
+ **language** | [**AvailableLanguages**](.md)|  | [optional] [enum: de, en]
+ **onlyVerified** | **Boolean**| true to only gets the list of curated articles (default: true) | [optional]
 
 ### Return type
 
@@ -55,7 +71,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[bearer](../README.md#bearer)
 
 ### HTTP request headers
 
@@ -69,9 +85,78 @@ No authorization required
 | **400** | Bad Request |  -  |
 
 
+## articlesControllerGetUnits
+
+> List&lt;Unit&gt; articlesControllerGetUnits(language)
+
+Get a list of units
+
+### Example
+
+```java
+// Import classes:
+import app.nexd.android.ApiClient;
+import app.nexd.android.ApiException;
+import app.nexd.android.Configuration;
+import app.nexd.android.auth.*;
+import app.nexd.android.models.*;
+import app.nexd.android.api.ArticlesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://nexd-backend-staging.herokuapp.com:443/api/v1");
+        
+        // Configure HTTP bearer authorization: bearer
+        HttpBearerAuth bearer = (HttpBearerAuth) defaultClient.getAuthentication("bearer");
+        bearer.setBearerToken("BEARER TOKEN");
+
+        ArticlesApi apiInstance = new ArticlesApi(defaultClient);
+        AvailableLanguages language = new AvailableLanguages(); // AvailableLanguages | 
+        try {
+            List<Unit> result = apiInstance.articlesControllerGetUnits(language);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ArticlesApi#articlesControllerGetUnits");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **language** | [**AvailableLanguages**](.md)|  | [optional] [enum: de, en]
+
+### Return type
+
+[**List&lt;Unit&gt;**](Unit.md)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** |  |  -  |
+| **400** | Bad Request |  -  |
+
+
 ## articlesControllerInsertOne
 
-> Article articlesControllerInsertOne(xAdminSecret, createArticleDto)
+> Article articlesControllerInsertOne(createArticleDto)
 
 Create an article
 
@@ -82,6 +167,7 @@ Create an article
 import app.nexd.android.ApiClient;
 import app.nexd.android.ApiException;
 import app.nexd.android.Configuration;
+import app.nexd.android.auth.*;
 import app.nexd.android.models.*;
 import app.nexd.android.api.ArticlesApi;
 
@@ -89,12 +175,15 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://nexd-backend-staging.herokuapp.com:443/api/v1");
+        
+        // Configure HTTP bearer authorization: bearer
+        HttpBearerAuth bearer = (HttpBearerAuth) defaultClient.getAuthentication("bearer");
+        bearer.setBearerToken("BEARER TOKEN");
 
         ArticlesApi apiInstance = new ArticlesApi(defaultClient);
-        String xAdminSecret = "xAdminSecret_example"; // String | Secret to access the admin functions.
         CreateArticleDto createArticleDto = new CreateArticleDto(); // CreateArticleDto | 
         try {
-            Article result = apiInstance.articlesControllerInsertOne(xAdminSecret, createArticleDto);
+            Article result = apiInstance.articlesControllerInsertOne(createArticleDto);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ArticlesApi#articlesControllerInsertOne");
@@ -112,7 +201,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xAdminSecret** | **String**| Secret to access the admin functions. |
  **createArticleDto** | [**CreateArticleDto**](CreateArticleDto.md)|  |
 
 ### Return type
@@ -121,7 +209,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearer](../README.md#bearer)
 
 ### HTTP request headers
 

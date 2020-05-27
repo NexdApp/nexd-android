@@ -13,8 +13,15 @@
 
 package app.nexd.android.api.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -31,6 +38,126 @@ public class Article {
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
+
+  /**
+   * Language key of this article
+   */
+  @JsonAdapter(LanguageEnum.Adapter.class)
+  public enum LanguageEnum {
+    DE("de"),
+    
+    EN("en");
+
+    private String value;
+
+    LanguageEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static LanguageEnum fromValue(String value) {
+      for (LanguageEnum b : LanguageEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<LanguageEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final LanguageEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public LanguageEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return LanguageEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_LANGUAGE = "language";
+  @SerializedName(SERIALIZED_NAME_LANGUAGE)
+  private LanguageEnum language;
+
+  public static final String SERIALIZED_NAME_STATUS_OVERWRITTEN = "statusOverwritten";
+  @SerializedName(SERIALIZED_NAME_STATUS_OVERWRITTEN)
+  private Boolean statusOverwritten = false;
+
+  public static final String SERIALIZED_NAME_UNIT_ID_ORDER = "unitIdOrder";
+  @SerializedName(SERIALIZED_NAME_UNIT_ID_ORDER)
+  private List<Long> unitIdOrder = null;
+
+  public static final String SERIALIZED_NAME_CATEGORY_ID = "categoryId";
+  @SerializedName(SERIALIZED_NAME_CATEGORY_ID)
+  private Long categoryId;
+
+  /**
+   * Gets or Sets status
+   */
+  @JsonAdapter(StatusEnum.Adapter.class)
+  public enum StatusEnum {
+    DEACTIVATED("deactivated"),
+    
+    ACTIVE("active"),
+    
+    VERIFIED("verified");
+
+    private String value;
+
+    StatusEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+
+    public static class Adapter extends TypeAdapter<StatusEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final StatusEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public StatusEnum read(final JsonReader jsonReader) throws IOException {
+        String value =  jsonReader.nextString();
+        return StatusEnum.fromValue(value);
+      }
+    }
+  }
+
+  public static final String SERIALIZED_NAME_STATUS = "status";
+  @SerializedName(SERIALIZED_NAME_STATUS)
+  private StatusEnum status;
+
+  public static final String SERIALIZED_NAME_CATEGORY = "category";
+  @SerializedName(SERIALIZED_NAME_CATEGORY)
+  private Category category;
 
 
   public Article id(Long id) {
@@ -62,10 +189,10 @@ public class Article {
   }
 
    /**
-   * Name of the article, should also contain the unit.
+   * Name of the article (without unit)
    * @return name
   **/
-  @ApiModelProperty(required = true, value = "Name of the article, should also contain the unit.")
+  @ApiModelProperty(required = true, value = "Name of the article (without unit)")
 
   public String getName() {
     return name;
@@ -74,6 +201,151 @@ public class Article {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+
+  public Article language(LanguageEnum language) {
+    
+    this.language = language;
+    return this;
+  }
+
+   /**
+   * Language key of this article
+   * @return language
+  **/
+  @ApiModelProperty(required = true, value = "Language key of this article")
+
+  public LanguageEnum getLanguage() {
+    return language;
+  }
+
+
+  public void setLanguage(LanguageEnum language) {
+    this.language = language;
+  }
+
+
+  public Article statusOverwritten(Boolean statusOverwritten) {
+    
+    this.statusOverwritten = statusOverwritten;
+    return this;
+  }
+
+   /**
+   * The article status can be enforced by an admin (e.g. to remove profanity).
+   * @return statusOverwritten
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The article status can be enforced by an admin (e.g. to remove profanity).")
+
+  public Boolean getStatusOverwritten() {
+    return statusOverwritten;
+  }
+
+
+  public void setStatusOverwritten(Boolean statusOverwritten) {
+    this.statusOverwritten = statusOverwritten;
+  }
+
+
+  public Article unitIdOrder(List<Long> unitIdOrder) {
+    
+    this.unitIdOrder = unitIdOrder;
+    return this;
+  }
+
+  public Article addUnitIdOrderItem(Long unitIdOrderItem) {
+    if (this.unitIdOrder == null) {
+      this.unitIdOrder = new ArrayList<Long>();
+    }
+    this.unitIdOrder.add(unitIdOrderItem);
+    return this;
+  }
+
+   /**
+   * Determined order of the units. If the array is empty, there is no order yet identified.
+   * @return unitIdOrder
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Determined order of the units. If the array is empty, there is no order yet identified.")
+
+  public List<Long> getUnitIdOrder() {
+    return unitIdOrder;
+  }
+
+
+  public void setUnitIdOrder(List<Long> unitIdOrder) {
+    this.unitIdOrder = unitIdOrder;
+  }
+
+
+  public Article categoryId(Long categoryId) {
+    
+    this.categoryId = categoryId;
+    return this;
+  }
+
+   /**
+   * Get categoryId
+   * @return categoryId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Long getCategoryId() {
+    return categoryId;
+  }
+
+
+  public void setCategoryId(Long categoryId) {
+    this.categoryId = categoryId;
+  }
+
+
+  public Article status(StatusEnum status) {
+    
+    this.status = status;
+    return this;
+  }
+
+   /**
+   * Get status
+   * @return status
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public StatusEnum getStatus() {
+    return status;
+  }
+
+
+  public void setStatus(StatusEnum status) {
+    this.status = status;
+  }
+
+
+  public Article category(Category category) {
+    
+    this.category = category;
+    return this;
+  }
+
+   /**
+   * Get category
+   * @return category
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Category getCategory() {
+    return category;
+  }
+
+
+  public void setCategory(Category category) {
+    this.category = category;
   }
 
 
@@ -87,12 +359,18 @@ public class Article {
     }
     Article article = (Article) o;
     return Objects.equals(this.id, article.id) &&
-        Objects.equals(this.name, article.name);
+        Objects.equals(this.name, article.name) &&
+        Objects.equals(this.language, article.language) &&
+        Objects.equals(this.statusOverwritten, article.statusOverwritten) &&
+        Objects.equals(this.unitIdOrder, article.unitIdOrder) &&
+        Objects.equals(this.categoryId, article.categoryId) &&
+        Objects.equals(this.status, article.status) &&
+        Objects.equals(this.category, article.category);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name);
+    return Objects.hash(id, name, language, statusOverwritten, unitIdOrder, categoryId, status, category);
   }
 
 
@@ -102,6 +380,12 @@ public class Article {
     sb.append("class Article {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    language: ").append(toIndentedString(language)).append("\n");
+    sb.append("    statusOverwritten: ").append(toIndentedString(statusOverwritten)).append("\n");
+    sb.append("    unitIdOrder: ").append(toIndentedString(unitIdOrder)).append("\n");
+    sb.append("    categoryId: ").append(toIndentedString(categoryId)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    category: ").append(toIndentedString(category)).append("\n");
     sb.append("}");
     return sb.toString();
   }

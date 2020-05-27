@@ -25,16 +25,24 @@ import java.util.Objects;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * CreateArticleDto
+ * Unit
  */
 
-public class CreateArticleDto {
+public class Unit {
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private Long id;
+
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
 
+  public static final String SERIALIZED_NAME_NAME_SHORT = "nameShort";
+  @SerializedName(SERIALIZED_NAME_NAME_SHORT)
+  private String nameShort;
+
   /**
-   * Language of the article, e.g. the user
+   * Language key of this unit
    */
   @JsonAdapter(LanguageEnum.Adapter.class)
   public enum LanguageEnum {
@@ -84,18 +92,45 @@ public class CreateArticleDto {
   @SerializedName(SERIALIZED_NAME_LANGUAGE)
   private LanguageEnum language;
 
+  public static final String SERIALIZED_NAME_DEFAULT_ORDER = "defaultOrder";
+  @SerializedName(SERIALIZED_NAME_DEFAULT_ORDER)
+  private Long defaultOrder;
 
-  public CreateArticleDto name(String name) {
+
+  public Unit id(Long id) {
+    
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * Auto-incremented ID of a unit.
+   * @return id
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Auto-incremented ID of a unit.")
+
+  public Long getId() {
+    return id;
+  }
+
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+
+  public Unit name(String name) {
     
     this.name = name;
     return this;
   }
 
    /**
-   * Name of the article. If the name already exists, no new article will be added.
+   * Name of the unit
    * @return name
   **/
-  @ApiModelProperty(required = true, value = "Name of the article. If the name already exists, no new article will be added.")
+  @ApiModelProperty(required = true, value = "Name of the unit")
 
   public String getName() {
     return name;
@@ -107,17 +142,39 @@ public class CreateArticleDto {
   }
 
 
-  public CreateArticleDto language(LanguageEnum language) {
+  public Unit nameShort(String nameShort) {
+    
+    this.nameShort = nameShort;
+    return this;
+  }
+
+   /**
+   * Abbreviated name of the unit
+   * @return nameShort
+  **/
+  @ApiModelProperty(required = true, value = "Abbreviated name of the unit")
+
+  public String getNameShort() {
+    return nameShort;
+  }
+
+
+  public void setNameShort(String nameShort) {
+    this.nameShort = nameShort;
+  }
+
+
+  public Unit language(LanguageEnum language) {
     
     this.language = language;
     return this;
   }
 
    /**
-   * Language of the article, e.g. the user
+   * Language key of this unit
    * @return language
   **/
-  @ApiModelProperty(required = true, value = "Language of the article, e.g. the user")
+  @ApiModelProperty(required = true, value = "Language key of this unit")
 
   public LanguageEnum getLanguage() {
     return language;
@@ -129,6 +186,29 @@ public class CreateArticleDto {
   }
 
 
+  public Unit defaultOrder(Long defaultOrder) {
+    
+    this.defaultOrder = defaultOrder;
+    return this;
+  }
+
+   /**
+   * Some default ordering, in case there is no automatic ordering for an article, no need in the frontend.
+   * @return defaultOrder
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Some default ordering, in case there is no automatic ordering for an article, no need in the frontend.")
+
+  public Long getDefaultOrder() {
+    return defaultOrder;
+  }
+
+
+  public void setDefaultOrder(Long defaultOrder) {
+    this.defaultOrder = defaultOrder;
+  }
+
+
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -137,23 +217,29 @@ public class CreateArticleDto {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateArticleDto createArticleDto = (CreateArticleDto) o;
-    return Objects.equals(this.name, createArticleDto.name) &&
-        Objects.equals(this.language, createArticleDto.language);
+    Unit unit = (Unit) o;
+    return Objects.equals(this.id, unit.id) &&
+        Objects.equals(this.name, unit.name) &&
+        Objects.equals(this.nameShort, unit.nameShort) &&
+        Objects.equals(this.language, unit.language) &&
+        Objects.equals(this.defaultOrder, unit.defaultOrder);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, language);
+    return Objects.hash(id, name, nameShort, language, defaultOrder);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateArticleDto {\n");
+    sb.append("class Unit {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    nameShort: ").append(toIndentedString(nameShort)).append("\n");
     sb.append("    language: ").append(toIndentedString(language)).append("\n");
+    sb.append("    defaultOrder: ").append(toIndentedString(defaultOrder)).append("\n");
     sb.append("}");
     return sb.toString();
   }
