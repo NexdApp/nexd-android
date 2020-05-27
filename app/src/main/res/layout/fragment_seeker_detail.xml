@@ -4,8 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/horizontalPadding"
     tools:background="@color/colorPrimary">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="-6dp"
+        android:layout_marginBottom="-8dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/colorPrimaryDark"
+        android:max="100"
+        android:padding="0dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView_title"
@@ -16,8 +32,9 @@
         android:textColor="@android:color/white"
         android:textSize="@dimen/textSize_screen_title"
         android:textStyle="bold"
+        android:paddingHorizontal="@dimen/horizontalPadding"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/progressBar" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_cancel"
@@ -35,7 +52,7 @@
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="2dp"
+        android:layout_marginHorizontal="15dp"
         android:layout_marginTop="28dp"
         app:cardCornerRadius="@dimen/radius"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,6 +73,7 @@
         android:id="@+id/textView_additionalRequest_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
         android:hint="@string/seeker_detail_placeholder_information"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
@@ -64,10 +82,12 @@
 
     <TextView
         android:id="@+id/textView_additionalRequest"
-        android:paddingHorizontal="10dp"
+        android:layout_marginHorizontal="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
+        android:paddingHorizontal="@dimen/horizontalPadding"
         android:backgroundTint="@color/text"
         android:textColor="@android:color/white"
         android:textSize="18sp"
