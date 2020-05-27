@@ -15,7 +15,7 @@ public interface ArticlesApi {
    * 
    * @return Observable&lt;List&lt;Article&gt;&gt;
    */
-  @GET("article/articles?language=de")
+  @GET("article/articles")
   Observable<List<Article>> articlesControllerFindAll();
     
 
