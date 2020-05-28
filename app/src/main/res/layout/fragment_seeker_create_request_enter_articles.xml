@@ -4,65 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewModel"
             type="app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingHorizontal="@dimen/horizontalPadding"
-        android:paddingTop="@dimen/topPadding"
-        tools:background="@color/colorPrimary"
-        tools:context=".ui.seeker.create.articles.SeekerCreateRequestEnterArticlesFragment">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="@string/seeker_request_create_heading"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/textSize_screen_title"
-            android:textStyle="bold" />
+        android:padding="10dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_requests"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/edittext_new_article"
+            android:layout_marginBottom="10dp"
             tools:listitem="@layout/row_new_help_request_article" />
 
         <EditText
-            android:id="@+id/textView_additionalRequest"
-            android:layout_width="match_parent"
+            android:id="@+id/edittext_new_article"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:backgroundTint="@color/grey_500"
-            android:hint="@string/seeker_request_create_placeholder_information"
-            android:text="@={viewModel.additionalInformation}"
-            android:importantForAutofill="no"
-            android:inputType="text"
-            android:paddingHorizontal="10dp"
-            android:textColor="@android:color/white"
-            android:textColorHint="@android:color/white"
-            android:textSize="20sp" />
+            android:hint="New item"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/spinner_unit"
+            app:layout_constraintStart_toStartOf="parent" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/button_accept"
-            android:layout_width="match_parent"
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinner_unit"
+            android:layout_width="32dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="10dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:src="@drawable/ic_check_black_24dp"
-            android:tint="@color/colorPrimaryDark"
-            app:borderWidth="0dp"
-            app:fabCustomSize="70dp"
-            app:maxImageSize="30dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Liter"/>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

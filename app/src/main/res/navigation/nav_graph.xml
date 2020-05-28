@@ -321,7 +321,7 @@
             android:id="@+id/seekerCreateRequestEnterArticlesFragment"
             android:name="app.nexd.android.ui.seeker.create.articles.SeekerCreateRequestEnterArticlesFragment"
             android:label="SeekerCreateRequestEnterArticlesFragment"
-            tools:layout="@layout/fragment_seeker_create_request_enter_articles">
+            tools:layout="@layout/fragment_seeker_create_request_enter_articles_old">
             <action
                 android:id="@+id/toSeekerCreateRequestConfirmAddressFragment"
                 app:destination="@id/seekerCreateRequestConfirmAddressFragment"
