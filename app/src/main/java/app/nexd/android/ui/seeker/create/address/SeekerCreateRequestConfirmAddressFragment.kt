@@ -51,6 +51,7 @@ class SeekerCreateRequestConfirmAddressFragment : Fragment() {
         }
 
         binding.buttonConfirm.setOnClickListener {
+            binding.progressBar.visibility = View.VISIBLE
             vm.sendRequest()
         }
     }
@@ -65,11 +66,13 @@ class SeekerCreateRequestConfirmAddressFragment : Fragment() {
                     //
                 }
                 is Error -> {
+                    binding.progressBar.visibility = View.GONE
                     it.message?.let { errorMessageId ->
                         DefaultSnackbar(binding.root, errorMessageId, Snackbar.LENGTH_SHORT)
                     }
                 }
                 is Finished -> {
+                    binding.progressBar.visibility = View.GONE
                     findNavController().navigate(SeekerCreateRequestConfirmAddressFragmentDirections.toSeekerOverviewFragment())
                 }
                 else -> Log.d(

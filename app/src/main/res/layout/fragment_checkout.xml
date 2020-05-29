@@ -6,14 +6,28 @@
     android:layout_height="match_parent"
     tools:background="@color/colorPrimary"
     android:paddingTop="@dimen/topPadding"
-    android:paddingHorizontal="@dimen/horizontalPadding"
+
     tools:context=".ui.helper.checkout.CheckoutFragment">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-6dp"
+        android:layout_marginBottom="-8dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/colorPrimaryDark"
+        android:max="100"
+        android:padding="0dp"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/textView_title"
         android:text="@string/checkout_screen_title"
         android:layout_alignParentTop="true"
         android:layout_marginBottom="10dp"
+        android:layout_marginHorizontal="15dp"
         android:textSize="@dimen/textSize_screen_title"
         android:textColor="@android:color/white"
         android:textStyle="bold"
@@ -23,7 +37,8 @@
     <ScrollView
         android:layout_below="@id/textView_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_helpRequests"

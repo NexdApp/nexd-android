@@ -43,14 +43,18 @@ class SeekerDetailFragment : Fragment() {
             HelpRequestArticleBinder()
         )
 
+        progressBar.visibility = View.VISIBLE
+
         vm.progress.observe(viewLifecycleOwner) {
             when (it) {
                 is SeekerDetailViewModel.Progress.Idle -> {
                 }
                 is SeekerDetailViewModel.Progress.Error -> {
+                    progressBar.visibility = View.GONE
                     Toast.makeText(requireContext(), getText(R.string.helper_request_detail_message_error_on_cancellation), Toast.LENGTH_LONG).show()
                 }
                 is SeekerDetailViewModel.Progress.Canceled -> {
+                    progressBar.visibility = View.GONE
                     // show information
                     Toast.makeText(requireContext(), getText(R.string.helper_request_detail_message_cancelled), Toast.LENGTH_LONG).show()
                     findNavController().navigateUp()
@@ -67,8 +71,9 @@ class SeekerDetailFragment : Fragment() {
             textView_additionalRequest_label.visibility =
                 if (request.additionalRequest.isNullOrBlank()) View.GONE else View.VISIBLE
             textView_additionalRequest.text = request.additionalRequest
-
+            progressBar.visibility = View.GONE
             button_cancel.setOnClickListener {
+                progressBar.visibility = View.VISIBLE
                 vm.cancelRequest(request)
             }
         }

@@ -32,6 +32,8 @@ class DeliveryFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        progressBar.visibility = View.VISIBLE
+
         recyclerView_helpRequests.adapter = adapter
         recyclerView_helpRequests.layoutManager = LinearLayoutManager(context)
 
@@ -40,11 +42,13 @@ class DeliveryFragment : Fragment() {
         )
 
         vm.getShoppingList().observe(viewLifecycleOwner, Observer { shoppingList ->
+            progressBar.visibility = View.VISIBLE
             adapter.removeAllSections()
 
             val requestList = ListSection<HelpRequest>()
             requestList.addAll(shoppingList.helpRequests)
             adapter.addSection(requestList)
+            progressBar.visibility = View.GONE
 
             context?.let { context ->
                 closeRequest.setOnClickListener {

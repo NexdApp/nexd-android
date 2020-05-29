@@ -13,16 +13,29 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingHorizontal="@dimen/horizontalPadding"
         android:paddingTop="@dimen/topPadding"
         tools:background="@color/colorPrimary"
         tools:context=".ui.helper.delivery.DeliveryFragment">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-6dp"
+            android:layout_marginBottom="-8dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/colorPrimaryDark"
+            android:max="100"
+            android:padding="0dp"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/textView_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
+            android:layout_marginHorizontal="15dp"
             android:text="@string/delivery_screen_title"
             android:textColor="@android:color/white"
             android:textSize="@dimen/textSize_screen_title"
@@ -31,6 +44,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
             android:layout_below="@id/textView_title">
 
             <androidx.recyclerview.widget.RecyclerView

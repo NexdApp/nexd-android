@@ -40,13 +40,17 @@ class SeekerOverviewFragment : Fragment() {
             SeekerOverviewHelpRequestBinder()
         )
 
+        progressBar.visibility = View.VISIBLE
+
         vm.getHelpRequests().observe(viewLifecycleOwner, Observer { requests ->
             adapter.removeAllSections()
 
             if (requests.isEmpty()) {
+                progressBar.visibility = View.GONE
                 textView_empty.visibility = View.VISIBLE
             } else {
                 textView_empty.visibility = View.GONE
+                progressBar.visibility = View.GONE
                 val requestsSection = ListSection<HelpRequest>()
                 requestsSection.addAll(requests)
                 adapter.addSection(requestsSection)

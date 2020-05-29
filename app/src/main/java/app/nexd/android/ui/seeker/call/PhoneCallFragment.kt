@@ -26,6 +26,7 @@ class PhoneCallFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        progressBar.visibility = View.VISIBLE
 
         vm.getPhoneNumber().observe(viewLifecycleOwner, Observer { phoneNumber ->
             textView_details.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -33,11 +34,13 @@ class PhoneCallFragment : Fragment() {
                     getString(R.string.seeker_phone_call_text, phoneNumber),
                     Html.FROM_HTML_MODE_LEGACY
                 )
+
             } else {
                 Html.fromHtml(
                     getString(R.string.seeker_phone_call_text, phoneNumber)
                 )
             }
+            progressBar.visibility = View.GONE
         })
     }
 

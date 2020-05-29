@@ -76,13 +76,15 @@ class SeekerCreateRequestEnterArticlesFragment : Fragment() {
                 articleListSection = ListSection<HelpRequestCreateArticleBinder.ArticleInput>()
                 articleListSection!!.addAll(articles)
                 adapter.addSection(articleListSection!!)
+                binding.progressBar.visibility = View.GONE
             }
+
         })
 
         vm.progress.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is Idle -> {
-                    //nothing to do
+                    binding.progressBar.visibility = View.VISIBLE
                 }
                 is Loading -> {
                     findNavController().navigate(SeekerCreateRequestEnterArticlesFragmentDirections.toSeekerCreateRequestConfirmAddressFragment())
@@ -91,6 +93,7 @@ class SeekerCreateRequestEnterArticlesFragment : Fragment() {
                     // state not reachable
                 }
                 is Error -> {
+                    binding.progressBar.visibility = View.GONE
                     it.message?.let { errorMessageId ->
                         DefaultSnackbar(binding.root, errorMessageId, Snackbar.LENGTH_SHORT)
                     }

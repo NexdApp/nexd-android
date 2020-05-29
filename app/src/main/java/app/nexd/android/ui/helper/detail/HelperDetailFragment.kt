@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.api.model.HelpRequestArticle
 import app.nexd.android.databinding.FragmentHelperRequestDetailBinding
 import app.nexd.android.ui.common.HelpRequestArticleBinder
+import app.nexd.android.ui.helper.detail.HelperDetailViewModel.Progress.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -66,8 +67,23 @@ class HelperDetailFragment : Fragment() {
         viewModel.idOfRequest.observe(viewLifecycleOwner, Observer { idOfRequest ->
             binding.buttonAccept.setOnClickListener {
                 viewModel.acceptRequest(idOfRequest)
-                findNavController().popBackStack()
             }
+        })
+
+        viewModel.progress.observe(viewLifecycleOwner, Observer { progress ->
+            when (progress) {
+                Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+                Idle -> {
+                    binding.progressBar.visibility = View.GONE
+                }
+                Finished -> {
+                    binding.progressBar.visibility = View.GONE
+                    findNavController().popBackStack()
+                }
+            }
+
         })
     }
 }
