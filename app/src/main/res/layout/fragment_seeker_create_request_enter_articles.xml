@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel" />
@@ -12,35 +13,91 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10dp">
+        android:background="@android:color/white">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_requests"
-            android:layout_width="0dp"
+        <FrameLayout
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/edittext_new_article"
-            android:layout_marginBottom="10dp"
-            tools:listitem="@layout/row_new_help_request_article" />
+            app:layout_constraintBottom_toTopOf="@id/textview_new_article_selected_unit"
+            android:background="@color/colorPrimary"
+            android:layout_marginBottom="10dp"/>
 
         <EditText
-            android:id="@+id/edittext_new_article"
+            android:id="@+id/textview_new_article_amount"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="New item"
+            android:layout_marginBottom="10dp"
+            android:hint="Menge"
+            android:importantForAutofill="no"
+            android:inputType="numberSigned"
+            android:maxLength="6"
+            android:maxLines="1"
+            android:minWidth="64sp"
+            android:textAlignment="textEnd"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@id/recyclerview_new_article_units"
+            app:layout_constraintEnd_toStartOf="@id/textview_new_article_selected_unit"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="1" />
+
+        <TextView
+            android:id="@+id/textview_new_article_selected_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_primary"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="8dp"
+            android:text="@{viewModel.selectedUnit}"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/textview_new_article_amount"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/textview_new_article_amount"
+            tools:text="Kilogram" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_new_article_units"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@android:color/white"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toTopOf="@id/button_new_article_confirm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:itemCount="3"
+            tools:listitem="@layout/view_article_unit" />
+
+        <Button
+            android:id="@+id/button_new_article_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/round_grey"
+            android:padding="8dp"
+            android:text="@string/cancel_button_title"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/spinner_unit"
+            app:layout_constraintEnd_toStartOf="@id/button_new_article_confirm"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatSpinner
-            android:id="@+id/spinner_unit"
-            android:layout_width="32dp"
+        <Button
+            android:id="@+id/button_new_article_confirm"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/rounded_primary"
+            android:padding="8dp"
+            android:text="@string/confirm_button_title"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:text="Liter"/>
+            app:layout_constraintStart_toEndOf="@id/button_new_article_cancel" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

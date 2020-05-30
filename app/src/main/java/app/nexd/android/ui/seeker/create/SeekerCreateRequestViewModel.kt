@@ -1,15 +1,13 @@
 package app.nexd.android.ui.seeker.create
 
 import androidx.annotation.StringRes
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import app.nexd.android.Api
 import app.nexd.android.R
-import app.nexd.android.api.model.AvailableLanguages
-import app.nexd.android.api.model.CreateHelpRequestArticleDto
-import app.nexd.android.api.model.HelpRequestCreateDto
-import app.nexd.android.api.model.User
+import app.nexd.android.api.model.*
+import app.nexd.android.api.model.Unit
 import app.nexd.android.ui.common.HelpRequestCreateArticleBinder
+import io.reactivex.BackpressureStrategy
 import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
 import io.reactivex.disposables.CompositeDisposable
 
@@ -161,4 +159,17 @@ class SeekerCreateRequestViewModel(private val api: Api) : ViewModel() {
             true
         }
     }
+
+    // TODO: NEW ==========
+
+    fun getUnits(): LiveData<List<Unit>> {
+        // TODO: get language from system
+        val observable = api.articlesControllerGetUnits(AvailableLanguages.DE)
+        return LiveDataReactiveStreams.fromPublisher(observable.toFlowable(BackpressureStrategy.LATEST))
+    }
+
+    fun getSelectedUnit(): LiveData<String> {
+        return Transformations.map(getUnits()) { list -> list.first().name }
+    }
+
 }

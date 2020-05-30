@@ -15,7 +15,6 @@ import app.nexd.android.di.sharedGraphViewModel
 import app.nexd.android.ui.common.DefaultSnackbar
 import app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel
 import app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel.Progress.*
-import app.nexd.android.ui.seeker.create.articles.SeekerCreateRequestEnterArticlesFragment
 import com.google.android.material.snackbar.Snackbar
 
 class SeekerCreateRequestConfirmAddressFragment : Fragment() {
@@ -73,7 +72,7 @@ class SeekerCreateRequestConfirmAddressFragment : Fragment() {
                     findNavController().navigate(SeekerCreateRequestConfirmAddressFragmentDirections.toSeekerOverviewFragment())
                 }
                 else -> Log.d(
-                    SeekerCreateRequestEnterArticlesFragment::class.simpleName,
+                    SeekerCreateRequestConfirmAddressFragment::class.simpleName,
                     "unhandled state $it"
                 )
             }

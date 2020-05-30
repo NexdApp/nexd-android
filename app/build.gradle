@@ -120,6 +120,8 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer-core:2.11.4'
     implementation 'com.google.android.exoplayer:exoplayer-ui:2.11.4'
 
+    implementation 'com.google.android:flexbox:2.0.1'
+
     // Koin for Android
     implementation "org.koin:koin-android:$koin_version"
     // Koin AndroidX Scope features
@@ -128,6 +130,9 @@ dependencies {
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
     // Koin AndroidX Fragment features
     implementation "org.koin:koin-androidx-fragment:$koin_version"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
     testImplementation 'junit:junit:4.13'
 
