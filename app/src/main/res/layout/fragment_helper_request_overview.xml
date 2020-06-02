@@ -68,23 +68,6 @@
 
             </androidx.recyclerview.widget.RecyclerView>
 
-            <Button
-                android:id="@+id/button_nearRequests"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableEnd="@drawable/ic_edit_black_24dp"
-                android:drawableTint="@android:color/white"
-                android:onClick="@{() -> viewModel.editZipCode()}"
-                android:paddingStart="0dp"
-                android:paddingEnd="0dp"
-                android:text="@string/helper_request_overview_heading_available_section"
-                android:textAlignment="textStart"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/textSize_screen_title"
-                android:textStyle="bold" />
-
         </LinearLayout>
     </RelativeLayout>
 </layout>

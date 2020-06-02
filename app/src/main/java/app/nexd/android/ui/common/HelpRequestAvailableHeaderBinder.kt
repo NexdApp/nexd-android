@@ -2,22 +2,26 @@ package app.nexd.android.ui.common
 
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import app.nexd.android.R
 import app.nexd.android.ui.helper.requestOverview.HelperOverviewFragment
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder
 
-class ExpandableHeaderItemBinder :
-    ItemBinder<HelperOverviewFragment.Header, ExpandableHeaderItemBinder.ViewHolder>() {
+class HelpRequestAvailableHeaderBinder(private val clickListener: () -> Unit) :
+    ItemBinder<HelperOverviewFragment.Header, HelpRequestAvailableHeaderBinder.ViewHolder>() {
 
     override fun bindViewHolder(
         holder: ViewHolder?,
         item: HelperOverviewFragment.Header?
     ) {
         holder!!.header.text = item!!.header
-        holder.toggle.text = if (holder.isSectionExpanded) "Collapse" else "Expand"
+        if (item.header == holder.header.context.getString(R.string.helper_request_overview_heading_accepted_section)) {
+            holder.button.visibility = View.GONE
+        } else {
+            holder.button.setOnClickListener { clickListener() }
+        }
     }
 
     override fun createViewHolder(parent: ViewGroup?): ViewHolder {
@@ -30,13 +34,7 @@ class ExpandableHeaderItemBinder :
 
     class ViewHolder(itemView: View) :
         ItemViewHolder<HelperOverviewFragment.Header?>(itemView) {
-        val header: TextView
-        val toggle: Button
-
-        init {
-            toggle = itemView.findViewById(R.id.btn_toggle)
-            header = itemView.findViewById(R.id.tv_header)
-            toggle.setOnClickListener { v: View? -> toggleSectionExpansion() }
-        }
+        val header: TextView = itemView.findViewById(R.id.textView_header)
+        val button: ImageButton = itemView.findViewById(R.id.button_nearRequests)
     }
 }

@@ -13,7 +13,7 @@ import app.nexd.android.R
 import app.nexd.android.api.model.HelpRequest
 import app.nexd.android.databinding.FragmentHelperRequestOverviewBinding
 import app.nexd.android.ui.common.DefaultSnackbar
-import app.nexd.android.ui.common.ExpandableHeaderItemBinder
+import app.nexd.android.ui.common.HelpRequestAvailableHeaderBinder
 import app.nexd.android.ui.common.HelpRequestBinder
 import app.nexd.android.ui.dialog.SelectTextDialog
 import app.nexd.android.ui.helper.requestOverview.HelperOverviewFragmentDirections.Companion.requestDetailAction
@@ -48,7 +48,7 @@ class HelperOverviewFragment : Fragment() {
         recyclerView_allRequests.layoutManager = LinearLayoutManager(context)
         recyclerView_allRequests.adapter = allRequestsAdapter
         allRequestsAdapter.registerItemBinders(
-            ExpandableHeaderItemBinder(),
+            HelpRequestAvailableHeaderBinder { vm.editZipCode() },
             HelpRequestBinder()
         )
 
@@ -88,8 +88,10 @@ class HelperOverviewFragment : Fragment() {
             vm.openRequests.observe(viewLifecycleOwner, Observer { openRequests ->
                 allRequestsAdapter.removeAllSections()
                 allRequestsAdapter.setExpansionMode(Mode.MULTIPLE)
-                val acceptedRequestsListHeaderSection = HeaderSection(Header("Accepted"))
-                val nearRequestListHeaderSection = HeaderSection(Header("Open"))
+                val acceptedRequestsListHeaderSection =
+                    HeaderSection(Header(requireContext().getString(R.string.helper_request_overview_heading_accepted_section)))
+                val nearRequestListHeaderSection =
+                    HeaderSection(Header(requireContext().getString(R.string.helper_request_overview_heading_available_section)))
 
                 val acceptedRequestsList = ListSection<HelpRequest>()
                 val nearRequestList = ListSection<HelpRequest>()
