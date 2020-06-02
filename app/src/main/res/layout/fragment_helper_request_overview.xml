@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -8,8 +9,7 @@
             type="app.nexd.android.ui.helper.requestOverview.HelperOverviewViewModel" />
     </data>
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -56,50 +56,17 @@
                 android:textSize="@dimen/textSize_button"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textView_acceptedLists"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/helper_request_overview_heading_accepted_section"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/textSize_screen_title"
-                android:textStyle="bold" />
-
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView_acceptedRequests"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                tools:listitem="@layout/row_call" />
-
-            <Button
-                android:id="@+id/button_nearRequests"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableEnd="@drawable/ic_edit_black_24dp"
-                android:drawableTint="@android:color/white"
-                android:paddingStart="0dp"
-                android:paddingEnd="0dp"
-                android:text="@string/helper_request_overview_heading_available_section"
-                android:textAlignment="textStart"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/textSize_screen_title"
-                android:textStyle="bold"
-                android:onClick="@{() -> viewModel.editZipCode()}"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView_nearRequests"
+                android:id="@+id/recyclerView_allRequests"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_weight="3"
                 android:orientation="vertical"
-                tools:listitem="@layout/row_call" />
+                tools:listitem="@layout/row_call">
+
+            </androidx.recyclerview.widget.RecyclerView>
 
         </LinearLayout>
     </RelativeLayout>
