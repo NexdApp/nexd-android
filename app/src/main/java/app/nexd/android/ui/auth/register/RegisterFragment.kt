@@ -18,7 +18,6 @@ import app.nexd.android.ui.auth.register.RegisterViewModel.Progress.*
 import app.nexd.android.ui.common.Constants
 import app.nexd.android.ui.common.DefaultSnackbar
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_register.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -58,7 +57,6 @@ class RegisterFragment : Fragment() {
         )
 
         binding.buttonRegister.setOnClickListener {
-            switchUiIsEnabled(false)
             vm.register()
         }
 
@@ -76,12 +74,10 @@ class RegisterFragment : Fragment() {
                     progress.message?.let { message ->
                         DefaultSnackbar(view, message, Snackbar.LENGTH_SHORT)
                     }
-                    switchUiIsEnabled(true)
                 }
                 is Finished -> {
                     activityVm.authenticate(progress.token)
                     findNavController().navigate(RegisterFragmentDirections.toRegisterDetailedFragment())
-                    switchUiIsEnabled(true)
                 }
             }
         })
@@ -100,17 +96,6 @@ class RegisterFragment : Fragment() {
         )
     }
 
-    private fun switchUiIsEnabled(enable: Boolean) {
-        binding.apply {
-            buttonRegister.isEnabled = enable
-            editTextFirstName.isEnabled = enable
-            editTextLastName.isEnabled = enable
-            editTextEmail.isEnabled = enable
-            editTextPassword.isEnabled = enable
-            editTextPasswordConfirm.isEnabled = enable
-            checkboxDataProtection.isEnabled = enable
-        }
 
-    }
 
 }
