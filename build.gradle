@@ -33,7 +33,7 @@ allprojects {
 }
 
 ext {
-    apiBaseUrl = project.findProperty('apiBaseUrl') ?: "https://nexd-backend-staging.herokuapp.com/api/v1"
+    apiBaseUrl = project.findProperty('apiBaseUrl') ?: "https://api-staging.nexd.app/api/v1"
 }
 
 task clean(type: Delete) {

@@ -1,6 +1,6 @@
 # AuthApi
 
-All URIs are relative to *https://nexd-backend-staging.herokuapp.com:443/api/v1*
+All URIs are relative to *https://api-staging.nexd.app:443/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -31,7 +31,7 @@ import app.nexd.android.api.AuthApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://nexd-backend-staging.herokuapp.com:443/api/v1");
+        defaultClient.setBasePath("https://api-staging.nexd.app:443/api/v1");
 
         AuthApi apiInstance = new AuthApi(defaultClient);
         LoginDto loginDto = new LoginDto(); // LoginDto | 
@@ -97,7 +97,7 @@ import app.nexd.android.api.AuthApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://nexd-backend-staging.herokuapp.com:443/api/v1");
+        defaultClient.setBasePath("https://api-staging.nexd.app:443/api/v1");
 
         AuthApi apiInstance = new AuthApi(defaultClient);
         TokenDto tokenDto = new TokenDto(); // TokenDto | 
@@ -162,7 +162,7 @@ import app.nexd.android.api.AuthApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://nexd-backend-staging.herokuapp.com:443/api/v1");
+        defaultClient.setBasePath("https://api-staging.nexd.app:443/api/v1");
 
         AuthApi apiInstance = new AuthApi(defaultClient);
         RegisterDto registerDto = new RegisterDto(); // RegisterDto | 
@@ -227,7 +227,7 @@ import app.nexd.android.api.AuthApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://nexd-backend-staging.herokuapp.com:443/api/v1");
+        defaultClient.setBasePath("https://api-staging.nexd.app:443/api/v1");
 
         AuthApi apiInstance = new AuthApi(defaultClient);
         String email = "email_example"; // String | 
@@ -292,7 +292,7 @@ import app.nexd.android.api.AuthApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://nexd-backend-staging.herokuapp.com:443/api/v1");
+        defaultClient.setBasePath("https://api-staging.nexd.app:443/api/v1");
 
         AuthApi apiInstance = new AuthApi(defaultClient);
         EmailPasswordResetDto emailPasswordResetDto = new EmailPasswordResetDto(); // EmailPasswordResetDto | 
