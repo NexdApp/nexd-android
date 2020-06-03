@@ -61,7 +61,13 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
     private val compositeDisposable = CompositeDisposable()
 
     private fun loadArticles() {
-        val observable = api.articlesControllerFindAll(10, "", AvailableLanguages.DE, false)
+        val observable = api.articlesControllerFindAll(
+            10,
+            null,
+            null,
+            true, AvailableLanguages.DE, // FIXME: use app/system language
+            false
+        )
             .map { articles ->
                 articles
                     .map { article ->

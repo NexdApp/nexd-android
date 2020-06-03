@@ -17,13 +17,15 @@ public interface ArticlesApi {
    * 
    * @param limit Maximum number of articles  (optional)
    * @param startsWith Starts with the given string. Empty string does not filter. (optional)
+   * @param contains Contains with the given string. Empty string does not filter. (optional)
+   * @param orderByPopularity If true, orders by the most frequent used articles first. Defaults to false. (optional)
    * @param language  (optional)
    * @param onlyVerified true to only gets the list of curated articles (default: true) (optional)
    * @return Observable&lt;List&lt;Article&gt;&gt;
    */
   @GET("article/articles")
   Observable<List<Article>> articlesControllerFindAll(
-    @retrofit2.http.Query("limit") Long limit, @retrofit2.http.Query("startsWith") String startsWith, @retrofit2.http.Query("language") AvailableLanguages language, @retrofit2.http.Query("onlyVerified") Boolean onlyVerified
+    @retrofit2.http.Query("limit") Long limit, @retrofit2.http.Query("startsWith") String startsWith, @retrofit2.http.Query("contains") String contains, @retrofit2.http.Query("orderByPopularity") Boolean orderByPopularity, @retrofit2.http.Query("language") AvailableLanguages language, @retrofit2.http.Query("onlyVerified") Boolean onlyVerified
   );
 
   /**

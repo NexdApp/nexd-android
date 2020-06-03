@@ -33,10 +33,6 @@ public class Unit {
   @SerializedName(SERIALIZED_NAME_ID)
   private Long id;
 
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
-
   public static final String SERIALIZED_NAME_NAME_SHORT = "nameShort";
   @SerializedName(SERIALIZED_NAME_NAME_SHORT)
   private String nameShort;
@@ -96,6 +92,30 @@ public class Unit {
   @SerializedName(SERIALIZED_NAME_DEFAULT_ORDER)
   private Long defaultOrder;
 
+  public static final String SERIALIZED_NAME_NAME_ZERO = "nameZero";
+  @SerializedName(SERIALIZED_NAME_NAME_ZERO)
+  private String nameZero;
+
+  public static final String SERIALIZED_NAME_NAME_ONE = "nameOne";
+  @SerializedName(SERIALIZED_NAME_NAME_ONE)
+  private String nameOne;
+
+  public static final String SERIALIZED_NAME_NAME_TWO = "nameTwo";
+  @SerializedName(SERIALIZED_NAME_NAME_TWO)
+  private String nameTwo;
+
+  public static final String SERIALIZED_NAME_NAME_FEW = "nameFew";
+  @SerializedName(SERIALIZED_NAME_NAME_FEW)
+  private String nameFew;
+
+  public static final String SERIALIZED_NAME_NAME_MANY = "nameMany";
+  @SerializedName(SERIALIZED_NAME_NAME_MANY)
+  private String nameMany;
+
+  public static final String SERIALIZED_NAME_NAME_OTHER = "nameOther";
+  @SerializedName(SERIALIZED_NAME_NAME_OTHER)
+  private String nameOther;
+
 
   public Unit id(Long id) {
     
@@ -117,28 +137,6 @@ public class Unit {
 
   public void setId(Long id) {
     this.id = id;
-  }
-
-
-  public Unit name(String name) {
-    
-    this.name = name;
-    return this;
-  }
-
-   /**
-   * Name of the unit
-   * @return name
-  **/
-  @ApiModelProperty(required = true, value = "Name of the unit")
-
-  public String getName() {
-    return name;
-  }
-
-
-  public void setName(String name) {
-    this.name = name;
   }
 
 
@@ -209,6 +207,138 @@ public class Unit {
   }
 
 
+  public Unit nameZero(String nameZero) {
+    
+    this.nameZero = nameZero;
+    return this;
+  }
+
+   /**
+   * Get nameZero
+   * @return nameZero
+  **/
+  @ApiModelProperty(required = true, value = "")
+
+  public String getNameZero() {
+    return nameZero;
+  }
+
+
+  public void setNameZero(String nameZero) {
+    this.nameZero = nameZero;
+  }
+
+
+  public Unit nameOne(String nameOne) {
+    
+    this.nameOne = nameOne;
+    return this;
+  }
+
+   /**
+   * Get nameOne
+   * @return nameOne
+  **/
+  @ApiModelProperty(required = true, value = "")
+
+  public String getNameOne() {
+    return nameOne;
+  }
+
+
+  public void setNameOne(String nameOne) {
+    this.nameOne = nameOne;
+  }
+
+
+  public Unit nameTwo(String nameTwo) {
+    
+    this.nameTwo = nameTwo;
+    return this;
+  }
+
+   /**
+   * Get nameTwo
+   * @return nameTwo
+  **/
+  @ApiModelProperty(required = true, value = "")
+
+  public String getNameTwo() {
+    return nameTwo;
+  }
+
+
+  public void setNameTwo(String nameTwo) {
+    this.nameTwo = nameTwo;
+  }
+
+
+  public Unit nameFew(String nameFew) {
+    
+    this.nameFew = nameFew;
+    return this;
+  }
+
+   /**
+   * Get nameFew
+   * @return nameFew
+  **/
+  @ApiModelProperty(required = true, value = "")
+
+  public String getNameFew() {
+    return nameFew;
+  }
+
+
+  public void setNameFew(String nameFew) {
+    this.nameFew = nameFew;
+  }
+
+
+  public Unit nameMany(String nameMany) {
+    
+    this.nameMany = nameMany;
+    return this;
+  }
+
+   /**
+   * Get nameMany
+   * @return nameMany
+  **/
+  @ApiModelProperty(required = true, value = "")
+
+  public String getNameMany() {
+    return nameMany;
+  }
+
+
+  public void setNameMany(String nameMany) {
+    this.nameMany = nameMany;
+  }
+
+
+  public Unit nameOther(String nameOther) {
+    
+    this.nameOther = nameOther;
+    return this;
+  }
+
+   /**
+   * Get nameOther
+   * @return nameOther
+  **/
+  @ApiModelProperty(required = true, value = "")
+
+  public String getNameOther() {
+    return nameOther;
+  }
+
+
+  public void setNameOther(String nameOther) {
+    this.nameOther = nameOther;
+  }
+
+
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -219,15 +349,20 @@ public class Unit {
     }
     Unit unit = (Unit) o;
     return Objects.equals(this.id, unit.id) &&
-        Objects.equals(this.name, unit.name) &&
         Objects.equals(this.nameShort, unit.nameShort) &&
         Objects.equals(this.language, unit.language) &&
-        Objects.equals(this.defaultOrder, unit.defaultOrder);
+        Objects.equals(this.defaultOrder, unit.defaultOrder) &&
+        Objects.equals(this.nameZero, unit.nameZero) &&
+        Objects.equals(this.nameOne, unit.nameOne) &&
+        Objects.equals(this.nameTwo, unit.nameTwo) &&
+        Objects.equals(this.nameFew, unit.nameFew) &&
+        Objects.equals(this.nameMany, unit.nameMany) &&
+        Objects.equals(this.nameOther, unit.nameOther);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, nameShort, language, defaultOrder);
+    return Objects.hash(id, nameShort, language, defaultOrder, nameZero, nameOne, nameTwo, nameFew, nameMany, nameOther);
   }
 
 
@@ -236,10 +371,15 @@ public class Unit {
     StringBuilder sb = new StringBuilder();
     sb.append("class Unit {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    nameShort: ").append(toIndentedString(nameShort)).append("\n");
     sb.append("    language: ").append(toIndentedString(language)).append("\n");
     sb.append("    defaultOrder: ").append(toIndentedString(defaultOrder)).append("\n");
+    sb.append("    nameZero: ").append(toIndentedString(nameZero)).append("\n");
+    sb.append("    nameOne: ").append(toIndentedString(nameOne)).append("\n");
+    sb.append("    nameTwo: ").append(toIndentedString(nameTwo)).append("\n");
+    sb.append("    nameFew: ").append(toIndentedString(nameFew)).append("\n");
+    sb.append("    nameMany: ").append(toIndentedString(nameMany)).append("\n");
+    sb.append("    nameOther: ").append(toIndentedString(nameOther)).append("\n");
     sb.append("}");
     return sb.toString();
   }

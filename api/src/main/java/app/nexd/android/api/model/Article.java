@@ -94,6 +94,10 @@ public class Article {
   @SerializedName(SERIALIZED_NAME_STATUS_OVERWRITTEN)
   private Boolean statusOverwritten = false;
 
+  public static final String SERIALIZED_NAME_POPULARITY = "popularity";
+  @SerializedName(SERIALIZED_NAME_POPULARITY)
+  private Long popularity;
+
   public static final String SERIALIZED_NAME_UNIT_ID_ORDER = "unitIdOrder";
   @SerializedName(SERIALIZED_NAME_UNIT_ID_ORDER)
   private List<Long> unitIdOrder = null;
@@ -249,6 +253,28 @@ public class Article {
   }
 
 
+  public Article popularity(Long popularity) {
+    
+    this.popularity = popularity;
+    return this;
+  }
+
+   /**
+   * Popularity of the article, the higher the more frequent used.
+   * @return popularity
+  **/
+  @ApiModelProperty(required = true, value = "Popularity of the article, the higher the more frequent used.")
+
+  public Long getPopularity() {
+    return popularity;
+  }
+
+
+  public void setPopularity(Long popularity) {
+    this.popularity = popularity;
+  }
+
+
   public Article unitIdOrder(List<Long> unitIdOrder) {
     
     this.unitIdOrder = unitIdOrder;
@@ -362,6 +388,7 @@ public class Article {
         Objects.equals(this.name, article.name) &&
         Objects.equals(this.language, article.language) &&
         Objects.equals(this.statusOverwritten, article.statusOverwritten) &&
+        Objects.equals(this.popularity, article.popularity) &&
         Objects.equals(this.unitIdOrder, article.unitIdOrder) &&
         Objects.equals(this.categoryId, article.categoryId) &&
         Objects.equals(this.status, article.status) &&
@@ -370,7 +397,7 @@ public class Article {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, language, statusOverwritten, unitIdOrder, categoryId, status, category);
+    return Objects.hash(id, name, language, statusOverwritten, popularity, unitIdOrder, categoryId, status, category);
   }
 
 
@@ -382,6 +409,7 @@ public class Article {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    language: ").append(toIndentedString(language)).append("\n");
     sb.append("    statusOverwritten: ").append(toIndentedString(statusOverwritten)).append("\n");
+    sb.append("    popularity: ").append(toIndentedString(popularity)).append("\n");
     sb.append("    unitIdOrder: ").append(toIndentedString(unitIdOrder)).append("\n");
     sb.append("    categoryId: ").append(toIndentedString(categoryId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");

@@ -98,7 +98,13 @@ class SeekerCreateRequestViewModel(private val api: Api) : ViewModel() {
 
     internal fun setArticleListSection() {
         if (articles.value.isNullOrEmpty()) {
-            val observable = api.articlesControllerFindAll(10, "", AvailableLanguages.DE, false)
+            val observable = api.articlesControllerFindAll(
+                10,
+                null,
+                null,
+                true,
+                AvailableLanguages.DE, // FIXME: use app/system language
+                false)
                 .map {
                     it.map { article ->
                         HelpRequestCreateArticleBinder.ArticleInput(
