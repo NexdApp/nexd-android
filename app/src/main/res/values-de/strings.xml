@@ -174,4 +174,19 @@
     <string name="seeker_request_create_no_articles">"Bitte mindestens 1 Artikel wählen"</string>
     <string name="helper_request_detail_additional_request_header">"Zusätzliche Info"</string>
     <string name="helper_request_detail_delivery_address_header">"Lieferaddresse"</string>
+    <string name="delivery_confirmation_delivery_comment">"Lieferhinweis"</string>
+    <string name="delivery_confirmation_full_name">"Name"</string>
+    <string name="done_button_title">"Fertig"</string>
+    <string name="helper_request_detail_delivery_comment_header">"Lieferhinweis"</string>
+    <string name="helper_request_detail_empty_delivery_address_placeholder">"The delivery address is not available."</string>
+    <string name="helper_request_detail_empty_list_placeholder">"Die Einkaufsliste ist fehlerhaft oder enthält keine Einträge."</string>
+    <string name="helper_request_overview_empty_accepted_requests_list_placeholder">"Bisher hast du noch keine Anfragen angenommen. Bitte tippe auf eine offene Anfrage um sie anzusehen und anzunehmen."</string>
+    <string name="helper_request_overview_empty_open_requests_list_placeholder">"Für deine eingestellte Region sind derzeit keine offenen Anfragen vorhanden. Bitte such in einer anderen Region in deiner Nähe oder hilf uns in dem du Telefonanrufe übersetzt."</string>
+    <string name="seeker_article_input_description">"Bitte gib den Namen, Anzahl und Maßeinheit des Artikels an den du zur Liste hinzufügen möchtest."</string>
+    <string name="seeker_article_input_title">"Artikel hinzufügen"</string>
+    <string name="seeker_article_input_unit_picker_title">"Maßeinheit"</string>
+    <string name="seeker_item_selection_add_article_placeholer">"Artikel Name"</string>
+    <string name="seeker_item_selection_article_amount_placeholer">"Menge"</string>
+    <string name="seeker_item_selection_no_items_text">"Benutze bitte den '+' Knopf um deinen ersten Artikel zur Liste hinzuzufügen."</string>
+    <string name="transcribe_articles_selection_no_items_text">"Benutze bitte den '+' Knopf um die Artikel aus dem aufgezeichneten Telefonanruf zur Liste hinzuzufügen"</string>
 </resources>
