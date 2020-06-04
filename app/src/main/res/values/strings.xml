@@ -116,7 +116,7 @@ phone call"</string>
     <string name="delivery_confirmation_screen_title">"Thank you for completing the orders!"</string>
     <string name="delivery_confirmation_section_header">"%1$@'s contact information:"</string>
     <string name="delivery_confirmation_phone_number_title">"Telephone number"</string>
-    <string name="delivery_confirmation_address_title">"Postal Code / Town"</string>
+    <string name="delivery_confirmation_address_title">"Address"</string>
     <string name="delivery_confirmation_confirm_button_title">"Finish shopping"</string>
     <string name="error_dialog_authentication_failed_title">"Authentication failed!"</string>
     <string name="error_dialog_authentication_failed_message">"User authentication failed please try to login again."</string>
@@ -174,4 +174,19 @@ phone call"</string>
     <string name="seeker_request_create_no_articles">"Please enter at least 1 article"</string>
     <string name="helper_request_detail_additional_request_header">"Additional Request"</string>
     <string name="helper_request_detail_delivery_address_header">"Delivery Address"</string>
+    <string name="delivery_confirmation_delivery_comment">"Delivery comment"</string>
+    <string name="delivery_confirmation_full_name">"Name"</string>
+    <string name="done_button_title">"Done"</string>
+    <string name="helper_request_detail_delivery_comment_header">"Delivery comment"</string>
+    <string name="helper_request_detail_empty_delivery_address_placeholder">"The delivery address is not available."</string>
+    <string name="helper_request_detail_empty_list_placeholder">"The shopping list is empty or failed to load."</string>
+    <string name="helper_request_overview_empty_accepted_requests_list_placeholder">"No accepted requests found. Please chose requests from the list below."</string>
+    <string name="helper_request_overview_empty_open_requests_list_placeholder">"Currently there are no open requests in your selected region. Please try to check other regions nearby for open requests or help us by translating phone calls."</string>
+    <string name="seeker_article_input_description">"To add a new article to the list provide its name, amount and unit."</string>
+    <string name="seeker_article_input_title">"Add article"</string>
+    <string name="seeker_article_input_unit_picker_title">"Unit"</string>
+    <string name="seeker_item_selection_add_article_placeholer">"Add article"</string>
+    <string name="seeker_item_selection_article_amount_placeholer">"Amount"</string>
+    <string name="seeker_item_selection_no_items_text">"Press the '+' button to add your first item to the list."</string>
+    <string name="transcribe_articles_selection_no_items_text">"Press the '+' button to add the items ordered in the recorded voice call to the list."</string>
 </resources>

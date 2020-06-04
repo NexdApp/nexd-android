@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import app.nexd.android.Api
 import app.nexd.android.R
+import app.nexd.android.api.model.AvailableLanguages
 import app.nexd.android.api.model.Call
 import app.nexd.android.api.model.CreateHelpRequestArticleDto
 import app.nexd.android.api.model.HelpRequestCreateDto
@@ -60,7 +61,13 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
     private val compositeDisposable = CompositeDisposable()
 
     private fun loadArticles() {
-        val observable = api.articlesControllerFindAll()
+        val observable = api.articlesControllerFindAll(
+            10,
+            null,
+            null,
+            true, AvailableLanguages.DE, // FIXME: use app/system language
+            false
+        )
             .map { articles ->
                 articles
                     .map { article ->

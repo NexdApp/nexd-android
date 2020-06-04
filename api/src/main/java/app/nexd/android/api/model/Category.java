@@ -20,21 +20,27 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * CreateArticleDto
+ * Category
  */
 
-public class CreateArticleDto {
+public class Category {
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private Long id;
+
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
   private String name;
 
   /**
-   * Language of the article, e.g. the user
+   * Language key of this category
    */
   @JsonAdapter(LanguageEnum.Adapter.class)
   public enum LanguageEnum {
@@ -84,18 +90,44 @@ public class CreateArticleDto {
   @SerializedName(SERIALIZED_NAME_LANGUAGE)
   private LanguageEnum language;
 
+  public static final String SERIALIZED_NAME_ARTICLES = "articles";
+  @SerializedName(SERIALIZED_NAME_ARTICLES)
+  private List<Article> articles = null;
 
-  public CreateArticleDto name(String name) {
+
+  public Category id(Long id) {
+    
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * Auto-incremented ID of an category.
+   * @return id
+  **/
+  @ApiModelProperty(required = true, value = "Auto-incremented ID of an category.")
+
+  public Long getId() {
+    return id;
+  }
+
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+
+  public Category name(String name) {
     
     this.name = name;
     return this;
   }
 
    /**
-   * Name of the article. If the name already exists, no new article will be added.
+   * Category name
    * @return name
   **/
-  @ApiModelProperty(required = true, value = "Name of the article. If the name already exists, no new article will be added.")
+  @ApiModelProperty(required = true, value = "Category name")
 
   public String getName() {
     return name;
@@ -107,17 +139,17 @@ public class CreateArticleDto {
   }
 
 
-  public CreateArticleDto language(LanguageEnum language) {
+  public Category language(LanguageEnum language) {
     
     this.language = language;
     return this;
   }
 
    /**
-   * Language of the article, e.g. the user
+   * Language key of this category
    * @return language
   **/
-  @ApiModelProperty(required = true, value = "Language of the article, e.g. the user")
+  @ApiModelProperty(required = true, value = "Language key of this category")
 
   public LanguageEnum getLanguage() {
     return language;
@@ -129,6 +161,37 @@ public class CreateArticleDto {
   }
 
 
+  public Category articles(List<Article> articles) {
+    
+    this.articles = articles;
+    return this;
+  }
+
+  public Category addArticlesItem(Article articlesItem) {
+    if (this.articles == null) {
+      this.articles = new ArrayList<Article>();
+    }
+    this.articles.add(articlesItem);
+    return this;
+  }
+
+   /**
+   * Get articles
+   * @return articles
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public List<Article> getArticles() {
+    return articles;
+  }
+
+
+  public void setArticles(List<Article> articles) {
+    this.articles = articles;
+  }
+
+
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -137,23 +200,27 @@ public class CreateArticleDto {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateArticleDto createArticleDto = (CreateArticleDto) o;
-    return Objects.equals(this.name, createArticleDto.name) &&
-        Objects.equals(this.language, createArticleDto.language);
+    Category category = (Category) o;
+    return Objects.equals(this.id, category.id) &&
+        Objects.equals(this.name, category.name) &&
+        Objects.equals(this.language, category.language) &&
+        Objects.equals(this.articles, category.articles);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, language);
+    return Objects.hash(id, name, language, articles);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateArticleDto {\n");
+    sb.append("class Category {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    language: ").append(toIndentedString(language)).append("\n");
+    sb.append("    articles: ").append(toIndentedString(articles)).append("\n");
     sb.append("}");
     return sb.toString();
   }
