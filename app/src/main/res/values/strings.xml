@@ -189,4 +189,9 @@ phone call"</string>
     <string name="seeker_item_selection_article_amount_placeholer">"Amount"</string>
     <string name="seeker_item_selection_no_items_text">"Press the '+' button to add your first item to the list."</string>
     <string name="transcribe_articles_selection_no_items_text">"Press the '+' button to add the items ordered in the recorded voice call to the list."</string>
+    <string name="error_dialog_backend_communication_failed_message">"We are sorry, but our service is currently not available. Please try again later."</string>
+    <string name="error_dialog_backend_communication_failed_title">"Service not available"</string>
+    <string name="overlay_backend_error_communication_failed_message">"We are sorry, but our service is currently not available. Please try again later."</string>
+    <string name="overlay_backend_error_communication_failed_retry">"Retry"</string>
+    <string name="overlay_backend_error_communication_failed_title">"Service not available"</string>
 </resources>
