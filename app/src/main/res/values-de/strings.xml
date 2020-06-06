@@ -189,4 +189,12 @@
     <string name="seeker_item_selection_article_amount_placeholer">"Menge"</string>
     <string name="seeker_item_selection_no_items_text">"Benutze bitte den '+' Knopf um deinen ersten Artikel zur Liste hinzuzufügen."</string>
     <string name="transcribe_articles_selection_no_items_text">"Benutze bitte den '+' Knopf um die Artikel aus dem aufgezeichneten Telefonanruf zur Liste hinzuzufügen"</string>
+    <string name="error_dialog_backend_communication_failed_message">"Leider ist unser Dienst derzeit nicht verfügbar. Bitte versuch es später nochmal."</string>
+    <string name="error_dialog_backend_communication_failed_title">"Dienst nicht verfügbar"</string>
+    <string name="overlay_backend_error_communication_failed_message">"Leider ist unser Dienst derzeit nicht verfügbar. Bitte versuch es später nochmal."</string>
+    <string name="overlay_backend_error_communication_failed_retry">"Wiederholen"</string>
+    <string name="overlay_backend_error_communication_failed_title">"Dienst nicht verfügbar"</string>
+    <string name="helper_request_overview_empty_open_requests_list_invitation_hint">"Kennst du Leute die diese App gerne nutzen möchten? Dann erzähl ihnen von uns!"</string>
+    <string name="helper_request_overview_empty_open_requests_list_invite_button_title">"Weitersagen!"</string>
+    <string name="invitation_message">"Schau dir mal die nexd App an. Ich glaube die wäre was für dich..."</string>
 </resources>
