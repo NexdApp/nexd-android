@@ -10,6 +10,7 @@ import app.nexd.android.api.model.CreateHelpRequestArticleDto
 import app.nexd.android.api.model.HelpRequestCreateDto
 import app.nexd.android.api.model.User
 import app.nexd.android.ui.common.HelpRequestCreateArticleBinder
+import app.nexd.android.ui.utils.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
 import io.reactivex.disposables.CompositeDisposable
 
@@ -17,10 +18,11 @@ class SeekerCreateRequestViewModel(private val api: Api) : ViewModel() {
 
     sealed class Progress {
         object Idle : Progress()
-        object Loading : Progress()
         class Error(@StringRes val message: Int? = null) : Progress()
         object Finished : Progress()
     }
+
+    val navigateToConfirmAddress = SingleLiveEvent<Any>()
 
     val progress = MutableLiveData<Progress>(Progress.Idle)
 
@@ -90,7 +92,7 @@ class SeekerCreateRequestViewModel(private val api: Api) : ViewModel() {
         selectedArticles.clear()
         setSelectedArticles()
         if (selectedArticles.isNotEmpty()) {
-            progress.value = Progress.Loading
+            navigateToConfirmAddress.call()
         } else {
             progress.value = Progress.Error(R.string.seeker_request_create_no_articles)
         }

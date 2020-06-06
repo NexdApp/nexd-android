@@ -79,13 +79,14 @@ class SeekerCreateRequestEnterArticlesFragment : Fragment() {
             }
         })
 
+        vm.navigateToConfirmAddress.observe(viewLifecycleOwner, Observer {
+            findNavController().navigate(SeekerCreateRequestEnterArticlesFragmentDirections.toSeekerCreateRequestConfirmAddressFragment())
+        })
+
         vm.progress.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is Idle -> {
-                    //nothing to do
-                }
-                is Loading -> {
-                    findNavController().navigate(SeekerCreateRequestEnterArticlesFragmentDirections.toSeekerCreateRequestConfirmAddressFragment())
+                    // nothing to do
                 }
                 is Finished -> {
                     // state not reachable
