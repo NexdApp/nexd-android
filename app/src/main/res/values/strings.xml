@@ -57,6 +57,7 @@
     <string name="helper_request_detail_screen_title">"To collect"</string>
     <string name="helper_request_detail_button_accepted">"Request already accepted"</string>
     <string name="helper_request_detail_button_accept">"Will do!"</string>
+    <string name="helper_request_detail_button_cancel">"Have to cancel"</string>
     <string name="delivery_screen_title">"Delivery!"</string>
     <string name="delivery_dialog_deliver_title">"Deliver"</string>
     <string name="delivery_dialog_deliver_description">"Confirm the delivery of all accepted requests"</string>

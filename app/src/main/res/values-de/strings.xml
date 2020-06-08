@@ -57,6 +57,7 @@
     <string name="helper_request_detail_screen_title">"Zu Einkaufen"</string>
     <string name="helper_request_detail_button_accepted">"Anfrage bereits angenommen"</string>
     <string name="helper_request_detail_button_accept">"Mach ich!"</string>
+    <string name="helper_request_detail_button_cancel">"Kann ich leider nicht machen "</string>
     <string name="delivery_screen_title">"Abgabe!"</string>
     <string name="delivery_dialog_deliver_title">"Abgeben"</string>
     <string name="delivery_dialog_deliver_description">"Bitte bestätige die Abgabe aller angenommen Aufträge"</string>

@@ -1,6 +1,9 @@
 package app.nexd.android.ui.helper.detail
 
+import android.graphics.Typeface
 import android.util.Log
+import android.widget.Button
+import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import app.nexd.android.Api
@@ -24,12 +27,18 @@ class HelperDetailViewModel(private val api: Api) : ViewModel() {
     val city = MutableLiveData<String>()
     val requestArticles = MutableLiveData<List<HelpRequestArticle>>()
     val requestIsAccepted = MutableLiveData<Boolean>()
-    val buttonText = MutableLiveData<String>()
     val idOfRequest = MutableLiveData<Long>()
 
     private val compositeDisposable = CompositeDisposable()
 
-    fun acceptRequest(requestId: Long) {
+    fun acceptOrDeclineRequest(requestId: Long) {
+        requestIsAccepted.value?.let {
+            if (it) declineRequest(requestId)
+            else acceptRequest(requestId)
+        }
+    }
+
+    private fun acceptRequest(requestId: Long) {
         api.helpListsControllerGetUserLists(null)
             .map { lists ->
                 if (lists.any { it.status == HelpList.StatusEnum.ACTIVE })
@@ -55,6 +64,18 @@ class HelperDetailViewModel(private val api: Api) : ViewModel() {
                 Log.e("Error", it.message.toString())
             }
             .blockingSubscribe()
+    }
+
+    private fun declineRequest(requestId: Long) {
+        val helpListIdFromRequest =
+            api.helpRequestsControllerGetSingleRequest(requestId).blockingFirst().helpListId
+        helpListIdFromRequest?.let { helpListId ->
+            api.helpListsControllerDeleteHelpRequestFromHelpList(helpListId, requestId)
+                .subscribeOn(io())
+                .doOnError {
+                    Log.e("Error", it.message.toString())
+                }.blockingSubscribe()
+        }
     }
 
     fun setInfo(requestId: Long) {
@@ -83,5 +104,16 @@ class HelperDetailViewModel(private val api: Api) : ViewModel() {
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.clear()
+    }
+
+    object ButtonTextStyleBinding {
+        @JvmStatic
+        @BindingAdapter("app:textStyle")
+        fun setTextStyle(button: Button, style: String) {
+            when (style) {
+                "bold" -> button.setTypeface(null, Typeface.BOLD)
+                else -> button.setTypeface(null, Typeface.NORMAL)
+            }
+        }
     }
 }

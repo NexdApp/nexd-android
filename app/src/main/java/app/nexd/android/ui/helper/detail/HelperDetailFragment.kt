@@ -65,7 +65,7 @@ class HelperDetailFragment : Fragment() {
 
         viewModel.idOfRequest.observe(viewLifecycleOwner, Observer { idOfRequest ->
             binding.buttonAccept.setOnClickListener {
-                viewModel.acceptRequest(idOfRequest)
+                viewModel.acceptOrDeclineRequest(idOfRequest)
                 findNavController().popBackStack()
             }
         })
