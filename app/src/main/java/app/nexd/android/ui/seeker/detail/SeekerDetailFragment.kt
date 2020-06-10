@@ -4,16 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.api.model.HelpRequestArticle
+import app.nexd.android.databinding.FragmentSeekerDetailBinding
+import app.nexd.android.ui.common.DefaultSnackbar
 import app.nexd.android.ui.common.HelpRequestArticleBinder
 import app.nexd.android.ui.utils.livedata.observe
-import kotlinx.android.synthetic.main.fragment_seeker_detail.*
+import com.google.android.material.snackbar.Snackbar
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -25,34 +26,52 @@ class SeekerDetailFragment : Fragment() {
 
     private val articlesAdapter = MultiViewAdapter()
 
+    private lateinit var binding: FragmentSeekerDetailBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_seeker_detail, container, false)
+        binding = FragmentSeekerDetailBinding.inflate(inflater, container, false)
+        binding.viewModel = vm
+        binding.lifecycleOwner = viewLifecycleOwner
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        vm.setInfo(args.requestId)
+        initRecyclerView()
+        initVmObserver()
+    }
 
-        recyclerView_requests.adapter = articlesAdapter
-        recyclerView_requests.layoutManager = LinearLayoutManager(context)
-
+    private fun initRecyclerView() {
+        binding.recyclerViewRequests.adapter = articlesAdapter
+        binding.recyclerViewRequests.layoutManager = LinearLayoutManager(context)
         articlesAdapter.registerItemBinders(
             HelpRequestArticleBinder()
         )
+    }
 
+    private fun initVmObserver() {
         vm.progress.observe(viewLifecycleOwner) {
             when (it) {
                 is SeekerDetailViewModel.Progress.Idle -> {
                 }
                 is SeekerDetailViewModel.Progress.Error -> {
-                    Toast.makeText(requireContext(), getText(R.string.helper_request_detail_message_error_on_cancellation), Toast.LENGTH_LONG).show()
+                    DefaultSnackbar(
+                        binding.root,
+                        R.string.helper_request_detail_message_error_on_cancellation,
+                        Snackbar.LENGTH_SHORT
+                    )
                 }
                 is SeekerDetailViewModel.Progress.Canceled -> {
-                    // show information
-                    Toast.makeText(requireContext(), getText(R.string.helper_request_detail_message_cancelled), Toast.LENGTH_LONG).show()
+                    DefaultSnackbar(
+                        binding.root,
+                        R.string.helper_request_detail_message_cancelled,
+                        Snackbar.LENGTH_SHORT
+                    )
                     findNavController().navigateUp()
                 }
             }
@@ -64,11 +83,10 @@ class SeekerDetailFragment : Fragment() {
             articlesList.addAll(request.articles!!)
             articlesAdapter.addSection(articlesList)
 
-            textView_additionalRequest_label.visibility =
+            binding.textViewAdditionalRequestLabel.visibility =
                 if (request.additionalRequest.isNullOrBlank()) View.GONE else View.VISIBLE
-            textView_additionalRequest.text = request.additionalRequest
 
-            button_cancel.setOnClickListener {
+            binding.buttonCancel.setOnClickListener {
                 vm.cancelRequest(request)
             }
         }
