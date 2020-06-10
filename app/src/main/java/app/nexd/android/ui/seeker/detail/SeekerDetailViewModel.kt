@@ -10,6 +10,7 @@ import app.nexd.android.api.model.HelpRequestCreateDto
 import io.reactivex.BackpressureStrategy
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.subscribeBy
 
 class SeekerDetailViewModel(private val api: Api) : ViewModel() {
 
@@ -20,6 +21,14 @@ class SeekerDetailViewModel(private val api: Api) : ViewModel() {
     }
 
     val progress = MutableLiveData<Progress>(Progress.Idle)
+
+    val additionalRequest = MutableLiveData<String>()
+    val firstName = MutableLiveData<String>()
+    val lastName = MutableLiveData<String>()
+    val street = MutableLiveData<String>()
+    val number = MutableLiveData<String>()
+    val zipCode = MutableLiveData<String>()
+    val city = MutableLiveData<String>()
 
     private val compositeDisposable = CompositeDisposable()
 
@@ -54,6 +63,26 @@ class SeekerDetailViewModel(private val api: Api) : ViewModel() {
                 )
 
         }
+    }
+
+    fun setInfo(requestId: Long) {
+        val observable = api.helpRequestsControllerGetSingleRequest(requestId)
+
+        val disposable = observable
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeBy(
+                onNext = {
+                    firstName.value = it.firstName
+                    lastName.value = it.lastName
+                    street.value = it.street
+                    number.value = it.number
+                    zipCode.value = it.zipCode
+                    city.value = it.city
+                    additionalRequest.value = it.additionalRequest
+                }
+            )
+
+        compositeDisposable.add(disposable)
     }
 
 }

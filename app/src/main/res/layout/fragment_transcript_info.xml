@@ -192,7 +192,7 @@
                 android:autofillHints="postal-code"
                 android:background="@drawable/rounded_white"
                 android:error="@{viewModel.zipCodeError}"
-                android:inputType="number"
+                android:inputType="textPostalAddress"
                 android:nextFocusDown="@id/editText_city_value"
                 android:padding="10dp"
                 android:text="@={viewModel.zipCode}"
