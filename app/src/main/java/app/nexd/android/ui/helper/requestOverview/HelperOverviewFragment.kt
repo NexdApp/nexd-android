@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.api.model.HelpRequest
 import app.nexd.android.databinding.FragmentHelperRequestOverviewBinding
-import app.nexd.android.ui.common.DefaultSnackbar
+import app.nexd.android.ui.common.DefaultSnackBar
 import app.nexd.android.ui.common.HelpRequestBinder
 import app.nexd.android.ui.dialog.SelectTextDialog
 import app.nexd.android.ui.helper.requestOverview.HelperOverviewFragmentDirections.Companion.requestDetailAction
@@ -83,7 +83,7 @@ class HelperOverviewFragment : Fragment() {
                 }
                 is Error -> {
                     progressBar.visibility = View.GONE
-                    DefaultSnackbar(view, progress.message, Snackbar.LENGTH_SHORT)
+                    DefaultSnackBar(view, progress.message, Snackbar.LENGTH_SHORT)
                 }
             }
         })

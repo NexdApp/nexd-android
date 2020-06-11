@@ -1,3 +1,5 @@
+@file:Suppress("SpellCheckingInspection")
+
 package app.nexd.android.ui.role
 
 import android.os.Bundle

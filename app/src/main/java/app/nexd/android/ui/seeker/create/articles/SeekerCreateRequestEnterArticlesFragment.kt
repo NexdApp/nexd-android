@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.databinding.FragmentSeekerCreateRequestEnterArticlesBinding
 import app.nexd.android.di.sharedGraphViewModel
-import app.nexd.android.ui.common.DefaultSnackbar
+import app.nexd.android.ui.common.DefaultSnackBar
 import app.nexd.android.ui.common.HelpRequestCreateArticleBinder
 import app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel
 import app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel.Progress.*
@@ -92,7 +92,7 @@ class SeekerCreateRequestEnterArticlesFragment : Fragment() {
                 }
                 is Error -> {
                     it.message?.let { errorMessageId ->
-                        DefaultSnackbar(binding.root, errorMessageId, Snackbar.LENGTH_SHORT)
+                        DefaultSnackBar(binding.root, errorMessageId, Snackbar.LENGTH_SHORT)
                     }
                 }
                 else -> Log.d(
