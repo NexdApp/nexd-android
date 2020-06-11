@@ -51,7 +51,7 @@ abstract class SelectDialog @JvmOverloads constructor(
 
     init {
         val view = View.inflate(context, R.layout.dialog_select, null)
-        setView(view)
+        this.setView(view)
 
         mTitle = view.textView_title
         mDetails = view.textView_details

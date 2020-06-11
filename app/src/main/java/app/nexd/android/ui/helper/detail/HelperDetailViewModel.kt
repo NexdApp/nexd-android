@@ -24,7 +24,6 @@ class HelperDetailViewModel(private val api: Api) : ViewModel() {
     val city = MutableLiveData<String>()
     val requestArticles = MutableLiveData<List<HelpRequestArticle>>()
     val requestIsAccepted = MutableLiveData<Boolean>()
-    val buttonText = MutableLiveData<String>()
     val idOfRequest = MutableLiveData<Long>()
 
     private val compositeDisposable = CompositeDisposable()

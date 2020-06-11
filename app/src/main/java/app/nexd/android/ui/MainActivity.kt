@@ -9,11 +9,8 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import app.nexd.android.R
 import io.reactivex.plugins.RxJavaPlugins
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
-
-    private val mainViewModel: MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
