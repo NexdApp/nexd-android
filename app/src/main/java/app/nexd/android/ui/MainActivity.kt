@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**hides keyboard */
-    fun hideKeyboard() {
+    private fun hideKeyboard() {
         if (currentFocus != null) {
             (getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(
                 currentFocus!!.windowToken,

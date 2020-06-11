@@ -21,13 +21,13 @@ abstract class SelectDialog @JvmOverloads constructor(
     layout: ViewGroup? = null
 ) : AlertDialog.Builder(context) {
 
-    var caption: String = ""
+    private var caption: String = ""
         set(value) {
             mTitle.text = value
             field = value
         }
 
-    var details: String? = null
+    private var details: String? = null
         set(value) {
             if (value != null) {
                 mDetails.visibility = View.VISIBLE
@@ -80,7 +80,7 @@ abstract class SelectDialog @JvmOverloads constructor(
         this.caption = caption
     }
 
-    fun dismiss() {
+    private fun dismiss() {
         alertDialog?.dismiss()
     }
 
@@ -95,7 +95,7 @@ abstract class SelectDialog @JvmOverloads constructor(
         inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
     }
 
-    protected fun closeKeyboard() {
+    private fun closeKeyboard() {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         if (!imm.isActive)
             imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0)
@@ -141,7 +141,7 @@ abstract class SelectDialog @JvmOverloads constructor(
         dismiss()
     }
 
-    protected fun negativeConfirm() {
+    private fun negativeConfirm() {
         negativeListener?.invoke()
         dismiss()
     }
