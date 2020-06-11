@@ -13,7 +13,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
-    private val mainViewModel : MainViewModel by viewModel()
+    private val mainViewModel: MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity() {
         if (view !is EditText) {
             view.setOnTouchListener { _, _ ->
                 hideKeyboard()
+                view.performClick()
                 false
             }
         }
@@ -58,7 +59,10 @@ class MainActivity : AppCompatActivity() {
     /**hides keyboard */
     fun hideKeyboard() {
         if (currentFocus != null) {
-            (getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
+            (getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(
+                currentFocus!!.windowToken,
+                0
+            )
             currentFocus!!.clearFocus()
         }
     }
