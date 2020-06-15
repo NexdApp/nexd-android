@@ -3,6 +3,8 @@
     <string name="login_screen_title">"Login"</string>
     <string name="login_button_title_login">"Login"</string>
     <string name="login_button_title_register">"Register"</string>
+    <string name="login_logo_content_description" translatable="false">Nexd Logo</string>
+    <string name="login_background_shopping_bag_image_content_description">Background image shopping bag</string>
     <string name="registration_screen_title">"Sign-up"</string>
     <string name="registration_button_title_continue">"Continue"</string>
     <string name="registration_button_title_send">"Send"</string>
@@ -125,6 +127,8 @@ phone call"</string>
     <string name="transcribe_info_input_text_title_last_name">"Last name"</string>
     <string name="transcribe_info_input_text_title_postal_code">"Postal code"</string>
     <string name="transcribe_info_button_title_confirm">"Confirm Info"</string>
+    <string name="transcribe_player_pause_button_content_description">Pause phone request playback</string>
+    <string name="transcribe_player_play_button_content_description">Play phone request playback</string>
 
     <!-- Title of the user profile screen -->
     <string name="user_profile_screen_title">"User profile"</string>

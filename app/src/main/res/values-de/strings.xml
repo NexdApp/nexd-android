@@ -3,6 +3,7 @@
     <string name="login_screen_title">"Login"</string>
     <string name="login_button_title_login">"Einloggen"</string>
     <string name="login_button_title_register">"Registrieren"</string>
+    <string name="login_background_shopping_bag_image_content_description">Hintergrundbild Einkaufstasche</string>
     <string name="registration_screen_title">"Registrierung"</string>
     <string name="registration_button_title_continue">"Weiter"</string>
     <string name="registration_button_title_send">"Bestätigen"</string>
@@ -126,6 +127,8 @@
     <string name="transcribe_info_input_text_title_last_name">"Nachname"</string>
     <string name="transcribe_info_input_text_title_postal_code">"Postleitzahl"</string>
     <string name="transcribe_info_button_title_confirm">"Info bestätigen"</string>
+    <string name="transcribe_player_pause_button_content_description">Unterbreche Anruf Anfrage Wiedergabe</string>
+    <string name="transcribe_player_play_button_content_description">Starte Anruf Anfrage Wiedergabe</string>
 
     <!-- Title of the user profile screen -->
     <string name="user_profile_screen_title">"Benutzerprofil"</string>

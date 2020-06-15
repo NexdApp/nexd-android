@@ -1,9 +1,6 @@
-@file:Suppress("SpellCheckingInspection")
-
 package app.nexd.android.ui.role
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,7 +31,6 @@ class RoleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         activityVm.authState.observe(viewLifecycleOwner, Observer {
-            Log.d("YARAFANG", "auth state $it")
             when (it) {
                 null, AuthState.UNAUTHENTICATED -> findNavController().navigate(
                     NavGraphDirections.toAuthFragmentOnAuth())
