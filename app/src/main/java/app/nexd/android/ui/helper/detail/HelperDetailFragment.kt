@@ -1,12 +1,9 @@
 package app.nexd.android.ui.helper.detail
 
-import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -104,14 +101,4 @@ class HelperDetailFragment : Fragment() {
     }
 
 
-    object ButtonTextStyleBinding {
-        @JvmStatic
-        @BindingAdapter("app:textStyle")
-        fun setTextStyle(button: Button, style: String) {
-            when (style) {
-                "bold" -> button.setTypeface(null, Typeface.BOLD)
-                else -> button.setTypeface(null, Typeface.NORMAL)
-            }
-        }
-    }
 }
