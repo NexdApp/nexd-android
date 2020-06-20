@@ -16,9 +16,8 @@ import app.nexd.android.databinding.FragmentRegisterBinding
 import app.nexd.android.ui.MainViewModel
 import app.nexd.android.ui.auth.register.RegisterViewModel.Progress.*
 import app.nexd.android.ui.common.Constants
-import app.nexd.android.ui.common.DefaultSnackbar
+import app.nexd.android.ui.common.DefaultSnackBar
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_register.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -74,7 +73,7 @@ class RegisterFragment : Fragment() {
                 }
                 is Error -> {
                     progress.message?.let { message ->
-                        DefaultSnackbar(view, message, Snackbar.LENGTH_SHORT)
+                        DefaultSnackBar(view, message, Snackbar.LENGTH_SHORT)
                     }
                     switchUiIsEnabled(true)
                 }

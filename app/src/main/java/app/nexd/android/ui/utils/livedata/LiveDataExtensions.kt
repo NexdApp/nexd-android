@@ -1,4 +1,4 @@
-package app.nexd.android.ui.utils.livedata;
+package app.nexd.android.ui.utils.livedata
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData

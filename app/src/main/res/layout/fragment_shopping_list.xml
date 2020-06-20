@@ -35,16 +35,11 @@
             android:layout_weight="1"
             android:paddingHorizontal="@dimen/horizontalPadding">
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:minWidth="@dimen/topPadding" />
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
                 android:text="@string/shopping_list_screen_title"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/textSize_screen_title"
@@ -54,6 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
+                android:layout_marginHorizontal="@dimen/horizontalPadding"
                 android:background="@android:color/white"
                 app:cardCornerRadius="@dimen/radius">
 
@@ -83,13 +79,6 @@
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/textSize_button"
                 android:textStyle="bold" />
-
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                android:minWidth="@dimen/topPadding" />
 
         </LinearLayout>
     </LinearLayout>

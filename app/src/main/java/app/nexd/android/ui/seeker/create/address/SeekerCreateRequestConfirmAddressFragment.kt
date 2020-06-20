@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import app.nexd.android.R
 import app.nexd.android.databinding.FragmentSeekerCreateRequestConfirmAddressBinding
 import app.nexd.android.di.sharedGraphViewModel
-import app.nexd.android.ui.common.DefaultSnackbar
+import app.nexd.android.ui.common.DefaultSnackBar
 import app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel
 import app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel.Progress.*
 import app.nexd.android.ui.seeker.create.articles.SeekerCreateRequestEnterArticlesFragment
@@ -66,7 +66,7 @@ class SeekerCreateRequestConfirmAddressFragment : Fragment() {
                 }
                 is Error -> {
                     it.message?.let { errorMessageId ->
-                        DefaultSnackbar(binding.root, errorMessageId, Snackbar.LENGTH_SHORT)
+                        DefaultSnackBar(binding.root, errorMessageId, Snackbar.LENGTH_SHORT)
                     }
                 }
                 is Finished -> {

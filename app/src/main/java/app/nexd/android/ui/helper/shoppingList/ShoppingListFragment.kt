@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import app.nexd.android.R
 import app.nexd.android.databinding.FragmentShoppingListBinding
 import app.nexd.android.ui.helper.shoppingList.ShoppingListFragmentDirections.Companion.toCheckoutFragment
 import kotlinx.android.synthetic.main.fragment_shopping_list.*

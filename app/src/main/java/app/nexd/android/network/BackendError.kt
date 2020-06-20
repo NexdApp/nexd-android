@@ -1,13 +1,15 @@
 package app.nexd.android.network
 
+import app.nexd.android.api.model.BackendErrorEntry
 import app.nexd.android.api.model.BackendErrorResponse
 
-class BackendError(private val response: BackendErrorResponse) : Throwable() {
+class BackendError(response: BackendErrorResponse) : Throwable() {
 
-    val code = response.statusCode
+    val code: Long = response.statusCode
 
-    val errors = response.errors
+    val errors: List<BackendErrorEntry> = response.errors
 
-    val errorCodes = errors.map { it.errorCode }
+    val errorCodes: List<BackendErrorEntry.ErrorCodeEnum> = errors.map { it.errorCode }
+
 
 }

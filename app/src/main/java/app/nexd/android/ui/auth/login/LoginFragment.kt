@@ -16,7 +16,7 @@ import app.nexd.android.databinding.FragmentLoginBinding
 import app.nexd.android.ui.MainViewModel
 import app.nexd.android.ui.auth.login.LoginViewModel.Progress.*
 import app.nexd.android.ui.common.Constants
-import app.nexd.android.ui.common.DefaultSnackbar
+import app.nexd.android.ui.common.DefaultSnackBar
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_login.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -70,7 +70,7 @@ class LoginFragment : Fragment() {
                     editText_password.isEnabled = false
                 }
                 is Error -> {
-                    DefaultSnackbar(button_login, progress.message, Snackbar.LENGTH_SHORT)
+                    DefaultSnackBar(button_login, progress.message, Snackbar.LENGTH_SHORT)
                 }
                 is Finished -> {
                     activityVm.authenticate(progress.token)

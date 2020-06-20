@@ -3,6 +3,8 @@
     <string name="login_screen_title">"Login"</string>
     <string name="login_button_title_login">"Login"</string>
     <string name="login_button_title_register">"Register"</string>
+    <string name="login_logo_content_description" translatable="false">Nexd Logo</string>
+    <string name="login_background_shopping_bag_image_content_description">Background image shopping bag</string>
     <string name="registration_screen_title">"Sign-up"</string>
     <string name="registration_button_title_continue">"Continue"</string>
     <string name="registration_button_title_send">"Send"</string>
@@ -125,6 +127,8 @@ phone call"</string>
     <string name="transcribe_info_input_text_title_last_name">"Last name"</string>
     <string name="transcribe_info_input_text_title_postal_code">"Postal code"</string>
     <string name="transcribe_info_button_title_confirm">"Confirm Info"</string>
+    <string name="transcribe_player_pause_button_content_description">Pause phone request playback</string>
+    <string name="transcribe_player_play_button_content_description">Play phone request playback</string>
 
     <!-- Title of the user profile screen -->
     <string name="user_profile_screen_title">"User profile"</string>
@@ -153,16 +157,16 @@ phone call"</string>
     <string name="helper_request_detail_message_cancelled">"Your request was deleted"</string>
     <string name="helper_request_detail_message_error_on_cancellation">"Your request could not be deleted"</string>
     <string name="select_text_dialog_text_hint_default">"Input"</string>
-    <string name="user_input_details_placeholder_firstname">"First name"</string>
-    <string name="user_input_details_placeholder_lastname">"Last name"</string>
+    <string name="user_input_details_placeholder_first_name">"First name"</string>
+    <string name="user_input_details_placeholder_last_name">"Last name"</string>
     <string name="error_message_did_not_consent_privacy_policy">"Please click to confirm our Privacy Policy in order to use our services."</string>
     <string name="keyboard_accessory_text_done">"Done"</string>
     <string name="helper_request_detail_button_remove">"Remove from shopping list!"</string>
     <string name="shopping_list_button_checkout">"Order Completed"</string>
-    <string name="helper_overview_error_empty_zipcode">"Zip code not selected"</string>
+    <string name="helper_overview_error_empty_zip_code">"Zip code not selected"</string>
     <string name="helper_request_filter_settings_screen_title">"Filter settings"</string>
-    <string name="helper_request_filter_settings_heading_zipcode">"Zip code for local search:"</string>
-    <string name="helper_request_filter_settings_placeholder_zipcode">"Zip code"</string>
+    <string name="helper_request_filter_settings_heading_zip_code">"Zip code for local search:"</string>
+    <string name="helper_request_filter_settings_placeholder_zip_code">"Zip code"</string>
     <string name="helper_request_overview_filter_selected_zip">"Open requests for region: %1$@"</string>
     <string name="helper_request_overview_filter_inactive">"All open requests"</string>
     <string name="transcript_summary_button_transcript">"Transcribe another call"</string>
@@ -185,8 +189,8 @@ phone call"</string>
     <string name="seeker_article_input_description">"To add a new article to the list provide its name, amount and unit."</string>
     <string name="seeker_article_input_title">"Add article"</string>
     <string name="seeker_article_input_unit_picker_title">"Unit"</string>
-    <string name="seeker_item_selection_add_article_placeholer">"Add article"</string>
-    <string name="seeker_item_selection_article_amount_placeholer">"Amount"</string>
+    <string name="seeker_item_selection_add_article_placeholder">"Add article"</string>
+    <string name="seeker_item_selection_article_amount_placeholder">"Amount"</string>
     <string name="seeker_item_selection_no_items_text">"Press the '+' button to add your first item to the list."</string>
     <string name="transcribe_articles_selection_no_items_text">"Press the '+' button to add the items ordered in the recorded voice call to the list."</string>
     <string name="error_dialog_backend_communication_failed_message">"We are sorry, but our service is currently not available. Please try again later."</string>
