@@ -1,22 +1,25 @@
 package app.nexd.android.ui.helper.detail
 
-import android.graphics.Typeface
-import android.util.Log
-import android.widget.Button
-import androidx.databinding.BindingAdapter
+import androidx.annotation.StringRes
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import app.nexd.android.Api
+import app.nexd.android.R
 import app.nexd.android.api.model.HelpList
 import app.nexd.android.api.model.HelpListCreateDto
 import app.nexd.android.api.model.HelpRequestArticle
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
-import io.reactivex.schedulers.Schedulers.io
 
 class HelperDetailViewModel(private val api: Api) : ViewModel() {
 
+    sealed class Progress {
+        object Idle : Progress()
+        object Loading : Progress()
+        class Finished(@StringRes val message: Int) : Progress()
+        class Error(val message: String) : Progress()
+    }
 
     val additionalRequest = MutableLiveData<String>()
     val firstName = MutableLiveData<String>()
@@ -29,9 +32,12 @@ class HelperDetailViewModel(private val api: Api) : ViewModel() {
     val requestIsAccepted = MutableLiveData<Boolean>()
     val idOfRequest = MutableLiveData<Long>()
 
+    val progress = MutableLiveData<Progress>(Progress.Idle)
+
     private val compositeDisposable = CompositeDisposable()
 
     fun acceptOrDeclineRequest(requestId: Long) {
+        progress.value = Progress.Loading
         requestIsAccepted.value?.let {
             if (it) declineRequest(requestId)
             else acceptRequest(requestId)
@@ -39,7 +45,7 @@ class HelperDetailViewModel(private val api: Api) : ViewModel() {
     }
 
     private fun acceptRequest(requestId: Long) {
-        api.helpListsControllerGetUserLists(null)
+        val disposable = api.helpListsControllerGetUserLists(null)
             .map { lists ->
                 if (lists.any { it.status == HelpList.StatusEnum.ACTIVE })
                     lists.first { it.status == HelpList.StatusEnum.ACTIVE }
@@ -59,28 +65,46 @@ class HelperDetailViewModel(private val api: Api) : ViewModel() {
                     )
                 }
             }
-            .subscribeOn(io())
-            .doOnError {
-                Log.e("Error", it.message.toString())
-            }
-            .blockingSubscribe()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeBy(
+                onError = {
+                    progress.value = Progress.Error(it.message ?: "Unknown Error")
+                },
+                onComplete = {
+                    progress.value =
+                        Progress.Finished(R.string.helper_request_detail_request_accepted)
+                }
+            )
+        compositeDisposable.add(disposable)
+
     }
 
     private fun declineRequest(requestId: Long) {
-        val helpListIdFromRequest =
-            api.helpRequestsControllerGetSingleRequest(requestId).blockingFirst().helpListId
-        helpListIdFromRequest?.let { helpListId ->
-            api.helpListsControllerDeleteHelpRequestFromHelpList(helpListId, requestId)
-                .subscribeOn(io())
-                .doOnError {
-                    Log.e("Error", it.message.toString())
-                }.blockingSubscribe()
-        }
+        val helpListToDecline =
+            api.helpRequestsControllerGetSingleRequest(requestId)
+        val disposable = helpListToDecline
+            .observeOn(AndroidSchedulers.mainThread())
+            .flatMap { helpListId ->
+                api.helpListsControllerDeleteHelpRequestFromHelpList(
+                    helpListId.helpListId,
+                    requestId
+                )
+
+            }.observeOn(AndroidSchedulers.mainThread())
+            .subscribeBy(
+                onError = {
+                    progress.value = Progress.Error(it.message ?: "Unknown Error")
+                },
+                onComplete = {
+                    progress.value =
+                        Progress.Finished(R.string.helper_request_detail_request_declined)
+                }
+            )
+        compositeDisposable.add(disposable)
     }
 
     fun setInfo(requestId: Long) {
         val observable = api.helpRequestsControllerGetSingleRequest(requestId)
-
         val disposable = observable
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy(
@@ -106,14 +130,4 @@ class HelperDetailViewModel(private val api: Api) : ViewModel() {
         compositeDisposable.clear()
     }
 
-    object ButtonTextStyleBinding {
-        @JvmStatic
-        @BindingAdapter("app:textStyle")
-        fun setTextStyle(button: Button, style: String) {
-            when (style) {
-                "bold" -> button.setTypeface(null, Typeface.BOLD)
-                else -> button.setTypeface(null, Typeface.NORMAL)
-            }
-        }
-    }
 }

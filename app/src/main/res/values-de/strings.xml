@@ -181,6 +181,8 @@
     <string name="helper_request_detail_delivery_comment_header">"Lieferhinweis"</string>
     <string name="helper_request_detail_empty_delivery_address_placeholder">"The delivery address is not available."</string>
     <string name="helper_request_detail_empty_list_placeholder">"Die Einkaufsliste ist fehlerhaft oder enthält keine Einträge."</string>
+    <string name="helper_request_detail_request_accepted">Die Anfrage wurde angenommen!</string>
+    <string name="helper_request_detail_request_declined">Die Anfrage wurde abgelehnt.</string>
     <string name="helper_request_overview_empty_accepted_requests_list_placeholder">"Bisher hast du noch keine Anfragen angenommen. Bitte tippe auf eine offene Anfrage um sie anzusehen und anzunehmen."</string>
     <string name="helper_request_overview_empty_open_requests_list_placeholder">"Für deine eingestellte Region sind derzeit keine offenen Anfragen vorhanden. Bitte such in einer anderen Region in deiner Nähe oder hilf uns in dem du Telefonanrufe übersetzt."</string>
     <string name="seeker_article_input_description">"Bitte gib den Namen, Anzahl und Maßeinheit des Artikels an den du zur Liste hinzufügen möchtest."</string>

@@ -1,9 +1,12 @@
 package app.nexd.android.ui.helper.detail
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -11,7 +14,9 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.api.model.HelpRequestArticle
 import app.nexd.android.databinding.FragmentHelperRequestDetailBinding
+import app.nexd.android.ui.common.DefaultSnackbar
 import app.nexd.android.ui.common.HelpRequestArticleBinder
+import com.google.android.material.snackbar.Snackbar
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -66,8 +71,47 @@ class HelperDetailFragment : Fragment() {
         viewModel.idOfRequest.observe(viewLifecycleOwner, Observer { idOfRequest ->
             binding.buttonAccept.setOnClickListener {
                 viewModel.acceptOrDeclineRequest(idOfRequest)
-                findNavController().popBackStack()
             }
         })
+
+        viewModel.progress.observe(viewLifecycleOwner, Observer { progress ->
+            when (progress) {
+                is HelperDetailViewModel.Progress.Idle -> {
+                    // do nothing
+                }
+                is HelperDetailViewModel.Progress.Loading -> {
+                    // TODO: Show loading circle
+                }
+                is HelperDetailViewModel.Progress.Finished -> {
+                    DefaultSnackbar(
+                        requireParentFragment().requireView(),
+                        progress.message,
+                        Snackbar.LENGTH_SHORT
+                    )
+                    findNavController().popBackStack()
+                }
+                is HelperDetailViewModel.Progress.Error -> {
+                    DefaultSnackbar(
+                        requireParentFragment().requireView(),
+                        progress.message,
+                        Snackbar.LENGTH_SHORT
+                    )
+                    findNavController().popBackStack()
+                }
+            }
+
+        })
+    }
+
+
+    object ButtonTextStyleBinding {
+        @JvmStatic
+        @BindingAdapter("app:textStyle")
+        fun setTextStyle(button: Button, style: String) {
+            when (style) {
+                "bold" -> button.setTypeface(null, Typeface.BOLD)
+                else -> button.setTypeface(null, Typeface.NORMAL)
+            }
+        }
     }
 }
