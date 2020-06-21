@@ -128,9 +128,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_white"
-            android:text="@{viewModel.requestIsAccepted? @string/helper_request_detail_button_cancel : @string/helper_request_detail_button_accept}"
-            android:textColor="@{!viewModel.requestIsAccepted? @android:color/black : @android:color/holo_red_dark}"
-            android:textStyle='@{!viewModel.requestIsAccepted? "normal" : "bold"}'
             android:textAllCaps="false"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"

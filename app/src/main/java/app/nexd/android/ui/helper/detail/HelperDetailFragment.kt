@@ -1,5 +1,6 @@
 package app.nexd.android.ui.helper.detail
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import app.nexd.android.R
 import app.nexd.android.api.model.HelpRequestArticle
 import app.nexd.android.databinding.FragmentHelperRequestDetailBinding
 import app.nexd.android.ui.common.DefaultSnackBar
@@ -97,6 +99,21 @@ class HelperDetailFragment : Fragment() {
                 }
             }
 
+        })
+        viewModel.requestIsAccepted.observe(viewLifecycleOwner, Observer { requestIsAccepted ->
+            if (requestIsAccepted) {
+                binding.buttonAccept.apply {
+                    text = getString(R.string.helper_request_detail_button_cancel)
+                    setTextColor(resources.getColor(android.R.color.holo_red_dark, null))
+                    setTypeface(null, Typeface.BOLD)
+                }
+            } else {
+                binding.buttonAccept.apply {
+                    text = getString(R.string.helper_request_detail_button_accept)
+                    setTextColor(resources.getColor(android.R.color.black, null))
+                    setTypeface(null, Typeface.NORMAL)
+                }
+            }
         })
     }
 
