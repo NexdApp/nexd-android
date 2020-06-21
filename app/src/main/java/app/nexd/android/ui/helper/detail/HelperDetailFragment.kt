@@ -81,7 +81,7 @@ class HelperDetailFragment : Fragment() {
                 }
                 is HelperDetailViewModel.Progress.Finished -> {
                     DefaultSnackbar(
-                        requireParentFragment().requireView(),
+                        binding.buttonAccept,
                         progress.message,
                         Snackbar.LENGTH_SHORT
                     )
@@ -89,7 +89,7 @@ class HelperDetailFragment : Fragment() {
                 }
                 is HelperDetailViewModel.Progress.Error -> {
                     DefaultSnackbar(
-                        requireParentFragment().requireView(),
+                        binding.buttonAccept,
                         progress.message,
                         Snackbar.LENGTH_SHORT
                     )
