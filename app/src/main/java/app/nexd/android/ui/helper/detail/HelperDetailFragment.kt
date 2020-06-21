@@ -11,7 +11,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.api.model.HelpRequestArticle
 import app.nexd.android.databinding.FragmentHelperRequestDetailBinding
-import app.nexd.android.ui.common.DefaultSnackbar
+import app.nexd.android.ui.common.DefaultSnackBar
 import app.nexd.android.ui.common.HelpRequestArticleBinder
 import com.google.android.material.snackbar.Snackbar
 import mva2.adapter.ListSection
@@ -80,16 +80,16 @@ class HelperDetailFragment : Fragment() {
                     // TODO: Show loading circle
                 }
                 is HelperDetailViewModel.Progress.Finished -> {
-                    DefaultSnackbar(
-                        binding.buttonAccept,
+                    DefaultSnackBar(
+                        requireParentFragment().requireView(),
                         progress.message,
                         Snackbar.LENGTH_SHORT
                     )
                     findNavController().popBackStack()
                 }
                 is HelperDetailViewModel.Progress.Error -> {
-                    DefaultSnackbar(
-                        binding.buttonAccept,
+                    DefaultSnackBar(
+                        requireParentFragment().requireView(),
                         progress.message,
                         Snackbar.LENGTH_SHORT
                     )
