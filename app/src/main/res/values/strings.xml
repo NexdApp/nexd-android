@@ -57,6 +57,7 @@
     <string name="helper_request_detail_screen_title">"To collect"</string>
     <string name="helper_request_detail_button_accepted">"Request already accepted"</string>
     <string name="helper_request_detail_button_accept">"Will do!"</string>
+    <string name="helper_request_detail_button_cancel">"Have to cancel"</string>
     <string name="delivery_screen_title">"Delivery!"</string>
     <string name="delivery_dialog_deliver_title">"Deliver"</string>
     <string name="delivery_dialog_deliver_description">"Confirm the delivery of all accepted requests"</string>
@@ -180,6 +181,8 @@ phone call"</string>
     <string name="helper_request_detail_delivery_comment_header">"Delivery comment"</string>
     <string name="helper_request_detail_empty_delivery_address_placeholder">"The delivery address is not available."</string>
     <string name="helper_request_detail_empty_list_placeholder">"The shopping list is empty or failed to load."</string>
+    <string name="helper_request_detail_request_accepted">The request has been accepted!</string>
+    <string name="helper_request_detail_request_declined">The request has been declined.</string>
     <string name="helper_request_overview_empty_accepted_requests_list_placeholder">"No accepted requests found. Please chose requests from the list below."</string>
     <string name="helper_request_overview_empty_open_requests_list_placeholder">"Currently there are no open requests in your selected region. Please try to check other regions nearby for open requests or help us by translating phone calls."</string>
     <string name="seeker_article_input_description">"To add a new article to the list provide its name, amount and unit."</string>

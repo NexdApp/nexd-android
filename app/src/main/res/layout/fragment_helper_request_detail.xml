@@ -128,8 +128,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_white"
-            android:enabled="@{!viewModel.requestIsAccepted}"
-            android:text="@{viewModel.requestIsAccepted? @string/helper_request_detail_button_accepted : @string/helper_request_detail_button_accept}"
             android:textAllCaps="false"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
