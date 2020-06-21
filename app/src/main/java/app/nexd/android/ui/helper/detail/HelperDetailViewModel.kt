@@ -119,6 +119,7 @@ class HelperDetailViewModel(private val api: Api) : ViewModel() {
                     additionalRequest.value = it.additionalRequest
                     idOfRequest.value = it.id
                     requestIsAccepted.value = (it.helpListId != null)
+
                 }
             )
 
@@ -129,5 +130,7 @@ class HelperDetailViewModel(private val api: Api) : ViewModel() {
         super.onCleared()
         compositeDisposable.clear()
     }
+
+    // added comment for checking possible CI issues
 
 }
