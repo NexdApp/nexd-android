@@ -7,21 +7,21 @@
     <string name="registration_button_title_continue">"Weiter"</string>
     <string name="registration_button_title_send">"Bestätigen"</string>
     <string name="role_selection_screen_title">"Rolle"</string>
-    <string name="role_selection_seeker">"Ich brauche etwas!"</string>
+    <string name="role_selection_seeker">"Eigene Bestellungen"</string>
     <string name="role_selection_helper">"Ich kann helfen!"</string>
     <string name="helper_request_overview_screen_title">"Einkaufsliste"</string>
     <string name="helper_request_overview_heading_accepted_section">"Angenommen:"</string>
-    <string name="helper_request_overview_heading_available_section">"Suchen:"</string>
+    <string name="helper_request_overview_heading_available_section">"Offene Anfragen:"</string>
     <string name="helper_request_overview_unknown_requester">"- UNBEKANNT -"</string>
     <string name="helper_request_overview_button_title_start">"Start"</string>
     <string name="helper_request_overview_error_title">"Fehler!"</string>
     <string name="helper_request_overview_error_message">"Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuche es erneut."</string>
     <string name="shopping_list_screen_title">"Einkaufsliste"</string>
-    <string name="shopping_list_button_title_checkout">"Zur Kasse"</string>
+    <string name="shopping_list_button_title_checkout">"Zur Kasse gehen!"</string>
     <string name="shopping_list_overview_error_title">"Fehler!"</string>
     <string name="shopping_list_overview_error_loading_failed_message">"Beim Laden der Einkaufsliste ist ein Fehler aufgetreten! Bitte versuche es erneut."</string>
-    <string name="checkout_screen_title">"An der Kasse"</string>
-    <string name="checkout_button_title_complete">"Fertig"</string>
+    <string name="checkout_screen_title">"Einkaufstüte befüllen"</string>
+    <string name="checkout_button_title_complete">"Bestellung ausliefern"</string>
     <string name="seeker_item_selection_screen_title">"Artikel"</string>
     <string name="seeker_submit_button_title">"Senden"</string>
     <string name="seeker_success_title">"Fertig!"</string>
@@ -56,7 +56,7 @@
     <string name="helper_request_overview_button_summary_details">"Insg. "</string>
     <string name="helper_request_detail_screen_title">"Zu Einkaufen"</string>
     <string name="helper_request_detail_button_accepted">"Anfrage bereits angenommen"</string>
-    <string name="helper_request_detail_button_accept">"Mach ich!"</string>
+    <string name="helper_request_detail_button_accept">"Einkaufsliste übernehmen!"</string>
     <string name="delivery_screen_title">"Abgabe!"</string>
     <string name="delivery_dialog_deliver_title">"Abgeben"</string>
     <string name="delivery_dialog_deliver_description">"Bitte bestätige die Abgabe aller angenommen Aufträge"</string>
@@ -91,14 +91,14 @@
     <string name="role_screen_title">"Willkommen, "</string>
     <string name="role_screen_subtitle">"Was möchtest du heute tun?"</string>
     <string name="helper_type_screen_title">"Wie würdest du gerne helfen?"</string>
-    <string name="helper_type_button_shopping">"Ich möchte shoppen!"</string>
-    <string name="helper_type_button_transcript">"Einen Anruf übersetzen!"</string>
+    <string name="helper_type_button_shopping">"Bestellung ausführen"</string>
+    <string name="helper_type_button_transcript">"Anruf übersetzen"</string>
     <string name="helper_call_overview_screen_title">"Offene Anrufe:"</string>
 
     <!-- Fuzzy -->
     <string name="seeker_phone_call_text">"Rufe bitte &lt;/br&gt;&lt;b&gt;%1$s&lt;/b&gt;&lt;/br&gt;um deine Einkaufsliste aufzuzeichnen."</string>
     <string name="seeker_type_screen_title">"Wie würdest du gerne deine Liste erstellen?"</string>
-    <string name="seeker_type_button_help_request">"Artikel auswählen"</string>
+    <string name="seeker_type_button_help_request">"Bestellung aufgeben"</string>
     <string name="seeker_type_button_phone_call">"Einen Anruf tätigen"</string>
     <string name="error_message_unknown">"Unbekannter Fehler"</string>
     <string name="seeker_overview_empty_label">"Du hast noch keine Anfrage aufgegeben. Klicke rechts unten, um deine erste Anfrage zu erstellen."</string>
@@ -110,7 +110,7 @@
     <string name="loading_overlay_message">"Wird geladen…"</string>
     <string name="ok_button_title">"OK"</string>
     <string name="seeker_request_create_placeholder_delivery_comment">"Lieferhinweis"</string>
-    <string name="helper_request_overview_button_title_current_items_list">"Einkaufsliste"</string>
+    <string name="helper_request_overview_button_title_current_items_list">"Einkaufen gehen!"</string>
 
     <!-- Fuzzy -->
     <string name="helper_request_overview_open_request_item_details_format_ios">"vor %1$@, %2$@"</string>
@@ -157,7 +157,7 @@
     <string name="user_input_details_placeholder_lastname">"Nachname"</string>
     <string name="error_message_did_not_consent_privacy_policy">"Bitte bestätigen sie unsere Datenschutzbestimmungen um fortzufahren."</string>
     <string name="keyboard_accessory_text_done">"Fertig"</string>
-    <string name="helper_request_detail_button_remove">"Von Einkafusliste entfernen!"</string>
+    <string name="helper_request_detail_button_remove">"Von meiner Liste löschen!"</string>
     <string name="shopping_list_button_checkout">"Zur Kasse"</string>
     <string name="helper_overview_error_empty_zipcode">"Keine PLZ ausgewählt"</string>
     <string name="helper_request_filter_settings_screen_title">"Filtereinstellungen"</string>
@@ -181,7 +181,7 @@
     <string name="helper_request_detail_empty_delivery_address_placeholder">"The delivery address is not available."</string>
     <string name="helper_request_detail_empty_list_placeholder">"Die Einkaufsliste ist fehlerhaft oder enthält keine Einträge."</string>
     <string name="helper_request_overview_empty_accepted_requests_list_placeholder">"Bisher hast du noch keine Anfragen angenommen. Bitte tippe auf eine offene Anfrage um sie anzusehen und anzunehmen."</string>
-    <string name="helper_request_overview_empty_open_requests_list_placeholder">"Für deine eingestellte Region sind derzeit keine offenen Anfragen vorhanden. Bitte such in einer anderen Region in deiner Nähe oder hilf uns in dem du Telefonanrufe übersetzt."</string>
+    <string name="helper_request_overview_empty_open_requests_list_placeholder">"Für deine eingestellte Region sind derzeit keine offenen Anfragen vorhanden."</string>
     <string name="seeker_article_input_description">"Bitte gib den Namen, Anzahl und Maßeinheit des Artikels an den du zur Liste hinzufügen möchtest."</string>
     <string name="seeker_article_input_title">"Artikel hinzufügen"</string>
     <string name="seeker_article_input_unit_picker_title">"Maßeinheit"</string>
@@ -194,9 +194,9 @@
     <string name="overlay_backend_error_communication_failed_message">"Leider ist unser Dienst derzeit nicht verfügbar. Bitte versuch es später nochmal."</string>
     <string name="overlay_backend_error_communication_failed_retry">"Wiederholen"</string>
     <string name="overlay_backend_error_communication_failed_title">"Dienst nicht verfügbar"</string>
-    <string name="helper_request_overview_empty_open_requests_list_invitation_hint">"Kennst du Leute die diese App gerne nutzen möchten? Dann erzähl ihnen von uns!"</string>
-    <string name="helper_request_overview_empty_open_requests_list_invite_button_title">"Weitersagen!"</string>
-    <string name="invitation_message">"Schau dir mal die nexd App an. Ich glaube die wäre was für dich…"</string>
+    <string name="helper_request_overview_empty_open_requests_list_invitation_hint">"Du kannst die Region (oben unter \"Offene Anfragen\") auch ändern oder Freunde zu NEXD einladen!"</string>
+    <string name="helper_request_overview_empty_open_requests_list_invite_button_title">"Freunde einladen!"</string>
+    <string name="invitation_message">"Schau dir mal die NEXD App an. Ich glaube die wäre was für dich…"</string>
     <string name="login_background_shopping_bag_image_content_description">"Hintergrundbild Einkaufstasche"</string>
     <string name="transcribe_player_pause_button_content_description">"Unterbreche Anruf Anfrage Wiedergabe"</string>
     <string name="transcribe_player_play_button_content_description">"Starte Anruf Anfrage Wiedergabe"</string>
@@ -207,4 +207,20 @@
     <string name="helper_request_filter_settings_placeholder_zip_code">"Postleitzahl"</string>
     <string name="seeker_item_selection_add_article_placeholder">"Artikel Name"</string>
     <string name="seeker_item_selection_article_amount_placeholder">"Menge"</string>
+    <string name="edit_open_help_requests_no_open_requests_placeholer">"Derzeit liegen keine offenen Bestllungen für dich vor."</string>
+    <string name="edit_open_help_requests_cancel_request_button_title">"Bestellung abbrechen"</string>
+    <string name="edit_open_help_requests_cancel_request_error_message">"Beim Abbrechen der Bestellung ist ein Fehler aufgetreten. Versuch es bitte später nochmal!"</string>
+    <string name="edit_open_help_requests_cancel_request_error_title">"Anfrage fehlgeschlagen!"</string>
+    <string name="edit_open_help_requests_screen_title">"Offene Bestellungen"</string>
+    <string name="edit_open_help_requests_request_status_title">"Status"</string>
+    <string name="help_request_status_value_completed">"completed"</string>
+    <string name="help_request_status_value_deactivated">"deactivated"</string>
+    <string name="help_request_status_value_ongoing">"angenommen"</string>
+    <string name="help_request_status_value_pending">"nicht angenommen"</string>
+    <string name="role_screen_title_format">"Hallo, %s"</string>
+    <string name="seeker_article_input_add_button_title">"Hinzufügen"</string>
+    <string name="seeker_item_selection_confirm_button_title">"Weiter zur Adresseingabe"</string>
+    <string name="seeker_type_button_manage_help_requests">"Bestellungen verwalten"</string>
+    <string name="seeker_type_description">"Hier kannst du deine Bestellungen verwalten"</string>
+    <string name="shopping_list_description_text">"Wenn du ein Produkt gefunden hast, klicke drauf und es wird aus der Liste gestrichen. So behältst du beim Einkaufen immer den Überblick"</string>
 </resources>
