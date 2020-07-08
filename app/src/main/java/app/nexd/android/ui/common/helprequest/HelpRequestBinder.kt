@@ -1,10 +1,10 @@
-package app.nexd.android.ui.common
+package app.nexd.android.ui.common.helprequest
 
 import android.view.View
 import android.view.ViewGroup
 import app.nexd.android.R
 import app.nexd.android.api.model.HelpRequest
-import app.nexd.android.ui.common.HelpRequestBinder.HelpRequestViewHolder
+import app.nexd.android.ui.common.helprequest.HelpRequestBinder.HelpRequestViewHolder
 import kotlinx.android.synthetic.main.row_help_request.view.*
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder

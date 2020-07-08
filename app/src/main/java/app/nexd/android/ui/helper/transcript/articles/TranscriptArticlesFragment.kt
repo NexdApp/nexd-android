@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.databinding.FragmentTranscriptArticlesBinding
 import app.nexd.android.di.sharedGraphViewModel
-import app.nexd.android.ui.common.HelpRequestCreateArticleBinder
+import app.nexd.android.ui.common.helprequest.HelpRequestCreateArticleBinder
 import app.nexd.android.ui.helper.transcript.TranscriptViewModel
 import app.nexd.android.ui.helper.transcript.TranscriptViewModel.Progress.Finished
 import app.nexd.android.ui.helper.transcript.articles.TranscriptArticlesFragmentDirections.Companion.toTranscriptSummaryFragment
@@ -39,7 +39,9 @@ class TranscriptArticlesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val adapter = MultiViewAdapter()
-        adapter.registerItemBinders(HelpRequestCreateArticleBinder())
+        adapter.registerItemBinders(
+            HelpRequestCreateArticleBinder(
+                viewLifecycleOwner))
 
         binding.recyclerviewHelpRequestArticles.adapter = adapter
         binding.recyclerviewHelpRequestArticles.layoutManager = LinearLayoutManager(context)
@@ -47,7 +49,7 @@ class TranscriptArticlesFragment : Fragment() {
         transcriptViewModel.articles.observe(viewLifecycleOwner, Observer { articles ->
             adapter.removeAllSections()
 
-            val section = ListSection<HelpRequestCreateArticleBinder.ArticleInput>()
+            val section = ListSection<HelpRequestCreateArticleBinder.ArticleViewModel>()
             section.addAll(articles)
             adapter.addSection(section)
         })

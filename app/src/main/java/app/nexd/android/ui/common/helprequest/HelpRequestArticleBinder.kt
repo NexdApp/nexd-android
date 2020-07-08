@@ -1,4 +1,4 @@
-package app.nexd.android.ui.common
+package app.nexd.android.ui.common.helprequest
 
 import android.view.View
 import android.view.ViewGroup

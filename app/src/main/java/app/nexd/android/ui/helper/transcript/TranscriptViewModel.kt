@@ -5,15 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import app.nexd.android.Api
 import app.nexd.android.R
-import app.nexd.android.api.model.AvailableLanguages
 import app.nexd.android.api.model.Call
-import app.nexd.android.api.model.CreateHelpRequestArticleDto
-import app.nexd.android.api.model.HelpRequestCreateDto
-import app.nexd.android.ui.common.HelpRequestCreateArticleBinder
+import app.nexd.android.ui.common.helprequest.HelpRequestCreateArticleBinder
 import app.nexd.android.ui.helper.transcript.TranscriptViewModel.Progress.Error
 import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.subscribeBy
 
 class TranscriptViewModel(private val api: Api) : ViewModel() {
 
@@ -52,7 +48,7 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
     val cityError = MutableLiveData<Int?>(null)
 
     // Articles
-    val articles = MutableLiveData(emptyList<HelpRequestCreateArticleBinder.ArticleInput>())
+    val articles = MutableLiveData(emptyList<HelpRequestCreateArticleBinder.ArticleViewModel>())
 
     /**
      * This disposable is to be used for rx subscriptions not bound to a live data lifecycle.
@@ -61,31 +57,32 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
     private val compositeDisposable = CompositeDisposable()
 
     private fun loadArticles() {
-        val observable = api.articlesControllerFindAll(
-            10,
-            null,
-            null,
-            true, AvailableLanguages.DE, // FIXME: use app/system language
-            false
-        )
-            .map { articles ->
-                articles
-                    .map { article ->
-                        HelpRequestCreateArticleBinder.ArticleInput(
-                            article.id,
-                            MutableLiveData(article.name),
-                            MutableLiveData(0L.toString())
-                        )
-                    }
-            }
-
-        val disposable = observable
-            .observeOn(mainThread())
-            .subscribeBy(
-                onNext = { articles.value = it }
-            )
-
-        compositeDisposable.add(disposable)
+//        val observable = api.articlesControllerFindAll(
+//            10,
+//            null,
+//            null,
+//            true, AvailableLanguages.DE, // FIXME: use app/system language
+//            false
+//        )
+//            .map { articles ->
+//                articles
+//                    .map { article ->
+//                        HelpRequestCreateArticleBinder.ArticleViewModel(
+//                            null,
+//                            MutableLiveData(article.name),
+//                            MutableLiveData(0L.toString()),
+//                            selectedUnit = MutableLiveData<Unit>(null) // FIXME: pass real unit value here
+//                        )
+//                    }
+//            }
+//
+//        val disposable = observable
+//            .observeOn(mainThread())
+//            .subscribeBy(
+//                onNext = { articles.value = it }
+//            )
+//
+//        compositeDisposable.add(disposable)
     }
 
     fun transcriptCall() {
@@ -174,43 +171,43 @@ class TranscriptViewModel(private val api: Api) : ViewModel() {
     }
 
     fun saveHelpRequest() {
-        val helpRequestArticles = articles.value?.let { list ->
-            list.filter { (it.amount.value?.toLong() ?: 0L) > 0L }
-                .map {
-                    CreateHelpRequestArticleDto()
-                        .articleId(it.articleId)
-                        .articleCount(it.amount.value!!.toLong())
-                }
-        }
-
-        if (helpRequestArticles.isNullOrEmpty()) {
-            progress.value = Error(R.string.error_message_unknown)
-            return
-        }
-
-        val data = HelpRequestCreateDto().also { dto ->
-            dto.firstName = firstName.value
-            dto.lastName = lastName.value
-            dto.street = street.value
-            dto.number = number.value
-            dto.zipCode = zipCode.value
-            dto.city = city.value
-            dto.phoneNumber = call.value?.phoneNumber
-            dto.articles = helpRequestArticles
-        }
-
-        val disposable = api.phoneControllerConverted(call.value?.sid, data)
-            .observeOn(mainThread())
-            .subscribeBy(
-                onNext = {
-                    progress.value = Progress.Finished
-                },
-                onError = {
-                    progress.value = Error(R.string.error_message_unknown)
-                } // TODO: use proper error message
-            )
-
-        compositeDisposable.add(disposable)
+//        val helpRequestArticles = articles.value?.let { list ->
+//            list.filter { (it.amount.value?.toLong() ?: 0L) > 0L }
+//                .map {
+//                    CreateHelpRequestArticleDto()
+//                        .articleId(it.articleId)
+//                        .articleCount(it.amount.value!!.toLong())
+//                }
+//        }
+//
+//        if (helpRequestArticles.isNullOrEmpty()) {
+//            progress.value = Error(R.string.error_message_unknown)
+//            return
+//        }
+//
+//        val data = HelpRequestCreateDto().also { dto ->
+//            dto.firstName = firstName.value
+//            dto.lastName = lastName.value
+//            dto.street = street.value
+//            dto.number = number.value
+//            dto.zipCode = zipCode.value
+//            dto.city = city.value
+//            dto.phoneNumber = call.value?.phoneNumber
+//            dto.articles = helpRequestArticles
+//        }
+//
+//        val disposable = api.phoneControllerConverted(call.value?.sid, data)
+//            .observeOn(mainThread())
+//            .subscribeBy(
+//                onNext = {
+//                    progress.value = Progress.Finished
+//                },
+//                onError = {
+//                    progress.value = Error(R.string.error_message_unknown)
+//                } // TODO: use proper error message
+//            )
+//
+//        compositeDisposable.add(disposable)
     }
 
     private fun reset() {

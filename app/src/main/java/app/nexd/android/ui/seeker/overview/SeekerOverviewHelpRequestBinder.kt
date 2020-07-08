@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.api.model.HelpRequest
 import app.nexd.android.api.model.HelpRequestArticle
-import app.nexd.android.ui.common.HelpRequestArticleBinder
+import app.nexd.android.ui.common.helprequest.HelpRequestArticleBinder
 import app.nexd.android.ui.seeker.overview.SeekerOverviewHelpRequestBinder.HelpRequestViewHolder
 import kotlinx.android.synthetic.main.row_seeker_overview_help_request.view.*
 import mva2.adapter.ItemBinder

@@ -13,7 +13,7 @@ import app.nexd.android.R
 import app.nexd.android.api.model.HelpRequest
 import app.nexd.android.databinding.FragmentHelperRequestOverviewBinding
 import app.nexd.android.ui.common.DefaultSnackbar
-import app.nexd.android.ui.common.HelpRequestBinder
+import app.nexd.android.ui.common.helprequest.HelpRequestBinder
 import app.nexd.android.ui.dialog.SelectTextDialog
 import app.nexd.android.ui.helper.requestOverview.HelperOverviewFragmentDirections.Companion.requestDetailAction
 import app.nexd.android.ui.helper.requestOverview.HelperOverviewViewModel.Progress.*

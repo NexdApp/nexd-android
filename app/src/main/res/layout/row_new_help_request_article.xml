@@ -1,60 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="viewModel"
-            type="app.nexd.android.ui.common.HelpRequestCreateArticleBinder.ArticleInput" />
+            type="app.nexd.android.ui.common.helprequest.HelpRequestCreateArticleBinder.ArticleViewModel" />
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_article"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:paddingBottom="15dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textView_article_name"
-            android:textColor="@android:color/black"
-            android:textSize="22sp"
-            android:background="@drawable/rounded_white"
-            android:paddingHorizontal="10dp"
-            android:gravity="center_vertical|start"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="10dp"
-            android:text="@{viewModel.articleName}"
-            tools:text="Milch"/>
+        android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/editText_articleCount"
+            android:id="@+id/textView_article_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/rounded_white"
+            android:gravity="center_vertical|start"
             android:importantForAutofill="no"
-            android:selectAllOnFocus="true"
-            android:inputType="number"
-            android:imeOptions="actionDone"
-            android:background="@drawable/round_white"
+            android:inputType="text"
+            android:padding="10dp"
+            android:text="@={viewModel.articleName}"
             android:textColor="@color/colorPrimary"
-            android:textAlignment="center"
-            android:paddingVertical="0dp"
-            android:paddingHorizontal="3dp"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:minWidth="42dp"
+            app:layout_constraintEnd_toStartOf="@id/editText_article_count"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="LabelFor"
+            tools:text="Milch" />
+
+        <EditText
+            android:id="@+id/editText_article_count"
             android:layout_width="wrap_content"
-            android:layout_height="42dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/rounded_white"
+            android:imeOptions="actionDone"
+            android:importantForAutofill="no"
+            android:inputType="number"
+            android:minWidth="42dp"
+            android:padding="10dp"
+            android:selectAllOnFocus="true"
             android:text="@={viewModel.amount}"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/textView_article_name"
+            app:layout_constraintEnd_toStartOf="@id/textView_article_unit"
+            app:layout_constraintTop_toTopOf="@id/textView_article_name"
+            tools:ignore="LabelFor"
             tools:text="0" />
 
-        <!--<ImageButton
-            android:id="@+id/button_increase"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:scaleType="fitCenter"
-            style="@style/Widget.AppCompat.ActionButton"
-            android:padding="5dp"
-            android:src="@drawable/ic_add_circle_outline_black_24dp" />-->
+        <TextView
+            android:id="@+id/textView_article_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@{viewModel.unitButtonBg}"
+            android:onClick="@{() -> viewModel.toggleUnitsVisibility()}"
+            android:padding="10dp"
+            android:selectAllOnFocus="true"
+            android:text="@{viewModel.selectedUnit.nameShort}"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/textView_article_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/textView_article_name"
+            tools:background="@drawable/rounded_top_solid"
+            tools:text="Kg." />
 
-    </LinearLayout>
+        <View
+            android:id="@+id/view_units_connector"
+            android:layout_width="0dp"
+            android:layout_height="5dp"
+            android:background="@android:color/white"
+            android:visibility="@{viewModel.unitsVisibility}"
+            app:layout_constraintEnd_toEndOf="@id/textView_article_unit"
+            app:layout_constraintStart_toStartOf="@id/textView_article_unit"
+            app:layout_constraintTop_toBottomOf="@id/textView_article_unit" />
+
+        <View
+            android:id="@+id/view_units_connector_round_corner"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/bg_bottom_right_corner"
+            android:backgroundTint="@android:color/white"
+            android:visibility="@{viewModel.unitsVisibility}"
+            app:layout_constraintBottom_toBottomOf="@id/view_units_connector"
+            app:layout_constraintEnd_toStartOf="@id/view_units_connector"
+            app:layout_constraintHeight_max="10dp"
+            app:layout_constraintWidth_max="10dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_new_article_units"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@android:color/white"
+            android:overScrollMode="never"
+            android:padding="10dp"
+            android:visibility="@{viewModel.unitsVisibility}"
+            app:layout_constraintTop_toBottomOf="@id/view_units_connector_round_corner"
+            tools:itemCount="3"
+            tools:listitem="@layout/view_chip_article_unit" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container_new_article_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:padding="10dp"
+            android:visibility="@{viewModel.buttonsVisibility}"
+            app:layout_constraintTop_toBottomOf="@id/recyclerview_new_article_units">
+
+            <Button
+                android:id="@+id/button_new_article_cancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_outer_primary"
+                android:padding="8dp"
+                android:text="@string/cancel_button_title"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/button_new_article_confirm"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/button_new_article_confirm"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/rounded_primary"
+                android:enabled="@{!viewModel.articleName.empty}"
+                android:onClick="@{() -> viewModel.listener.onConfirm(viewModel)}"
+                android:padding="8dp"
+                android:text="@string/confirm_button_title"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/button_new_article_cancel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/button_new_article_cancel"
+                app:layout_constraintTop_toTopOf="@id/button_new_article_cancel" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

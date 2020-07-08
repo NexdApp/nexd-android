@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import app.nexd.android.R
 import app.nexd.android.api.model.HelpRequest
 import app.nexd.android.api.model.HelpRequestArticle
-import app.nexd.android.ui.common.HelpRequestArticleBinder
+import app.nexd.android.ui.common.helprequest.HelpRequestArticleBinder
 import kotlinx.android.synthetic.main.row_checkout_request_item_row.view.*
 import mva2.adapter.ItemBinder
 import mva2.adapter.ItemViewHolder

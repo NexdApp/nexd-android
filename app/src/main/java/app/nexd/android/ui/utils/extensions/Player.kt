@@ -1,4 +1,4 @@
-package app.nexd.android.ui.utils
+package app.nexd.android.ui.utils.extensions
 
 import android.net.Uri
 import androidx.databinding.BindingAdapter

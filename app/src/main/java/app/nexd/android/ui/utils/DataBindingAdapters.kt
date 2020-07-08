@@ -1,6 +1,8 @@
 package app.nexd.android.ui.utils
 
+import android.view.View
 import android.widget.TextView
+import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.databinding.BindingAdapter
 
@@ -16,5 +18,11 @@ object DataBindingAdapters {
     @JvmStatic
     fun textViewBindText(view: TextView, @StringRes text: Int) {
         view.text = if (text != 0) view.context.getString(text) else null
+    }
+
+    @BindingAdapter("android:background")
+    @JvmStatic
+    fun setBackground(view: View, @DrawableRes id: Int) {
+        view.setBackgroundResource(id)
     }
 }

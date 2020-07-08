@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="value"
+            type="app.nexd.android.ui.seeker.create.SeekerCreateRequestViewModel.AdditionalInformation" />
+    </data>
+
+    <EditText
+        android:id="@+id/editText_helpRequest_additional_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@{value}"
+        android:importantForAutofill="no"
+        android:inputType="text" />
+
+</layout>

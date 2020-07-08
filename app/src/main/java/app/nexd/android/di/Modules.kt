@@ -54,5 +54,6 @@ val appModule = module {
 
     viewModel { SeekerOverviewViewModel(get()) }
 
-    viewModel { SeekerCreateRequestViewModel(get()) }
+    viewModel { SeekerCreateRequestViewModel(get(), get()) }
+
 }

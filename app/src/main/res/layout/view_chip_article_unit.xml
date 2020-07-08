@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="unit"
+            type="app.nexd.android.api.model.Unit" />
+        <variable
+            name="selectedUnit"
+            type="androidx.lifecycle.MutableLiveData&lt;app.nexd.android.api.model.Unit>" />
+    </data>
+
+    <TextView
+        android:id="@+id/article_unit_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/chip_background"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="8dp"
+        android:text="@{unit.nameOne}"
+        app:selected="@{unit.id == selectedUnit.id}"
+        android:textColor="@color/chip_text"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:text="Kilogram" />
+
+</layout>
