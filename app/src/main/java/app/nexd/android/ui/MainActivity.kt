@@ -7,12 +7,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import app.nexd.android.Api
-import app.nexd.android.Preferences
 import app.nexd.android.R
-import app.nexd.android.api
-import app.nexd.android.ui.auth.AuthFragmentDirections
 import io.reactivex.plugins.RxJavaPlugins
 
 class MainActivity : AppCompatActivity() {
@@ -21,36 +16,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener { controller, destination, _ ->
-            Log.v("Navigation", destination.toString())
-            runOnUiThread {
-                // skip authentication if it
-                if (destination.id == R.id.authFragment) {
-                    Preferences.getToken(this)?.let {
-                        Log.v("Navigation", "redirect to roleFragment")
-                        controller.navigate(AuthFragmentDirections.actionAuthFragmentToRoleFragmentOnAuthValid())
-                    }
-                }
-            }
-        }
-
         RxJavaPlugins.setErrorHandler {
             Log.e(MainActivity::class.simpleName, "unhandled error", it)
         }
 
-        api = Api()
-        api.setBearerToken(Preferences.getToken(this))
         hideKeyboardOnTouch()
-    }
-
-    /**
-     * finish activity if start fragment showing
-     */
-    override fun onBackPressed() {
-        if (findNavController(R.id.nav_host_fragment).currentDestination?.id == R.id.roleFragment)
-            finish()
-        else
-            super.onBackPressed()
     }
 
     /**
@@ -69,6 +39,7 @@ class MainActivity : AppCompatActivity() {
         if (view !is EditText) {
             view.setOnTouchListener { _, _ ->
                 hideKeyboard()
+                view.performClick()
                 false
             }
         }
@@ -83,9 +54,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**hides keyboard */
-    fun hideKeyboard() {
+    private fun hideKeyboard() {
         if (currentFocus != null) {
-            (getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
+            (getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(
+                currentFocus!!.windowToken,
+                0
+            )
             currentFocus!!.clearFocus()
         }
     }

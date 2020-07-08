@@ -1,24 +1,31 @@
 package app.nexd.android.ui.auth.register
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
 import app.nexd.android.R
 import app.nexd.android.databinding.FragmentRegisterDetailedBinding
+import app.nexd.android.ui.MainViewModel
 import app.nexd.android.ui.auth.register.RegisterDetailedViewModel.Progress.*
-import app.nexd.android.ui.common.DefaultSnackbar
+import app.nexd.android.ui.common.Constants
+import app.nexd.android.ui.common.DefaultSnackBar
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_register_detailed.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegisterDetailedFragment : Fragment() {
 
-    private val viewModel: RegisterDetailedViewModel by viewModels()
+    private val vm: RegisterDetailedViewModel by viewModel()
+    private val activityVm by sharedViewModel<MainViewModel>()
 
     private lateinit var binding: FragmentRegisterDetailedBinding
 
@@ -28,7 +35,7 @@ class RegisterDetailedFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentRegisterDetailedBinding.inflate(inflater, container, false)
-        binding.viewModel = viewModel
+        binding.viewModel = vm
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
@@ -36,41 +43,68 @@ class RegisterDetailedFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        editText_city.setOnEditorActionListener { _, i, _ ->
-            if (i == EditorInfo.IME_ACTION_DONE) {
-                viewModel.setUserDetails()
+        with(findNavController()) {
+            val appBarConfiguration = AppBarConfiguration(setOf(R.id.registerDetailedFragment))
+            binding.registerDetailedToolbar.setupWithNavController(this, appBarConfiguration)
+        }
+
+        binding.editTextCity.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE && binding.buttonRegister.isEnabled) {
+                binding.buttonRegister.performClick()
             }
             false
         }
 
-        checkbox_data_protection.text = context?.getString(R.string.registration_label_privacy_policy_agreement_android,
-            context?.getString(R.string.registration_term_privacy_policy))
+        binding.buttonRegister.setOnClickListener {
+            switchUiIsEnabled(false)
+            vm.setUserDetails()
+        }
 
-        viewModel.progress.observe(viewLifecycleOwner, Observer { progress ->
-            progressBar.visibility = View.GONE
-            editText_phoneNumber.isEnabled = true
-            editText_street.isEnabled = true
-            editText_houseNr.isEnabled = true
-            editText_zipCode.isEnabled = true
-            editText_city.isEnabled = true
-
+        vm.progress.observe(viewLifecycleOwner, Observer { progress ->
             when (progress) {
                 is Idle -> { /* do nothing in idle */ }
                 is Loading -> {
-                    progressBar.visibility = View.VISIBLE
-                    editText_phoneNumber.isEnabled = false
-                    editText_street.isEnabled = false
-                    editText_houseNr.isEnabled = false
-                    editText_zipCode.isEnabled = false
-                    editText_city.isEnabled = false
+                    binding.progressBar.visibility = View.VISIBLE
                 }
                 is Error -> {
-                    DefaultSnackbar(view, progress.message, Snackbar.LENGTH_SHORT)
+                    progress.message?.let {
+                        DefaultSnackBar(view, it, Snackbar.LENGTH_SHORT)
+                    }
+                    binding.progressBar.visibility = View.GONE
+                    switchUiIsEnabled(true)
                 }
                 is Finished -> {
-                    findNavController().navigate(RegisterDetailedFragmentDirections.toRoleFragment())
+                    activityVm.setUserAsComplete()
+                    findNavController().navigateUp()
+                    binding.progressBar.visibility = View.GONE
+                    switchUiIsEnabled(true)
                 }
             }
         })
+
+        binding.buttonDataProtectionDetailRegistration.setOnClickListener {
+            showPrivacyPolicy()
+        }
+    }
+
+    private fun showPrivacyPolicy() {
+        startActivity(
+            Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse(Constants.PRIVACY_POLICY_URL)
+            )
+        )
+    }
+
+    // TODO: migrate that to ViewModel and bind visibility
+    private fun switchUiIsEnabled(enable: Boolean) {
+        binding.apply {
+            editTextPhoneNumber.isEnabled = enable
+            editTextStreet.isEnabled = enable
+            editTextHouseNr.isEnabled = enable
+            editTextZipCode.isEnabled = enable
+            editTextCity.isEnabled = enable
+            buttonRegister.isEnabled = enable
+        }
     }
 }

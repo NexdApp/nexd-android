@@ -10,7 +10,7 @@ import androidx.core.content.ContextCompat
 import app.nexd.android.R
 import com.google.android.material.snackbar.Snackbar
 
-class DefaultSnackbar(parent: View, text: CharSequence, duration: Int) {
+class DefaultSnackBar(parent: View, text: CharSequence, duration: Int) {
 
     constructor (parent: View, @StringRes text: Int, duration: Int)
             : this(parent, parent.resources.getString(text), duration)
@@ -18,7 +18,7 @@ class DefaultSnackbar(parent: View, text: CharSequence, duration: Int) {
     init {
         val snackBar = Snackbar.make(parent, text, duration)
         val snackBarView = snackBar.view
-        val params =  snackBarView.layoutParams as CoordinatorLayout.LayoutParams
+        val params = snackBarView.layoutParams as CoordinatorLayout.LayoutParams
         val margin = 28
 
         params.setMargins(params.leftMargin + margin,

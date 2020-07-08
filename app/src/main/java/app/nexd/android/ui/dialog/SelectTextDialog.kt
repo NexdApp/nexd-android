@@ -3,7 +3,6 @@ package app.nexd.android.ui.dialog
 import android.app.AlertDialog
 import android.content.Context
 import android.text.InputType
-import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
@@ -27,7 +26,7 @@ class SelectTextDialog @JvmOverloads constructor(
         get() = mText.text.trim().toString()
 
     init {
-        val view = LayoutInflater.from(context).inflate(R.layout.dialog_select_text, null)
+        val view = View.inflate(context, R.layout.dialog_select_text, null)
         mText = view.findViewById(R.id.dialog_select_text_input)
         mLabel = view.findViewById(R.id.dialog_select_text_label)
 

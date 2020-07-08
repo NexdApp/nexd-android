@@ -6,46 +6,56 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import app.nexd.android.R
+import app.nexd.android.databinding.FragmentShoppingListBinding
+import app.nexd.android.ui.helper.shoppingList.ShoppingListFragmentDirections.Companion.toCheckoutFragment
 import kotlinx.android.synthetic.main.fragment_shopping_list.*
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
+import mva2.extension.decorator.DividerDecoration
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ShoppingListFragment : Fragment() {
 
-    private lateinit var viewModel: ShoppingListViewModel
+    private val viewModel: ShoppingListViewModel by viewModel()
+
+    private lateinit var binding: FragmentShoppingListBinding
+
     private lateinit var adapter: MultiViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_shopping_list, container, false)
+        binding = FragmentShoppingListBinding.inflate(inflater, container, false)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         adapter = MultiViewAdapter()
-        shoppingList.layoutManager = LinearLayoutManager(context)
-        shoppingList.adapter = adapter
+        recyclerView_shoppingList.addItemDecoration(adapter.itemDecoration)
+        recyclerView_shoppingList.layoutManager = LinearLayoutManager(context)
+        recyclerView_shoppingList.adapter = adapter
 
+        val binder = ShoppingListEntryBinder()
+        binder.addDecorator(DividerDecoration(adapter, context, DividerDecoration.VERTICAL))
         adapter.registerItemBinders(
-            ShoppingListEntryBinder()
+            binder
         )
 
-        viewModel = ViewModelProvider(this).get(ShoppingListViewModel::class.java)
-
         viewModel.getShoppingListArticles().observe(viewLifecycleOwner, Observer { shoppingListEntries ->
+            adapter.removeAllSections()
             val listSection = ListSection<ShoppingListViewModel.ShoppingListEntry>()
             listSection.addAll(shoppingListEntries)
             adapter.addSection(listSection)
 
-            checkout.setOnClickListener {
-                findNavController().navigate(ShoppingListFragmentDirections.toCheckoutFragment())
+            button_checkout.setOnClickListener {
+                findNavController().navigate(toCheckoutFragment())
             }
 
             viewModel.getShoppingList().observe(viewLifecycleOwner, Observer { shoppingList ->
@@ -55,5 +65,9 @@ class ShoppingListFragment : Fragment() {
                 }
             })
         })
+
+        toolbar_back.setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 }

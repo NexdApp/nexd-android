@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/authFragment">
+    app:startDestination="@id/roleFragment">
 
     <action
         android:id="@+id/actionLogin"
@@ -37,7 +37,7 @@
         tools:layout="@layout/fragment_seeker_overview" >
         <action
             android:id="@+id/action_seekerOverviewFragment_to_createHelpRequestFragment"
-            app:destination="@id/seekerCreateRequestFragment"
+            app:destination="@id/nav_seeker_create_request"
             app:enterAnim="@animator/slide_in_right_to_left"
             app:exitAnim="@animator/slide_out_right_to_left"
             app:popEnterAnim="@animator/slide_in_left_to_right"
@@ -68,13 +68,6 @@
             app:exitAnim="@animator/slide_out_right_to_left"
             app:popEnterAnim="@animator/slide_in_left_to_right"
             app:popExitAnim="@animator/slide_out_left_to_right" />
-        <action
-            android:id="@+id/toFinishedFragment"
-            app:destination="@id/helpRequestFinishedFragment"
-            app:enterAnim="@animator/slide_in_right_to_left"
-            app:exitAnim="@animator/slide_out_right_to_left"
-            app:popEnterAnim="@animator/slide_in_left_to_right"
-            app:popExitAnim="@animator/slide_out_left_to_right" />
     </fragment>
     <fragment
         android:id="@+id/helperRequestDetailFragment"
@@ -85,11 +78,8 @@
             android:name="request_id"
             app:argType="long" />
     </fragment>
-    <fragment
-        android:id="@+id/seekerCreateRequestFragment"
-        android:name="app.nexd.android.ui.seeker.create.SeekerCreateRequestFragment"
-        android:label="@string/seeker_request_create_heading"
-        tools:layout="@layout/fragment_seeker_create_request" />
+
+
     <fragment
         android:id="@+id/shoppingListFragment"
         android:name="app.nexd.android.ui.helper.shoppingList.ShoppingListFragment"
@@ -134,7 +124,6 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="app.nexd.android.ui.auth.login.LoginFragment"
-        android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/toRoleFragment"
@@ -143,13 +132,12 @@
             app:exitAnim="@animator/slide_out_right_to_left"
             app:popEnterAnim="@animator/slide_in_left_to_right"
             app:popExitAnim="@animator/slide_out_left_to_right"
-            app:popUpTo="@id/authFragment"
+            app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
         android:name="app.nexd.android.ui.auth.register.RegisterFragment"
-        android:label="RegisterFragment"
         tools:layout="@layout/fragment_register" >
         <action
             android:id="@+id/toRegisterDetailedFragment"
@@ -158,7 +146,7 @@
             app:exitAnim="@animator/slide_out_right_to_left"
             app:popEnterAnim="@animator/slide_in_left_to_right"
             app:popExitAnim="@animator/slide_out_left_to_right"
-            app:popUpTo="@id/authFragment"
+            app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
@@ -199,23 +187,9 @@
             app:argType="long" />
     </fragment>
     <fragment
-        android:id="@+id/helpRequestFinishedFragment"
-        android:name="app.nexd.android.ui.helper.finished.HelpRequestFinishedFragment"
-        android:label="HelpRequestFinishedFragment"
-        tools:layout="@layout/fragment_helper_request_finished" >
-        <action
-            android:id="@+id/toDetailFragment"
-            app:destination="@id/helperRequestDetailFragment"
-            app:enterAnim="@animator/slide_in_right_to_left"
-            app:exitAnim="@animator/slide_out_right_to_left"
-            app:popEnterAnim="@animator/slide_in_left_to_right"
-            app:popExitAnim="@animator/slide_out_left_to_right" />
-    </fragment>
-    <fragment
         android:id="@+id/registerDetailedFragment"
         android:name="app.nexd.android.ui.auth.register.RegisterDetailedFragment"
-        android:label="RegisterDetailedFragment"
-        tools:layout="@layout/fragment_register_detailed" >
+        tools:layout="@layout/fragment_register_detailed">
         <action
             android:id="@+id/toRoleFragment"
             app:destination="@id/roleFragment"
@@ -274,19 +248,29 @@
     <navigation
         android:id="@+id/nav_transcript"
         android:label="Transcript"
-        app:startDestination="@id/callOverviewFragment">
+        app:startDestination="@id/transcriptInfoFragment">
         <fragment
             android:id="@+id/transcriptArticlesFragment"
             android:name="app.nexd.android.ui.helper.transcript.articles.TranscriptArticlesFragment"
             android:label="TranscriptArticlesFragment"
-            tools:layout="@layout/fragment_transcript_articles"/>
+            tools:layout="@layout/fragment_transcript_articles">
+            <action
+                android:id="@+id/toTranscriptSummaryFragment"
+                app:destination="@id/transcriptSummaryFragment"
+                app:enterAnim="@animator/slide_in_right_to_left"
+                app:exitAnim="@animator/slide_out_right_to_left"
+                app:popEnterAnim="@animator/slide_in_left_to_right"
+                app:popExitAnim="@animator/slide_out_left_to_right"
+                app:popUpTo="@id/transcriptInfoFragment"
+                app:popUpToInclusive="true" />
+        </fragment>
         <fragment
             android:id="@+id/transcriptInfoFragment"
             android:name="app.nexd.android.ui.helper.transcript.info.TranscriptInfoFragment"
             android:label="TranscriptInfoFragment"
             tools:layout="@layout/fragment_transcript_info">
             <action
-                android:id="@+id/action_transcriptInfoFragment_to_transcriptArticlesFragment"
+                android:id="@+id/toTranscriptArticlesFragment"
                 app:destination="@id/transcriptArticlesFragment"
                 app:enterAnim="@animator/slide_in_right_to_left"
                 app:exitAnim="@animator/slide_out_right_to_left"
@@ -294,17 +278,84 @@
                 app:popExitAnim="@animator/slide_out_left_to_right" />
         </fragment>
         <fragment
-            android:id="@+id/callOverviewFragment"
-            android:name="app.nexd.android.ui.helper.transcript.calls.TranscriptCallsFragment"
-            android:label="CallOverviewFragment"
-            tools:layout="@layout/fragment_transcript_calls">
+            android:id="@+id/transcriptSummaryFragment"
+            android:name="app.nexd.android.ui.helper.transcript.summary.TranscriptSummaryFragment"
+            android:label="TranscriptSummaryFragment"
+            tools:layout="@layout/fragment_transcript_summary">
             <action
-                android:id="@+id/action_callOverviewFragment_to_transcriptInfoFragment"
+                android:id="@+id/toTranscriptInfoFragment"
                 app:destination="@id/transcriptInfoFragment"
+                app:popUpTo="@id/transcriptSummaryFragment"
+                app:popUpToInclusive="true"
                 app:enterAnim="@animator/slide_in_right_to_left"
                 app:exitAnim="@animator/slide_out_right_to_left"
                 app:popEnterAnim="@animator/slide_in_left_to_right"
                 app:popExitAnim="@animator/slide_out_left_to_right" />
         </fragment>
     </navigation>
+
+    <action
+        android:id="@+id/toRegisterDetailedFragmentOnAuth"
+        app:destination="@id/registerDetailedFragment"
+        app:enterAnim="@animator/slide_in_right_to_left"
+        app:exitAnim="@animator/slide_out_right_to_left"
+        app:popEnterAnim="@animator/slide_in_left_to_right"
+        app:popExitAnim="@animator/slide_out_left_to_right"
+        app:popUpTo="@id/nav_graph"
+        app:popUpToInclusive="true" />
+    <action
+        android:id="@+id/toRoleFragmentOnAuth"
+        app:destination="@id/roleFragment"
+        app:enterAnim="@animator/slide_in_right_to_left"
+        app:exitAnim="@animator/slide_out_right_to_left"
+        app:popEnterAnim="@animator/slide_in_left_to_right"
+        app:popExitAnim="@animator/slide_out_left_to_right"
+        app:popUpTo="@id/nav_graph"
+        app:popUpToInclusive="true" />
+
+    <navigation
+        android:id="@+id/nav_seeker_create_request"
+        android:label="create"
+        app:startDestination="@id/seekerCreateRequestEnterArticlesFragment">
+        <fragment
+            android:id="@+id/seekerCreateRequestEnterArticlesFragment"
+            android:name="app.nexd.android.ui.seeker.create.articles.SeekerCreateRequestEnterArticlesFragment"
+            android:label="SeekerCreateRequestEnterArticlesFragment"
+            tools:layout="@layout/fragment_seeker_create_request_enter_articles">
+            <action
+                android:id="@+id/toSeekerCreateRequestConfirmAddressFragment"
+                app:destination="@id/seekerCreateRequestConfirmAddressFragment"
+                app:enterAnim="@animator/slide_in_right_to_left"
+                app:exitAnim="@animator/slide_out_right_to_left"
+                app:popEnterAnim="@animator/slide_in_left_to_right"
+                app:popExitAnim="@animator/slide_out_left_to_right" />
+        </fragment>
+        <fragment
+            android:id="@+id/seekerCreateRequestConfirmAddressFragment"
+            android:name="app.nexd.android.ui.seeker.create.address.SeekerCreateRequestConfirmAddressFragment"
+            android:label="SeekerCreateRequestConfirmAddressFragment"
+            tools:layout="@layout/fragment_seeker_create_request_confirm_address">
+            <action
+                android:id="@+id/toSeekerOverviewFragment"
+                app:destination="@id/seekerOverviewFragment"
+                app:enterAnim="@animator/slide_in_right_to_left"
+                app:exitAnim="@animator/slide_out_right_to_left"
+                app:popEnterAnim="@animator/slide_in_left_to_right"
+                app:popExitAnim="@animator/slide_out_left_to_right"
+                app:popUpTo="@id/seekerOverviewFragment"
+                app:popUpToInclusive="true" />
+        </fragment>
+    </navigation>
+
+    <action
+        android:id="@+id/toAuthFragmentOnAuth"
+        app:destination="@id/authFragment"
+        app:enterAnim="@animator/slide_in_right_to_left"
+        app:exitAnim="@animator/slide_out_right_to_left"
+        app:popEnterAnim="@animator/slide_in_left_to_right"
+        app:popExitAnim="@animator/slide_out_left_to_right"
+        app:popUpTo="@id/nav_graph"
+        app:popUpToInclusive="true" />
+
+
 </navigation>

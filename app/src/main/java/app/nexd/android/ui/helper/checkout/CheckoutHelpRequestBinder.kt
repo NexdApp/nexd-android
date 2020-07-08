@@ -31,7 +31,7 @@ class CheckoutHelpRequestBinder: ItemBinder<HelpRequest, CheckoutHelpRequestBind
         }
 
         fun bind(request: HelpRequest) {
-            title.text = request.requester?.lastName ?: ""
+            title.text = request.firstName
 
             adapter.removeAllSections()
             val articleList = ListSection<HelpRequestArticle>()

@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical"
-    tools:context=".ui.role.RoleFragment">
+    tools:context=".ui.role.RoleFragment"
+    tools:ignore="Overdraw">
 
     <View
         android:id="@+id/view_top"

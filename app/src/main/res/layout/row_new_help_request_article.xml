@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
     <data>
-        <variable
-            name="helpRequestArticle"
-            type="androidx.lifecycle.MutableLiveData&lt;app.nexd.android.api.model.HelpRequestArticle>" />
+
         <variable
             name="viewModel"
-            type="app.nexd.android.ui.helper.transcript.articles.TranscriptArticlesItemViewModel" />
+            type="app.nexd.android.ui.common.HelpRequestCreateArticleBinder.ArticleInput" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:paddingBottom="15dp"
@@ -30,17 +28,6 @@
             android:text="@{viewModel.articleName}"
             tools:text="Milch"/>
 
-
-        <!--<ImageButton
-            android:id="@+id/button_decrease"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:padding="5dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_remove_circle_outline_black_24dp"
-            style="@style/Widget.AppCompat.ActionButton" />-->
-
         <EditText
             android:id="@+id/editText_articleCount"
             android:importantForAutofill="no"
@@ -57,7 +44,8 @@
             android:minWidth="42dp"
             android:layout_width="wrap_content"
             android:layout_height="42dp"
-            android:text="@={viewModel.articleCount}"
+            android:text="@={viewModel.amount}"
+            tools:ignore="LabelFor"
             tools:text="0" />
 
         <!--<ImageButton

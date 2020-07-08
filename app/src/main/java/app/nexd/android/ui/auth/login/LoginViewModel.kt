@@ -1,24 +1,27 @@
 package app.nexd.android.ui.auth.login
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import androidx.annotation.StringRes
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import app.nexd.android.Api
 import app.nexd.android.Preferences
 import app.nexd.android.R
-import app.nexd.android.api
 import app.nexd.android.api.model.LoginDto
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 import retrofit2.HttpException
 
-class LoginViewModel(application: Application) : AndroidViewModel(application) {
+class LoginViewModel(
+    private val preferences: Preferences,
+    private val api: Api
+) : ViewModel() {
 
     sealed class Progress {
         object Idle : Progress()
         object Loading : Progress()
-        class Error(val message: String) : Progress()
-        object Finished : Progress()
+        class Error(@StringRes val message: Int) : Progress()
+        class Finished(val token: String) : Progress()
     }
 
     val username = MutableLiveData("")
@@ -60,22 +63,17 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(
                     onNext = { responseTokenDto ->
-                        api.setBearerToken(responseTokenDto.accessToken)
-                        with(getApplication<Application>().applicationContext) {
-                            Preferences.setToken(this, responseTokenDto.accessToken)
-                        }
-
-                        progress.value = Progress.Finished
+                        progress.value = Progress.Finished(token = responseTokenDto.accessToken)
                     },
                     onError = { t ->
                         progress.value = Progress.Error(
                             if (t is HttpException) {
                                 when (t.code()) {
-                                    401 -> getApplication<Application>().applicationContext.getString(R.string.error_message_login_failed)
-                                    else -> t.message()
+                                    401 -> R.string.error_message_login_failed
+                                    else -> R.string.error_message_unknown
                                 }
                             } else {
-                                t.message ?: getApplication<Application>().applicationContext.getString(R.string.error_message_unknown)
+                                R.string.error_message_unknown
                             }
                         )
                     }

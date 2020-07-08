@@ -21,7 +21,7 @@
     <string name="shopping_list_overview_error_title">"Error!"</string>
     <string name="shopping_list_overview_error_loading_failed_message">"Shopping list could not be loaded. Please try again!"</string>
     <string name="checkout_screen_title">"Checkout"</string>
-    <string name="checkout_button_title_complete">"Complete"</string>
+    <string name="checkout_button_title_complete">"Start delivery!"</string>
     <string name="seeker_item_selection_screen_title">"Chose items"</string>
     <string name="seeker_submit_button_title">"Submit"</string>
     <string name="seeker_success_title">"Done!"</string>
@@ -80,7 +80,7 @@
     <string name="error_message_registration_password_too_short">"At least 8 characters"</string>
     <string name="error_message_registration_invalid_email">"Invalid E-mail address"</string>
     <string name="error_message_user_detail_field_missing">"Please fill in"</string>
-    <string name="registration_label_privacy_policy_agreement">"By creating an account, I agree to Nexd's %1$@"</string>
+    <string name="registration_label_privacy_policy_agreement">"By creating an account, I agree to NEXD's %1$@"</string>
     <string name="registration_term_privacy_policy">"Privacy Policy"</string>
     <string name="helper_request_overview_button_previous_requests">"Previous purchases"</string>
     <string name="seeker_overview_screen_title">"Your requests:"</string>
@@ -96,9 +96,9 @@
     <string name="helper_call_overview_screen_title">"Open calls:"</string>
 
     <!-- Fuzzy -->
-    <string name="seeker_phone_call_text">"\"Please call &lt;/br&gt;&lt;b&gt;%1$s&lt;/b&gt;&lt;/br&gt;to record your shopping order.\""</string>
+    <string name="seeker_phone_call_text">"Please call &lt;/br&gt;&lt;b&gt;%1$s&lt;/b&gt;&lt;/br&gt;to record your shopping order."</string>
     <string name="seeker_type_screen_title">"How would you like to make your list?"</string>
-    <string name="seeker_type_button_help_request">"Select items"</string>
+    <string name="seeker_type_button_help_request">"Create a new request"</string>
     <string name="seeker_type_button_phone_call">"Make a
 phone call"</string>
     <string name="error_message_unknown">"Unknown error"</string>
@@ -108,17 +108,15 @@ phone call"</string>
     <string name="back_button_title">"Back"</string>
     <string name="cancel_button_title">"Cancel"</string>
     <string name="confirm_button_title">"Confirm"</string>
-    <string name="loading_overlay_message">"Loading..."</string>
+    <string name="loading_overlay_message">"Loading…"</string>
     <string name="ok_button_title">"OK"</string>
     <string name="seeker_request_create_placeholder_delivery_comment">"Delivery comment"</string>
     <string name="helper_request_overview_button_title_current_items_list">"Current Items List"</string>
-
-    <!-- Fuzzy -->
     <string name="helper_request_overview_open_request_item_details_format_ios">"%1$@ ago, %2$@"</string>
     <string name="delivery_confirmation_screen_title">"Thank you for completing the orders!"</string>
     <string name="delivery_confirmation_section_header">"%1$@'s contact information:"</string>
     <string name="delivery_confirmation_phone_number_title">"Telephone number"</string>
-    <string name="delivery_confirmation_address_title">"Postal Code / Town"</string>
+    <string name="delivery_confirmation_address_title">"Address"</string>
     <string name="delivery_confirmation_confirm_button_title">"Finish shopping"</string>
     <string name="error_dialog_authentication_failed_title">"Authentication failed!"</string>
     <string name="error_dialog_authentication_failed_message">"User authentication failed please try to login again."</string>
@@ -148,11 +146,82 @@ phone call"</string>
     <string name="error_message_registration_user_already_exists">"Account is already registered!"</string>
     <string name="error_message_input_validation_phone_number_invalid">"Phone number doesn't match the expected format: +4915112345678"</string>
     <string name="error_message_input_validation_zip_code_invalid">"Please enter the valid zip code"</string>
-    <string name="registration_label_privacy_policy_agreement_android">"By creating an account, I agree to Nexd's %1$s"</string>
+    <string name="registration_label_privacy_policy_agreement_android">"By creating an account, I agree to NEXD's %1$s"</string>
     <string name="helper_request_overview_heading_accepted_section_counter" translatable="false">" (%1$d / %2$d)"</string>
     <string name="helper_request_overview_button_filter_zip">"Zip code"</string>
     <string name="helper_request_overview_heading_open_section_zip">" (zip %1$s)"</string>
     <string name="helper_request_detail_message_cancelled">"Your request was deleted"</string>
     <string name="helper_request_detail_message_error_on_cancellation">"Your request could not be deleted"</string>
     <string name="select_text_dialog_text_hint_default">"Input"</string>
+    <string name="user_input_details_placeholder_firstname">"First name"</string>
+    <string name="user_input_details_placeholder_lastname">"Last name"</string>
+    <string name="error_message_did_not_consent_privacy_policy">"Please click to confirm our Privacy Policy in order to use our services."</string>
+    <string name="keyboard_accessory_text_done">"Done"</string>
+    <string name="helper_request_detail_button_remove">"Remove from my list!"</string>
+    <string name="shopping_list_button_checkout">"Order Completed"</string>
+    <string name="helper_overview_error_empty_zipcode">"Zip code not selected"</string>
+    <string name="helper_request_filter_settings_screen_title">"Filter settings"</string>
+    <string name="helper_request_filter_settings_heading_zipcode">"Zip code for local search:"</string>
+    <string name="helper_request_filter_settings_placeholder_zipcode">"Zip code"</string>
+    <string name="helper_request_overview_filter_selected_zip">"Open requests for region: %1$@"</string>
+    <string name="helper_request_overview_filter_inactive">"All open requests"</string>
+    <string name="transcript_summary_button_transcript">"Transcribe another call"</string>
+    <string name="transcript_summary_title">"Thank you for helping complete %1$s's order!"</string>
+    <string name="transcript_error_empty_calls">"There are no calls to transcript currently"</string>
+    <string name="user_input_details_explanation_text">"Your account has been created. Additionally you may provide some personal information to make creating help requests easier. All fields are optional and can be left empty."</string>
+    <string name="seeker_request_create_confirm_address">"Please confirm your delivery address"</string>
+    <string name="seeker_request_create_submit">"Submit Request"</string>
+    <string name="seeker_request_create_no_articles">"Please enter at least 1 article"</string>
+    <string name="helper_request_detail_additional_request_header">"Additional Request"</string>
+    <string name="helper_request_detail_delivery_address_header">"Delivery Address"</string>
+    <string name="delivery_confirmation_delivery_comment">"Delivery comment"</string>
+    <string name="delivery_confirmation_full_name">"Name"</string>
+    <string name="done_button_title">"Done"</string>
+    <string name="helper_request_detail_delivery_comment_header">"Delivery comment"</string>
+    <string name="helper_request_detail_empty_delivery_address_placeholder">"The delivery address is not available."</string>
+    <string name="helper_request_detail_empty_list_placeholder">"The shopping list is empty or failed to load."</string>
+    <string name="helper_request_overview_empty_accepted_requests_list_placeholder">"No accepted requests found. Please chose requests from the list below."</string>
+    <string name="helper_request_overview_empty_open_requests_list_placeholder">"Currently there are no open requests in your selected region."</string>
+    <string name="seeker_article_input_description">"To add a new article to the list provide its name, amount and unit."</string>
+    <string name="seeker_article_input_title">"Add article"</string>
+    <string name="seeker_article_input_unit_picker_title">"Unit"</string>
+    <string name="seeker_item_selection_add_article_placeholer">"Add article"</string>
+    <string name="seeker_item_selection_article_amount_placeholer">"Amount"</string>
+    <string name="seeker_item_selection_no_items_text">"Press the '+' button to add your first item to the list."</string>
+    <string name="transcribe_articles_selection_no_items_text">"Press the '+' button to add the items ordered in the recorded voice call to the list."</string>
+    <string name="error_dialog_backend_communication_failed_message">"We are sorry, but our service is currently not available. Please try again later."</string>
+    <string name="error_dialog_backend_communication_failed_title">"Service not available"</string>
+    <string name="overlay_backend_error_communication_failed_message">"We are sorry, but our service is currently not available. Please try again later."</string>
+    <string name="overlay_backend_error_communication_failed_retry">"Retry"</string>
+    <string name="overlay_backend_error_communication_failed_title">"Service not available"</string>
+    <string name="helper_request_overview_empty_open_requests_list_invitation_hint">"You can change the search region (by tapping \"Available requests\" above) or invite some friends to join NEXD."</string>
+    <string name="helper_request_overview_empty_open_requests_list_invite_button_title">"Invite your friends!"</string>
+    <string name="invitation_message">"Check out the NEXD app."</string>
+    <string name="login_logo_content_description" translatable="false">"Nexd Logo"</string>
+    <string name="login_background_shopping_bag_image_content_description">"Background image shopping bag"</string>
+    <string name="transcribe_player_pause_button_content_description">"Pause phone request playback"</string>
+    <string name="transcribe_player_play_button_content_description">"Play phone request playback"</string>
+    <string name="user_input_details_placeholder_first_name">"First name"</string>
+    <string name="user_input_details_placeholder_last_name">"Last name"</string>
+    <string name="helper_overview_error_empty_zip_code">"Zip code not selected"</string>
+    <string name="helper_request_filter_settings_heading_zip_code">"Zip code for local search:"</string>
+    <string name="helper_request_filter_settings_placeholder_zip_code">"Zip code"</string>
+    <string name="seeker_item_selection_add_article_placeholder">"Add article"</string>
+    <string name="seeker_item_selection_article_amount_placeholder">"Amount"</string>
+    <string name="edit_open_help_requests_no_open_requests_placeholer">"There are no open requests for you at the moment."</string>
+    <string name="edit_open_help_requests_cancel_request_button_title">"Cancel request"</string>
+    <string name="edit_open_help_requests_cancel_request_error_message">"An error occurred while trying to cancel the request. Please try again later!"</string>
+    <string name="edit_open_help_requests_cancel_request_error_title">"Request failed!"</string>
+    <string name="edit_open_help_requests_screen_title">"Open requests"</string>
+    <string name="edit_open_help_requests_request_status_title">"Status"</string>
+    <string name="help_request_status_value_completed">"abgeschlossen"</string>
+    <string name="help_request_status_value_deactivated">"deaktiviert"</string>
+    <string name="help_request_status_value_ongoing">"accepted"</string>
+    <string name="help_request_status_value_pending">"not yet accepted"</string>
+    <string name="role_screen_title_format">"Hi, %s"</string>
+    <string name="seeker_article_input_add_button_title">"Add"</string>
+    <string name="seeker_item_selection_confirm_button_title">"Continue"</string>
+    <string name="seeker_type_button_manage_help_requests">"Manage your requests"</string>
+    <string name="seeker_type_description">"How would you like to manage your requests?"</string>
+    <string name="shopping_list_description_text">"Tap the article once you found it to check it from the list. This way you will always have a great overview while you are shopping."</string>
 </resources>

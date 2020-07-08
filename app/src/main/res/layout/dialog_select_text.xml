@@ -14,12 +14,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <EditText android:id="@+id/dialog_select_text_input"
+    <EditText
+        android:id="@+id/dialog_select_text_input"
         android:lines="1"
         android:imeOptions="actionDone"
         android:inputType="text"
         android:layout_marginBottom="20dp"
         android:paddingBottom="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:importantForAutofill="no"
+        android:hint="@string/select_text_dialog_text_hint_default" />
 </LinearLayout>

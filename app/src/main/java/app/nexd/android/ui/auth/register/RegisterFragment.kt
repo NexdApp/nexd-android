@@ -8,20 +8,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
+import app.nexd.android.R
 import app.nexd.android.databinding.FragmentRegisterBinding
-import app.nexd.android.ui.auth.register.RegisterFragmentDirections.Companion.toRegisterDetailedFragment
+import app.nexd.android.ui.MainViewModel
 import app.nexd.android.ui.auth.register.RegisterViewModel.Progress.*
-import app.nexd.android.ui.common.DefaultSnackbar
+import app.nexd.android.ui.common.Constants
+import app.nexd.android.ui.common.DefaultSnackBar
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_register.*
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class RegisterFragment : Fragment() {
 
-    private val viewModel: RegisterViewModel by viewModels()
+    private val vm: RegisterViewModel by viewModel()
+    private val activityVm by sharedViewModel<MainViewModel>()
 
     private lateinit var binding: FragmentRegisterBinding
 
@@ -30,7 +34,7 @@ class RegisterFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentRegisterBinding.inflate(inflater, container, false)
-        binding.viewModel = viewModel
+        binding.viewModel = vm
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
@@ -38,48 +42,50 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        editText_password_confirm.setOnEditorActionListener { _, i, _ ->
+        binding.registerToolbar.setupWithNavController(findNavController())
+
+        binding.editTextPasswordConfirm.setOnEditorActionListener { _, i, _ ->
             if (i == EditorInfo.IME_ACTION_DONE) {
-                viewModel.register()
+                if (binding.buttonRegister.isEnabled) binding.buttonRegister.performClick()
             }
             false
         }
 
-        button_register.setOnClickListener {
-            viewModel.register()
+        binding.checkboxDataProtection.text = context?.getString(
+            R.string.registration_label_privacy_policy_agreement_android,
+            context?.getString(R.string.registration_term_privacy_policy)
+        )
+
+        binding.buttonRegister.setOnClickListener {
+            switchUiIsEnabled(false)
+            vm.register()
         }
 
-        viewModel.progress.observe(viewLifecycleOwner, Observer { progress ->
-            progressBar.visibility = View.GONE
-            editText_first_name.isEnabled = true
-            editText_last_name.isEnabled = true
-            editText_email.isEnabled = true
-            editText_password.isEnabled = true
-            editText_password_confirm.isEnabled = true
+
+        vm.progress.observe(viewLifecycleOwner, Observer { progress ->
+            binding.progressBar.visibility = View.GONE
 
             when (progress) {
                 is Idle -> { /* nothing to do here */
                 }
                 is Loading -> {
-                    progressBar.visibility = View.VISIBLE
-                    editText_first_name.isEnabled = false
-                    editText_last_name.isEnabled = false
-                    editText_email.isEnabled = false
-                    editText_password.isEnabled = false
-                    editText_password_confirm.isEnabled = false
+                    binding.progressBar.visibility = View.VISIBLE
                 }
                 is Error -> {
-                    DefaultSnackbar(view, progress.message, Snackbar.LENGTH_SHORT)
+                    progress.message?.let { message ->
+                        DefaultSnackBar(view, message, Snackbar.LENGTH_SHORT)
+                    }
+                    switchUiIsEnabled(true)
                 }
                 is Finished -> {
-                    findNavController().navigate(
-                        toRegisterDetailedFragment()
-                    )
+                    activityVm.authenticate(progress.token)
+                    findNavController().navigate(RegisterFragmentDirections.toRegisterDetailedFragment())
+                    switchUiIsEnabled(true)
                 }
             }
         })
 
-        button_dataProtection.setOnClickListener {
+        binding.buttonDataProtection.setOnClickListener {
             showPrivacyPolicy()
         }
     }
@@ -88,9 +94,22 @@ class RegisterFragment : Fragment() {
         startActivity(
             Intent(
                 Intent.ACTION_VIEW,
-                Uri.parse("https://www.nexd.app/privacypage")
+                Uri.parse(Constants.PRIVACY_POLICY_URL)
             )
         )
+    }
+
+    private fun switchUiIsEnabled(enable: Boolean) {
+        binding.apply {
+            buttonRegister.isEnabled = enable
+            editTextFirstName.isEnabled = enable
+            editTextLastName.isEnabled = enable
+            editTextEmail.isEnabled = enable
+            editTextPassword.isEnabled = enable
+            editTextPasswordConfirm.isEnabled = enable
+            checkboxDataProtection.isEnabled = enable
+        }
+
     }
 
 }
