@@ -112,47 +112,26 @@
             tools:itemCount="3"
             tools:listitem="@layout/view_chip_article_unit" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/container_new_article_buttons"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:padding="10dp"
-            android:visibility="@{viewModel.buttonsVisibility}"
-            app:layout_constraintTop_toBottomOf="@id/recyclerview_new_article_units">
 
-            <Button
-                android:id="@+id/button_new_article_cancel"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_outer_primary"
-                android:padding="8dp"
-                android:text="@string/cancel_button_title"
-                android:textColor="@color/colorPrimary"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@id/button_new_article_confirm"
-                app:layout_constraintHorizontal_chainStyle="spread_inside"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
+            <ImageButton
                 android:id="@+id/button_new_article_confirm"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:background="@drawable/rounded_primary"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rounded_white"
                 android:enabled="@{!viewModel.articleName.empty}"
                 android:onClick="@{() -> viewModel.listener.onConfirm(viewModel)}"
                 android:padding="8dp"
-                android:text="@string/confirm_button_title"
+                android:contentDescription="@string/seeker_request_create_add_item_content_description"
+                android:src="@android:drawable/ic_menu_add"
+
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@id/button_new_article_cancel"
+                android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/button_new_article_cancel"
-                app:layout_constraintTop_toTopOf="@id/button_new_article_cancel" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:visibility="@{viewModel.buttonsVisibility}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recyclerview_new_article_units" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

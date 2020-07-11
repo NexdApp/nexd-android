@@ -172,6 +172,7 @@
     <string name="seeker_request_create_confirm_address">"Bitte bestätige deine Lieferadresse"</string>
     <string name="seeker_request_create_submit">"Anfrage senden"</string>
     <string name="seeker_request_create_no_articles">"Bitte mindestens 1 Artikel wählen"</string>
+    <string name="seeker_request_create_add_item_content_description">Artikel hinzufügen</string>
     <string name="helper_request_detail_additional_request_header">"Zusätzliche Info"</string>
     <string name="helper_request_detail_delivery_address_header">"Lieferaddresse"</string>
     <string name="delivery_confirmation_delivery_comment">"Lieferhinweis"</string>
