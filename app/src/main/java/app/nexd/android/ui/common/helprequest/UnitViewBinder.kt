@@ -7,10 +7,12 @@ import androidx.lifecycle.MutableLiveData
 import app.nexd.android.api.model.Unit
 import app.nexd.android.databinding.ViewChipArticleUnitBinding
 import mva2.extension.DBItemBinder
+import kotlin.reflect.KFunction0
 
 class UnitViewBinder(
     private val lifecycleOwner: LifecycleOwner,
-    private val selectedUnit: MutableLiveData<Unit>
+    private val selectedUnit: MutableLiveData<Unit>,
+    private val toggleVisibilityFunction: KFunction0<kotlin.Unit>
 ) : DBItemBinder<Unit, ViewChipArticleUnitBinding>() {
 
     override fun canBindData(item: Any?): Boolean {
@@ -30,6 +32,7 @@ class UnitViewBinder(
 
         binding.root.setOnClickListener {
             selectedUnit.value = unit
+            toggleVisibilityFunction()
         }
 
         binding.articleUnitName.isSelected = true

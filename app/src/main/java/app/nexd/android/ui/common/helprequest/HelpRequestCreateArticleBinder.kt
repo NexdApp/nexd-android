@@ -19,7 +19,8 @@ import mva2.extension.DBItemBinder
 
 internal typealias ArticleViewModelBinder = DBItemBinder<ArticleViewModel, RowNewHelpRequestArticleBinding>
 
-class HelpRequestCreateArticleBinder(private val lifecycleOwner: LifecycleOwner) : ArticleViewModelBinder() {
+class HelpRequestCreateArticleBinder(private val lifecycleOwner: LifecycleOwner) :
+    ArticleViewModelBinder() {
 
     data class ArticleViewModel(
         val article: MutableLiveData<Article?>,
@@ -85,10 +86,14 @@ class HelpRequestCreateArticleBinder(private val lifecycleOwner: LifecycleOwner)
         val adapter = binding.recyclerviewNewArticleUnits.adapter as MultiViewAdapter
 
         adapter.removeAllSections()
+
         adapter.registerItemBinders(
             UnitViewBinder(
                 lifecycleOwner,
-                viewModel.selectedUnit))
+                viewModel.selectedUnit,
+                viewModel::toggleUnitsVisibility
+            )
+        )
 
         with(ListSection<Unit>()) {
             adapter.addSection(this)
