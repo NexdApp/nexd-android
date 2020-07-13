@@ -4,15 +4,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.*
+import androidx.recyclerview.widget.LinearLayoutManager
 import app.nexd.android.R
 import app.nexd.android.api.model.Article
 import app.nexd.android.api.model.Unit
 import app.nexd.android.databinding.RowNewHelpRequestArticleBinding
 import app.nexd.android.ui.common.helprequest.HelpRequestCreateArticleBinder.ArticleViewModel
 import app.nexd.android.ui.utils.extensions.map
-import com.google.android.flexbox.FlexboxItemDecoration
-import com.google.android.flexbox.FlexboxLayoutManager
-import com.google.android.flexbox.JustifyContent
 import mva2.adapter.ListSection
 import mva2.adapter.MultiViewAdapter
 import mva2.extension.DBItemBinder
@@ -65,14 +63,7 @@ class HelpRequestCreateArticleBinder(private val lifecycleOwner: LifecycleOwner)
 
             recyclerviewNewArticleUnits.apply {
                 adapter = MultiViewAdapter()
-
-                addItemDecoration(FlexboxItemDecoration(parent.context).apply {
-                    setDrawable(parent.context.getDrawable(R.drawable.chip_divider))
-                })
-
-                layoutManager = FlexboxLayoutManager(parent.context).apply {
-                    justifyContent = JustifyContent.CENTER
-                }
+                layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             }
 
             lifecycleOwner = this@HelpRequestCreateArticleBinder.lifecycleOwner
