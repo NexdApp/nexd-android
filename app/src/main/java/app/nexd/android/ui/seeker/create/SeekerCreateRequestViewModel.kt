@@ -223,6 +223,7 @@ class SeekerCreateRequestViewModel(private val context: Context, private val api
             progress.value = Progress.Error(R.string.seeker_request_create_no_articles)
         } else {
             navigateToConfirmAddress.call()
+            progress.value = Progress.Idle
         }
     }
 }
