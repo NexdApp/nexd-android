@@ -61,9 +61,6 @@ class SeekerCreateRequestConfirmAddressFragment : Fragment() {
                 is Idle -> {
                     // nothing to do
                 }
-                is Loading -> {
-                    //
-                }
                 is Error -> {
                     it.message?.let { errorMessageId ->
                         DefaultSnackbar(binding.root, errorMessageId, Snackbar.LENGTH_SHORT)

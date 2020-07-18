@@ -15,6 +15,7 @@ import app.nexd.android.api.model.CreateHelpRequestArticleDto
 import app.nexd.android.api.model.HelpRequestCreateDto
 import app.nexd.android.api.model.Unit
 import app.nexd.android.ui.common.helprequest.HelpRequestCreateArticleBinder.ArticleViewModel
+import app.nexd.android.ui.utils.SingleLiveEvent
 import app.nexd.android.ui.utils.extensions.currentLanguage
 import app.nexd.android.ui.utils.extensions.toLiveData
 import io.reactivex.BackpressureStrategy.LATEST
@@ -25,11 +26,12 @@ class SeekerCreateRequestViewModel(private val context: Context, private val api
 
     sealed class Progress {
         object Idle : Progress()
-        object Loading : Progress()
         class Error(@StringRes val message: Int? = null) : Progress()
         object Finished : Progress()
     }
 
+
+    val navigateToConfirmAddress = SingleLiveEvent<Any>()
     val progress: MutableLiveData<Progress> = MutableLiveData(Progress.Idle)
 
     val firstName = MutableLiveData<String?>()
@@ -211,6 +213,16 @@ class SeekerCreateRequestViewModel(private val context: Context, private val api
         } else {
             errorField.value = null
             true
+        }
+    }
+
+    fun confirmItems() {
+        // to also include null check for inputs the negative case
+        // (no confirmed items, ie = size < 2) is evaluated first
+        if (inputs.value?.size ?: 1 < 2) {
+            progress.value = Progress.Error(R.string.seeker_request_create_no_articles)
+        } else {
+            navigateToConfirmAddress.call()
         }
     }
 }
