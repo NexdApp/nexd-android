@@ -54,6 +54,13 @@ class SeekerCreateRequestEnterArticlesFragment : Fragment() {
 
         initRecyclerView()
         setVmObserver()
+        setUi()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        adapter.removeAllSections()
     }
 
     private fun initRecyclerView() {
@@ -105,9 +112,6 @@ class SeekerCreateRequestEnterArticlesFragment : Fragment() {
                 is Idle -> {
                     //nothing to do
                 }
-                is Loading -> {
-                    findNavController().navigate(SeekerCreateRequestEnterArticlesFragmentDirections.toSeekerCreateRequestConfirmAddressFragment())
-                }
                 is Finished -> {
                     // state not reachable
                 }
@@ -122,5 +126,16 @@ class SeekerCreateRequestEnterArticlesFragment : Fragment() {
                 )
             }
         })
+
+        vm.navigateToConfirmAddress.observe(viewLifecycleOwner, Observer {
+            findNavController().navigate(SeekerCreateRequestEnterArticlesFragmentDirections.toSeekerCreateRequestConfirmAddressFragment())
+        })
     }
+
+    private fun setUi() {
+        binding.buttonAccept.setOnClickListener {
+            vm.confirmItems()
+        }
+    }
+
 }
