@@ -219,7 +219,17 @@ class SeekerCreateRequestViewModel(private val context: Context, private val api
     fun confirmItems() {
         // to also include null check for inputs the negative case
         // (no confirmed items, ie = size < 2) is evaluated first
-        if (inputs.value?.size ?: 1 < 2) {
+        val invalid =
+            // item name null or empty
+            inputs.value?.any { it.articleName.value.isNullOrBlank() } ?: true ||
+                    // no item added
+                    inputs.value?.size ?: 1 < 2 ||
+                    // amount is null, empty or less than 1
+                    inputs.value?.any { it.amount.value.isNullOrBlank() || it.amount.value?.toIntOrNull() ?: 0 < 1 } ?: true ||
+                    // no selected Unit
+                    inputs.value?.any { it.selectedUnit.value == null } ?: true
+
+        if (invalid) {
             progress.value = Progress.Error(R.string.seeker_request_create_no_articles)
         } else {
             navigateToConfirmAddress.call()
