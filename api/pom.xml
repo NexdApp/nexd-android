@@ -256,6 +256,6 @@
         <retrofit-version>2.5.0</retrofit-version>
         <rxjava-version>2.1.1</rxjava-version>
         <oltu-version>1.0.1</oltu-version>
-        <junit-version>4.13</junit-version>
+        <junit-version>4.13.1</junit-version>
     </properties>
 </project>
